@@ -89,33 +89,36 @@ function SceneModel({ modelPath }: { modelPath: string }) {
     // Expose scene for camera auto-frame
     _modelScene = scene;
 
-    // Build mesh map + shadow flags + edge lines (one-time)
+    // Build mesh map + shadow flags + edge lines + hit proxies (one-time)
     scene.traverse((child) => {
       if (child instanceof THREE.Mesh) {
+        if (child.userData.isHitProxy) return; // skip proxies added during this traversal
+
         child.castShadow = true;
         child.receiveShadow = true;
+
         if (child.name) {
+          // Store original mesh for highlight material access
           meshMapRef.current.set(child.name, child);
 
-          // Replace exact-triangle raycast with bounding-sphere for forgiving 3D hit testing
-          // (exploded components can be thin/hard to hit with precise geometry)
-          if (!child.geometry.boundingSphere) child.geometry.computeBoundingSphere();
-          const localSphere = child.geometry.boundingSphere!;
-          child.raycast = (raycaster, intersects) => {
-            const worldSphere = new THREE.Sphere().copy(localSphere).applyMatrix4(child.matrixWorld);
-            const hit = new THREE.Vector3();
-            if (raycaster.ray.intersectSphere(worldSphere, hit)) {
-              intersects.push({
-                distance: raycaster.ray.origin.distanceTo(hit),
-                point: hit.clone(),
-                object: child,
-              } as THREE.Intersection);
-            }
-          };
+          // ── Invisible hit proxy: slightly enlarged for reliable raycasting ──
+          // The visible mesh won't catch rays; the proxy handles hits and follows animation.
+          const proxy = new THREE.Mesh(
+            child.geometry.clone(),
+            new THREE.MeshBasicMaterial(),
+          );
+          proxy.name = child.name;
+          proxy.visible = false;          // invisible to camera, still raycastable
+          proxy.scale.set(1.03, 1.03, 1.03); // 3% fat-finger tolerance
+          proxy.userData.isHitProxy = true;
+          child.add(proxy);
+
+          // Disable raycast on the visible mesh — proxy handles all hits
+          child.raycast = () => {};
         }
 
         // Construction edge lines — attached as child so they animate with the mesh
-        // raycast disabled so pointer events pass through to the mesh below
+        // raycast disabled so pointer events pass through to the hit proxy
         const edges = new THREE.EdgesGeometry(child.geometry, 15);
         const line = new THREE.LineSegments(
           edges,
@@ -255,14 +258,21 @@ function SceneModel({ modelPath }: { modelPath: string }) {
     prevSelected.current = selectedObject;
   }, [hoveredObject, selectedObject]);
 
+  // ── Helper: resolve named Mesh from intersection (edge lines are mesh children) ──
+  const findNamedMesh = (obj: THREE.Object3D): string | null => {
+    // Direct hit on a named Mesh
+    if (obj instanceof THREE.Mesh && obj.name) return obj.name;
+    // Hit a child (e.g. LineSegments edge) → check parent
+    if (obj.parent && obj.parent instanceof THREE.Mesh && obj.parent.name) return obj.parent.name;
+    return null;
+  };
+
   // ── R3F native pointer events (only active after full explosion) ──
-  // Hit testing uses bounding-sphere (not exact geometry) for forgiving 3D interaction
   const handlePointerOver = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation();
     if (useNodeStore.getState().animationProgress < 0.99) return;
-    if (e.object instanceof THREE.Mesh && e.object.name) {
-      setHoveredObject(e.object.name);
-    }
+    const name = findNamedMesh(e.object);
+    if (name) setHoveredObject(name);
   };
 
   const handlePointerOut = (e: ThreeEvent<PointerEvent>) => {
@@ -273,9 +283,10 @@ function SceneModel({ modelPath }: { modelPath: string }) {
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
     if (useNodeStore.getState().animationProgress < 1) return;
-    if (e.object instanceof THREE.Mesh && e.object.name) {
+    const name = findNamedMesh(e.object);
+    if (name) {
       const current = useNodeStore.getState().selectedObject;
-      setSelectedObject(current === e.object.name ? null : e.object.name);
+      setSelectedObject(current === name ? null : name);
     }
   };
 
