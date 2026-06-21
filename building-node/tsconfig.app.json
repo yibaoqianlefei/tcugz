@@ -19,6 +19,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
+    "allowJs": true,
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src"]

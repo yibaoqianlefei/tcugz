@@ -4,11 +4,13 @@ import AppLayout from "./components/AppLayout";
 import HomePage from "./pages/HomePage";
 import LibraryPage from "./pages/LibraryPage";
 import CurriculumPage from "./pages/CurriculumPage";
+import SectionSubPage from "./pages/SectionSubPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
 
 /* ── Lazy-loaded pages ── */
 const NodeDetail = lazy(() => import("./NodeDetail"));
 const GamesPage = lazy(() => import("./pages/GamesPage"));
+const TextbookPage = lazy(() => import("./pages/TextbookPage"));
 
 function LazyFallback() {
   return (
@@ -18,7 +20,7 @@ function LazyFallback() {
   );
 }
 
-function withSuspense(Element: React.LazyExoticComponent<() => React.JSX.Element>) {
+function withSuspense(Element: React.LazyExoticComponent<React.ComponentType<any>>) {
   return (
     <Suspense fallback={<LazyFallback />}>
       <Element />
@@ -32,14 +34,15 @@ export const router = createHashRouter([
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/library", element: <LibraryPage /> },
+      // Curriculum: module grid → section drill-down
       { path: "/curriculum", element: <CurriculumPage /> },
-      { path: "/curriculum/:moduleId", element: <CurriculumPage /> },
+      { path: "/curriculum/:moduleId", element: <SectionSubPage /> },
+      { path: "/textbook/:sectionId", element: withSuspense(TextbookPage) },
       { path: "/node/:nodeId", element: withSuspense(NodeDetail) },
       { path: "/games", element: withSuspense(GamesPage) },
       { path: "/tools", element: <PlaceholderPage title="工具箱" /> },
       { path: "/contribute", element: <PlaceholderPage title="贡献节点" /> },
       { path: "/curriculum/cases", element: <PlaceholderPage title="案例应用" /> },
-      { path: "/textbook/roof-membrane", element: <PlaceholderPage title="自主学习" /> },
     ],
   },
 ]);
