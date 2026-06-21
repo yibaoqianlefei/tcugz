@@ -112,8 +112,8 @@ function SceneModel() {
       animations.forEach((clip, i) => {
         const action = mixer.clipAction(clip);
         action.reset();
-        action.setLoop(THREE.LoopRepeat, Infinity);
-        action.clampWhenFinished = false;
+        action.setLoop(THREE.LoopOnce, 1);
+        action.clampWhenFinished = true;
         action.paused = false;
         action.play();
         actions.push(action);
@@ -269,7 +269,7 @@ function LoadingFallback() {
 }
 
 /* ── Public component ─────────────────────────────────────── */
-export default function ModelViewer() {
+export default function ModelViewer({ autoRotate = true }: { autoRotate?: boolean }) {
   return (
     <div className="flex-1 h-full relative bg-[#f5f5f7]">
       <Canvas
@@ -285,6 +285,8 @@ export default function ModelViewer() {
           <SceneModel />
         </Suspense>
         <OrbitControls
+          autoRotate={autoRotate}
+          autoRotateSpeed={0.6}
           enableDamping dampingFactor={0.08}
           minDistance={1} maxDistance={15}
           target={[0, 0.5, 0]}
