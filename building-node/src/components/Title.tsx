@@ -1,27 +1,50 @@
-import { motion } from "framer-motion";
+import { motion as fm } from "framer-motion";
+import { colors, typography } from "../data/tokens";
 
 export default function Title() {
   const text = "建筑构造";
 
   return (
     <div>
-      <motion.h1 style={{ fontSize: 38, fontFamily: "serif" }}>
+      <fm.h1
+        style={{
+          fontFamily: typography.font.display,
+          fontSize: 42,
+          fontWeight: 400,
+          lineHeight: 1.1,
+          letterSpacing: -0.5,
+          color: colors.ink,
+        }}
+      >
         {text.split("").map((char, i) => (
-          <motion.span
+          <fm.span
             key={i}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{
-              delay: i * 0.05,
+              delay: i * 0.06,
               type: "spring",
+              stiffness: 200,
+              damping: 20,
             }}
           >
             {char}
-          </motion.span>
+          </fm.span>
         ))}
-      </motion.h1>
+      </fm.h1>
 
-      <div style={{ color: "#FF6B5A", marginTop: -8 }}>───</div>
+      {/* Coral baseline accent */}
+      <div
+        style={{
+          color: colors.primary,
+          marginTop: -4,
+          fontSize: 16,
+          fontFamily: typography.font.display,
+          letterSpacing: 4,
+        }}
+      >
+        ───
+      </div>
     </div>
   );
 }

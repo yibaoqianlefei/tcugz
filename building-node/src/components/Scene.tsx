@@ -1,19 +1,20 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { colors, radius, spacing, typography } from "../data/tokens";
 
 export default function Scene() {
   return (
     <>
-      {/* ── Top Right Tools ── */}
-      <div style={topRight}>
-        <button style={styles.button}>贡献节点</button>
-        <button style={styles.button}>关于项目</button>
+      {/* ── Top Right: Action Buttons ── */}
+      <div style={s.topRight}>
+        <button style={s.ghostButton}>贡献节点</button>
+        <button style={s.primaryButton}>关于项目</button>
       </div>
 
-      {/* ── Bottom Right Controls ── */}
-      <div style={bottomRight}>
-        <button style={styles.button}>自动旋转</button>
-        <button style={styles.button}>场景切换</button>
+      {/* ── Bottom Right: Camera Controls ── */}
+      <div style={s.bottomRight}>
+        <button style={s.ghostButton}>自动旋转</button>
+        <button style={s.ghostButton}>场景切换</button>
       </div>
 
       {/* ── 3D Canvas ── */}
@@ -21,7 +22,7 @@ export default function Scene() {
         <ambientLight intensity={0.7} />
         <mesh>
           <boxGeometry />
-          <meshStandardMaterial color="#cccccc" />
+          <meshStandardMaterial color="#bfb9ae" />
         </mesh>
         <OrbitControls autoRotate />
       </Canvas>
@@ -29,33 +30,50 @@ export default function Scene() {
   );
 }
 
-const styles = {
-  button: {
-    padding: "8px 16px",
-    borderRadius: 6,
-    border: "1px solid rgba(255,255,255,0.2)",
-    background: "rgba(255,255,255,0.85)",
-    color: "#2B2B2B",
+// ── Styles ────────────────────────────────────────────────────
+const s = {
+  topRight: {
+    position: "absolute" as const,
+    right: spacing.lg,
+    top: spacing.lg,
+    display: "flex",
+    gap: spacing.xs,
+    zIndex: 10,
+  },
+
+  bottomRight: {
+    position: "absolute" as const,
+    right: spacing.lg,
+    bottom: spacing.lg,
+    display: "flex",
+    gap: spacing.xs,
+    zIndex: 10,
+  },
+
+  // Secondary ghost button (cream on dark context)
+  ghostButton: {
+    ...typography.scale.button,
+    padding: `${spacing.xs}px ${spacing.md}px`,
+    borderRadius: radius.md,
+    border: `1px solid rgba(250,249,245,0.2)`,
+    background: "rgba(250,249,245,0.1)",
+    color: colors["on-dark"],
     fontSize: 12,
     cursor: "pointer",
-    backdropFilter: "blur(8px)",
+    backdropFilter: "blur(12px)",
+    transition: "background 0.2s ease",
   },
-} as const;
 
-const topRight = {
-  position: "absolute" as const,
-  right: 20,
-  top: 20,
-  display: "flex",
-  gap: 8,
-  zIndex: 10,
-};
-
-const bottomRight = {
-  position: "absolute" as const,
-  right: 20,
-  bottom: 20,
-  display: "flex",
-  gap: 8,
-  zIndex: 10,
+  // Primary coral button
+  primaryButton: {
+    ...typography.scale.button,
+    padding: `${spacing.xs}px ${spacing.md}px`,
+    borderRadius: radius.md,
+    border: "none",
+    background: colors.primary,
+    color: colors["on-primary"],
+    fontSize: 12,
+    cursor: "pointer",
+    transition: "background 0.2s ease",
+  },
 };
