@@ -3,10 +3,14 @@ import { Canvas, useFrame, useThree, type ThreeEvent } from "@react-three/fiber"
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { useNodeStore } from "../../store/nodeStore";
+import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 
-/* ── Module-level refs for external animation control ──────── */
+/* ── Module-level refs ─────────────────────────────────────── */
 let _actions: THREE.AnimationAction[] = [];
 let _clip: THREE.AnimationClip | null = null;
+let _modelScene: THREE.Group | null = null;
+let _controls: OrbitControlsImpl | null = null;
+let _isUserDragging = false;
 
 export const animControls = {
   play() {
@@ -95,12 +99,23 @@ function SceneModel() {
     box.getCenter(center);
     scene.position.set(-center.x, -center.y, -center.z);
 
-    // Build mesh map + apply shadow flags (one-time)
+    // Expose scene for camera auto-frame
+    _modelScene = scene;
+
+    // Build mesh map + shadow flags + edge lines (one-time)
     scene.traverse((child) => {
       if (child instanceof THREE.Mesh) {
         child.castShadow = true;
         child.receiveShadow = true;
         if (child.name) meshMapRef.current.set(child.name, child);
+
+        // Construction edge lines — attached as child so they animate with the mesh
+        const edges = new THREE.EdgesGeometry(child.geometry, 15);
+        const line = new THREE.LineSegments(
+          edges,
+          new THREE.LineBasicMaterial({ color: "#374151", toneMapped: false }),
+        );
+        child.add(line);
       }
     });
 
@@ -114,10 +129,10 @@ function SceneModel() {
         action.reset();
         action.setLoop(THREE.LoopOnce, 1);
         action.clampWhenFinished = true;
-        action.paused = false;
+        action.paused = true; // don't auto-play
         action.play();
         actions.push(action);
-        console.log(`[GLB] clip[${i}] "${clip.name}" playing, duration=${clip.duration}`);
+        console.log(`[GLB] clip[${i}] "${clip.name}" loaded, duration=${clip.duration}`);
       });
 
       mixerRef.current = mixer;
@@ -126,7 +141,7 @@ function SceneModel() {
       _actions = actions;
       _clip = clipRef.current;
 
-      setIsPlaying(true);
+      setIsPlaying(false);
     }
 
     return () => {
@@ -136,6 +151,7 @@ function SceneModel() {
       }
       _actions = [];
       _clip = null;
+      _modelScene = null;
     };
   }, [scene, animations, setIsPlaying]);
 
@@ -268,12 +284,46 @@ function LoadingFallback() {
   );
 }
 
+/* ── Camera tracker: 02-2 style explosion target interpolation ── */
+function CameraTracker() {
+  const boxRef = useRef(new THREE.Box3());
+  const centerRef = useRef(new THREE.Vector3());
+  const listenersAttached = useRef(false);
+
+  useFrame((_, delta) => {
+    const controls = _controls;
+    const scene = _modelScene;
+    if (!controls || !scene) return;
+
+    // Lazy-attach drag listeners
+    if (!listenersAttached.current) {
+      listenersAttached.current = true;
+      controls.addEventListener("start", () => { _isUserDragging = true; });
+      controls.addEventListener("end", () => { _isUserDragging = false; });
+    }
+
+    // Pause during user drag
+    if (_isUserDragging) return;
+
+    // Dynamic Box3 from current animation frame
+    const box = boxRef.current;
+    box.setFromObject(scene);
+    box.getCenter(centerRef.current);
+
+    // Fast lerp orbit target to current center (02-2 style)
+    const alpha = 1 - Math.exp(-8.0 * delta);
+    controls.target.lerp(centerRef.current, alpha);
+  });
+
+  return null;
+}
+
 /* ── Public component ─────────────────────────────────────── */
 export default function ModelViewer({ autoRotate = true }: { autoRotate?: boolean }) {
   return (
     <div className="flex-1 h-full relative bg-[#f5f5f7]">
       <Canvas
-        camera={{ near: 0.5, far: 50, position: [4, 3, 5], fov: 40 }}
+        camera={{ near: 0.5, far: 50, position: [0, 0.5, 8], fov: 40 }}
         dpr={[1, 1.5]} shadows
         gl={{ antialias: true, alpha: false }}
       >
@@ -285,12 +335,14 @@ export default function ModelViewer({ autoRotate = true }: { autoRotate?: boolea
           <SceneModel />
         </Suspense>
         <OrbitControls
+          ref={(ctrl) => { _controls = ctrl; }}
           autoRotate={autoRotate}
           autoRotateSpeed={0.6}
           enableDamping dampingFactor={0.08}
-          minDistance={1} maxDistance={15}
-          target={[0, 0.5, 0]}
+          minDistance={1} maxDistance={20}
+          enablePan
         />
+        <CameraTracker />
       </Canvas>
     </div>
   );

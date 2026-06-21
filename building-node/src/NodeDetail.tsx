@@ -25,9 +25,9 @@ export default function NodeDetail() {
   const rafRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number>(0);
 
-  const totalDuration = 2; // 48 frames @ 24fps
+  const totalDuration = 4; // 96 frames @ 24fps
   const currentTime = animationProgress * totalDuration;
-  const frameCount = 48;
+  const frameCount = 96;
   const currentFrame = Math.round(animationProgress * frameCount);
 
   // ── Auto-advance loop ──
@@ -102,7 +102,11 @@ export default function NodeDetail() {
       {/* ── Body ── */}
       <div className="flex-1 flex min-h-0">
         {/* Left: 2D diagram */}
-        <NodeDiagramPanel />
+        <NodeDiagramPanel
+          diagramImage={
+            nodeId === "roof-drainage-01" ? "/images/roof-drainage-diagram.png" : undefined
+          }
+        />
 
         {/* Center: 3D viewport + floating timeline */}
         <div className="flex-1 flex min-w-0 relative">
