@@ -1,4 +1,3 @@
-import { useEffect, useRef, useCallback } from "react";
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { nodesIndex } from "./data/nodesIndex";
@@ -7,7 +6,7 @@ import { animControls } from "./components/viewer/ModelViewer";
 import ModelViewer from "./components/viewer/ModelViewer";
 import NodeDiagramPanel from "./components/viewer/NodeDiagramPanel";
 import ConstructionKnowledgePanel from "./components/viewer/ConstructionKnowledgePanel";
-import { Play, Pause, RotateCw } from "lucide-react";
+import { RotateCw, ChevronsLeft, ChevronsRight } from "lucide-react";
 
 /**
  * NodeDetail V1 — construction education layout.
@@ -16,69 +15,32 @@ import { Play, Pause, RotateCw } from "lucide-react";
 export default function NodeDetail() {
   const { nodeId } = useParams<{ nodeId: string }>();
   const node = nodesIndex.find((n) => n.id === nodeId);
-  const isPlaying = useNodeStore((s) => s.isPlaying);
   const animationProgress = useNodeStore((s) => s.animationProgress);
-  const setIsPlaying = useNodeStore((s) => s.setIsPlaying);
   const setAnimationProgress = useNodeStore((s) => s.setAnimationProgress);
 
   const [autoRotate, setAutoRotate] = useState(true);
-  const rafRef = useRef<number | null>(null);
-  const lastTimeRef = useRef<number>(0);
-
   const totalDuration = 4; // 96 frames @ 24fps
-  const currentTime = animationProgress * totalDuration;
-  const frameCount = 96;
-  const currentFrame = Math.round(animationProgress * frameCount);
 
-  // ── Auto-advance loop ──
-  const advanceFrame = useCallback((timestamp: number) => {
-    if (!lastTimeRef.current) lastTimeRef.current = timestamp;
-    const elapsed = timestamp - lastTimeRef.current;
-    const nextProgress = Math.min(animationProgress + (elapsed / 1000) / totalDuration, 1);
-    setAnimationProgress(nextProgress);
-    animControls.setTime(nextProgress * totalDuration);
-    lastTimeRef.current = timestamp;
-    if (nextProgress < 1) {
-      rafRef.current = requestAnimationFrame(advanceFrame);
-    } else {
-      animControls.pause();
-      setIsPlaying(false);
+  // ── Play explosion (forward) ──
+  const playExplosion = () => {
+    if (animationProgress >= 1) {
+      setAnimationProgress(0);
+      animControls.setTime(0);
     }
-  }, [animationProgress, totalDuration, setAnimationProgress, setIsPlaying]);
+    animControls.play();
+  };
 
-  useEffect(() => {
-    if (isPlaying) {
-      lastTimeRef.current = 0;
-      rafRef.current = requestAnimationFrame(advanceFrame);
-    } else {
-      if (rafRef.current) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
-    }
-    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
-  }, [isPlaying, advanceFrame]);
-
-  // ── Toggle play/pause ──
-  const togglePlay = () => {
-    if (isPlaying) {
-      animControls.pause();
-    } else {
-      if (animationProgress >= 1) {
-        setAnimationProgress(0);
-        animControls.setTime(0);
-      }
-      animControls.play();
-    }
+  // ── Collapse explosion (reverse playback) ──
+  const collapseExplosion = () => {
+    if (animationProgress <= 0) return;
+    animControls.playReverse();
   };
 
   // ── Slider change ──
   const onSliderChange = (value: number) => {
+    animControls.pause();
     setAnimationProgress(value);
     animControls.setTime(value * totalDuration);
-  };
-
-  const fmtSec = (t: number) => {
-    const m = Math.floor(t / 60);
-    const s = Math.floor(t % 60);
-    return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
   };
 
   return (
@@ -104,45 +66,43 @@ export default function NodeDetail() {
         {/* Left: 2D diagram */}
         <NodeDiagramPanel
           diagramImage={
-            nodeId === "roof-drainage-01" ? "/images/roof-drainage-diagram.png" : undefined
+            nodeId === "roof-drainage-01" ? "/images/roof-drainage-diagram.png"
+            : nodeId === "organized-drainage-01" ? "/images/organized-drainage-diagram.png"
+            : undefined
           }
         />
 
         {/* Center: 3D viewport + floating timeline */}
         <div className="flex-1 flex min-w-0 relative">
-          <ModelViewer autoRotate={autoRotate} />
+          <ModelViewer
+            autoRotate={autoRotate}
+            modelPath={
+              nodeId === "organized-drainage-01"
+                ? "/models/organized-drainage/organized-drainage.glb"
+                : "/models/roof-drainage/roof-drainage.glb"
+            }
+          />
 
-          {/* Floating timeline — centered over 3D viewport, 02-2 style */}
+          {/* Floating timeline — 02-2 style */}
           <div
             className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10
-              flex items-center gap-1.5 sm:gap-2
+              flex items-center gap-0.5 sm:gap-2
               px-2 sm:px-4 py-2 sm:py-2.5
-              bg-canvas border border-hairline rounded-xl
-              shadow-[0_1px_3px_rgba(20,20,19,0.08)]"
+              bg-canvas border border-hairline rounded-xl"
+            onPointerDown={(e) => e.stopPropagation()}
           >
-            {/* Play/Pause toggle */}
+            {/* ── Collapse ── */}
             <button
-              onClick={togglePlay}
-              className={`flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full transition-all duration-200 flex-shrink-0
-                ${isPlaying
-                  ? "bg-primary text-on-primary"
-                  : "text-muted-soft hover:text-primary hover:bg-surface-card"
-                }`}
-              title={isPlaying ? "暂停" : "播放"}
+              onClick={collapseExplosion}
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center
+                text-muted-soft hover:text-primary hover:bg-hairline
+                transition-all duration-200 relative shrink-0"
+              title="收起爆炸"
             >
-              {isPlaying ? (
-                <Pause size={14} strokeWidth={2} />
-              ) : (
-                <Play size={14} strokeWidth={2} fill="currentColor" />
-              )}
+              <ChevronsLeft size={16} className="sm:size-[18px]" strokeWidth={1.5} />
             </button>
 
-            {/* Frame display */}
-            <span className="text-[10px] text-muted-soft tabular-nums w-11 text-right flex-shrink-0">
-              {currentFrame}/{frameCount}
-            </span>
-
-            {/* Slider — sole animation driver */}
+            {/* ── Slider ── */}
             <input
               type="range"
               min={0}
@@ -150,31 +110,52 @@ export default function NodeDetail() {
               step={0.001}
               value={animationProgress}
               onChange={(e) => onSliderChange(Number(e.target.value))}
-              className="w-14 sm:w-24 md:w-32 h-1.5 appearance-none bg-hairline rounded-full cursor-pointer
+              className="w-14 sm:w-24 md:w-32 h-6 py-1 bg-hairline rounded-full appearance-none cursor-pointer
+                accent-primary shrink
                 [&::-webkit-slider-thumb]:appearance-none
-                [&::-webkit-slider-thumb]:w-4
-                [&::-webkit-slider-thumb]:h-4
+                [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5
+                sm:[&::-webkit-slider-thumb]:w-4 sm:[&::-webkit-slider-thumb]:h-4
                 [&::-webkit-slider-thumb]:rounded-full
-                [&::-webkit-slider-thumb]:bg-primary
+                [&::-webkit-slider-thumb]:bg-white
+                [&::-webkit-slider-thumb]:border-2
+                [&::-webkit-slider-thumb]:border-primary/30
                 [&::-webkit-slider-thumb]:shadow-sm
-                [&::-webkit-slider-thumb]:cursor-pointer
-                [&::-webkit-slider-thumb]:hover:scale-110"
-              style={{ accentColor: "#cc785c" }}
+                [&::-webkit-slider-thumb]:hover:border-primary
+                [&::-webkit-slider-thumb]:transition-colors"
+              style={{ touchAction: "none" }}
             />
 
-            {/* Time display */}
-            <span className="text-[10px] text-muted-soft tabular-nums w-[52px] flex-shrink-0">
-              {fmtSec(currentTime)}
-            </span>
+            {/* ── Play explosion ── */}
+            <button
+              onClick={playExplosion}
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center
+                text-muted-soft hover:text-primary hover:bg-hairline
+                transition-all duration-200 relative shrink-0"
+              title="播放爆炸"
+            >
+              <ChevronsRight size={16} className="sm:size-[18px]" strokeWidth={1.5} />
+            </button>
 
-            {/* Auto-rotate toggle */}
+            {/* ── Divider ── */}
+            <div className="w-px h-5 bg-hairline mx-0.5 sm:mx-1 shrink-0" />
+
+            {/* ── Auto-rotate toggle ── */}
             <button
               onClick={() => setAutoRotate((v) => !v)}
-              className={`flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full transition-all duration-200 flex-shrink-0
-                ${autoRotate ? "text-primary" : "text-muted-soft hover:text-primary hover:bg-surface-card"}`}
-              title={autoRotate ? "停止旋转" : "自动旋转"}
+              className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center
+                transition-all duration-300 relative shrink-0
+                ${autoRotate ? "bg-hairline" : ""}`}
+              title={autoRotate ? "暂停旋转 (R)" : "自动旋转 (R)"}
             >
-              <RotateCw size={15} strokeWidth={1.5} className={autoRotate ? "animate-spin" : ""} />
+              <RotateCw
+                size={16}
+                className={`sm:size-[18px] transition-colors duration-300 ${
+                  autoRotate ? "text-primary" : "text-muted-soft"
+                }`}
+                strokeWidth={1.5}
+                style={{ animation: autoRotate ? "spin 3s linear infinite" : "none" }}
+              />
+              <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 text-[10px] text-muted-soft hidden sm:block">R</span>
             </button>
           </div>
         </div>

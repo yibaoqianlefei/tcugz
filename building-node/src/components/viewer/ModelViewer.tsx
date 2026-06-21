@@ -7,14 +7,18 @@ import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 
 /* ── Module-level refs ─────────────────────────────────────── */
 let _actions: THREE.AnimationAction[] = [];
-let _clip: THREE.AnimationClip | null = null;
 let _modelScene: THREE.Group | null = null;
 let _controls: OrbitControlsImpl | null = null;
 let _isUserDragging = false;
 
 export const animControls = {
   play() {
-    _actions.forEach((a) => { a.paused = false; });
+    _actions.forEach((a) => { a.timeScale = 1; a.paused = false; });
+    if (_actions.length > 0) useNodeStore.getState().setIsPlaying(true);
+  },
+
+  playReverse() {
+    _actions.forEach((a) => { a.timeScale = -1; a.paused = false; });
     if (_actions.length > 0) useNodeStore.getState().setIsPlaying(true);
   },
 
@@ -23,27 +27,10 @@ export const animControls = {
     useNodeStore.getState().setIsPlaying(false);
   },
 
-  reset() {
-    _actions.forEach((a) => {
-      a.time = 0;
-      a.paused = true;
-      a.getMixer().update(0);
-    });
-    useNodeStore.getState().setIsPlaying(false);
-  },
-
-  expand() {
-    _actions.forEach((a) => {
-      a.time = _clip?.duration ?? a.time;
-      a.paused = true;
-      a.getMixer().update(0);
-    });
-    useNodeStore.getState().setIsPlaying(false);
-  },
-
   setTime(t: number) {
     _actions.forEach((a) => {
       a.time = t;
+      a.paused = true;
       a.getMixer().update(0);
     });
   },
@@ -63,8 +50,8 @@ function RendererSetup() {
 }
 
 /* ── Model component (auto-center + highlight + animation) ──── */
-function SceneModel() {
-  const { scene, animations } = useGLTF("/models/roof-drainage/roof-drainage.glb", true);
+function SceneModel({ modelPath }: { modelPath: string }) {
+  const { scene, animations } = useGLTF(modelPath, true);
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
   const actionRef = useRef<THREE.AnimationAction | null>(null);
   const clipRef = useRef<THREE.AnimationClip | null>(null);
@@ -107,14 +94,34 @@ function SceneModel() {
       if (child instanceof THREE.Mesh) {
         child.castShadow = true;
         child.receiveShadow = true;
-        if (child.name) meshMapRef.current.set(child.name, child);
+        if (child.name) {
+          meshMapRef.current.set(child.name, child);
+
+          // Replace exact-triangle raycast with bounding-sphere for forgiving 3D hit testing
+          // (exploded components can be thin/hard to hit with precise geometry)
+          if (!child.geometry.boundingSphere) child.geometry.computeBoundingSphere();
+          const localSphere = child.geometry.boundingSphere!;
+          child.raycast = (raycaster, intersects) => {
+            const worldSphere = new THREE.Sphere().copy(localSphere).applyMatrix4(child.matrixWorld);
+            const hit = new THREE.Vector3();
+            if (raycaster.ray.intersectSphere(worldSphere, hit)) {
+              intersects.push({
+                distance: raycaster.ray.origin.distanceTo(hit),
+                point: hit.clone(),
+                object: child,
+              } as THREE.Intersection);
+            }
+          };
+        }
 
         // Construction edge lines — attached as child so they animate with the mesh
+        // raycast disabled so pointer events pass through to the mesh below
         const edges = new THREE.EdgesGeometry(child.geometry, 15);
         const line = new THREE.LineSegments(
           edges,
           new THREE.LineBasicMaterial({ color: "#374151", toneMapped: false }),
         );
+        line.raycast = () => {};
         child.add(line);
       }
     });
@@ -139,7 +146,6 @@ function SceneModel() {
       actionRef.current = actions[0];
       clipRef.current = animations.reduce((a, b) => a.duration > b.duration ? a : b);
       _actions = actions;
-      _clip = clipRef.current;
 
       setIsPlaying(false);
     }
@@ -150,19 +156,33 @@ function SceneModel() {
         mixerRef.current.uncacheRoot(scene);
       }
       _actions = [];
-      _clip = null;
       _modelScene = null;
     };
   }, [scene, animations, setIsPlaying]);
 
-  // ── Per-frame: mixer update (clamped delta) ─────────────────
+  // ── Per-frame: mixer update + boundary auto-pause ────────
   useFrame((_, delta) => {
     if (mixerRef.current) {
       mixerRef.current.update(Math.min(delta, 0.033));
+
       if (clipRef.current && actionRef.current) {
-        setAnimationProgress(
-          Math.min(actionRef.current.time / clipRef.current.duration, 1)
-        );
+        const t = actionRef.current.time;
+        const d = clipRef.current.duration;
+
+        // Auto-pause at boundaries
+        if (t >= d) {
+          actionRef.current.time = d;
+          _actions.forEach((a) => { a.paused = true; });
+          setIsPlaying(false);
+          setAnimationProgress(1);
+        } else if (t <= 0) {
+          actionRef.current.time = 0;
+          _actions.forEach((a) => { a.paused = true; });
+          setIsPlaying(false);
+          setAnimationProgress(0);
+        } else {
+          setAnimationProgress(t / d);
+        }
       }
     }
   });
@@ -171,8 +191,31 @@ function SceneModel() {
   const hoveredObject = useNodeStore((s) => s.hoveredObject);
   const selectedObject = useNodeStore((s) => s.selectedObject);
 
-  // ── Apply highlights whenever hover/selected changes ──
+  // ── Apply highlights (only after full explosion) ──
   useEffect(() => {
+    // Gate: no highlighting until fully exploded
+    const progress = useNodeStore.getState().animationProgress;
+    if (progress < 0.99) {
+      // Clear any lingering highlights
+      if (prevHovered.current) {
+        const mesh = meshMapRef.current.get(prevHovered.current);
+        if (mesh) {
+          const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
+          mats.forEach((m) => { m.emissive?.set("#000000"); m.emissiveIntensity = 0; });
+        }
+      }
+      if (prevSelected.current) {
+        const mesh = meshMapRef.current.get(prevSelected.current);
+        if (mesh) {
+          const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
+          mats.forEach((m) => { m.emissive?.set("#000000"); m.emissiveIntensity = 0; });
+        }
+      }
+      prevHovered.current = null;
+      prevSelected.current = null;
+      return;
+    }
+
     // Restore previous hover
     if (prevHovered.current && prevHovered.current !== selectedObject) {
       const mesh = meshMapRef.current.get(prevHovered.current);
@@ -212,9 +255,11 @@ function SceneModel() {
     prevSelected.current = selectedObject;
   }, [hoveredObject, selectedObject]);
 
-  // ── R3F native pointer events (NO window listeners) ──
+  // ── R3F native pointer events (only active after full explosion) ──
+  // Hit testing uses bounding-sphere (not exact geometry) for forgiving 3D interaction
   const handlePointerOver = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation();
+    if (useNodeStore.getState().animationProgress < 0.99) return;
     if (e.object instanceof THREE.Mesh && e.object.name) {
       setHoveredObject(e.object.name);
     }
@@ -227,6 +272,7 @@ function SceneModel() {
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
+    if (useNodeStore.getState().animationProgress < 1) return;
     if (e.object instanceof THREE.Mesh && e.object.name) {
       const current = useNodeStore.getState().selectedObject;
       setSelectedObject(current === e.object.name ? null : e.object.name);
@@ -319,7 +365,7 @@ function CameraTracker() {
 }
 
 /* ── Public component ─────────────────────────────────────── */
-export default function ModelViewer({ autoRotate = true }: { autoRotate?: boolean }) {
+export default function ModelViewer({ autoRotate = true, modelPath }: { autoRotate?: boolean; modelPath: string }) {
   return (
     <div className="flex-1 h-full relative bg-[#f5f5f7]">
       <Canvas
@@ -332,7 +378,7 @@ export default function ModelViewer({ autoRotate = true }: { autoRotate?: boolea
         <SceneLights />
         <ShadowPlane />
         <Suspense fallback={<LoadingFallback />}>
-          <SceneModel />
+          <SceneModel modelPath={modelPath} />
         </Suspense>
         <OrbitControls
           ref={(ctrl) => { _controls = ctrl; }}

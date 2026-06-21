@@ -1,7 +1,8 @@
 import { useNodeStore } from "../../store/nodeStore";
 import { useParams } from "react-router-dom";
 import { nodesIndex } from "../../data/nodesIndex";
-import { roofDrainageLayers, getLayerInfo } from "../../data/roofDrainageLayers";
+import { roofDrainageLayers, getLayerInfo as getRoofDrainageLayer } from "../../data/roofDrainageLayers";
+import { organizedDrainageLayers, getLayerInfo as getOrganizedDrainageLayer } from "../../data/organizedDrainageLayers";
 
 /**
  * ConstructionKnowledgePanel — right panel (360px)
@@ -14,6 +15,9 @@ export default function ConstructionKnowledgePanel() {
   const selectedObject = useNodeStore((s) => s.selectedObject);
   const setSelectedObject = useNodeStore((s) => s.setSelectedObject);
 
+  // Pick the right layer data based on node
+  const layers = nodeId === "organized-drainage-01" ? organizedDrainageLayers : roofDrainageLayers;
+  const getLayerInfo = nodeId === "organized-drainage-01" ? getOrganizedDrainageLayer : getRoofDrainageLayer;
   const layerInfo = selectedObject ? getLayerInfo(selectedObject) : undefined;
 
   return (
@@ -96,7 +100,7 @@ export default function ConstructionKnowledgePanel() {
               点击构件名称查看详情
             </p>
 
-            {roofDrainageLayers.map((layer) => {
+            {layers.map((layer) => {
               const isActive = selectedObject === layer.objectName;
               return (
                 <button
