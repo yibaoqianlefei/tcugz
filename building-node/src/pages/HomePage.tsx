@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Layers,
@@ -16,7 +16,12 @@ import {
   GraduationCap,
   Sparkles,
   BarChart3,
+  SwitchCamera,
 } from "lucide-react";
+import MenuBackground from "../components/viewer/MenuBackground";
+import LoadingOverlay from "../components/viewer/LoadingOverlay";
+import backgroundScenes from "../data/backgroundScenes";
+import { nodesIndex } from "../data/nodesIndex";
 
 /* ── Animation variants ───────────────────────────────────── */
 const containerVariants = {
@@ -60,9 +65,10 @@ const lineVariants = {
 } as const;
 
 /* ── Menu Item ─────────────────────────────────────────────── */
-function MenuItem({ item, onClick }: {
-  item: { icon: any; label: string; to?: string; disabled?: boolean };
+function MenuItem({ item, onClick, onMouseEnter }: {
+  item: { icon: any; label: string; to?: string; disabled?: boolean; onMouseEnter?: () => void };
   onClick?: () => void;
+  onMouseEnter?: () => void;
 }) {
   const disabled = item.disabled;
 
@@ -91,10 +97,10 @@ function MenuItem({ item, onClick }: {
   }
 
   if (onClick) {
-    return <button onClick={onClick} className={baseClass}>{content}</button>;
+    return <button onClick={onClick} onMouseEnter={onMouseEnter} className={baseClass}>{content}</button>;
   }
 
-  return <Link to={item.to!} className={baseClass}>{content}</Link>;
+  return <Link to={item.to!} onMouseEnter={onMouseEnter} className={baseClass}>{content}</Link>;
 }
 
 /* ── Navigation Menu ───────────────────────────────────────── */
@@ -104,7 +110,13 @@ function MenuContent({ }: { onModalOpen: () => void }) {
       title: "教学资源",
       items: [
         { icon: BookOpen, label: "构造原理", to: "/curriculum" },
-        { icon: Layers, label: "节点库", to: "/library" },
+        {
+          icon: Layers, label: "节点库", to: "/library",
+          onMouseEnter: () => {
+            // Preload node model on hover
+            useGLTF.preload("/models/membrane-roof-01/membrane-roof-01.glb", true);
+          }
+        },
         { icon: Briefcase, label: "案例应用", to: "/curriculum/cases" },
       ],
     },
@@ -149,7 +161,7 @@ function MenuContent({ }: { onModalOpen: () => void }) {
               {group.title}
             </p>
             {group.items.map((item) => (
-              <MenuItem key={item.label} item={item} />
+              <MenuItem key={item.label} item={item} onMouseEnter={"onMouseEnter" in item ? (item as any).onMouseEnter : undefined} />
             ))}
           </motion.div>
         ))}
@@ -157,15 +169,13 @@ function MenuContent({ }: { onModalOpen: () => void }) {
 
       {/* ── Footer ── */}
       <div className="flex-shrink-0 mt-auto">
-        <div>
-          <div className="flex items-center gap-3">
-            <div className="w-[44px] h-[44px] rounded-full bg-hairline flex items-center justify-center text-primary text-base font-semibold flex-shrink-0">
-              U
-            </div>
-            <div className="min-w-0">
-              <p className="text-[16px] font-medium text-black/80 truncate">学生用户</p>
-              <p className="text-[13px] text-black/40">建筑学</p>
-            </div>
+        <div className="flex items-center gap-3">
+          <div className="w-[44px] h-[44px] rounded-full bg-hairline flex items-center justify-center text-primary text-base font-semibold flex-shrink-0">
+            U
+          </div>
+          <div className="min-w-0">
+            <p className="text-[16px] font-medium text-black/80 truncate">学生用户</p>
+            <p className="text-[13px] text-black/40">建筑学</p>
           </div>
         </div>
       </div>
@@ -223,19 +233,42 @@ function AboutModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   );
 }
 
-/* ── 3D Scene Background ───────────────────────────────────── */
-function BackgroundScene({ autoRotate }: { autoRotate: boolean }) {
+/* ── Stats Card ────────────────────────────────────────────── */
+function StatsOverlay() {
+  const totalNodes = nodesIndex.length;
+  const categories = [...new Set(nodesIndex.map((n) => n.category))];
+
   return (
-    <Canvas camera={{ near: 1, far: 100, position: [0, 0.5, 4.0], fov: 40 }}
-      dpr={[1, 1.5]} shadows gl={{ antialias: true, alpha: false }}>
-      <ambientLight intensity={0.7} />
-      <directionalLight position={[5, 5, 5]} intensity={0.6} />
-      <mesh>
-        <boxGeometry args={[2, 2, 2]} />
-        <meshStandardMaterial color="#bfb9ae" />
-      </mesh>
-      <OrbitControls autoRotate={autoRotate} enableZoom={false} />
-    </Canvas>
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
+      className="absolute left-8 bottom-8 z-20 flex flex-col gap-4"
+    >
+      {/* Title */}
+      <div>
+        <h2 className="text-2xl font-normal font-serif text-ink tracking-tight">
+          建筑构造交互系统
+        </h2>
+        <p className="text-sm text-muted mt-1">三维可视化 · 交互式学习</p>
+      </div>
+
+      {/* Stats row */}
+      <div className="flex gap-4">
+        <div className="bg-canvas/85 backdrop-blur-md rounded-xl border border-hairline px-5 py-3 shadow-[0_1px_3px_rgba(20,20,19,0.04)]">
+          <div className="text-2xl font-semibold text-primary tabular-nums">{totalNodes}</div>
+          <div className="text-xs text-muted-soft mt-0.5">构造节点</div>
+        </div>
+        <div className="bg-canvas/85 backdrop-blur-md rounded-xl border border-hairline px-5 py-3 shadow-[0_1px_3px_rgba(20,20,19,0.04)]">
+          <div className="text-2xl font-semibold text-primary tabular-nums">{categories.length}</div>
+          <div className="text-xs text-muted-soft mt-0.5">分类</div>
+        </div>
+        <div className="bg-canvas/85 backdrop-blur-md rounded-xl border border-hairline px-5 py-3 shadow-[0_1px_3px_rgba(20,20,19,0.04)]">
+          <div className="text-2xl font-semibold text-primary tabular-nums">3D</div>
+          <div className="text-xs text-muted-soft mt-0.5">交互视图</div>
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -243,6 +276,22 @@ function BackgroundScene({ autoRotate }: { autoRotate: boolean }) {
 export default function HomePage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [autoRotate, setAutoRotate] = useState(true);
+  const [sceneIndex, setSceneIndex] = useState(0);
+  const [bgLoading, setBgLoading] = useState(true);
+  const currentScene = backgroundScenes[sceneIndex];
+
+  // Show loader when scene changes
+  useEffect(() => {
+    setBgLoading(true);
+  }, [sceneIndex]);
+
+  // Preload all background models on mount
+  useEffect(() => {
+    const paths = backgroundScenes.map((s) => s.modelPath).filter(Boolean);
+    paths.forEach((p) => useGLTF.preload(p, true));
+  }, []);
+
+  const handleBgLoaded = useCallback(() => setBgLoading(false), []);
 
   return (
     <div className="flex h-screen overflow-hidden bg-canvas">
@@ -267,15 +316,49 @@ export default function HomePage() {
           </button>
         </div>
 
-        <BackgroundScene autoRotate={autoRotate} />
+        {/* 3D Canvas */}
+        <Canvas
+          camera={{ near: 1, far: 100, position: [0, 0.5, 4.0], fov: 40 }}
+          dpr={[1, 1.5]}
+          shadows
+          gl={{ antialias: true, alpha: false }}
+        >
+          <MenuBackground
+            key={sceneIndex}
+            autoRotate={autoRotate}
+            modelPath={currentScene.modelPath}
+            position={currentScene.position as [number, number, number]}
+            onLoaded={handleBgLoaded}
+          />
+        </Canvas>
+
+        {/* Loading overlay */}
+        <LoadingOverlay isLoading={bgLoading} />
+
+        {/* Stats overlay — bottom left */}
+        <StatsOverlay />
 
         {/* Bottom-right controls */}
-        <div className="absolute bottom-4 right-4 z-20 flex gap-2">
-          <button onClick={() => setAutoRotate((v) => !v)}
+        <div className="absolute bottom-8 right-8 z-20 flex gap-2">
+          {/* Scene switcher */}
+          <button
+            onClick={() => setSceneIndex((prev) => (prev + 1) % backgroundScenes.length)}
             className="w-11 h-11 rounded-full bg-canvas border border-hairline flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-surface-card"
-            title={autoRotate ? "暂停旋转" : "恢复旋转"}>
-            {autoRotate ? <Pause size={17} className="text-primary" />
-              : <Play size={17} className="text-muted-soft hover:text-primary" />}
+            title={`场景: ${currentScene.name}（点击切换）`}
+          >
+            <SwitchCamera size={17} className="text-muted-soft hover:text-primary" />
+          </button>
+          {/* Auto-rotate toggle */}
+          <button
+            onClick={() => setAutoRotate((v) => !v)}
+            className="w-11 h-11 rounded-full bg-canvas border border-hairline flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-surface-card"
+            title={autoRotate ? "暂停旋转" : "恢复旋转"}
+          >
+            {autoRotate ? (
+              <Pause size={17} className="text-primary" />
+            ) : (
+              <Play size={17} className="text-muted-soft hover:text-primary" />
+            )}
           </button>
         </div>
       </div>

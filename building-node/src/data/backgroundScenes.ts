@@ -8,7 +8,7 @@ const backgroundScenes = [
   {
     id: "roof",
     name: "屋顶",
-    modelPath: "/models/roof-model.glb",
+    modelPath: "/models/flat-roof-01/layer_01_protection.glb",
     position: [0, 0, 0],
   },
 ];
