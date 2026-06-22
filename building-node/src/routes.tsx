@@ -7,12 +7,12 @@ import CurriculumPage from "./pages/CurriculumPage";
 import SectionSubPage from "./pages/SectionSubPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import ResourcesPage from "./pages/ResourcesPage";
-import AIPage from "./pages/AIPage";
 
 /* ── Lazy-loaded pages ── */
 const NodeDetail = lazy(() => import("./NodeDetail"));
 const GamesPage = lazy(() => import("./pages/GamesPage"));
 const TextbookPage = lazy(() => import("./pages/TextbookPage"));
+const AIPage = lazy(() => import("./pages/AIPage"));
 
 function LazyFallback() {
   return (
@@ -46,7 +46,7 @@ export const router = createHashRouter([
       { path: "/contribute", element: <PlaceholderPage title="贡献节点" /> },
       { path: "/curriculum/cases", element: <PlaceholderPage title="案例应用" /> },
       { path: "/resources", element: <ResourcesPage /> },
-      { path: "/ai", element: <AIPage /> },
+      { path: "/ai", element: withSuspense(AIPage) },
     ],
   },
 ]);
