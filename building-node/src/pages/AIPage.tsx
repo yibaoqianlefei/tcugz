@@ -3,6 +3,19 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Send, Bot, User, Loader2 } from "lucide-react";
 import { useChatStore, type ChatMessage } from "../store/chatStore";
+import { useAnalysisStore } from "../store/analysisStore";
+
+/* ── Question categorizer ──────────────────────────────────── */
+function categorizeQuestion(text: string): string {
+  const lower = text.toLowerCase();
+  if (/防水|卷材|涂料|密封|渗透|水/.test(lower)) return "构造做法";
+  if (/排水|雨水|天沟|落水管|雨水口|排水坡度/.test(lower)) return "构造做法";
+  if (/保温|隔热|热桥|冷桥|节能|温度/.test(lower)) return "材料特性";
+  if (/结构|承重|荷载|钢筋|混凝土|强度/.test(lower)) return "材料特性";
+  if (/空间|层次|顺序|上下|前后|组合|三维/.test(lower)) return "空间逻辑";
+  if (/做法|施工|步骤|流程|工艺/.test(lower)) return "构造做法";
+  return "其他";
+}
 
 /* ── Chat Bubble ───────────────────────────────────────────── */
 function ChatBubble({ msg }: { msg: ChatMessage }) {
@@ -67,6 +80,7 @@ export default function AIPage() {
   const isLoading = useChatStore((s) => s.isLoading);
   const error = useChatStore((s) => s.error);
   const sendMessage = useChatStore((s) => s.sendMessage);
+  const addAIQuestion = useAnalysisStore((s) => s.addAIQuestion);
 
   const [input, setInput] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -83,9 +97,11 @@ export default function AIPage() {
   const handleSend = useCallback(() => {
     const text = input.trim();
     if (!text || isLoading) return;
+    const category = categorizeQuestion(text);
+    addAIQuestion(category);
     sendMessage(text);
     setInput("");
-  }, [input, isLoading, sendMessage, setInput]);
+  }, [input, isLoading, sendMessage, setInput, addAIQuestion]);
 
   // ── Keyboard: Enter to send ──
   const handleKeyDown = useCallback(

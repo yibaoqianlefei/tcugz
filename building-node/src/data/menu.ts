@@ -20,7 +20,7 @@ export const menu: MenuGroup[] = [
       { label: "基础学习", icon: "🎓", path: "/textbook/roof-membrane" },
       { label: "作业训练", icon: "🔨", path: "/games" },
       { label: "AI 问答", icon: "✨", path: "/ai" },
-      { label: "数据分析", icon: "📊", path: null, disabled: true },
+      { label: "数据分析", icon: "📊", path: "/data" },
       { label: "拓展链接", icon: "🔗", path: "/resources" },
     ],
   },

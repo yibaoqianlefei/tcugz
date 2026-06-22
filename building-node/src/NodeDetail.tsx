@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { nodesIndex } from "./data/nodesIndex";
 import { useNodeStore } from "./store/nodeStore";
@@ -7,6 +7,7 @@ import ModelViewer from "./components/viewer/ModelViewer";
 import NodeDiagramPanel from "./components/viewer/NodeDiagramPanel";
 import ConstructionKnowledgePanel from "./components/viewer/ConstructionKnowledgePanel";
 import { RotateCw, ChevronsLeft, ChevronsRight, Sun } from "lucide-react";
+import { useAnalysisStore } from "./store/analysisStore";
 
 /**
  * NodeDetail V1 — construction education layout.
@@ -21,6 +22,12 @@ export default function NodeDetail() {
   const [autoRotate, setAutoRotate] = useState(true);
   const [showShadows, setShowShadows] = useState(true);
   const totalDuration = 4; // 96 frames @ 24fps
+
+  // ── Tracking: record node visit ──
+  const addVisitedNode = useAnalysisStore((s) => s.addVisitedNode);
+  useEffect(() => {
+    if (nodeId) addVisitedNode(nodeId);
+  }, [nodeId, addVisitedNode]);
 
   // ── Play explosion (forward) ──
   const playExplosion = () => {

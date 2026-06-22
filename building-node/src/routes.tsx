@@ -13,6 +13,7 @@ const NodeDetail = lazy(() => import("./NodeDetail"));
 const GamesPage = lazy(() => import("./pages/GamesPage"));
 const TextbookPage = lazy(() => import("./pages/TextbookPage"));
 const AIPage = lazy(() => import("./pages/AIPage"));
+const DataAnalysis = lazy(() => import("./pages/DataAnalysis"));
 
 function LazyFallback() {
   return (
@@ -47,6 +48,7 @@ export const router = createHashRouter([
       { path: "/curriculum/cases", element: <PlaceholderPage title="案例应用" /> },
       { path: "/resources", element: <ResourcesPage /> },
       { path: "/ai", element: withSuspense(AIPage) },
+      { path: "/data", element: withSuspense(DataAnalysis) },
     ],
   },
 ]);
