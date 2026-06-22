@@ -121,7 +121,7 @@ function MenuContent({ }: { onModalOpen: () => void }) {
     { icon: Briefcase, label: "案例应用", to: "/curriculum/cases" },
     { icon: GraduationCap, label: "基础学习", to: "/textbook/roof-membrane" },
     { icon: Hammer, label: "作业训练", to: "/games" },
-    { icon: Sparkles, label: "AI 问答", disabled: true },
+    { icon: Sparkles, label: "AI 问答", to: "/ai" },
     { icon: BarChart3, label: "数据分析", disabled: true },
     { icon: ExternalLink, label: "拓展链接", to: "/resources" },
   ];
