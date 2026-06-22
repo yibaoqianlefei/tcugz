@@ -29,7 +29,11 @@ function NodeCard({ node, index }: { node: typeof nodesIndex[0]; index: number }
           cursor-pointer group"
       >
         <div className="w-full h-24 bg-surface-soft rounded-xl mb-4 flex items-center justify-center overflow-hidden group-hover:bg-hairline/70 transition-colors">
-          <span className="text-4xl">{categoryIcons[node.category] || "📦"}</span>
+          {node.thumbnail ? (
+            <img src={node.thumbnail} alt={node.title} className="w-full h-full object-cover" />
+          ) : (
+            <span className="text-4xl">{categoryIcons[node.category] || "📦"}</span>
+          )}
         </div>
 
         <h3 className="text-lg font-normal font-serif text-ink group-hover:text-primary transition-colors tracking-tight">

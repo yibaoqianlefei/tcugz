@@ -37,7 +37,7 @@ const nodesIndex: NodeIndexEntry[] = [
     description:
       "无组织排水屋面构造节点，包含防水层、保温层、结构层等关键构件。",
     category: "屋顶",
-    thumbnail: null,
+    thumbnail: "/images/roof-drainage-diagram.png",
   },
   {
     id: "organized-drainage-01",
@@ -45,7 +45,7 @@ const nodesIndex: NodeIndexEntry[] = [
     description:
       "有组织排水屋面构造节点，包含天沟、雨水斗、落水管等构件。",
     category: "屋顶",
-    thumbnail: null,
+    thumbnail: "/images/organized-drainage-diagram.png",
   },
   {
     id: "yuncheng-c-01",

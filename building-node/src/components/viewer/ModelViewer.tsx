@@ -193,12 +193,11 @@ function SceneModel({ modelPath }: { modelPath: string }) {
   // Subscribe to store changes for highlight updates
   const hoveredObject = useNodeStore((s) => s.hoveredObject);
   const selectedObject = useNodeStore((s) => s.selectedObject);
+  const highlightEnabled = useNodeStore((s) => s.animationProgress) >= 0.99;
 
   // ── Apply highlights (only after full explosion) ──
   useEffect(() => {
-    // Gate: no highlighting until fully exploded
-    const progress = useNodeStore.getState().animationProgress;
-    if (progress < 0.99) {
+    if (!highlightEnabled) {
       // Clear any lingering highlights
       if (prevHovered.current) {
         const mesh = meshMapRef.current.get(prevHovered.current);
@@ -256,7 +255,7 @@ function SceneModel({ modelPath }: { modelPath: string }) {
 
     prevHovered.current = hoveredObject;
     prevSelected.current = selectedObject;
-  }, [hoveredObject, selectedObject]);
+  }, [highlightEnabled, hoveredObject, selectedObject]);
 
   // ── Helper: resolve named Mesh from intersection (edge lines are mesh children) ──
   const findNamedMesh = (obj: THREE.Object3D): string | null => {

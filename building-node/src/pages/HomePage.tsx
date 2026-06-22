@@ -17,6 +17,7 @@ import {
   Sparkles,
   BarChart3,
   SwitchCamera,
+  ExternalLink,
 } from "lucide-react";
 import MenuBackground from "../components/viewer/MenuBackground";
 import LoadingOverlay from "../components/viewer/LoadingOverlay";
@@ -74,9 +75,9 @@ function MenuItem({ item, onClick, onMouseEnter }: {
 
   const content = (
     <>
-      <item.icon size={18} strokeWidth={1.5}
+      <item.icon size={22} strokeWidth={1.5}
         className={`flex-shrink-0 transition-colors duration-300 ${disabled ? "text-black/15" : "text-muted-soft group-hover:text-primary"}`} />
-      <span className={`text-[18px] font-medium transition-colors duration-300 ${disabled ? "text-black/15" : "text-muted group-hover:text-primary"}`}>
+      <span className={`text-[22px] font-medium transition-colors duration-300 ${disabled ? "text-black/15" : "text-muted group-hover:text-primary"}`}>
         {item.label}
       </span>
       {disabled && (
@@ -86,7 +87,7 @@ function MenuItem({ item, onClick, onMouseEnter }: {
   );
 
   const baseClass =
-    "w-full flex items-center gap-[10px] pl-[12px] h-menu-item-h rounded-[10px]" +
+    "w-full flex items-center gap-3 pl-3 h-menu-item-h rounded-[12px]" +
     " transition-all duration-300 ease-out" +
     (disabled
       ? " cursor-not-allowed"
@@ -105,35 +106,20 @@ function MenuItem({ item, onClick, onMouseEnter }: {
 
 /* ── Navigation Menu ───────────────────────────────────────── */
 function MenuContent({ }: { onModalOpen: () => void }) {
-  const menuGroups = [
+  const menuItems = [
+    { icon: BookOpen, label: "构造原理", to: "/curriculum" },
     {
-      title: "教学资源",
-      items: [
-        { icon: BookOpen, label: "构造原理", to: "/curriculum" },
-        {
-          icon: Layers, label: "节点库", to: "/library",
-          onMouseEnter: () => {
-            // Preload node model on hover
-            useGLTF.preload("/models/membrane-roof-01/membrane-roof-01.glb", true);
-          }
-        },
-        { icon: Briefcase, label: "案例应用", to: "/curriculum/cases" },
-      ],
+      icon: Layers, label: "节点库", to: "/library",
+      onMouseEnter: () => {
+        useGLTF.preload("/models/membrane-roof-01/membrane-roof-01.glb", true);
+      }
     },
-    {
-      title: "学生实践",
-      items: [
-        { icon: GraduationCap, label: "自主学习", to: "/textbook/roof-membrane" },
-        { icon: Hammer, label: "作业训练", to: "/games" },
-      ],
-    },
-    {
-      title: "AI 与评价",
-      items: [
-        { icon: Sparkles, label: "AI 助手", disabled: true },
-        { icon: BarChart3, label: "评价分析", disabled: true },
-      ],
-    },
+    { icon: Briefcase, label: "案例应用", to: "/curriculum/cases" },
+    { icon: GraduationCap, label: "基础学习", to: "/textbook/roof-membrane" },
+    { icon: Hammer, label: "作业训练", to: "/games" },
+    { icon: Sparkles, label: "AI 问答", disabled: true },
+    { icon: BarChart3, label: "数据分析", disabled: true },
+    { icon: ExternalLink, label: "拓展链接", to: "/resources" },
   ];
 
   return (
@@ -142,45 +128,27 @@ function MenuContent({ }: { onModalOpen: () => void }) {
       {/* ── Title ── */}
       <div className="flex-shrink-0">
         <motion.h1
-          className="text-[38px] font-normal font-serif tracking-tight text-ink"
+          className="text-[48px] font-normal font-serif tracking-tight text-ink"
           variants={titleContainerVariants}>
           {"建筑构造".split("").map((ch, i) => (
             <motion.span key={i} variants={charVariants} className="inline-block">{ch}</motion.span>
           ))}
         </motion.h1>
         <motion.div
-          className="w-12 h-0.5 bg-primary rounded-full mt-6"
+          className="w-16 h-[2px] bg-primary rounded-full mt-6"
           variants={lineVariants} />
       </div>
 
-      {/* ── Navigation ── */}
-      <div className="flex-1 mt-6">
-        {menuGroups.map((group) => (
-          <motion.div key={group.title} variants={itemVariants} className="mb-section-gap">
-            <p className="text-[12px] font-medium tracking-[0.08em] text-[#9b948b] mb-[12px]">
-              {group.title}
-            </p>
-            {group.items.map((item) => (
-              <MenuItem key={item.label} item={item} onMouseEnter={"onMouseEnter" in item ? (item as any).onMouseEnter : undefined} />
-            ))}
+      {/* ── Navigation: centered cluster with tight spacing ── */}
+      <nav className="flex-1 flex flex-col justify-center gap-3 my-4">
+        {menuItems.map((item) => (
+          <motion.div key={item.label} variants={itemVariants}>
+            <MenuItem item={item} onMouseEnter={"onMouseEnter" in item ? (item as any).onMouseEnter : undefined} />
           </motion.div>
         ))}
-      </div>
+      </nav>
 
-      {/* ── Footer ── */}
-      <div className="flex-shrink-0 mt-auto">
-        <div className="flex items-center gap-3">
-          <div className="w-[44px] h-[44px] rounded-full bg-hairline flex items-center justify-center text-primary text-base font-semibold flex-shrink-0">
-            U
-          </div>
-          <div className="min-w-0">
-            <p className="text-[16px] font-medium text-black/80 truncate">学生用户</p>
-            <p className="text-[13px] text-black/40">建筑学</p>
-          </div>
-        </div>
-      </div>
-
-      <motion.p className="text-xs text-muted-soft mt-4 tracking-wide" variants={itemVariants}>
+      <motion.p className="text-xs text-muted-soft tracking-wide flex-shrink-0" variants={itemVariants}>
         探索建筑构造的空间逻辑
       </motion.p>
     </motion.div>
