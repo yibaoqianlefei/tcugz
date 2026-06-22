@@ -55,7 +55,7 @@ function NodeCard({ node, index }: { node: typeof nodesIndex[0]; index: number }
 }
 
 export default function LibraryPage() {
-  const categories = [...new Set(nodesIndex.map((n) => n.category))];
+  const categories = [...new Set(nodesIndex.map((n) => n.category))].filter((c) => c !== "案例");
 
   return (
     <div className="min-h-screen bg-canvas flex flex-col">

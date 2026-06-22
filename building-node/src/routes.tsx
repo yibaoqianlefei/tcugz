@@ -7,6 +7,7 @@ import CurriculumPage from "./pages/CurriculumPage";
 import SectionSubPage from "./pages/SectionSubPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import ResourcesPage from "./pages/ResourcesPage";
+import CasesPage from "./pages/CasesPage";
 
 /* ── Lazy-loaded pages ── */
 const NodeDetail = lazy(() => import("./NodeDetail"));
@@ -45,7 +46,7 @@ export const router = createHashRouter([
       { path: "/games", element: withSuspense(GamesPage) },
       { path: "/tools", element: <PlaceholderPage title="工具箱" /> },
       { path: "/contribute", element: <PlaceholderPage title="贡献节点" /> },
-      { path: "/curriculum/cases", element: <PlaceholderPage title="案例应用" /> },
+      { path: "/curriculum/cases", element: <CasesPage /> },
       { path: "/resources", element: <ResourcesPage /> },
       { path: "/ai", element: withSuspense(AIPage) },
       { path: "/data", element: withSuspense(DataAnalysis) },
