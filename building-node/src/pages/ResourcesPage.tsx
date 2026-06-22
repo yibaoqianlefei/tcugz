@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 
 interface ResourceLink {
   label: string;
@@ -45,7 +45,7 @@ function ResourceCard({ section }: { section: ResourceSection }) {
     <div className="bg-surface-card border border-hairline rounded-2xl overflow-hidden transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(20,20,19,0.06)]">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center gap-4 px-6 py-5 text-left transition-colors duration-200 hover:bg-surface-soft/50"
+        className="w-full flex items-center gap-4 px-5 py-4 text-left transition-colors duration-200 hover:bg-surface-soft/50"
       >
         <span className="text-3xl flex-shrink-0">{section.icon}</span>
         <div className="flex-1 min-w-0">
@@ -72,29 +72,46 @@ function ResourceCard({ section }: { section: ResourceSection }) {
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="overflow-hidden"
           >
-            <div className="px-6 pb-5 space-y-2 border-t border-hairline pt-4">
-              {section.links.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.url || "#"}
-                  target={link.url ? "_blank" : undefined}
-                  rel={link.url ? "noopener noreferrer" : undefined}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200
-                    ${link.url
-                      ? "bg-surface-soft hover:bg-primary/5 hover:text-primary cursor-pointer"
-                      : "bg-surface-soft text-muted-soft cursor-default"
-                    }`}
-                  onClick={(e) => { if (!link.url) e.preventDefault(); }}
-                >
-                  <ExternalLink size={14} className="flex-shrink-0" />
-                  <span className="text-sm font-medium">{link.label}</span>
-                  {link.url ? (
-                    <span className="ml-auto text-[10px] text-muted-soft">跳转</span>
-                  ) : (
-                    <span className="ml-auto text-[10px] text-muted-soft/60">待添加</span>
-                  )}
-                </a>
-              ))}
+            <div className="px-5 pb-5 border-t border-hairline pt-4">
+              <div className="flex flex-wrap gap-3">
+                {section.links.map((link) => {
+                  const hasUrl = !!link.url;
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.url || "#"}
+                      target={hasUrl ? "_blank" : undefined}
+                      rel={hasUrl ? "noopener noreferrer" : undefined}
+                      onClick={(e) => { if (!hasUrl) e.preventDefault(); }}
+                      className={`flex items-center justify-between gap-2 px-4 py-2.5 rounded-lg
+                        min-w-[130px]
+                        border border-[#e6dfd8] bg-white
+                        transition-all duration-200
+                        ${hasUrl
+                          ? "hover:bg-[#efe9de] hover:border-primary/20 cursor-pointer group"
+                          : "opacity-40 cursor-not-allowed"
+                        }`}
+                    >
+                      <span className="text-sm font-medium text-body whitespace-nowrap">
+                        {link.label}
+                      </span>
+                      <ArrowRight
+                        size={14}
+                        strokeWidth={1.5}
+                        className={`flex-shrink-0 transition-transform duration-200
+                          ${hasUrl ? "text-primary group-hover:translate-x-0.5" : "text-muted-soft"}`}
+                      />
+                    </a>
+                  );
+                })}
+              </div>
+
+              {/* ── Footer note ── */}
+              <div className="border-t border-[#e6dfd8] mt-4 pt-3 text-center">
+                <p className="text-[11px] text-muted tracking-wide">
+                  本站坚持人工甄选 · 持续更新行业资源
+                </p>
+              </div>
             </div>
           </motion.div>
         )}
