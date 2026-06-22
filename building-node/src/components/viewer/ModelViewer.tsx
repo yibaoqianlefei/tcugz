@@ -37,15 +37,15 @@ export const animControls = {
 };
 
 /* ── Renderer setup ───────────────────────────────────────── */
-function RendererSetup() {
+function RendererSetup({ showShadows }: { showShadows: boolean }) {
   const { gl } = useThree();
   useEffect(() => {
-    gl.shadowMap.enabled = true;
+    gl.shadowMap.enabled = showShadows;
     gl.shadowMap.type = THREE.PCFSoftShadowMap;
     gl.toneMapping = THREE.ACESFilmicToneMapping;
     gl.toneMappingExposure = 1.0;
     gl.outputColorSpace = THREE.SRGBColorSpace;
-  }, [gl]);
+  }, [gl, showShadows]);
   return null;
 }
 
@@ -302,13 +302,13 @@ function SceneModel({ modelPath }: { modelPath: string }) {
 }
 
 /* ── Lighting ─────────────────────────────────────────────── */
-function SceneLights() {
+function SceneLights({ showShadows }: { showShadows: boolean }) {
   return (
     <>
       <ambientLight intensity={0.6} color="#ffffff" />
       <directionalLight
         position={[8, 12, 6]} intensity={2.5} color="#fffdf7"
-        castShadow
+        castShadow={showShadows}
         shadow-mapSize-width={2048} shadow-mapSize-height={2048}
         shadow-camera-near={0.5} shadow-camera-far={30}
         shadow-camera-left={-6} shadow-camera-right={6}
@@ -375,7 +375,7 @@ function CameraTracker() {
 }
 
 /* ── Public component ─────────────────────────────────────── */
-export default function ModelViewer({ autoRotate = true, modelPath }: { autoRotate?: boolean; modelPath: string }) {
+export default function ModelViewer({ autoRotate = true, modelPath, showShadows = true }: { autoRotate?: boolean; modelPath: string; showShadows?: boolean }) {
   return (
     <div className="flex-1 h-full relative bg-[#f5f5f7]">
       <Canvas
@@ -383,10 +383,10 @@ export default function ModelViewer({ autoRotate = true, modelPath }: { autoRota
         dpr={[1, 1.5]} shadows
         gl={{ antialias: true, alpha: false }}
       >
-        <RendererSetup />
+        <RendererSetup showShadows={showShadows} />
         <color attach="background" args={["#f5f5f7"]} />
-        <SceneLights />
-        <ShadowPlane />
+        <SceneLights showShadows={showShadows} />
+        {showShadows && <ShadowPlane />}
         <Suspense fallback={<LoadingFallback />}>
           <SceneModel modelPath={modelPath} />
         </Suspense>

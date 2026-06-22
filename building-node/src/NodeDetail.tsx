@@ -6,7 +6,7 @@ import { animControls } from "./components/viewer/ModelViewer";
 import ModelViewer from "./components/viewer/ModelViewer";
 import NodeDiagramPanel from "./components/viewer/NodeDiagramPanel";
 import ConstructionKnowledgePanel from "./components/viewer/ConstructionKnowledgePanel";
-import { RotateCw, ChevronsLeft, ChevronsRight } from "lucide-react";
+import { RotateCw, ChevronsLeft, ChevronsRight, Sun } from "lucide-react";
 
 /**
  * NodeDetail V1 — construction education layout.
@@ -19,6 +19,7 @@ export default function NodeDetail() {
   const setAnimationProgress = useNodeStore((s) => s.setAnimationProgress);
 
   const [autoRotate, setAutoRotate] = useState(true);
+  const [showShadows, setShowShadows] = useState(true);
   const totalDuration = 4; // 96 frames @ 24fps
 
   // ── Play explosion (forward) ──
@@ -76,6 +77,7 @@ export default function NodeDetail() {
         <div className="flex-1 flex min-w-0 relative">
           <ModelViewer
             autoRotate={autoRotate}
+            showShadows={showShadows}
             modelPath={
               nodeId === "organized-drainage-01"
                 ? "/models/organized-drainage/organized-drainage.glb"
@@ -156,6 +158,26 @@ export default function NodeDetail() {
                 style={{ animation: autoRotate ? "spin 3s linear infinite" : "none" }}
               />
               <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 text-[10px] text-muted-soft hidden sm:block">R</span>
+            </button>
+
+            {/* ── Divider ── */}
+            <div className="w-px h-5 bg-hairline mx-0.5 sm:mx-1 shrink-0" />
+
+            {/* ── Shadow toggle ── */}
+            <button
+              onClick={() => setShowShadows((v) => !v)}
+              className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center
+                transition-all duration-300 relative shrink-0
+                ${showShadows ? "bg-hairline" : ""}`}
+              title={showShadows ? "关闭阴影" : "开启阴影"}
+            >
+              <Sun
+                size={16}
+                className={`sm:size-[18px] transition-colors duration-300 ${
+                  showShadows ? "text-primary" : "text-muted-soft"
+                }`}
+                strokeWidth={1.5}
+              />
             </button>
           </div>
         </div>

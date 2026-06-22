@@ -78,13 +78,13 @@ function SceneModel({ modelPath, onReady }: { modelPath: string; onReady?: () =>
 }
 
 /* ── Shadow Light ── */
-function ShadowLight() {
+function ShadowLight({ showShadows }: { showShadows: boolean }) {
   return (
     <directionalLight
       position={[6, 10, 4]}
       intensity={2.4}
       color="#fffdf7"
-      castShadow
+      castShadow={showShadows}
       shadow-mapSize-width={2048}
       shadow-mapSize-height={2048}
       shadow-camera-near={0.5}
@@ -99,14 +99,14 @@ function ShadowLight() {
 }
 
 /* ── Renderer Setup ── */
-function RendererSetup() {
+function RendererSetup({ showShadows }: { showShadows: boolean }) {
   const { gl } = useThree();
   useEffect(() => {
-    gl.shadowMap.enabled = true;
+    gl.shadowMap.enabled = showShadows;
     gl.shadowMap.type = THREE.PCFShadowMap;
     gl.toneMapping = THREE.ACESFilmicToneMapping;
     gl.toneMappingExposure = 1.0;
-  }, [gl]);
+  }, [gl, showShadows]);
   return null;
 }
 
@@ -126,6 +126,7 @@ interface MenuBackgroundProps {
   modelPath?: string;
   position?: [number, number, number];
   onLoaded?: () => void;
+  showShadows?: boolean;
 }
 
 function MenuBackground({
@@ -133,6 +134,7 @@ function MenuBackground({
   modelPath = "/models/Exhibition model.glb",
   position = [0, 0, 0],
   onLoaded,
+  showShadows = true,
 }: MenuBackgroundProps) {
   const groupRef = useRef<THREE.Group>(null);
   const handleSceneReady = useCallback(() => onLoaded?.(), [onLoaded]);
@@ -144,14 +146,14 @@ function MenuBackground({
 
   return (
     <>
-      <RendererSetup />
+      <RendererSetup showShadows={showShadows} />
       <color attach="background" args={["#faf9f5"]} />
 
       <ambientLight intensity={1.2} color="#ffffff" />
-      <ShadowLight />
+      <ShadowLight showShadows={showShadows} />
       <directionalLight position={[-5, 3, -3]} intensity={0.6} color="#d4e3f0" />
 
-      <ShadowPlane />
+      {showShadows && <ShadowPlane />}
 
       <OrbitControls
         enableDamping

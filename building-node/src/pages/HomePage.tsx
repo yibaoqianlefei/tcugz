@@ -18,6 +18,7 @@ import {
   BarChart3,
   SwitchCamera,
   ExternalLink,
+  Sun,
 } from "lucide-react";
 import MenuBackground from "../components/viewer/MenuBackground";
 import LoadingOverlay from "../components/viewer/LoadingOverlay";
@@ -106,6 +107,9 @@ function MenuItem({ item, onClick, onMouseEnter }: {
 
 /* ── Navigation Menu ───────────────────────────────────────── */
 function MenuContent({ }: { onModalOpen: () => void }) {
+  const totalNodes = nodesIndex.length;
+  const categories = [...new Set(nodesIndex.map((n) => n.category))];
+
   const menuItems = [
     { icon: BookOpen, label: "构造原理", to: "/curriculum" },
     {
@@ -139,7 +143,7 @@ function MenuContent({ }: { onModalOpen: () => void }) {
           variants={lineVariants} />
       </div>
 
-      {/* ── Navigation: centered cluster with tight spacing ── */}
+      {/* ── Navigation: centered cluster ── */}
       <nav className="flex-1 flex flex-col justify-center gap-3 my-4">
         {menuItems.map((item) => (
           <motion.div key={item.label} variants={itemVariants}>
@@ -148,10 +152,35 @@ function MenuContent({ }: { onModalOpen: () => void }) {
         ))}
       </nav>
 
-      <motion.p className="text-xs text-muted-soft tracking-wide flex-shrink-0" variants={itemVariants}>
+      {/* ── Stats ── */}
+      <motion.div
+        variants={itemVariants}
+        className="flex-shrink-0 border-t border-hairline pt-5"
+      >
+        <div className="flex gap-3">
+          <StatCard value={totalNodes} label="构造节点" />
+          <StatCard value={categories.length} label="分类" />
+          <StatCard value="3D" label="交互视图" />
+        </div>
+        <p className="text-xs text-muted-soft mt-3 leading-relaxed">
+          三维可视化 · 交互式学习
+        </p>
+      </motion.div>
+
+      <motion.p className="text-xs text-muted-soft tracking-wide flex-shrink-0 mt-4" variants={itemVariants}>
         探索建筑构造的空间逻辑
       </motion.p>
     </motion.div>
+  );
+}
+
+/* ── Small stat card for sidebar ── */
+function StatCard({ value, label }: { value: number | string; label: string }) {
+  return (
+    <div className="flex-1 bg-surface-card rounded-lg border border-hairline px-3 py-2 text-center">
+      <div className="text-lg font-semibold text-primary tabular-nums">{value}</div>
+      <div className="text-[11px] text-muted-soft">{label}</div>
+    </div>
   );
 }
 
@@ -201,51 +230,13 @@ function AboutModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   );
 }
 
-/* ── Stats Card ────────────────────────────────────────────── */
-function StatsOverlay() {
-  const totalNodes = nodesIndex.length;
-  const categories = [...new Set(nodesIndex.map((n) => n.category))];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
-      className="absolute left-8 bottom-8 z-20 flex flex-col gap-4"
-    >
-      {/* Title */}
-      <div>
-        <h2 className="text-2xl font-normal font-serif text-ink tracking-tight">
-          建筑构造交互系统
-        </h2>
-        <p className="text-sm text-muted mt-1">三维可视化 · 交互式学习</p>
-      </div>
-
-      {/* Stats row */}
-      <div className="flex gap-4">
-        <div className="bg-canvas/85 backdrop-blur-md rounded-xl border border-hairline px-5 py-3 shadow-[0_1px_3px_rgba(20,20,19,0.04)]">
-          <div className="text-2xl font-semibold text-primary tabular-nums">{totalNodes}</div>
-          <div className="text-xs text-muted-soft mt-0.5">构造节点</div>
-        </div>
-        <div className="bg-canvas/85 backdrop-blur-md rounded-xl border border-hairline px-5 py-3 shadow-[0_1px_3px_rgba(20,20,19,0.04)]">
-          <div className="text-2xl font-semibold text-primary tabular-nums">{categories.length}</div>
-          <div className="text-xs text-muted-soft mt-0.5">分类</div>
-        </div>
-        <div className="bg-canvas/85 backdrop-blur-md rounded-xl border border-hairline px-5 py-3 shadow-[0_1px_3px_rgba(20,20,19,0.04)]">
-          <div className="text-2xl font-semibold text-primary tabular-nums">3D</div>
-          <div className="text-xs text-muted-soft mt-0.5">交互视图</div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
 /* ── Home Page ─────────────────────────────────────────────── */
 export default function HomePage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [autoRotate, setAutoRotate] = useState(true);
   const [sceneIndex, setSceneIndex] = useState(0);
   const [bgLoading, setBgLoading] = useState(true);
+  const [showShadows, setShowShadows] = useState(true);
   const currentScene = backgroundScenes[sceneIndex];
 
   // Show loader when scene changes
@@ -297,14 +288,12 @@ export default function HomePage() {
             modelPath={currentScene.modelPath}
             position={currentScene.position as [number, number, number]}
             onLoaded={handleBgLoaded}
+            showShadows={showShadows}
           />
         </Canvas>
 
         {/* Loading overlay */}
         <LoadingOverlay isLoading={bgLoading} />
-
-        {/* Stats overlay — bottom left */}
-        <StatsOverlay />
 
         {/* Bottom-right controls */}
         <div className="absolute bottom-8 right-8 z-20 flex gap-2">
@@ -327,6 +316,14 @@ export default function HomePage() {
             ) : (
               <Play size={17} className="text-muted-soft hover:text-primary" />
             )}
+          </button>
+          {/* Shadow toggle */}
+          <button
+            onClick={() => setShowShadows((v) => !v)}
+            className="w-11 h-11 rounded-full bg-canvas border border-hairline flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-surface-card"
+            title={showShadows ? "关闭阴影" : "开启阴影"}
+          >
+            <Sun size={17} className={showShadows ? "text-primary" : "text-muted-soft hover:text-primary"} />
           </button>
         </div>
       </div>

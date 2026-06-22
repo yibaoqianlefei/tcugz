@@ -126,7 +126,7 @@ export default function ResourcesPage() {
       </header>
 
       <main className="flex-1 px-6 md:px-10 pb-20 max-w-4xl mx-auto w-full">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
           {sections.map((section) => (
             <ResourceCard key={section.title} section={section} />
           ))}
