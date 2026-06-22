@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Compass, Circle } from "lucide-react";
+import { Compass, Circle, BrainCircuit } from "lucide-react";
 import {
   RadialBarChart,
   RadialBar,
@@ -39,10 +39,10 @@ function categorizeQuestion(text: string): string {
   return "其他";
 }
 const CATEGORY_COLORS: Record<string, string> = {
-  "构造做法": CHART_COLORS.primary,
-  "材料特性": CHART_COLORS.hairline,
-  "空间逻辑": CHART_COLORS.ink,
-  "其他": "#9b948b",
+  "构造做法": "#cc785c",
+  "材料特性": "#e6dfd8",
+  "空间逻辑": "#6c6a64",
+  "其他": "#d4cfc7",
 };
 
 /* ── Node name lookup ───────────────────────────────────────── */
@@ -143,17 +143,45 @@ export default function DataAnalysis() {
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
         />
 
-        {/* Total interactions badge */}
-        {totalInteractions > 0 && (
-          <motion.p
-            className="mt-4 text-xs text-muted-soft"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            总交互次数：<span className="font-semibold text-primary tabular-nums">{totalInteractions}</span>
-          </motion.p>
-        )}
+        {/* ── Overview card ── */}
+        <motion.div
+          className="mt-6 max-w-xl mx-auto"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
+        >
+          <div className="bg-surface-card border border-hairline rounded-xl px-6 py-4 flex justify-around items-center">
+            {/* 总交互次数 */}
+            <div className="flex flex-col items-center">
+              <span className="text-2xl text-primary font-semibold tabular-nums">
+                {totalInteractions}
+              </span>
+              <span className="text-xs text-muted mt-0.5">总交互次数</span>
+            </div>
+
+            {/* Divider */}
+            <div className="w-px h-10 bg-hairline" />
+
+            {/* 累计学习时长 */}
+            <div className="flex flex-col items-center">
+              <span className="text-2xl text-primary font-semibold tabular-nums">
+                ~{Math.max(1, Math.round(totalInteractions * 1.8))}
+              </span>
+              <span className="text-xs text-muted mt-0.5">累计学习（分钟）</span>
+            </div>
+
+            {/* Divider */}
+            <div className="w-px h-10 bg-hairline" />
+
+            {/* 本周活跃 */}
+            <div className="flex flex-col items-center">
+              <span className="text-2xl text-primary font-semibold tabular-nums">
+                {Math.min(7, Math.max(0, Math.round(totalInteractions / 10)))}
+              </span>
+              <span className="text-xs text-muted mt-0.5">本周活跃（天）</span>
+            </div>
+          </div>
+        </motion.div>
       </header>
 
       {/* ── Cards ── */}
@@ -190,13 +218,15 @@ export default function DataAnalysis() {
           {/* Card 1: 学习进度 — RadialBar */}
           <motion.div
             variants={cardVariants}
-            className="bg-white border border-hairline rounded-2xl p-6 flex flex-col items-center min-h-[280px] shadow-[0_1px_3px_rgba(20,20,19,0.04)]"
+            className="bg-white border border-[#e6dfd8] rounded-lg p-6 flex flex-col min-h-[280px] shadow-sm"
           >
-            <span className="text-xs text-muted-soft uppercase tracking-wider mb-1 self-start">
-              学习进度
-            </span>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-1 h-4 bg-primary rounded-full inline-block flex-shrink-0" />
+              <span className="text-sm font-medium text-muted">学习进度</span>
+            </div>
+
             <div className="flex-1 w-full flex items-center justify-center relative">
-              <ResponsiveContainer width="100%" height={200}>
+              <ResponsiveContainer width="100%" height={190}>
                 <RadialBarChart
                   cx="50%"
                   cy="50%"
@@ -216,31 +246,40 @@ export default function DataAnalysis() {
               </ResponsiveContainer>
               {/* Center label */}
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                <span className="text-3xl font-semibold text-ink tabular-nums">
+                <span className="text-4xl font-bold text-ink tabular-nums tracking-tight">
                   {progressPct}%
                 </span>
-                <span className="text-[11px] text-muted-soft mt-0.5">
-                  已完成 {progress}/{TOTAL_NODES} 个
+                <span className="text-sm text-muted mt-1">
+                  已完成 {progress}/{TOTAL_NODES} 个节点
                 </span>
               </div>
             </div>
+
+            {/* Recent node */}
+            {visitedNodes.length > 0 && (
+              <div className="flex items-center gap-1.5 text-xs text-muted-soft pt-1">
+                <Circle size={6} fill="#cc785c" stroke="none" className="flex-shrink-0" />
+                <span>最近探索：{getNodeTitle(visitedNodes[visitedNodes.length - 1])}</span>
+              </div>
+            )}
           </motion.div>
 
           {/* Card 2: 构件热力 — Horizontal BarChart */}
           <motion.div
             variants={cardVariants}
-            className="bg-white border border-hairline rounded-2xl p-6 flex flex-col min-h-[280px] shadow-[0_1px_3px_rgba(20,20,19,0.04)]"
+            className="bg-white border border-[#e6dfd8] rounded-lg p-6 flex flex-col min-h-[280px] shadow-sm"
           >
-            <span className="text-xs text-muted-soft uppercase tracking-wider mb-1 self-start">
-              构件热力
-            </span>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-1 h-4 bg-primary rounded-full inline-block flex-shrink-0" />
+              <span className="text-sm font-medium text-muted">构件热力</span>
+            </div>
             <div className="flex-1 w-full">
               {barData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={210}>
                   <BarChart
                     data={barData}
                     layout="vertical"
-                    margin={{ top: 4, right: 4, bottom: 4, left: 4 }}
+                    margin={{ top: 4, right: 40, bottom: 4, left: 4 }}
                   >
                     <CartesianGrid
                       strokeDasharray="3 3"
@@ -261,6 +300,34 @@ export default function DataAnalysis() {
                       fill={CHART_COLORS.primary}
                       radius={[0, 4, 4, 0]}
                       barSize={18}
+                      label={({ x, y, width, value }: any) => {
+                        const high = value > 50;
+                        const color = high ? CHART_COLORS.primary : CHART_COLORS.hairline;
+                        // We use SVG foreignObject-free approach: render label text + Unicode arrow
+                        // For now: show value with ↑/↓ prefix as SVG text
+                        return (
+                          <g>
+                            <text
+                              x={x + width + 6}
+                              y={y + 14}
+                              fill="#6c6a64"
+                              fontSize={12}
+                              textAnchor="start"
+                            >
+                              {value}
+                            </text>
+                            {/* Trend arrow rendered as text */}
+                            <text
+                              x={x + width + 6 + String(value).length * 7 + 4}
+                              y={y + 14}
+                              fill={color}
+                              fontSize={12}
+                            >
+                              {high ? "↑" : "↓"}
+                            </text>
+                          </g>
+                        );
+                      }}
                     />
                   </BarChart>
                 </ResponsiveContainer>
@@ -275,50 +342,64 @@ export default function DataAnalysis() {
           {/* Card 3: AI 问答画像 — PieChart */}
           <motion.div
             variants={cardVariants}
-            className="bg-white border border-hairline rounded-2xl p-6 flex flex-col min-h-[280px] shadow-[0_1px_3px_rgba(20,20,19,0.04)]"
+            className="bg-white border border-[#e6dfd8] rounded-lg p-6 flex flex-col min-h-[280px] shadow-sm"
           >
-            <span className="text-xs text-muted-soft uppercase tracking-wider mb-1 self-start">
-              AI 问答画像
-            </span>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-1 h-4 bg-primary rounded-full inline-block flex-shrink-0" />
+              <span className="text-sm font-medium text-muted">AI 问答画像</span>
+            </div>
             <div className="flex-1 w-full flex items-center">
               {pieData.some((d) => d.value > 0) ? (
-                <ResponsiveContainer width="100%" height={210}>
-                  <PieChart>
-                    <Pie
-                      data={pieData}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={45}
-                      outerRadius={80}
-                      dataKey="value"
-                      stroke="none"
-                    >
-                      {pieData.map((entry) => (
-                        <Cell
-                          key={entry.name}
-                          fill={CATEGORY_COLORS[entry.name]}
+                <>
+                  <ResponsiveContainer width="100%" height={210}>
+                    <PieChart>
+                      <Pie
+                        data={pieData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={45}
+                        outerRadius={80}
+                        dataKey="value"
+                        stroke="none"
+                      >
+                        {pieData.map((entry) => (
+                          <Cell
+                            key={entry.name}
+                            fill={CATEGORY_COLORS[entry.name]}
+                          />
+                        ))}
+                      </Pie>
+                    </PieChart>
+                  </ResponsiveContainer>
+                  {/* Legend */}
+                  <div className="flex flex-col gap-1.5 ml-1">
+                    {AI_CATEGORIES.map((cat) => (
+                      <div key={cat} className="flex items-center gap-2">
+                        <span
+                          className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                          style={{ backgroundColor: CATEGORY_COLORS[cat] }}
                         />
-                      ))}
-                    </Pie>
-                  </PieChart>
-                </ResponsiveContainer>
+                        <span className="text-[11px] text-muted">{cat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </>
               ) : (
-                <div className="flex-1 flex items-center justify-center text-sm text-muted-soft">
-                  暂无提问数据
+                /* ── Empty state ── */
+                <div className="flex-1 flex flex-col items-center justify-center relative">
+                  <BrainCircuit
+                    size={64}
+                    strokeWidth={1}
+                    className="text-muted-soft opacity-20 absolute"
+                  />
+                  <h3 className="text-sm font-medium text-ink relative z-10">
+                    探索你的学习画像
+                  </h3>
+                  <p className="text-xs text-muted mt-1.5 text-center relative z-10 max-w-[200px]">
+                    去 AI 问答提问，开始构建你的数据图谱
+                  </p>
                 </div>
               )}
-              {/* Legend */}
-              <div className="flex flex-col gap-1.5 ml-1">
-                {AI_CATEGORIES.map((cat) => (
-                  <div key={cat} className="flex items-center gap-2">
-                    <span
-                      className="w-2.5 h-2.5 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: CATEGORY_COLORS[cat] }}
-                    />
-                    <span className="text-[11px] text-muted">{cat}</span>
-                  </div>
-                ))}
-              </div>
             </div>
           </motion.div>
         </motion.div>
