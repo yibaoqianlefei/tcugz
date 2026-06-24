@@ -50,9 +50,18 @@ export default function ConstructionKnowledgePanel() {
       setExpandedId(null);
       return;
     }
-    // Find matching layer with normalized comparison
+    // Find matching layer: try exact, then progressively strip suffixes
     const norm = normalizeName(selectedObject);
-    const matched = layers.find((l) => normalizeName(l.objectName) === norm);
+    let matched = layers.find((l) => normalizeName(l.objectName) === norm);
+    if (!matched) {
+      // Strip trailing digits/underscores progressively (01_1 → 01)
+      let base = norm;
+      while (base.length > 1 && /[_\d]+$/.test(base)) {
+        base = base.replace(/[_\d]+$/, "");
+        matched = layers.find((l) => normalizeName(l.objectName) === base);
+        if (matched) break;
+      }
+    }
     if (matched) {
       setExpandedId(matched.objectName);
     } else {

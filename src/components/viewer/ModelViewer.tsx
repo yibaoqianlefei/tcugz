@@ -56,7 +56,7 @@ function SceneModel({ modelPath }: { modelPath: string }) {
   const actionRef = useRef<THREE.AnimationAction | null>(null);
   const clipRef = useRef<THREE.AnimationClip | null>(null);
   const groupRef = useRef<THREE.Group>(null);
-  const meshMapRef = useRef<Map<string, THREE.Mesh>>(new Map());
+  const meshMapRef = useRef<Map<string, THREE.Mesh[]>>(new Map());
   const prevHovered = useRef<string | null>(null);
   const prevSelected = useRef<string | null>(null);
 
@@ -98,8 +98,16 @@ function SceneModel({ modelPath }: { modelPath: string }) {
         child.receiveShadow = true;
 
         if (child.name) {
-          // Store original mesh for highlight material access
-          meshMapRef.current.set(child.name, child);
+          // ── Logical name: parent Group for multi-material, child.name otherwise ──
+          const par = child.parent;
+          const isGrouped = par && par.type === "Group" && par.name && par.name !== "Scene";
+          const logicalName = isGrouped ? par!.name : child.name;
+
+          // Group all sub-meshes under the logical name
+          if (!meshMapRef.current.has(logicalName)) {
+            meshMapRef.current.set(logicalName, []);
+          }
+          meshMapRef.current.get(logicalName)!.push(child);
 
           // ── Invisible hit proxy: slightly enlarged for reliable raycasting ──
           // The visible mesh won't catch rays; the proxy handles hits and follows animation.
@@ -107,7 +115,7 @@ function SceneModel({ modelPath }: { modelPath: string }) {
             child.geometry.clone(),
             new THREE.MeshBasicMaterial(),
           );
-          proxy.name = child.name;
+          proxy.name = logicalName;       // use logical (group) name
           proxy.visible = false;          // invisible to camera, still raycastable
           proxy.scale.set(1.03, 1.03, 1.03); // 3% fat-finger tolerance
           proxy.userData.isHitProxy = true;
@@ -195,74 +203,64 @@ function SceneModel({ modelPath }: { modelPath: string }) {
   const selectedObject = useNodeStore((s) => s.selectedObject);
   const highlightEnabled = useNodeStore((s) => s.animationProgress) >= 0.99;
 
+  // ── Helper: apply emissive to all sub-meshes in a group ──
+  const setGroupEmissive = (name: string | null, color: string, intensity: number) => {
+    if (!name) return;
+    const meshes = meshMapRef.current.get(name);
+    if (!meshes) return;
+    meshes.forEach((mesh) => {
+      const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
+      mats.forEach((m) => { m.emissive?.set(color); m.emissiveIntensity = intensity; });
+    });
+  };
+
   // ── Apply highlights (only after full explosion) ──
   useEffect(() => {
     if (!highlightEnabled) {
-      // Clear any lingering highlights
-      if (prevHovered.current) {
-        const mesh = meshMapRef.current.get(prevHovered.current);
-        if (mesh) {
-          const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
-          mats.forEach((m) => { m.emissive?.set("#000000"); m.emissiveIntensity = 0; });
-        }
-      }
-      if (prevSelected.current) {
-        const mesh = meshMapRef.current.get(prevSelected.current);
-        if (mesh) {
-          const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
-          mats.forEach((m) => { m.emissive?.set("#000000"); m.emissiveIntensity = 0; });
-        }
-      }
+      setGroupEmissive(prevHovered.current, "#000000", 0);
+      setGroupEmissive(prevSelected.current, "#000000", 0);
       prevHovered.current = null;
       prevSelected.current = null;
       return;
     }
 
-    // Restore previous hover
+    // Clear previous
     if (prevHovered.current && prevHovered.current !== selectedObject) {
-      const mesh = meshMapRef.current.get(prevHovered.current);
-      if (mesh) {
-        const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
-        mats.forEach((m) => { m.emissive?.set("#000000"); m.emissiveIntensity = 0; });
-      }
+      setGroupEmissive(prevHovered.current, "#000000", 0);
     }
-    // Restore previous selected
     if (prevSelected.current && prevSelected.current !== selectedObject) {
-      const mesh = meshMapRef.current.get(prevSelected.current);
-      if (mesh && prevSelected.current !== hoveredObject) {
-        const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
-        mats.forEach((m) => { m.emissive?.set("#000000"); m.emissiveIntensity = 0; });
+      if (prevSelected.current !== hoveredObject) {
+        setGroupEmissive(prevSelected.current, "#000000", 0);
       }
     }
 
     // Apply selected (highest priority)
-    if (selectedObject) {
-      const mesh = meshMapRef.current.get(selectedObject);
-      if (mesh) {
-        const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
-        mats.forEach((m) => { m.emissive?.set("#cc785c"); m.emissiveIntensity = 0.4; });
-      }
-    }
+    setGroupEmissive(selectedObject, "#cc785c", 0.4);
 
     // Apply hover (lower priority, only if not selected)
     if (hoveredObject && hoveredObject !== selectedObject) {
-      const mesh = meshMapRef.current.get(hoveredObject);
-      if (mesh) {
-        const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
-        mats.forEach((m) => { m.emissive?.set("#ffffff"); m.emissiveIntensity = 0.15; });
-      }
+      setGroupEmissive(hoveredObject, "#ffffff", 0.15);
     }
 
     prevHovered.current = hoveredObject;
     prevSelected.current = selectedObject;
   }, [highlightEnabled, hoveredObject, selectedObject]);
 
-  // ── Helper: resolve named Mesh from intersection (edge lines are mesh children) ──
+  // ── Strip Three.js auto-suffixes from split meshes ──
+  const cleanName = (name: string): string => {
+    return name
+      .replace(/[_.]\d+$/, "")   // _1, .1, _001, .004
+      .replace(/_\d+$/, "");      // _1, _2 (double-pass for nested suffixes)
+  };
+
+  // ── Helper: resolve logical name from intersection ──
   const findNamedMesh = (obj: THREE.Object3D): string | null => {
+    // Parent Group (only if it's a real Group, not Scene root)
+    if (obj.parent && obj.parent.type === "Group" && obj.parent.name && obj.parent.name !== "Scene") {
+      return cleanName(obj.parent.name);
+    }
     // Direct hit on a named Mesh
-    if (obj instanceof THREE.Mesh && obj.name) return obj.name;
-    // Hit a child (e.g. LineSegments edge) → check parent
-    if (obj.parent && obj.parent instanceof THREE.Mesh && obj.parent.name) return obj.parent.name;
+    if (obj instanceof THREE.Mesh && obj.name) return cleanName(obj.name);
     return null;
   };
 
