@@ -1,0 +1,68 @@
+const courseModules = [
+  {
+    id: "introduction",
+    title: "绪论",
+    icon: "📖",
+    description: "建筑物的分类、分级与构造组成",
+    nodeIds: [],
+    available: true,
+  },
+  {
+    id: "wall",
+    title: "墙体",
+    icon: "🧱",
+    description: "墙体的作用、类型与砌体结构",
+    nodeIds: [],
+    available: true,
+  },
+  {
+    id: "door-window",
+    title: "门窗",
+    icon: "🪟",
+    description: "门窗的作用、分类与设计要求",
+    nodeIds: [],
+    available: true,
+  },
+  {
+    id: "foundation",
+    title: "基础与地基",
+    icon: "🏛️",
+    description: "基础分类、埋深与不均匀沉降",
+    nodeIds: [],
+    available: true,
+  },
+  {
+    id: "floor",
+    title: "楼地层",
+    icon: "🪜",
+    description: "钢筋混凝土楼板与地面构造",
+    nodeIds: [],
+    available: true,
+  },
+  {
+    id: "stairs",
+    title: "楼梯",
+    icon: "📐",
+    description: "楼梯构造、台阶坡道与电梯",
+    nodeIds: [],
+    available: true,
+  },
+  {
+    id: "roof",
+    title: "屋顶",
+    icon: "🏠",
+    description: "平屋面与坡屋面构造",
+    nodeIds: [],
+    available: true,
+  },
+  {
+    id: "deformation-joint",
+    title: "变形缝",
+    icon: "🔧",
+    description: "建筑变形缝的概念、设置原则与构造做法",
+    nodeIds: [],
+    available: true,
+  },
+];
+
+export default courseModules;

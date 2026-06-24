@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Surface Colors ── */
+  --color-canvas: #faf9f5;
+  --color-surface-soft: #f5f0e8;
+  --color-surface-card: #efe9de;
+  --color-surface-cream-strong: #e8e0d2;
+  --color-surface-dark: #181715;
+  --color-surface-dark-elevated: #252320;
+  --color-surface-dark-soft: #1f1e1b;
+
+  /* ── Primary / Coral ── */
+  --color-primary: #cc785c;
+  --color-primary-active: #a9583e;
+  --color-primary-disabled: #e6dfd8;
+
+  /* ── Text / Ink ── */
+  --color-ink: #141413;
+  --color-body-strong: #252523;
+  --color-body: #3d3d3a;
+  --color-muted: #6c6a64;
+  --color-muted-soft: #8e8b82;
+
+  /* ── Borders (hairlines) ── */
+  --color-hairline: #e6dfd8;
+  --color-hairline-soft: #ebe6df;
+
+  /* ── On-color tokens ── */
+  --color-on-primary: #ffffff;
+  --color-on-dark: #faf9f5;
+  --color-on-dark-soft: #a09d96;
+
+  /* ── Accent colors ── */
+  --color-accent-teal: #5db8a6;
+  --color-accent-amber: #e8a55a;
+
+  /* ── Semantic ── */
+  --color-success: #5db872;
+  --color-warning: #d4a017;
+  --color-error: #c64545;
+
+  /* ── Spacing tokens ── */
+  --spacing-sidebar: 24rem;
+  --spacing-panel-kw: 360px;
+  --spacing-menu-item-h: 48px;
+  --spacing-section-gap: 28px;
+  --spacing-page-pt: 64px;
+  --spacing-page-pb: 80px;
+
+  /* ── Font families ── */
+  --font-serif: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei",
+      "Hiragino Sans GB", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    background: #faf9f5;
+    color: #3d3d3a;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3 {
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-weight: 500;
+  }
+}
+
+/* ── Reusable component classes ── */
+@layer components {
+  .card-glass {
+    background: rgb(255 255 255 / 0.7);
+    backdrop-filter: blur(12px);
+    border-radius: 1rem;
+  }
+  .card-frosted {
+    background: rgb(255 255 255 / 0.85);
+    backdrop-filter: blur(16px);
+    border-radius: 1rem;
+    border: 1px solid var(--color-hairline);
+  }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.625rem;
+    border: 1px solid var(--color-hairline);
+    color: var(--color-muted);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .btn-ghost:hover {
+    color: var(--color-primary);
+    border-color: rgb(204 120 92 / 0.3);
+  }
+  .btn-primary-sm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.375rem 1rem;
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    transition: background 0.3s ease;
+    cursor: pointer;
+  }
+  .btn-primary-sm:hover {
+    background: var(--color-primary-active);
+  }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translate(-50%, 12px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
