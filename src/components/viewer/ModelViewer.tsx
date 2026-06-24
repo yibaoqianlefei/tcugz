@@ -10,6 +10,7 @@ let _actions: THREE.AnimationAction[] = [];
 let _modelScene: THREE.Group | null = null;
 let _controls: OrbitControlsImpl | null = null;
 let _isUserDragging = false;
+const _scaleCache = new Map<string, number>();
 
 export const animControls = {
   play() {
@@ -41,7 +42,7 @@ function RendererSetup({ showShadows }: { showShadows: boolean }) {
   const { gl } = useThree();
   useEffect(() => {
     gl.shadowMap.enabled = showShadows;
-    gl.shadowMap.type = THREE.PCFSoftShadowMap;
+    gl.shadowMap.type = THREE.PCFShadowMap;
     gl.toneMapping = THREE.ACESFilmicToneMapping;
     gl.toneMappingExposure = 1.0;
     gl.outputColorSpace = THREE.SRGBColorSpace;
@@ -59,13 +60,14 @@ function SceneModel({ modelPath }: { modelPath: string }) {
   const meshMapRef = useRef<Map<string, THREE.Mesh[]>>(new Map());
   const prevHovered = useRef<string | null>(null);
   const prevSelected = useRef<string | null>(null);
+  const scaleApplied = useRef(false);
 
   const setSelectedObject = useNodeStore((s) => s.setSelectedObject);
   const setHoveredObject = useNodeStore((s) => s.setHoveredObject);
   const setIsPlaying = useNodeStore((s) => s.setIsPlaying);
   const setAnimationProgress = useNodeStore((s) => s.setAnimationProgress);
 
-  // ── Standard initialization (V1.1.1) ──────────────────────
+  // ── Standard initialization ──
   useEffect(() => {
     if (!scene) return;
 
@@ -80,7 +82,27 @@ function SceneModel({ modelPath }: { modelPath: string }) {
       console.log("[GLB] tracks.length:", animations[0]?.tracks?.length);
     }
 
-    // Auto-center via Box3
+    // ── Auto-size: scale model to fit view (computed once per model) ──
+    if (!_scaleCache.has(modelPath)) {
+      scene.scale.setScalar(1);
+      scene.updateMatrixWorld();
+      const rawBox = new THREE.Box3().setFromObject(scene);
+      const rawSize = new THREE.Vector3();
+      rawBox.getSize(rawSize);
+      const maxDim = Math.max(rawSize.x, rawSize.y, rawSize.z);
+      if (maxDim > 0.01) {
+        const targetSize = 3.5;
+        const rawScale = targetSize / maxDim;
+        const scale = Math.max(0.3, Math.min(3, rawScale));
+        _scaleCache.set(modelPath, scale);
+      }
+    }
+    const cachedScale = _scaleCache.get(modelPath) ?? 1;
+    scene.scale.setScalar(cachedScale);
+    scene.updateMatrixWorld();
+    console.log("[ModelViewer] 最终应用缩放:", cachedScale, "| model:", modelPath);
+
+    // ── Auto-center after scaling ──
     const box = new THREE.Box3().setFromObject(scene);
     const center = new THREE.Vector3();
     box.getCenter(center);
@@ -89,66 +111,65 @@ function SceneModel({ modelPath }: { modelPath: string }) {
     // Expose scene for camera auto-frame
     _modelScene = scene;
 
-    // Build mesh map + shadow flags + edge lines + hit proxies (one-time)
+    // Build mesh map + shadow flags + edge lines + hit proxies
+    const isFirstInit = !scaleApplied.current;
     scene.traverse((child) => {
       if (child instanceof THREE.Mesh) {
-        if (child.userData.isHitProxy) return; // skip proxies added during this traversal
+        if (child.userData.isHitProxy) return;
 
         child.castShadow = true;
         child.receiveShadow = true;
 
         if (child.name) {
-          // ── Logical name: parent Group for multi-material, child.name otherwise ──
+          // ── Logical name ──
           const par = child.parent;
           const isGrouped = par && par.type === "Group" && par.name && par.name !== "Scene";
           const logicalName = isGrouped ? par!.name : child.name;
 
-          // Group all sub-meshes under the logical name
+          // Always rebuild meshMapRef (needed each mount)
           if (!meshMapRef.current.has(logicalName)) {
             meshMapRef.current.set(logicalName, []);
           }
           meshMapRef.current.get(logicalName)!.push(child);
 
-          // ── Invisible hit proxy: slightly enlarged for reliable raycasting ──
-          // The visible mesh won't catch rays; the proxy handles hits and follows animation.
-          const proxy = new THREE.Mesh(
-            child.geometry.clone(),
-            new THREE.MeshBasicMaterial(),
-          );
-          proxy.name = logicalName;       // use logical (group) name
-          proxy.visible = false;          // invisible to camera, still raycastable
-          proxy.scale.set(1.03, 1.03, 1.03); // 3% fat-finger tolerance
-          proxy.userData.isHitProxy = true;
-          child.add(proxy);
-
-          // Disable raycast on the visible mesh — proxy handles all hits
-          child.raycast = () => {};
+          // Proxies + raycast disable — only first mount (prevent duplicates)
+          if (isFirstInit) {
+            const proxy = new THREE.Mesh(child.geometry.clone(), new THREE.MeshBasicMaterial());
+            proxy.name = logicalName;
+            proxy.visible = false;
+            proxy.scale.set(1.03, 1.03, 1.03);
+            proxy.userData.isHitProxy = true;
+            child.add(proxy);
+            child.raycast = () => {};
+          }
         }
 
-        // Construction edge lines — attached as child so they animate with the mesh
-        // raycast disabled so pointer events pass through to the hit proxy
-        const edges = new THREE.EdgesGeometry(child.geometry, 15);
-        const line = new THREE.LineSegments(
-          edges,
-          new THREE.LineBasicMaterial({ color: "#374151", toneMapped: false }),
-        );
-        line.raycast = () => {};
-        child.add(line);
+        // Edge lines — only first mount
+        if (isFirstInit) {
+          const edges = new THREE.EdgesGeometry(child.geometry, 15);
+          const line = new THREE.LineSegments(
+            edges,
+            new THREE.LineBasicMaterial({ color: "#374151", toneMapped: false }),
+          );
+          line.raycast = () => {};
+          child.add(line);
+        }
       }
     });
 
-    // ── Clone shared materials so highlights don't bleed across components ──
-    // Three.js's GLTFLoader reuses material instances for meshes with the same material.
-    // We clone each named mesh's material so emissive changes are isolated.
-    meshMapRef.current.forEach((meshes) => {
-      meshes.forEach((mesh) => {
-        if (Array.isArray(mesh.material)) {
-          mesh.material = mesh.material.map((m) => m.clone());
-        } else {
-          mesh.material = mesh.material.clone();
-        }
+    // ── Clone shared materials (first mount only) ──
+    if (isFirstInit) {
+      meshMapRef.current.forEach((meshes) => {
+        meshes.forEach((mesh) => {
+          if (Array.isArray(mesh.material)) {
+            mesh.material = mesh.material.map((m) => m.clone());
+          } else {
+            mesh.material = mesh.material.clone();
+          }
+        });
       });
-    });
+      scaleApplied.current = true;
+    }
 
     // AnimationMixer — play ALL clips simultaneously
     if (animations.length > 0) {
@@ -171,6 +192,12 @@ function SceneModel({ modelPath }: { modelPath: string }) {
       clipRef.current = animations.reduce((a, b) => a.duration > b.duration ? a : b);
       _actions = actions;
 
+      // Force mesh transforms to animation time=0 (cached scene may have stale pose)
+      // Use tiny delta — mixer.update(0) may be optimized away
+      actions.forEach((a) => { a.paused = false; });
+      mixer.update(0.001);
+      actions.forEach((a) => { a.paused = true; });
+      mixer.update(0);
       setIsPlaying(false);
     }
 
@@ -292,7 +319,6 @@ function SceneModel({ modelPath }: { modelPath: string }) {
     e.stopPropagation();
     if (useNodeStore.getState().animationProgress < 1) return;
     const name = findNamedMesh(e.object);
-    console.log("[3D点击命中] 实际构件名称:", name, "| e.object.name:", (e.object as any).name, "| e.object.type:", (e.object as any).type);
     if (name) {
       const current = useNodeStore.getState().selectedObject;
       setSelectedObject(current === name ? null : name);

@@ -17,7 +17,7 @@ const roofDrainageData = {
       thickness: 0.03,
       color: "#d4a574",
       layerObjectName: "01",
-      modelPath: "/models/roof-drainage/roof-drainage.glb",
+      modelPath: "/models/roof/roof-drainage/roof-drainage.glb",
       description: "无组织排水屋顶构件01。",
     },
     {
@@ -26,7 +26,7 @@ const roofDrainageData = {
       thickness: 0.03,
       color: "#8b7d6b",
       layerObjectName: "02",
-      modelPath: "/models/roof-drainage/roof-drainage.glb",
+      modelPath: "/models/roof/roof-drainage/roof-drainage.glb",
       description: "无组织排水屋顶构件02。",
     },
     {
@@ -35,7 +35,7 @@ const roofDrainageData = {
       thickness: 0.03,
       color: "#6b8e7d",
       layerObjectName: "03",
-      modelPath: "/models/roof-drainage/roof-drainage.glb",
+      modelPath: "/models/roof/roof-drainage/roof-drainage.glb",
       description: "无组织排水屋顶构件03。",
     },
   ],

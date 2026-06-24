@@ -115,12 +115,7 @@ function MenuContent({ }: { onModalOpen: () => void }) {
 
   const menuItems = [
     { icon: BookOpen, label: "构造原理", to: "/curriculum" },
-    {
-      icon: Layers, label: "节点库", to: "/library",
-      onMouseEnter: () => {
-        useGLTF.preload("/models/membrane-roof-01/membrane-roof-01.glb", true);
-      }
-    },
+    { icon: Layers, label: "节点库", to: "/library" },
     { icon: Briefcase, label: "案例应用", to: "/curriculum/cases" },
     { icon: GraduationCap, label: "基础学习", to: "/textbook/roof-membrane" },
     { icon: Hammer, label: "作业训练", to: "/games" },

@@ -11,23 +11,7 @@ const nodesIndex: NodeIndexEntry[] = [
     id: "flat-roof-01",
     title: "平屋面构造",
     description:
-      "上人平屋面，六层构造由上至下：保护层、防水层、找平层、保温层、找坡层、结构层。",
-    category: "屋顶",
-    thumbnail: null,
-  },
-  {
-    id: "membrane-roof-01",
-    title: "卷材防水屋面",
-    description:
-      "卷材防水屋面由多层材料叠合而成，按各层的作用分别为：顶棚层、结构层、找平层、结合层、防水层、保护层。",
-    category: "屋顶",
-    thumbnail: null,
-  },
-  {
-    id: "roof-insulation-01",
-    title: "卷材平面屋顶保温构造",
-    description:
-      "典型含保温层的卷材防水屋面，由结构层至保护层共九层。",
+      "上人平屋面，八层构造：保护层、隔气层(卷材)、防水层、隔气层(冷底子油)、找平层、找坡层、保温层、结构层。",
     category: "屋顶",
     thumbnail: null,
   },
@@ -37,7 +21,7 @@ const nodesIndex: NodeIndexEntry[] = [
     description:
       "无组织排水屋面构造节点，包含防水层、保温层、结构层等关键构件。",
     category: "屋顶",
-    thumbnail: "/images/roof-drainage-diagram.png",
+    thumbnail: "/images/roof/roof-drainage-diagram.png",
   },
   {
     id: "organized-drainage-01",
@@ -45,7 +29,7 @@ const nodesIndex: NodeIndexEntry[] = [
     description:
       "有组织排水屋面构造节点，包含天沟、雨水斗、落水管等构件。",
     category: "屋顶",
-    thumbnail: "/images/organized-drainage-diagram.png",
+    thumbnail: "/images/roof/organized-drainage-diagram.png",
   },
   {
     id: "yuncheng-c-01",
@@ -77,8 +61,6 @@ type NodeLoader = () => Promise<{ default: any }>;
 
 const nodeLoaders: Record<string, NodeLoader> = {
   "flat-roof-01": () => import("./flatRoof"),
-  "membrane-roof-01": () => import("./membraneRoof"),
-  "roof-insulation-01": () => import("./roofInsulation"),
   "roof-drainage-01": () => import("./roofDrainage"),
   "organized-drainage-01": () => import("./organizedDrainage"),
   // yuncheng case-study nodes — deferred until models are available

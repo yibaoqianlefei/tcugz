@@ -24,9 +24,10 @@ export default function ConstructionKnowledgePanel() {
   const { nodeId } = useParams<{ nodeId: string }>();
   const node = nodesIndex.find((n) => n.id === nodeId);
 
-  // 3D highlight sync (read + write)
+  // 3D highlight sync (read + write) + linkage toggle
   const selectedObject = useNodeStore((s) => s.selectedObject);
   const setSelectedObject = useNodeStore((s) => s.setSelectedObject);
+  const linkageEnabled = useNodeStore((s) => s.linkageEnabled);
 
   // Accordion state: which card is expanded (null = all collapsed)
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -44,8 +45,9 @@ export default function ConstructionKnowledgePanel() {
       .replace(/、/g, ",");
   }
 
-  // ── Sync: 3D click → panel auto-expand ──
+  // ── Sync: 3D click → panel auto-expand (gated by linkageEnabled) ──
   useEffect(() => {
+    if (!linkageEnabled) return;
     if (!selectedObject) {
       setExpandedId(null);
       return;
@@ -71,13 +73,11 @@ export default function ConstructionKnowledgePanel() {
 
   const handleToggle = (objectName: string) => {
     if (expandedId === objectName) {
-      // Collapse: clear accordion + clear 3D highlight
       setExpandedId(null);
-      setSelectedObject(null);
+      if (linkageEnabled) setSelectedObject(null);
     } else {
-      // Expand: set accordion + sync 3D highlight
       setExpandedId(objectName);
-      setSelectedObject(objectName);
+      if (linkageEnabled) setSelectedObject(objectName);
     }
   };
 

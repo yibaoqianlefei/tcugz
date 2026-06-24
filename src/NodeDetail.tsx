@@ -6,23 +6,23 @@ import { animControls } from "./components/viewer/ModelViewer";
 import ModelViewer from "./components/viewer/ModelViewer";
 import NodeDiagramPanel from "./components/viewer/NodeDiagramPanel";
 import ConstructionKnowledgePanel from "./components/viewer/ConstructionKnowledgePanel";
-import { RotateCw, ChevronsLeft, ChevronsRight, Sun } from "lucide-react";
+import { RotateCw, ChevronsLeft, ChevronsRight, Sun, Link2 } from "lucide-react";
 import { useAnalysisStore } from "./store/analysisStore";
 
 /* ── Model path lookup ──────────────────────────────────────── */
 const MODEL_PATHS: Record<string, string> = {
-  "flat-roof-01": "/models/flat-roof/flat-roof.glb",
-  "organized-drainage-01": "/models/organized-drainage/organized-drainage.glb",
-  "roof-drainage-01": "/models/roof-drainage/roof-drainage.glb",
+  "flat-roof-01": "/models/roof/flat-roof/flat-roof.glb",
+  "organized-drainage-01": "/models/roof/organized-drainage/organized-drainage.glb",
+  "roof-drainage-01": "/models/roof/roof-drainage/roof-drainage.glb",
 };
 
 const DIAGRAM_IMAGES: Record<string, string> = {
-  "roof-drainage-01": "/images/roof-drainage-diagram.png",
-  "organized-drainage-01": "/images/organized-drainage-diagram.png",
+  "roof-drainage-01": "/images/roof/roof-drainage-diagram.png",
+  "organized-drainage-01": "/images/roof/organized-drainage-diagram.png",
 };
 
 function getModelPath(nodeId: string): string {
-  return MODEL_PATHS[nodeId] ?? "/models/roof-drainage/roof-drainage.glb";
+  return MODEL_PATHS[nodeId] ?? "/models/roof/flat-roof/flat-roof.glb";
 }
 function getDiagramImage(nodeId: string): string | undefined {
   return DIAGRAM_IMAGES[nodeId];
@@ -40,6 +40,8 @@ export default function NodeDetail() {
 
   const [autoRotate, setAutoRotate] = useState(true);
   const [showShadows, setShowShadows] = useState(true);
+  const linkageEnabled = useNodeStore((s) => s.linkageEnabled);
+  const setLinkageEnabled = useNodeStore((s) => s.setLinkageEnabled);
   const totalDuration = 4; // 96 frames @ 24fps
 
   // ── Tracking: record node visit ──
@@ -174,6 +176,26 @@ export default function NodeDetail() {
                 style={{ animation: autoRotate ? "spin 3s linear infinite" : "none" }}
               />
               <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 text-[10px] text-muted-soft hidden sm:block">R</span>
+            </button>
+
+            {/* ── Divider ── */}
+            <div className="w-px h-5 bg-hairline mx-0.5 sm:mx-1 shrink-0" />
+
+            {/* ── Linkage toggle ── */}
+            <button
+              onClick={() => setLinkageEnabled(!linkageEnabled)}
+              className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center
+                transition-all duration-300 relative shrink-0
+                ${linkageEnabled ? "bg-hairline" : ""}`}
+              title={linkageEnabled ? "联动已开启：点击关闭" : "联动已关闭：点击开启"}
+            >
+              <Link2
+                size={16}
+                className={`sm:size-[18px] transition-colors duration-300 ${
+                  linkageEnabled ? "text-primary" : "text-muted-soft"
+                }`}
+                strokeWidth={1.5}
+              />
             </button>
 
             {/* ── Divider ── */}

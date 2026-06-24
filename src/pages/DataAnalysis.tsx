@@ -19,7 +19,7 @@ import { useAnalysisStore } from "../store/analysisStore";
 import { nodesIndex } from "../data/nodesIndex";
 
 /* ── Constants ──────────────────────────────────────────────── */
-const TOTAL_NODES = 8;
+const TOTAL_NODES = 3;
 const CHART_COLORS = {
   primary: "#cc785c",
   hairline: "#e6dfd8",
@@ -79,8 +79,7 @@ export default function DataAnalysis() {
 
     // Simulate a semester of learning
     const seedNodes = [
-      "roof-drainage-01", "membrane-roof-01", "flat-roof-01",
-      "organized-drainage-01", "roof-insulation-01",
+      "roof-drainage-01", "flat-roof-01", "organized-drainage-01",
     ];
     const seedQuestions: string[] = [
       "防水层如何避免渗漏", "保温材料怎么选", "屋面排水坡度设计",
@@ -91,10 +90,8 @@ export default function DataAnalysis() {
     ];
 
     seedNodes.forEach((id) => addVisitedNode(id));
-    // Add a few more visits to create frequency pattern
     addVisitedNode("roof-drainage-01");
     addVisitedNode("roof-drainage-01");
-    addVisitedNode("membrane-roof-01");
 
     seedQuestions.forEach((q) => {
       const cat = categorizeQuestion(q);

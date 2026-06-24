@@ -114,9 +114,10 @@ NodeDetail.tsx (编排器, ~200行)
 
 双向联动:
   面板点击 → setSelectedObject(name) + setExpandedId(name)
-  3D 点击  → selectedObject 变化 → useEffect → setExpandedId(name)
+  3D 点击  → selectedObject 变化 → useEffect → fuzzyMatchLayer → setExpandedId(name)
   收起     → setExpandedId(null) + setSelectedObject(null)
-  容错匹配 → normalizeName(): 去空格 + 统一中英文标点
+  容错匹配 → normalizeName(): 去空格/下划线 + 统一中英文标点
+           → fuzzyMatchLayer(): 精确 → 逐级剥离尾缀 → 模糊匹配
 ```
 
 ### ModelViewer 核心系统 (~380行)
@@ -128,9 +129,13 @@ NodeDetail.tsx (编排器, ~200行)
 | 动画控制 | `_actions.forEach()` 批量控制 play/pause/reverse/setTime |
 | 自动居中 | Box3 一次性居中 (加载时) |
 | 边缘线 | `EdgesGeometry + LineSegments` 作为 mesh 子元素随动画移动，`raycast = () => {}` 禁用 |
-| 高亮门控 | `animationProgress >= 0.99` 才启用；收起爆炸自动清除视觉高亮 |
-| 命中代理 | 每个命名 mesh 附 3% 放大不可见 proxy mesh，仅 proxy 参与射线检测 |
-| 高亮效果 | hover: emissive white 0.15 / selected: emissive #cc785c 0.4 |
+| 高亮门控 | `animationProgress >= 0.99` 才启用（selector 阈值过滤，避免每帧重渲染）；收起自动清除 |
+| 命中代理 | 每个子 Mesh 附 3% 放大不可见 proxy，仅 proxy 参与射线检测 |
+| 材质隔离 | 初始化时克隆所有命名 Mesh 的 material，防止共享材质导致跨构件高亮泄露 |
+| 逻辑名分组 | `meshMapRef: Map<逻辑名, Mesh[]>` — 多材质构件所有子 Mesh 聚合到同一逻辑名下 |
+| 名称清理 | `cleanName()` 去掉 Three.js 自动加的后缀（`_1`, `.004` 等） |
+| 父 Group 检测 | 优先用父 Group 名（多材质包裹），排除 Scene 根节点 |
+| 高亮效果 | hover: emissive white 0.15 / selected: emissive `#d4a843`(亮金) 0.5 |
 | 事件 | R3F `onPointerOver/Out/Click` + `findNamedMesh()` + 诊断日志 |
 | 阴影 | PCFSoftShadowMap, 2048×2048, UI 开关 |
 | 色调映射 | ACESFilmicToneMapping, exposure=1.0 |
@@ -140,24 +145,49 @@ NodeDetail.tsx (编排器, ~200行)
 ### 高亮交互系统
 
 ```
-三层射线屏蔽:
-  可见 Mesh      → raycast = () => {}  (禁用)
-  边缘线 LineSegments → raycast = () => {}  (禁用)
-  不可见 Proxy   → 唯一射线目标 (3% 放大, 继承父 mesh.name)
+初始化阶段:
+  scene.traverse → 遍历所有 Mesh
+    ├── 识别逻辑名: 优先父 Group 名（多材质），回退自身名（单材质）
+    ├── meshMapRef[逻辑名] += [子Mesh]  ← 聚合分组
+    ├── 创建 Proxy (3%放大, name=逻辑名)
+    └── 材质克隆 → 每个 Mesh 独立 material 实例（防跨构件高亮泄露）
 
-命中流程:
+运行时命中:
   鼠标移动 → R3F Raycaster
     ↓
-  命中 Proxy Mesh
+  命中 Proxy Mesh (唯一射线目标)
     ↓
-  findNamedMesh(e.object) → proxy.parent.name (降级查找)
+  findNamedMesh:
+    ├── 父 Group (type=Group, name≠Scene) → cleanName(parent.name)
+    └── 自身 Mesh → cleanName(mesh.name)
+    ↓
+  cleanName: 去掉 Three.js 自动后缀 (_1, .004 等)
     ↓
   handlePointerOver/Click → progress 门控
     ↓
   setHoveredObject / setSelectedObject → Store
+
+高亮应用:
+  useEffect → setGroupEmissive(logicalName, color, intensity)
     ↓
-  useEffect → emissive 修改
+  meshMapRef.get(logicalName) → Mesh[] (全部子 Mesh)
+    ↓
+  每个子 Mesh → 所有 material → emissive 修改（材质已独立，不泄露）
+
+名称匹配 (面板):
+  normalizeName: 空格/下划线 → 消除, 中英文标点 → 统一
+  fuzzyMatchLayer: 精确 → 逐级剥离尾缀 [_\\d]+ → 模糊匹配
 ```
+
+三层射线屏蔽:
+- 可见 Mesh → `raycast = () => {}`
+- 边缘线 → `raycast = () => {}`
+- Proxy (3% 放大) → 唯一射线目标
+
+Three.js GLB 加载时的名称变化（已自动处理）:
+- 空格 → 下划线: `"1：1：6 水泥"` → `"1：1：6_水泥"`
+- 多材质拆分: 加 `_1`, `_2` 后缀
+- Mesh 名带 `.NNN`: `"01.004"` → `"01004"` (去掉小数点)
 
 ---
 
