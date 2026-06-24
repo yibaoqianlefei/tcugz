@@ -137,6 +137,19 @@ function SceneModel({ modelPath }: { modelPath: string }) {
       }
     });
 
+    // ── Clone shared materials so highlights don't bleed across components ──
+    // Three.js's GLTFLoader reuses material instances for meshes with the same material.
+    // We clone each named mesh's material so emissive changes are isolated.
+    meshMapRef.current.forEach((meshes) => {
+      meshes.forEach((mesh) => {
+        if (Array.isArray(mesh.material)) {
+          mesh.material = mesh.material.map((m) => m.clone());
+        } else {
+          mesh.material = mesh.material.clone();
+        }
+      });
+    });
+
     // AnimationMixer — play ALL clips simultaneously
     if (animations.length > 0) {
       const mixer = new THREE.AnimationMixer(scene);
@@ -198,12 +211,10 @@ function SceneModel({ modelPath }: { modelPath: string }) {
     }
   });
 
-  // Subscribe to store changes for highlight updates
+  // Subscribe to store changes (threshold-filtered)
   const hoveredObject = useNodeStore((s) => s.hoveredObject);
   const selectedObject = useNodeStore((s) => s.selectedObject);
-  const highlightEnabled = useNodeStore((s) => s.animationProgress) >= 0.99;
-
-  // ── Helper: apply emissive to all sub-meshes in a group ──
+  const highlightEnabled = useNodeStore((s) => s.animationProgress >= 0.99);
   const setGroupEmissive = (name: string | null, color: string, intensity: number) => {
     if (!name) return;
     const meshes = meshMapRef.current.get(name);
@@ -235,7 +246,7 @@ function SceneModel({ modelPath }: { modelPath: string }) {
     }
 
     // Apply selected (highest priority)
-    setGroupEmissive(selectedObject, "#cc785c", 0.4);
+    setGroupEmissive(selectedObject, "#d4a843", 0.5);
 
     // Apply hover (lower priority, only if not selected)
     if (hoveredObject && hoveredObject !== selectedObject) {
@@ -246,7 +257,7 @@ function SceneModel({ modelPath }: { modelPath: string }) {
     prevSelected.current = selectedObject;
   }, [highlightEnabled, hoveredObject, selectedObject]);
 
-  // ── Strip Three.js auto-suffixes from split meshes ──
+  // ── Strip Three.js auto-suffixes and sanitization ──
   const cleanName = (name: string): string => {
     return name
       .replace(/[_.]\d+$/, "")   // _1, .1, _001, .004

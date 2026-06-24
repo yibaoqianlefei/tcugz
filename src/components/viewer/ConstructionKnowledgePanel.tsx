@@ -38,7 +38,7 @@ export default function ConstructionKnowledgePanel() {
   // ── Normalize: remove spaces, unify Chinese/English punctuation ──
   function normalizeName(str: string): string {
     return str
-      .replace(/\s+/g, "")
+      .replace(/[\s_]+/g, "")       // spaces + underscores (Three.js sanitization)
       .replace(/：/g, ":")
       .replace(/，/g, ",")
       .replace(/、/g, ",");
