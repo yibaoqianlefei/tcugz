@@ -121,10 +121,10 @@ function SceneModel({ modelPath }: { modelPath: string }) {
         child.receiveShadow = true;
 
         if (child.name) {
-          // ── Logical name ──
+          // ── Logical name (strip dots — Three.js does the same) ──
           const par = child.parent;
           const isGrouped = par && par.type === "Group" && par.name && par.name !== "Scene";
-          const logicalName = isGrouped ? par!.name : child.name;
+          const logicalName = (isGrouped ? par!.name : child.name).replace(/\./g, "");
 
           // Always rebuild meshMapRef (needed each mount)
           if (!meshMapRef.current.has(logicalName)) {
@@ -244,7 +244,8 @@ function SceneModel({ modelPath }: { modelPath: string }) {
   const highlightEnabled = useNodeStore((s) => s.animationProgress >= 0.99);
   const setGroupEmissive = (name: string | null, color: string, intensity: number) => {
     if (!name) return;
-    const meshes = meshMapRef.current.get(name);
+    const clean = name.replace(/\./g, "");
+	    const meshes = meshMapRef.current.get(clean);
     if (!meshes) return;
     meshes.forEach((mesh) => {
       const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];

@@ -16,6 +16,14 @@ const nodesIndex: NodeIndexEntry[] = [
     thumbnail: null,
   },
   {
+    id: "sloped-roof-01",
+    title: "坡屋顶构造",
+    description:
+      "坡屋顶（斜屋顶）构造层次：彩色水泥瓦→挂瓦条→顺水条→保温层→隔气层→防水层→找平层→结构层。",
+    category: "屋顶",
+    thumbnail: null,
+  },
+  {
     id: "roof-drainage-01",
     title: "无组织排水屋顶",
     description:

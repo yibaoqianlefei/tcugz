@@ -7,9 +7,11 @@ import { nodesIndex } from "../../data/nodesIndex";
 import { roofDrainageLayers, getLayerInfo as getRoofDrainageLayer } from "../../data/roofDrainageLayers";
 import { organizedDrainageLayers, getLayerInfo as getOrganizedDrainageLayer } from "../../data/organizedDrainageLayers";
 import { flatRoofLayers, getLayerInfo as getFlatRoofLayer } from "../../data/flatRoofLayers";
+import { slopedRoofLayers, getLayerInfo as getSlopedRoofLayer } from "../../data/slopedRoofLayers";
 
 const LAYER_CONFIG: Record<string, { layers: any[]; getLayerInfo: (name: string) => any }> = {
   "flat-roof-01": { layers: flatRoofLayers, getLayerInfo: getFlatRoofLayer },
+  "sloped-roof-01": { layers: slopedRoofLayers, getLayerInfo: getSlopedRoofLayer },
   "organized-drainage-01": { layers: organizedDrainageLayers, getLayerInfo: getOrganizedDrainageLayer },
 };
 
@@ -39,8 +41,8 @@ export default function ConstructionKnowledgePanel() {
   // ── Normalize: remove spaces, unify Chinese/English punctuation ──
   function normalizeName(str: string): string {
     return str
-      .replace(/[\s_]+/g, "")       // spaces + underscores (Three.js sanitization)
-      .replace(/：/g, ":")
+      .replace(/：/g, ":")           // full-width colon
+      .replace(/[\s_.]+/g, "")      // spaces + underscores + dots (Three.js strips all)
       .replace(/，/g, ",")
       .replace(/、/g, ",");
   }

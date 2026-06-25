@@ -252,7 +252,7 @@ src/
 
 | Store | Key | 持久化 | 功能 |
 |-------|-----|--------|------|
-| `nodeStore` | — | 否 | 3D 悬停/选中/动画进度 |
+| `nodeStore` | — | 否 | 3D 悬停/选中/动画进度/联动开关 |
 | `chatStore` | — | 否 | AI 对话消息/加载/错误 + DeepSeek API |
 | `authStore` | — | 否 | 模拟用户登录/登出 |
 | `analysisStore` | `construction-analysis` | ✅ localStorage | 访问节点/提问分类/交互次数 |
@@ -306,16 +306,16 @@ src/
 
 ## 8. 节点清单
 
-| ID | 标题 | 分类 | GLB 模型 | 层数据 | 动画 |
-|----|------|------|----------|--------|------|
-| `flat-roof-01` | 平屋面构造 | 屋顶 | ✅ flat-roof.glb (8 mesh) | ✅ 8层, order排序 | ✅ |
-| `membrane-roof-01` | 卷材防水屋面 | 屋顶 | ✅ | ✅ | - |
-| `roof-insulation-01` | 保温构造 | 屋顶 | ✅ | ✅ | - |
-| `roof-drainage-01` | 无组织排水 | 屋顶 | ✅ 3 构件 | ✅ | ✅ 96帧 |
-| `organized-drainage-01` | 有组织排水 | 屋顶 | ✅ 4 构件 | ✅ | ✅ 96帧 |
-| `yuncheng-c-01` | 郓城案例 01 | 案例 | ⚠ | ⚠ | ⚠ |
-| `yuncheng-c-02` | 郓城案例 02 | 案例 | ⚠ | ⚠ | ⚠ |
-| `yuncheng-c-03` | 郓城案例 03 | 案例 | ⚠ | ⚠ | ⚠ |
+| ID | 标题 | 分类 | GLB 模型 | 层数据 | 动画 | 剖面图 |
+|----|------|------|----------|--------|------|--------|
+| `flat-roof-01` | 平屋面构造 | 屋顶 | ✅ flat-roof.glb (8 mesh) | ✅ 8层, order排序 | ✅ | - |
+| `roof-drainage-01` | 无组织排水 | 屋顶 | ✅ 3 构件 | ✅ | ✅ 96帧 | ✅ |
+| `organized-drainage-01` | 有组织排水 | 屋顶 | ✅ 4 构件 | ✅ | ✅ 96帧 | ✅ |
+| `yuncheng-c-01` | 郓城案例 01 | 案例 | ⚠ | ⚠ | ⚠ | - |
+| `yuncheng-c-02` | 郓城案例 02 | 案例 | ⚠ | ⚠ | ⚠ | - |
+| `yuncheng-c-03` | 郓城案例 03 | 案例 | ⚠ | ⚠ | ⚠ | - |
+
+已删除：membrane-roof-01（卷材防水屋面）、roof-insulation-01（保温构造）——无可用模型。
 
 ---
 
@@ -374,11 +374,14 @@ src/
 | NodeDetail | 三栏布局 + GLB + 动画 + 反向播放 + 时间轴 |
 | NodeDetail | 边缘线 + 命中代理 + 高亮门控 + 双向3D手风琴联动 |
 | NodeDetail | 动态相机 + 阴影开关 + 构件排序 + GLB真名匹配 |
+| NodeDetail | 材质隔离(防跨构件高亮泄露) + 自动缩放 + 联动开关 |
 | 拓展链接 | flex-wrap卡片 + 真实URL + 底部标语文案 |
 | 数据分析 | 3种Recharts图表 + 演示数据种子 + 空状态兜底 |
 | AI 问答 | DeepSeek API + 建筑学助教提示词 + lazy加载 |
 | 状态管理 | 4 Stores (node/chat/auth/analysis) |
 | 安全 | Vite 代理隐藏 API Key |
+| 资源目录 | 按类别分目录(models/roof, images/roof, models/background) |
+| 清理 | 移除未使用的节点(membrane, insulation)和旧模型文件 |
 
 ### 待完成
 
@@ -404,7 +407,43 @@ src/
 
 ---
 
-## 14. 开发命令
+## 14. 资源目录结构
+
+```
+public/
+├── models/
+│   ├── background/                  ← 首页背景模型
+│   │   └── Exhibition model.glb
+│   └── roof/                        ← 屋顶类
+│       ├── flat-roof/
+│       │   └── flat-roof.glb
+│       ├── organized-drainage/
+│       │   └── organized-drainage.glb
+│       └── roof-drainage/
+│           └── roof-drainage.glb
+├── images/
+│   └── roof/                        ← 屋顶剖面图
+│       ├── roof-drainage-diagram.png
+│       └── organized-drainage-diagram.png
+```
+
+未来添加规则：`{类别}/{节点名}/{节点名}.glb` 和 `{类别}/{节点名}-diagram.png`
+
+---
+
+## 15. 添加新节点（5 步）
+
+1. **准备文件**：`public/models/{类别}/{节点名}/{节点名}.glb` + 剖面图（可选）
+2. **创建数据**：`src/data/{节点名}Layers.ts` — `objectName` 填 Blender 对象名，`order` 控制排序
+3. **注册节点**：`src/data/nodesIndex.ts` 加条目
+4. **注册路径**：`src/NodeDetail.tsx` 的 `MODEL_PATHS` 和 `DIAGRAM_IMAGES`
+5. **注册面板**：`src/components/viewer/ConstructionKnowledgePanel.tsx` 的 `LAYER_CONFIG`
+
+多材质构件、命名变化等已全部自动化处理，无需额外配置。
+
+---
+
+## 16. 开发命令
 
 ```bash
 npm run dev          # localhost:5173 (需 .env.local 配置 DEEPSEEK_API_KEY)
@@ -414,4 +453,4 @@ npx tsc --noEmit     # 类型检查
 
 ---
 
-_最后更新：2026-06-22_
+_最后更新：2026-06-24_

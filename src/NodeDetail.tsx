@@ -12,6 +12,7 @@ import { useAnalysisStore } from "./store/analysisStore";
 /* ── Model path lookup ──────────────────────────────────────── */
 const MODEL_PATHS: Record<string, string> = {
   "flat-roof-01": "/models/roof/flat-roof/flat-roof.glb",
+  "sloped-roof-01": "/models/roof/sloped-roof/sloped-roof.glb",
   "organized-drainage-01": "/models/roof/organized-drainage/organized-drainage.glb",
   "roof-drainage-01": "/models/roof/roof-drainage/roof-drainage.glb",
 };
@@ -44,11 +45,17 @@ export default function NodeDetail() {
   const setLinkageEnabled = useNodeStore((s) => s.setLinkageEnabled);
   const totalDuration = 4; // 96 frames @ 24fps
 
-  // ── Tracking: record node visit ──
+  // ── Per-node init: reset all cross-session state to defaults ──
   const addVisitedNode = useAnalysisStore((s) => s.addVisitedNode);
+  const setSelectedObject = useNodeStore((s) => s.setSelectedObject);
   useEffect(() => {
-    if (nodeId) addVisitedNode(nodeId);
-  }, [nodeId, addVisitedNode]);
+    if (nodeId) {
+      addVisitedNode(nodeId);
+      setLinkageEnabled(true);
+      setSelectedObject(null);
+      setAnimationProgress(0);
+    }
+  }, [nodeId, addVisitedNode, setLinkageEnabled, setSelectedObject, setAnimationProgress]);
 
   // ── Play explosion (forward) ──
   const playExplosion = () => {
