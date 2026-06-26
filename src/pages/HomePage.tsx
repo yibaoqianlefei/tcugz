@@ -318,7 +318,7 @@ function SubMenuPanel({
       {/* Modules + Sections (scrollable, hidden scrollbar) */}
       <div
         className="flex-1 overflow-y-auto px-4 [&::-webkit-scrollbar]:hidden"
-        style={{ paddingTop: "180px", scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
+        style={{ paddingTop: "194px", scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
       >
         <div className="space-y-0.5">
           {children.map((mod, mi) => {
@@ -371,13 +371,13 @@ function SubMenuPanel({
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.15, delay: si * 0.03 }}
                             onClick={() => console.log("选中了章节:", sec.title, "| 所属模块:", mod.label)}
-                            className="w-full flex items-center gap-2 px-2 py-1.5 rounded-[6px]
-                              text-left text-base text-muted
+                            className="w-full flex items-start gap-2 px-2 py-1.5 rounded-[6px]
+                              text-left text-lg text-muted leading-snug
                               hover:bg-primary/8 hover:text-primary
                               transition-all duration-200 cursor-pointer"
                           >
-                            <span className="w-1 h-1 rounded-full bg-muted-soft/30 flex-shrink-0" />
-                            <span className="truncate">{sec.title}</span>
+                            <span className="w-1 h-1 rounded-full bg-muted-soft/30 flex-shrink-0 mt-[9px]" />
+                            <span className="whitespace-normal">{sec.title}</span>
                           </motion.button>
                         ))}
                       </div>
@@ -562,15 +562,19 @@ export default function HomePage() {
   const container3dRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
 
-  // ResizeObserver: track 3D viewport width for model scale adjustment
+  // ResizeObserver: throttled via rAF to avoid per-frame state updates
   useEffect(() => {
     const el = container3dRef.current;
     if (!el) return;
+    let raf = 0;
     const ro = new ResizeObserver((entries) => {
-      setContainerWidth(entries[0]?.contentRect.width ?? 0);
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        setContainerWidth(entries[0]?.contentRect.width ?? 0);
+      });
     });
     ro.observe(el);
-    return () => ro.disconnect();
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); };
   }, []);
 
   // Show loader when scene changes
@@ -595,7 +599,7 @@ export default function HomePage() {
         className="hidden md:flex flex-shrink-0 h-screen overflow-hidden bg-canvas"
       >
         {/* ── Left column: main menu (fixed width) ── */}
-        <div className="w-sidebar flex-shrink-0 flex flex-col h-full px-10 border-r border-hairline bg-canvas">
+        <div className="w-sidebar flex-shrink-0 flex flex-col h-full px-10 bg-canvas">
           <MenuContent
             expandedId={expandedId}
             setExpandedId={setExpandedId}
@@ -608,13 +612,13 @@ export default function HomePage() {
           {expandedId && (
             <motion.div
               initial={{ width: 0, opacity: 0 }}
-              animate={{ width: 340, opacity: 1 }}
+              animate={{ width: 260, opacity: 1 }}
               exit={{ width: 0, opacity: 0 }}
               transition={{ duration: 0.28, ease: "easeOut" }}
               className="overflow-hidden bg-canvas border-r border-hairline flex-shrink-0"
               style={{ minWidth: 0 }}
             >
-              <div style={{ width: 340 }} className="h-full">
+              <div style={{ width: 260 }} className="h-full">
                 <SubMenuPanel
                   expandedId={expandedId}
                   onClose={() => setExpandedId(null)}

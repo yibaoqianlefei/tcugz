@@ -1,5 +1,5 @@
 import { useRef, useEffect, Suspense, useMemo, useCallback, Component } from "react";
-import { useThree } from "@react-three/fiber";
+import { useThree, useFrame } from "@react-three/fiber";
 import { useGLTF, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -164,8 +164,18 @@ function MenuBackground({
   }
   const refWidth = initialWidthRef.current || containerWidth || 1200;
   const ratio = containerWidth > 0 ? Math.min(1, Math.max(0.4, containerWidth / refWidth)) : 1;
-  const dynamicScale = baseScale * ratio;
-  console.log("[MenuBackground] containerWidth:", containerWidth, "refWidth:", refWidth, "ratio:", ratio, "dynamicScale:", dynamicScale);
+  const targetScale = baseScale * ratio;
+
+  // Smooth lerp scale on each frame (avoids jank)
+  useFrame((_, delta) => {
+    if (groupRef.current) {
+      const current = groupRef.current.scale.x;
+      const next = current + (targetScale - current) * Math.min(delta * 6, 1);
+      if (Math.abs(next - current) > 0.0005) {
+        groupRef.current.scale.setScalar(next);
+      }
+    }
+  });
 
   // Preload model
   useEffect(() => {
@@ -207,7 +217,7 @@ function MenuBackground({
         target={[0, 0.5, 0]}
       />
 
-      <group ref={groupRef} position={position} scale={dynamicScale}>
+      <group ref={groupRef} position={position} scale={baseScale}>
         <Suspense fallback={<LoadingFallback />}>
           <ErrorBoundary fallback={<SceneModelPlaceholder />}>
             <SceneModel modelPath={modelPath} onReady={handleSceneReady} />

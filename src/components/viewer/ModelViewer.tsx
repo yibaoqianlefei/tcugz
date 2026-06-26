@@ -212,28 +212,35 @@ function SceneModel({ modelPath, containerWidth = 0 }: { modelPath: string; cont
     };
   }, [scene, animations, setIsPlaying]);
 
-  // ── Viewport-responsive scale: shrink model when canvas narrows ──
+  // ── Viewport-responsive scale: smooth lerp, no jank ──
   const initialWidthRef = useRef(0);
+  const targetScaleRef = useRef(0);
   useEffect(() => {
     if (!scene || containerWidth <= 0) return;
     const baseScale = _scaleCache.get(modelPath) ?? 1;
-    // Use initial container width as baseline, not a hardcoded value
     if (initialWidthRef.current === 0) initialWidthRef.current = containerWidth;
     const refWidth = initialWidthRef.current;
     const ratio = Math.min(1, Math.max(0.4, containerWidth / refWidth));
-    const adjusted = baseScale * ratio;
-    scene.scale.setScalar(adjusted);
-    scene.updateMatrixWorld();
-    console.log("[ModelViewer] containerWidth:", containerWidth, "refWidth:", refWidth, "ratio:", ratio, "adjusted:", adjusted);
-    // Re-center camera after scale change
-    if (_modelScene && _controls) {
-      const box = new THREE.Box3().setFromObject(_modelScene);
-      const center = new THREE.Vector3();
-      box.getCenter(center);
-      _controls.target.copy(center);
-      _controls.update();
-    }
+    targetScaleRef.current = baseScale * ratio;
   }, [containerWidth, modelPath, scene]);
+
+  // Smooth lerp scale each frame
+  useFrame((_, delta) => {
+    if (!scene || targetScaleRef.current <= 0) return;
+    const current = scene.scale.x;
+    const target = targetScaleRef.current;
+    const next = current + (target - current) * Math.min(delta * 6, 1);
+    if (Math.abs(next - current) > 0.0005) {
+      scene.scale.setScalar(next);
+      // Re-center camera when scale changes
+      if (_modelScene && _controls) {
+        const box = new THREE.Box3().setFromObject(_modelScene);
+        const center = new THREE.Vector3();
+        box.getCenter(center);
+        _controls.target.lerp(center, Math.min(delta * 4, 1));
+      }
+    }
+  });
 
   // ── Per-frame: mixer update + boundary auto-pause ────────
   useFrame((_, delta) => {
