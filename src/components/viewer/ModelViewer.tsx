@@ -1,9 +1,10 @@
-import { useRef, useEffect, Suspense } from "react";
+import { useRef, useEffect, Suspense, useState } from "react";
 import { Canvas, useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { useNodeStore } from "../../store/nodeStore";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
+import { canonicalName } from "../../utils/nameUtils";
 
 /* ── Module-level refs ─────────────────────────────────────── */
 let _actions: THREE.AnimationAction[] = [];
@@ -51,7 +52,7 @@ function RendererSetup({ showShadows }: { showShadows: boolean }) {
 }
 
 /* ── Model component (auto-center + highlight + animation) ──── */
-function SceneModel({ modelPath }: { modelPath: string }) {
+function SceneModel({ modelPath, containerWidth = 0 }: { modelPath: string; containerWidth?: number }) {
   const { scene, animations } = useGLTF(modelPath, true);
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
   const actionRef = useRef<THREE.AnimationAction | null>(null);
@@ -121,10 +122,10 @@ function SceneModel({ modelPath }: { modelPath: string }) {
         child.receiveShadow = true;
 
         if (child.name) {
-          // ── Logical name (strip dots — Three.js does the same) ──
+          // ── Logical name (canonical form — matches Three.js runtime) ──
           const par = child.parent;
           const isGrouped = par && par.type === "Group" && par.name && par.name !== "Scene";
-          const logicalName = (isGrouped ? par!.name : child.name).replace(/\./g, "");
+          const logicalName = canonicalName(isGrouped ? par!.name : child.name);
 
           // Always rebuild meshMapRef (needed each mount)
           if (!meshMapRef.current.has(logicalName)) {
@@ -211,6 +212,29 @@ function SceneModel({ modelPath }: { modelPath: string }) {
     };
   }, [scene, animations, setIsPlaying]);
 
+  // ── Viewport-responsive scale: shrink model when canvas narrows ──
+  const initialWidthRef = useRef(0);
+  useEffect(() => {
+    if (!scene || containerWidth <= 0) return;
+    const baseScale = _scaleCache.get(modelPath) ?? 1;
+    // Use initial container width as baseline, not a hardcoded value
+    if (initialWidthRef.current === 0) initialWidthRef.current = containerWidth;
+    const refWidth = initialWidthRef.current;
+    const ratio = Math.min(1, Math.max(0.4, containerWidth / refWidth));
+    const adjusted = baseScale * ratio;
+    scene.scale.setScalar(adjusted);
+    scene.updateMatrixWorld();
+    console.log("[ModelViewer] containerWidth:", containerWidth, "refWidth:", refWidth, "ratio:", ratio, "adjusted:", adjusted);
+    // Re-center camera after scale change
+    if (_modelScene && _controls) {
+      const box = new THREE.Box3().setFromObject(_modelScene);
+      const center = new THREE.Vector3();
+      box.getCenter(center);
+      _controls.target.copy(center);
+      _controls.update();
+    }
+  }, [containerWidth, modelPath, scene]);
+
   // ── Per-frame: mixer update + boundary auto-pause ────────
   useFrame((_, delta) => {
     if (mixerRef.current) {
@@ -244,8 +268,8 @@ function SceneModel({ modelPath }: { modelPath: string }) {
   const highlightEnabled = useNodeStore((s) => s.animationProgress >= 0.99);
   const setGroupEmissive = (name: string | null, color: string, intensity: number) => {
     if (!name) return;
-    const clean = name.replace(/\./g, "");
-	    const meshes = meshMapRef.current.get(clean);
+    const clean = canonicalName(name);
+    const meshes = meshMapRef.current.get(clean);
     if (!meshes) return;
     meshes.forEach((mesh) => {
       const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
@@ -285,21 +309,14 @@ function SceneModel({ modelPath }: { modelPath: string }) {
     prevSelected.current = selectedObject;
   }, [highlightEnabled, hoveredObject, selectedObject]);
 
-  // ── Strip Three.js auto-suffixes and sanitization ──
-  const cleanName = (name: string): string => {
-    return name
-      .replace(/[_.]\d+$/, "")   // _1, .1, _001, .004
-      .replace(/_\d+$/, "");      // _1, _2 (double-pass for nested suffixes)
-  };
-
   // ── Helper: resolve logical name from intersection ──
   const findNamedMesh = (obj: THREE.Object3D): string | null => {
     // Parent Group (only if it's a real Group, not Scene root)
     if (obj.parent && obj.parent.type === "Group" && obj.parent.name && obj.parent.name !== "Scene") {
-      return cleanName(obj.parent.name);
+      return canonicalName(obj.parent.name);
     }
     // Direct hit on a named Mesh
-    if (obj instanceof THREE.Mesh && obj.name) return cleanName(obj.name);
+    if (obj instanceof THREE.Mesh && obj.name) return canonicalName(obj.name);
     return null;
   };
 
@@ -378,10 +395,27 @@ function LoadingFallback() {
 }
 
 /* ── Camera tracker: 02-2 style explosion target interpolation ── */
-function CameraTracker() {
+function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: number; containerWidth?: number }) {
   const boxRef = useRef(new THREE.Box3());
   const centerRef = useRef(new THREE.Vector3());
   const listenersAttached = useRef(false);
+  const { size } = useThree(); // react to canvas resize
+
+  // Force re-center on viewport resize, container width change, OR layout change
+  useEffect(() => {
+    const controls = _controls;
+    const scene = _modelScene;
+    if (!controls || !scene) return;
+    // Small delay lets the renderer flush the new size
+    const t = setTimeout(() => {
+      const box = new THREE.Box3().setFromObject(scene);
+      const center = new THREE.Vector3();
+      box.getCenter(center);
+      controls.target.copy(center);
+      controls.update();
+    }, 80);
+    return () => clearTimeout(t);
+  }, [size.width, size.height, containerWidth, layoutKey]);
 
   useFrame((_, delta) => {
     const controls = _controls;
@@ -412,9 +446,34 @@ function CameraTracker() {
 }
 
 /* ── Public component ─────────────────────────────────────── */
-export default function ModelViewer({ autoRotate = true, modelPath, showShadows = true }: { autoRotate?: boolean; modelPath: string; showShadows?: boolean }) {
+export default function ModelViewer({
+  autoRotate = true,
+  modelPath,
+  showShadows = true,
+  layoutKey = 0,
+}: {
+  autoRotate?: boolean;
+  modelPath: string;
+  showShadows?: boolean;
+  layoutKey?: number;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+
+  // ResizeObserver: watch the actual DOM pixel width of the canvas container
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver((entries) => {
+      const w = entries[0]?.contentRect.width ?? 0;
+      setContainerWidth(w);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   return (
-    <div className="flex-1 h-full relative bg-[#f5f5f7]">
+    <div ref={containerRef} className="flex-1 h-full relative bg-[#f5f5f7]">
       <Canvas
         camera={{ near: 0.5, far: 50, position: [0, 0.5, 8], fov: 40 }}
         dpr={[1, 1.5]} shadows
@@ -425,7 +484,7 @@ export default function ModelViewer({ autoRotate = true, modelPath, showShadows 
         <SceneLights showShadows={showShadows} />
         {showShadows && <ShadowPlane />}
         <Suspense fallback={<LoadingFallback />}>
-          <SceneModel modelPath={modelPath} />
+          <SceneModel modelPath={modelPath} containerWidth={containerWidth} />
         </Suspense>
         <OrbitControls
           ref={(ctrl) => { _controls = ctrl; }}
@@ -435,7 +494,7 @@ export default function ModelViewer({ autoRotate = true, modelPath, showShadows 
           minDistance={1} maxDistance={20}
           enablePan
         />
-        <CameraTracker />
+        <CameraTracker layoutKey={layoutKey} containerWidth={containerWidth} />
       </Canvas>
     </div>
   );

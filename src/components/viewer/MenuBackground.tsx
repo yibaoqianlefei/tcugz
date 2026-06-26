@@ -120,6 +120,18 @@ function ShadowPlane() {
   );
 }
 
+/* ── Canvas resize handler ─────────────────────────────────── */
+function ResizeWatcher({ controlsRef }: { controlsRef: React.RefObject<any> }) {
+  const { size } = useThree();
+  useEffect(() => {
+    if (controlsRef.current) {
+      const t = setTimeout(() => controlsRef.current.update(), 60);
+      return () => clearTimeout(t);
+    }
+  }, [size.width, size.height, controlsRef]);
+  return null;
+}
+
 /* ── Main Component ── */
 interface MenuBackgroundProps {
   autoRotate?: boolean;
@@ -127,6 +139,8 @@ interface MenuBackgroundProps {
   position?: [number, number, number];
   onLoaded?: () => void;
   showShadows?: boolean;
+  layoutKey?: number;
+  containerWidth?: number;
 }
 
 function MenuBackground({
@@ -135,18 +149,44 @@ function MenuBackground({
   position = [0, 0, 0],
   onLoaded,
   showShadows = true,
+  layoutKey = 0,
+  containerWidth = 0,
 }: MenuBackgroundProps) {
   const groupRef = useRef<THREE.Group>(null);
+  const controlsRef = useRef<any>(null);
   const handleSceneReady = useCallback(() => onLoaded?.(), [onLoaded]);
+
+  // Viewport-responsive scale: capture initial width as baseline, adjust ratio on resize
+  const baseScale = 1.5;
+  const initialWidthRef = useRef(0);
+  if (containerWidth > 0 && initialWidthRef.current === 0) {
+    initialWidthRef.current = containerWidth;
+  }
+  const refWidth = initialWidthRef.current || containerWidth || 1200;
+  const ratio = containerWidth > 0 ? Math.min(1, Math.max(0.4, containerWidth / refWidth)) : 1;
+  const dynamicScale = baseScale * ratio;
+  console.log("[MenuBackground] containerWidth:", containerWidth, "refWidth:", refWidth, "ratio:", ratio, "dynamicScale:", dynamicScale);
 
   // Preload model
   useEffect(() => {
     useGLTF.preload(modelPath, true);
   }, [modelPath]);
 
+  // Force camera re-center on layout change (sidebar expand/collapse)
+  useEffect(() => {
+    if (controlsRef.current) {
+      // Small delay to let the canvas resize complete
+      const t = setTimeout(() => {
+        controlsRef.current?.update();
+      }, 50);
+      return () => clearTimeout(t);
+    }
+  }, [layoutKey]);
+
   return (
     <>
       <RendererSetup showShadows={showShadows} />
+      <ResizeWatcher controlsRef={controlsRef} />
       <color attach="background" args={["#faf9f5"]} />
 
       <ambientLight intensity={1.2} color="#ffffff" />
@@ -156,6 +196,7 @@ function MenuBackground({
       {showShadows && <ShadowPlane />}
 
       <OrbitControls
+        ref={controlsRef}
         enableDamping
         dampingFactor={0.08}
         autoRotate={autoRotate}
@@ -166,7 +207,7 @@ function MenuBackground({
         target={[0, 0.5, 0]}
       />
 
-      <group ref={groupRef} position={position} scale={1.5}>
+      <group ref={groupRef} position={position} scale={dynamicScale}>
         <Suspense fallback={<LoadingFallback />}>
           <ErrorBoundary fallback={<SceneModelPlaceholder />}>
             <SceneModel modelPath={modelPath} onReady={handleSceneReady} />

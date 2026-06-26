@@ -6,7 +6,7 @@
 
 ```
 定位：教学系统操作中枢
-用户：建筑学大三学生
+用户：建筑学学生
 气质：architectural / editorial / paper-like / calm academic
 核心链路：模型 → 构件 → 知识 → 教材
 ```
@@ -133,7 +133,7 @@ NodeDetail.tsx (编排器, ~200行)
 | 命中代理 | 每个子 Mesh 附 3% 放大不可见 proxy，仅 proxy 参与射线检测 |
 | 材质隔离 | 初始化时克隆所有命名 Mesh 的 material，防止共享材质导致跨构件高亮泄露 |
 | 逻辑名分组 | `meshMapRef: Map<逻辑名, Mesh[]>` — 多材质构件所有子 Mesh 聚合到同一逻辑名下 |
-| 名称清理 | `cleanName()` 去掉 Three.js 自动加的后缀（`_1`, `.004` 等） |
+| 名称标准化 | `src/utils/nameUtils.ts` — 🔒 `canonicalName()` **唯一入口**，统一处理空格→_、点号→删除、后缀剥离 |
 | 父 Group 检测 | 优先用父 Group 名（多材质包裹），排除 Scene 根节点 |
 | 高亮效果 | hover: emissive white 0.15 / selected: emissive `#d4a843`(亮金) 0.5 |
 | 事件 | R3F `onPointerOver/Out/Click` + `findNamedMesh()` + 诊断日志 |
@@ -158,10 +158,10 @@ NodeDetail.tsx (编排器, ~200行)
   命中 Proxy Mesh (唯一射线目标)
     ↓
   findNamedMesh:
-    ├── 父 Group (type=Group, name≠Scene) → cleanName(parent.name)
-    └── 自身 Mesh → cleanName(mesh.name)
+    ├── 父 Group (type=Group, name≠Scene) → canonicalName(parent.name)
+    └── 自身 Mesh → canonicalName(mesh.name)
     ↓
-  cleanName: 去掉 Three.js 自动后缀 (_1, .004 等)
+  canonicalName: 空格→_ + 点号→删除 + 后缀剥离（统一入口）
     ↓
   handlePointerOver/Click → progress 门控
     ↓
@@ -175,8 +175,10 @@ NodeDetail.tsx (编排器, ~200行)
   每个子 Mesh → 所有 material → emissive 修改（材质已独立，不泄露）
 
 名称匹配 (面板):
-  normalizeName: 空格/下划线 → 消除, 中英文标点 → 统一
-  fuzzyMatchLayer: 精确 → 逐级剥离尾缀 [_\\d]+ → 模糊匹配
+  canonicalName: 标准化（空格→_, 点→删除, 后缀剥离）— 全链路统一使用
+  normalizeName (仅面板模糊匹配): 空格/下划线/点→消除, 中英文标点→统一
+  面板→3D: handleToggle 发 canonicalName → setGroupEmissive 用 canonicalName 查 meshMapRef
+  3D→面板: findNamedMesh 返回 canonicalName → 面板 normalizeName 模糊匹配数据文件原始名
 ```
 
 三层射线屏蔽:
@@ -236,6 +238,9 @@ src/
 │   ├── roofDrainage.ts                   # 无组织排水
 │   ├── organizedDrainage.ts              # 有组织排水
 │   └── sections/ (10 个 .js)            # 各模块子章节
+│
+├── utils/
+│   └── nameUtils.ts                      # 🔒 canonicalName() 唯一入口 — 全项目名称标准化
 │
 ├── store/
 │   ├── nodeStore.ts                      # Zustand：hover/select/play/progress
@@ -309,6 +314,7 @@ src/
 | ID | 标题 | 分类 | GLB 模型 | 层数据 | 动画 | 剖面图 |
 |----|------|------|----------|--------|------|--------|
 | `flat-roof-01` | 平屋面构造 | 屋顶 | ✅ flat-roof.glb (8 mesh) | ✅ 8层, order排序 | ✅ | - |
+| `sloped-roof-01` | 坡屋顶构造 | 屋顶 | ✅ sloped-roof.glb (9构件) | ✅ 9层, order排序 | ✅ | - |
 | `roof-drainage-01` | 无组织排水 | 屋顶 | ✅ 3 构件 | ✅ | ✅ 96帧 | ✅ |
 | `organized-drainage-01` | 有组织排水 | 屋顶 | ✅ 4 构件 | ✅ | ✅ 96帧 | ✅ |
 | `yuncheng-c-01` | 郓城案例 01 | 案例 | ⚠ | ⚠ | ⚠ | - |
@@ -374,7 +380,7 @@ src/
 | NodeDetail | 三栏布局 + GLB + 动画 + 反向播放 + 时间轴 |
 | NodeDetail | 边缘线 + 命中代理 + 高亮门控 + 双向3D手风琴联动 |
 | NodeDetail | 动态相机 + 阴影开关 + 构件排序 + GLB真名匹配 |
-| NodeDetail | 材质隔离(防跨构件高亮泄露) + 自动缩放 + 联动开关 |
+| NodeDetail | 材质隔离(防跨构件高亮泄露) + 自动缩放 + 联动开关 + 名称标准化(canonicalName唯一入口) |
 | 拓展链接 | flex-wrap卡片 + 真实URL + 底部标语文案 |
 | 数据分析 | 3种Recharts图表 + 演示数据种子 + 空状态兜底 |
 | AI 问答 | DeepSeek API + 建筑学助教提示词 + lazy加载 |
@@ -417,6 +423,8 @@ public/
 │   └── roof/                        ← 屋顶类
 │       ├── flat-roof/
 │       │   └── flat-roof.glb
+│       ├── sloped-roof/
+│       │   └── sloped-roof.glb
 │       ├── organized-drainage/
 │       │   └── organized-drainage.glb
 │       └── roof-drainage/
@@ -434,12 +442,13 @@ public/
 ## 15. 添加新节点（5 步）
 
 1. **准备文件**：`public/models/{类别}/{节点名}/{节点名}.glb` + 剖面图（可选）
-2. **创建数据**：`src/data/{节点名}Layers.ts` — `objectName` 填 Blender 对象名，`order` 控制排序
+2. **创建数据**：`src/data/{节点名}Layers.ts` — `objectName` 填 Blender 对象名（原始写法，保留空格和点号），`order` 控制排序
 3. **注册节点**：`src/data/nodesIndex.ts` 加条目
 4. **注册路径**：`src/NodeDetail.tsx` 的 `MODEL_PATHS` 和 `DIAGRAM_IMAGES`
 5. **注册面板**：`src/components/viewer/ConstructionKnowledgePanel.tsx` 的 `LAYER_CONFIG`
 
-多材质构件、命名变化等已全部自动化处理，无需额外配置。
+多材质构件、名称标准化（空格→_、点号→删除、后缀剥离）等由 `canonicalName()` 全自动处理，无需手动转换。
+**名称相关逻辑一律通过 `src/utils/nameUtils.ts` 的 `canonicalName()` 处理，禁止在任何其他地方写 ad-hoc 正则。**
 
 ---
 
@@ -453,4 +462,4 @@ npx tsc --noEmit     # 类型检查
 
 ---
 
-_最后更新：2026-06-24_
+_最后更新：2026-06-25_

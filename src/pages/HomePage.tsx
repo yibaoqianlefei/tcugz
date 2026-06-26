@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
@@ -21,12 +21,30 @@ import {
   Sun,
   LogIn,
   LogOut,
+  ChevronRight,
 } from "lucide-react";
 import MenuBackground from "../components/viewer/MenuBackground";
 import LoadingOverlay from "../components/viewer/LoadingOverlay";
 import backgroundScenes from "../data/backgroundScenes";
 import { nodesIndex } from "../data/nodesIndex";
 import { useAuthStore } from "../store/authStore";
+import courseModules from "../data/courseModules";
+// @ts-expect-error — .js section files (allowJs enabled)
+import introSections from "../data/sections/introSections.js";
+// @ts-expect-error — .js section files
+import wallSections from "../data/sections/wallSections.js";
+// @ts-expect-error — .js section files
+import windowSections from "../data/sections/windowSections.js";
+// @ts-expect-error — .js section files
+import foundationSections from "../data/sections/foundationSections.js";
+// @ts-expect-error — .js section files
+import floorSections from "../data/sections/floorSections.js";
+// @ts-expect-error — .js section files
+import stairsSections from "../data/sections/stairsSections.js";
+// @ts-expect-error — .js section files
+import roofSections from "../data/sections/roofSections.js";
+// @ts-expect-error — .js section files
+import deformationJointSections from "../data/sections/deformationJointSections.js";
 
 /* ── Animation variants ───────────────────────────────────── */
 const containerVariants = {
@@ -69,60 +87,91 @@ const lineVariants = {
   },
 } as const;
 
-/* ── Menu Item ─────────────────────────────────────────────── */
-function MenuItem({ item, onClick, onMouseEnter }: {
-  item: { icon: any; label: string; to?: string; disabled?: boolean; onMouseEnter?: () => void };
-  onClick?: () => void;
-  onMouseEnter?: () => void;
-}) {
-  const disabled = item.disabled;
-
-  const content = (
-    <>
-      <item.icon size={22} strokeWidth={1.5}
-        className={`flex-shrink-0 transition-colors duration-300 ${disabled ? "text-black/15" : "text-muted-soft group-hover:text-primary"}`} />
-      <span className={`text-[22px] font-medium transition-colors duration-300 ${disabled ? "text-black/15" : "text-muted group-hover:text-primary"}`}>
-        {item.label}
-      </span>
-      {disabled && (
-        <span className="ml-auto text-[10px] text-muted-soft/40 font-normal">即将上线</span>
-      )}
-    </>
-  );
-
-  const baseClass =
-    "w-full flex items-center gap-3 pl-3 h-menu-item-h rounded-[12px]" +
-    " transition-all duration-300 ease-out" +
-    (disabled
-      ? " cursor-not-allowed"
-      : " hover:bg-primary/12 hover:shadow-md hover:-translate-y-[1px] active:scale-[0.98] cursor-pointer group text-left");
-
-  if (disabled) {
-    return <div className={baseClass}>{content}</div>;
-  }
-
-  if (onClick) {
-    return <button onClick={onClick} onMouseEnter={onMouseEnter} className={baseClass}>{content}</button>;
-  }
-
-  return <Link to={item.to!} onMouseEnter={onMouseEnter} className={baseClass}>{content}</Link>;
+/* ── Section data lookup ──────────────────────────────────── */
+interface SectionItem {
+  id: string;
+  title: string;
+  description: string;
+  nodeIds: string[];
+  available: boolean;
 }
 
-/* ── Navigation Menu ───────────────────────────────────────── */
-function MenuContent({ }: { onModalOpen: () => void }) {
+const sectionMap: Record<string, SectionItem[]> = {
+  introduction: introSections,
+  wall: wallSections,
+  "door-window": windowSections,
+  foundation: foundationSections,
+  floor: floorSections,
+  stairs: stairsSections,
+  roof: roofSections,
+  "deformation-joint": deformationJointSections,
+};
+
+/* ── Console dump: 8 modules + sections ────────────────────── */
+console.group("📚 构造原理 — 8 个主模块及其子章节");
+courseModules.forEach((mod) => {
+  const secs = sectionMap[mod.id] || [];
+  console.log(
+    `\n📁 ${mod.icon} ${mod.title} (${mod.id})${secs.length ? ` — ${secs.length} 个子章节` : " — 暂无子章节"}`,
+  );
+  secs.forEach((s) => {
+    console.log(`   ├─ ${s.title} [${s.id}] ${s.available ? "✅" : "⏳"}`);
+  });
+});
+console.groupEnd();
+
+/* ── Module-level menu definition ──────────────────────────── */
+interface MenuChildDef {
+  id: string;
+  label: string;
+  icon?: string;
+  description?: string;
+  sections?: SectionItem[];
+}
+
+interface MenuItemDef {
+  icon: any;
+  label: string;
+  id: string;
+  to?: string;
+  children?: MenuChildDef[];
+}
+
+const menuItems: MenuItemDef[] = [
+  { icon: BookOpen, label: "构造原理", id: "curriculum",
+    children: courseModules.map((m) => ({
+      id: m.id,
+      label: m.title,
+      icon: m.icon,
+      description: m.description,
+      sections: sectionMap[m.id] || [],
+    })),
+  },
+  { icon: Layers, label: "节点库", id: "library", to: "/library" },
+  { icon: Briefcase, label: "案例应用", id: "cases", to: "/curriculum/cases" },
+  { icon: GraduationCap, label: "基础学习", id: "textbook", to: "/textbook/roof-membrane" },
+  { icon: Hammer, label: "作业训练", id: "games", to: "/games" },
+  { icon: BarChart3, label: "数据分析", id: "data", to: "/data" },
+  { icon: ExternalLink, label: "拓展链接", id: "resources", to: "/resources" },
+  { icon: Sparkles, label: "AI 问答", id: "ai", to: "/ai" },
+];
+
+function getExpandedChildren(id: string | null): MenuChildDef[] | null {
+  if (!id) return null;
+  return menuItems.find((m) => m.id === id)?.children ?? null;
+}
+/* ── Left Column — Main Menu ────────────────────────────────── */
+function MenuContent({
+  expandedId,
+  setExpandedId,
+  onModalOpen,
+}: {
+  expandedId: string | null;
+  setExpandedId: (id: string | null) => void;
+  onModalOpen: () => void;
+}) {
   const totalNodes = nodesIndex.length;
   const categories = [...new Set(nodesIndex.map((n) => n.category))];
-
-  const menuItems = [
-    { icon: BookOpen, label: "构造原理", to: "/curriculum" },
-    { icon: Layers, label: "节点库", to: "/library" },
-    { icon: Briefcase, label: "案例应用", to: "/curriculum/cases" },
-    { icon: GraduationCap, label: "基础学习", to: "/textbook/roof-membrane" },
-    { icon: Hammer, label: "作业训练", to: "/games" },
-    { icon: BarChart3, label: "数据分析", to: "/data" },
-    { icon: ExternalLink, label: "拓展链接", to: "/resources" },
-    { icon: Sparkles, label: "AI 问答", to: "/ai" },
-  ];
 
   // Auth state
   const { isLoggedIn, userName, login, logout } = useAuthStore();
@@ -145,17 +194,53 @@ function MenuContent({ }: { onModalOpen: () => void }) {
           variants={lineVariants} />
       </div>
 
-      {/* ── Navigation: centered cluster ── */}
-      <nav className="flex-1 flex flex-col justify-center gap-3 my-4">
-        {menuItems.map((item) => (
-          <motion.div key={item.label} variants={itemVariants}>
-            <MenuItem item={item} onMouseEnter={"onMouseEnter" in item ? (item as any).onMouseEnter : undefined} />
-          </motion.div>
-        ))}
+      {/* ── Navigation: scrollable menu area ── */}
+      <nav
+        className="flex-1 flex flex-col gap-3 pt-8 overflow-y-auto [&::-webkit-scrollbar]:hidden"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
+      >
+        {menuItems.map((item) => {
+          const isExpanded = expandedId === item.id;
+          const hasChildren = !!item.children;
+
+          return (
+            <motion.div key={item.label} variants={itemVariants}>
+              {hasChildren ? (
+                <button
+                  onClick={() => setExpandedId(isExpanded ? null : item.id)}
+                  className={`w-full flex items-center gap-3 pl-3 h-menu-item-h rounded-[12px]
+                    transition-all duration-300 ease-out cursor-pointer group text-left
+                    hover:bg-primary/12 hover:shadow-md hover:-translate-y-[1px] active:scale-[0.98]
+                    ${isExpanded ? "bg-primary/8 ring-1 ring-primary/20" : ""}`}
+                >
+                  <item.icon size={22} strokeWidth={1.5}
+                    className={`flex-shrink-0 transition-colors duration-300 ${isExpanded ? "text-primary" : "text-muted-soft group-hover:text-primary"}`} />
+                  <span className={`text-[22px] font-medium transition-colors duration-300 ${isExpanded ? "text-primary" : "text-muted group-hover:text-primary"}`}>
+                    {item.label}
+                  </span>
+                  <ChevronRight size={18} strokeWidth={1.5}
+                    className={`ml-auto transition-all duration-300 ${isExpanded ? "text-primary rotate-90" : "text-muted-soft group-hover:text-primary"}`} />
+                </button>
+              ) : item.to ? (
+                <Link to={item.to}
+                  className="w-full flex items-center gap-3 pl-3 h-menu-item-h rounded-[12px]
+                    transition-all duration-300 ease-out
+                    hover:bg-primary/12 hover:shadow-md hover:-translate-y-[1px] active:scale-[0.98] cursor-pointer group text-left"
+                >
+                  <item.icon size={22} strokeWidth={1.5}
+                    className="flex-shrink-0 transition-colors duration-300 text-muted-soft group-hover:text-primary" />
+                  <span className="text-[22px] font-medium transition-colors duration-300 text-muted group-hover:text-primary">
+                    {item.label}
+                  </span>
+                </Link>
+              ) : null}
+            </motion.div>
+          );
+        })}
       </nav>
 
       {/* ── Login / User ── */}
-      <motion.div variants={itemVariants} className="mb-3">
+      <motion.div variants={itemVariants} className="mb-3 flex-shrink-0">
         <button
           onClick={() => isLoggedIn ? logout() : setLoginModalOpen(true)}
           className="w-full flex items-center gap-[10px] pl-[12px] h-menu-item-h rounded-[12px]
@@ -190,11 +275,8 @@ function MenuContent({ }: { onModalOpen: () => void }) {
         </button>
       </motion.div>
 
-      {/* ── Stats ── */}
-      <motion.div
-        variants={itemVariants}
-        className="flex-shrink-0 border-t border-hairline pt-5"
-      >
+      {/* ── Stats (fixed bottom) ── */}
+      <motion.div variants={itemVariants} className="flex-shrink-0 border-t border-hairline pt-5">
         <div className="flex gap-3">
           <StatCard value={totalNodes} label="构造节点" />
           <StatCard value={categories.length} label="分类" />
@@ -216,6 +298,112 @@ function MenuContent({ }: { onModalOpen: () => void }) {
         onLogin={(name) => { login(name); setLoginModalOpen(false); }}
       />
     </motion.div>
+  );
+}
+
+/* ── Right Column — Sub-menu Panel ──────────────────────────── */
+function SubMenuPanel({
+  expandedId,
+}: {
+  expandedId: string;
+  onClose?: () => void;
+}) {
+  const children = getExpandedChildren(expandedId);
+  const [activeModuleId, setActiveModuleId] = useState<string | null>(null);
+
+  if (!children) return null;
+
+  return (
+    <div className="flex flex-col h-full">
+      {/* Modules + Sections (scrollable, hidden scrollbar) */}
+      <div
+        className="flex-1 overflow-y-auto px-4 [&::-webkit-scrollbar]:hidden"
+        style={{ paddingTop: "180px", scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
+      >
+        <div className="space-y-0.5">
+          {children.map((mod, mi) => {
+            const isActive = activeModuleId === mod.id;
+            const hasSections = mod.sections && mod.sections.length > 0;
+
+            return (
+              <motion.div
+                key={mod.id}
+                initial={{ opacity: 0, x: 16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.2, delay: mi * 0.05 }}
+              >
+                {/* ── Module header (clickable) ── */}
+                <button
+                  onClick={() => setActiveModuleId(isActive ? null : mod.id)}
+                  className={`w-full flex items-center gap-2.5 px-3 py-3 rounded-[8px]
+                    text-left transition-all duration-200 cursor-pointer
+                    ${isActive
+                      ? "bg-primary/8 text-primary"
+                      : "hover:bg-primary/5 text-muted hover:text-primary"
+                    }`}
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 transition-colors duration-200 ${isActive ? "bg-primary" : "bg-muted-soft/40"}`} />
+                  <span className="text-lg font-medium truncate">
+                    {mod.label}
+                  </span>
+                  <span className="text-xs text-muted-soft ml-auto flex-shrink-0">
+                    {hasSections ? mod.sections!.length : 0}
+                  </span>
+                  <ChevronRight size={16} strokeWidth={1.5}
+                    className={`flex-shrink-0 transition-all duration-200 ${isActive ? "text-primary rotate-90" : "text-muted-soft"}`} />
+                </button>
+
+                {/* ── Sections (accordion) ── */}
+                <AnimatePresence initial={false}>
+                  {isActive && hasSections && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="ml-6 mt-0.5 mb-2 space-y-0.5 border-l-2 border-hairline pl-3">
+                        {mod.sections!.map((sec, si) => (
+                          <motion.button
+                            key={sec.id}
+                            initial={{ opacity: 0, x: -8 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.15, delay: si * 0.03 }}
+                            onClick={() => console.log("选中了章节:", sec.title, "| 所属模块:", mod.label)}
+                            className="w-full flex items-center gap-2 px-2 py-1.5 rounded-[6px]
+                              text-left text-base text-muted
+                              hover:bg-primary/8 hover:text-primary
+                              transition-all duration-200 cursor-pointer"
+                          >
+                            <span className="w-1 h-1 rounded-full bg-muted-soft/30 flex-shrink-0" />
+                            <span className="truncate">{sec.title}</span>
+                          </motion.button>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Empty state */}
+                {isActive && !hasSections && (
+                  <AnimatePresence>
+                    <motion.p
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="text-sm text-muted-soft ml-9 pl-1.5 py-1.5 italic overflow-hidden"
+                    >
+                      暂无子章节
+                    </motion.p>
+                  </AnimatePresence>
+                )}
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -369,7 +557,21 @@ export default function HomePage() {
   const [sceneIndex, setSceneIndex] = useState(0);
   const [bgLoading, setBgLoading] = useState(true);
   const [showShadows, setShowShadows] = useState(true);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
   const currentScene = backgroundScenes[sceneIndex];
+  const container3dRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+
+  // ResizeObserver: track 3D viewport width for model scale adjustment
+  useEffect(() => {
+    const el = container3dRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver((entries) => {
+      setContainerWidth(entries[0]?.contentRect.width ?? 0);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   // Show loader when scene changes
   useEffect(() => {
@@ -386,13 +588,45 @@ export default function HomePage() {
 
   return (
     <div className="flex h-screen overflow-hidden bg-canvas">
-      {/* ── Left Sidebar ── */}
-      <aside className="hidden md:flex w-sidebar flex-shrink-0 bg-canvas border-r border-hairline flex-col h-full px-10">
-        <MenuContent onModalOpen={() => setModalOpen(true)} />
-      </aside>
+      {/* ── Left Sidebar (two-column: main menu + sub-menu panel) ── */}
+      <motion.aside
+        layout
+        transition={{ duration: 0.28, ease: "easeInOut" }}
+        className="hidden md:flex flex-shrink-0 h-screen overflow-hidden bg-canvas"
+      >
+        {/* ── Left column: main menu (fixed width) ── */}
+        <div className="w-sidebar flex-shrink-0 flex flex-col h-full px-10 border-r border-hairline bg-canvas">
+          <MenuContent
+            expandedId={expandedId}
+            setExpandedId={setExpandedId}
+            onModalOpen={() => setModalOpen(true)}
+          />
+        </div>
+
+        {/* ── Right column: sub-menu panel (animated width) ── */}
+        <AnimatePresence initial={false}>
+          {expandedId && (
+            <motion.div
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: 340, opacity: 1 }}
+              exit={{ width: 0, opacity: 0 }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
+              className="overflow-hidden bg-canvas border-r border-hairline flex-shrink-0"
+              style={{ minWidth: 0 }}
+            >
+              <div style={{ width: 340 }} className="h-full">
+                <SubMenuPanel
+                  expandedId={expandedId}
+                  onClose={() => setExpandedId(null)}
+                />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.aside>
 
       {/* ── Right: 3D Scene ── */}
-      <div className="hidden md:block flex-1 h-full relative">
+      <div ref={container3dRef} className="hidden md:block flex-1 h-full relative min-w-0">
         {/* Top nav bar */}
         <div className="absolute top-0 left-0 right-0 z-20 flex justify-end items-center h-10 px-4 bg-white/60 backdrop-blur-md border-b border-white/20">
           <Link to="/contribute"
@@ -421,6 +655,8 @@ export default function HomePage() {
             position={currentScene.position as [number, number, number]}
             onLoaded={handleBgLoaded}
             showShadows={showShadows}
+            layoutKey={expandedId ? 1 : 0}
+            containerWidth={containerWidth}
           />
         </Canvas>
 
@@ -462,7 +698,11 @@ export default function HomePage() {
 
       {/* ── Mobile: nav only ── */}
       <div className="flex md:hidden w-full h-full bg-canvas flex-col justify-center px-8">
-        <MenuContent onModalOpen={() => setModalOpen(true)} />
+        <MenuContent
+          expandedId={expandedId}
+          setExpandedId={setExpandedId}
+          onModalOpen={() => setModalOpen(true)}
+        />
       </div>
 
       <AboutModal open={modalOpen} onClose={() => setModalOpen(false)} />

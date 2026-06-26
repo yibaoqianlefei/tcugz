@@ -1,27 +1,37 @@
+export interface SubMenuItem {
+  id: string;
+  label: string;
+  path: string;
+}
+
 export interface MenuItem {
+  id: string;
   label: string;
   icon: string;
-  path: string | null;
+  path?: string;
+  children?: SubMenuItem[];
   disabled?: boolean;
 }
 
-export interface MenuGroup {
-  title: string;
-  items: MenuItem[];
-}
-
-export const menu: MenuGroup[] = [
+/** Flat menu list — items with `children` render as expandable parent nodes. */
+export const menuItems: MenuItem[] = [
   {
-    title: "",
-    items: [
-      { label: "构造原理", icon: "📖", path: "/curriculum" },
-      { label: "节点库", icon: "📚", path: "/library" },
-      { label: "案例应用", icon: "💼", path: "/curriculum/cases" },
-      { label: "基础学习", icon: "🎓", path: "/textbook/roof-membrane" },
-      { label: "作业训练", icon: "🔨", path: "/games" },
-      { label: "数据分析", icon: "📊", path: "/data" },
-      { label: "拓展链接", icon: "🔗", path: "/resources" },
-      { label: "AI 问答", icon: "✨", path: "/ai" },
+    id: "curriculum",
+    label: "构造原理",
+    icon: "📖",
+    children: [
+      { id: "intro", label: "建筑构造概述", path: "/curriculum/intro" },
+      { id: "walls", label: "墙体构造", path: "/curriculum/walls" },
+      { id: "floors", label: "楼板构造", path: "/curriculum/floors" },
+      { id: "stairs", label: "楼梯构造", path: "/curriculum/stairs" },
+      { id: "foundations", label: "基础与地下室", path: "/curriculum/foundations" },
     ],
   },
+  { id: "library", label: "节点库", icon: "📚", path: "/library" },
+  { id: "cases", label: "案例应用", icon: "💼", path: "/curriculum/cases" },
+  { id: "textbook", label: "基础学习", icon: "🎓", path: "/textbook/roof-membrane" },
+  { id: "games", label: "作业训练", icon: "🔨", path: "/games" },
+  { id: "data", label: "数据分析", icon: "📊", path: "/data" },
+  { id: "resources", label: "拓展链接", icon: "🔗", path: "/resources" },
+  { id: "ai", label: "AI 问答", icon: "✨", path: "/ai" },
 ];

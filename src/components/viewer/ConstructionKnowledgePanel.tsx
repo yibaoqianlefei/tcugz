@@ -8,6 +8,7 @@ import { roofDrainageLayers, getLayerInfo as getRoofDrainageLayer } from "../../
 import { organizedDrainageLayers, getLayerInfo as getOrganizedDrainageLayer } from "../../data/organizedDrainageLayers";
 import { flatRoofLayers, getLayerInfo as getFlatRoofLayer } from "../../data/flatRoofLayers";
 import { slopedRoofLayers, getLayerInfo as getSlopedRoofLayer } from "../../data/slopedRoofLayers";
+import { canonicalName } from "../../utils/nameUtils";
 
 const LAYER_CONFIG: Record<string, { layers: any[]; getLayerInfo: (name: string) => any }> = {
   "flat-roof-01": { layers: flatRoofLayers, getLayerInfo: getFlatRoofLayer },
@@ -79,7 +80,8 @@ export default function ConstructionKnowledgePanel() {
       if (linkageEnabled) setSelectedObject(null);
     } else {
       setExpandedId(objectName);
-      if (linkageEnabled) setSelectedObject(objectName);
+      // Send canonical form (spaces→_, dots→del) so 3D lookup matches
+      if (linkageEnabled) setSelectedObject(canonicalName(objectName));
     }
   };
 
