@@ -51,29 +51,45 @@ main.tsx
               └── /games            → GamesPage (lazy)    (作业训练)
 ```
 
-### HomePage 侧栏布局
+### HomePage 侧栏布局 — 双列树状目录
 
 ```
 HomePage
-  ├── 左侧栏 (w-sidebar, 24rem)
-  │   ├── 标题 "建筑构造" (48px) + 装饰线
-  │   ├── 导航菜单 (8 项，扁平无分组，flex-1 justify-center + gap-3)
-  │   │   ├── 构造原理    → /curriculum
-  │   │   ├── 节点库      → /library
-  │   │   ├── 案例应用    → /curriculum/cases  (已迁移至独立 CasesPage)
-  │   │   ├── 基础学习    → /textbook/roof-membrane
-  │   │   ├── 作业训练    → /games
-  │   │   ├── 数据分析    → /data
-  │   │   ├── 拓展链接    → /resources
-  │   │   └── AI 问答     → /ai
-  │   ├── 登录按钮 (模拟用户系统，未登录显示"用户登录"，已登录显示用户名+退出)
-  │   ├── 统计卡片 (构造节点 / 分类 / 交互视图)
-  │   └── 标语 "探索建筑构造的空间逻辑"
-  └── 右侧 (flex-1) 3D 场景
-      ├── 顶部导航栏 (贡献节点 + 关于项目)
-      ├── Canvas (MenuBackground, GLB 背景模型)
-      └── 右下角控制 (场景切换 + 旋转切换 + 阴影切换)
+  └── motion.aside (layout, 动态宽度: 24rem → 24rem+260px)
+      ├── 左列 (w-sidebar, 24rem, flex-shrink-0)
+      │   ├── 标题 "建筑构造" (48px) + 装饰线
+      │   ├── 导航菜单 (8 项, pt-8, overflow-y-auto 隐藏滚动条)
+      │   │   ├── 📂 构造原理 ▶     ← 点击展开右列子目录
+      │   │   ├── 节点库      → /library
+      │   │   ├── 案例应用    → /curriculum/cases
+      │   │   ├── 基础学习    → /textbook/roof-membrane
+      │   │   ├── 作业训练    → /games
+      │   │   ├── 数据分析    → /data
+      │   │   ├── 拓展链接    → /resources
+      │   │   └── AI 问答     → /ai
+      │   ├── 登录按钮 + 统计卡片 + 标语 (flex-shrink-0 固定底部)
+      │
+      ├── 右列 (AnimatePresence, width: 0↔260px, 平滑滑入/滑出)
+      │   └── SubMenuPanel
+      │       ├── 8 模块手风琴列表 (activeModuleId 单展开)
+      │       │   ├── ● 绪论          ▸ 6   ← text-lg font-medium
+      │       │   │   └── 建筑物的分类       ← text-lg 自动换行
+      │       │   │   └── 建筑物的分级
+      │       │   ├── ● 墙体          ▸ 5
+      │       │   └── ...
+      │       └── overflow-y-auto 隐藏滚动条
+      │
+      └── 右侧 (flex-1) 3D 场景
+          ├── Canvas (MenuBackground, 视口自适应缩放)
+          └── 右下角控制 (场景切换 + 旋转 + 阴影)
 ```
+
+**树状目录核心机制**：
+- 左列"构造原理"按钮 → `expandedId` toggle → 右列 AnimatePresence 滑入/滑出
+- 右列模块手风琴 → `activeModuleId` 单展开 → AnimatePresence height 动画
+- 滚动条隐藏：`[&::-webkit-scrollbar]:hidden` + `scrollbarWidth:"none"`
+- 字体层级：模块 `text-lg font-medium text-muted→hover:text-primary`，子章节 `text-lg text-muted`
+- 无 header/footer，纯目录观感；左右列无缝衔接（无分隔线）
 
 ### NodeDetail 内部架构（核心页面）
 
@@ -140,6 +156,7 @@ NodeDetail.tsx (编排器, ~200行)
 | 阴影 | PCFSoftShadowMap, 2048×2048, UI 开关 |
 | 色调映射 | ACESFilmicToneMapping, exposure=1.0 |
 | 相机 | 02-2 风格动态锚点：Box3 → controls.target.lerp(center, alpha) |
+| 视口自适应 | ResizeObserver → containerWidth → viewport-responsive scale（useFrame lerp 平滑过渡） |
 | 模型路径 | `MODEL_PATHS` 查表 + `getModelPath(nodeId)` |
 
 ### 高亮交互系统
@@ -225,7 +242,7 @@ src/
 │   └── PlaceholderPage.tsx               # 通用占位
 │
 ├── data/
-│   ├── menu.ts                           # 侧栏菜单 (扁平, 8项)
+│   ├── menu.ts                           # 侧栏菜单 (嵌套结构, 支持children)
 │   ├── nodesIndex.ts                     # 8 节点索引 + 懒加载 + 缩略图
 │   ├── courseModules.ts                  # 8 模块定义
 │   ├── backgroundScenes.ts               # 首页 3D 场景
@@ -373,7 +390,7 @@ src/
 
 | 模块 | 功能 |
 |------|------|
-| 首页 | 侧栏菜单(8项) + 3D背景 + 场景切换 + 阴影开关 + 统计卡片 + 模拟登录 |
+| 首页 | 双列树状目录(左主菜单+右子目录手风琴) + 3D背景视口自适应 + 场景切换 + 阴影开关 + 模拟登录 |
 | 课程 | 8模块 → 子章节 drill-down |
 | 节点库 | 分类网格 + 剖面截图缩略图 (案例已剥离) |
 | 案例应用 | 独立 CasesPage + Building2 占位 + [模型开发中] 标签 |
@@ -401,7 +418,42 @@ src/
 
 ---
 
-## 13. 设计原则
+## 13. 树状目录与视口自适应系统
+
+### 侧边栏双列目录
+
+```
+数据流: courseModules (8模块) → sectionMap (section文件) → menuItems → SubMenuPanel
+
+交互:
+  左列点击"构造原理" → expandedId toggle → 右列 AnimatePresence 滑入 (width: 0→260px)
+  右列点击模块标题 → activeModuleId toggle → AnimatePresence 手风琴展开子章节
+  再次点击父项 → 全部折叠收回
+
+视觉:
+  - 左右列无缝衔接 (无 border 分隔)
+  - 滚动条全局隐藏 ([&::-webkit-scrollbar]:hidden + scrollbarWidth:none)
+  - 模块标题: text-lg font-medium text-muted, 子章节: text-lg text-muted 自动换行
+  - 左列 nav 对齐: pt-page-pt(64) + title(58px) + mt-6(24) + line(2px) + pt-8(32) = 180px
+  - 右列 paddingTop=180px 与左列"构造原理"按钮顶部精确对齐
+```
+
+### 3D 视口自适应缩放
+
+```
+ResizeObserver (throttled via rAF)
+  → containerWidth 变化
+    → MenuBackground: useFrame lerp targetScale = baseScale(1.5) × ratio
+    → ModelViewer: useFrame lerp targetScale = baseScale × ratio, controls.target 跟随
+  ratio = clamp(containerWidth / initialWidth, 0.4, 1.0)
+  
+平滑: useFrame 内 delta*6 指数衰减 lerp，避免直接赋值导致的卡顿
+节流: ResizeObserver → cancelAnimationFrame + requestAnimationFrame 合并中间帧
+```
+
+---
+
+## 14. 设计原则
 
 1. **教学主线优先**：所有功能服务"模型→构件→知识→教材"链路
 2. **克制复杂度**：禁止后处理特效、物理引擎
@@ -413,7 +465,7 @@ src/
 
 ---
 
-## 14. 资源目录结构
+## 15. 资源目录结构
 
 ```
 public/
@@ -439,7 +491,7 @@ public/
 
 ---
 
-## 15. 添加新节点（5 步）
+## 16. 添加新节点（5 步）
 
 1. **准备文件**：`public/models/{类别}/{节点名}/{节点名}.glb` + 剖面图（可选）
 2. **创建数据**：`src/data/{节点名}Layers.ts` — `objectName` 填 Blender 对象名（原始写法，保留空格和点号），`order` 控制排序
@@ -452,7 +504,7 @@ public/
 
 ---
 
-## 16. 开发命令
+## 17. 开发命令
 
 ```bash
 npm run dev          # localhost:5173 (需 .env.local 配置 DEEPSEEK_API_KEY)
@@ -462,4 +514,4 @@ npx tsc --noEmit     # 类型检查
 
 ---
 
-_最后更新：2026-06-25_
+_最后更新：2026-06-26_
