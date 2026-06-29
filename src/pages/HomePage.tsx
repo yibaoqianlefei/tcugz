@@ -29,21 +29,21 @@ import backgroundScenes from "../data/backgroundScenes";
 import { nodesIndex } from "../data/nodesIndex";
 import { useAuthStore } from "../store/authStore";
 import courseModules from "../data/courseModules";
-// @ts-expect-error — .js section files (allowJs enabled)
+
 import introSections from "../data/sections/introSections.js";
-// @ts-expect-error — .js section files
+
 import wallSections from "../data/sections/wallSections.js";
-// @ts-expect-error — .js section files
+
 import windowSections from "../data/sections/windowSections.js";
-// @ts-expect-error — .js section files
+
 import foundationSections from "../data/sections/foundationSections.js";
-// @ts-expect-error — .js section files
+
 import floorSections from "../data/sections/floorSections.js";
-// @ts-expect-error — .js section files
+
 import stairsSections from "../data/sections/stairsSections.js";
-// @ts-expect-error — .js section files
+
 import roofSections from "../data/sections/roofSections.js";
-// @ts-expect-error — .js section files
+
 import deformationJointSections from "../data/sections/deformationJointSections.js";
 
 /* ── Animation variants ───────────────────────────────────── */
@@ -164,11 +164,9 @@ function getExpandedChildren(id: string | null): MenuChildDef[] | null {
 function MenuContent({
   expandedId,
   setExpandedId,
-  onModalOpen,
 }: {
   expandedId: string | null;
   setExpandedId: (id: string | null) => void;
-  onModalOpen: () => void;
 }) {
   const totalNodes = nodesIndex.length;
   const categories = [...new Set(nodesIndex.map((n) => n.category))];
@@ -603,7 +601,7 @@ export default function HomePage() {
           <MenuContent
             expandedId={expandedId}
             setExpandedId={setExpandedId}
-            onModalOpen={() => setModalOpen(true)}
+  
           />
         </div>
 
@@ -705,7 +703,7 @@ export default function HomePage() {
         <MenuContent
           expandedId={expandedId}
           setExpandedId={setExpandedId}
-          onModalOpen={() => setModalOpen(true)}
+
         />
       </div>
 
