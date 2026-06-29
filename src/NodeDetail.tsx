@@ -10,20 +10,21 @@ import { RotateCw, ChevronsLeft, ChevronsRight, Sun, Link2 } from "lucide-react"
 import { useAnalysisStore } from "./store/analysisStore";
 
 /* ── Model path lookup ──────────────────────────────────────── */
+const B = import.meta.env.BASE_URL;
 const MODEL_PATHS: Record<string, string> = {
-  "flat-roof-01": "/models/roof/flat-roof/flat-roof.glb",
-  "sloped-roof-01": "/models/roof/sloped-roof/sloped-roof.glb",
-  "organized-drainage-01": "/models/roof/organized-drainage/organized-drainage.glb",
-  "roof-drainage-01": "/models/roof/roof-drainage/roof-drainage.glb",
+  "flat-roof-01": `${B}models/roof/flat-roof/flat-roof.glb`,
+  "sloped-roof-01": `${B}models/roof/sloped-roof/sloped-roof.glb`,
+  "organized-drainage-01": `${B}models/roof/organized-drainage/organized-drainage.glb`,
+  "roof-drainage-01": `${B}models/roof/roof-drainage/roof-drainage.glb`,
 };
 
 const DIAGRAM_IMAGES: Record<string, string> = {
-  "roof-drainage-01": "/images/roof/roof-drainage-diagram.png",
-  "organized-drainage-01": "/images/roof/organized-drainage-diagram.png",
+  "roof-drainage-01": `${B}images/roof/roof-drainage-diagram.png`,
+  "organized-drainage-01": `${B}images/roof/organized-drainage-diagram.png`,
 };
 
 function getModelPath(nodeId: string): string {
-  return MODEL_PATHS[nodeId] ?? "/models/roof/flat-roof/flat-roof.glb";
+  return MODEL_PATHS[nodeId] ?? `${B}models/roof/flat-roof/flat-roof.glb`;
 }
 function getDiagramImage(nodeId: string): string | undefined {
   return DIAGRAM_IMAGES[nodeId];

@@ -1,14 +1,15 @@
+const B = import.meta.env.BASE_URL;
 const backgroundScenes = [
   {
     id: "wall",
     name: "墙体",
-    modelPath: "/models/background/Exhibition model.glb",
+    modelPath: `${B}models/background/Exhibition model.glb`,
     position: [0, 0.5, 0],
   },
   {
     id: "roof",
     name: "屋顶",
-    modelPath: "/models/roof/flat-roof/flat-roof.glb",
+    modelPath: `${B}models/roof/flat-roof/flat-roof.glb`,
     position: [0, 0, 0],
   },
 ];

@@ -145,7 +145,7 @@ interface MenuBackgroundProps {
 
 function MenuBackground({
   autoRotate = true,
-  modelPath = "/models/background/Exhibition model.glb",
+  modelPath = `${import.meta.env.BASE_URL}models/background/Exhibition model.glb`,
   position = [0, 0, 0],
   onLoaded,
   showShadows = true,
