@@ -8,6 +8,7 @@ import SectionSubPage from "./pages/SectionSubPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import ResourcesPage from "./pages/ResourcesPage";
 import CasesPage from "./pages/CasesPage";
+const AIExtendPage = lazy(() => import("./pages/AIExtendPage"));
 
 /* ── Lazy-loaded pages ── */
 const NodeDetail = lazy(() => import("./NodeDetail"));
@@ -49,6 +50,7 @@ export const router = createHashRouter([
       { path: "/curriculum/cases", element: <CasesPage /> },
       { path: "/resources", element: <ResourcesPage /> },
       { path: "/ai", element: withSuspense(AIPage) },
+      { path: "/ai-extend", element: withSuspense(AIExtendPage) },
       { path: "/data", element: withSuspense(DataAnalysis) },
     ],
   },

@@ -32,6 +32,5 @@ export const menuItems: MenuItem[] = [
   { id: "textbook", label: "基础学习", icon: "🎓", path: "/textbook/roof-membrane" },
   { id: "games", label: "作业训练", icon: "🔨", path: "/games" },
   { id: "data", label: "数据分析", icon: "📊", path: "/data" },
-  { id: "resources", label: "拓展链接", icon: "🔗", path: "/resources" },
-  { id: "ai", label: "AI 问答", icon: "✨", path: "/ai" },
+  { id: "ai-extend", label: "AI 拓展", icon: "✨", path: "/ai-extend" },
 ];

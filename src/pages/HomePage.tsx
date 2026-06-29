@@ -17,7 +17,6 @@ import {
   Sparkles,
   BarChart3,
   SwitchCamera,
-  ExternalLink,
   Sun,
   LogIn,
   LogOut,
@@ -152,8 +151,7 @@ const menuItems: MenuItemDef[] = [
   { icon: GraduationCap, label: "基础学习", id: "textbook", to: "/textbook/roof-membrane" },
   { icon: Hammer, label: "作业训练", id: "games", to: "/games" },
   { icon: BarChart3, label: "数据分析", id: "data", to: "/data" },
-  { icon: ExternalLink, label: "拓展链接", id: "resources", to: "/resources" },
-  { icon: Sparkles, label: "AI 问答", id: "ai", to: "/ai" },
+  { icon: Sparkles, label: "AI 拓展", id: "ai-extend", to: "/ai-extend" },
 ];
 
 function getExpandedChildren(id: string | null): MenuChildDef[] | null {
