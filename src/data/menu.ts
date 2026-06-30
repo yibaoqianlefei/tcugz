@@ -20,6 +20,17 @@ export const menuItems: MenuItem[] = [
     label: "构造原理",
     icon: "📖",
     children: [
+      { id: "thermal", label: "建筑保温", path: "/curriculum/thermal" },
+      { id: "waterproof", label: "建筑防水", path: "/curriculum/waterproof" },
+      { id: "insulation", label: "建筑隔热", path: "/curriculum/insulation" },
+      { id: "acoustic", label: "建筑隔声", path: "/curriculum/acoustic" },
+    ],
+  },
+  {
+    id: "textbook",
+    label: "构造基础",
+    icon: "🎓",
+    children: [
       { id: "intro", label: "建筑构造概述", path: "/curriculum/intro" },
       { id: "walls", label: "墙体构造", path: "/curriculum/walls" },
       { id: "floors", label: "楼板构造", path: "/curriculum/floors" },
@@ -29,7 +40,6 @@ export const menuItems: MenuItem[] = [
   },
   { id: "library", label: "节点库", icon: "📚", path: "/library" },
   { id: "cases", label: "案例应用", icon: "💼", path: "/curriculum/cases" },
-  { id: "textbook", label: "基础学习", icon: "🎓", path: "/textbook/roof-membrane" },
   { id: "games", label: "作业训练", icon: "🔨", path: "/games" },
   { id: "data", label: "数据分析", icon: "📊", path: "/data" },
   { id: "ai-extend", label: "AI 拓展", icon: "✨", path: "/ai-extend" },

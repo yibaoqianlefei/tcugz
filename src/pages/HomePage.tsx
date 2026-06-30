@@ -125,6 +125,7 @@ interface MenuChildDef {
   label: string;
   icon?: string;
   description?: string;
+  path?: string;
   sections?: SectionItem[];
 }
 
@@ -138,6 +139,14 @@ interface MenuItemDef {
 
 const menuItems: MenuItemDef[] = [
   { icon: BookOpen, label: "构造原理", id: "curriculum",
+    children: [
+      { id: "thermal", label: "建筑保温", icon: "🔥", description: "建筑保温构造原理与设计" },
+      { id: "waterproof", label: "建筑防水", icon: "💧", description: "建筑防水构造原理与设计" },
+      { id: "insulation", label: "建筑隔热", icon: "☀️", description: "建筑隔热构造原理与设计" },
+      { id: "acoustic", label: "建筑隔声", icon: "🔇", description: "建筑隔声构造原理与设计" },
+    ],
+  },
+  { icon: GraduationCap, label: "构造基础", id: "textbook",
     children: courseModules.map((m) => ({
       id: m.id,
       label: m.title,
@@ -148,7 +157,6 @@ const menuItems: MenuItemDef[] = [
   },
   { icon: Layers, label: "节点库", id: "library", to: "/library" },
   { icon: Briefcase, label: "案例应用", id: "cases", to: "/curriculum/cases" },
-  { icon: GraduationCap, label: "基础学习", id: "textbook", to: "/textbook/roof-membrane" },
   { icon: Hammer, label: "作业训练", id: "games", to: "/games" },
   { icon: BarChart3, label: "数据分析", id: "data", to: "/data" },
   { icon: Sparkles, label: "AI 拓展", id: "ai-extend", to: "/ai-extend" },

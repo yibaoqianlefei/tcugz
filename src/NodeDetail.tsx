@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { nodesIndex } from "./data/nodesIndex";
 import { useNodeStore } from "./store/nodeStore";
@@ -46,17 +46,19 @@ export default function NodeDetail() {
   const setLinkageEnabled = useNodeStore((s) => s.setLinkageEnabled);
   const totalDuration = 4; // 96 frames @ 24fps
 
-  // ── Per-node init: reset all cross-session state to defaults ──
+  // ── Per-node init: synchronously reset state BEFORE first render ──
   const addVisitedNode = useAnalysisStore((s) => s.addVisitedNode);
-  const setSelectedObject = useNodeStore((s) => s.setSelectedObject);
+  const prevNodeIdRef = useRef<string | undefined>(undefined);
+  if (nodeId && prevNodeIdRef.current !== nodeId) {
+    prevNodeIdRef.current = nodeId;
+    // Sync reset — avoids race where old highlight state bleeds into new node
+    useNodeStore.getState().setLinkageEnabled(true);
+    useNodeStore.getState().setSelectedObject(null);
+    useNodeStore.getState().setAnimationProgress(0);
+  }
   useEffect(() => {
-    if (nodeId) {
-      addVisitedNode(nodeId);
-      setLinkageEnabled(true);
-      setSelectedObject(null);
-      setAnimationProgress(0);
-    }
-  }, [nodeId, addVisitedNode, setLinkageEnabled, setSelectedObject, setAnimationProgress]);
+    if (nodeId) addVisitedNode(nodeId);
+  }, [nodeId, addVisitedNode]);
 
   // ── Play explosion (forward) ──
   const playExplosion = () => {

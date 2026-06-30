@@ -59,14 +59,13 @@ HomePage
       ├── 左列 (w-sidebar, 24rem, flex-shrink-0)
       │   ├── 标题 "建筑构造" (48px) + 装饰线
       │   ├── 导航菜单 (8 项, pt-8, overflow-y-auto 隐藏滚动条)
-      │   │   ├── 📂 构造原理 ▶     ← 点击展开右列子目录
-      │   │   ├── 节点库      → /library
-      │   │   ├── 案例应用    → /curriculum/cases
-      │   │   ├── 基础学习    → /textbook/roof-membrane
-      │   │   ├── 作业训练    → /games
-      │   │   ├── 数据分析    → /data
-      │   │   ├── 拓展链接    → /resources
-      │   │   └── AI 问答     → /ai
+│   │   ├── 📂 构造原理 ▶     ← 点击展开右列子目录 (8模块手风琴)
+│   │   ├── 构造基础    → /textbook/roof-membrane
+│   │   ├── 节点库      → /library
+│   │   ├── 案例应用    → /curriculum/cases
+│   │   ├── 作业训练    → /games
+│   │   ├── 数据分析    → /data
+│   │   └── AI 拓展     → /ai-extend (AI问答+拓展链接合并)
       │   ├── 登录按钮 + 统计卡片 + 标语 (flex-shrink-0 固定底部)
       │
       ├── 右列 (AnimatePresence, width: 0↔260px, 平滑滑入/滑出)
@@ -372,6 +371,8 @@ src/
 ## 11. AI 问答系统
 
 ```
+欢迎语: "你好！我是小g助教，专门帮同学们理解建筑构造知识。"
+
 用户输入 → categorizeQuestion() 自动分类
          → analysisStore.addAIQuestion()
          → chatStore.sendMessage()
@@ -381,6 +382,13 @@ src/
 ```
 
 安全：API Key 在 `.env.local` / Vite 代理层注入，前端代码零暴露
+
+### 模型路径 (GitHub Pages 部署)
+
+所有模型路径使用 `import.meta.env.BASE_URL` 前缀：
+- 本地 dev: `B = '/'` → `/models/roof/...`
+- GitHub Pages: `B = '/tcugz/'` → `/tcugz/models/roof/...`
+- 受影响的文件: `NodeDetail.tsx`, `backgroundScenes.ts`, `MenuBackground.tsx`
 
 ---
 
@@ -397,7 +405,7 @@ src/
 | NodeDetail | 三栏布局 + GLB + 动画 + 反向播放 + 时间轴 |
 | NodeDetail | 边缘线 + 命中代理 + 高亮门控 + 双向3D手风琴联动 |
 | NodeDetail | 动态相机 + 阴影开关 + 构件排序 + GLB真名匹配 |
-| NodeDetail | 材质隔离(防跨构件高亮泄露) + 自动缩放 + 联动开关 + 名称标准化(canonicalName唯一入口) |
+| NodeDetail | 材质隔离(防跨构件高亮泄露) + 自动缩放 + 联动开关 + 名称标准化(canonicalName唯一入口) + 同步状态重置(防脏高亮) |
 | 拓展链接 | flex-wrap卡片 + 真实URL + 底部标语文案 |
 | 数据分析 | 3种Recharts图表 + 演示数据种子 + 空状态兜底 |
 | AI 问答 | DeepSeek API + 建筑学助教提示词 + lazy加载 |
@@ -514,4 +522,4 @@ npx tsc --noEmit     # 类型检查
 
 ---
 
-_最后更新：2026-06-26_
+_最后更新：2026-06-27_
