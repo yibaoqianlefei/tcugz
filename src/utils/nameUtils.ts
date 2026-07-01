@@ -24,10 +24,17 @@ export function canonicalName(name: string): string {
   // 1. Check explicit component group mapping first
   if (COMPONENT_GROUPS[name]) return COMPONENT_GROUPS[name];
 
-  // 2. Standard Blender→Three.js name normalization
-  return name
+  // 2. Strip _hitbox suffix (Blender hitbox meshes → parent component)
+  const noHitbox = name.replace(/_hitbox$/, "");
+
+  // 3. Standard Blender→Three.js name normalization
+  return noHitbox
     .replace(/\s/g, "_")     // Three.js: spaces → underscores
     .replace(/\./g, "")      // Three.js: dots → deleted
     .replace(/[_.]\d+$/, "") // Multi-material suffix: _1, .004
     .replace(/_\d+$/, "");   // Double-pass for nested suffixes
+}
+
+export function isHitboxName(name: string): boolean {
+  return /_hitbox$/.test(name);
 }

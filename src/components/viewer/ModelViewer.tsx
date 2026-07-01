@@ -4,7 +4,7 @@ import { OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { useNodeStore } from "../../store/nodeStore";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
-import { canonicalName } from "../../utils/nameUtils";
+import { canonicalName, isHitboxName } from "../../utils/nameUtils";
 
 /* ── Module-level refs ─────────────────────────────────────── */
 let _actions: THREE.AnimationAction[] = [];
@@ -112,53 +112,66 @@ function SceneModel({ modelPath, containerWidth = 0 }: { modelPath: string; cont
     // Expose scene for camera auto-frame
     _modelScene = scene;
 
-    // Build mesh map + shadow flags + edge lines + hit proxies
+    // Build mesh map + shadows + edge lines + hitboxes / proxies
     const isFirstInit = !scaleApplied.current;
+
+    // ── Pass 1: detect which components have Blender-authored hitboxes ──
+    const hasHitbox = new Set<string>();
+    if (isFirstInit) {
+      scene.traverse((c) => {
+        if (c instanceof THREE.Mesh && c.name && isHitboxName(c.name)) {
+          hasHitbox.add(canonicalName(c.name));
+        }
+      });
+      if (hasHitbox.size > 0) console.log("[V7] hitbox components:", [...hasHitbox]);
+    }
+
+    // ── Pass 2: process meshes ──
     scene.traverse((child) => {
       if (child instanceof THREE.Mesh) {
-        if (child.userData.isHitProxy) return;
+        // Skip proxy meshes (prevent infinite nesting)
+        if (child.userData._isProxy) return;
 
         child.castShadow = true;
         child.receiveShadow = true;
 
         if (child.name) {
-          // ── Logical name (canonical form — matches Three.js runtime) ──
-          const par = child.parent;
-          const isGrouped = par && par.type === "Group" && par.name && par.name !== "Scene";
-          const logicalName = canonicalName(isGrouped ? par!.name : child.name);
+          const isHitbox = isHitboxName(child.name);
+          const logicalName = canonicalName(child.name);
 
-          // Always rebuild meshMapRef (needed each mount) — skip duplicates
-          if (!meshMapRef.current.has(logicalName)) {
-            meshMapRef.current.set(logicalName, []);
-          }
-          const list = meshMapRef.current.get(logicalName)!;
-          if (!list.includes(child)) {
-            list.push(child);
-            console.log("[meshMap] raw:", child.name, "→ logical:", logicalName, "(total:", list.length, ")");
+          // Register in meshMapRef — visible meshes only (not hitboxes, not proxies)
+          if (!isHitbox) {
+            if (!meshMapRef.current.has(logicalName)) {
+              meshMapRef.current.set(logicalName, []);
+            }
+            const list = meshMapRef.current.get(logicalName)!;
+            if (!list.includes(child)) {
+              list.push(child);
+            }
           }
 
-          // Proxies + raycast disable — only first mount (prevent duplicates)
           if (isFirstInit) {
-            const proxy = new THREE.Mesh(child.geometry.clone(), new THREE.MeshBasicMaterial());
-            proxy.name = logicalName;
-            proxy.visible = false;
-            // Dynamic scale: thin meshes (rebar etc.) get larger hit area
-            const bbox = new THREE.Box3().setFromObject(child);
-            const sz = bbox.getSize(new THREE.Vector3());
-            const minDim = Math.min(sz.x, sz.y, sz.z);
-            const maxDim = Math.max(sz.x, sz.y, sz.z, 0.001);
-            const ratio = maxDim / minDim;
-            // slender ratio > 15 → 25% fatten; > 5 → 15%; else 6%
-            const s = ratio > 15 ? 1.25 : ratio > 5 ? 1.15 : 1.06;
-            proxy.scale.setScalar(s);
-            proxy.userData.isHitProxy = true;
-            child.add(proxy);
-            child.raycast = () => {};
+            if (isHitbox) {
+              // Blender hitbox: invisible, catches clicks (don't touch raycast)
+              child.visible = false;
+            } else if (hasHitbox.has(logicalName)) {
+              // Component has hitbox → disable raycast on visible mesh
+              child.raycast = () => {};
+            } else {
+              // No hitbox → create invisible proxy for raycast
+              const proxy = new THREE.Mesh(child.geometry.clone(), new THREE.MeshBasicMaterial());
+              proxy.name = logicalName;
+              proxy.visible = false;
+              proxy.scale.set(1.06, 1.06, 1.06);
+              proxy.userData._isProxy = true;
+              child.add(proxy);
+              child.raycast = () => {};
+            }
           }
         }
 
-        // Edge lines — only first mount
-        if (isFirstInit) {
+        // Edge lines — only first mount, skip hitbox meshes
+        if (isFirstInit && !isHitboxName(child.name)) {
           const edges = new THREE.EdgesGeometry(child.geometry, 15);
           const line = new THREE.LineSegments(
             edges,
