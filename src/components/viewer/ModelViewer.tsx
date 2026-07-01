@@ -127,18 +127,30 @@ function SceneModel({ modelPath, containerWidth = 0 }: { modelPath: string; cont
           const isGrouped = par && par.type === "Group" && par.name && par.name !== "Scene";
           const logicalName = canonicalName(isGrouped ? par!.name : child.name);
 
-          // Always rebuild meshMapRef (needed each mount)
+          // Always rebuild meshMapRef (needed each mount) — skip duplicates
           if (!meshMapRef.current.has(logicalName)) {
             meshMapRef.current.set(logicalName, []);
           }
-          meshMapRef.current.get(logicalName)!.push(child);
+          const list = meshMapRef.current.get(logicalName)!;
+          if (!list.includes(child)) {
+            list.push(child);
+            console.log("[meshMap] raw:", child.name, "→ logical:", logicalName, "(total:", list.length, ")");
+          }
 
           // Proxies + raycast disable — only first mount (prevent duplicates)
           if (isFirstInit) {
             const proxy = new THREE.Mesh(child.geometry.clone(), new THREE.MeshBasicMaterial());
             proxy.name = logicalName;
             proxy.visible = false;
-            proxy.scale.set(1.03, 1.03, 1.03);
+            // Dynamic scale: thin meshes (rebar etc.) get larger hit area
+            const bbox = new THREE.Box3().setFromObject(child);
+            const sz = bbox.getSize(new THREE.Vector3());
+            const minDim = Math.min(sz.x, sz.y, sz.z);
+            const maxDim = Math.max(sz.x, sz.y, sz.z, 0.001);
+            const ratio = maxDim / minDim;
+            // slender ratio > 15 → 25% fatten; > 5 → 15%; else 6%
+            const s = ratio > 15 ? 1.25 : ratio > 5 ? 1.15 : 1.06;
+            proxy.scale.setScalar(s);
             proxy.userData.isHitProxy = true;
             child.add(proxy);
             child.raycast = () => {};
@@ -277,7 +289,8 @@ function SceneModel({ modelPath, containerWidth = 0 }: { modelPath: string; cont
     if (!name) return;
     const clean = canonicalName(name);
     const meshes = meshMapRef.current.get(clean);
-    if (!meshes) return;
+    if (!meshes) { console.log("[emissive] MISS:", name, "→ clean:", clean, "| keys:", [...meshMapRef.current.keys()]); return; }
+    console.log("[emissive] SET:", name, "→ clean:", clean, "| meshes:", meshes.length, "| color:", color);
     meshes.forEach((mesh) => {
       const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
       mats.forEach((m) => { m.emissive?.set(color); m.emissiveIntensity = intensity; });
@@ -309,7 +322,7 @@ function SceneModel({ modelPath, containerWidth = 0 }: { modelPath: string; cont
 
     // Apply hover (lower priority, only if not selected)
     if (hoveredObject && hoveredObject !== selectedObject) {
-      setGroupEmissive(hoveredObject, "#ffffff", 0.15);
+      setGroupEmissive(hoveredObject, "#ffffff", 0.4);
     }
 
     prevHovered.current = hoveredObject;
@@ -318,12 +331,20 @@ function SceneModel({ modelPath, containerWidth = 0 }: { modelPath: string; cont
 
   // ── Helper: resolve logical name from intersection ──
   const findNamedMesh = (obj: THREE.Object3D): string | null => {
+    console.log("[hit] obj:", obj.name, "type:", obj.type, "parent:", obj.parent?.name, "parentType:", obj.parent?.type);
     // Parent Group (only if it's a real Group, not Scene root)
     if (obj.parent && obj.parent.type === "Group" && obj.parent.name && obj.parent.name !== "Scene") {
-      return canonicalName(obj.parent.name);
+      const result = canonicalName(obj.parent.name);
+      console.log("[hit] → parent group:", result);
+      return result;
     }
     // Direct hit on a named Mesh
-    if (obj instanceof THREE.Mesh && obj.name) return canonicalName(obj.name);
+    if (obj instanceof THREE.Mesh && obj.name) {
+      const result = canonicalName(obj.name);
+      console.log("[hit] → mesh:", result);
+      return result;
+    }
+    console.log("[hit] → null");
     return null;
   };
 

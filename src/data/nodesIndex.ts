@@ -40,6 +40,14 @@ const nodesIndex: NodeIndexEntry[] = [
     thumbnail: "/images/roof/organized-drainage-diagram.png",
   },
   {
+    id: "construction-column-01",
+    title: "构造柱",
+    description:
+      "砖混结构墙体交接处的钢筋混凝土构造柱，包含混凝土柱、钢筋、箍筋、墙体、圈梁、楼板及马牙槎。",
+    category: "墙体",
+    thumbnail: "/images/construction-column-diagram.png",
+  },
+  {
     id: "yuncheng-c-01",
     title: "01",
     description:
@@ -71,6 +79,7 @@ const nodeLoaders: Record<string, NodeLoader> = {
   "flat-roof-01": () => import("./flatRoof"),
   "roof-drainage-01": () => import("./roofDrainage"),
   "organized-drainage-01": () => import("./organizedDrainage"),
+  "construction-column-01": () => import("./constructionColumn"),
   // yuncheng case-study nodes — deferred until models are available
   // "yuncheng-c-01": () => import("./yunchengC01"),
   // "yuncheng-c-02": () => import("./yunchengC02"),

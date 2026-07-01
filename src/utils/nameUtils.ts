@@ -11,7 +11,20 @@
  * MUST use this function. Do NOT inline `.replace()` calls for names.
  */
 
+/** Component group mapping: sub-part names → canonical component name */
+const COMPONENT_GROUPS: Record<string, string> = {
+  // 构造柱 — 马牙槎由4个子构件组成，交互时视为一个整体
+  "01": "马牙槎",
+  "02": "马牙槎",
+  "03": "马牙槎",
+  "04": "马牙槎",
+};
+
 export function canonicalName(name: string): string {
+  // 1. Check explicit component group mapping first
+  if (COMPONENT_GROUPS[name]) return COMPONENT_GROUPS[name];
+
+  // 2. Standard Blender→Three.js name normalization
   return name
     .replace(/\s/g, "_")     // Three.js: spaces → underscores
     .replace(/\./g, "")      // Three.js: dots → deleted

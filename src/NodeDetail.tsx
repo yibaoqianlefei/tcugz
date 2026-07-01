@@ -16,11 +16,13 @@ const MODEL_PATHS: Record<string, string> = {
   "sloped-roof-01": `${B}models/roof/sloped-roof/sloped-roof.glb`,
   "organized-drainage-01": `${B}models/roof/organized-drainage/organized-drainage.glb`,
   "roof-drainage-01": `${B}models/roof/roof-drainage/roof-drainage.glb`,
+  "construction-column-01": `${B}models/wall/construction-column/construction-column.glb`,
 };
 
 const DIAGRAM_IMAGES: Record<string, string> = {
   "roof-drainage-01": `${B}images/roof/roof-drainage-diagram.png`,
   "organized-drainage-01": `${B}images/roof/organized-drainage-diagram.png`,
+  "construction-column-01": `${B}images/construction-column-diagram.png`,
 };
 
 function getModelPath(nodeId: string): string {
