@@ -26,7 +26,7 @@ const DIAGRAM_IMAGES: Record<string, string> = {
 };
 
 const MODEL_SCALES: Record<string, number> = {
-  "construction-column-01": 8,
+  "construction-column-01": 9,
 };
 
 /** 构造柱马牙槎4子构件 → 合并为单一组件 */

@@ -196,6 +196,13 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 3.5, modelGrou
           }
         });
       });
+      // Reset ALL emissive to black (prevents stale highlights from cached GLB materials)
+      meshMapRef.current.forEach((meshes) => {
+        meshes.forEach((mesh) => {
+          const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
+          mats.forEach((m) => { m.emissive?.set("#000000"); m.emissiveIntensity = 0; });
+        });
+      });
       scaleApplied.current = true;
     }
 
@@ -522,7 +529,7 @@ export default function ModelViewer({
   return (
     <div ref={containerRef} className="flex-1 h-full relative bg-[#f5f5f7]">
       <Canvas
-        camera={{ near: 0.5, far: 50, position: [0, 0.5, 8], fov: 40 }}
+        camera={{ near: 0.5, far: 50, position: [0, 0, 8 * (modelScale / 3.5)], fov: 40 }}
         dpr={[1, 1.5]} shadows
         gl={{ antialias: true, alpha: false }}
       >
@@ -538,7 +545,8 @@ export default function ModelViewer({
           autoRotate={autoRotate}
           autoRotateSpeed={0.6}
           enableDamping dampingFactor={0.08}
-          minDistance={1} maxDistance={20}
+          minDistance={1} maxDistance={40}
+          maxPolarAngle={Math.PI / 2.2}
           enablePan
         />
         <CameraTracker layoutKey={layoutKey} containerWidth={containerWidth} />
