@@ -4,7 +4,7 @@ import { OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { useNodeStore } from "../../store/nodeStore";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
-import { canonicalName, isHitboxName } from "../../utils/nameUtils";
+import { canonicalName as cnImport, isHitboxName } from "../../utils/nameUtils";
 
 /* ── Module-level refs ─────────────────────────────────────── */
 let _actions: THREE.AnimationAction[] = [];
@@ -52,13 +52,16 @@ function RendererSetup({ showShadows }: { showShadows: boolean }) {
 }
 
 /* ── Model component (auto-center + highlight + animation) ──── */
-function SceneModel({ modelPath, containerWidth = 0 }: { modelPath: string; containerWidth?: number }) {
+function SceneModel({ modelPath, containerWidth = 0, modelScale = 3.5, modelGroups }: { modelPath: string; containerWidth?: number; modelScale?: number; modelGroups?: Record<string, string> }) {
   const { scene, animations } = useGLTF(modelPath, true);
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
   const actionRef = useRef<THREE.AnimationAction | null>(null);
   const clipRef = useRef<THREE.AnimationClip | null>(null);
   const groupRef = useRef<THREE.Group>(null);
   const meshMapRef = useRef<Map<string, THREE.Mesh[]>>(new Map());
+  const groupsRef = useRef(modelGroups);
+  groupsRef.current = modelGroups;
+  const resolveName = (name: string): string => cnImport(name, groupsRef.current);
   const prevHovered = useRef<string | null>(null);
   const prevSelected = useRef<string | null>(null);
   const scaleApplied = useRef(false);
@@ -92,9 +95,8 @@ function SceneModel({ modelPath, containerWidth = 0 }: { modelPath: string; cont
       rawBox.getSize(rawSize);
       const maxDim = Math.max(rawSize.x, rawSize.y, rawSize.z);
       if (maxDim > 0.01) {
-        const targetSize = 3.5;
-        const rawScale = targetSize / maxDim;
-        const scale = Math.max(0.3, Math.min(3, rawScale));
+        const rawScale = modelScale / maxDim;
+        const scale = Math.max(0.3, Math.min(5, rawScale));
         _scaleCache.set(modelPath, scale);
       }
     }
@@ -120,7 +122,7 @@ function SceneModel({ modelPath, containerWidth = 0 }: { modelPath: string; cont
     if (isFirstInit) {
       scene.traverse((c) => {
         if (c instanceof THREE.Mesh && c.name && isHitboxName(c.name)) {
-          hasHitbox.add(canonicalName(c.name));
+          hasHitbox.add(resolveName(c.name));
         }
       });
       if (hasHitbox.size > 0) console.log("[V7] hitbox components:", [...hasHitbox]);
@@ -137,7 +139,7 @@ function SceneModel({ modelPath, containerWidth = 0 }: { modelPath: string; cont
 
         if (child.name) {
           const isHitbox = isHitboxName(child.name);
-          const logicalName = canonicalName(child.name);
+          const logicalName = resolveName(child.name);
 
           // Register in meshMapRef — visible meshes only (not hitboxes, not proxies)
           if (!isHitbox) {
@@ -170,12 +172,12 @@ function SceneModel({ modelPath, containerWidth = 0 }: { modelPath: string; cont
           }
         }
 
-        // Edge lines — only first mount, skip hitbox meshes
+        // Edge lines — skip hitbox meshes
         if (isFirstInit && !isHitboxName(child.name)) {
           const edges = new THREE.EdgesGeometry(child.geometry, 15);
           const line = new THREE.LineSegments(
             edges,
-            new THREE.LineBasicMaterial({ color: "#374151", toneMapped: false }),
+            new THREE.LineBasicMaterial({ color: "#1a1a1a", toneMapped: false, transparent: true, opacity: 0.85 }),
           );
           line.raycast = () => {};
           child.add(line);
@@ -294,13 +296,13 @@ function SceneModel({ modelPath, containerWidth = 0 }: { modelPath: string; cont
     }
   });
 
-  // Subscribe to store changes (threshold-filtered)
+  // ── Highlight state ──
   const hoveredObject = useNodeStore((s) => s.hoveredObject);
   const selectedObject = useNodeStore((s) => s.selectedObject);
   const highlightEnabled = useNodeStore((s) => s.animationProgress >= 0.99);
   const setGroupEmissive = (name: string | null, color: string, intensity: number) => {
     if (!name) return;
-    const clean = canonicalName(name);
+    const clean = resolveName(name);
     const meshes = meshMapRef.current.get(clean);
     if (!meshes) { console.log("[emissive] MISS:", name, "→ clean:", clean, "| keys:", [...meshMapRef.current.keys()]); return; }
     console.log("[emissive] SET:", name, "→ clean:", clean, "| meshes:", meshes.length, "| color:", color);
@@ -347,13 +349,13 @@ function SceneModel({ modelPath, containerWidth = 0 }: { modelPath: string; cont
     console.log("[hit] obj:", obj.name, "type:", obj.type, "parent:", obj.parent?.name, "parentType:", obj.parent?.type);
     // Parent Group (only if it's a real Group, not Scene root)
     if (obj.parent && obj.parent.type === "Group" && obj.parent.name && obj.parent.name !== "Scene") {
-      const result = canonicalName(obj.parent.name);
+      const result = resolveName(obj.parent.name);
       console.log("[hit] → parent group:", result);
       return result;
     }
     // Direct hit on a named Mesh
     if (obj instanceof THREE.Mesh && obj.name) {
-      const result = canonicalName(obj.name);
+      const result = resolveName(obj.name);
       console.log("[hit] → mesh:", result);
       return result;
     }
@@ -492,11 +494,15 @@ export default function ModelViewer({
   modelPath,
   showShadows = true,
   layoutKey = 0,
+  modelScale = 3.5,
+  modelGroups,
 }: {
   autoRotate?: boolean;
   modelPath: string;
   showShadows?: boolean;
   layoutKey?: number;
+  modelScale?: number;
+  modelGroups?: Record<string, string>;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -525,7 +531,7 @@ export default function ModelViewer({
         <SceneLights showShadows={showShadows} />
         {showShadows && <ShadowPlane />}
         <Suspense fallback={<LoadingFallback />}>
-          <SceneModel modelPath={modelPath} containerWidth={containerWidth} />
+          <SceneModel modelPath={modelPath} containerWidth={containerWidth} modelScale={modelScale} modelGroups={modelGroups} />
         </Suspense>
         <OrbitControls
           ref={(ctrl) => { _controls = ctrl; }}

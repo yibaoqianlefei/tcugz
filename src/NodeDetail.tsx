@@ -25,8 +25,23 @@ const DIAGRAM_IMAGES: Record<string, string> = {
   "construction-column-01": `${B}images/construction-column-diagram.png`,
 };
 
+const MODEL_SCALES: Record<string, number> = {
+  "construction-column-01": 8,
+};
+
+/** 构造柱马牙槎4子构件 → 合并为单一组件 */
+const COLUMN_GROUPS: Record<string, string> = {
+  "01": "马牙槎", "02": "马牙槎", "03": "马牙槎", "04": "马牙槎",
+};
+const MODEL_GROUPS: Record<string, Record<string, string>> = {
+  "construction-column-01": COLUMN_GROUPS,
+};
+
 function getModelPath(nodeId: string): string {
   return MODEL_PATHS[nodeId] ?? `${B}models/roof/flat-roof/flat-roof.glb`;
+}
+function getModelScale(nodeId: string): number {
+  return MODEL_SCALES[nodeId] ?? 3.5;
 }
 function getDiagramImage(nodeId: string): string | undefined {
   return DIAGRAM_IMAGES[nodeId];
@@ -113,6 +128,8 @@ export default function NodeDetail() {
             autoRotate={autoRotate}
             showShadows={showShadows}
             modelPath={getModelPath(nodeId!)}
+            modelScale={getModelScale(nodeId!)}
+            modelGroups={MODEL_GROUPS[nodeId!]}
           />
 
           {/* Floating timeline — 02-2 style */}
