@@ -56,6 +56,14 @@ const nodesIndex: NodeIndexEntry[] = [
     thumbnail: "/images/apron-flashing-diagram.png",
   },
   {
+    id: "eaves-gutter-01",
+    title: "檐沟外排水",
+    description:
+      "屋顶檐沟有组织排水节点，六层构件：屋面顶→檐沟→檐沟分水→排水口→墙体→圈梁。",
+    category: "屋顶",
+    thumbnail: "/images/eaves-gutter-diagram.png",
+  },
+  {
     id: "yuncheng-c-01",
     title: "01",
     description:
