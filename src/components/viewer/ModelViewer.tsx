@@ -52,7 +52,7 @@ function RendererSetup({ showShadows }: { showShadows: boolean }) {
 }
 
 /* ── Model component (auto-center + highlight + animation) ──── */
-function SceneModel({ modelPath, containerWidth = 0, modelScale = 3.5, modelGroups }: { modelPath: string; containerWidth?: number; modelScale?: number; modelGroups?: Record<string, string> }) {
+function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGroups }: { modelPath: string; containerWidth?: number; modelScale?: number; modelGroups?: Record<string, string> }) {
   const { scene, animations } = useGLTF(modelPath, true);
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
   const actionRef = useRef<THREE.AnimationAction | null>(null);
@@ -86,8 +86,9 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 3.5, modelGrou
       console.log("[GLB] tracks.length:", animations[0]?.tracks?.length);
     }
 
-    // ── Auto-size: scale model to fit view (computed once per model) ──
-    if (!_scaleCache.has(modelPath)) {
+    // ── Auto-size: scale model to fit view (keyed by model+modelScale) ──
+    const cacheKey = `${modelPath}::ms${modelScale}`;
+    if (!_scaleCache.has(cacheKey)) {
       scene.scale.setScalar(1);
       scene.updateMatrixWorld();
       const rawBox = new THREE.Box3().setFromObject(scene);
@@ -97,10 +98,10 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 3.5, modelGrou
       if (maxDim > 0.01) {
         const rawScale = modelScale / maxDim;
         const scale = Math.max(0.3, Math.min(5, rawScale));
-        _scaleCache.set(modelPath, scale);
+        _scaleCache.set(cacheKey, scale);
       }
     }
-    const cachedScale = _scaleCache.get(modelPath) ?? 1;
+    const cachedScale = _scaleCache.get(cacheKey) ?? 1;
     scene.scale.setScalar(cachedScale);
     scene.updateMatrixWorld();
     console.log("[ModelViewer] 最终应用缩放:", cachedScale, "| model:", modelPath);
@@ -244,19 +245,20 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 3.5, modelGrou
       _actions = [];
       _modelScene = null;
     };
-  }, [scene, animations, setIsPlaying]);
+  }, [scene, animations, setIsPlaying, modelScale]);
 
   // ── Viewport-responsive scale: smooth lerp, no jank ──
   const initialWidthRef = useRef(0);
   const targetScaleRef = useRef(0);
   useEffect(() => {
     if (!scene || containerWidth <= 0) return;
-    const baseScale = _scaleCache.get(modelPath) ?? 1;
+    const cacheKey = `${modelPath}::ms${modelScale}`;
+    const baseScale = _scaleCache.get(cacheKey) ?? 1;
     if (initialWidthRef.current === 0) initialWidthRef.current = containerWidth;
     const refWidth = initialWidthRef.current;
     const ratio = Math.min(1, Math.max(0.4, containerWidth / refWidth));
     targetScaleRef.current = baseScale * ratio;
-  }, [containerWidth, modelPath, scene]);
+  }, [containerWidth, modelPath, modelScale, scene]);
 
   // Smooth lerp scale each frame
   useFrame((_, delta) => {
@@ -449,14 +451,13 @@ function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: numb
   const boxRef = useRef(new THREE.Box3());
   const centerRef = useRef(new THREE.Vector3());
   const listenersAttached = useRef(false);
-  const { size } = useThree(); // react to canvas resize
+  const { size } = useThree();
 
-  // Force re-center on viewport resize, container width change, OR layout change
+  // Force re-center on viewport resize, container width, or layout change
   useEffect(() => {
     const controls = _controls;
     const scene = _modelScene;
     if (!controls || !scene) return;
-    // Small delay lets the renderer flush the new size
     const t = setTimeout(() => {
       const box = new THREE.Box3().setFromObject(scene);
       const center = new THREE.Vector3();
@@ -501,7 +502,7 @@ export default function ModelViewer({
   modelPath,
   showShadows = true,
   layoutKey = 0,
-  modelScale = 3.5,
+  modelScale = 2.5,
   modelGroups,
 }: {
   autoRotate?: boolean;
@@ -529,7 +530,7 @@ export default function ModelViewer({
   return (
     <div ref={containerRef} className="flex-1 h-full relative bg-[#f5f5f7]">
       <Canvas
-        camera={{ near: 0.5, far: 50, position: [0, 0, 8 * (modelScale / 3.5)], fov: 40 }}
+        camera={{ near: 0.5, far: 50, position: [0, 0, 8], fov: 40 }}
         dpr={[1, 1.5]} shadows
         gl={{ antialias: true, alpha: false }}
       >

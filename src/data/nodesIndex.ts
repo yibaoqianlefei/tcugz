@@ -48,6 +48,14 @@ const nodesIndex: NodeIndexEntry[] = [
     thumbnail: "/images/construction-column-diagram.png",
   },
   {
+    id: "apron-flashing-01",
+    title: "细石混凝土散水构造",
+    description:
+      "外墙根部散水构造节点，九层构造：细石混凝土面层→饰面层→防水层→钢筋混凝土墙体→聚乙烯泡沫缝→密封膏嵌缝→保温层→卵石灌浆垫层→素土夯实。",
+    category: "墙体",
+    thumbnail: "/images/apron-flashing-diagram.png",
+  },
+  {
     id: "yuncheng-c-01",
     title: "01",
     description:

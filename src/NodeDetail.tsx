@@ -17,16 +17,19 @@ const MODEL_PATHS: Record<string, string> = {
   "organized-drainage-01": `${B}models/roof/organized-drainage/organized-drainage.glb`,
   "roof-drainage-01": `${B}models/roof/roof-drainage/roof-drainage.glb`,
   "construction-column-01": `${B}models/wall/construction-column/construction-column.glb`,
+  "apron-flashing-01": `${B}models/wall/apron-flashing/apron-flashing.glb`,
 };
 
 const DIAGRAM_IMAGES: Record<string, string> = {
   "roof-drainage-01": `${B}images/roof/roof-drainage-diagram.png`,
   "organized-drainage-01": `${B}images/roof/organized-drainage-diagram.png`,
   "construction-column-01": `${B}images/construction-column-diagram.png`,
+  "apron-flashing-01": `${B}images/apron-flashing-diagram.png`,
 };
 
 const MODEL_SCALES: Record<string, number> = {
-  "construction-column-01": 9,
+  "construction-column-01": 4,
+  "apron-flashing-01": 2.5,
 };
 
 /** 构造柱马牙槎4子构件 → 合并为单一组件 */
@@ -41,7 +44,7 @@ function getModelPath(nodeId: string): string {
   return MODEL_PATHS[nodeId] ?? `${B}models/roof/flat-roof/flat-roof.glb`;
 }
 function getModelScale(nodeId: string): number {
-  return MODEL_SCALES[nodeId] ?? 3.5;
+  return MODEL_SCALES[nodeId] ?? 2.5;
 }
 function getDiagramImage(nodeId: string): string | undefined {
   return DIAGRAM_IMAGES[nodeId];

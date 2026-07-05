@@ -9,6 +9,7 @@ import { organizedDrainageLayers, getLayerInfo as getOrganizedDrainageLayer } fr
 import { flatRoofLayers, getLayerInfo as getFlatRoofLayer } from "../../data/flatRoofLayers";
 import { slopedRoofLayers, getLayerInfo as getSlopedRoofLayer } from "../../data/slopedRoofLayers";
 import { constructionColumnLayers, getLayerInfo as getConstructionColumnLayer } from "../../data/constructionColumnLayers";
+import { apronFlashingLayers, getLayerInfo as getApronFlashingLayer } from "../../data/apronFlashingLayers";
 import { canonicalName } from "../../utils/nameUtils";
 
 const LAYER_CONFIG: Record<string, { layers: any[]; getLayerInfo: (name: string) => any }> = {
@@ -16,6 +17,7 @@ const LAYER_CONFIG: Record<string, { layers: any[]; getLayerInfo: (name: string)
   "sloped-roof-01": { layers: slopedRoofLayers, getLayerInfo: getSlopedRoofLayer },
   "organized-drainage-01": { layers: organizedDrainageLayers, getLayerInfo: getOrganizedDrainageLayer },
   "construction-column-01": { layers: constructionColumnLayers, getLayerInfo: getConstructionColumnLayer },
+  "apron-flashing-01": { layers: apronFlashingLayers, getLayerInfo: getApronFlashingLayer },
 };
 
 const DEFAULT_LAYERS = { layers: roofDrainageLayers, getLayerInfo: getRoofDrainageLayer };
