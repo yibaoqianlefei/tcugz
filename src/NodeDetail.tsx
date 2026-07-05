@@ -19,6 +19,7 @@ const MODEL_PATHS: Record<string, string> = {
   "construction-column-01": `${B}models/wall/construction-column/construction-column.glb`,
   "apron-flashing-01": `${B}models/wall/apron-flashing/apron-flashing.glb`,
   "eaves-gutter-01": `${B}models/roof/eaves-gutter/eaves-gutter.glb`,
+  "stone-apron-01": `${B}models/wall/stone-apron/stone-apron.glb`,
 };
 
 const DIAGRAM_IMAGES: Record<string, string> = {
@@ -27,19 +28,28 @@ const DIAGRAM_IMAGES: Record<string, string> = {
   "construction-column-01": `${B}images/construction-column-diagram.png`,
   "apron-flashing-01": `${B}images/apron-flashing-diagram.png`,
   "eaves-gutter-01": `${B}images/eaves-gutter-diagram.png`,
+  "stone-apron-01": `${B}images/stone-apron-diagram.png`,
 };
 
 const MODEL_SCALES: Record<string, number> = {
   "construction-column-01": 4,
   "apron-flashing-01": 2,
+  "stone-apron-01": 2,
 };
 
 /** 构造柱马牙槎4子构件 → 合并为单一组件 */
 const COLUMN_GROUPS: Record<string, string> = {
   "01": "马牙槎", "02": "马牙槎", "03": "马牙槎", "04": "马牙槎",
 };
+/** 块石散水 mesh 名含两个 dot (2.5 和 .001)，canonicalName 双 dot 时后缀剥离不稳定，覆盖可能出现的各种变体 */
+const STONE_GROUPS: Record<string, string> = {
+  "120厚块石,1：2.5水泥砂浆灌缝.001": "120厚块石,1：25水泥砂浆灌缝",
+  "120厚块石,1：25水泥砂浆灌缝001": "120厚块石,1：25水泥砂浆灌缝",
+  "120厚块石,1：25水泥砂浆灌缝": "120厚块石,1：25水泥砂浆灌缝",
+};
 const MODEL_GROUPS: Record<string, Record<string, string>> = {
   "construction-column-01": COLUMN_GROUPS,
+  "stone-apron-01": STONE_GROUPS,
 };
 
 function getModelPath(nodeId: string): string {

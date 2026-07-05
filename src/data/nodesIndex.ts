@@ -64,6 +64,14 @@ const nodesIndex: NodeIndexEntry[] = [
     thumbnail: "/images/eaves-gutter-diagram.png",
   },
   {
+    id: "stone-apron-01",
+    title: "块石散水构造",
+    description:
+      "外墙根部块石铺砌散水节点，九层构造：饰面层→防水层→钢筋混凝土墙体→聚乙烯泡沫缝→密封膏嵌缝→保温层→块石面层(120mm)→粗砂垫层(30mm)→素土夯实。",
+    category: "墙体",
+    thumbnail: "/images/stone-apron-diagram.png",
+  },
+  {
     id: "yuncheng-c-01",
     title: "01",
     description:

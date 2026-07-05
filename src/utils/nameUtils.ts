@@ -19,11 +19,13 @@ export function canonicalName(name: string, modelGroups?: Record<string, string>
   const noHitbox = name.replace(/_hitbox$/, "");
 
   // 3. Standard Blender→Three.js name normalization
+  // ORDER matters: strip .NNN suffix BEFORE deleting dots, otherwise
+  // "防水层.001" → "防水层001" → [_.]\d+$ never matches
   return noHitbox
-    .replace(/\s/g, "_")     // Three.js: spaces → underscores
-    .replace(/\./g, "")      // Three.js: dots → deleted
-    .replace(/[_.]\d+$/, "") // Multi-material suffix: _1, .004
-    .replace(/_\d+$/, "");   // Double-pass for nested suffixes
+    .replace(/[_.]\d+$/, "") // Step 1: Blender dup suffix .NNN / _NNN (BEFORE dot removal)
+    .replace(/\s/g, "_")     // Step 2: spaces → underscores
+    .replace(/\./g, "")      // Step 3: delete remaining dots
+    .replace(/[_.]\d+$/, ""); // Step 4: double-pass for nested suffixes
 }
 
 export function isHitboxName(name: string): boolean {
