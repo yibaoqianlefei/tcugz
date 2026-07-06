@@ -20,6 +20,8 @@ const MODEL_PATHS: Record<string, string> = {
   "apron-flashing-01": `${B}models/wall/apron-flashing/apron-flashing.glb`,
   "eaves-gutter-01": `${B}models/roof/eaves-gutter/eaves-gutter.glb`,
   "stone-apron-01": `${B}models/wall/stone-apron/stone-apron.glb`,
+  "foam-insulation-01": `${B}models/wall/foam-insulation/foam-insulation.glb`,
+  "rockwool-insulation-01": `${B}models/wall/rockwool-insulation/rockwool-insulation.glb`,
 };
 
 const DIAGRAM_IMAGES: Record<string, string> = {
@@ -29,12 +31,16 @@ const DIAGRAM_IMAGES: Record<string, string> = {
   "apron-flashing-01": `${B}images/apron-flashing-diagram.png`,
   "eaves-gutter-01": `${B}images/eaves-gutter-diagram.png`,
   "stone-apron-01": `${B}images/stone-apron-diagram.png`,
+  "foam-insulation-01": `${B}images/foam-insulation-diagram.png`,
+  "rockwool-insulation-01": `${B}images/rockwool-insulation-diagram.png`,
 };
 
 const MODEL_SCALES: Record<string, number> = {
   "construction-column-01": 4,
   "apron-flashing-01": 2,
   "stone-apron-01": 2,
+  "foam-insulation-01": 2,
+  "rockwool-insulation-01": 2,
 };
 
 /** 构造柱马牙槎4子构件 → 合并为单一组件 */

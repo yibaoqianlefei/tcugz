@@ -93,6 +93,7 @@ interface SectionItem {
   description: string;
   nodeIds: string[];
   available: boolean;
+  hasTextbook?: boolean;
 }
 
 const sectionMap: Record<string, SectionItem[]> = {
@@ -374,7 +375,11 @@ function SubMenuPanel({
                             initial={{ opacity: 0, x: -8 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.15, delay: si * 0.03 }}
-                            onClick={() => console.log("选中了章节:", sec.title, "| 所属模块:", mod.label)}
+                            onClick={() => {
+                              if (sec.available) {
+                                window.location.hash = `#/textbook/${mod.id}/${sec.id}`;
+                              }
+                            }}
                             className="w-full flex items-start gap-2 px-2 py-1.5 rounded-[6px]
                               text-left text-lg text-muted leading-snug
                               hover:bg-primary/8 hover:text-primary

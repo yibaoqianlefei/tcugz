@@ -31,8 +31,8 @@ const wallSections = [
     id: "wall-design-requirements",
     title: "墙体的设计要求",
     description: "结构安全、保温隔热、隔声、防火、防水防潮等墙体设计的技术要求。",
-    nodeIds: [],
-    available: false,
+    nodeIds: ["construction-column-01"],
+    available: true,
   },
 ];
 

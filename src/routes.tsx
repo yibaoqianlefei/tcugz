@@ -42,6 +42,7 @@ export const router = createHashRouter([
       // Curriculum: module grid → section drill-down
       { path: "/curriculum", element: <CurriculumPage /> },
       { path: "/curriculum/:moduleId", element: <SectionSubPage /> },
+      { path: "/textbook/:moduleId/:chapterId", element: withSuspense(TextbookPage) },
       { path: "/textbook/:sectionId", element: withSuspense(TextbookPage) },
       { path: "/node/:nodeId", element: withSuspense(NodeDetail) },
       { path: "/games", element: withSuspense(GamesPage) },

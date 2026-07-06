@@ -72,6 +72,22 @@ const nodesIndex: NodeIndexEntry[] = [
     thumbnail: "/images/stone-apron-diagram.png",
   },
   {
+    id: "foam-insulation-01",
+    title: "粘贴泡沫塑料保温板外保温",
+    description:
+      "EPS/XPS板外保温系统，七层构造：饰面层→抹面层→增强网→锚栓→保温板→胶粘剂→基层墙体。",
+    category: "墙体",
+    thumbnail: "/images/foam-insulation-diagram.png",
+  },
+  {
+    id: "rockwool-insulation-01",
+    title: "粘贴岩棉防火保温板外保温",
+    description:
+      "A级岩棉防火外保温系统，七层构造：饰面层→抹面层→防水层→锚栓→岩棉保温板→找平层→基层墙体。",
+    category: "墙体",
+    thumbnail: "/images/rockwool-insulation-diagram.png",
+  },
+  {
     id: "yuncheng-c-01",
     title: "01",
     description:
