@@ -22,6 +22,7 @@ const MODEL_PATHS: Record<string, string> = {
   "stone-apron-01": `${B}models/wall/stone-apron/stone-apron.glb`,
   "foam-insulation-01": `${B}models/wall/foam-insulation/foam-insulation.glb`,
   "rockwool-insulation-01": `${B}models/wall/rockwool-insulation/rockwool-insulation.glb`,
+  "concrete-steps-01": `${B}models/stairs/concrete-steps/concrete-steps.glb`,
 };
 
 const DIAGRAM_IMAGES: Record<string, string> = {
@@ -33,6 +34,7 @@ const DIAGRAM_IMAGES: Record<string, string> = {
   "stone-apron-01": `${B}images/stone-apron-diagram.png`,
   "foam-insulation-01": `${B}images/foam-insulation-diagram.png`,
   "rockwool-insulation-01": `${B}images/rockwool-insulation-diagram.png`,
+  "concrete-steps-01": `${B}images/concrete-steps-diagram.png`,
 };
 
 const MODEL_SCALES: Record<string, number> = {
@@ -42,6 +44,7 @@ const MODEL_SCALES: Record<string, number> = {
   "stone-apron-01": 2,
   "foam-insulation-01": 2,
   "rockwool-insulation-01": 2,
+  "concrete-steps-01": 2,
 };
 
 /** 构造柱马牙槎4子构件 → 合并为单一组件 */

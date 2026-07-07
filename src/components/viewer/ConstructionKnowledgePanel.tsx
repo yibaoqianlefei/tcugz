@@ -14,6 +14,7 @@ import { eavesGutterLayers, getLayerInfo as getEavesGutterLayer } from "../../da
 import { stoneApronLayers, getLayerInfo as getStoneApronLayer } from "../../data/stoneApronLayers";
 import { foamInsulationLayers, getLayerInfo as getFoamInsulationLayer } from "../../data/foamInsulationLayers";
 import { rockwoolInsulationLayers, getLayerInfo as getRockwoolInsulationLayer } from "../../data/rockwoolInsulationLayers";
+import { concreteStepsLayers, getLayerInfo as getConcreteStepsLayer } from "../../data/concreteStepsLayers";
 import { canonicalName } from "../../utils/nameUtils";
 
 const LAYER_CONFIG: Record<string, { layers: any[]; getLayerInfo: (name: string) => any }> = {
@@ -26,6 +27,7 @@ const LAYER_CONFIG: Record<string, { layers: any[]; getLayerInfo: (name: string)
   "stone-apron-01": { layers: stoneApronLayers, getLayerInfo: getStoneApronLayer },
   "foam-insulation-01": { layers: foamInsulationLayers, getLayerInfo: getFoamInsulationLayer },
   "rockwool-insulation-01": { layers: rockwoolInsulationLayers, getLayerInfo: getRockwoolInsulationLayer },
+  "concrete-steps-01": { layers: concreteStepsLayers, getLayerInfo: getConcreteStepsLayer },
 };
 
 const DEFAULT_LAYERS = { layers: roofDrainageLayers, getLayerInfo: getRoofDrainageLayer };

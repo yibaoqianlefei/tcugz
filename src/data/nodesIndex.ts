@@ -88,6 +88,14 @@ const nodesIndex: NodeIndexEntry[] = [
     thumbnail: "/images/rockwool-insulation-diagram.png",
   },
   {
+    id: "concrete-steps-01",
+    title: "混凝土台阶",
+    description:
+      "C15混凝土室外台阶构造，五层：面层→混凝土台阶→碎石垫层(80mm)→素土夯实→墙柱。",
+    category: "楼梯",
+    thumbnail: "/images/concrete-steps-diagram.png",
+  },
+  {
     id: "yuncheng-c-01",
     title: "01",
     description:
