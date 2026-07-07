@@ -171,9 +171,10 @@ meshMapRef.get(logicalName) → Mesh[] (全部子 Mesh)
 Three.js GLB 加载时的名称变化（`canonicalName()` 自动处理）：
 - 空格 → 下划线: `"1：1：6 水泥"` → `"1：1：6_水泥"`
 - 多材质拆分: 加 `_1`, `_2` 后缀
-- Mesh 名带 `.NNN`: `"01.004"` → `"01004"` (去掉小数点)
+- Blender 重复后缀 `.NNN`: 优先剥离（早于删 dot），`"墙体.007"` → `"墙体"`
 - Blender hitbox: `"钢筋_hitbox"` → `"钢筋"` (isHitboxName 检测 + 后缀剥离)
-- 构件分组: `"01"`→`"马牙槎"` (COMPONENT_GROUPS 显式映射)
+- 构件分组: `"01"`→`"马牙槎"` (MODEL_GROUPS 显式映射)
+- 双 dot 名称: MODEL_GROUPS 覆写（如 `"120厚块石,1：2.5水泥砂浆灌缝.001"` → `"120厚块石,1：25水泥砂浆灌缝"`）
 
 ---
 
@@ -210,22 +211,24 @@ src/
 │   └── PlaceholderPage.tsx               # 通用占位
 │
 ├── data/
-│   ├── menu.ts                           # 侧栏菜单 (构造基础children, 构造原理children)
-│   ├── nodesIndex.ts                     # 节点索引 + 懒加载 + 缩略图
+│   ├── nodesIndex.ts                     # 节点索引 (13个) + 懒加载
 │   ├── courseModules.ts                  # 8 模块定义
 │   ├── backgroundScenes.ts               # 首页 3D 场景
 │   ├── roofDrainageLayers.ts             # 无组织排水构件 (3层)
 │   ├── organizedDrainageLayers.ts        # 有组织排水构件 (4层)
 │   ├── flatRoofLayers.ts                 # 平屋面构件 (8层, order排序)
 │   ├── slopedRoofLayers.ts              # 坡屋顶构件 (9层)
-│   ├── constructionColumnLayers.ts       # ⭐ 构造柱构件 (7层: 钢筋/箍筋/混凝土柱子/楼板/马牙槎/墙体/圈梁)
-│   ├── flatRoof.ts                       # 平屋面详细数据
-│   ├── membraneRoof.ts                   # 卷材防水屋面
-│   ├── roofInsulation.ts                 # 保温屋面
-│   ├── roofDrainage.ts                   # 无组织排水
-│   ├── organizedDrainage.ts              # 有组织排水
-│   ├── constructionColumn.ts             # ⭐ 构造柱详细数据
-│   └── sections/ (*.js)                 # 各模块子章节
+│   ├── constructionColumnLayers.ts       # 构造柱构件 (7层)
+│   ├── apronFlashingLayers.ts            # 细石混凝土散水 (9层)
+│   ├── eavesGutterLayers.ts             # 檐沟外排水 (6层)
+│   ├── stoneApronLayers.ts              # 块石散水 (9层)
+│   ├── foamInsulationLayers.ts           # 泡沫塑料保温板 (7层)
+│   ├── rockwoolInsulationLayers.ts       # 岩棉防火保温板 (7层)
+│   ├── flatRoof.ts / membraneRoof.ts / roofInsulation.ts / roofDrainage.ts / organizedDrainage.ts / constructionColumn.ts  # 详细课程数据
+│   ├── sections/ (*.js)                  # 各模块子章节 (39节)
+│   └── textbook/                         # ⭐ 教材 Markdown 内容
+│       ├── walls/                        # 墙体模块 (index + 3章)
+│       └── roof/                         # 屋顶模块 (index)
 │
 ├── utils/
 │   └── nameUtils.ts                      # canonicalName() + isHitboxName() + COMPONENT_GROUPS
@@ -245,7 +248,7 @@ src/
 
 | Store | Key | 持久化 | 功能 |
 |-------|-----|--------|------|
-| `nodeStore` | — | 否 | 3D 悬停/选中/动画进度/联动开关 |
+| `nodeStore` | — | 否 | 3D 悬停/选中/动画进度/联动开关 + `resetNodeInteractionState()` |
 | `chatStore` | — | 否 | AI 对话消息/加载/错误 + DeepSeek API |
 | `authStore` | — | 否 | 模拟用户登录/登出 |
 | `analysisStore` | `construction-analysis` | ✅ localStorage | 访问节点/提问分类/交互次数 |
@@ -300,16 +303,23 @@ src/
 
 ## 8. 节点清单
 
-| ID | 标题 | 分类 | GLB 模型 | 层数据 | 动画 | 剖面图 | hitbox |
-|----|------|------|----------|--------|------|--------|--------|
-| `flat-roof-01` | 平屋面构造 | 屋顶 | ✅ 18MB→2.3MB | ✅ 8层 | ✅ | - | - |
-| `sloped-roof-01` | 坡屋顶构造 | 屋顶 | ✅ 21MB→1.9MB | ✅ 9层 | ✅ | - | - |
-| `roof-drainage-01` | 无组织排水 | 屋顶 | ✅ 123KB | ✅ 3层 | ✅ 96帧 | ✅ | - |
-| `organized-drainage-01` | 有组织排水 | 屋顶 | ✅ 153KB | ✅ 4层 | ✅ 96帧 | ✅ | - |
-| `construction-column-01` | 构造柱 | 墙体 | ✅ 2.1MB→0.2MB | ✅ 7层 | ✅ 生长 | ✅ | ✅钢筋/箍筋 |
-| `yuncheng-c-01` | 郓城案例 01 | 案例 | ⚠ | ⚠ | ⚠ | - | - |
-| `yuncheng-c-02` | 郓城案例 02 | 案例 | ⚠ | ⚠ | ⚠ | - | - |
-| `yuncheng-c-03` | 郓城案例 03 | 案例 | ⚠ | ⚠ | ⚠ | - | - |
+| ID | 标题 | 分类 | GLB 模型 | 层数据 | modelScale |
+|----|------|------|----------|--------|-----------|
+| `flat-roof-01` | 平屋面构造 | 屋顶 | 2.2MB | 8层 | 2.5(默认) |
+| `sloped-roof-01` | 坡屋顶构造 | 屋顶 | 1.7MB | 9层 | 2.5(默认) |
+| `roof-drainage-01` | 无组织排水 | 屋顶 | 123KB | 3层 | 2.5(默认) |
+| `organized-drainage-01` | 有组织排水 | 屋顶 | 153KB | 4层 | 2.5(默认) |
+| `construction-column-01` | 构造柱 | 墙体 | 214KB | 7层 | **4** |
+| `apron-flashing-01` | 细石混凝土散水 | 墙体 | 326KB | 9层 | **2** |
+| `eaves-gutter-01` | 檐沟外排水 | 屋顶 | 177KB | 6层 | 2.5(默认) |
+| `stone-apron-01` | 块石散水 | 墙体 | 241KB | 9层 | **2** |
+| `foam-insulation-01` | 泡沫塑料保温板外保温 | 墙体 | — | 7层 | **2** |
+| `rockwool-insulation-01` | 岩棉防火保温板外保温 | 墙体 | — | 7层 | **2** |
+| `yuncheng-c-01` | 郓城案例 01 | 案例 | ⚠ | ⚠ | - |
+| `yuncheng-c-02` | 郓城案例 02 | 案例 | ⚠ | ⚠ | - |
+| `yuncheng-c-03` | 郓城案例 03 | 案例 | ⚠ | ⚠ | - |
+
+共 13 个节点：屋顶 5 个、墙体 5 个、案例 3 个。
 
 ---
 
@@ -379,7 +389,8 @@ src/
 | 案例应用 | 独立 CasesPage + [模型开发中] 标签 |
 | NodeDetail | 三栏布局 + GLB + 动画 + 反向播放 + 时间轴 |
 | NodeDetail | 边缘线 + 命中代理/hitbox + 高亮门控 + 双向3D手风琴联动 |
-| NodeDetail | 动态相机 + 阴影开关 + 构件排序 + 联动开关 + 同步状态重置 |
+| NodeDetail | 动态相机 + 阴影开关 + 构件排序 + 联动开关 + 同步状态重置(hover/select/progress/playing) |
+| NodeDetail | ModelViewer key={nodeId} 强制重挂 + 节点不存在兜底页 + nodeStore.resetNodeInteractionState |
 | NodeDetail | 材质隔离 + 自动缩放 + 名称标准化(canonicalName唯一入口) |
 | AI 拓展 | Tab合并页(AI问答+拓展链接) + lazy加载 |
 | 数据分析 | 3种Recharts图表 + 演示数据 + 空状态兜底 |
@@ -388,6 +399,10 @@ src/
 | 模型压缩 | WebP+Draco 自动化脚本 (`npm run compress-models`) |
 | 命中系统 | 双模式：Blender _hitbox(优先) + 代码代理(回退) |
 | 构造柱节点 | 7层构件 + 钢筋/箍筋hitbox + 马牙槎分组 |
+| 墙体节点 | 细石混凝土散水(9层) + 块石散水(9层) + 泡沫塑料保温板(7层) + 岩棉防火保温板(7层) |
+| 檐沟节点 | 檐沟外排水(6层) |
+| 教材系统 | 双参数路由 + MD静态导入 + 左右双栏 + 章节列表 + 模型关联 |
+| 部署 | gh-pages 直接部署 (`npm run deploy`) |
 | 安全 | Vite 代理隐藏 API Key |
 
 ### 待完成
@@ -398,7 +413,36 @@ src/
 | 拓展链接补充"建筑盒子"URL | 中 |
 | 拖拽组装游戏 | 中 |
 | 郓城案例模型迁移 | 低 |
-| 课本内容填充 | 低 |
+| 课本内容填充 | 中 |
+
+---
+
+## 15. 教材系统
+
+侧边栏"构造基础" → 模块点击 → 跳转 `/textbook/:moduleId`（模块概述+章节列表）。子章节点击 → `/textbook/:moduleId/:chapterId`（显示 Markdown 正文）。
+
+### 教材页面布局（TextbookPage.tsx）
+
+```
+┌─ Breadcrumb (首页 › 构造基础 › 墙体 › 墙体的设计要求)
+├─ 左侧 (~70%) ─────────────────────┐
+│  ├── 标题 + 描述                  │
+│  ├── Markdown 正文 (react-markdown) │
+│  └── 模块章节列表 (isModule时)     │
+├─ 右侧 (320px) ────────────────────┤
+│  └── 本章相关构造模型卡片          │
+└─────────────────────────────────────┘
+```
+
+### MD 内容机制
+
+`src/data/textbook/` 下存 Markdown 文件，TextbookPage 顶部静态 import + MD_MAP 查找表（Vite 不支持模板字符串动态 `?raw`）。
+
+### 添加新教材章的步骤
+
+1. 在 `src/data/textbook/{模块id}/` 下新建 `.md` 文件
+2. 在 TextbookPage.tsx 顶部 `import` + `MD_MAP` 加一行
+3. 在对应 `sections/*.js` 中将章节设 `available: true`
 
 ---
 
@@ -419,13 +463,26 @@ public/
 │   │   └── roof-drainage/
 │   │       └── roof-drainage.glb   (123KB)
 │   └── wall/
-│       └── construction-column/
-│           └── construction-column.glb (0.2MB, WebP+Draco)
+│       ├── construction-column/
+│       │   └── construction-column.glb (214KB, WebP+Draco)
+│       ├── apron-flashing/
+│       │   └── apron-flashing.glb      (326KB)
+│       ├── stone-apron/
+│       │   └── stone-apron.glb         (241KB)
+│       ├── foam-insulation/
+│       │   └── foam-insulation.glb
+│       └── rockwool-insulation/
+│           └── rockwool-insulation.glb
 ├── images/
 │   ├── roof/
 │   │   ├── roof-drainage-diagram.png
 │   │   └── organized-drainage-diagram.png
-│   └── construction-column-diagram.png
+│   ├── construction-column-diagram.png
+│   ├── apron-flashing-diagram.png
+│   ├── eaves-gutter-diagram.png
+│   ├── stone-apron-diagram.png
+│   ├── foam-insulation-diagram.png
+│   └── rockwool-insulation-diagram.png
 ```
 
 ---
@@ -454,4 +511,4 @@ npx tsc --noEmit         # 类型检查
 
 ---
 
-_最后更新：2026-07-01_
+_最后更新：2026-07-07_

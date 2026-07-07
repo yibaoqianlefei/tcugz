@@ -15,6 +15,7 @@ type Store = {
   setIsPlaying: (v: boolean) => void;
   setAnimationProgress: (v: number) => void;
   setLinkageEnabled: (v: boolean) => void;
+  resetNodeInteractionState: () => void;
 };
 
 export const useNodeStore = create<Store>((set) => ({
@@ -29,4 +30,11 @@ export const useNodeStore = create<Store>((set) => ({
   setIsPlaying: (v) => set({ isPlaying: v }),
   setAnimationProgress: (v) => set({ animationProgress: v }),
   setLinkageEnabled: (v) => set({ linkageEnabled: v }),
+  resetNodeInteractionState: () =>
+    set({
+      selectedObject: null,
+      hoveredObject: null,
+      isPlaying: false,
+      animationProgress: 0,
+    }),
 }));

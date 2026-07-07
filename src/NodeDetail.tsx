@@ -38,6 +38,7 @@ const DIAGRAM_IMAGES: Record<string, string> = {
 const MODEL_SCALES: Record<string, number> = {
   "construction-column-01": 4,
   "apron-flashing-01": 2,
+  "eaves-gutter-01": 2,
   "stone-apron-01": 2,
   "foam-insulation-01": 2,
   "rockwool-insulation-01": 2,
@@ -90,9 +91,10 @@ export default function NodeDetail() {
   if (nodeId && prevNodeIdRef.current !== nodeId) {
     prevNodeIdRef.current = nodeId;
     // Sync reset — avoids race where old highlight state bleeds into new node
-    useNodeStore.getState().setLinkageEnabled(true);
     useNodeStore.getState().setSelectedObject(null);
+    useNodeStore.getState().setHoveredObject(null);
     useNodeStore.getState().setAnimationProgress(0);
+    useNodeStore.getState().setIsPlaying(false);
   }
   useEffect(() => {
     if (nodeId) addVisitedNode(nodeId);
@@ -120,6 +122,15 @@ export default function NodeDetail() {
     animControls.setTime(value * totalDuration);
   };
 
+  if (!node) {
+    return (
+      <div className="h-screen flex flex-col bg-canvas overflow-hidden items-center justify-center">
+        <p className="text-muted text-lg">节点不存在</p>
+        <Link to="/library" className="text-primary text-sm mt-3 hover:underline">返回节点库</Link>
+      </div>
+    );
+  }
+
   return (
     <div className="h-screen flex flex-col bg-canvas overflow-hidden">
       {/* ── Header ── */}
@@ -129,9 +140,9 @@ export default function NodeDetail() {
             节点库
           </Link>
           <span className="text-muted-soft">›</span>
-          <span className="text-muted font-medium">{node?.title ?? "未知节点"}</span>
+          <span className="text-muted font-medium">{node.title}</span>
         </div>
-        {node?.category && (
+        {node.category && (
           <span className="text-[10px] font-medium text-muted-soft uppercase tracking-wider bg-surface-card px-2 py-0.5 rounded-full">
             {node.category}
           </span>
@@ -146,6 +157,7 @@ export default function NodeDetail() {
         {/* Center: 3D viewport + floating timeline */}
         <div className="flex-1 flex min-w-0 relative">
           <ModelViewer
+            key={nodeId}
             autoRotate={autoRotate}
             showShadows={showShadows}
             modelPath={getModelPath(nodeId!)}
