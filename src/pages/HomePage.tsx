@@ -145,6 +145,8 @@ const menuItems: MenuItemDef[] = [
       { id: "waterproof", label: "建筑防水", icon: "💧", description: "建筑防水构造原理与设计" },
       { id: "insulation", label: "建筑隔热", icon: "☀️", description: "建筑隔热构造原理与设计" },
       { id: "acoustic", label: "建筑隔声", icon: "🔇", description: "建筑隔声构造原理与设计" },
+      { id: "fire", label: "建筑防火", icon: "🧯", description: "建筑防火构造原理与设计" },
+      { id: "moisture", label: "建筑防潮", icon: "💨", description: "建筑防潮构造原理与设计" },
     ],
   },
   { icon: GraduationCap, label: "构造基础", id: "textbook",
