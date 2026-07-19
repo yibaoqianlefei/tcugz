@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { nodesIndex } from "../../data/nodesIndex";
+import { getNodeDefinition } from "../../data/nodeDefinitions";
 
 interface Props {
   nodeId: string;
@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function ModelNodeCard({ nodeId, layerCount }: Props) {
-  const node = nodesIndex.find((n) => n.id === nodeId);
+  const node = getNodeDefinition(nodeId);
 
   if (!node) {
     return (

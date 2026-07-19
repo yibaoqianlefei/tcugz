@@ -91,11 +91,16 @@ HomePage
 ### NodeDetail 内部架构（核心页面）
 
 ```
-NodeDetail.tsx (编排器, ~200行)
+NodeDetail.tsx (编排器, ~275行)
+  ├── 统一配置读取: getNodeDefinition(nodeId)             ← ⭐ 单一配置源
+  │     ├── node.model     → modelPath / modelScale / modelGroups
+  │     ├── node.diagram   → diagramImage
+  │     ├── node.layerConfig → ConstructionKnowledgePanel
+  │     └── node.status    → "available" | "development" 状态区分
   ├── Header (面包屑)
   ├── Body (三栏 flex)
   │   ├── NodeDiagramPanel (520px)     ← 剖面图
-  │   ├── ModelViewer (flex-1, ~380行)  ← 3D 视口 ⭐
+  │   ├── ModelViewer (flex-1, 557行)  ← 3D 视口 ⭐
   │   │   ├── SceneModel               ← GLB + AnimationMixer + 边缘线 + 高亮(门控)
   │   │   │                              + hitbox/proxy 命中系统 + 材质克隆 + 名称标准化
   │   │   ├── CameraTracker            ← 动态锚点：Box3 → controls.target.lerp
@@ -110,7 +115,7 @@ NodeDetail.tsx (编排器, ~200行)
         └── 阴影切换 (Sun) + 联动开关 (Link2)
 ```
 
-### ModelViewer 核心系统 (~530行)
+### ModelViewer 核心系统 (557行)
 
 | 子系统 | 实现 |
 |--------|------|
@@ -211,7 +216,8 @@ src/
 │   └── PlaceholderPage.tsx               # 通用占位
 │
 ├── data/
-│   ├── nodesIndex.ts                     # 节点索引 (13个) + 懒加载
+│   ├── nodeDefinitions.ts                # ⭐ 节点单一配置源 (14个, 模型+层+图示)
+│   ├── nodesIndex.ts                     # 兼容导出层 (不再独立维护数据)
 │   ├── courseModules.ts                  # 8 模块定义
 │   ├── backgroundScenes.ts               # 首页 3D 场景
 │   ├── roofDrainageLayers.ts             # 无组织排水构件 (3层)
@@ -220,7 +226,8 @@ src/
 │   ├── slopedRoofLayers.ts              # 坡屋顶构件 (9层)
 │   ├── constructionColumnLayers.ts       # 构造柱构件 (7层)
 │   ├── apronFlashingLayers.ts            # 细石混凝土散水 (9层)
-│   ├── eavesGutterLayers.ts             # 檐沟外排水 (6层)
+│   ├── concreteStepsLayers.ts            # 混凝土台阶 (5层)
+│   ├── eavesGutterLayers.ts              # 檐沟外排水 (6层)
 │   ├── stoneApronLayers.ts              # 块石散水 (9层)
 │   ├── foamInsulationLayers.ts           # 泡沫塑料保温板 (7层)
 │   ├── rockwoolInsulationLayers.ts       # 岩棉防火保温板 (7层)
@@ -231,7 +238,7 @@ src/
 │       └── roof/                         # 屋顶模块 (index)
 │
 ├── utils/
-│   └── nameUtils.ts                      # canonicalName() + isHitboxName() + COMPONENT_GROUPS
+│   └── nameUtils.ts                      # canonicalName() + isHitboxName()（接受 modelGroups 参数，无硬编码映射）
 │
 ├── store/
 │   ├── nodeStore.ts                      # Zustand：hover/select/play/progress/linkage
@@ -305,21 +312,22 @@ src/
 
 | ID | 标题 | 分类 | GLB 模型 | 层数据 | modelScale |
 |----|------|------|----------|--------|-----------|
-| `flat-roof-01` | 平屋面构造 | 屋顶 | 2.2MB | 8层 | 2.5(默认) |
-| `sloped-roof-01` | 坡屋顶构造 | 屋顶 | 1.7MB | 9层 | 2.5(默认) |
-| `roof-drainage-01` | 无组织排水 | 屋顶 | 123KB | 3层 | 2.5(默认) |
-| `organized-drainage-01` | 有组织排水 | 屋顶 | 153KB | 4层 | 2.5(默认) |
+| `flat-roof-01` | 平屋面构造 | 屋顶 | 2.3MB | 8层 | 3.5(默认) |
+| `sloped-roof-01` | 坡屋顶构造 | 屋顶 | 1.9MB | 9层 | 3.5(默认) |
+| `roof-drainage-01` | 无组织排水 | 屋顶 | 123KB | 3层 | 3.5(默认) |
+| `organized-drainage-01` | 有组织排水 | 屋顶 | 153KB | 4层 | 3.5(默认) |
 | `construction-column-01` | 构造柱 | 墙体 | 214KB | 7层 | **4** |
 | `apron-flashing-01` | 细石混凝土散水 | 墙体 | 326KB | 9层 | **2** |
-| `eaves-gutter-01` | 檐沟外排水 | 屋顶 | 177KB | 6层 | 2.5(默认) |
+| `eaves-gutter-01` | 檐沟外排水 | 屋顶 | 177KB | 6层 | **2** |
 | `stone-apron-01` | 块石散水 | 墙体 | 241KB | 9层 | **2** |
 | `foam-insulation-01` | 泡沫塑料保温板外保温 | 墙体 | — | 7层 | **2** |
 | `rockwool-insulation-01` | 岩棉防火保温板外保温 | 墙体 | — | 7层 | **2** |
+| `concrete-steps-01` | 混凝土台阶 | 楼梯 | — | 5层 | **2** |
 | `yuncheng-c-01` | 郓城案例 01 | 案例 | ⚠ | ⚠ | - |
 | `yuncheng-c-02` | 郓城案例 02 | 案例 | ⚠ | ⚠ | - |
 | `yuncheng-c-03` | 郓城案例 03 | 案例 | ⚠ | ⚠ | - |
 
-共 13 个节点：屋顶 5 个、墙体 5 个、案例 3 个。
+共 14 个节点：屋顶 5 个、墙体 5 个、楼梯 1 个、案例 3 个。
 
 ---
 
@@ -399,6 +407,7 @@ src/
 | 模型压缩 | WebP+Draco 自动化脚本 (`npm run compress-models`) |
 | 命中系统 | 双模式：Blender _hitbox(优先) + 代码代理(回退) |
 | 构造柱节点 | 7层构件 + 钢筋/箍筋hitbox + 马牙槎分组 |
+| 混凝土台阶 | 5层构件（楼梯类别首节点） |
 | 墙体节点 | 细石混凝土散水(9层) + 块石散水(9层) + 泡沫塑料保温板(7层) + 岩棉防火保温板(7层) |
 | 檐沟节点 | 檐沟外排水(6层) |
 | 教材系统 | 双参数路由 + MD静态导入 + 左右双栏 + 章节列表 + 模型关联 |
@@ -417,7 +426,7 @@ src/
 
 ---
 
-## 15. 教材系统
+## 14. 教材系统
 
 侧边栏"构造基础" → 模块点击 → 跳转 `/textbook/:moduleId`（模块概述+章节列表）。子章节点击 → `/textbook/:moduleId/:chapterId`（显示 Markdown 正文）。
 
@@ -446,7 +455,7 @@ src/
 
 ---
 
-## 14. 资源目录结构
+## 15. 资源目录结构
 
 ```
 public/
@@ -458,10 +467,15 @@ public/
 │   │   │   └── flat-roof.glb       (2.3MB, WebP)
 │   │   ├── sloped-roof/
 │   │   │   └── sloped-roof.glb     (1.9MB, WebP)
+│   │   ├── eaves-gutter/
+│   │   │   └── eaves-gutter.glb       (177KB)
 │   │   ├── organized-drainage/
 │   │   │   └── organized-drainage.glb (153KB)
 │   │   └── roof-drainage/
 │   │       └── roof-drainage.glb   (123KB)
+│   ├── stairs/
+│   │   └── concrete-steps/
+│   │       └── concrete-steps.glb
 │   └── wall/
 │       ├── construction-column/
 │       │   └── construction-column.glb (214KB, WebP+Draco)
@@ -487,20 +501,17 @@ public/
 
 ---
 
-## 15. 添加新节点（5 步）
+## 16. 添加新节点（3 步）
 
-1. **准备文件**：`public/models/{类别}/{节点名}/{节点名}.glb` + 剖面图（可选）+ Blender hitbox（可选，命名 `{构件名}_hitbox`）
-2. **创建数据**：`src/data/{节点名}Layers.ts` — `objectName` 填 Blender 对象名（原始写法），`order` 控制排序
-3. **注册节点**：`src/data/nodesIndex.ts` 加条目 + `nodeLoaders` 加懒加载
-4. **注册路径**：`src/NodeDetail.tsx` 的 `MODEL_PATHS`、`DIAGRAM_IMAGES`、`MODEL_SCALES`（可选）
-5. **注册面板**：`src/components/viewer/ConstructionKnowledgePanel.tsx` 的 `LAYER_CONFIG`
-6. **压缩模型**：运行 `npm run compress-models`
+1. **准备文件**：`public/models/{类别}/{节点名}/{节点名}.glb` + 剖面图（可选）+ Blender hitbox（可选，命名 `{构件名}_hitbox`）+ `src/data/{节点名}Layers.ts`
+2. **注册节点**：在 `src/data/nodeDefinitions.ts` 的 `nodeDefinitions` 数组中添加一条 `NodeDefinition`（含 model、diagram、layerConfig、loadContent 等字段）
+3. **压缩模型**：运行 `npm run compress-models`
 
-多材质构件、hitbox 后缀、名称标准化等由 `canonicalName()` 全自动处理。
+多材质构件、hitbox 后缀、名称标准化等由 `canonicalName()` 全自动处理。不再需要在 NodeDetail、ConstructionKnowledgePanel 等处分别注册。
 
 ---
 
-## 16. 开发命令
+## 17. 开发命令
 
 ```bash
 npm run dev              # localhost:5173 (需 .env.local 配置 DEEPSEEK_API_KEY)
@@ -511,4 +522,4 @@ npx tsc --noEmit         # 类型检查
 
 ---
 
-_最后更新：2026-07-07_
+_最后更新：2026-07-19_

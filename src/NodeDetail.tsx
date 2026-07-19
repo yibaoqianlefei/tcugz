@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
-import { nodesIndex } from "./data/nodesIndex";
+import { getNodeDefinition } from "./data/nodeDefinitions";
 import { useNodeStore } from "./store/nodeStore";
 import { animControls } from "./components/viewer/ModelViewer";
 import ModelViewer from "./components/viewer/ModelViewer";
@@ -9,76 +9,15 @@ import ConstructionKnowledgePanel from "./components/viewer/ConstructionKnowledg
 import { RotateCw, ChevronsLeft, ChevronsRight, Sun, Link2 } from "lucide-react";
 import { useAnalysisStore } from "./store/analysisStore";
 
-/* ── Model path lookup ──────────────────────────────────────── */
-const B = import.meta.env.BASE_URL;
-const MODEL_PATHS: Record<string, string> = {
-  "flat-roof-01": `${B}models/roof/flat-roof/flat-roof.glb`,
-  "sloped-roof-01": `${B}models/roof/sloped-roof/sloped-roof.glb`,
-  "organized-drainage-01": `${B}models/roof/organized-drainage/organized-drainage.glb`,
-  "roof-drainage-01": `${B}models/roof/roof-drainage/roof-drainage.glb`,
-  "construction-column-01": `${B}models/wall/construction-column/construction-column.glb`,
-  "apron-flashing-01": `${B}models/wall/apron-flashing/apron-flashing.glb`,
-  "eaves-gutter-01": `${B}models/roof/eaves-gutter/eaves-gutter.glb`,
-  "stone-apron-01": `${B}models/wall/stone-apron/stone-apron.glb`,
-  "foam-insulation-01": `${B}models/wall/foam-insulation/foam-insulation.glb`,
-  "rockwool-insulation-01": `${B}models/wall/rockwool-insulation/rockwool-insulation.glb`,
-  "concrete-steps-01": `${B}models/stairs/concrete-steps/concrete-steps.glb`,
-};
-
-const DIAGRAM_IMAGES: Record<string, string> = {
-  "roof-drainage-01": `${B}images/roof/roof-drainage-diagram.png`,
-  "organized-drainage-01": `${B}images/roof/organized-drainage-diagram.png`,
-  "construction-column-01": `${B}images/construction-column-diagram.png`,
-  "apron-flashing-01": `${B}images/apron-flashing-diagram.png`,
-  "eaves-gutter-01": `${B}images/eaves-gutter-diagram.png`,
-  "stone-apron-01": `${B}images/stone-apron-diagram.png`,
-  "foam-insulation-01": `${B}images/foam-insulation-diagram.png`,
-  "rockwool-insulation-01": `${B}images/rockwool-insulation-diagram.png`,
-  "concrete-steps-01": `${B}images/concrete-steps-diagram.png`,
-};
-
-const MODEL_SCALES: Record<string, number> = {
-  "construction-column-01": 4,
-  "apron-flashing-01": 2,
-  "eaves-gutter-01": 2,
-  "stone-apron-01": 2,
-  "foam-insulation-01": 2,
-  "rockwool-insulation-01": 2,
-  "concrete-steps-01": 2,
-};
-
-/** 构造柱马牙槎4子构件 → 合并为单一组件 */
-const COLUMN_GROUPS: Record<string, string> = {
-  "01": "马牙槎", "02": "马牙槎", "03": "马牙槎", "04": "马牙槎",
-};
-/** 块石散水 mesh 名含两个 dot (2.5 和 .001)，canonicalName 双 dot 时后缀剥离不稳定，覆盖可能出现的各种变体 */
-const STONE_GROUPS: Record<string, string> = {
-  "120厚块石,1：2.5水泥砂浆灌缝.001": "120厚块石,1：25水泥砂浆灌缝",
-  "120厚块石,1：25水泥砂浆灌缝001": "120厚块石,1：25水泥砂浆灌缝",
-  "120厚块石,1：25水泥砂浆灌缝": "120厚块石,1：25水泥砂浆灌缝",
-};
-const MODEL_GROUPS: Record<string, Record<string, string>> = {
-  "construction-column-01": COLUMN_GROUPS,
-  "stone-apron-01": STONE_GROUPS,
-};
-
-function getModelPath(nodeId: string): string {
-  return MODEL_PATHS[nodeId] ?? `${B}models/roof/flat-roof/flat-roof.glb`;
-}
-function getModelScale(nodeId: string): number {
-  return MODEL_SCALES[nodeId] ?? 2.5;
-}
-function getDiagramImage(nodeId: string): string | undefined {
-  return DIAGRAM_IMAGES[nodeId];
-}
-
 /**
  * NodeDetail V1 — construction education layout.
  * Left: 520px diagram | Center: 3D (flex-1) + floating timeline | Right: 360px knowledge
+ *
+ * 所有节点配置统一来自 src/data/nodeDefinitions.ts（单一配置源）。
  */
 export default function NodeDetail() {
   const { nodeId } = useParams<{ nodeId: string }>();
-  const node = nodesIndex.find((n) => n.id === nodeId);
+  const node = getNodeDefinition(nodeId);
   const animationProgress = useNodeStore((s) => s.animationProgress);
   const setAnimationProgress = useNodeStore((s) => s.setAnimationProgress);
 
@@ -125,6 +64,7 @@ export default function NodeDetail() {
     animControls.setTime(value * totalDuration);
   };
 
+  /* ── Node not found ── */
   if (!node) {
     return (
       <div className="h-screen flex flex-col bg-canvas overflow-hidden items-center justify-center">
@@ -133,6 +73,20 @@ export default function NodeDetail() {
       </div>
     );
   }
+
+  /* ── Node under development ── */
+  if (node.status === "development") {
+    return (
+      <div className="h-screen flex flex-col bg-canvas overflow-hidden items-center justify-center">
+        <p className="text-muted text-lg">该节点正在开发中</p>
+        <p className="text-muted-soft text-sm mt-1">{node.description}</p>
+        <Link to="/library" className="text-primary text-sm mt-3 hover:underline">返回节点库</Link>
+      </div>
+    );
+  }
+
+  /* ── Available node — must have model & layerConfig ── */
+  const { model, diagram, layerConfig } = node;
 
   return (
     <div className="h-screen flex flex-col bg-canvas overflow-hidden">
@@ -155,18 +109,24 @@ export default function NodeDetail() {
       {/* ── Body ── */}
       <div className="flex-1 flex min-h-0">
         {/* Left: 2D diagram */}
-        <NodeDiagramPanel diagramImage={getDiagramImage(nodeId!)} />
+        <NodeDiagramPanel diagramImage={diagram?.path} />
 
         {/* Center: 3D viewport + floating timeline */}
         <div className="flex-1 flex min-w-0 relative">
-          <ModelViewer
-            key={nodeId}
-            autoRotate={autoRotate}
-            showShadows={showShadows}
-            modelPath={getModelPath(nodeId!)}
-            modelScale={getModelScale(nodeId!)}
-            modelGroups={MODEL_GROUPS[nodeId!]}
-          />
+          {model && layerConfig ? (
+            <ModelViewer
+              key={nodeId}
+              autoRotate={autoRotate}
+              showShadows={showShadows}
+              modelPath={model.path}
+              modelScale={model.scale}
+              modelGroups={model.groups}
+            />
+          ) : (
+            <div className="flex-1 flex items-center justify-center">
+              <p className="text-muted-soft text-sm">模型数据缺失</p>
+            </div>
+          )}
 
           {/* Floating timeline — 02-2 style */}
           <div

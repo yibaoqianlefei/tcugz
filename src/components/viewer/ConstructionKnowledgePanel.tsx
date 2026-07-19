@@ -1,45 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNodeStore } from "../../store/nodeStore";
 import { useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUp } from "lucide-react";
-import { nodesIndex } from "../../data/nodesIndex";
-import { roofDrainageLayers, getLayerInfo as getRoofDrainageLayer } from "../../data/roofDrainageLayers";
-import { organizedDrainageLayers, getLayerInfo as getOrganizedDrainageLayer } from "../../data/organizedDrainageLayers";
-import { flatRoofLayers, getLayerInfo as getFlatRoofLayer } from "../../data/flatRoofLayers";
-import { slopedRoofLayers, getLayerInfo as getSlopedRoofLayer } from "../../data/slopedRoofLayers";
-import { constructionColumnLayers, getLayerInfo as getConstructionColumnLayer } from "../../data/constructionColumnLayers";
-import { apronFlashingLayers, getLayerInfo as getApronFlashingLayer } from "../../data/apronFlashingLayers";
-import { eavesGutterLayers, getLayerInfo as getEavesGutterLayer } from "../../data/eavesGutterLayers";
-import { stoneApronLayers, getLayerInfo as getStoneApronLayer } from "../../data/stoneApronLayers";
-import { foamInsulationLayers, getLayerInfo as getFoamInsulationLayer } from "../../data/foamInsulationLayers";
-import { rockwoolInsulationLayers, getLayerInfo as getRockwoolInsulationLayer } from "../../data/rockwoolInsulationLayers";
-import { concreteStepsLayers, getLayerInfo as getConcreteStepsLayer } from "../../data/concreteStepsLayers";
+import { getNodeDefinition } from "../../data/nodeDefinitions";
 import { canonicalName } from "../../utils/nameUtils";
-
-const LAYER_CONFIG: Record<string, { layers: any[]; getLayerInfo: (name: string) => any }> = {
-  "flat-roof-01": { layers: flatRoofLayers, getLayerInfo: getFlatRoofLayer },
-  "sloped-roof-01": { layers: slopedRoofLayers, getLayerInfo: getSlopedRoofLayer },
-  "organized-drainage-01": { layers: organizedDrainageLayers, getLayerInfo: getOrganizedDrainageLayer },
-  "construction-column-01": { layers: constructionColumnLayers, getLayerInfo: getConstructionColumnLayer },
-  "apron-flashing-01": { layers: apronFlashingLayers, getLayerInfo: getApronFlashingLayer },
-  "eaves-gutter-01": { layers: eavesGutterLayers, getLayerInfo: getEavesGutterLayer },
-  "stone-apron-01": { layers: stoneApronLayers, getLayerInfo: getStoneApronLayer },
-  "foam-insulation-01": { layers: foamInsulationLayers, getLayerInfo: getFoamInsulationLayer },
-  "rockwool-insulation-01": { layers: rockwoolInsulationLayers, getLayerInfo: getRockwoolInsulationLayer },
-  "concrete-steps-01": { layers: concreteStepsLayers, getLayerInfo: getConcreteStepsLayer },
-};
-
-const DEFAULT_LAYERS = { layers: roofDrainageLayers, getLayerInfo: getRoofDrainageLayer };
 
 /**
  * ConstructionKnowledgePanel — accordion-style layer cards.
  * Click to expand in-place with smooth Framer Motion layout animations.
  * Selected state syncs to 3D viewport highlight.
+ *
+ * 所有节点配置统一来自 nodeDefinitions.ts（单一配置源）。
  */
 export default function ConstructionKnowledgePanel() {
   const { nodeId } = useParams<{ nodeId: string }>();
-  const node = nodesIndex.find((n) => n.id === nodeId);
+  const node = getNodeDefinition(nodeId);
 
   // 3D highlight sync (read + write) + linkage toggle
   const selectedObject = useNodeStore((s) => s.selectedObject);
@@ -49,9 +25,16 @@ export default function ConstructionKnowledgePanel() {
   // Accordion state: which card is expanded (null = all collapsed)
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  const config = (nodeId && LAYER_CONFIG[nodeId]) || DEFAULT_LAYERS;
-  const layers = [...config.layers].sort((a, b) => (b.order ?? 0) - (a.order ?? 0));
-  const getLayerInfo = config.getLayerInfo;
+  const config = node?.layerConfig;
+
+  // Sort layers by order descending (topmost first), stable identity via useMemo
+  const layers = useMemo(
+    () =>
+      [...(config?.layers ?? [])].sort(
+        (a, b) => (b.order ?? 0) - (a.order ?? 0),
+      ),
+    [config],
+  );
 
   // ── Normalize: remove spaces, unify Chinese/English punctuation ──
   function normalizeName(str: string): string {
@@ -133,69 +116,75 @@ export default function ConstructionKnowledgePanel() {
           点击构件展开查看详情
         </p>
 
-        <motion.ul layout className="space-y-2.5">
-          {layers.map((layer) => {
-            const isExpanded = expandedId === layer.objectName;
-            const info = getLayerInfo(layer.objectName);
+        {layers.length === 0 ? (
+          <p className="text-xs text-muted-soft text-center py-8">
+            暂无构件数据
+          </p>
+        ) : (
+          <motion.ul layout className="space-y-2.5">
+            {layers.map((layer) => {
+              const isExpanded = expandedId === layer.objectName;
+              const info = config?.getLayerInfo(layer.objectName);
 
-            return (
-              <motion.li key={layer.objectName} layout>
-                {/* ── Card header (always visible) ── */}
-                <button
-                  onClick={() => handleToggle(layer.objectName)}
-                  className={`w-full text-left p-3 rounded-xl border transition-colors duration-200
-                    ${isExpanded
-                      ? "bg-primary/5 border-primary/30 shadow-sm rounded-b-none border-b-0"
-                      : "bg-surface-card border-hairline hover:border-primary/20 hover:bg-surface-cream-strong/50"
-                    }`}
-                >
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={`w-2 h-2 rounded-full flex-shrink-0 ${isExpanded ? "bg-primary" : "bg-muted-soft"}`}
-                    />
-                    <span className={`text-sm font-medium break-words line-clamp-2 ${isExpanded ? "text-primary" : "text-body"}`}>
-                      {layer.objectName}
-                    </span>
-                  </div>
-                  {/* Collapsed summary */}
-                  <div className="ml-4 flex gap-3 text-[10px] text-muted-soft mt-1">
-                    <span>{layer.thickness}</span>
-                    <span>{layer.material}</span>
-                  </div>
-                </button>
+              return (
+                <motion.li key={layer.objectName} layout>
+                  {/* ── Card header (always visible) ── */}
+                  <button
+                    onClick={() => handleToggle(layer.objectName)}
+                    className={`w-full text-left p-3 rounded-xl border transition-colors duration-200
+                      ${isExpanded
+                        ? "bg-primary/5 border-primary/30 shadow-sm rounded-b-none border-b-0"
+                        : "bg-surface-card border-hairline hover:border-primary/20 hover:bg-surface-cream-strong/50"
+                      }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`w-2 h-2 rounded-full flex-shrink-0 ${isExpanded ? "bg-primary" : "bg-muted-soft"}`}
+                      />
+                      <span className={`text-sm font-medium break-words line-clamp-2 ${isExpanded ? "text-primary" : "text-body"}`}>
+                        {layer.objectName}
+                      </span>
+                    </div>
+                    {/* Collapsed summary */}
+                    <div className="ml-4 flex gap-3 text-[10px] text-muted-soft mt-1">
+                      <span>{layer.thickness}</span>
+                      <span>{layer.material}</span>
+                    </div>
+                  </button>
 
-                {/* ── Expandable detail ── */}
-                <AnimatePresence initial={false}>
-                  {isExpanded && info && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="bg-primary/5 border border-primary/30 border-t-0 rounded-b-xl px-4 pb-4 pt-3 space-y-3">
-                        <Field label="厚度" value={info.thickness} />
-                        <Field label="材料" value={info.material} />
-                        <Field label="说明" value={info.description} />
+                  {/* ── Expandable detail ── */}
+                  <AnimatePresence initial={false}>
+                    {isExpanded && info && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="bg-primary/5 border border-primary/30 border-t-0 rounded-b-xl px-4 pb-4 pt-3 space-y-3">
+                          <Field label="厚度" value={info.thickness} />
+                          <Field label="材料" value={info.material} />
+                          <Field label="说明" value={info.description} />
 
-                        {/* Collapse button */}
-                        <button
-                          onClick={() => handleToggle(layer.objectName)}
-                          className="w-full flex items-center justify-center gap-1 py-2 rounded-lg
-                            text-xs text-muted-soft hover:text-muted hover:bg-surface-card transition-colors"
-                        >
-                          <ChevronUp size={14} strokeWidth={1.5} />
-                          <span>收起</span>
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.li>
-            );
-          })}
-        </motion.ul>
+                          {/* Collapse button */}
+                          <button
+                            onClick={() => handleToggle(layer.objectName)}
+                            className="w-full flex items-center justify-center gap-1 py-2 rounded-lg
+                              text-xs text-muted-soft hover:text-muted hover:bg-surface-card transition-colors"
+                          >
+                            <ChevronUp size={14} strokeWidth={1.5} />
+                            <span>收起</span>
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.li>
+              );
+            })}
+          </motion.ul>
+        )}
       </div>
 
       {/* ── Footer ── */}

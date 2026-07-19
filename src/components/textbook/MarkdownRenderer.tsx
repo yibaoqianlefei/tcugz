@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { nodesIndex } from "../../data/nodesIndex";
+import { getNodeDefinition } from "../../data/nodeDefinitions";
 
 /* ── Helpers ─ */
 
@@ -23,7 +23,7 @@ function hasImageChild(children: ReactNode): boolean {
 /* ── Model card ─ */
 
 function ModelCard({ nodeId }: { nodeId: string }) {
-  const node = nodesIndex.find((n) => n.id === nodeId);
+  const node = getNodeDefinition(nodeId);
   if (!node) return null;
   return (
     <Link
@@ -94,7 +94,7 @@ function Img({ src, alt }: ComponentPropsWithoutRef<"img">) {
 /* ── Clickable diagram (image wrapped in /node/:id link) ─ */
 
 function DiagramCard({ nodeId, children }: { nodeId: string; children: ReactNode }) {
-  const node = nodesIndex.find((n) => n.id === nodeId);
+  const node = getNodeDefinition(nodeId);
   return (
     <Link
       to={`/node/${nodeId}`}
