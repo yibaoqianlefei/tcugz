@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 
 const BAR_COLORS = [
   "bg-hairline",
@@ -10,7 +10,7 @@ const BAR_COLORS = [
 
 const BAR_WIDTHS = ["32%", "40%", "50%", "58%", "62%"] as const;
 
-const barVariants: any = {
+const barVariants: Variants = {
   hidden: { opacity: 0, x: -28, y: 0 },
   visible: (i: number) => ({
     opacity: 1,
@@ -34,7 +34,7 @@ const barVariants: any = {
   },
 };
 
-const containerVariants: any = {
+const containerVariants: Variants = {
   exit: {
     opacity: 0,
     transition: { duration: 0.4, ease: "easeIn" },

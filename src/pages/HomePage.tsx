@@ -21,6 +21,7 @@ import {
   LogIn,
   LogOut,
   ChevronRight,
+  type LucideIcon,
 } from "lucide-react";
 import MenuBackground from "../components/viewer/MenuBackground";
 import LoadingOverlay from "../components/viewer/LoadingOverlay";
@@ -131,7 +132,7 @@ interface MenuChildDef {
 }
 
 interface MenuItemDef {
-  icon: any;
+  icon: LucideIcon;
   label: string;
   id: string;
   to?: string;

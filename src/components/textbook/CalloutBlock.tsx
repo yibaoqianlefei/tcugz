@@ -1,3 +1,5 @@
+import type { ReactNode, ReactElement } from "react";
+
 /**
  * CalloutBlock — rendered from Markdown blockquote.
  * Detects prefixes: 重点/注意/易错/警告/拓展 and adjusts styling.
@@ -21,7 +23,7 @@ const STYLES: Record<CalloutType, { bg: string; border: string; icon: string; ti
   info:   { bg: "bg-surface-cream-strong/30", border: "border-hairline",     icon: "📖", title: "text-muted" },
 };
 
-export default function CalloutBlock({ children }: { children: React.ReactNode }) {
+export default function CalloutBlock({ children }: { children: ReactNode }) {
   // Extract text from children
   const text = extractText(children);
   const detected = detectType(text);
@@ -42,22 +44,33 @@ export default function CalloutBlock({ children }: { children: React.ReactNode }
   );
 }
 
-function extractText(children: React.ReactNode): string {
+/* ── Type guard: narrow ReactNode to a ReactElement with children ── */
+
+type ElementWithChildren = ReactElement<{ children?: ReactNode }>;
+
+function isReactElement(node: unknown): node is ElementWithChildren {
+  return (
+    typeof node === "object" &&
+    node !== null &&
+    "props" in node &&
+    "type" in node
+  );
+}
+
+/* ── Recursive text extraction from Markdown-parsed ReactNode tree ── */
+
+function extractText(children: ReactNode): string {
   if (typeof children === "string") return children;
   if (Array.isArray(children)) {
     return children
       .map((c) => {
         if (typeof c === "string") return c;
-        if (c && typeof c === "object" && "props" in c) {
-          return extractText((c as any).props.children);
-        }
+        if (isReactElement(c)) return extractText(c.props.children);
         return "";
       })
       .join("");
   }
-  if (children && typeof children === "object" && "props" in children) {
-    return extractText((children as any).props.children);
-  }
+  if (isReactElement(children)) return extractText(children.props.children);
   return "";
 }
 

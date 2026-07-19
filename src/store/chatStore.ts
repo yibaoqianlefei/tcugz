@@ -34,6 +34,13 @@ const WELCOME: ChatMessage = {
 /* ── System prompt (Step 5) ──────────────────────────────────── */
 const SYSTEM_PROMPT = `你是一个专业的建筑学助教，专门帮助建筑学大三学生理解建筑构造。回答需严谨、专业，并具有较强的空间逻辑感。回答时请分层次讲解（如结构层、找平层、防水层、保温层等），多用比喻和三维空间联想。如果遇到不懂的具体案例，请坦诚告知，并引导学生查阅教材。`;
 
+/* ── DeepSeek error response shape (only fields we read) ──────── */
+interface DeepSeekErrorResponse {
+  error?: {
+    message?: string;
+  };
+}
+
 /* ── API call ────────────────────────────────────────────────── */
 async function fetchAIResponse(messages: ChatMessage[]): Promise<string> {
   // Build API-compatible message array (system + history, no ids)
@@ -54,9 +61,9 @@ async function fetchAIResponse(messages: ChatMessage[]): Promise<string> {
   });
 
   if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
+    const err: DeepSeekErrorResponse = await res.json().catch(() => ({}));
     throw new Error(
-      (err as any).error?.message || `请求失败 (${res.status})`
+      err.error?.message || `请求失败 (${res.status})`
     );
   }
 

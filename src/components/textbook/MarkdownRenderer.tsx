@@ -156,7 +156,7 @@ function SideBySide({ children }: { children: ReactNode }) {
   );
 }
 
-function CustomDiv({ className, children, ...props }: any) {
+function CustomDiv({ className, children, ...props }: ComponentPropsWithoutRef<"div">) {
   if (className === "side") {
     return <SideBySide>{children}</SideBySide>;
   }

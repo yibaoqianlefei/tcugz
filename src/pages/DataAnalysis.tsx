@@ -297,26 +297,30 @@ export default function DataAnalysis() {
                       fill={CHART_COLORS.primary}
                       radius={[0, 4, 4, 0]}
                       barSize={18}
-                      label={({ x, y, width, value }: any) => {
-                        const high = value > 50;
+                      label={({ x, y, width, value }: { x?: unknown; y?: unknown; width?: unknown; value?: unknown }) => {
+                        const nx = Number(x) || 0;
+                        const ny = Number(y) || 0;
+                        const nw = Number(width) || 0;
+                        const nv = typeof value === "number" ? value : 0;
+                        const high = nv > 50;
                         const color = high ? CHART_COLORS.primary : CHART_COLORS.hairline;
                         // We use SVG foreignObject-free approach: render label text + Unicode arrow
                         // For now: show value with ↑/↓ prefix as SVG text
                         return (
                           <g>
                             <text
-                              x={x + width + 6}
-                              y={y + 14}
+                              x={nx + nw + 6}
+                              y={ny + 14}
                               fill="#6c6a64"
                               fontSize={12}
                               textAnchor="start"
                             >
-                              {value}
+                              {nv}
                             </text>
                             {/* Trend arrow rendered as text */}
                             <text
-                              x={x + width + 6 + String(value).length * 7 + 4}
-                              y={y + 14}
+                              x={nx + nw + 6 + String(nv).length * 7 + 4}
+                              y={ny + 14}
                               fill={color}
                               fontSize={12}
                             >

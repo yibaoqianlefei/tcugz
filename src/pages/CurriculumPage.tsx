@@ -17,7 +17,7 @@ function ModuleGrid() {
         <p className="mt-2 text-muted text-base">选择要学习的构造模块</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {courseModules.map((mod: any, i: number) => {
+        {courseModules.map((mod, i) => {
           const nodeCount = mod.nodeIds.filter((id: string) =>
             nodesIndex.some((n) => n.id === id)
           ).length;
