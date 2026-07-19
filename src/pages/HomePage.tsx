@@ -567,7 +567,7 @@ export default function HomePage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [autoRotate, setAutoRotate] = useState(true);
   const [sceneIndex, setSceneIndex] = useState(0);
-  const [bgLoading, setBgLoading] = useState(true);
+  const [loadedSceneIndex, setLoadedSceneIndex] = useState<number | null>(null);
   const [showShadows, setShowShadows] = useState(true);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const currentScene = backgroundScenes[sceneIndex];
@@ -589,10 +589,8 @@ export default function HomePage() {
     return () => { cancelAnimationFrame(raf); ro.disconnect(); };
   }, []);
 
-  // Show loader when scene changes
-  useEffect(() => {
-    setBgLoading(true);
-  }, [sceneIndex]);
+  // Derived: loading when current scene hasn't been marked as loaded yet
+  const bgLoading = loadedSceneIndex !== sceneIndex;
 
   // Preload all background models on mount
   useEffect(() => {
@@ -600,7 +598,9 @@ export default function HomePage() {
     paths.forEach((p) => useGLTF.preload(p, true));
   }, []);
 
-  const handleBgLoaded = useCallback(() => setBgLoading(false), []);
+  const handleBgLoaded = useCallback(() => {
+    setLoadedSceneIndex(sceneIndex);
+  }, [sceneIndex]);
 
   return (
     <div className="flex h-screen overflow-hidden bg-canvas">

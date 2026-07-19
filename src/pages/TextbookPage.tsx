@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -11,7 +10,7 @@ import RelatedModelsPanel from "../components/textbook/RelatedModelsPanel";
 import ChapterTOC from "../components/textbook/ChapterTOC";
 import PrevNextChapter from "../components/textbook/PrevNextChapter";
 
-/* ── Section lookup ── */
+/* ── Section data (static) ── */
 import introSections from "../data/sections/introSections";
 import wallSections from "../data/sections/wallSections";
 import windowSections from "../data/sections/windowSections";
@@ -21,11 +20,56 @@ import stairsSections from "../data/sections/stairsSections";
 import roofSections from "../data/sections/roofSections";
 import deformationJointSections from "../data/sections/deformationJointSections";
 
-const ALL_SECTIONS: Record<string, any[]> = {
-  introduction: introSections, wall: wallSections, "door-window": windowSections,
-  foundation: foundationSections, floor: floorSections, stairs: stairsSections,
-  roof: roofSections, "deformation-joint": deformationJointSections,
+/* ═══════════════════════════════════════════════════════════════
+   Types
+   ═══════════════════════════════════════════════════════════════ */
+
+interface CourseSection {
+  id: string;
+  title: string;
+  description: string;
+  available: boolean;
+  nodeIds: string[];
+  path?: string;
+  children?: CourseSection[];
+  icon?: string;
+  to?: string;
+  hasTextbook?: boolean;
+}
+
+interface CourseModule {
+  id: string;
+  title: string;
+  icon?: string;
+  description?: string;
+  nodeIds: string[];
+  available: boolean;
+}
+
+interface TextbookContext {
+  module: CourseModule;
+  section: CourseSection | null;
+  sections: CourseSection[];
+  isModule: boolean;
+  moduleId: string;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Static data
+   ═══════════════════════════════════════════════════════════════ */
+
+const ALL_SECTIONS: Record<string, CourseSection[]> = {
+  introduction: introSections,
+  wall: wallSections,
+  "door-window": windowSections,
+  foundation: foundationSections,
+  floor: floorSections,
+  stairs: stairsSections,
+  roof: roofSections,
+  "deformation-joint": deformationJointSections,
 };
+
+const MODULES = courseModules as CourseModule[];
 
 /* ── Static MD imports ── */
 import wallsIndex from "../data/textbook/walls/index.md?raw";
@@ -34,45 +78,72 @@ import wallsDesign from "../data/textbook/walls/wall-design-requirements.md?raw"
 import roofIndex from "../data/textbook/roof/index.md?raw";
 
 const MD_MAP: Record<string, string> = {
-  "wall/index": wallsIndex, "wall/wall-partition": wallsPartitions,
-  "wall/wall-design-requirements": wallsDesign, "roof/index": roofIndex,
+  "wall/index": wallsIndex,
+  "wall/wall-partition": wallsPartitions,
+  "wall/wall-design-requirements": wallsDesign,
+  "roof/index": roofIndex,
 };
 
 /* ── Module category → node filter ── */
 const MODULE_CATEGORY_MAP: Record<string, string> = {
-  wall: "墙体", roof: "屋顶",
+  wall: "墙体",
+  roof: "屋顶",
 };
+
+/* ═══════════════════════════════════════════════════════════════
+   Pure helpers (outside component, stable references)
+   ═══════════════════════════════════════════════════════════════ */
+
+function resolveContext(
+  moduleId: string | undefined,
+  chapterId: string | undefined,
+  sectionId: string | undefined,
+): TextbookContext | null {
+  // Two-param route: /textbook/:moduleId/:chapterId
+  if (moduleId && chapterId) {
+    const mod = MODULES.find((m) => m.id === moduleId);
+    if (!mod) return null;
+    const secs = ALL_SECTIONS[moduleId] || [];
+    const section = secs.find((s) => s.id === chapterId) ?? null;
+    return { module: mod, section, sections: secs, isModule: false, moduleId };
+  }
+
+  // One-param route: /textbook/:sectionId or /textbook/:moduleId
+  const id = sectionId || moduleId;
+  if (!id) return null;
+
+  const mod = MODULES.find((m) => m.id === id);
+  if (mod) {
+    const secs = ALL_SECTIONS[mod.id] || [];
+    return { module: mod, section: null, sections: secs, isModule: true, moduleId: mod.id };
+  }
+
+  for (const [mId, secs] of Object.entries(ALL_SECTIONS)) {
+    const section = secs.find((s) => s.id === id);
+    if (section) {
+      const parent = MODULES.find((m) => m.id === mId);
+      if (parent) {
+        return { module: parent, section, sections: secs, isModule: false, moduleId: mId };
+      }
+    }
+  }
+
+  return null;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Component
+   ═══════════════════════════════════════════════════════════════ */
 
 export default function TextbookPage() {
   const { sectionId, moduleId, chapterId } = useParams<{
-    sectionId?: string; moduleId?: string; chapterId?: string;
+    sectionId?: string;
+    moduleId?: string;
+    chapterId?: string;
   }>();
 
   /* ── Resolve context ── */
-  const ctx = useMemo(() => {
-    if (moduleId && chapterId) {
-      const mod = courseModules.find((m) => m.id === moduleId);
-      if (!mod) return null;
-      const secs = ALL_SECTIONS[moduleId] || [];
-      const sec = secs.find((s: any) => s.id === chapterId);
-      return { module: mod, section: sec ?? null, sections: secs, isModule: false, moduleId };
-    }
-    const id = sectionId || moduleId;
-    if (!id) return null;
-    const mod = courseModules.find((m) => m.id === id);
-    if (mod) {
-      const secs = ALL_SECTIONS[mod.id] || [];
-      return { module: mod, sections: secs, isModule: true, moduleId: mod.id };
-    }
-    for (const [mId, secs] of Object.entries(ALL_SECTIONS)) {
-      const sec = secs.find((s: any) => s.id === id);
-      if (sec) {
-        const parent = courseModules.find((m) => m.id === mId);
-        return { module: parent!, section: sec, sections: secs, isModule: false, moduleId: mId };
-      }
-    }
-    return null;
-  }, [sectionId, moduleId, chapterId]);
+  const ctx = resolveContext(moduleId, chapterId, sectionId);
 
   if (!ctx) {
     return (
@@ -89,11 +160,11 @@ export default function TextbookPage() {
 
   const { module: mod, section, sections, isModule } = ctx;
   const modId = ctx.moduleId;
-  const chapId = chapterId || section?.id;
+  const chapId = chapterId || section?.id || "";
   const category = MODULE_CATEGORY_MAP[modId] || "";
 
-  const displayTitle = isModule ? mod.title : (section as any)?.title ?? mod.title;
-  const displayDesc = isModule ? mod.description : (section as any)?.description ?? "";
+  const displayTitle = isModule ? mod.title : section?.title ?? mod.title;
+  const displayDesc = isModule ? mod.description ?? "" : section?.description ?? "";
 
   /* ── Markdown content ── */
   const fileKey = isModule ? `${modId}/index` : `${modId}/${chapId}`;
@@ -157,7 +228,7 @@ export default function TextbookPage() {
                   <section className="mt-10 pt-8 border-t border-hairline">
                     <h2 className="text-xl font-serif font-normal text-ink mb-4">章节列表</h2>
                     <div className="grid gap-3">
-                      {sections.map((sec: any) => (
+                      {sections.map((sec) => (
                         <Link
                           key={sec.id}
                           to={`/textbook/${mod.id}/${sec.id}`}

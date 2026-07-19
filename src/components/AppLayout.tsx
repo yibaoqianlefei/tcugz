@@ -1,21 +1,17 @@
-import { useState, useEffect } from "react";
 import { Outlet, useLocation, useNavigate, Link } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
 
 /**
  * Global layout wrapper — sticky nav bar on all non-home pages.
- * Simplified from 02-2: drops Supabase auth; keeps nav chrome.
  */
 function AppLayout() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isHome = pathname === "/";
   const isAuth = pathname === "/auth";
-  const [canGoBack, setCanGoBack] = useState(false);
 
-  useEffect(() => {
-    setCanGoBack(window.history.length > 1);
-  }, [pathname]);
+  // Derived: can go back if browser history has entries before this page
+  const canGoBack = window.history.length > 1;
 
   function handleBack() {
     navigate(-1);
