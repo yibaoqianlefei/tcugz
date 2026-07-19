@@ -2,7 +2,7 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getNodeDefinition } from "./data/nodeDefinitions";
 import { useNodeStore } from "./store/nodeStore";
-import { animControls } from "./components/viewer/ModelViewer";
+import { animControls } from "./components/viewer/animationController";
 import ModelViewer from "./components/viewer/ModelViewer";
 import NodeDiagramPanel from "./components/viewer/NodeDiagramPanel";
 import ConstructionKnowledgePanel from "./components/viewer/ConstructionKnowledgePanel";

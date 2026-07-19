@@ -1,49 +1,28 @@
-import { useRef, useEffect, Suspense, useState } from "react";
+import { useRef, useEffect, Suspense, useState, useCallback } from "react";
 import { Canvas, useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { useNodeStore } from "../../store/nodeStore";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { canonicalName as cnImport, isHitboxName } from "../../utils/nameUtils";
+import { registerAnimationActions, getAnimationActions } from "./animationController";
 
-/* ── Module-level refs ─────────────────────────────────────── */
-let _actions: THREE.AnimationAction[] = [];
+/* ── Module-level refs (non-animation) ──────────────────────── */
 let _modelScene: THREE.Group | null = null;
 let _controls: OrbitControlsImpl | null = null;
 let _isUserDragging = false;
 const _scaleCache = new Map<string, number>();
 
-export const animControls = {
-  play() {
-    _actions.forEach((a) => { a.timeScale = 1; a.paused = false; });
-    if (_actions.length > 0) useNodeStore.getState().setIsPlaying(true);
-  },
-
-  playReverse() {
-    _actions.forEach((a) => { a.timeScale = -1; a.paused = false; });
-    if (_actions.length > 0) useNodeStore.getState().setIsPlaying(true);
-  },
-
-  pause() {
-    _actions.forEach((a) => { a.paused = true; });
-    useNodeStore.getState().setIsPlaying(false);
-  },
-
-  setTime(t: number) {
-    _actions.forEach((a) => {
-      a.time = t;
-      a.paused = true;
-      a.getMixer().update(0);
-    });
-  },
-};
-
 /* ── Renderer setup ───────────────────────────────────────── */
 function RendererSetup({ showShadows }: { showShadows: boolean }) {
   const { gl } = useThree();
   useEffect(() => {
+    // Three.js WebGLRenderer is an imperative external object managed by R3F.
+    // These assignments configure the renderer after Canvas creation — required by Three.js API.
+    // eslint-disable-next-line react-hooks/immutability
     gl.shadowMap.enabled = showShadows;
     gl.shadowMap.type = THREE.PCFShadowMap;
+    // eslint-disable-next-line react-hooks/immutability
     gl.toneMapping = THREE.ACESFilmicToneMapping;
     gl.toneMappingExposure = 1.0;
     gl.outputColorSpace = THREE.SRGBColorSpace;
@@ -59,9 +38,10 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
   const clipRef = useRef<THREE.AnimationClip | null>(null);
   const groupRef = useRef<THREE.Group>(null);
   const meshMapRef = useRef<Map<string, THREE.Mesh[]>>(new Map());
-  const groupsRef = useRef(modelGroups);
-  groupsRef.current = modelGroups;
-  const resolveName = (name: string): string => cnImport(name, groupsRef.current);
+  const resolveName = useCallback(
+    (name: string): string => cnImport(name, modelGroups),
+    [modelGroups],
+  );
   const prevHovered = useRef<string | null>(null);
   const prevSelected = useRef<string | null>(null);
   const scaleApplied = useRef(false);
@@ -208,6 +188,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     }
 
     // AnimationMixer — play ALL clips simultaneously
+    let unregister = () => {};
     if (animations.length > 0) {
       const mixer = new THREE.AnimationMixer(scene);
       const actions: THREE.AnimationAction[] = [];
@@ -226,7 +207,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
       mixerRef.current = mixer;
       actionRef.current = actions[0];
       clipRef.current = animations.reduce((a, b) => a.duration > b.duration ? a : b);
-      _actions = actions;
+      unregister = registerAnimationActions(actions);
 
       // Force mesh transforms to animation time=0 (cached scene may have stale pose)
       // Use tiny delta — mixer.update(0) may be optimized away
@@ -242,10 +223,10 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
         mixerRef.current.stopAllAction();
         mixerRef.current.uncacheRoot(scene);
       }
-      _actions = [];
+      unregister();
       _modelScene = null;
     };
-  }, [scene, animations, setIsPlaying, modelScale]);
+  }, [scene, animations, setIsPlaying, modelScale, modelPath, resolveName]);
 
   // ── Viewport-responsive scale: smooth lerp, no jank ──
   const initialWidthRef = useRef(0);
@@ -290,12 +271,12 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
         // Auto-pause at boundaries
         if (t >= d) {
           actionRef.current.time = d;
-          _actions.forEach((a) => { a.paused = true; });
+          getAnimationActions().forEach((a) => { a.paused = true; });
           setIsPlaying(false);
           setAnimationProgress(1);
         } else if (t <= 0) {
           actionRef.current.time = 0;
-          _actions.forEach((a) => { a.paused = true; });
+          getAnimationActions().forEach((a) => { a.paused = true; });
           setIsPlaying(false);
           setAnimationProgress(0);
         } else {
@@ -309,17 +290,20 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
   const hoveredObject = useNodeStore((s) => s.hoveredObject);
   const selectedObject = useNodeStore((s) => s.selectedObject);
   const highlightEnabled = useNodeStore((s) => s.animationProgress >= 0.99);
-  const setGroupEmissive = (name: string | null, color: string, intensity: number) => {
-    if (!name) return;
-    const clean = resolveName(name);
-    const meshes = meshMapRef.current.get(clean);
-    if (!meshes) { console.log("[emissive] MISS:", name, "→ clean:", clean, "| keys:", [...meshMapRef.current.keys()]); return; }
-    console.log("[emissive] SET:", name, "→ clean:", clean, "| meshes:", meshes.length, "| color:", color);
-    meshes.forEach((mesh) => {
-      const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
-      mats.forEach((m) => { m.emissive?.set(color); m.emissiveIntensity = intensity; });
-    });
-  };
+  const setGroupEmissive = useCallback(
+    (name: string | null, color: string, intensity: number) => {
+      if (!name) return;
+      const clean = resolveName(name);
+      const meshes = meshMapRef.current.get(clean);
+      if (!meshes) { console.log("[emissive] MISS:", name, "→ clean:", clean, "| keys:", [...meshMapRef.current.keys()]); return; }
+      console.log("[emissive] SET:", name, "→ clean:", clean, "| meshes:", meshes.length, "| color:", color);
+      meshes.forEach((mesh) => {
+        const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
+        mats.forEach((m) => { m.emissive?.set(color); m.emissiveIntensity = intensity; });
+      });
+    },
+    [resolveName],
+  );
 
   // ── Apply highlights (only after full explosion) ──
   useEffect(() => {
@@ -351,7 +335,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
 
     prevHovered.current = hoveredObject;
     prevSelected.current = selectedObject;
-  }, [highlightEnabled, hoveredObject, selectedObject]);
+  }, [highlightEnabled, hoveredObject, selectedObject, setGroupEmissive]);
 
   // ── Helper: resolve logical name from intersection ──
   const findNamedMesh = (obj: THREE.Object3D): string | null => {

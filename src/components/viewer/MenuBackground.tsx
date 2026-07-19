@@ -1,11 +1,21 @@
-import { useRef, useEffect, Suspense, useMemo, useCallback, Component } from "react";
+import { useRef, useEffect, Suspense, useMemo, useCallback, Component, type ReactNode, type RefObject } from "react";
 import { useThree, useFrame } from "@react-three/fiber";
 import { useGLTF, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
+import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 
 /* ── Error Boundary (class component for GLB load failures) ── */
-class ErrorBoundary extends Component<{ fallback: React.ReactNode; children: React.ReactNode }, { hasError: boolean }> {
-  constructor(props: any) {
+interface ErrorBoundaryProps {
+  children: ReactNode;
+  fallback: ReactNode;
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+}
+
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
   }
@@ -60,7 +70,7 @@ function SceneModel({ modelPath, onReady }: { modelPath: string; onReady?: () =>
         mats.forEach((mat) => {
           mat.depthWrite = true;
           mat.depthTest = true;
-          (mat as any).transparent = false;
+          mat.transparent = false;
           mat.polygonOffset = true;
           mat.polygonOffsetFactor = 1;
           mat.polygonOffsetUnits = 1;
@@ -102,8 +112,12 @@ function ShadowLight({ showShadows }: { showShadows: boolean }) {
 function RendererSetup({ showShadows }: { showShadows: boolean }) {
   const { gl } = useThree();
   useEffect(() => {
+    // Three.js WebGLRenderer is an imperative external object managed by R3F.
+    // These assignments configure the renderer after Canvas creation — required by Three.js API.
+    // eslint-disable-next-line react-hooks/immutability
     gl.shadowMap.enabled = showShadows;
     gl.shadowMap.type = THREE.PCFShadowMap;
+    // eslint-disable-next-line react-hooks/immutability
     gl.toneMapping = THREE.ACESFilmicToneMapping;
     gl.toneMappingExposure = 1.0;
   }, [gl, showShadows]);
@@ -121,11 +135,12 @@ function ShadowPlane() {
 }
 
 /* ── Canvas resize handler ─────────────────────────────────── */
-function ResizeWatcher({ controlsRef }: { controlsRef: React.RefObject<any> }) {
+function ResizeWatcher({ controlsRef }: { controlsRef: RefObject<OrbitControlsImpl | null> }) {
   const { size } = useThree();
   useEffect(() => {
-    if (controlsRef.current) {
-      const t = setTimeout(() => controlsRef.current.update(), 60);
+    const ctrl = controlsRef.current;
+    if (ctrl) {
+      const t = setTimeout(() => ctrl.update(), 60);
       return () => clearTimeout(t);
     }
   }, [size.width, size.height, controlsRef]);
@@ -141,6 +156,7 @@ interface MenuBackgroundProps {
   showShadows?: boolean;
   layoutKey?: number;
   containerWidth?: number;
+  initialContainerWidth?: number | null;
 }
 
 function MenuBackground({
@@ -151,18 +167,16 @@ function MenuBackground({
   showShadows = true,
   layoutKey = 0,
   containerWidth = 0,
+  initialContainerWidth = null,
 }: MenuBackgroundProps) {
   const groupRef = useRef<THREE.Group>(null);
-  const controlsRef = useRef<any>(null);
+  const controlsRef = useRef<OrbitControlsImpl | null>(null);
   const handleSceneReady = useCallback(() => onLoaded?.(), [onLoaded]);
 
-  // Viewport-responsive scale: capture initial width as baseline, adjust ratio on resize
+  // Viewport-responsive scale: use first non-zero canvas width as baseline.
+  // initialContainerWidth is captured once by the parent ResizeObserver callback.
   const baseScale = 1.5;
-  const initialWidthRef = useRef(0);
-  if (containerWidth > 0 && initialWidthRef.current === 0) {
-    initialWidthRef.current = containerWidth;
-  }
-  const refWidth = initialWidthRef.current || containerWidth || 1200;
+  const refWidth = initialContainerWidth || containerWidth || 1200;
   const ratio = containerWidth > 0 ? Math.min(1, Math.max(0.4, containerWidth / refWidth)) : 1;
   const targetScale = baseScale * ratio;
 

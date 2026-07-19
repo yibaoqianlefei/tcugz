@@ -572,9 +572,18 @@ export default function HomePage() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const currentScene = backgroundScenes[sceneIndex];
   const container3dRef = useRef<HTMLDivElement>(null);
-  const [containerWidth, setContainerWidth] = useState(0);
+  interface ContainerMetrics {
+    currentWidth: number;
+    initialWidth: number | null;
+  }
+  const [containerMetrics, setContainerMetrics] = useState<ContainerMetrics>({
+    currentWidth: 0,
+    initialWidth: null,
+  });
 
-  // ResizeObserver: throttled via rAF to avoid per-frame state updates
+  // ResizeObserver: throttled via rAF to avoid per-frame state updates.
+  // Captures the first non-zero width as the baseline (initialWidth) for
+  // responsive scaling; subsequent resizes only update currentWidth.
   useEffect(() => {
     const el = container3dRef.current;
     if (!el) return;
@@ -582,7 +591,11 @@ export default function HomePage() {
     const ro = new ResizeObserver((entries) => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
-        setContainerWidth(entries[0]?.contentRect.width ?? 0);
+        const nextWidth = entries[0]?.contentRect.width ?? 0;
+        setContainerMetrics((prev) => ({
+          currentWidth: nextWidth,
+          initialWidth: prev.initialWidth ?? (nextWidth > 0 ? nextWidth : null),
+        }));
       });
     });
     ro.observe(el);
@@ -672,7 +685,8 @@ export default function HomePage() {
             onLoaded={handleBgLoaded}
             showShadows={showShadows}
             layoutKey={expandedId ? 1 : 0}
-            containerWidth={containerWidth}
+            containerWidth={containerMetrics.currentWidth}
+            initialContainerWidth={containerMetrics.initialWidth}
           />
         </Canvas>
 
