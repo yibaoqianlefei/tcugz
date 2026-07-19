@@ -4,9 +4,38 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft } from "lucide-react";
 import courseModules from "../data/courseModules";
 
-// ── Lazy section data loaders (file-based, no Supabase) ─────
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const sectionsMap: Record<string, () => Promise<any>> = {
+/* ═══════════════════════════════════════════════════════════════
+   Types
+   ═══════════════════════════════════════════════════════════════ */
+
+interface CourseModule {
+  id: string;
+  title: string;
+  icon?: string;
+  description?: string;
+  nodeIds: string[];
+  available: boolean;
+}
+
+interface CourseSection {
+  id: string;
+  title: string;
+  description: string;
+  nodeIds: string[];
+  available: boolean;
+  icon?: string;
+  to?: string;
+  hasTextbook?: boolean;
+  children?: CourseSection[];
+}
+
+type SectionModule = { default: CourseSection[] };
+
+/* ═══════════════════════════════════════════════════════════════
+   Static section loaders
+   ═══════════════════════════════════════════════════════════════ */
+
+const sectionsMap: Record<string, () => Promise<SectionModule>> = {
   introduction: () => import("../data/sections/introSections"),
   wall: () => import("../data/sections/wallSections"),
   "door-window": () => import("../data/sections/windowSections"),
@@ -18,24 +47,16 @@ const sectionsMap: Record<string, () => Promise<any>> = {
   cases: () => import("../data/sections/caseSections"),
 };
 
-// ── Types ────────────────────────────────────────────────────
-interface Section {
-  id: string;
-  title: string;
-  description: string;
-  nodeIds: string[];
-  available: boolean;
-  icon?: string;
-  to?: string;
-  hasTextbook?: boolean;
-  children?: Section[];
-}
+const modules = courseModules as CourseModule[];
 
-// ── Section Card ─────────────────────────────────────────────
+/* ═══════════════════════════════════════════════════════════════
+   SectionCard
+   ═══════════════════════════════════════════════════════════════ */
+
 function SectionCard({ sec, index, onClick }: {
-  sec: Section;
+  sec: CourseSection;
   index: number;
-  onClick: (sec: Section) => void;
+  onClick: (sec: CourseSection) => void;
 }) {
   const hasChildren = sec.children && sec.children.length > 0;
   const nodeCount = (sec.nodeIds || []).length;
@@ -115,20 +136,36 @@ function SectionCard({ sec, index, onClick }: {
   );
 }
 
-// ── Section Sub Page ─────────────────────────────────────────
-export default function SectionSubPage() {
+/* ═══════════════════════════════════════════════════════════════
+   Route wrapper — key={moduleId} forces clean remount on switch
+   ═══════════════════════════════════════════════════════════════ */
+
+export default function SectionSubPageRoute() {
   const { moduleId } = useParams<{ moduleId: string }>();
-  const [sections, setSections] = useState<Section[]>([]);
+  return <SectionSubPageContent key={moduleId} moduleId={moduleId!} />;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Content — fresh mount per moduleId, no effect-driven reset
+   ═══════════════════════════════════════════════════════════════ */
+
+function SectionSubPageContent({ moduleId }: { moduleId: string }) {
+  const [sections, setSections] = useState<CourseSection[]>([]);
   const [loading, setLoading] = useState(true);
-  const [parentSection, setParentSection] = useState<Section | null>(null);
+  const [parentSection, setParentSection] = useState<CourseSection | null>(null);
 
-  const moduleInfo = courseModules.find((m: any) => m.id === moduleId);
+  const moduleInfo = modules.find((m) => m.id === moduleId);
 
+  // Async section loading with cancellation guard
   useEffect(() => {
     let cancelled = false;
+    const loader = sectionsMap[moduleId];
+
     async function load() {
-      const loader = sectionsMap[moduleId!];
-      if (!loader) { if (!cancelled) setSections([]); return; }
+      if (!loader) {
+        if (!cancelled) setSections([]);
+        return;
+      }
       try {
         const mod = await loader();
         if (!cancelled) setSections(mod.default || []);
@@ -136,15 +173,17 @@ export default function SectionSubPage() {
         if (!cancelled) setSections([]);
       }
     }
-    setLoading(true);
-    load().finally(() => { if (!cancelled) setLoading(false); });
-    return () => { cancelled = true; };
+
+    load().finally(() => {
+      if (!cancelled) setLoading(false);
+    });
+
+    return () => {
+      cancelled = true;
+    };
   }, [moduleId]);
 
-  // Reset drill-down on module change
-  useEffect(() => { setParentSection(null); }, [moduleId]);
-
-  const handleDrillDown = useCallback((sec: Section) => {
+  const handleDrillDown = useCallback((sec: CourseSection) => {
     setParentSection(sec);
   }, []);
 
@@ -161,8 +200,8 @@ export default function SectionSubPage() {
   }
 
   const displayedSections = parentSection ? parentSection.children || [] : sections;
-  const pageTitle = parentSection ? parentSection.title : moduleInfo?.title || moduleId || "";
-  const pageDesc = parentSection ? parentSection.description : (moduleInfo as any)?.description || "";
+  const pageTitle = parentSection ? parentSection.title : moduleInfo?.title || moduleId;
+  const pageDesc = parentSection ? parentSection.description : moduleInfo?.description || "";
 
   return (
     <div className="min-h-screen bg-canvas flex flex-col">
@@ -178,13 +217,13 @@ export default function SectionSubPage() {
               <>
                 <button onClick={handleBackToParent}
                   className="text-primary hover:text-primary-active transition-colors cursor-pointer">
-                  {(moduleInfo as any)?.title || moduleId}
+                  {moduleInfo?.title || moduleId}
                 </button>
                 <span className="mx-1.5 text-muted-soft">›</span>
                 <span className="text-muted">{parentSection.title}</span>
               </>
             ) : (
-              <span className="text-muted">{(moduleInfo as any)?.title || moduleId}</span>
+              <span className="text-muted">{moduleInfo?.title || moduleId}</span>
             )}
           </span>
         </div>

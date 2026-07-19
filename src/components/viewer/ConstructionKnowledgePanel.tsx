@@ -3,8 +3,48 @@ import { useNodeStore } from "../../store/nodeStore";
 import { useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUp } from "lucide-react";
-import { getNodeDefinition } from "../../data/nodeDefinitions";
+import { getNodeDefinition, type NodeLayerInfo } from "../../data/nodeDefinitions";
 import { canonicalName } from "../../utils/nameUtils";
+
+/* ═══════════════════════════════════════════════════════════════
+   Pure helpers — no component state dependencies
+   ═══════════════════════════════════════════════════════════════ */
+
+/** Normalize object names: strip spaces/underscores/dots, unify CJK punctuation */
+function normalizeName(str: string): string {
+  return str
+    .replace(/：/g, ":")       // full-width colon → half-width
+    .replace(/[\s_.]+/g, "")  // spaces, underscores, dots (Three.js strips all)
+    .replace(/，/g, ",")      // full-width comma
+    .replace(/、/g, ",");     // ideographic comma
+}
+
+/** Match a 3D component name against the layer list, with progressive suffix stripping */
+function findMatchingLayer(
+  selectedObject: string,
+  layers: NodeLayerInfo[],
+): NodeLayerInfo | undefined {
+  const norm = normalizeName(selectedObject);
+
+  // Try exact match first
+  let matched = layers.find((l) => normalizeName(l.objectName) === norm);
+
+  // Strip trailing digits/underscores progressively (e.g. 01_1 → 01)
+  if (!matched) {
+    let base = norm;
+    while (base.length > 1 && /[_\d]+$/.test(base)) {
+      base = base.replace(/[_\d]+$/, "");
+      matched = layers.find((l) => normalizeName(l.objectName) === base);
+      if (matched) break;
+    }
+  }
+
+  return matched;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Component
+   ═══════════════════════════════════════════════════════════════ */
 
 /**
  * ConstructionKnowledgePanel — accordion-style layer cards.
@@ -22,12 +62,19 @@ export default function ConstructionKnowledgePanel() {
   const setSelectedObject = useNodeStore((s) => s.setSelectedObject);
   const linkageEnabled = useNodeStore((s) => s.linkageEnabled);
 
-  // Accordion state: which card is expanded (null = all collapsed)
-  const [expandedId, setExpandedId] = useState<string | null>(null);
+  // ── Manual expand state (used when linkage is OFF) ──
+  // Tracks both the value AND the owning nodeId so stale state
+  // from a previous node is safely ignored without an effect.
+  const [manualState, setManualState] = useState<{
+    nodeId: string | undefined;
+    expandedId: string | null;
+  }>(() => ({ nodeId, expandedId: null }));
 
+  // If the owning node changed, treat manual state as reset (no setState in render)
+  const manualExpandedId = manualState.nodeId === nodeId ? manualState.expandedId : null;
+
+  // ── Sorted layers (stable identity from useMemo) ──
   const config = node?.layerConfig;
-
-  // Sort layers by order descending (topmost first), stable identity via useMemo
   const layers = useMemo(
     () =>
       [...(config?.layers ?? [])].sort(
@@ -36,49 +83,51 @@ export default function ConstructionKnowledgePanel() {
     [config],
   );
 
-  // ── Normalize: remove spaces, unify Chinese/English punctuation ──
-  function normalizeName(str: string): string {
-    return str
-      .replace(/：/g, ":")           // full-width colon
-      .replace(/[\s_.]+/g, "")      // spaces + underscores + dots (Three.js strips all)
-      .replace(/，/g, ",")
-      .replace(/、/g, ",");
-  }
+  // ── Derived: which card 3D selection points to (pure computation, zero side-effects) ──
+  const linkedExpandedId = useMemo(() => {
+    if (!linkageEnabled || !selectedObject) return null;
+    const matched = findMatchingLayer(selectedObject, layers);
+    return matched?.objectName ?? null;
+  }, [linkageEnabled, selectedObject, layers]);
 
-  // ── Sync: 3D click → panel auto-expand (gated by linkageEnabled) ──
+  // ── Diagnostic only: warn when 3D selection has no matching layer ──
   useEffect(() => {
-    if (!linkageEnabled) return;
-    if (!selectedObject) {
-      setExpandedId(null);
-      return;
+    if (
+      import.meta.env.DEV &&
+      linkageEnabled &&
+      selectedObject &&
+      !linkedExpandedId
+    ) {
+      console.warn(
+        "[面板警告] 3D点击命中，但数据中找不到对应名称:",
+        selectedObject,
+      );
     }
-    // Find matching layer: try exact, then progressively strip suffixes
-    const norm = normalizeName(selectedObject);
-    let matched = layers.find((l) => normalizeName(l.objectName) === norm);
-    if (!matched) {
-      // Strip trailing digits/underscores progressively (01_1 → 01)
-      let base = norm;
-      while (base.length > 1 && /[_\d]+$/.test(base)) {
-        base = base.replace(/[_\d]+$/, "");
-        matched = layers.find((l) => normalizeName(l.objectName) === base);
-        if (matched) break;
-      }
-    }
-    if (matched) {
-      setExpandedId(matched.objectName);
-    } else {
-      console.warn("[面板警告] 3D点击命中，但数据中找不到对应名称:", selectedObject);
-    }
-  }, [selectedObject, layers]);
+  }, [linkageEnabled, selectedObject, linkedExpandedId]);
 
+  // ── Effective expanded card ──
+  const expandedId = linkageEnabled ? linkedExpandedId : manualExpandedId;
+
+  // ── Card toggle (unified handler, no effect cascade) ──
   const handleToggle = (objectName: string) => {
-    if (expandedId === objectName) {
-      setExpandedId(null);
-      if (linkageEnabled) setSelectedObject(null);
+    const isCurrentlyExpanded = expandedId === objectName;
+
+    if (isCurrentlyExpanded) {
+      // Collapse
+      if (linkageEnabled) {
+        // When linked, clearing selection collapses the card automatically
+        setSelectedObject(null);
+      } else {
+        setManualState({ nodeId, expandedId: null });
+      }
     } else {
-      setExpandedId(objectName);
-      // Send canonical form (spaces→_, dots→del) so 3D lookup matches
-      if (linkageEnabled) setSelectedObject(canonicalName(objectName));
+      // Expand
+      if (linkageEnabled) {
+        // When linked, selecting the 3D object expands the card automatically
+        setSelectedObject(canonicalName(objectName));
+      } else {
+        setManualState({ nodeId, expandedId: objectName });
+      }
     }
   };
 
