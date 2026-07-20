@@ -147,6 +147,15 @@ function ResizeWatcher({ controlsRef }: { controlsRef: RefObject<OrbitControlsIm
   return null;
 }
 
+/* ── Pan-return constants ──────────────────────────────────── */
+
+/** Home target — mirrors OrbitControls target prop. Only panning
+ *  (which shifts both camera.position and controls.target equally)
+ *  is restored; rotation and zoom are preserved. */
+const HOME_TARGET = new THREE.Vector3(0, 0.5, 0);
+const PAN_RETURN_SPEED = 10;
+const PAN_EPSILON = 0.001;
+
 /* ── Main Component ── */
 interface MenuBackgroundProps {
   autoRotate?: boolean;
@@ -172,6 +181,51 @@ function MenuBackground({
   const groupRef = useRef<THREE.Group>(null);
   const controlsRef = useRef<OrbitControlsImpl | null>(null);
   const handleSceneReady = useCallback(() => onLoaded?.(), [onLoaded]);
+
+  // ── Pan-return: restore target to centre while keeping rotation & zoom ──
+  const isInteractingRef = useRef(false);
+  const isPanReturningRef = useRef(false);
+  const panOffsetRef = useRef(new THREE.Vector3());
+
+  const handleStart = useCallback(() => {
+    isInteractingRef.current = true;
+    isPanReturningRef.current = false;
+  }, []);
+
+  const handleEnd = useCallback(() => {
+    isInteractingRef.current = false;
+    const ctrl = controlsRef.current;
+    if (!ctrl) return;
+    if (ctrl.target.distanceTo(HOME_TARGET) > PAN_EPSILON) {
+      isPanReturningRef.current = true;
+    }
+  }, []);
+
+  // Pan-return useFrame: translate camera.position += step, controls.target += step
+  useFrame((_, delta) => {
+    if (isInteractingRef.current || !isPanReturningRef.current) return;
+    const ctrl = controlsRef.current;
+    const cam = ctrl?.object as THREE.PerspectiveCamera | undefined;
+    if (!ctrl || !cam) return;
+
+    const offset = panOffsetRef.current.copy(HOME_TARGET).sub(ctrl.target);
+    const dist = offset.length();
+
+    if (dist < PAN_EPSILON) {
+      cam.position.add(offset); // apply final tiny residual
+      ctrl.target.copy(HOME_TARGET);
+      ctrl.update();
+      isPanReturningRef.current = false;
+      return;
+    }
+
+    const alpha = 1 - Math.exp(-PAN_RETURN_SPEED * Math.min(delta, 0.1));
+    const step = offset.multiplyScalar(alpha);
+
+    cam.position.add(step);
+    ctrl.target.add(step);
+    ctrl.update();
+  });
 
   // Viewport-responsive scale: use first non-zero canvas width as baseline.
   // initialContainerWidth is captured once by the parent ResizeObserver callback.
@@ -225,10 +279,15 @@ function MenuBackground({
         dampingFactor={0.08}
         autoRotate={autoRotate}
         autoRotateSpeed={0.5}
+        enablePan
+        enableRotate
+        enableZoom
         minDistance={0.5}
         maxDistance={15}
         maxPolarAngle={Math.PI / 2}
         target={[0, 0.5, 0]}
+        onStart={handleStart}
+        onEnd={handleEnd}
       />
 
       <group ref={groupRef} position={position} scale={baseScale}>

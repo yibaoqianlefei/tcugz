@@ -91,7 +91,7 @@ HomePage
 ### NodeDetail 内部架构（核心页面）
 
 ```
-NodeDetail.tsx (编排器, 249行)
+NodeDetail.tsx (编排器, ~290行)
   ├── 统一配置读取: getNodeDefinition(nodeId)             ← ⭐ 单一配置源
   │     ├── node.model     → modelPath / modelScale / modelGroups
   │     ├── node.diagram   → diagramImage
@@ -100,7 +100,8 @@ NodeDetail.tsx (编排器, 249行)
   ├── Header (面包屑)
   ├── Body (三栏 flex)
   │   ├── NodeDiagramPanel (520px)     ← 剖面图
-  │   ├── ModelViewer (flex-1, 562行) + animationController (75行)  ← 3D 视口 ⭐
+  │   ├── ErrorBoundary (resetKey=nodeId:modelPath) ← 🆕 模型错误兜底
+│   │   └── ModelViewer (flex-1, ~540行) + animationController (75行)  ← 3D 视口 ⭐
   │   │   ├── SceneModel               ← GLB + AnimationMixer + 边缘线 + 高亮(门控)
   │   │   │                              + hitbox/proxy 命中系统 + 材质克隆 + 名称标准化
   │   │   ├── CameraTracker            ← 动态锚点：Box3 → controls.target.lerp
@@ -135,7 +136,8 @@ NodeDetail.tsx (编排器, 249行)
 | 事件 | R3F `onPointerOver/Out/Click` + `findNamedMesh()` |
 | 阴影 | PCFShadowMap, 2048×2048, UI 开关 |
 | 色调映射 | ACESFilmicToneMapping, exposure=1.0 |
-| 相机 | 02-2 风格动态锚点：Box3 → controls.target.lerp(center, alpha)，拖拽时暂停 |
+| 相机 | 02-2 风格动态锚点：Box3 → controls.target.lerp(center, alpha)，Drei `onStart`/`onEnd` 声明式拖拽检测 |
+| 错误兜底 | 🆕 `ErrorBoundary` class 组件 — 模型区域 (resetKey=nodeId:modelPath) + 路由 lazy chunk (resetKey=pathname+search) |
 
 ### 命中系统（双模式）
 
@@ -185,6 +187,7 @@ Three.js GLB 加载时的名称变化（`canonicalName()` 自动处理）：
 - Blender 重复后缀 `.NNN`: 优先剥离（早于删 dot），`"墙体.007"` → `"墙体"`
 - Blender hitbox: `"钢筋_hitbox"` → `"钢筋"` (isHitboxName 检测 + 后缀剥离)
 - 构件分组: `"01"`→`"马牙槎"` (MODEL_GROUPS 显式映射)
+- Three.js 多 primitive: GLTFLoader 为每个 primitive 生成 `_N` 后缀子 Mesh，需在 groups 中精确映射（如 `"40厚细石混凝土毛面001_1"`、`"40厚细石混凝土毛面001_2"`）
 - 双 dot 名称: MODEL_GROUPS 覆写（如 `"120厚块石,1：2.5水泥砂浆灌缝.001"` → `"120厚块石,1：25水泥砂浆灌缝"`）
 
 ---
@@ -200,7 +203,8 @@ src/
 │
 ├── components/
 │   ├── AppLayout.tsx                     # 全局导航栏
-│   ├── RouteSuspense.tsx                  # lazy 组件 + Suspense 包装 (34行)
+│   ├── ErrorBoundary.tsx                  # 🆕 通用错误边界 (class, resetKey)
+│   ├── RouteSuspense.tsx                  # lazy + Suspense + ErrorBoundary 包装 (~80行)
 │   └── viewer/
 │       ├── ModelViewer.tsx               # ⭐ 3D 视口 (562行)
 │       ├── animationController.ts         # 动画控制器 token 守卫单例 (75行)
@@ -419,8 +423,12 @@ src/
 | 墙体节点 | 细石混凝土散水(9层) + 块石散水(9层) + 泡沫塑料保温板(7层) + 岩棉防火保温板(7层) |
 | 檐沟节点 | 檐沟外排水(6层) |
 | 教材系统 | 双参数路由 + MD静态导入 + 左右双栏 + 章节列表 + 模型关联 |
+| 错误边界 | 🆕 ErrorBoundary class 组件 — 模型区域 (NodeDetail) + 路由 lazy chunk (RouteSuspense) |
+| OrbitControls | 🆕 Drei 声明式 `onStart`/`onEnd` 替换手动 addEventListener |
 | 部署 | gh-pages 直接部署 (`npm run deploy`) |
 | 安全 | Vite 代理隐藏 API Key |
+| 质量 | 🆕 全项目 Lint 0 / TSC 0 / Build 0；全项目审计 (AUDIT_REPORT.md)；浏览器验收 (BROWSER_ACCEPTANCE_REPORT.md) |
+| 生产验证 | 🆕 Route ErrorBoundary chunk 故障注入通过；Model ErrorBoundary GLB 阻断通过 |
 
 ### 待完成
 
@@ -436,7 +444,7 @@ src/
 
 | 问题 | 影响范围 | 状态 | 说明 |
 |------|----------|------|------|
-| 白色 MeshPhysicalMaterial 构件高亮不可见 | flat-roof-01「40厚细石混凝土毛面」 | 🔴 待修复 | emissive 赋值确认成功但视觉无变化，疑似父 Mesh 遮挡或材质通道未生效。已排除：名称映射、material 共享、effect 覆盖、强度不足。已建立 `materialHighlightStateRef` 缓存 + `setGroupHighlight` 双通道回退，待浏览器逐帧调试确认可见表面身份 |
+| ~~白色 MeshPhysicalMaterial 构件高亮不可见~~ → ✅ 已解决 (2026-07-20) | flat-roof-01「40厚细石混凝土毛面」 | 🟢 已修复 | **根因**: GLB 含 3 个 primitive (216+24+972 顶点)，Three.js GLTFLoader 生成 3 个独立子 Mesh (`001`, `001_1`, `001_2`)，groups 仅映射了 `001`，漏掉含 972 顶点的主体表面 (2K_Planks14)。**修复**: nodeDefinitions.ts groups 增加 `_1`、`_2` 后缀精确映射。验证: Playwright meshMap=3 ✅ + GUI hover/selected/多角度 ✅ |
 
 ### 已修复的 Lint 问题
 
@@ -549,4 +557,11 @@ npx tsc --noEmit         # 类型检查
 
 ---
 
-_最后更新：2026-07-19_
+_最后更新：2026-07-20_
+
+### 18. 审计与验收报告
+
+| 文件 | 内容 |
+|------|------|
+| `AUDIT_REPORT.md` | 全项目静态审计 (20 章, P0=0 P1=0 P2=3→0 fixed P3=23) |
+| `BROWSER_ACCEPTANCE_REPORT.md` | 浏览器验收 (Playwright headless + GUI, 15 路由 ✅, ErrorBoundary 故障注入 ✅, 响应式 9/9 ✅) |
