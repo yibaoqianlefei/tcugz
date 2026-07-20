@@ -465,7 +465,6 @@ function LoadingFallback() {
 function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: number; containerWidth?: number }) {
   const boxRef = useRef(new THREE.Box3());
   const centerRef = useRef(new THREE.Vector3());
-  const listenersAttached = useRef(false);
   const { size } = useThree();
 
   useEffect(() => {
@@ -486,11 +485,6 @@ function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: numb
     const controls = _controls;
     const scene = _modelScene;
     if (!controls || !scene) return;
-    if (!listenersAttached.current) {
-      listenersAttached.current = true;
-      controls.addEventListener("start", () => { _isUserDragging = true; });
-      controls.addEventListener("end", () => { _isUserDragging = false; });
-    }
     if (_isUserDragging) return;
     const box = boxRef.current;
     box.setFromObject(scene);
@@ -520,6 +514,10 @@ export default function ModelViewer({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
+
+  // ── Drag-state callbacks for CameraTracker (declarative via drei onStart/onEnd) ──
+  const handleControlsStart = useCallback(() => { _isUserDragging = true; }, []);
+  const handleControlsEnd = useCallback(() => { _isUserDragging = false; }, []);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -554,6 +552,8 @@ export default function ModelViewer({
           minDistance={1} maxDistance={40}
           maxPolarAngle={Math.PI / 2.2}
           enablePan
+          onStart={handleControlsStart}
+          onEnd={handleControlsEnd}
         />
         <CameraTracker layoutKey={layoutKey} containerWidth={containerWidth} />
       </Canvas>
