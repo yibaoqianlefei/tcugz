@@ -7,6 +7,30 @@ import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { canonicalName as cnImport, isHitboxName } from "../../utils/nameUtils";
 import { registerAnimationActions, getAnimationActions } from "./animationController";
 
+/* ═══════════════════════════════════════════════════════════════
+   Material highlight — original-state cache + dual-channel restore
+   ═══════════════════════════════════════════════════════════════ */
+
+interface MaterialHighlightState {
+  color?: THREE.Color;
+  emissive?: THREE.Color;
+  emissiveIntensity?: number;
+}
+
+function hasColor(material: THREE.Material): material is THREE.Material & { color: THREE.Color } {
+  return "color" in material && material.color instanceof THREE.Color;
+}
+
+function hasEmissive(material: THREE.Material): material is THREE.Material & { emissive: THREE.Color; emissiveIntensity: number } {
+  return (
+    "emissive" in material &&
+    material.emissive instanceof THREE.Color &&
+    "emissiveIntensity" in material
+  );
+}
+
+type HighlightMode = "clear" | "hover" | "selected";
+
 /* ── Module-level refs (non-animation) ──────────────────────── */
 let _modelScene: THREE.Group | null = null;
 let _controls: OrbitControlsImpl | null = null;
@@ -45,6 +69,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
   const prevHovered = useRef<string | null>(null);
   const prevSelected = useRef<string | null>(null);
   const scaleApplied = useRef(false);
+  const materialHighlightStateRef = useRef(new WeakMap<THREE.Material, MaterialHighlightState>());
 
   const setSelectedObject = useNodeStore((s) => s.setSelectedObject);
   const setHoveredObject = useNodeStore((s) => s.setHoveredObject);
@@ -66,7 +91,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
       console.log("[GLB] tracks.length:", animations[0]?.tracks?.length);
     }
 
-    // ── Auto-size: scale model to fit view (keyed by model+modelScale) ──
+    // ── Auto-size ──
     const cacheKey = `${modelPath}::ms${modelScale}`;
     if (!_scaleCache.has(cacheKey)) {
       scene.scale.setScalar(1);
@@ -86,19 +111,16 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     scene.updateMatrixWorld();
     console.log("[ModelViewer] 最终应用缩放:", cachedScale, "| model:", modelPath);
 
-    // ── Auto-center after scaling ──
+    // ── Auto-center ──
     const box = new THREE.Box3().setFromObject(scene);
     const center = new THREE.Vector3();
     box.getCenter(center);
     scene.position.set(-center.x, -center.y, -center.z);
-
-    // Expose scene for camera auto-frame
     _modelScene = scene;
 
-    // Build mesh map + shadows + edge lines + hitboxes / proxies
     const isFirstInit = !scaleApplied.current;
 
-    // ── Pass 1: detect which components have Blender-authored hitboxes ──
+    // ── Pass 1: detect hitboxes ──
     const hasHitbox = new Set<string>();
     if (isFirstInit) {
       scene.traverse((c) => {
@@ -112,9 +134,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     // ── Pass 2: process meshes ──
     scene.traverse((child) => {
       if (child instanceof THREE.Mesh) {
-        // Skip proxy meshes (prevent infinite nesting)
         if (child.userData._isProxy) return;
-
         child.castShadow = true;
         child.receiveShadow = true;
 
@@ -122,26 +142,20 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
           const isHitbox = isHitboxName(child.name);
           const logicalName = resolveName(child.name);
 
-          // Register in meshMapRef — visible meshes only (not hitboxes, not proxies)
           if (!isHitbox) {
             if (!meshMapRef.current.has(logicalName)) {
               meshMapRef.current.set(logicalName, []);
             }
             const list = meshMapRef.current.get(logicalName)!;
-            if (!list.includes(child)) {
-              list.push(child);
-            }
+            if (!list.includes(child)) list.push(child);
           }
 
           if (isFirstInit) {
             if (isHitbox) {
-              // Blender hitbox: invisible, catches clicks (don't touch raycast)
               child.visible = false;
             } else if (hasHitbox.has(logicalName)) {
-              // Component has hitbox → disable raycast on visible mesh
               child.raycast = () => {};
             } else {
-              // No hitbox → create invisible proxy for raycast
               const proxy = new THREE.Mesh(child.geometry.clone(), new THREE.MeshBasicMaterial());
               proxy.name = logicalName;
               proxy.visible = false;
@@ -153,7 +167,6 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
           }
         }
 
-        // Edge lines — skip hitbox meshes
         if (isFirstInit && !isHitboxName(child.name)) {
           const edges = new THREE.EdgesGeometry(child.geometry, 15);
           const line = new THREE.LineSegments(
@@ -166,7 +179,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
       }
     });
 
-    // ── Clone shared materials (first mount only) ──
+    // ── Clone materials + save original state ──
     if (isFirstInit) {
       meshMapRef.current.forEach((meshes) => {
         meshes.forEach((mesh) => {
@@ -177,40 +190,42 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
           }
         });
       });
-      // Reset ALL emissive to black (prevents stale highlights from cached GLB materials)
       meshMapRef.current.forEach((meshes) => {
         meshes.forEach((mesh) => {
-          const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
-          mats.forEach((m) => { m.emissive?.set("#000000"); m.emissiveIntensity = 0; });
+          const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+          mats.forEach((m) => {
+            if (materialHighlightStateRef.current.has(m)) return;
+            materialHighlightStateRef.current.set(m, {
+              color: hasColor(m) ? m.color.clone() : undefined,
+              emissive: hasEmissive(m) ? m.emissive.clone() : undefined,
+              emissiveIntensity: hasEmissive(m) ? m.emissiveIntensity : undefined,
+            });
+          });
         });
       });
       scaleApplied.current = true;
     }
 
-    // AnimationMixer — play ALL clips simultaneously
+    // ── AnimationMixer ──
     let unregister = () => {};
     if (animations.length > 0) {
       const mixer = new THREE.AnimationMixer(scene);
       const actions: THREE.AnimationAction[] = [];
-
       animations.forEach((clip, i) => {
         const action = mixer.clipAction(clip);
         action.reset();
         action.setLoop(THREE.LoopOnce, 1);
         action.clampWhenFinished = true;
-        action.paused = true; // don't auto-play
+        action.paused = true;
         action.play();
         actions.push(action);
         console.log(`[GLB] clip[${i}] "${clip.name}" loaded, duration=${clip.duration}`);
       });
-
       mixerRef.current = mixer;
       actionRef.current = actions[0];
       clipRef.current = animations.reduce((a, b) => a.duration > b.duration ? a : b);
       unregister = registerAnimationActions(actions);
 
-      // Force mesh transforms to animation time=0 (cached scene may have stale pose)
-      // Use tiny delta — mixer.update(0) may be optimized away
       actions.forEach((a) => { a.paused = false; });
       mixer.update(0.001);
       actions.forEach((a) => { a.paused = true; });
@@ -228,7 +243,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     };
   }, [scene, animations, setIsPlaying, modelScale, modelPath, resolveName]);
 
-  // ── Viewport-responsive scale: smooth lerp, no jank ──
+  // ── Viewport-responsive scale ──
   const initialWidthRef = useRef(0);
   const targetScaleRef = useRef(0);
   useEffect(() => {
@@ -241,7 +256,6 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     targetScaleRef.current = baseScale * ratio;
   }, [containerWidth, modelPath, modelScale, scene]);
 
-  // Smooth lerp scale each frame
   useFrame((_, delta) => {
     if (!scene || targetScaleRef.current <= 0) return;
     const current = scene.scale.x;
@@ -249,7 +263,6 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     const next = current + (target - current) * Math.min(delta * 6, 1);
     if (Math.abs(next - current) > 0.0005) {
       scene.scale.setScalar(next);
-      // Re-center camera when scale changes
       if (_modelScene && _controls) {
         const box = new THREE.Box3().setFromObject(_modelScene);
         const center = new THREE.Vector3();
@@ -259,16 +272,13 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     }
   });
 
-  // ── Per-frame: mixer update + boundary auto-pause ────────
+  // ── Per-frame: mixer update + boundary auto-pause ──
   useFrame((_, delta) => {
     if (mixerRef.current) {
       mixerRef.current.update(Math.min(delta, 0.033));
-
       if (clipRef.current && actionRef.current) {
         const t = actionRef.current.time;
         const d = clipRef.current.duration;
-
-        // Auto-pause at boundaries
         if (t >= d) {
           actionRef.current.time = d;
           getAnimationActions().forEach((a) => { a.paused = true; });
@@ -286,67 +296,89 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     }
   });
 
-  // ── Highlight state ──
+  // ═══════════════════════════════════════════════════════════
+  //  HIGHLIGHT SYSTEM
+  // ═══════════════════════════════════════════════════════════
+
   const hoveredObject = useNodeStore((s) => s.hoveredObject);
   const selectedObject = useNodeStore((s) => s.selectedObject);
   const highlightEnabled = useNodeStore((s) => s.animationProgress >= 0.99);
-  const setGroupEmissive = useCallback(
-    (name: string | null, color: string, intensity: number) => {
+
+  /** Restore a material to its original GLB state from the WeakMap cache. */
+  function restoreMaterial(m: THREE.Material): void {
+    const state = materialHighlightStateRef.current.get(m);
+    if (!state) return;
+    if (state.color && hasColor(m)) m.color.copy(state.color);
+    if (state.emissive && hasEmissive(m)) { m.emissive.copy(state.emissive); m.emissiveIntensity = state.emissiveIntensity!; }
+    m.needsUpdate = true;
+  }
+
+  const setGroupHighlight = useCallback(
+    (name: string | null, mode: HighlightMode) => {
       if (!name) return;
       const clean = resolveName(name);
       const meshes = meshMapRef.current.get(clean);
-      if (!meshes) { console.log("[emissive] MISS:", name, "→ clean:", clean, "| keys:", [...meshMapRef.current.keys()]); return; }
-      console.log("[emissive] SET:", name, "→ clean:", clean, "| meshes:", meshes.length, "| color:", color);
+      if (!meshes) { if (import.meta.env.DEV) console.log("[highlight] MISS:", name, "→", clean); return; }
       meshes.forEach((mesh) => {
-        const mats = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as THREE.MeshStandardMaterial[];
-        mats.forEach((m) => { m.emissive?.set(color); m.emissiveIntensity = intensity; });
+        const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+        mats.forEach((m) => {
+          restoreMaterial(m);
+          if (mode === "clear") return;
+
+          if (mode === "hover") {
+            if (hasEmissive(m)) {
+              m.emissive.set("#ffffff");
+              m.emissiveIntensity = 1.25;
+            } else if (hasColor(m)) {
+              m.color.lerp(new THREE.Color("#8fd8ff"), 0.35);
+            }
+          } else if (mode === "selected") {
+            if (hasEmissive(m)) {
+              m.emissive.set("#d4a843");
+              m.emissiveIntensity = 1.15;
+            } else if (hasColor(m)) {
+              m.color.lerp(new THREE.Color("#d4a843"), 0.55);
+            }
+          }
+
+          m.needsUpdate = true;
+        });
       });
     },
     [resolveName],
   );
 
-  // ── Apply highlights (only after full explosion) ──
+  // ── Apply highlights: deterministic priority-based ──
   useEffect(() => {
-    if (!highlightEnabled) {
-      setGroupEmissive(prevHovered.current, "#000000", 0);
-      setGroupEmissive(prevSelected.current, "#000000", 0);
-      prevHovered.current = null;
-      prevSelected.current = null;
-      return;
-    }
+    const namesToReset = new Set<string>();
+    if (prevHovered.current) namesToReset.add(prevHovered.current);
+    if (prevSelected.current) namesToReset.add(prevSelected.current);
+    if (hoveredObject) namesToReset.add(hoveredObject);
+    if (selectedObject) namesToReset.add(selectedObject);
 
-    // Clear previous
-    if (prevHovered.current && prevHovered.current !== selectedObject) {
-      setGroupEmissive(prevHovered.current, "#000000", 0);
-    }
-    if (prevSelected.current && prevSelected.current !== selectedObject) {
-      if (prevSelected.current !== hoveredObject) {
-        setGroupEmissive(prevSelected.current, "#000000", 0);
+    namesToReset.forEach((n) => setGroupHighlight(n, "clear"));
+
+    if (highlightEnabled) {
+      if (hoveredObject && hoveredObject !== selectedObject) {
+        setGroupHighlight(hoveredObject, "hover");
       }
-    }
-
-    // Apply selected (highest priority)
-    setGroupEmissive(selectedObject, "#d4a843", 0.5);
-
-    // Apply hover (lower priority, only if not selected)
-    if (hoveredObject && hoveredObject !== selectedObject) {
-      setGroupEmissive(hoveredObject, "#ffffff", 0.4);
+      if (selectedObject) {
+        setGroupHighlight(selectedObject, "selected");
+      }
     }
 
     prevHovered.current = hoveredObject;
     prevSelected.current = selectedObject;
-  }, [highlightEnabled, hoveredObject, selectedObject, setGroupEmissive]);
+  }, [highlightEnabled, hoveredObject, selectedObject, setGroupHighlight]);
 
-  // ── Helper: resolve logical name from intersection ──
+  // ── Picking ──
   const findNamedMesh = (obj: THREE.Object3D): string | null => {
     console.log("[hit] obj:", obj.name, "type:", obj.type, "parent:", obj.parent?.name, "parentType:", obj.parent?.type);
-    // Parent Group (only if it's a real Group, not Scene root)
     if (obj.parent && obj.parent.type === "Group" && obj.parent.name && obj.parent.name !== "Scene") {
       const result = resolveName(obj.parent.name);
       console.log("[hit] → parent group:", result);
       return result;
     }
-    // Direct hit on a named Mesh
     if (obj instanceof THREE.Mesh && obj.name) {
       const result = resolveName(obj.name);
       console.log("[hit] → mesh:", result);
@@ -356,7 +388,6 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     return null;
   };
 
-  // ── R3F native pointer events (only active after full explosion) ──
   const handlePointerOver = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation();
     if (useNodeStore.getState().animationProgress < 0.99) return;
@@ -430,14 +461,13 @@ function LoadingFallback() {
   );
 }
 
-/* ── Camera tracker: 02-2 style explosion target interpolation ── */
+/* ── Camera tracker ───────────────────────────────────────── */
 function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: number; containerWidth?: number }) {
   const boxRef = useRef(new THREE.Box3());
   const centerRef = useRef(new THREE.Vector3());
   const listenersAttached = useRef(false);
   const { size } = useThree();
 
-  // Force re-center on viewport resize, container width, or layout change
   useEffect(() => {
     const controls = _controls;
     const scene = _modelScene;
@@ -456,23 +486,15 @@ function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: numb
     const controls = _controls;
     const scene = _modelScene;
     if (!controls || !scene) return;
-
-    // Lazy-attach drag listeners
     if (!listenersAttached.current) {
       listenersAttached.current = true;
       controls.addEventListener("start", () => { _isUserDragging = true; });
       controls.addEventListener("end", () => { _isUserDragging = false; });
     }
-
-    // Pause during user drag
     if (_isUserDragging) return;
-
-    // Dynamic Box3 from current animation frame
     const box = boxRef.current;
     box.setFromObject(scene);
     box.getCenter(centerRef.current);
-
-    // Fast lerp orbit target to current center (02-2 style)
     const alpha = 1 - Math.exp(-8.0 * delta);
     controls.target.lerp(centerRef.current, alpha);
   });
@@ -499,7 +521,6 @@ export default function ModelViewer({
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
 
-  // ResizeObserver: watch the actual DOM pixel width of the canvas container
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;

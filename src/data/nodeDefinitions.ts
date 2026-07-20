@@ -123,6 +123,10 @@ export const nodeDefinitions: NodeDefinition[] = [
     model: {
       path: assetPath("models/roof/flat-roof/flat-roof.glb"),
       scale: 2.5,
+      groups: {
+        "40厚细石混凝土毛面001": "40厚细石混凝土毛面",
+        "钢筋混凝土屋面002": "钢筋混凝土屋面",
+      },
     },
     layerConfig: {
       layers: flatRoofLayers as NodeLayerInfo[],
@@ -142,6 +146,9 @@ export const nodeDefinitions: NodeDefinition[] = [
     model: {
       path: assetPath("models/roof/sloped-roof/sloped-roof.glb"),
       scale: 2.5,
+      groups: {
+        "钢筋混凝土屋面板001": "钢筋混凝土屋面板",
+      },
     },
     layerConfig: {
       layers: slopedRoofLayers as NodeLayerInfo[],

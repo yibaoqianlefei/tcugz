@@ -91,7 +91,7 @@ HomePage
 ### NodeDetail 内部架构（核心页面）
 
 ```
-NodeDetail.tsx (编排器, ~275行)
+NodeDetail.tsx (编排器, 249行)
   ├── 统一配置读取: getNodeDefinition(nodeId)             ← ⭐ 单一配置源
   │     ├── node.model     → modelPath / modelScale / modelGroups
   │     ├── node.diagram   → diagramImage
@@ -100,7 +100,7 @@ NodeDetail.tsx (编排器, ~275行)
   ├── Header (面包屑)
   ├── Body (三栏 flex)
   │   ├── NodeDiagramPanel (520px)     ← 剖面图
-  │   ├── ModelViewer (flex-1, 557行)  ← 3D 视口 ⭐
+  │   ├── ModelViewer (flex-1, 562行) + animationController (75行)  ← 3D 视口 ⭐
   │   │   ├── SceneModel               ← GLB + AnimationMixer + 边缘线 + 高亮(门控)
   │   │   │                              + hitbox/proxy 命中系统 + 材质克隆 + 名称标准化
   │   │   ├── CameraTracker            ← 动态锚点：Box3 → controls.target.lerp
@@ -115,13 +115,13 @@ NodeDetail.tsx (编排器, ~275行)
         └── 阴影切换 (Sun) + 联动开关 (Link2)
 ```
 
-### ModelViewer 核心系统 (557行)
+### ModelViewer 核心系统 (562行 + animationController 75行)
 
 | 子系统 | 实现 |
 |--------|------|
 | GLB 加载 | `useGLTF(path, true)` Draco 解码 |
 | 动画 | 所有 AnimationClip 同时播放，`LoopOnce` 单次播放，`clampWhenFinished` 保持末帧 |
-| 动画控制 | `_actions.forEach()` 批量控制 play/pause/reverse/setTime |
+| 动画控制 | `animationController.ts` token 守卫单例；`getAnimationActions()` 供 useFrame 边界自动暂停 |
 | 自动缩放 | Box3 一次性计算（排除 hitbox/proxy），`_scaleCache` 缓存，可配置 modelScale |
 | 视口自适应 | ResizeObserver → containerWidth → useFrame lerp 平滑过渡 |
 | 自动居中 | Box3 居中（排除 hitbox/proxy） |
@@ -131,7 +131,7 @@ NodeDetail.tsx (编排器, ~275行)
 | 材质隔离 | 初始化时克隆所有命名 Mesh 的 material，防跨构件高亮泄露 |
 | 逻辑名分组 | `meshMapRef: Map<逻辑名, Mesh[]>` — 多材质/子构件聚合到同一逻辑名 |
 | 名称标准化 | `src/utils/nameUtils.ts` — `canonicalName()` + `isHitboxName()` |
-| 高亮效果 | hover: emissive white 0.4 / selected: emissive `#d4a843`(亮金) 0.5 |
+| 高亮系统 | `setGroupHighlight(name, mode)` — 从 WeakMap 恢复原色后双通道高亮: emissive 路径(白1.25/金1.15) \| color.lerp 回退(浅蓝0.35/金0.55) |
 | 事件 | R3F `onPointerOver/Out/Click` + `findNamedMesh()` |
 | 阴影 | PCFShadowMap, 2048×2048, UI 开关 |
 | 色调映射 | ACESFilmicToneMapping, exposure=1.0 |
@@ -162,13 +162,19 @@ NodeDetail.tsx (编排器, ~275行)
 ### 高亮应用流程
 
 ```
-store.selectedObject 变化
+store.selectedObject / hoveredObject 变化
   ↓
-useEffect → setGroupEmissive(logicalName, color, intensity)
+useEffect (确定性重建) → 收集 prev+current 名称集合
+  ↓ namesToReset.forEach → setGroupHighlight(n, "clear")
+  │   ├── restoreMaterial() → WeakMap 恢复原始 color / emissive / emissiveIntensity
   ↓
-meshMapRef.get(logicalName) → Mesh[] (全部子 Mesh)
-  ↓
-每个子 Mesh → 所有 material → emissive 修改（材质已克隆，不泄露）
+if highlightEnabled:
+  ├── hoveredObject && ≠ selected → setGroupHighlight(n, "hover")
+  │     ├── emissive 支持: emissive=#ffffff, intensity=1.25
+  │     └── 回退: color.lerp(#8fd8ff, 0.35)
+  └── selectedObject → setGroupHighlight(n, "selected")
+        ├── emissive 支持: emissive=#d4a843, intensity=1.15
+        └── 回退: color.lerp(#d4a843, 0.55)
 ```
 
 ### 名称标准化系统
@@ -194,8 +200,10 @@ src/
 │
 ├── components/
 │   ├── AppLayout.tsx                     # 全局导航栏
+│   ├── RouteSuspense.tsx                  # lazy 组件 + Suspense 包装 (34行)
 │   └── viewer/
-│       ├── ModelViewer.tsx               # ⭐ 3D 视口 (~530行)
+│       ├── ModelViewer.tsx               # ⭐ 3D 视口 (562行)
+│       ├── animationController.ts         # 动画控制器 token 守卫单例 (75行)
 │       ├── MenuBackground.tsx            # 首页 3D 背景 + 可控阴影
 │       ├── LoadingOverlay.tsx            # 加载动画
 │       ├── NodeDiagramPanel.tsx          # 左面板：剖面图 (520px)
@@ -312,10 +320,10 @@ src/
 
 | ID | 标题 | 分类 | GLB 模型 | 层数据 | modelScale |
 |----|------|------|----------|--------|-----------|
-| `flat-roof-01` | 平屋面构造 | 屋顶 | 2.3MB | 8层 | 3.5(默认) |
-| `sloped-roof-01` | 坡屋顶构造 | 屋顶 | 1.9MB | 9层 | 3.5(默认) |
-| `roof-drainage-01` | 无组织排水 | 屋顶 | 123KB | 3层 | 3.5(默认) |
-| `organized-drainage-01` | 有组织排水 | 屋顶 | 153KB | 4层 | 3.5(默认) |
+| `flat-roof-01` | 平屋面构造 | 屋顶 | 2.3MB | 8层 | **2.5** |
+| `sloped-roof-01` | 坡屋顶构造 | 屋顶 | 1.9MB | 9层 | **2.5** |
+| `roof-drainage-01` | 无组织排水 | 屋顶 | 123KB | 3层 | **2.5** |
+| `organized-drainage-01` | 有组织排水 | 屋顶 | 153KB | 4层 | **2.5** |
 | `construction-column-01` | 构造柱 | 墙体 | 214KB | 7层 | **4** |
 | `apron-flashing-01` | 细石混凝土散水 | 墙体 | 326KB | 9层 | **2** |
 | `eaves-gutter-01` | 檐沟外排水 | 屋顶 | 177KB | 6层 | **2** |
@@ -423,6 +431,25 @@ src/
 | 拖拽组装游戏 | 中 |
 | 郓城案例模型迁移 | 低 |
 | 课本内容填充 | 中 |
+
+### 已知问题
+
+| 问题 | 影响范围 | 状态 | 说明 |
+|------|----------|------|------|
+| 白色 MeshPhysicalMaterial 构件高亮不可见 | flat-roof-01「40厚细石混凝土毛面」 | 🔴 待修复 | emissive 赋值确认成功但视觉无变化，疑似父 Mesh 遮挡或材质通道未生效。已排除：名称映射、material 共享、effect 覆盖、强度不足。已建立 `materialHighlightStateRef` 缓存 + `setGroupHighlight` 双通道回退，待浏览器逐帧调试确认可见表面身份 |
+
+### 已修复的 Lint 问题
+
+全项目 Lint 从 **53 problems** 逐步清零至 **0 problems**。主要修复批次：
+
+| 批次 | 文件 | 问题 | 修复方式 |
+|------|------|------|----------|
+| 节点配置 | nodesIndex, NodeDetail, ConstructionKnowledgePanel | 多处重复注册 | 建立 nodeDefinitions 单一配置源 |
+| React Hooks | NodeDetail, ConstructionKnowledgePanel, SectionSubPage, AppLayout, HomePage, TextbookPage | refs-in-render, set-state-in-effect, deps, memoization | key 重挂载, 派生状态, useCallback |
+| TypeScript | CalloutBlock, chatStore, LoadingOverlay, MarkdownRenderer, CurriculumPage, DataAnalysis, HomePage, TextbookPage, MenuBackground | no-explicit-any ×19 | 类型守卫, 官方类型导入 |
+| 模块拆分 | routes.tsx, ModelViewer.tsx | react-refresh, 混合导出 | RouteSuspense, animationController 独立模块 |
+| Three.js | ModelViewer.tsx, MenuBackground.tsx | immutability ×4 | 行级 eslint-disable + 注释说明 |
+| 尺寸基准 | MenuBackground.tsx, HomePage.tsx | refs-in-render ×5 | ContainerMetrics 状态提升 |
 
 ---
 
