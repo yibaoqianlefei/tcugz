@@ -55,7 +55,7 @@ function RendererSetup({ showShadows }: { showShadows: boolean }) {
 }
 
 /* ── Model component (auto-center + highlight + animation) ──── */
-function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGroups }: { modelPath: string; containerWidth?: number; modelScale?: number; modelGroups?: Record<string, string> }) {
+function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGroups, noAnimation = false, nonInteractive }: { modelPath: string; containerWidth?: number; modelScale?: number; modelGroups?: Record<string, string>; noAnimation?: boolean; nonInteractive?: string[] }) {
   const { scene, animations } = useGLTF(modelPath, true);
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
   const actionRef = useRef<THREE.AnimationAction | null>(null);
@@ -142,7 +142,9 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
           const isHitbox = isHitboxName(child.name);
           const logicalName = resolveName(child.name);
 
-          if (!isHitbox) {
+          const isNonInteractive = nonInteractive && nonInteractive.includes(logicalName);
+
+          if (!isHitbox && !isNonInteractive) {
             if (!meshMapRef.current.has(logicalName)) {
               meshMapRef.current.set(logicalName, []);
             }
@@ -151,7 +153,9 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
           }
 
           if (isFirstInit) {
-            if (isHitbox) {
+            if (isNonInteractive) {
+              child.raycast = () => {};
+            } else if (isHitbox) {
               child.visible = false;
             } else if (hasHitbox.has(logicalName)) {
               child.raycast = () => {};
@@ -208,7 +212,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
 
     // ── AnimationMixer ──
     let unregister = () => {};
-    if (animations.length > 0) {
+    if (animations.length > 0 && !noAnimation) {
       const mixer = new THREE.AnimationMixer(scene);
       const actions: THREE.AnimationAction[] = [];
       animations.forEach((clip, i) => {
@@ -233,6 +237,12 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
       setIsPlaying(false);
     }
 
+    // noAnimation: snap to fully-expanded state
+    if (noAnimation && isFirstInit) {
+      setAnimationProgress(1);
+      setIsPlaying(false);
+    }
+
     return () => {
       if (mixerRef.current) {
         mixerRef.current.stopAllAction();
@@ -241,7 +251,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
       unregister();
       _modelScene = null;
     };
-  }, [scene, animations, setIsPlaying, modelScale, modelPath, resolveName]);
+  }, [scene, animations, setIsPlaying, modelScale, modelPath, resolveName, noAnimation, setAnimationProgress, nonInteractive]);
 
   // ── Viewport-responsive scale ──
   const initialWidthRef = useRef(0);
@@ -504,6 +514,8 @@ export default function ModelViewer({
   layoutKey = 0,
   modelScale = 2.5,
   modelGroups,
+  noAnimation = false,
+  nonInteractive,
 }: {
   autoRotate?: boolean;
   modelPath: string;
@@ -511,6 +523,8 @@ export default function ModelViewer({
   layoutKey?: number;
   modelScale?: number;
   modelGroups?: Record<string, string>;
+  noAnimation?: boolean;
+  nonInteractive?: string[];
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -542,7 +556,7 @@ export default function ModelViewer({
         <SceneLights showShadows={showShadows} />
         {showShadows && <ShadowPlane />}
         <Suspense fallback={<LoadingFallback />}>
-          <SceneModel modelPath={modelPath} containerWidth={containerWidth} modelScale={modelScale} modelGroups={modelGroups} />
+          <SceneModel modelPath={modelPath} containerWidth={containerWidth} modelScale={modelScale} modelGroups={modelGroups} noAnimation={noAnimation} nonInteractive={nonInteractive} />
         </Suspense>
         <OrbitControls
           ref={(ctrl) => { _controls = ctrl; }}

@@ -33,14 +33,23 @@ export default function NodeDetail() {
     useNodeStore.getState().resetNodeInteractionState();
   }, [nodeId]);
 
+  // ── noAnimation nodes: set progress to 1 after reset ──
+  const noAnimation = !!node?.model?.noAnimation;
+  useEffect(() => {
+    if (noAnimation) {
+      useNodeStore.getState().setAnimationProgress(1);
+    }
+  }, [nodeId, noAnimation]);
+
   // ── Track visited node (only record valid nodes) ──
   const addVisitedNode = useAnalysisStore((s) => s.addVisitedNode);
   useEffect(() => {
     if (nodeId && node) addVisitedNode(nodeId);
   }, [nodeId, node, addVisitedNode]);
 
-  // ── Play explosion (forward) ──
+  // ── Play explosion (forward) — locked for noAnimation nodes ──
   const playExplosion = () => {
+    if (noAnimation) return;
     if (animationProgress >= 1) {
       setAnimationProgress(0);
       animControls.setTime(0);
@@ -48,14 +57,16 @@ export default function NodeDetail() {
     animControls.play();
   };
 
-  // ── Collapse explosion (reverse playback) ──
+  // ── Collapse explosion (reverse playback) — locked for noAnimation nodes ──
   const collapseExplosion = () => {
+    if (noAnimation) return;
     if (animationProgress <= 0) return;
     animControls.playReverse();
   };
 
-  // ── Slider change ──
+  // ── Slider change — locked for noAnimation nodes ──
   const onSliderChange = (value: number) => {
+    if (noAnimation) return;
     animControls.pause();
     setAnimationProgress(value);
     animControls.setTime(value * totalDuration);
@@ -148,6 +159,8 @@ export default function NodeDetail() {
                 modelPath={model.path}
                 modelScale={model.scale}
                 modelGroups={model.groups}
+                noAnimation={node.model?.noAnimation}
+                nonInteractive={node.model?.nonInteractive}
               />
             </ErrorBoundary>
           ) : (

@@ -24,6 +24,9 @@ import { stoneApronLayers, getLayerInfo as getStoneApronLayer } from "./stoneApr
 import { foamInsulationLayers, getLayerInfo as getFoamInsulationLayer } from "./foamInsulationLayers";
 import { rockwoolInsulationLayers, getLayerInfo as getRockwoolInsulationLayer } from "./rockwoolInsulationLayers";
 import { concreteStepsLayers, getLayerInfo as getConcreteStepsLayer } from "./concreteStepsLayers";
+import { plasterPlinthLayers, getLayerInfo as getPlasterPlinthLayer } from "./plasterPlinthLayers";
+import { stairCompositionLayers, getLayerInfo as getStairCompositionLayer } from "./stairCompositionLayers";
+import { facedPlinthLayers, getLayerInfo as getFacedPlinthLayer } from "./facedPlinthLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
@@ -56,6 +59,10 @@ export interface NodeModelConfig {
   path: string;
   scale: number;
   groups?: Record<string, string>;
+  /** When true, the node loads in fully-expanded state and the timeline is locked. */
+  noAnimation?: boolean;
+  /** Canonical names of meshes to exclude from hover/click/highlight. */
+  nonInteractive?: string[];
 }
 
 export interface NodeDiagramConfig {
@@ -332,7 +339,78 @@ export const nodeDefinitions: NodeDefinition[] = [
     },
   },
 
+  {
+    id: "faced-plinth-01",
+    title: "贴面勒脚构造做法",
+    description:
+      "外墙根部贴面勒脚节点，五层构造：回填土→垫层→防潮层→贴面层→墙体。贴面勒脚比抹灰勒脚更耐久美观。",
+    category: "墙体",
+    thumbnail: assetPath("images/faced-plinth-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/wall/faced-plinth/faced-plinth.glb"),
+      scale: 2,
+      noAnimation: true,
+      nonInteractive: ["其余"],
+    },
+    diagram: {
+      path: assetPath("images/faced-plinth-diagram.png"),
+    },
+    layerConfig: {
+      layers: facedPlinthLayers as NodeLayerInfo[],
+      getLayerInfo: getFacedPlinthLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+  },
+
+  {
+    id: "plaster-plinth-01",
+    title: "抹灰勒脚构造做法",
+    description:
+      "外墙根部抹灰勒脚节点，五层构造：素土夯实→垫层→防潮层→抹灰层→墙体。勒脚保护墙体根部免受雨水溅湿和机械碰撞。",
+    category: "墙体",
+    thumbnail: assetPath("images/plaster-plinth-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/wall/plaster-plinth/plaster-plinth.glb"),
+      scale: 2,
+      groups: {
+        "墙体.001": "墙体",
+      },
+      noAnimation: true,
+    },
+    diagram: {
+      path: assetPath("images/plaster-plinth-diagram.png"),
+    },
+    layerConfig: {
+      layers: plasterPlinthLayers as NodeLayerInfo[],
+      getLayerInfo: getPlasterPlinthLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+  },
+
   /* ── Stairs nodes ────────────────────────────────────────── */
+  {
+    id: "stair-composition-01",
+    title: "楼梯的组成",
+    description:
+      "楼梯基本构造节点，六个组成部分：中间平台→梯段→楼层平台→栏杆→顶层水平栏杆→其他构件。楼梯是建筑垂直交通的核心构件。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stair-composition-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/stair-composition/stair-composition.glb"),
+      scale: 3.5,
+      noAnimation: true,
+      nonInteractive: ["其余"],
+    },
+    diagram: {
+      path: assetPath("images/stair-composition-diagram.png"),
+    },
+    layerConfig: {
+      layers: stairCompositionLayers as NodeLayerInfo[],
+      getLayerInfo: getStairCompositionLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+  },
+
   {
     id: "concrete-steps-01",
     title: "混凝土台阶",
