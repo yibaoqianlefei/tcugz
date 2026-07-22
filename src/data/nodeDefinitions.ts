@@ -27,6 +27,8 @@ import { concreteStepsLayers, getLayerInfo as getConcreteStepsLayer } from "./co
 import { plasterPlinthLayers, getLayerInfo as getPlasterPlinthLayer } from "./plasterPlinthLayers";
 import { stairCompositionLayers, getLayerInfo as getStairCompositionLayer } from "./stairCompositionLayers";
 import { facedPlinthLayers, getLayerInfo as getFacedPlinthLayer } from "./facedPlinthLayers";
+import { stonePlinthLayers, getLayerInfo as getStonePlinthLayer } from "./stonePlinthLayers";
+import { rcElevatedStepsLayers, getLayerInfo as getRcElevatedStepsLayer } from "./rcElevatedStepsLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
@@ -363,6 +365,29 @@ export const nodeDefinitions: NodeDefinition[] = [
   },
 
   {
+    id: "stone-plinth-01",
+    title: "石砌勒脚构造做法",
+    description:
+      "外墙根部石砌勒脚节点，四层构造：回填土→垫层→石砌层→墙体。石砌勒脚采用天然石材，耐久抗冻、质感厚重。",
+    category: "墙体",
+    thumbnail: assetPath("images/stone-plinth-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/wall/stone-plinth/stone-plinth.glb"),
+      scale: 2,
+      noAnimation: true,
+      nonInteractive: ["其余"],
+    },
+    diagram: {
+      path: assetPath("images/stone-plinth-diagram.png"),
+    },
+    layerConfig: {
+      layers: stonePlinthLayers as NodeLayerInfo[],
+      getLayerInfo: getStonePlinthLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+  },
+
+  {
     id: "plaster-plinth-01",
     title: "抹灰勒脚构造做法",
     description:
@@ -388,6 +413,27 @@ export const nodeDefinitions: NodeDefinition[] = [
   },
 
   /* ── Stairs nodes ────────────────────────────────────────── */
+  {
+    id: "rc-elevated-steps-01",
+    title: "钢筋混凝土架空台阶",
+    description:
+      "室外架空台阶节点，七层构造：素土夯实→独立基础垫层→踏步斜梁→钢筋混凝土踏步→水平平台→面层→建筑外墙。架空台阶通过独立基础与建筑外墙分离，避免不均匀沉降。",
+    category: "楼梯",
+    thumbnail: assetPath("images/rc-elevated-steps-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/rc-elevated-steps/rc-elevated-steps.glb"),
+      scale: 2,
+    },
+    diagram: {
+      path: assetPath("images/rc-elevated-steps-diagram.png"),
+    },
+    layerConfig: {
+      layers: rcElevatedStepsLayers as NodeLayerInfo[],
+      getLayerInfo: getRcElevatedStepsLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+  },
+
   {
     id: "stair-composition-01",
     title: "楼梯的组成",
