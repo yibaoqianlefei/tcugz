@@ -217,14 +217,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "屋顶檐沟有组织排水节点，六层构件：屋面顶→檐沟→檐沟分水→排水口→墙体→圈梁。",
     category: "屋顶",
-    thumbnail: assetPath("images/eaves-gutter-diagram.png"),
+    thumbnail: assetPath("images/roof/eaves-gutter-diagram.png"),
     status: "available",
     model: {
       path: assetPath("models/roof/eaves-gutter/eaves-gutter.glb"),
       scale: 2,
     },
     diagram: {
-      path: assetPath("images/eaves-gutter-diagram.png"),
+      path: assetPath("images/roof/eaves-gutter-diagram.png"),
     },
     layerConfig: {
       layers: eavesGutterLayers as NodeLayerInfo[],
@@ -239,7 +239,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "砖混结构墙体交接处的钢筋混凝土构造柱，包含混凝土柱、钢筋、箍筋、墙体、圈梁、楼板及马牙槎。",
     category: "墙体",
-    thumbnail: assetPath("images/construction-column-diagram.png"),
+    thumbnail: assetPath("images/wall/construction-column-diagram.png"),
     status: "available",
     model: {
       path: assetPath("models/wall/construction-column/construction-column.glb"),
@@ -247,7 +247,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       groups: COLUMN_GROUPS,
     },
     diagram: {
-      path: assetPath("images/construction-column-diagram.png"),
+      path: assetPath("images/wall/construction-column-diagram.png"),
     },
     layerConfig: {
       layers: constructionColumnLayers as NodeLayerInfo[],
@@ -262,14 +262,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "外墙根部散水构造节点，九层构造：细石混凝土面层→饰面层→防水层→钢筋混凝土墙体→聚乙烯泡沫缝→密封膏嵌缝→保温层→卵石灌浆垫层→素土夯实。",
     category: "墙体",
-    thumbnail: assetPath("images/apron-flashing-diagram.png"),
+    thumbnail: assetPath("images/wall/apron-flashing-diagram.png"),
     status: "available",
     model: {
       path: assetPath("models/wall/apron-flashing/apron-flashing.glb"),
       scale: 2,
     },
     diagram: {
-      path: assetPath("images/apron-flashing-diagram.png"),
+      path: assetPath("images/wall/apron-flashing-diagram.png"),
     },
     layerConfig: {
       layers: apronFlashingLayers as NodeLayerInfo[],
@@ -283,7 +283,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "外墙根部块石铺砌散水节点，九层构造：饰面层→防水层→钢筋混凝土墙体→聚乙烯泡沫缝→密封膏嵌缝→保温层→块石面层(120mm)→粗砂垫层(30mm)→素土夯实。",
     category: "墙体",
-    thumbnail: assetPath("images/stone-apron-diagram.png"),
+    thumbnail: assetPath("images/wall/stone-apron-diagram.png"),
     status: "available",
     model: {
       path: assetPath("models/wall/stone-apron/stone-apron.glb"),
@@ -291,7 +291,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       groups: STONE_GROUPS,
     },
     diagram: {
-      path: assetPath("images/stone-apron-diagram.png"),
+      path: assetPath("images/wall/stone-apron-diagram.png"),
     },
     layerConfig: {
       layers: stoneApronLayers as NodeLayerInfo[],
@@ -305,14 +305,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "EPS/XPS板外保温系统，七层构造：饰面层→抹面层→增强网→锚栓→保温板→胶粘剂→基层墙体。",
     category: "墙体",
-    thumbnail: assetPath("images/foam-insulation-diagram.png"),
+    thumbnail: assetPath("images/wall/foam-insulation-diagram.png"),
     status: "available",
     model: {
       path: assetPath("models/wall/foam-insulation/foam-insulation.glb"),
       scale: 2,
     },
     diagram: {
-      path: assetPath("images/foam-insulation-diagram.png"),
+      path: assetPath("images/wall/foam-insulation-diagram.png"),
     },
     layerConfig: {
       layers: foamInsulationLayers as NodeLayerInfo[],
@@ -326,14 +326,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "A级岩棉防火外保温系统，七层构造：饰面层→抹面层→防水层→锚栓→岩棉保温板→找平层→基层墙体。",
     category: "墙体",
-    thumbnail: assetPath("images/rockwool-insulation-diagram.png"),
+    thumbnail: assetPath("images/wall/rockwool-insulation-diagram.png"),
     status: "available",
     model: {
       path: assetPath("models/wall/rockwool-insulation/rockwool-insulation.glb"),
       scale: 2,
     },
     diagram: {
-      path: assetPath("images/rockwool-insulation-diagram.png"),
+      path: assetPath("images/wall/rockwool-insulation-diagram.png"),
     },
     layerConfig: {
       layers: rockwoolInsulationLayers as NodeLayerInfo[],
@@ -347,7 +347,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "外墙根部贴面勒脚节点，五层构造：回填土→垫层→防潮层→贴面层→墙体。贴面勒脚比抹灰勒脚更耐久美观。",
     category: "墙体",
-    thumbnail: assetPath("images/faced-plinth-diagram.png"),
+    thumbnail: assetPath("images/wall/faced-plinth-diagram.png"),
     status: "available",
     model: {
       path: assetPath("models/wall/faced-plinth/faced-plinth.glb"),
@@ -356,7 +356,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       nonInteractive: ["其余"],
     },
     diagram: {
-      path: assetPath("images/faced-plinth-diagram.png"),
+      path: assetPath("images/wall/faced-plinth-diagram.png"),
     },
     layerConfig: {
       layers: facedPlinthLayers as NodeLayerInfo[],
@@ -370,7 +370,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "外墙根部石砌勒脚节点，四层构造：回填土→垫层→石砌层→墙体。石砌勒脚采用天然石材，耐久抗冻、质感厚重。",
     category: "墙体",
-    thumbnail: assetPath("images/stone-plinth-diagram.png"),
+    thumbnail: assetPath("images/wall/stone-plinth-diagram.png"),
     status: "available",
     model: {
       path: assetPath("models/wall/stone-plinth/stone-plinth.glb"),
@@ -379,7 +379,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       nonInteractive: ["其余"],
     },
     diagram: {
-      path: assetPath("images/stone-plinth-diagram.png"),
+      path: assetPath("images/wall/stone-plinth-diagram.png"),
     },
     layerConfig: {
       layers: stonePlinthLayers as NodeLayerInfo[],
@@ -393,18 +393,16 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "外墙根部抹灰勒脚节点，五层构造：素土夯实→垫层→防潮层→抹灰层→墙体。勒脚保护墙体根部免受雨水溅湿和机械碰撞。",
     category: "墙体",
-    thumbnail: assetPath("images/plaster-plinth-diagram.png"),
+    thumbnail: assetPath("images/wall/plaster-plinth-diagram.png"),
     status: "available",
     model: {
       path: assetPath("models/wall/plaster-plinth/plaster-plinth.glb"),
       scale: 2,
-      groups: {
-        "墙体.001": "墙体",
-      },
       noAnimation: true,
+      nonInteractive: ["其余"],
     },
     diagram: {
-      path: assetPath("images/plaster-plinth-diagram.png"),
+      path: assetPath("images/wall/plaster-plinth-diagram.png"),
     },
     layerConfig: {
       layers: plasterPlinthLayers as NodeLayerInfo[],
@@ -419,14 +417,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "室外架空台阶节点，七层构造：素土夯实→独立基础垫层→踏步斜梁→钢筋混凝土踏步→水平平台→面层→建筑外墙。架空台阶通过独立基础与建筑外墙分离，避免不均匀沉降。",
     category: "楼梯",
-    thumbnail: assetPath("images/rc-elevated-steps-diagram.png"),
+    thumbnail: assetPath("images/stairs/rc-elevated-steps-diagram.png"),
     status: "available",
     model: {
       path: assetPath("models/stairs/rc-elevated-steps/rc-elevated-steps.glb"),
       scale: 2,
     },
     diagram: {
-      path: assetPath("images/rc-elevated-steps-diagram.png"),
+      path: assetPath("images/stairs/rc-elevated-steps-diagram.png"),
     },
     layerConfig: {
       layers: rcElevatedStepsLayers as NodeLayerInfo[],
@@ -440,7 +438,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "楼梯基本构造节点，六个组成部分：中间平台→梯段→楼层平台→栏杆→顶层水平栏杆→其他构件。楼梯是建筑垂直交通的核心构件。",
     category: "楼梯",
-    thumbnail: assetPath("images/stair-composition-diagram.png"),
+    thumbnail: assetPath("images/stairs/stair-composition-diagram.png"),
     status: "available",
     model: {
       path: assetPath("models/stairs/stair-composition/stair-composition.glb"),
@@ -449,7 +447,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       nonInteractive: ["其余"],
     },
     diagram: {
-      path: assetPath("images/stair-composition-diagram.png"),
+      path: assetPath("images/stairs/stair-composition-diagram.png"),
     },
     layerConfig: {
       layers: stairCompositionLayers as NodeLayerInfo[],
@@ -463,14 +461,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "C15混凝土室外台阶构造，五层：面层→混凝土台阶→碎石垫层(80mm)→素土夯实→墙柱。",
     category: "楼梯",
-    thumbnail: assetPath("images/concrete-steps-diagram.png"),
+    thumbnail: assetPath("images/stairs/concrete-steps-diagram.png"),
     status: "available",
     model: {
       path: assetPath("models/stairs/concrete-steps/concrete-steps.glb"),
       scale: 2,
     },
     diagram: {
-      path: assetPath("images/concrete-steps-diagram.png"),
+      path: assetPath("images/stairs/concrete-steps-diagram.png"),
     },
     layerConfig: {
       layers: concreteStepsLayers as NodeLayerInfo[],

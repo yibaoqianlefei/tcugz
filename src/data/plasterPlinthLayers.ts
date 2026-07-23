@@ -13,20 +13,20 @@ export interface LayerInfo {
  */
 export const plasterPlinthLayers: LayerInfo[] = [
   {
-    objectName: "素土夯实",
-    name: "素土夯实",
+    objectName: "室内外回填土",
+    name: "回填土",
     order: 1,
-    thickness: "≥300mm分层夯实",
+    thickness: "分层夯实",
     material: "素土",
-    description: "地基底层，原土清除杂填物后分层夯实，压实系数≥0.94。",
+    description: "地基回填土分层夯实，压实系数≥0.94，为上部垫层和勒脚提供稳定基础。",
   },
   {
-    objectName: "室内外垫层",
+    objectName: "垫层",
     name: "垫层",
     order: 2,
     thickness: "60-100mm",
     material: "C15混凝土",
-    description: "素土之上的刚性垫层，起找平和传递荷载作用，兼作防潮层基底。",
+    description: "回填土之上的刚性垫层，起找平和传递荷载作用，兼作防潮层基底。",
   },
   {
     objectName: "防潮层",
