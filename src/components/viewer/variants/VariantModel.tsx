@@ -34,7 +34,7 @@ export interface VariantModelInfo {
 
 export default function VariantModel({ variant, layoutX, onReady }: Props) {
   const modelPath = variant.model.path;
-  const { scene: sourceScene } = useGLTF(modelPath /* Draco disabled to test context loss */);
+  const { scene: sourceScene } = useGLTF(modelPath, true);
   const reportedRef = useRef(false);
 
   /* ── Clone + normalise + apply config — runs once per sourceScene/variant ── */

@@ -499,9 +499,13 @@ export const nodeDefinitions: NodeDefinition[] = [
     },
   },
 
-  /* ── Multi-variant presentation — WIP (temp test data) ──── */
-  /* ⚠️ TEMPORARY: 目标 GLB 尚未就绪，使用现有模型验证组件。
-     正式上线前需替换为 wall-damp-proof-course/ 下的真实三方案 GLB。 */
+  /* ── Multi-variant presentation — Phase 1 compatibility ──
+     ════════════════════════════════════════════════════════════
+     VariantModelViewer is FROZEN (not used in production render).
+     This node uses ModelViewer with the primary variant's model.
+     Phase 2 will restore multi-model Canvas when WebGL context
+     loss in StrictMode is resolved.
+     ════════════════════════════════════════════════════════════ */
   {
     id: "wall-damp-proof-course",
     title: "墙身防潮层的位置",
@@ -511,6 +515,16 @@ export const nodeDefinitions: NodeDefinition[] = [
     thumbnail: null,
     status: "available",
     presentationMode: "variants",
+    /** Phase 1: use first variant's model via existing ModelViewer.
+        Phase 2 will re-enable multi-variant Canvas. */
+    model: {
+      path: assetPath("models/wall/plaster-plinth/plaster-plinth.glb"),
+      scale: 2,
+    },
+    layerConfig: {
+      layers: plasterPlinthLayers as NodeLayerInfo[],
+      getLayerInfo: getPlasterPlinthLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
     variants: [
       {
         id: "dense-base",
