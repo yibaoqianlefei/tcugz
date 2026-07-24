@@ -121,62 +121,62 @@ export default function NodeDetail() {
 
         {/* Center: 3D viewport + floating timeline */}
         <div className="flex-1 flex min-w-0 relative">
-          {model && layerConfig ? (
-            <ErrorBoundary
-              resetKey={`${nodeId}:${model.path}`}
-              fallback={(opts) => (
-                <div className="flex-1 h-full flex flex-col items-center justify-center bg-[#f5f5f7] gap-2">
-                  <p className="text-sm text-muted">3D 模型加载失败</p>
-                  <p className="text-xs text-muted-soft">模型资源暂时无法显示</p>
-                  <div className="flex gap-3 mt-2">
-                    <button
-                      onClick={() => window.location.reload()}
-                      className="px-4 py-2 rounded-lg bg-primary text-white text-xs font-medium
-                        hover:bg-primary-active transition-colors"
-                    >
-                      刷新页面
-                    </button>
-                    <Link
-                      to="/library"
-                      className="px-4 py-2 rounded-lg border border-hairline text-xs text-muted
-                        hover:text-primary hover:border-primary/30 transition-colors"
-                    >
-                      返回节点库
-                    </Link>
-                  </div>
-                  {import.meta.env.DEV && (
-                    <p className="text-[11px] text-muted-soft mt-3 font-mono max-w-md text-center break-all">
-                      {opts.error.message}
-                    </p>
+              {model && layerConfig ? (
+                <ErrorBoundary
+                  resetKey={`${nodeId}:${model.path}`}
+                  fallback={(opts) => (
+                    <div className="flex-1 h-full flex flex-col items-center justify-center bg-[#f5f5f7] gap-2">
+                      <p className="text-sm text-muted">3D 模型加载失败</p>
+                      <p className="text-xs text-muted-soft">模型资源暂时无法显示</p>
+                      <div className="flex gap-3 mt-2">
+                        <button
+                          onClick={() => window.location.reload()}
+                          className="px-4 py-2 rounded-lg bg-primary text-white text-xs font-medium
+                            hover:bg-primary-active transition-colors"
+                        >
+                          刷新页面
+                        </button>
+                        <Link
+                          to="/library"
+                          className="px-4 py-2 rounded-lg border border-hairline text-xs text-muted
+                            hover:text-primary hover:border-primary/30 transition-colors"
+                        >
+                          返回节点库
+                        </Link>
+                      </div>
+                      {import.meta.env.DEV && (
+                        <p className="text-[11px] text-muted-soft mt-3 font-mono max-w-md text-center break-all">
+                          {opts.error.message}
+                        </p>
+                      )}
+                    </div>
                   )}
+                >
+                  <ModelViewer
+                    key={nodeId}
+                    autoRotate={autoRotate}
+                    showShadows={showShadows}
+                    modelPath={model.path}
+                    modelScale={model.scale}
+                    modelGroups={model.groups}
+                    noAnimation={node.model?.noAnimation}
+                    nonInteractive={node.model?.nonInteractive}
+                  />
+                </ErrorBoundary>
+              ) : (
+                <div className="flex-1 flex items-center justify-center">
+                  <p className="text-muted-soft text-sm">模型数据缺失</p>
                 </div>
               )}
-            >
-              <ModelViewer
-                key={nodeId}
-                autoRotate={autoRotate}
-                showShadows={showShadows}
-                modelPath={model.path}
-                modelScale={model.scale}
-                modelGroups={model.groups}
-                noAnimation={node.model?.noAnimation}
-                nonInteractive={node.model?.nonInteractive}
-              />
-            </ErrorBoundary>
-          ) : (
-            <div className="flex-1 flex items-center justify-center">
-              <p className="text-muted-soft text-sm">模型数据缺失</p>
-            </div>
-          )}
 
-          {/* Floating timeline — 02-2 style */}
-          <div
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10
-              flex items-center gap-0.5 sm:gap-2
-              px-2 sm:px-4 py-2 sm:py-2.5
-              bg-canvas border border-hairline rounded-xl"
-            onPointerDown={(e) => e.stopPropagation()}
-          >
+              {/* Floating timeline — 02-2 style */}
+              <div
+                className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10
+                  flex items-center gap-0.5 sm:gap-2
+                  px-2 sm:px-4 py-2 sm:py-2.5
+                  bg-canvas border border-hairline rounded-xl"
+                onPointerDown={(e) => e.stopPropagation()}
+              >
             {/* ── Collapse ── */}
             <button
               onClick={collapseExplosion}

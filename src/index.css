@@ -124,3 +124,58 @@
   from { opacity: 0; transform: translate(-50%, 12px); }
   to   { opacity: 1; transform: translate(-50%, 0); }
 }
+
+/* ── Variant three-column grid layout ── */
+.variant-grid {
+  display: grid;
+  flex: 1;
+  min-height: 0;
+  grid-template-areas:
+    "viewport"
+    "diagram"
+    "teaching";
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto auto;
+}
+@media (min-width: 1024px) {
+  .variant-grid {
+    grid-template-areas: "diagram viewport teaching";
+    grid-template-columns: 220px minmax(0, 1fr) 280px;
+    grid-template-rows: 1fr;
+  }
+}
+@media (min-width: 1280px) {
+  .variant-grid {
+    grid-template-columns: clamp(260px, 22vw, 360px) minmax(460px, 1fr) clamp(300px, 23vw, 380px);
+  }
+}
+.va-diagram {
+  grid-area: diagram;
+  min-height: 0;
+  overflow: hidden;
+}
+.va-viewport {
+  grid-area: viewport;
+  min-height: 0;
+  min-width: 0;
+}
+.va-teaching {
+  grid-area: teaching;
+  min-height: 0;
+  overflow: hidden;
+}
+@media (max-width: 1023px) {
+  .variant-grid {
+    grid-template-rows: auto auto auto;
+    overflow-y: auto;
+  }
+  .va-viewport {
+    min-height: 55vh;
+  }
+  .va-diagram {
+    min-height: 260px;
+  }
+  .va-teaching {
+    min-height: 320px;
+  }
+}

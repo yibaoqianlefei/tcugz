@@ -73,6 +73,24 @@ export interface NodeDiagramConfig {
 
 export type NodeStatus = "available" | "development";
 
+/** Node presentation mode: single-model (default) or multi-variant. */
+export type NodePresentationMode = "single" | "variants";
+
+/** Per-variant model config for multi-variant presentation nodes. */
+export interface NodeModelVariant {
+  id: string;
+  label: string;
+  title: string;
+  description?: string;
+  model: {
+    path: string;
+    scale?: number;
+    position?: [number, number, number];
+    rotation?: [number, number, number];
+  };
+  differenceSummary?: string[];
+}
+
 export interface NodeDefinition {
   id: string;
   title: string;
@@ -91,6 +109,11 @@ export interface NodeDefinition {
     moduleId: string;
     chapterId?: string;
   }>;
+
+  /** Multi-variant presentation mode. Omitted or "single" = normal single-model node. */
+  presentationMode?: NodePresentationMode;
+  /** Required when presentationMode === "variants". */
+  variants?: NodeModelVariant[];
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -476,6 +499,104 @@ export const nodeDefinitions: NodeDefinition[] = [
     },
   },
 
+  /* ── Multi-variant presentation — WIP (temp test data) ──── */
+  /* ⚠️ TEMPORARY: 目标 GLB 尚未就绪，使用现有模型验证组件。
+     正式上线前需替换为 wall-damp-proof-course/ 下的真实三方案 GLB。 */
+  {
+    id: "wall-damp-proof-course",
+    title: "墙身防潮层的位置",
+    description:
+      "同一构造问题在三种不同条件下的防潮层做法：密实垫层、透水垫层、室内外高差。",
+    category: "墙体",
+    thumbnail: null,
+    status: "available",
+    presentationMode: "variants",
+    variants: [
+      {
+        id: "dense-base",
+        label: "A",
+        title: "密实材料垫层",
+        description:
+          "地面垫层采用密实材料时，水平防潮层设置于室内地面附近，垫层具有较好的阻水能力。",
+        model: {
+          path: assetPath("models/wall/plaster-plinth/plaster-plinth.glb"),
+          scale: 2,
+        },
+        differenceSummary: [
+          "室内地面附近设置水平防潮层",
+          "垫层具有较好的阻水能力",
+        ],
+        components: [
+          { name: "墙体", material: "砖砌体 / 混凝土", thickness: "240mm" },
+          { name: "水平防潮层", material: "防水砂浆 / 卷材", thickness: "20mm" },
+          { name: "密实垫层", material: "C15混凝土", thickness: "80mm" },
+          { name: "室内地面面层", material: "水泥砂浆", thickness: "20mm" },
+          { name: "素土夯实", material: "压实填土", thickness: "—" },
+        ],
+        model: {
+          path: assetPath("models/wall/plaster-plinth/plaster-plinth.glb"),
+          scale: 2,
+        },
+        differenceSummary: [
+          "室内地面附近设置水平防潮层",
+          "垫层具有较好的阻水能力",
+        ],
+        components: [
+          { name: "墙体", material: "砖砌体 / 混凝土", thickness: "240mm" },
+          { name: "水平防潮层", material: "防水砂浆 / 卷材", thickness: "20mm" },
+          { name: "密实垫层", material: "C15混凝土", thickness: "80mm" },
+          { name: "室内地面面层", material: "水泥砂浆", thickness: "20mm" },
+          { name: "素土夯实", material: "压实填土", thickness: "—" },
+        ],
+      },
+      {
+        id: "permeable-base",
+        label: "B",
+        title: "透水材料垫层",
+        description:
+          "地面垫层采用透水材料时，需要调整水平防潮层位置，避免水分进入墙身。",
+        model: {
+          path: assetPath("models/wall/plaster-plinth/plaster-plinth.glb"),
+          scale: 2,
+        },
+        differenceSummary: [
+          "水平防潮层高于透水垫层影响区域",
+          "重点阻断垫层中的水分上升",
+        ],
+        components: [
+          { name: "墙体", material: "砖砌体 / 混凝土", thickness: "240mm" },
+          { name: "水平防潮层", material: "防水砂浆 / 卷材", thickness: "20mm" },
+          { name: "透水垫层", material: "碎石 / 砂砾", thickness: "100mm" },
+          { name: "室内地面面层", material: "水泥砂浆", thickness: "20mm" },
+          { name: "素土夯实", material: "压实填土", thickness: "—" },
+        ],
+      },
+      {
+        id: "level-difference",
+        label: "C",
+        title: "室内外地面有高差",
+        description:
+          "室内外地面存在高差时，需要结合水平与垂直防潮构造处理。",
+        model: {
+          path: assetPath("models/wall/faced-plinth/faced-plinth.glb"),
+          scale: 2.5,
+        },
+        differenceSummary: [
+          "高低位置分别处理水平防潮",
+          "高差范围设置垂直防潮层",
+        ],
+        components: [
+          { name: "墙体", material: "砖砌体 / 混凝土", thickness: "240mm" },
+          { name: "水平防潮层（低侧）", material: "防水砂浆 / 卷材", thickness: "20mm" },
+          { name: "水平防潮层（高侧）", material: "防水砂浆 / 卷材", thickness: "20mm" },
+          { name: "垂直防潮层", material: "防水砂浆", thickness: "15mm" },
+          { name: "室内地面面层", material: "水泥砂浆", thickness: "20mm" },
+          { name: "素土夯实", material: "压实填土", thickness: "—" },
+        ],
+      },
+    ],
+  },
+
   /* ── Case-study nodes (development) ─────────────────────── */
   {
     id: "yuncheng-c-01",
@@ -550,13 +671,21 @@ function validateNodeDefinitions(defs: NodeDefinition[]): void {
     }
     seen.add(node.id);
 
-    // 3. available 节点必须有 model
-    if (node.status === "available" && !node.model) {
+    // 3. available 节点必须有 model（variants 节点除外）
+    if (
+      node.status === "available" &&
+      !node.model &&
+      node.presentationMode !== "variants"
+    ) {
       errors.push(`[${node.id}] status="available" 但缺少 model 配置`);
     }
 
-    // 4. available 节点必须有 layerConfig
-    if (node.status === "available" && !node.layerConfig) {
+    // 4. available 节点必须有 layerConfig（variants 节点除外）
+    if (
+      node.status === "available" &&
+      !node.layerConfig &&
+      node.presentationMode !== "variants"
+    ) {
       errors.push(`[${node.id}] status="available" 但缺少 layerConfig 配置`);
     }
 
