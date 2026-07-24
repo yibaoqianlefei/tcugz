@@ -1,11 +1,13 @@
-import { useRef, useEffect, Suspense, useState, useCallback } from "react";
+import { useRef, useEffect, Suspense, useState, useCallback, useMemo } from "react";
 import { Canvas, useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
+import * as SkeletonUtils from "three/examples/jsm/utils/SkeletonUtils.js";
 import { useNodeStore } from "../../store/nodeStore";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { canonicalName as cnImport, isHitboxName } from "../../utils/nameUtils";
 import { registerAnimationActions, getAnimationActions } from "./animationController";
+import { computeMultiModelLayout } from "../../utils/layoutModels";
 
 /* ═══════════════════════════════════════════════════════════════
    Material highlight — original-state cache + dual-channel restore
@@ -55,8 +57,10 @@ function RendererSetup({ showShadows }: { showShadows: boolean }) {
 }
 
 /* ── Model component (auto-center + highlight + animation) ──── */
-function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGroups, noAnimation = false, nonInteractive }: { modelPath: string; containerWidth?: number; modelScale?: number; modelGroups?: Record<string, string>; noAnimation?: boolean; nonInteractive?: string[] }) {
-  const { scene, animations } = useGLTF(modelPath, true);
+function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGroups, noAnimation = false, nonInteractive, noGlobalRef = false, onReady }: { modelPath: string; containerWidth?: number; modelScale?: number; modelGroups?: Record<string, string>; noAnimation?: boolean; nonInteractive?: string[]; /** If true, skip setting _modelScene (parent handles it). */ noGlobalRef?: boolean; /** Called when model is loaded + centered, with the scene group. */ onReady?: (scene: THREE.Group) => void }) {
+  const { scene: sourceScene, animations } = useGLTF(modelPath, true);
+  /** Deep-clone so each SceneModel owns an independent scene hierarchy. */
+  const scene = useMemo(() => SkeletonUtils.clone(sourceScene) as THREE.Group, [sourceScene]);
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
   const actionRef = useRef<THREE.AnimationAction | null>(null);
   const clipRef = useRef<THREE.AnimationClip | null>(null);
@@ -116,7 +120,8 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     const center = new THREE.Vector3();
     box.getCenter(center);
     scene.position.set(-center.x, -center.y, -center.z);
-    _modelScene = scene;
+    if (!noGlobalRef) _modelScene = scene;
+    if (onReady) onReady(scene);
 
     const isFirstInit = !scaleApplied.current;
 
@@ -251,6 +256,8 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
       unregister();
       _modelScene = null;
     };
+    // noGlobalRef and onReady are stable callbacks, intentionally excluded from deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene, animations, setIsPlaying, modelScale, modelPath, resolveName, noAnimation, setAnimationProgress, nonInteractive]);
 
   // ── Viewport-responsive scale ──
@@ -506,19 +513,104 @@ function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: numb
   return null;
 }
 
+/* ── Multi-model layout ────────────────────────────────────── */
+interface ModelEntry { id: string; src: string; scale?: number }
+
+function MultiModelGroup({ models, containerWidth }: { models: ModelEntry[]; containerWidth: number }) {
+  const groupRef = useRef<THREE.Group>(null);
+  const readyRef = useRef(new Map<string, THREE.Group>());
+  const [readyCount, setReadyCount] = useState(0);
+
+  const layoutModels = useCallback(() => {
+    const widths: number[] = models.map(m => {
+      const s = readyRef.current.get(m.id);
+      if (!s) return 0;
+      const box = new THREE.Box3().setFromObject(s);
+      const size = new THREE.Vector3(); box.getSize(size);
+      return size.x;
+    });
+
+    const layout = computeMultiModelLayout(widths);
+
+    layout.entries.forEach((entry, i) => {
+      const s = readyRef.current.get(models[i].id);
+      if (!s) return;
+      s.position.x = entry.x - layout.totalWidth / 2;
+      s.updateMatrixWorld();
+    });
+
+    if (groupRef.current) {
+      groupRef.current.updateMatrixWorld();
+      _modelScene = groupRef.current;
+      // Debug hook: expose instance UUIDs for acceptance verification
+      if (typeof window !== "undefined") {
+        interface MultiModelDebug {
+          groupUUID: string;
+          childCount: number;
+          instances: Array<{ variantId: string; uuid: string | null; positionX: number | null }>;
+        }
+        (window as { __multiModelDebug?: MultiModelDebug }).__multiModelDebug = {
+          groupUUID: groupRef.current.uuid,
+          childCount: groupRef.current.children.length,
+          instances: models.map((m) => {
+            const s = readyRef.current.get(m.id);
+            return {
+              variantId: m.id,
+              uuid: s?.uuid ?? null,
+              positionX: s ? Math.round(s.position.x * 1000) / 1000 : null,
+            };
+          }),
+        };
+      }
+    }
+  }, [models]);
+
+  const handleModelReady = useCallback((id: string) => (scene: THREE.Group) => {
+    readyRef.current.set(id, scene);
+    setReadyCount(readyRef.current.size);
+  }, []);
+
+  useEffect(() => {
+    if (readyCount === models.length && models.length > 0) {
+      layoutModels();
+    }
+  }, [readyCount, models.length, layoutModels]);
+
+  return (
+    <group ref={groupRef}>
+      {models.map((m) => (
+        <SceneModel
+          key={m.id}
+          modelPath={m.src}
+          containerWidth={containerWidth}
+          modelScale={m.scale ?? 2.5}
+          noAnimation={true}
+          nonInteractive={["其余"]}
+          noGlobalRef
+          onReady={handleModelReady(m.id)}
+        />
+      ))}
+    </group>
+  );
+}
+
 /* ── Public component ─────────────────────────────────────── */
 export default function ModelViewer({
   autoRotate = true,
   modelPath,
+  modelPaths,
+  modelScale = 2.5,
   showShadows = true,
   layoutKey = 0,
-  modelScale = 2.5,
   modelGroups,
   noAnimation = false,
   nonInteractive,
 }: {
   autoRotate?: boolean;
-  modelPath: string;
+  /** Single model path (backward compat, normal nodes). */
+  modelPath?: string;
+  /** Multi-model paths (Phase 2). 1–3 entries. Takes precedence over modelPath. */
+  modelPaths?: ModelEntry[];
   showShadows?: boolean;
   layoutKey?: number;
   modelScale?: number;
@@ -556,7 +648,11 @@ export default function ModelViewer({
         <SceneLights showShadows={showShadows} />
         {showShadows && <ShadowPlane />}
         <Suspense fallback={<LoadingFallback />}>
-          <SceneModel modelPath={modelPath} containerWidth={containerWidth} modelScale={modelScale} modelGroups={modelGroups} noAnimation={noAnimation} nonInteractive={nonInteractive} />
+          {modelPaths && modelPaths.length >= 1 ? (
+            <MultiModelGroup models={modelPaths} containerWidth={containerWidth} />
+          ) : modelPath ? (
+            <SceneModel modelPath={modelPath} containerWidth={containerWidth} modelScale={modelScale} modelGroups={modelGroups} noAnimation={noAnimation} nonInteractive={nonInteractive} />
+          ) : null}
         </Suspense>
         <OrbitControls
           ref={(ctrl) => { _controls = ctrl; }}

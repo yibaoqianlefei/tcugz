@@ -9,6 +9,7 @@ import ConstructionKnowledgePanel from "./components/viewer/ConstructionKnowledg
 import { RotateCw, ChevronsLeft, ChevronsRight, Sun, Link2 } from "lucide-react";
 import { useAnalysisStore } from "./store/analysisStore";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { resolveNodeModelSources } from "./utils/resolveNodeModelSources";
 
 /**
  * NodeDetail V1 — construction education layout.
@@ -93,6 +94,11 @@ export default function NodeDetail() {
     );
   }
 
+  /* ── Resolve model sources (Phase 2: supports 1–3 models) ── */
+  const modelSources = resolveNodeModelSources(node);
+  const hasModel = modelSources.length > 0;
+  const isMultiModel = modelSources.length >= 2;
+
   /* ── Available node — must have model & layerConfig ── */
   const { model, diagram, layerConfig } = node;
 
@@ -121,9 +127,9 @@ export default function NodeDetail() {
 
         {/* Center: 3D viewport + floating timeline */}
         <div className="flex-1 flex min-w-0 relative">
-              {model && layerConfig ? (
+              {hasModel && layerConfig ? (
                 <ErrorBoundary
-                  resetKey={`${nodeId}:${model.path}`}
+                  resetKey={`${nodeId}:${isMultiModel ? "multi" : modelSources[0].src}`}
                   fallback={(opts) => (
                     <div className="flex-1 h-full flex flex-col items-center justify-center bg-[#f5f5f7] gap-2">
                       <p className="text-sm text-muted">3D 模型加载失败</p>
@@ -156,9 +162,10 @@ export default function NodeDetail() {
                     key={nodeId}
                     autoRotate={autoRotate}
                     showShadows={showShadows}
-                    modelPath={model.path}
-                    modelScale={model.scale}
-                    modelGroups={model.groups}
+                    modelPath={isMultiModel ? undefined : modelSources[0].src}
+                    modelPaths={isMultiModel ? modelSources : undefined}
+                    modelScale={model?.scale}
+                    modelGroups={model?.groups}
                     noAnimation={node.model?.noAnimation}
                     nonInteractive={node.model?.nonInteractive}
                   />

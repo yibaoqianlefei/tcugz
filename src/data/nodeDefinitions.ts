@@ -76,6 +76,13 @@ export type NodeStatus = "available" | "development";
 /** Node presentation mode: single-model (default) or multi-variant. */
 export type NodePresentationMode = "single" | "variants";
 
+/** Per-variant component detail (reserved for Phase 3 teaching panel). */
+export interface VariantComponent {
+  name: string;
+  material: string;
+  thickness: string;
+}
+
 /** Per-variant model config for multi-variant presentation nodes. */
 export interface NodeModelVariant {
   id: string;
@@ -89,6 +96,8 @@ export interface NodeModelVariant {
     rotation?: [number, number, number];
   };
   differenceSummary?: string[];
+  /** Per-variant component breakdown (reserved for Phase 3, not yet rendered). */
+  components?: VariantComponent[];
 }
 
 export interface NodeDefinition {
@@ -499,12 +508,11 @@ export const nodeDefinitions: NodeDefinition[] = [
     },
   },
 
-  /* ── Multi-variant presentation — Phase 1 compatibility ──
+  /* ── Multi-variant presentation — Phase 2 ──
      ════════════════════════════════════════════════════════════
-     VariantModelViewer is FROZEN (not used in production render).
-     This node uses ModelViewer with the primary variant's model.
-     Phase 2 will restore multi-model Canvas when WebGL context
-     loss in StrictMode is resolved.
+     Three models loaded in single ModelViewer Canvas with shared
+     camera, lights, and OrbitControls. Variants provide model
+     sources via resolveNodeModelSources().
      ════════════════════════════════════════════════════════════ */
   {
     id: "wall-damp-proof-course",
@@ -515,12 +523,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     thumbnail: null,
     status: "available",
     presentationMode: "variants",
-    /** Phase 1: use first variant's model via existing ModelViewer.
-        Phase 2 will re-enable multi-variant Canvas. */
-    model: {
-      path: assetPath("models/wall/plaster-plinth/plaster-plinth.glb"),
-      scale: 2,
-    },
+    /** layerConfig required by ConstructionKnowledgePanel. */
     layerConfig: {
       layers: plasterPlinthLayers as NodeLayerInfo[],
       getLayerInfo: getPlasterPlinthLayer as (objectName: string) => NodeLayerInfo | undefined,
@@ -533,22 +536,7 @@ export const nodeDefinitions: NodeDefinition[] = [
         description:
           "地面垫层采用密实材料时，水平防潮层设置于室内地面附近，垫层具有较好的阻水能力。",
         model: {
-          path: assetPath("models/wall/plaster-plinth/plaster-plinth.glb"),
-          scale: 2,
-        },
-        differenceSummary: [
-          "室内地面附近设置水平防潮层",
-          "垫层具有较好的阻水能力",
-        ],
-        components: [
-          { name: "墙体", material: "砖砌体 / 混凝土", thickness: "240mm" },
-          { name: "水平防潮层", material: "防水砂浆 / 卷材", thickness: "20mm" },
-          { name: "密实垫层", material: "C15混凝土", thickness: "80mm" },
-          { name: "室内地面面层", material: "水泥砂浆", thickness: "20mm" },
-          { name: "素土夯实", material: "压实填土", thickness: "—" },
-        ],
-        model: {
-          path: assetPath("models/wall/plaster-plinth/plaster-plinth.glb"),
+          path: assetPath("models/wall/wall-damp-proof/地面垫层为密实材料.glb"),
           scale: 2,
         },
         differenceSummary: [
@@ -570,7 +558,7 @@ export const nodeDefinitions: NodeDefinition[] = [
         description:
           "地面垫层采用透水材料时，需要调整水平防潮层位置，避免水分进入墙身。",
         model: {
-          path: assetPath("models/wall/plaster-plinth/plaster-plinth.glb"),
+          path: assetPath("models/wall/wall-damp-proof/地面垫层为透水材料.glb"),
           scale: 2,
         },
         differenceSummary: [
@@ -592,7 +580,7 @@ export const nodeDefinitions: NodeDefinition[] = [
         description:
           "室内外地面存在高差时，需要结合水平与垂直防潮构造处理。",
         model: {
-          path: assetPath("models/wall/faced-plinth/faced-plinth.glb"),
+          path: assetPath("models/wall/wall-damp-proof/室内地面有高差.glb"),
           scale: 2.5,
         },
         differenceSummary: [
