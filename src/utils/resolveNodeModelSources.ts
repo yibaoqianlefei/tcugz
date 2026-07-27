@@ -18,6 +18,10 @@ export interface ResolvedModelSource {
   src: string;
   scale: number;
   source: "model" | "variants";
+  /** Label shown on variant selection UI (e.g. "A", "B", "C"). */
+  label?: string;
+  /** Title shown on variant selection UI (e.g. "密实材料垫层"). */
+  title?: string;
 }
 
 const MAX_MODELS = 3;
@@ -41,6 +45,8 @@ export function resolveNodeModelSources(
         src,
         scale: scale ?? 1,
         source: "variants",
+        label: v.label,
+        title: v.title,
       });
     }
 

@@ -10,6 +10,7 @@ import { RotateCw, ChevronsLeft, ChevronsRight, Sun, Link2 } from "lucide-react"
 import { useAnalysisStore } from "./store/analysisStore";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { resolveNodeModelSources } from "./utils/resolveNodeModelSources";
+import VariantLabelBar from "./components/viewer/VariantLabelBar";
 
 /**
  * NodeDetail V1 — construction education layout.
@@ -119,6 +120,9 @@ export default function NodeDetail() {
           </span>
         )}
       </header>
+
+      {/* ── Variant label bar (Phase 3: only for multi-variant nodes) ── */}
+      {isMultiModel && <VariantLabelBar variants={modelSources} />}
 
       {/* ── Body ── */}
       <div className="flex-1 flex min-h-0">

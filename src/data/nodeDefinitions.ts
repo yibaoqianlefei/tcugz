@@ -83,6 +83,20 @@ export interface VariantComponent {
   thickness: string;
 }
 
+/** Extended component knowledge for Phase 4 multi-variant knowledge panel. */
+export interface VariantComponentKnowledge {
+  objectName: string;
+  title: string;
+  aliases?: string[];
+  category?: string;
+  material?: string;
+  construction?: string;
+  description?: string;
+  images?: Array<{ src: string; alt: string; caption?: string }>;
+  tables?: Array<{ title?: string; columns: string[]; rows: string[][] }>;
+  relatedNodeIds?: string[];
+}
+
 /** Per-variant model config for multi-variant presentation nodes. */
 export interface NodeModelVariant {
   id: string;
@@ -98,6 +112,8 @@ export interface NodeModelVariant {
   differenceSummary?: string[];
   /** Per-variant component breakdown (reserved for Phase 3, not yet rendered). */
   components?: VariantComponent[];
+  /** Per-variant detailed knowledge entries for Phase 4. */
+  componentKnowledge?: VariantComponentKnowledge[];
 }
 
 export interface NodeDefinition {
@@ -550,6 +566,42 @@ export const nodeDefinitions: NodeDefinition[] = [
           { name: "室内地面面层", material: "水泥砂浆", thickness: "20mm" },
           { name: "素土夯实", material: "压实填土", thickness: "—" },
         ],
+        componentKnowledge: [
+          {
+            objectName: "地面垫层为密实材料001",
+            title: "密实垫层主体",
+            category: "垫层",
+            material: "C15混凝土",
+            construction: "浇筑密实，振捣均匀，养护不少于7天",
+            description:
+              "密实垫层是防潮构造的基础层。采用低水灰比的C15混凝土浇筑，密实度高、透水性低，能有效阻止地下水汽上升。垫层厚度通常不小于80mm，与室内地面面层共同构成完整的水平防潮体系。",
+            images: [
+              { src: assetPath("images/wall/plaster-plinth-diagram.png"), alt: "密实垫层构造示意", caption: "密实垫层防潮体系示意" },
+            ],
+            relatedNodeIds: ["plaster-plinth-01"],
+          },
+          {
+            objectName: "地面垫层为密实材料001_1",
+            title: "水平防潮层",
+            category: "防潮",
+            material: "防水砂浆",
+            construction: "20mm厚防水砂浆，分两遍涂抹",
+            description:
+              "水平防潮层直接设置在垫层之上。防水砂浆由水泥、砂和防水剂按比例配制，分两次涂抹以确保均匀覆盖。防潮层须连续无间断，搭接宽度≥100mm。",
+            tables: [
+              {
+                title: "防水砂浆配比",
+                columns: ["材料", "比例", "用量"],
+                rows: [
+                  ["普通硅酸盐水泥", "1", "—"],
+                  ["中粗砂", "2.5", "—"],
+                  ["防水剂", "5%", "按水泥重量"],
+                  ["水", "0.5", "—"],
+                ],
+              },
+            ],
+          },
+        ],
       },
       {
         id: "permeable-base",
@@ -571,6 +623,40 @@ export const nodeDefinitions: NodeDefinition[] = [
           { name: "透水垫层", material: "碎石 / 砂砾", thickness: "100mm" },
           { name: "室内地面面层", material: "水泥砂浆", thickness: "20mm" },
           { name: "素土夯实", material: "压实填土", thickness: "—" },
+        ],
+        componentKnowledge: [
+          {
+            objectName: "地面垫层为透水材料001",
+            title: "透水垫层主体",
+            category: "垫层",
+            material: "级配碎石",
+            construction: "分层铺设，每层≤100mm，碾压密实",
+            description:
+              "透水垫层采用级配碎石或砂砾铺设。与密实垫层不同，透水垫层本身不具备阻水能力，地下水汽可通过孔隙上升。因此防潮层的设置位置需要高于透水垫层的毛细水上升高度，通常设置在室内地面标高以上。",
+            relatedNodeIds: ["stone-apron-01"],
+          },
+          {
+            objectName: "地面垫层为透水材料001_1",
+            title: "抬高防潮层",
+            category: "防潮",
+            material: "SBS改性沥青防水卷材",
+            construction: "热熔法铺贴，搭接≥100mm，卷材延伸至墙体",
+            description:
+              "由于垫层透水，防潮层必须抬高至透水垫层毛细水影响范围之上。采用SBS改性沥青卷材，热熔法施工，与墙体防潮层形成连续防水屏障。这一做法有效阻断了透水垫层中的毛细水上升路径。",
+            tables: [
+              {
+                title: "SBS卷材性能指标",
+                columns: ["项目", "指标", "标准"],
+                rows: [
+                  ["可溶物含量", "≥2100g/m²", "GB 18242"],
+                  ["耐热度", "≥90°C", "GB 18242"],
+                  ["低温柔度", "≤-20°C", "GB 18242"],
+                  ["不透水性", "0.3MPa/30min", "GB 18242"],
+                ],
+              },
+            ],
+            relatedNodeIds: ["flat-roof-01"],
+          },
         ],
       },
       {
@@ -594,6 +680,42 @@ export const nodeDefinitions: NodeDefinition[] = [
           { name: "垂直防潮层", material: "防水砂浆", thickness: "15mm" },
           { name: "室内地面面层", material: "水泥砂浆", thickness: "20mm" },
           { name: "素土夯实", material: "压实填土", thickness: "—" },
+        ],
+        componentKnowledge: [
+          {
+            objectName: "室内地面有高差001",
+            title: "低侧水平防潮层",
+            category: "防潮",
+            material: "防水砂浆",
+            construction: "20mm厚防水砂浆，与室内地坪平齐",
+            description:
+              "在室内外高差场景中，室外地面低于室内地面。低侧的水平防潮层设置在略高于室外地面处，防止室外潮气渗入墙体。该层须与垂直防潮层可靠搭接。",
+            relatedNodeIds: ["plaster-plinth-01"],
+          },
+          {
+            objectName: "室内地面有高差001_1",
+            title: "垂直防潮层",
+            category: "防潮",
+            material: "防水砂浆 + 防水涂料",
+            construction: "自低侧防潮层向上延伸至室内地面标高以上",
+            description:
+              "垂直防潮层连接低侧和高侧水平防潮层，沿墙体垂直敷设。采用防水砂浆打底+防水涂料面层的复合做法，形成连续的L形防潮屏障。这是高差场景中最为关键的构造节点。",
+            images: [
+              { src: assetPath("images/wall/plaster-plinth-diagram.png"), alt: "高差防潮示意", caption: "室内外高差防潮构造" },
+            ],
+            tables: [
+              {
+                title: "垂直防潮层构造层次",
+                columns: ["层次", "材料", "厚度"],
+                rows: [
+                  ["面层", "水泥基防水涂料", "2mm"],
+                  ["中层", "防水砂浆", "10mm"],
+                  ["底层", "界面处理剂", "—"],
+                ],
+              },
+            ],
+            relatedNodeIds: ["faced-plinth-01", "plaster-plinth-01"],
+          },
         ],
       },
     ],

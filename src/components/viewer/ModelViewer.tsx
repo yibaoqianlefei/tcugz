@@ -2,12 +2,12 @@ import { useRef, useEffect, Suspense, useState, useCallback, useMemo } from "rea
 import { Canvas, useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-import * as SkeletonUtils from "three/examples/jsm/utils/SkeletonUtils.js";
 import { useNodeStore } from "../../store/nodeStore";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { canonicalName as cnImport, isHitboxName } from "../../utils/nameUtils";
 import { registerAnimationActions, getAnimationActions } from "./animationController";
 import { computeMultiModelLayout } from "../../utils/layoutModels";
+import { writeVariantIdentity, makeScopedKey, cloneSceneWithMaterials, disposeClonedMaterials } from "../../utils/variantIdentity";
 
 /* ═══════════════════════════════════════════════════════════════
    Material highlight — original-state cache + dual-channel restore
@@ -57,10 +57,10 @@ function RendererSetup({ showShadows }: { showShadows: boolean }) {
 }
 
 /* ── Model component (auto-center + highlight + animation) ──── */
-function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGroups, noAnimation = false, nonInteractive, noGlobalRef = false, onReady }: { modelPath: string; containerWidth?: number; modelScale?: number; modelGroups?: Record<string, string>; noAnimation?: boolean; nonInteractive?: string[]; /** If true, skip setting _modelScene (parent handles it). */ noGlobalRef?: boolean; /** Called when model is loaded + centered, with the scene group. */ onReady?: (scene: THREE.Group) => void }) {
+function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGroups, noAnimation = false, nonInteractive, noGlobalRef = false, onReady, variantId, variantIndex, variantLabel, variantTitle }: { modelPath: string; containerWidth?: number; modelScale?: number; modelGroups?: Record<string, string>; noAnimation?: boolean; nonInteractive?: string[]; /** If true, skip setting _modelScene (parent handles it). */ noGlobalRef?: boolean; /** Called when model is loaded + centered, with the scene group. */ onReady?: (scene: THREE.Group) => void; /** Phase 3: variant identity for multi-model isolation. */ variantId?: string; variantIndex?: number; variantLabel?: string; variantTitle?: string }) {
   const { scene: sourceScene, animations } = useGLTF(modelPath, true);
-  /** Deep-clone so each SceneModel owns an independent scene hierarchy. */
-  const scene = useMemo(() => SkeletonUtils.clone(sourceScene) as THREE.Group, [sourceScene]);
+  /** Deep-clone with material isolation — each SceneModel owns independent materials. */
+  const scene = useMemo(() => cloneSceneWithMaterials(sourceScene), [sourceScene]);
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
   const actionRef = useRef<THREE.AnimationAction | null>(null);
   const clipRef = useRef<THREE.AnimationClip | null>(null);
@@ -120,6 +120,16 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     const center = new THREE.Vector3();
     box.getCenter(center);
     scene.position.set(-center.x, -center.y, -center.z);
+    // Phase 3: write variant identity on the cloned scene root
+    if (variantId) {
+      writeVariantIdentity(scene, {
+        variantId,
+        variantIndex: variantIndex ?? 0,
+        label: variantLabel ?? "",
+        title: variantTitle ?? "",
+        src: modelPath,
+      });
+    }
     if (!noGlobalRef) _modelScene = scene;
     if (onReady) onReady(scene);
 
@@ -188,17 +198,9 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
       }
     });
 
-    // ── Clone materials + save original state ──
+    // ── Save original material state (for highlight restore) ──
+    // Material cloning is now done upfront in cloneSceneWithMaterials().
     if (isFirstInit) {
-      meshMapRef.current.forEach((meshes) => {
-        meshes.forEach((mesh) => {
-          if (Array.isArray(mesh.material)) {
-            mesh.material = mesh.material.map((m) => m.clone());
-          } else {
-            mesh.material = mesh.material.clone();
-          }
-        });
-      });
       meshMapRef.current.forEach((meshes) => {
         meshes.forEach((mesh) => {
           const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
@@ -254,6 +256,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
         mixerRef.current.uncacheRoot(scene);
       }
       unregister();
+      disposeClonedMaterials(scene);
       _modelScene = null;
     };
     // noGlobalRef and onReady are stable callbacks, intentionally excluded from deps
@@ -319,6 +322,8 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
 
   const hoveredObject = useNodeStore((s) => s.hoveredObject);
   const selectedObject = useNodeStore((s) => s.selectedObject);
+  const hoveredVariantId = useNodeStore((s) => s.hoveredVariantId);
+  const selectedVariantId = useNodeStore((s) => s.selectedVariantId);
   const highlightEnabled = useNodeStore((s) => s.animationProgress >= 0.99);
 
   /** Restore a material to its original GLB state from the WeakMap cache. */
@@ -329,6 +334,36 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     if (state.emissive && hasEmissive(m)) { m.emissive.copy(state.emissive); m.emissiveIntensity = state.emissiveIntensity!; }
     m.needsUpdate = true;
   }
+
+  /** Apply highlight to ALL interactive meshes in this variant. */
+  const setAllMeshesHighlight = useCallback(
+    (mode: "variant-hover" | "variant-selected" | "clear") => {
+      meshMapRef.current.forEach((meshes) => {
+        meshes.forEach((mesh) => {
+          const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+          mats.forEach((m) => {
+            restoreMaterial(m);
+            if (mode === "clear") return;
+            if (mode === "variant-hover") {
+              if (hasEmissive(m)) {
+                m.emissive.set("#e8e4d8");
+                m.emissiveIntensity = 0.6;
+              }
+            } else if (mode === "variant-selected") {
+              if (hasEmissive(m)) {
+                m.emissive.set("#d4c898");
+                m.emissiveIntensity = 0.8;
+              } else if (hasColor(m)) {
+                m.color.lerp(new THREE.Color("#d4c898"), 0.25);
+              }
+            }
+            m.needsUpdate = true;
+          });
+        });
+      });
+    },
+    [],
+  );
 
   const setGroupHighlight = useCallback(
     (name: string | null, mode: HighlightMode) => {
@@ -365,43 +400,57 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     [resolveName],
   );
 
-  // ── Apply highlights: deterministic priority-based ──
+  // ── Apply highlights: variant then mesh, priority-based ──
   useEffect(() => {
+    const isMyVariant = variantId != null;
+
+    // 1) Clear previous mesh-level highlights
     const namesToReset = new Set<string>();
     if (prevHovered.current) namesToReset.add(prevHovered.current);
     if (prevSelected.current) namesToReset.add(prevSelected.current);
     if (hoveredObject) namesToReset.add(hoveredObject);
     if (selectedObject) namesToReset.add(selectedObject);
-
     namesToReset.forEach((n) => setGroupHighlight(n, "clear"));
 
-    if (highlightEnabled) {
-      if (hoveredObject && hoveredObject !== selectedObject) {
-        setGroupHighlight(hoveredObject, "hover");
+    if (!highlightEnabled) {
+      // Also clear variant-level
+      setAllMeshesHighlight("clear");
+      prevHovered.current = hoveredObject;
+      prevSelected.current = selectedObject;
+      return;
+    }
+
+    // 2) Apply variant-level highlight (lowest priority)
+    if (isMyVariant) {
+      if (selectedVariantId === variantId) {
+        setAllMeshesHighlight("variant-selected");
+      } else if (hoveredVariantId === variantId) {
+        setAllMeshesHighlight("variant-hover");
+      } else {
+        setAllMeshesHighlight("clear");
       }
-      if (selectedObject) {
-        setGroupHighlight(selectedObject, "selected");
-      }
+    }
+
+    // 3) Apply mesh-level highlights (highest priority, overrides variant)
+    if (hoveredObject && hoveredObject !== selectedObject) {
+      setGroupHighlight(hoveredObject, "hover");
+    }
+    if (selectedObject) {
+      setGroupHighlight(selectedObject, "selected");
     }
 
     prevHovered.current = hoveredObject;
     prevSelected.current = selectedObject;
-  }, [highlightEnabled, hoveredObject, selectedObject, setGroupHighlight]);
+  }, [highlightEnabled, hoveredObject, selectedObject, hoveredVariantId, selectedVariantId, variantId, setGroupHighlight, setAllMeshesHighlight]);
 
-  // ── Picking ──
+  // ── Picking (Phase 3: variant-scoped) ──
   const findNamedMesh = (obj: THREE.Object3D): string | null => {
-    console.log("[hit] obj:", obj.name, "type:", obj.type, "parent:", obj.parent?.name, "parentType:", obj.parent?.type);
     if (obj.parent && obj.parent.type === "Group" && obj.parent.name && obj.parent.name !== "Scene") {
-      const result = resolveName(obj.parent.name);
-      console.log("[hit] → parent group:", result);
-      return result;
+      return resolveName(obj.parent.name);
     }
     if (obj instanceof THREE.Mesh && obj.name) {
-      const result = resolveName(obj.name);
-      console.log("[hit] → mesh:", result);
-      return result;
+      return resolveName(obj.name);
     }
-    console.log("[hit] → null");
     return null;
   };
 
@@ -409,12 +458,17 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     e.stopPropagation();
     if (useNodeStore.getState().animationProgress < 0.99) return;
     const name = findNamedMesh(e.object);
-    if (name) setHoveredObject(name);
+    if (name) {
+      const key = makeScopedKey(variantId ?? null, name);
+      setHoveredObject(key);
+      if (variantId) useNodeStore.getState().setHoveredVariantId(variantId);
+    }
   };
 
   const handlePointerOut = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation();
     setHoveredObject(null);
+    if (variantId) useNodeStore.getState().setHoveredVariantId(null);
   };
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
@@ -422,10 +476,21 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     if (useNodeStore.getState().animationProgress < 1) return;
     const name = findNamedMesh(e.object);
     if (name) {
+      const key = makeScopedKey(variantId ?? null, name);
       const current = useNodeStore.getState().selectedObject;
-      setSelectedObject(current === name ? null : name);
+      if (current === key) {
+        // Clicking same mesh → deselect (and clear variant selection)
+        setSelectedObject(null);
+        if (variantId) useNodeStore.getState().setSelectedVariantId(null);
+      } else {
+        setSelectedObject(key);
+        if (variantId) useNodeStore.getState().setSelectedVariantId(variantId);
+      }
     }
   };
+
+  // ── Click on empty canvas → deselect ──
+  // Handled via Canvas-level onPointerMissed in the public component
 
   return (
     <group
@@ -514,7 +579,7 @@ function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: numb
 }
 
 /* ── Multi-model layout ────────────────────────────────────── */
-interface ModelEntry { id: string; src: string; scale?: number }
+interface ModelEntry { id: string; src: string; scale?: number; label?: string; title?: string }
 
 function MultiModelGroup({ models, containerWidth }: { models: ModelEntry[]; containerWidth: number }) {
   const groupRef = useRef<THREE.Group>(null);
@@ -542,22 +607,32 @@ function MultiModelGroup({ models, containerWidth }: { models: ModelEntry[]; con
     if (groupRef.current) {
       groupRef.current.updateMatrixWorld();
       _modelScene = groupRef.current;
-      // Debug hook: expose instance UUIDs for acceptance verification
-      if (typeof window !== "undefined") {
+      // Debug hook (DEV-only in production builds this is a no-op)
+      if (typeof window !== "undefined" && import.meta.env.DEV) {
         interface MultiModelDebug {
           groupUUID: string;
           childCount: number;
-          instances: Array<{ variantId: string; uuid: string | null; positionX: number | null }>;
+          variants: Array<{
+            variantId: string;
+            sceneUUID: string | null;
+            positionX: number | null;
+            hovered: boolean;
+            selected: boolean;
+          }>;
         }
+        // Deferred read of Zustand state (avoid stale closure)
+        const store = useNodeStore.getState();
         (window as { __multiModelDebug?: MultiModelDebug }).__multiModelDebug = {
           groupUUID: groupRef.current.uuid,
           childCount: groupRef.current.children.length,
-          instances: models.map((m) => {
+          variants: models.map((m) => {
             const s = readyRef.current.get(m.id);
             return {
               variantId: m.id,
-              uuid: s?.uuid ?? null,
+              sceneUUID: s?.uuid ?? null,
               positionX: s ? Math.round(s.position.x * 1000) / 1000 : null,
+              hovered: store.hoveredVariantId === m.id,
+              selected: store.selectedVariantId === m.id,
             };
           }),
         };
@@ -578,7 +653,7 @@ function MultiModelGroup({ models, containerWidth }: { models: ModelEntry[]; con
 
   return (
     <group ref={groupRef}>
-      {models.map((m) => (
+      {models.map((m, i) => (
         <SceneModel
           key={m.id}
           modelPath={m.src}
@@ -588,6 +663,10 @@ function MultiModelGroup({ models, containerWidth }: { models: ModelEntry[]; con
           nonInteractive={["其余"]}
           noGlobalRef
           onReady={handleModelReady(m.id)}
+          variantId={m.id}
+          variantIndex={i}
+          variantLabel={m.label}
+          variantTitle={m.title}
         />
       ))}
     </group>
@@ -642,6 +721,10 @@ export default function ModelViewer({
         camera={{ near: 0.5, far: 50, position: [0, 0, 8], fov: 40 }}
         dpr={[1, 1.5]} shadows
         gl={{ antialias: true, alpha: false }}
+        onPointerMissed={() => {
+          useNodeStore.getState().setSelectedObject(null);
+          useNodeStore.getState().setSelectedVariantId(null);
+        }}
       >
         <RendererSetup showShadows={showShadows} />
         <color attach="background" args={["#f5f5f7"]} />
