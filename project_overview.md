@@ -2,13 +2,13 @@
 
 ## 1. 项目定位
 
-**建筑构造交互系统**（Building Construction Interactive System）是面向建筑学教育的开源 Web 应用。通过 **三维可视化、Blender 动画、交互式构件探索、结构化课程体系**，帮助学生和从业者直观理解建筑构造的空间逻辑。
+**建筑构造交互系统**（Building Construction Interactive System）是面向建筑学教育的开源 Web 应用。通过 **三维可视化、多方案对比、程序化爆炸、交互式构件探索、结构化课程体系**，帮助学生和从业者直观理解建筑构造的空间逻辑。
 
 ```
 定位：教学系统操作中枢
 用户：建筑学学生
 气质：architectural / editorial / paper-like / calm academic
-核心链路：模型 → 构件 → 知识 → 教材
+核心链路：模型 → 方案 → 构件 → 知识 → 教材
 ```
 
 ---
@@ -22,7 +22,7 @@
 | 类型 | TypeScript 6 | 类型检查 |
 | 3D 渲染 | Three.js 0.184 + @react-three/fiber 9.6 + @react-three/drei 10.7 | Canvas、GLB 加载、OrbitControls |
 | 动画 | framer-motion 12 | UI 过渡、手风琴面板、弹窗 |
-| 3D 动画 | AnimationMixer (Blender → GLB, 96帧) | 构件展开/合拢动画 |
+| 3D 动画 | AnimationMixer (Blender → GLB) + 程序化 Explode | 构件展开/爆炸动画 |
 | 图表 | Recharts 2 | 学习数据分析可视化 |
 | 样式 | Tailwind CSS v4 | 原子化 CSS + `@theme` 自定义 token |
 | 路由 | React Router DOM 7 | Hash 路由（支持静态部署） |
@@ -30,6 +30,7 @@
 | 图标 | lucide-react | UI 图标 |
 | AI | DeepSeek API (chat/completions) | AI 建筑学助教问答 |
 | 压缩 | @gltf-transform/cli (WebP + Draco) | 模型纹理压缩 + 几何压缩 |
+| 测试 | tsx + Playwright | 纯逻辑单测 (276) + Headless 浏览器验收 |
 
 ---
 
@@ -70,7 +71,7 @@ HomePage
       │   ├── 标题 "建筑构造" (48px) + 装饰线
       │   ├── 导航菜单 (pt-8, overflow-y-auto 隐藏滚动条)
       │   │   ├── 📂 构造原理 ▶     ← 展开: 建筑保温/防水/隔热/隔声
-      │   │   ├── 📂 构造基础 ▶     ← 展开: 8模块 (绪论/墙体/门窗/基础/楼地层/楼梯/屋顶/变形缝)
+      │   │   ├── 📂 构造基础 ▶     ← 展开: 8模块
       │   │   ├── 节点库      → /library
       │   │   ├── 案例应用    → /curriculum/cases
       │   │   ├── 作业训练    → /games
@@ -78,187 +79,113 @@ HomePage
       │   │   └── AI 拓展     → /ai-extend
       │   ├── 登录按钮 + 统计卡片 + 标语 (flex-shrink-0 固定底部)
       │
-      ├── 右列 (AnimatePresence, width: 0↔260px, 平滑滑入/滑出)
-      │   └── SubMenuPanel
-      │       ├── 模块手风琴列表 (activeModuleId 单展开)
-      │       └── overflow-y-auto 隐藏滚动条
+      ├── 右列 SubMenuPanel (AnimatePresence, 模块手风琴)
       │
       └── 右侧 (flex-1) 3D 场景
-          ├── Canvas (MenuBackground, 视口自适应缩放)
+          ├── Canvas (MenuBackground)
           └── 右下角控制 (场景切换 + 旋转 + 阴影)
 ```
 
 ### NodeDetail 内部架构（核心页面）
 
 ```
-NodeDetail.tsx (编排器, ~290行)
+NodeDetail.tsx (编排器, ~350行)
   ├── 统一配置读取: getNodeDefinition(nodeId)             ← ⭐ 单一配置源
-  │     ├── node.model     → modelPath / modelScale / modelGroups
-  │     ├── node.diagram   → diagramImage
-  │     ├── node.layerConfig → ConstructionKnowledgePanel
-  │     └── node.status    → "available" | "development" 状态区分
+  │     ├── node.model / presentationMode / variants
+  │     ├── resolveNodeModelSources(node) → 1~3 model entries
+  │     ├── resolveVariantExplodeConfig()  → Phase 5 explode 配置
+  │     └── node.status → "available" | "development"
   ├── Header (面包屑)
+  ├── VariantLabelBar (多方案节点, Phase 3) ← A/B/C 标签栏
   ├── Body (三栏 flex)
   │   ├── NodeDiagramPanel (520px)     ← 剖面图
-  │   ├── ErrorBoundary (resetKey=nodeId:modelPath) ← 🆕 模型错误兜底
-│   │   └── ModelViewer (flex-1, ~540行) + animationController (75行)  ← 3D 视口 ⭐
-  │   │   ├── SceneModel               ← GLB + AnimationMixer + 边缘线 + 高亮(门控)
-  │   │   │                              + hitbox/proxy 命中系统 + 材质克隆 + 名称标准化
-  │   │   ├── CameraTracker            ← 动态锚点：Box3 → controls.target.lerp
-  │   │   ├── SceneLights              ← 2 方向光 + 环境光 (可控 castShadow)
-  │   │   └── ShadowPlane              ← 地面阴影 (可控显隐)
-  │   └── ConstructionKnowledgePanel (360px) ← ⭐ 手风琴面板 + 双向3D联动 + 联动开关
-  └── Floating Timeline (居中浮动，02-2 风格)
-        ├── 收起爆炸 (ChevronsLeft)
-        ├── 进度条 slider
-        ├── 播放爆炸 (ChevronsRight)
+  │   ├── ErrorBoundary (resetKey=nodeId:multiModelKey)
+  │   │   └── ModelViewer (~830行) + animationController (75行)  ← 3D 视口 ⭐
+  │   │   ├── SceneModel × 1~3         ← GLB + cloneSceneWithMaterials + 高亮 + variant identity
+  │   │   ├── MultiModelGroup           ← Phase 2: 多模型布局 + Phase 5: Explode 驱动
+  │   │   ├── CameraTracker            ← 动态锚点：整体 Box3 → controls.target.lerp
+  │   │   ├── SceneLights              ← 2 方向光 + 环境光
+  │   │   └── ShadowPlane              ← 地面阴影
+  │   └── ConstructionKnowledgePanel (360px) ← Phase 3-4: 多方案知识联动
+  └── Floating Timeline (居中浮动)
+        ├── 收起/播放爆炸 (多方案禁用)
+        ├── 滑块: explodeProgress (多方案) / animationProgress (普通)
         ├── 旋转切换 (RotateCw + R 键提示)
         └── 阴影切换 (Sun) + 联动开关 (Link2)
 ```
 
-### ModelViewer 核心系统 (562行 + animationController 75行)
-
-| 子系统 | 实现 |
-|--------|------|
-| GLB 加载 | `useGLTF(path, true)` Draco 解码 |
-| 动画 | 所有 AnimationClip 同时播放，`LoopOnce` 单次播放，`clampWhenFinished` 保持末帧 |
-| 动画控制 | `animationController.ts` token 守卫单例；`getAnimationActions()` 供 useFrame 边界自动暂停 |
-| 自动缩放 | Box3 一次性计算（排除 hitbox/proxy），`_scaleCache` 缓存，可配置 modelScale |
-| 视口自适应 | ResizeObserver → containerWidth → useFrame lerp 平滑过渡 |
-| 自动居中 | Box3 居中（排除 hitbox/proxy） |
-| 边缘线 | `EdgesGeometry + LineSegments` 作为 mesh 子元素随动画移动，`raycast = () => {}` |
-| 高亮门控 | `animationProgress >= 0.99` 启用（selector 阈值过滤），收起自动清除 |
-| 命中系统 | **双模式**: Blender `_hitbox` 包围盒（优先）\| 代码 6% 放大代理（回退） |
-| 材质隔离 | 初始化时克隆所有命名 Mesh 的 material，防跨构件高亮泄露 |
-| 逻辑名分组 | `meshMapRef: Map<逻辑名, Mesh[]>` — 多材质/子构件聚合到同一逻辑名 |
-| 名称标准化 | `src/utils/nameUtils.ts` — `canonicalName()` + `isHitboxName()` |
-| 高亮系统 | `setGroupHighlight(name, mode)` — 从 WeakMap 恢复原色后双通道高亮: emissive 路径(白1.25/金1.15) \| color.lerp 回退(浅蓝0.35/金0.55) |
-| 事件 | R3F `onPointerOver/Out/Click` + `findNamedMesh()` |
-| 阴影 | PCFShadowMap, 2048×2048, UI 开关 |
-| 色调映射 | ACESFilmicToneMapping, exposure=1.0 |
-| 相机 | 02-2 风格动态锚点：Box3 → controls.target.lerp(center, alpha)，Drei `onStart`/`onEnd` 声明式拖拽检测 |
-| 错误兜底 | 🆕 `ErrorBoundary` class 组件 — 模型区域 (resetKey=nodeId:modelPath) + 路由 lazy chunk (resetKey=pathname+search) |
-
-### 命中系统（双模式）
-
-```
-初始化:
-  ┌─ Pass 1: 检测 Blender _hitbox 组件 → hasHitbox Set
-  └─ Pass 2: 逐 mesh 处理
-       ├── _hitbox mesh → visible=false, raycast 保留 → 接收点击
-       ├── 有 hitbox 的组件实体 → raycast=disabled → 只渲染不参与命中
-       └── 无 hitbox 的组件 → 创建 6% 放大代理 (proxy) → 回退方案
-
-运行时命中:
-  鼠标 → R3F Raycaster
-    ↓ 命中 hitbox (优先) 或 proxy (回退)
-    ↓
-  findNamedMesh → canonicalName(obj.name)
-    ↓ _hitbox 后缀自动剥离 → "钢筋_hitbox" → "钢筋"
-    ↓
-  handlePointerOver/Click → progress 门控
-    ↓
-  setHoveredObject / setSelectedObject → Store
-```
-
-### 高亮应用流程
-
-```
-store.selectedObject / hoveredObject 变化
-  ↓
-useEffect (确定性重建) → 收集 prev+current 名称集合
-  ↓ namesToReset.forEach → setGroupHighlight(n, "clear")
-  │   ├── restoreMaterial() → WeakMap 恢复原始 color / emissive / emissiveIntensity
-  ↓
-if highlightEnabled:
-  ├── hoveredObject && ≠ selected → setGroupHighlight(n, "hover")
-  │     ├── emissive 支持: emissive=#ffffff, intensity=1.25
-  │     └── 回退: color.lerp(#8fd8ff, 0.35)
-  └── selectedObject → setGroupHighlight(n, "selected")
-        ├── emissive 支持: emissive=#d4a843, intensity=1.15
-        └── 回退: color.lerp(#d4a843, 0.55)
-```
-
-### 名称标准化系统
-
-Three.js GLB 加载时的名称变化（`canonicalName()` 自动处理）：
-- 空格 → 下划线: `"1：1：6 水泥"` → `"1：1：6_水泥"`
-- 多材质拆分: 加 `_1`, `_2` 后缀
-- Blender 重复后缀 `.NNN`: 优先剥离（早于删 dot），`"墙体.007"` → `"墙体"`
-- Blender hitbox: `"钢筋_hitbox"` → `"钢筋"` (isHitboxName 检测 + 后缀剥离)
-- 构件分组: `"01"`→`"马牙槎"` (MODEL_GROUPS 显式映射)
-- Three.js 多 primitive: GLTFLoader 为每个 primitive 生成 `_N` 后缀子 Mesh，需在 groups 中精确映射（如 `"40厚细石混凝土毛面001_1"`、`"40厚细石混凝土毛面001_2"`）
-- 双 dot 名称: MODEL_GROUPS 覆写（如 `"120厚块石,1：2.5水泥砂浆灌缝.001"` → `"120厚块石,1：25水泥砂浆灌缝"`）
-
 ---
 
-## 4. 目录结构（src/）
+## 4. 多方案系统（Phase 2–5）
+
+### 调用链总览
 
 ```
-src/
-├── main.tsx                              # 入口
-├── routes.tsx                            # 路由（HashRouter，14 条路由）
-├── index.css                             # Tailwind v4 @theme + 全局样式
-├── NodeDetail.tsx                        # ⭐ 核心：三栏交互 + 动画 + 阴影 + 联动开关
-│
-├── components/
-│   ├── AppLayout.tsx                     # 全局导航栏
-│   ├── ErrorBoundary.tsx                  # 🆕 通用错误边界 (class, resetKey)
-│   ├── RouteSuspense.tsx                  # lazy + Suspense + ErrorBoundary 包装 (~80行)
-│   └── viewer/
-│       ├── ModelViewer.tsx               # ⭐ 3D 视口 (562行)
-│       ├── animationController.ts         # 动画控制器 token 守卫单例 (75行)
-│       ├── MenuBackground.tsx            # 首页 3D 背景 + 可控阴影
-│       ├── LoadingOverlay.tsx            # 加载动画
-│       ├── NodeDiagramPanel.tsx          # 左面板：剖面图 (520px)
-│       └── ConstructionKnowledgePanel.tsx # ⭐ 手风琴面板 + 双向3D联动 + 联动开关
-│
-├── pages/
-│   ├── HomePage.tsx                      # 主控制台：双列目录 + 3D背景 + 登录
-│   ├── CurriculumPage.tsx                # 8 模块网格
-│   ├── SectionSubPage.tsx                # 子章节卡片
-│   ├── TextbookPage.tsx                  # 课本阅读 (lazy)
-│   ├── LibraryPage.tsx                   # 节点库
-│   ├── CasesPage.tsx                     # 案例应用
-│   ├── ResourcesPage.tsx                 # 拓展链接工具箱
-│   ├── DataAnalysis.tsx                  # 学习数据分析 (Recharts, lazy)
-│   ├── AIPage.tsx                        # AI 建筑学助教 (DeepSeek, lazy)
-│   ├── AIExtendPage.tsx                  # ⭐ AI问答+拓展链接 Tab合并页 (lazy)
-│   ├── GamesPage.tsx                     # 作业训练 (lazy)
-│   └── PlaceholderPage.tsx               # 通用占位
-│
-├── data/
-│   ├── nodeDefinitions.ts                # ⭐ 节点单一配置源 (14个, 模型+层+图示)
-│   ├── nodesIndex.ts                     # 兼容导出层 (不再独立维护数据)
-│   ├── courseModules.ts                  # 8 模块定义
-│   ├── backgroundScenes.ts               # 首页 3D 场景
-│   ├── roofDrainageLayers.ts             # 无组织排水构件 (3层)
-│   ├── organizedDrainageLayers.ts        # 有组织排水构件 (4层)
-│   ├── flatRoofLayers.ts                 # 平屋面构件 (8层, order排序)
-│   ├── slopedRoofLayers.ts              # 坡屋顶构件 (9层)
-│   ├── constructionColumnLayers.ts       # 构造柱构件 (7层)
-│   ├── apronFlashingLayers.ts            # 细石混凝土散水 (9层)
-│   ├── concreteStepsLayers.ts            # 混凝土台阶 (5层)
-│   ├── eavesGutterLayers.ts              # 檐沟外排水 (6层)
-│   ├── stoneApronLayers.ts              # 块石散水 (9层)
-│   ├── foamInsulationLayers.ts           # 泡沫塑料保温板 (7层)
-│   ├── rockwoolInsulationLayers.ts       # 岩棉防火保温板 (7层)
-│   ├── flatRoof.ts / membraneRoof.ts / roofInsulation.ts / roofDrainage.ts / organizedDrainage.ts / constructionColumn.ts  # 详细课程数据
-│   ├── sections/ (*.js)                  # 各模块子章节 (39节)
-│   └── textbook/                         # ⭐ 教材 Markdown 内容
-│       ├── walls/                        # 墙体模块 (index + 3章)
-│       └── roof/                         # 屋顶模块 (index)
-│
-├── utils/
-│   └── nameUtils.ts                      # canonicalName() + isHitboxName()（接受 modelGroups 参数，无硬编码映射）
-│
-├── store/
-│   ├── nodeStore.ts                      # Zustand：hover/select/play/progress/linkage
-│   ├── chatStore.ts                      # AI 聊天：messages/isLoading/error + DeepSeek API
-│   ├── authStore.ts                      # 模拟登录
-│   └── analysisStore.ts                  # 学习分析：visitedNodes/aiQuestions/totalInteractions (persist)
-│
-└── assets/
+NodeDetail
+  ├── resolveNodeModelSources(node) → [{id, src, scale, label, title} × 1~3]
+  ├── resolveVariantExplodeConfig({node, variantId}) → ResolvedVariantExplodeConfig
+  │
+  └── ModelViewer (modelPaths? / modelPath)
+        ├── Single-model path: SceneModel ×1 (GLTF Animation, backward compat)
+        │
+        └── Multi-model path: MultiModelGroup
+              ├── SceneModel ×N (noAnimation, noGlobalRef)
+              │     ├── cloneSceneWithMaterials(sourceScene)  ← 材质隔离
+              │     ├── writeVariantIdentity(scene, identity)   ← Phase 3
+              │     ├── meshMapRef per-instance
+              │     └── Picking: scoped key `${variantId}::${objectName}`
+              │
+              ├── layoutModels() → computeMultiModelLayout(widths)
+              │
+              └── ExplodeDriver (Phase 5)
+                    ├── 一次性 traverse 构建 target cache
+                    │     cache key = `${nodeId}::${variantId}::${objectName}`
+                    │     basePosition = [local.x, local.y, local.z]
+                    ├── useFrame: effectiveProgress = (variantId===activeId ? progress : 0)
+                    └── computeExplodedPosition({base, direction, distance, progress}) → position.set()
+```
+
+### Variant Identity 协议
+
+```
+每个克隆 scene 根节点:
+  scene.userData.__variantIdentity = { variantId, variantIndex, label, title, src }
+
+向上解析:
+  resolveVariantIdentity(mesh) → 沿 parent 链查找 → VariantIdentity | null
+
+Scoped key:
+  makeScopedKey(variantId, objectName) → "variantId::objectName"
+  parseScopedKey(key) → { variantId, objectName }
+  只按第一个 "::" 拆分，objectName 可包含 "::"
+```
+
+### Explode 系统
+
+```
+状态:
+  nodeStore.explodeProgress (0–1, clampExplodeProgress)
+  nodeStore.activeExplodeVariantId (string | null)
+
+作用域:
+  A active → A=progress, B=0, C=0
+  null    → 全部=0
+
+复位:
+  切换 variant → progress=0, active=新variant
+  切换 node   → progress=0, active=null
+  relatedNode → progress=0, active=null
+  空白点击    → progress 不变
+
+缓存:
+  一次性 traverse (非 per-frame)
+  目标: Mesh 直接子对象, 跳过 proxy/LineSegments/父Group
+  父子规则: 父为 target → 跳过子 (父移则子随)
+
+位置更新:
+  绝对赋值: position.set(next), 非 "position += offset"
+  公式: basePosition + normalizedDirection × safeDistance × localProgress
+  0→1→0 精确归位 (无漂移)
 ```
 
 ---
@@ -267,35 +194,86 @@ src/
 
 | Store | Key | 持久化 | 功能 |
 |-------|-----|--------|------|
-| `nodeStore` | — | 否 | 3D 悬停/选中/动画进度/联动开关 + `resetNodeInteractionState()` |
+| `nodeStore` | — | 否 | 3D 悬停/选中/动画进度/联动开关 + **explodeProgress** + **activeExplodeVariantId** + `resetNodeInteractionState()` |
 | `chatStore` | — | 否 | AI 对话消息/加载/错误 + DeepSeek API |
 | `authStore` | — | 否 | 模拟用户登录/登出 |
 | `analysisStore` | `construction-analysis` | ✅ localStorage | 访问节点/提问分类/交互次数 |
 
+### nodeStore 完整字段
+
+| 字段 | 类型 | Phase | 用途 |
+|------|------|:--:|------|
+| `selectedObject` | `string \| null` | 1 | mesh 选择 (多方案: `variantId::objectName`) |
+| `hoveredObject` | `string \| null` | 1 | mesh hover |
+| `selectedVariantId` | `string \| null` | 3 | 方案标签选中 |
+| `hoveredVariantId` | `string \| null` | 3 | 方案标签 hover |
+| `animationProgress` | `number` (0–1) | 1 | GLTF Animation 进度 (普通节点) |
+| `isPlaying` | `boolean` | 1 | AnimationMixer 播放状态 |
+| `explodeProgress` | `number` (0–1) | 5 | 程序化 Explode 进度 (多方案) |
+| `activeExplodeVariantId` | `string \| null` | 5 | 当前 Explode active scope |
+| `linkageEnabled` | `boolean` | 1 | 知识面板联动开关 |
+
 ---
 
-## 6. 设计系统
+## 6. 目录结构（src/）
 
-### 色彩
-
-| Token | 值 | 用途 |
-|-------|-----|------|
-| `canvas` | `#faf9f5` | 页面底色 |
-| `surface-card` | `#efe9de` | 卡片 |
-| `primary` | `#cc785c` | 主色（暖珊瑚） |
-| `primary-active` | `#a9583e` | 按下态 |
-| `ink` | `#141413` | 标题 |
-| `body` | `#3d3d3a` | 正文 |
-| `muted` | `#6c6a64` | 次要文字 |
-| `hairline` | `#e6dfd8` | 分割线 |
-
-### 间距
-
-| Token | 值 | 用途 |
-|-------|-----|------|
-| `sidebar` | 24rem (384px) | 侧栏宽度 |
-| `panel-kw` | 360px | 知识面板宽度 |
-| `menu-item-h` | 48px | 菜单项高度 |
+```
+src/
+├── main.tsx
+├── routes.tsx
+├── index.css
+├── NodeDetail.tsx                        # ⭐ 核心编排
+│
+├── components/
+│   ├── AppLayout.tsx
+│   ├── ErrorBoundary.tsx
+│   ├── RouteSuspense.tsx
+│   └── viewer/
+│       ├── ModelViewer.tsx               # ⭐ 3D 视口 (~830行)
+│       │   ├── SceneModel               # GLB加载+克隆+高亮+Picking+动画
+│       │   ├── MultiModelGroup           # Phase 2-5: 多模型布局+Explode
+│       │   ├── CameraTracker
+│       │   ├── SceneLights
+│       │   └── ShadowPlane
+│       ├── animationController.ts         # GLTF Animation 单例控制器
+│       ├── VariantLabelBar.tsx           # Phase 3: A/B/C 标签 UI
+│       ├── ConstructionKnowledgePanel.tsx # Phase 4: 多方案知识面板
+│       ├── NodeDiagramPanel.tsx
+│       ├── MenuBackground.tsx
+│       └── LoadingOverlay.tsx
+│
+├── pages/
+│   ├── HomePage.tsx / CurriculumPage.tsx / SectionSubPage.tsx
+│   ├── TextbookPage.tsx / LibraryPage.tsx / CasesPage.tsx
+│   ├── DataAnalysis.tsx / AIPage.tsx / AIExtendPage.tsx
+│   ├── ResourcesPage.tsx / GamesPage.tsx / PlaceholderPage.tsx
+│
+├── data/
+│   ├── nodeDefinitions.ts                # ⭐ 单一配置源 (15节点)
+│   ├── nodesIndex.ts
+│   ├── courseModules.ts
+│   ├── backgroundScenes.ts
+│   ├── *_Layers.ts                       # 各节点层数据 (13个)
+│   ├── *.ts                              # 详细课程数据
+│   ├── sections/ (*.js)                  # 子章节
+│   └── textbook/                         # MD 教材
+│
+├── utils/
+│   ├── nameUtils.ts                      # canonicalName() + isHitboxName()
+│   ├── resolveNodeModelSources.ts        # Phase 2: 节点→模型列表解析
+│   ├── layoutModels.ts                   # Phase 2: 多模型排列纯函数
+│   ├── variantIdentity.ts                # Phase 3: 身份协议+材质隔离+scoped key
+│   ├── resolveComponentKnowledge.ts      # Phase 4: 多方案知识解析
+│   └── explodeLayout.ts                  # Phase 5: Explode 纯函数
+│
+├── store/
+│   ├── nodeStore.ts
+│   ├── chatStore.ts
+│   ├── authStore.ts
+│   └── analysisStore.ts
+│
+└── assets/
+```
 
 ---
 
@@ -310,258 +288,168 @@ src/
 | `/textbook/:sectionId` | TextbookPage | lazy | 课本 |
 | `/library` | LibraryPage | 直接 | 节点库 |
 | `/node/:nodeId` | NodeDetail | lazy | ⭐ 核心交互 |
-| `/resources` | ResourcesPage | 直接 | 拓展链接 (保留) |
+| `/resources` | ResourcesPage | 直接 | 拓展链接 |
 | `/data` | DataAnalysis | lazy | 学习数据 |
-| `/ai` | AIPage | lazy | AI 问答 (保留) |
-| `/ai-extend` | AIExtendPage | lazy | ⭐ AI+拓展合并 |
+| `/ai` | AIPage | lazy | AI 问答 |
+| `/ai-extend` | AIExtendPage | lazy | AI+拓展合并 |
 | `/games` | GamesPage | lazy | 作业训练 |
-| `/tools` | PlaceholderPage | 直接 | 占位 |
-| `/contribute` | PlaceholderPage | 直接 | 占位 |
 
 ---
 
 ## 8. 节点清单
 
-| ID | 标题 | 分类 | GLB 模型 | 层数据 | modelScale |
-|----|------|------|----------|--------|-----------|
-| `flat-roof-01` | 平屋面构造 | 屋顶 | 2.3MB | 8层 | **2.5** |
-| `sloped-roof-01` | 坡屋顶构造 | 屋顶 | 1.9MB | 9层 | **2.5** |
-| `roof-drainage-01` | 无组织排水 | 屋顶 | 123KB | 3层 | **2.5** |
-| `organized-drainage-01` | 有组织排水 | 屋顶 | 153KB | 4层 | **2.5** |
-| `construction-column-01` | 构造柱 | 墙体 | 214KB | 7层 | **4** |
-| `apron-flashing-01` | 细石混凝土散水 | 墙体 | 326KB | 9层 | **2** |
-| `eaves-gutter-01` | 檐沟外排水 | 屋顶 | 177KB | 6层 | **2** |
-| `stone-apron-01` | 块石散水 | 墙体 | 241KB | 9层 | **2** |
-| `foam-insulation-01` | 泡沫塑料保温板外保温 | 墙体 | — | 7层 | **2** |
-| `rockwool-insulation-01` | 岩棉防火保温板外保温 | 墙体 | — | 7层 | **2** |
-| `concrete-steps-01` | 混凝土台阶 | 楼梯 | — | 5层 | **2** |
-| `yuncheng-c-01` | 郓城案例 01 | 案例 | ⚠ | ⚠ | - |
-| `yuncheng-c-02` | 郓城案例 02 | 案例 | ⚠ | ⚠ | - |
-| `yuncheng-c-03` | 郓城案例 03 | 案例 | ⚠ | ⚠ | - |
+### 普通节点 (12)
 
-共 14 个节点：屋顶 5 个、墙体 5 个、楼梯 1 个、案例 3 个。
+| ID | 标题 | 分类 | modelScale | 层数 | 动画 |
+|----|------|------|:--:|:--:|:--:|
+| `flat-roof-01` | 平屋面构造 | 屋顶 | 2.5 | 8 | GLTF Animation |
+| `sloped-roof-01` | 坡屋顶构造 | 屋顶 | 2.5 | 9 | GLTF Animation |
+| `roof-drainage-01` | 无组织排水 | 屋顶 | 2.5 | 3 | GLTF Animation |
+| `organized-drainage-01` | 有组织排水 | 屋顶 | 2.5 | 4 | GLTF Animation |
+| `eaves-gutter-01` | 檐沟外排水 | 屋顶 | 2 | 6 | GLTF Animation |
+| `construction-column-01` | 构造柱 | 墙体 | 4 | 7 | GLTF Animation |
+| `apron-flashing-01` | 细石混凝土散水 | 墙体 | 2 | 9 | GLTF Animation |
+| `stone-apron-01` | 块石散水 | 墙体 | 2 | 9 | GLTF Animation |
+| `foam-insulation-01` | 泡沫塑料保温板 | 墙体 | 2 | 7 | noAnimation |
+| `rockwool-insulation-01` | 岩棉防火保温板 | 墙体 | 2 | 7 | noAnimation |
+| `faced-plinth-01` | 贴面勒脚 | 墙体 | 2 | 5 | noAnimation |
+| `stone-plinth-01` | 石砌勒脚 | 墙体 | 2 | 4 | noAnimation |
+| `plaster-plinth-01` | 抹灰勒脚 | 墙体 | 2 | 5 | noAnimation |
+| `rc-elevated-steps-01` | 钢筋混凝土架空台阶 | 楼梯 | 2 | 7 | — |
+| `stair-composition-01` | 楼梯的组成 | 楼梯 | 3.5 | 6 | noAnimation |
+| `concrete-steps-01` | 混凝土台阶 | 楼梯 | 2 | 5 | GLTF Animation |
 
----
+### 多方案节点 (1)
 
-## 9. 拓展链接工具箱
+| ID | 标题 | 方案 | GLB |
+|----|------|------|-----|
+| `wall-damp-proof-course` | 墙身防潮层的位置 | A: 密实材料垫层 | `wall-damp-proof/地面垫层为密实材料.glb` (111KB) |
+| | | B: 透水材料垫层 | `wall-damp-proof/地面垫层为透水材料.glb` (131KB) |
+| | | C: 室内外地面有高差 | `wall-damp-proof/室内地面有高差.glb` (116KB) |
 
-| 板块 | 子链接 | URL |
-|------|--------|-----|
-| 空间设计 | 建筑学长 | `https://www.archcollege.com` |
-| | 建筑盒子 | 待补充 |
-| 建筑规范 | 建标库 | `https://jianbiaoku.com` |
-| 热门网址 | goood谷德 | `https://www.gooood.cn` |
+每个方案含 explode 配置 (3 目标/方案)、componentKnowledge (2 知识条目/方案)、label/title/description。
 
----
+### 案例节点 (3, development)
 
-## 10. 数据分析页面
-
-| 卡片 | 图表类型 | 数据 |
-|------|----------|------|
-| 学习进度 | RadialBarChart 圆环 | visitedNodes.length / 8 |
-| 构件热力 | BarChart 横向条形 | 节点访问频次 + 趋势箭头 |
-| AI 问答画像 | PieChart 环形饼图 | 分类: 构造做法/材料特性/空间逻辑/其他 |
-
----
-
-## 11. AI 问答系统
-
-```
-欢迎语: "你好！我是小g助教，专门帮同学们理解建筑构造知识。"
-
-用户输入 → categorizeQuestion() 自动分类
-         → analysisStore.addAIQuestion()
-         → chatStore.sendMessage()
-           → POST /api/deepseek/chat/completions (Vite 代理)
-           → SYSTEM_PROMPT (建筑学助教)
-         → 流式返回 → 气泡动画展示
-```
-
-安全：API Key 在 `.env.local` / Vite 代理层注入，前端代码零暴露
+| ID | 标题 |
+|----|------|
+| `yuncheng-c-01` | 郓城案例 01 |
+| `yuncheng-c-02` | 郓城案例 02 |
+| `yuncheng-c-03` | 郓城案例 03 |
 
 ---
 
-## 12. 模型压缩
+## 9. 设计系统
 
-所有超过 1MB 的 GLB 文件使用 WebP 纹理 + Draco 几何压缩：
+### 色彩
 
-| 模型 | 压缩前 | 压缩后 | 缩减 |
-|------|--------|--------|------|
-| Exhibition model | 5.8 MB | 4.7 MB | 19% |
-| flat-roof | 18 MB | 2.3 MB | 87% |
-| sloped-roof | 21 MB | 1.9 MB | 91% |
-| construction-column | 2.1 MB | 0.2 MB | 90% |
-| **总计** | **45 MB** | **9.1 MB** | **80%** |
-
-自动脚本：`npm run compress-models`（扫描 `public/models/`，跳过 ≤1MB，WebP→Draco 两步压缩）
+| Token | 值 | 用途 |
+|-------|-----|------|
+| `canvas` | `#faf9f5` | 页面底色 |
+| `surface-card` | `#efe9de` | 卡片 |
+| `primary` | `#cc785c` | 主色（暖珊瑚） |
+| `primary-active` | `#a9583e` | 按下态 |
+| `ink` | `#141413` | 标题 |
+| `body` | `#3d3d3a` | 正文 |
+| `muted` | `#6c6a64` | 次要文字 |
+| `hairline` | `#e6dfd8` | 分割线 |
 
 ---
 
-## 13. 完成状态
+## 10. 完成状态
 
-### 已完成 ✅
+### Phase 1 — 基线 ✅
+- 三栏布局 + GLB + 动画 + 高亮 + Picking + 材质隔离
+- CameraTracker + 边缘线 + PCF阴影 + 联动开关
+- 14 节点 + 单一配置源 + 名称标准化
 
-| 模块 | 功能 |
-|------|------|
-| 首页 | 双列树状目录 + 3D背景视口自适应 + 场景切换 + 阴影开关 + 模拟登录 |
-| 课程 | 8模块 → 子章节 drill-down |
-| 节点库 | 分类网格 + 剖面截图缩略图 |
-| 案例应用 | 独立 CasesPage + [模型开发中] 标签 |
-| NodeDetail | 三栏布局 + GLB + 动画 + 反向播放 + 时间轴 |
-| NodeDetail | 边缘线 + 命中代理/hitbox + 高亮门控 + 双向3D手风琴联动 |
-| NodeDetail | 动态相机 + 阴影开关 + 构件排序 + 联动开关 + 同步状态重置(hover/select/progress/playing) |
-| NodeDetail | ModelViewer key={nodeId} 强制重挂 + 节点不存在兜底页 + nodeStore.resetNodeInteractionState |
-| NodeDetail | 材质隔离 + 自动缩放 + 名称标准化(canonicalName唯一入口) |
-| AI 拓展 | Tab合并页(AI问答+拓展链接) + lazy加载 |
-| 数据分析 | 3种Recharts图表 + 演示数据 + 空状态兜底 |
-| AI 问答 | DeepSeek API + 建筑学助教提示词 + lazy加载 |
-| 状态管理 | 4 Stores (node/chat/auth/analysis) |
-| 模型压缩 | WebP+Draco 自动化脚本 (`npm run compress-models`) |
-| 命中系统 | 双模式：Blender _hitbox(优先) + 代码代理(回退) |
-| 构造柱节点 | 7层构件 + 钢筋/箍筋hitbox + 马牙槎分组 |
-| 混凝土台阶 | 5层构件（楼梯类别首节点） |
-| 墙体节点 | 细石混凝土散水(9层) + 块石散水(9层) + 泡沫塑料保温板(7层) + 岩棉防火保温板(7层) |
-| 檐沟节点 | 檐沟外排水(6层) |
-| 教材系统 | 双参数路由 + MD静态导入 + 左右双栏 + 章节列表 + 模型关联 |
-| 错误边界 | 🆕 ErrorBoundary class 组件 — 模型区域 (NodeDetail) + 路由 lazy chunk (RouteSuspense) |
-| OrbitControls | 🆕 Drei 声明式 `onStart`/`onEnd` 替换手动 addEventListener |
-| 部署 | gh-pages 直接部署 (`npm run deploy`) |
-| 安全 | Vite 代理隐藏 API Key |
-| 质量 | 🆕 全项目 Lint 0 / TSC 0 / Build 0；全项目审计 (AUDIT_REPORT.md)；浏览器验收 (BROWSER_ACCEPTANCE_REPORT.md) |
-| 生产验证 | 🆕 Route ErrorBoundary chunk 故障注入通过；Model ErrorBoundary GLB 阻断通过 |
+### Phase 2 — 多模型同屏 ✅ (commit `e494ca5`)
+- 同一 Canvas 支持 1~3 个 GLB
+- MultiModelGroup 水平排列
+- `resolveNodeModelSources` 数据解析
+- 18 纯逻辑测试
+
+### Phase 3 — 方案身份与标签 ✅
+- VariantLabelBar A/B/C 标签 + 双向同步
+- Variant identity 协议 (userData)
+- Scoped key: `variantId::objectName`
+- `cloneSceneWithMaterials` 材质隔离 + `disposeClonedMaterials` 生命周期
+- StrictMode 安全的 WeakMap 清理
+- 110 测试基线
+
+### Phase 4 — 构件知识联动 V1 ✅
+- `resolveComponentKnowledge` 多方案知识解析
+- `VariantComponentKnowledge` 类型: 图片/表格/关联节点
+- ConstructionKnowledgePanel 四态渲染
+- 同名 mesh 跨 variant 隔离 (协议级)
+- 142 测试基线
+
+### Phase 5 — 程序化 Explode V1 ✅
+- `nodeStore.explodeProgress + activeExplodeVariantId`
+- A/B/C 各 3 目标 Explode 配置
+- Pure functions: clamp, localProgress, position, resolve
+- useFrame 绝对位置赋值 + active scope 隔离
+- Cache key: `nodeId::variantId::objectName`
+- 父子规则: 保留配置祖先、跳过配置后代
+- 普通节点 GLTF Animation 独立
+- **276 测试基线** (142 + 69 explodeLayout + 65 explodeRuntime)
 
 ### 待完成
 
 | 功能 | 优先级 |
 |------|--------|
-| 更多墙体节点 | 高 |
-| 拓展链接补充"建筑盒子"URL | 中 |
+| Section 剖切 | 中 |
+| 多方案 Explode 自动播放/惯性动画 | 低 |
 | 拖拽组装游戏 | 中 |
 | 郓城案例模型迁移 | 低 |
 | 课本内容填充 | 中 |
 
-### 已知问题
-
-| 问题 | 影响范围 | 状态 | 说明 |
-|------|----------|------|------|
-| ~~白色 MeshPhysicalMaterial 构件高亮不可见~~ → ✅ 已解决 (2026-07-20) | flat-roof-01「40厚细石混凝土毛面」 | 🟢 已修复 | **根因**: GLB 含 3 个 primitive (216+24+972 顶点)，Three.js GLTFLoader 生成 3 个独立子 Mesh (`001`, `001_1`, `001_2`)，groups 仅映射了 `001`，漏掉含 972 顶点的主体表面 (2K_Planks14)。**修复**: nodeDefinitions.ts groups 增加 `_1`、`_2` 后缀精确映射。验证: Playwright meshMap=3 ✅ + GUI hover/selected/多角度 ✅ |
-
-### 已修复的 Lint 问题
-
-全项目 Lint 从 **53 problems** 逐步清零至 **0 problems**。主要修复批次：
-
-| 批次 | 文件 | 问题 | 修复方式 |
-|------|------|------|----------|
-| 节点配置 | nodesIndex, NodeDetail, ConstructionKnowledgePanel | 多处重复注册 | 建立 nodeDefinitions 单一配置源 |
-| React Hooks | NodeDetail, ConstructionKnowledgePanel, SectionSubPage, AppLayout, HomePage, TextbookPage | refs-in-render, set-state-in-effect, deps, memoization | key 重挂载, 派生状态, useCallback |
-| TypeScript | CalloutBlock, chatStore, LoadingOverlay, MarkdownRenderer, CurriculumPage, DataAnalysis, HomePage, TextbookPage, MenuBackground | no-explicit-any ×19 | 类型守卫, 官方类型导入 |
-| 模块拆分 | routes.tsx, ModelViewer.tsx | react-refresh, 混合导出 | RouteSuspense, animationController 独立模块 |
-| Three.js | ModelViewer.tsx, MenuBackground.tsx | immutability ×4 | 行级 eslint-disable + 注释说明 |
-| 尺寸基准 | MenuBackground.tsx, HomePage.tsx | refs-in-render ×5 | ContainerMetrics 状态提升 |
-
 ---
 
-## 14. 教材系统
-
-侧边栏"构造基础" → 模块点击 → 跳转 `/textbook/:moduleId`（模块概述+章节列表）。子章节点击 → `/textbook/:moduleId/:chapterId`（显示 Markdown 正文）。
-
-### 教材页面布局（TextbookPage.tsx）
+## 11. 测试基础设施
 
 ```
-┌─ Breadcrumb (首页 › 构造基础 › 墙体 › 墙体的设计要求)
-├─ 左侧 (~70%) ─────────────────────┐
-│  ├── 标题 + 描述                  │
-│  ├── Markdown 正文 (react-markdown) │
-│  └── 模块章节列表 (isModule时)     │
-├─ 右侧 (320px) ────────────────────┤
-│  └── 本章相关构造模型卡片          │
-└─────────────────────────────────────┘
+npm test:
+  npx tsx tests/resolveNodeModelSources.test.ts  (142 asserts)
+  npx tsx tests/explodeLayout.test.ts             (69 asserts)
+  npx tsx tests/explodeRuntime.test.ts            (65 asserts)
+  ─────────────────────────────────────────────────────
+  总计: 276
+
+浏览器验收:
+  DEV_URL=http://localhost:xxxx node tests/acceptance.mjs
+  → variant-multi ×5, normal-column ×3, normal-flat-roof ×3, route-switch ×10
 ```
 
-### MD 内容机制
-
-`src/data/textbook/` 下存 Markdown 文件，TextbookPage 顶部静态 import + MD_MAP 查找表（Vite 不支持模板字符串动态 `?raw`）。
-
-### 添加新教材章的步骤
-
-1. 在 `src/data/textbook/{模块id}/` 下新建 `.md` 文件
-2. 在 TextbookPage.tsx 顶部 `import` + `MD_MAP` 加一行
-3. 在对应 `sections/*.js` 中将章节设 `available: true`
-
----
-
-## 15. 资源目录结构
-
-```
-public/
-├── models/
-│   ├── background/
-│   │   └── Exhibition model.glb    (5.8MB, Draco)
-│   ├── roof/
-│   │   ├── flat-roof/
-│   │   │   └── flat-roof.glb       (2.3MB, WebP)
-│   │   ├── sloped-roof/
-│   │   │   └── sloped-roof.glb     (1.9MB, WebP)
-│   │   ├── eaves-gutter/
-│   │   │   └── eaves-gutter.glb       (177KB)
-│   │   ├── organized-drainage/
-│   │   │   └── organized-drainage.glb (153KB)
-│   │   └── roof-drainage/
-│   │       └── roof-drainage.glb   (123KB)
-│   ├── stairs/
-│   │   └── concrete-steps/
-│   │       └── concrete-steps.glb
-│   └── wall/
-│       ├── construction-column/
-│       │   └── construction-column.glb (214KB, WebP+Draco)
-│       ├── apron-flashing/
-│       │   └── apron-flashing.glb      (326KB)
-│       ├── stone-apron/
-│       │   └── stone-apron.glb         (241KB)
-│       ├── foam-insulation/
-│       │   └── foam-insulation.glb
-│       └── rockwool-insulation/
-│           └── rockwool-insulation.glb
-├── images/
-│   ├── roof/
-│   │   ├── roof-drainage-diagram.png
-│   │   └── organized-drainage-diagram.png
-│   ├── construction-column-diagram.png
-│   ├── apron-flashing-diagram.png
-│   ├── eaves-gutter-diagram.png
-│   ├── stone-apron-diagram.png
-│   ├── foam-insulation-diagram.png
-│   └── rockwool-insulation-diagram.png
-```
-
----
-
-## 16. 添加新节点（3 步）
-
-1. **准备文件**：`public/models/{类别}/{节点名}/{节点名}.glb` + 剖面图（可选）+ Blender hitbox（可选，命名 `{构件名}_hitbox`）+ `src/data/{节点名}Layers.ts`
-2. **注册节点**：在 `src/data/nodeDefinitions.ts` 的 `nodeDefinitions` 数组中添加一条 `NodeDefinition`（含 model、diagram、layerConfig、loadContent 等字段）
-3. **压缩模型**：运行 `npm run compress-models`
-
-多材质构件、hitbox 后缀、名称标准化等由 `canonicalName()` 全自动处理。不再需要在 NodeDetail、ConstructionKnowledgePanel 等处分别注册。
-
----
-
-## 17. 开发命令
+## 12. 开发命令
 
 ```bash
-npm run dev              # localhost:5173 (需 .env.local 配置 DEEPSEEK_API_KEY)
+npm run dev              # localhost:5173
+npm test                 # 276 纯逻辑测试
 npm run build            # 生产构建
-npm run compress-models  # 压缩 public/models/ 下 >1MB 的 GLB
+npm run lint             # ESLint
 npx tsc --noEmit         # 类型检查
+npm run compress-models  # 压缩 GLB
+npm run deploy           # gh-pages 部署
 ```
+
+## 13. 添加新节点（3 步）
+
+1. **准备文件**: `public/models/{类别}/{节点名}/` + 剖面图 + `src/data/{节点名}Layers.ts`
+2. **注册节点**: `nodeDefinitions.ts` 添加 `NodeDefinition`
+3. **多方案节点**: 设置 `presentationMode: "variants"` + `variants[]` (含 model/explode/componentKnowledge)
 
 ---
 
-_最后更新：2026-07-20_
+## 14. Git 历史（关键 commit）
 
-### 18. 审计与验收报告
-
-| 文件 | 内容 |
+| Commit | 说明 |
 |------|------|
-| `AUDIT_REPORT.md` | 全项目静态审计 (20 章, P0=0 P1=0 P2=3→0 fixed P3=23) |
-| `BROWSER_ACCEPTANCE_REPORT.md` | 浏览器验收 (Playwright headless + GUI, 15 路由 ✅, ErrorBoundary 故障注入 ✅, 响应式 9/9 ✅) |
+| `e706b64` | Phase 1 基线 |
+| `52f2028` | Phase 1 封板 |
+| `e494ca5` | Phase 2 封板: multi-model variant presentation |
+| `...` | Phase 3–5 (待封板) |
+
+---
+
+_最后更新：2026-07-27_

@@ -97,6 +97,26 @@ export interface VariantComponentKnowledge {
   relatedNodeIds?: string[];
 }
 
+/** Phase 5: per-component explode descriptor. */
+export interface VariantExplodeComponent {
+  /** Exact GLB Object3D.name (not scoped key, not canonicalName). */
+  objectName: string;
+  aliases?: string[];
+  /** Explode direction in model-local space (will be normalized). */
+  direction: readonly [number, number, number];
+  /** Maximum displacement in scene units. */
+  distance: number;
+  /** Optional phase window within global explode progress [0,1]. Defaults to 0–1. */
+  start?: number;
+  end?: number;
+}
+
+/** Phase 5: per-variant explode configuration. */
+export interface VariantExplodeConfig {
+  enabled: boolean;
+  components: readonly VariantExplodeComponent[];
+}
+
 /** Per-variant model config for multi-variant presentation nodes. */
 export interface NodeModelVariant {
   id: string;
@@ -114,6 +134,8 @@ export interface NodeModelVariant {
   components?: VariantComponent[];
   /** Per-variant detailed knowledge entries for Phase 4. */
   componentKnowledge?: VariantComponentKnowledge[];
+  /** Phase 5: per-variant explode configuration. */
+  explode?: VariantExplodeConfig;
 }
 
 export interface NodeDefinition {
@@ -566,6 +588,14 @@ export const nodeDefinitions: NodeDefinition[] = [
           { name: "室内地面面层", material: "水泥砂浆", thickness: "20mm" },
           { name: "素土夯实", material: "压实填土", thickness: "—" },
         ],
+        explode: {
+          enabled: true,
+          components: [
+            { objectName: "地面垫层为密实材料001", direction: [0, 1, 0], distance: 0.8 },
+            { objectName: "地面垫层为密实材料001_1", direction: [0, 1, 0], distance: 0.4, start: 0.2 },
+            { objectName: "地面垫层为密实材料001_2", direction: [0, -1, 0], distance: 0.5 },
+          ],
+        },
         componentKnowledge: [
           {
             objectName: "地面垫层为密实材料001",
@@ -624,6 +654,14 @@ export const nodeDefinitions: NodeDefinition[] = [
           { name: "室内地面面层", material: "水泥砂浆", thickness: "20mm" },
           { name: "素土夯实", material: "压实填土", thickness: "—" },
         ],
+        explode: {
+          enabled: true,
+          components: [
+            { objectName: "地面垫层为透水材料001", direction: [0, 1, 0], distance: 0.6 },
+            { objectName: "地面垫层为透水材料001_1", direction: [0.3, 0.8, 0], distance: 0.5, start: 0.1 },
+            { objectName: "地面垫层为透水材料001_2", direction: [0, -1, 0], distance: 0.7, start: 0.3, end: 0.9 },
+          ],
+        },
         componentKnowledge: [
           {
             objectName: "地面垫层为透水材料001",
@@ -681,6 +719,14 @@ export const nodeDefinitions: NodeDefinition[] = [
           { name: "室内地面面层", material: "水泥砂浆", thickness: "20mm" },
           { name: "素土夯实", material: "压实填土", thickness: "—" },
         ],
+        explode: {
+          enabled: true,
+          components: [
+            { objectName: "室内地面有高差001", direction: [0, 1, 0], distance: 0.5, start: 0, end: 0.5 },
+            { objectName: "室内地面有高差001_1", direction: [0, 1.2, 0], distance: 0.9, start: 0.1, end: 0.8 },
+            { objectName: "室内地面有高差001_2", direction: [0, -1, 0], distance: 0.6 },
+          ],
+        },
         componentKnowledge: [
           {
             objectName: "室内地面有高差001",

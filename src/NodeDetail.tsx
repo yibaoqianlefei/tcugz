@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect, useLayoutEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getNodeDefinition } from "./data/nodeDefinitions";
 import { useNodeStore } from "./store/nodeStore";
@@ -10,6 +10,8 @@ import { RotateCw, ChevronsLeft, ChevronsRight, Sun, Link2 } from "lucide-react"
 import { useAnalysisStore } from "./store/analysisStore";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { resolveNodeModelSources } from "./utils/resolveNodeModelSources";
+import { resolveVariantExplodeConfig } from "./utils/explodeLayout";
+import type { ExplodeVariantConfig } from "./components/viewer/ModelViewer";
 import VariantLabelBar from "./components/viewer/VariantLabelBar";
 
 /**
@@ -23,12 +25,15 @@ export default function NodeDetail() {
   const node = getNodeDefinition(nodeId);
   const animationProgress = useNodeStore((s) => s.animationProgress);
   const setAnimationProgress = useNodeStore((s) => s.setAnimationProgress);
+  const explodeProgress = useNodeStore((s) => s.explodeProgress);
+  const setExplodeProgress = useNodeStore((s) => s.setExplodeProgress);
+  const activeExplodeVariantId = useNodeStore((s) => s.activeExplodeVariantId);
 
   const [autoRotate, setAutoRotate] = useState(true);
   const [showShadows, setShowShadows] = useState(true);
   const linkageEnabled = useNodeStore((s) => s.linkageEnabled);
   const setLinkageEnabled = useNodeStore((s) => s.setLinkageEnabled);
-  const totalDuration = 4; // 96 frames @ 24fps
+  const totalDuration = 4;
 
   // ── Reset store when switching nodes (fires before paint) ──
   useLayoutEffect(() => {
@@ -49,9 +54,9 @@ export default function NodeDetail() {
     if (nodeId && node) addVisitedNode(nodeId);
   }, [nodeId, node, addVisitedNode]);
 
-  // ── Play explosion (forward) — locked for noAnimation nodes ──
+  // ── Play explosion — multi-model uses slider only ──
   const playExplosion = () => {
-    if (noAnimation) return;
+    if (isMultiModel || noAnimation) return;
     if (animationProgress >= 1) {
       setAnimationProgress(0);
       animControls.setTime(0);
@@ -59,20 +64,43 @@ export default function NodeDetail() {
     animControls.play();
   };
 
-  // ── Collapse explosion (reverse playback) — locked for noAnimation nodes ──
+  // ── Collapse explosion — multi-model uses slider only ──
   const collapseExplosion = () => {
-    if (noAnimation) return;
+    if (isMultiModel || noAnimation) return;
     if (animationProgress <= 0) return;
     animControls.playReverse();
   };
 
-  // ── Slider change — locked for noAnimation nodes ──
+  // ── Slider change — routes to explodeProgress or animationProgress ──
   const onSliderChange = (value: number) => {
+    if (isMultiModel) {
+      setExplodeProgress(value);
+      return;
+    }
     if (noAnimation) return;
     animControls.pause();
     setAnimationProgress(value);
     animControls.setTime(value * totalDuration);
   };
+
+  /* ── Resolve model sources (Phase 2: supports 1–3 models) ── */
+  // Must compute BEFORE early returns (hooks ordering)
+  const modelSources = node ? resolveNodeModelSources(node) : [];
+  const hasModel = modelSources.length > 0;
+  const isMultiModel = modelSources.length >= 2;
+
+  /* ── Resolve explode configs (Phase 5: multi-model only) ── */
+  const explodeConfigs: ExplodeVariantConfig[] | undefined = useMemo(() => {
+    if (!isMultiModel || !node) return undefined;
+    return modelSources.map((ms) => ({
+      variantId: ms.id,
+      config: resolveVariantExplodeConfig({ node, variantId: ms.id }),
+    }));
+  }, [isMultiModel, node, modelSources]);
+
+  const hasExplodeConfig = isMultiModel && explodeConfigs?.some((c) => c.config.enabled);
+  // activeExplodeVariantId is consumed by ModelViewer via store; read here for reactive re-render
+  void activeExplodeVariantId;
 
   /* ── Node not found ── */
   if (!node) {
@@ -94,11 +122,6 @@ export default function NodeDetail() {
       </div>
     );
   }
-
-  /* ── Resolve model sources (Phase 2: supports 1–3 models) ── */
-  const modelSources = resolveNodeModelSources(node);
-  const hasModel = modelSources.length > 0;
-  const isMultiModel = modelSources.length >= 2;
 
   /* ── Available node — must have model & layerConfig ── */
   const { model, diagram, layerConfig } = node;
@@ -172,6 +195,8 @@ export default function NodeDetail() {
                     modelGroups={model?.groups}
                     noAnimation={node.model?.noAnimation}
                     nonInteractive={node.model?.nonInteractive}
+                    explodeConfigs={explodeConfigs}
+                    nodeId={nodeId}
                   />
                 </ErrorBoundary>
               ) : (
@@ -191,9 +216,11 @@ export default function NodeDetail() {
             {/* ── Collapse ── */}
             <button
               onClick={collapseExplosion}
+              disabled={isMultiModel}
               className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center
                 text-muted-soft hover:text-primary hover:bg-hairline
-                transition-all duration-200 relative shrink-0"
+                transition-all duration-200 relative shrink-0
+                disabled:opacity-30 disabled:cursor-not-allowed"
               title="收起爆炸"
             >
               <ChevronsLeft size={16} className="sm:size-[18px]" strokeWidth={1.5} />
@@ -205,10 +232,12 @@ export default function NodeDetail() {
               min={0}
               max={1}
               step={0.001}
-              value={animationProgress}
+              value={isMultiModel ? explodeProgress : animationProgress}
               onChange={(e) => onSliderChange(Number(e.target.value))}
+              disabled={isMultiModel ? !hasExplodeConfig : noAnimation}
               className="w-14 sm:w-24 md:w-32 h-6 py-1 bg-hairline rounded-full appearance-none cursor-pointer
                 accent-primary shrink
+                disabled:opacity-30 disabled:cursor-not-allowed
                 [&::-webkit-slider-thumb]:appearance-none
                 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5
                 sm:[&::-webkit-slider-thumb]:w-4 sm:[&::-webkit-slider-thumb]:h-4
@@ -225,9 +254,11 @@ export default function NodeDetail() {
             {/* ── Play explosion ── */}
             <button
               onClick={playExplosion}
+              disabled={isMultiModel}
               className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center
                 text-muted-soft hover:text-primary hover:bg-hairline
-                transition-all duration-200 relative shrink-0"
+                transition-all duration-200 relative shrink-0
+                disabled:opacity-30 disabled:cursor-not-allowed"
               title="播放爆炸"
             >
               <ChevronsRight size={16} className="sm:size-[18px]" strokeWidth={1.5} />

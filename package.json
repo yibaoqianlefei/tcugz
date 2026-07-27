@@ -11,7 +11,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "compress-models": "node scripts/compress-models.mjs",
-    "test": "npx tsx tests/resolveNodeModelSources.test.ts"
+    "test": "npx tsx tests/resolveNodeModelSources.test.ts && npx tsx tests/explodeLayout.test.ts && npx tsx tests/explodeRuntime.test.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",

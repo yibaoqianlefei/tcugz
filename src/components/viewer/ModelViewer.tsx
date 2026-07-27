@@ -8,6 +8,8 @@ import { canonicalName as cnImport, isHitboxName } from "../../utils/nameUtils";
 import { registerAnimationActions, getAnimationActions } from "./animationController";
 import { computeMultiModelLayout } from "../../utils/layoutModels";
 import { writeVariantIdentity, makeScopedKey, cloneSceneWithMaterials, disposeClonedMaterials } from "../../utils/variantIdentity";
+import { computeExplodedPosition } from "../../utils/explodeLayout";
+import type { ResolvedVariantExplodeConfig, ResolvedExplodeComponent } from "../../utils/explodeLayout";
 
 /* ═══════════════════════════════════════════════════════════════
    Material highlight — original-state cache + dual-channel restore
@@ -581,7 +583,7 @@ function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: numb
 /* ── Multi-model layout ────────────────────────────────────── */
 interface ModelEntry { id: string; src: string; scale?: number; label?: string; title?: string }
 
-function MultiModelGroup({ models, containerWidth }: { models: ModelEntry[]; containerWidth: number }) {
+function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId }: { models: ModelEntry[]; containerWidth: number; explodeConfigs?: ExplodeVariantConfig[]; nodeId?: string }) {
   const groupRef = useRef<THREE.Group>(null);
   const readyRef = useRef(new Map<string, THREE.Group>());
   const [readyCount, setReadyCount] = useState(0);
@@ -612,6 +614,9 @@ function MultiModelGroup({ models, containerWidth }: { models: ModelEntry[]; con
         interface MultiModelDebug {
           groupUUID: string;
           childCount: number;
+          selectedObject: string | null;
+          selectedVariantId: string | null;
+          explodeProgress: number;
           variants: Array<{
             variantId: string;
             sceneUUID: string | null;
@@ -623,6 +628,10 @@ function MultiModelGroup({ models, containerWidth }: { models: ModelEntry[]; con
         // Deferred read of Zustand state (avoid stale closure)
         const store = useNodeStore.getState();
         (window as { __multiModelDebug?: MultiModelDebug }).__multiModelDebug = {
+          // Phase 5: expose selection state for interaction verification
+          selectedObject: store.selectedObject,
+          selectedVariantId: store.selectedVariantId,
+          explodeProgress: store.explodeProgress,
           groupUUID: groupRef.current.uuid,
           childCount: groupRef.current.children.length,
           variants: models.map((m) => {
@@ -651,6 +660,99 @@ function MultiModelGroup({ models, containerWidth }: { models: ModelEntry[]; con
     }
   }, [readyCount, models.length, layoutModels]);
 
+  /* Phase 5: Explode driver — cache targets + update positions */
+  const explodeTargetRef = useRef<Map<string, {
+    object: THREE.Object3D;
+    basePosition: readonly [number, number, number];
+    component: ResolvedExplodeComponent;
+    variantId: string;
+  }>>(new Map());
+  const explodeBuilt = useRef(false);
+
+  // Build explode target cache once after all models are ready + laid out
+  useEffect(() => {
+    if (readyCount !== models.length || models.length === 0) return;
+    if (explodeBuilt.current) return;
+    if (!explodeConfigs || explodeConfigs.length === 0) return;
+
+    const cache = explodeTargetRef.current;
+    cache.clear();
+
+    // For each variant with an enabled explode config, traverse the variant
+    // scene to find target meshes by real Object3D.name
+    explodeConfigs.forEach(({ variantId, config }) => {
+      if (!config.enabled) return;
+      const scene = readyRef.current.get(variantId);
+      if (!scene) return;
+
+      // Find the variant root Group (has userData.variantId set)
+      scene.traverse((child) => {
+        if (!(child instanceof THREE.Mesh)) return;
+        if (!child.name) return;
+        // Skip proxy meshes and edge lines
+        if (child.userData._isProxy) return;
+        if (child instanceof THREE.LineSegments) return;
+
+        const found = config.components.find(
+          (c) => c.objectName === child.name,
+        );
+        if (!found) return;
+
+        // Avoid double displacement: skip meshes whose parent is also
+        // a configured target (the parent moves → children follow).
+        // Proxy + edge-line children of target meshes are already
+        // filtered above by _isProxy / instanceof LineSegments.
+        const parentIsTarget =
+          child.parent &&
+          child.parent instanceof THREE.Mesh &&
+          config.components.some((c) => c.objectName === child.parent!.name);
+        if (parentIsTarget) return;
+
+        const key = `${nodeId ?? "unknown"}::${variantId}::${child.name}`;
+        if (cache.has(key)) return;
+
+        cache.set(key, {
+          object: child,
+          basePosition: [child.position.x, child.position.y, child.position.z] as const,
+          component: found,
+          variantId,
+        });
+      });
+    });
+
+    explodeBuilt.current = true;
+  }, [readyCount, models.length, explodeConfigs, nodeId]);
+
+  /* Phase 5 useFrame: apply explode positions based on active scope */
+  useFrame(() => {
+    // Keep debug hook selection state current for acceptance verification
+    if (typeof window !== "undefined" && import.meta.env.DEV && (window as unknown as Record<string,unknown>).__multiModelDebug) {
+      const s = useNodeStore.getState();
+      const dbg = (window as unknown as Record<string,unknown>).__multiModelDebug as Record<string, unknown>;
+      dbg.selectedObject = s.selectedObject;
+      dbg.selectedVariantId = s.selectedVariantId;
+      dbg.explodeProgress = s.explodeProgress;
+    }
+    if (explodeTargetRef.current.size === 0) return;
+    const store = useNodeStore.getState();
+    const progress = store.explodeProgress;
+    const activeId = store.activeExplodeVariantId;
+    const cache = explodeTargetRef.current;
+    cache.forEach((target) => {
+      const effectiveProgress = target.variantId === activeId ? progress : 0;
+      const next = computeExplodedPosition({
+        basePosition: target.basePosition,
+        direction: target.component.direction,
+        distance: target.component.distance,
+        progress: effectiveProgress,
+        start: target.component.start,
+        end: target.component.end,
+      });
+      target.object.position.set(next[0], next[1], next[2]);
+    });
+  });
+
+
   return (
     <group ref={groupRef}>
       {models.map((m, i) => (
@@ -674,6 +776,8 @@ function MultiModelGroup({ models, containerWidth }: { models: ModelEntry[]; con
 }
 
 /* ── Public component ─────────────────────────────────────── */
+export interface ExplodeVariantConfig { variantId: string; config: ResolvedVariantExplodeConfig }
+
 export default function ModelViewer({
   autoRotate = true,
   modelPath,
@@ -684,11 +788,11 @@ export default function ModelViewer({
   modelGroups,
   noAnimation = false,
   nonInteractive,
+  explodeConfigs,
+  nodeId,
 }: {
   autoRotate?: boolean;
-  /** Single model path (backward compat, normal nodes). */
   modelPath?: string;
-  /** Multi-model paths (Phase 2). 1–3 entries. Takes precedence over modelPath. */
   modelPaths?: ModelEntry[];
   showShadows?: boolean;
   layoutKey?: number;
@@ -696,6 +800,10 @@ export default function ModelViewer({
   modelGroups?: Record<string, string>;
   noAnimation?: boolean;
   nonInteractive?: string[];
+  /** Phase 5: per-variant explode configs for multi-model nodes. */
+  explodeConfigs?: ExplodeVariantConfig[];
+  /** Phase 5: nodeId for explode cache key identity. */
+  nodeId?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -732,7 +840,7 @@ export default function ModelViewer({
         {showShadows && <ShadowPlane />}
         <Suspense fallback={<LoadingFallback />}>
           {modelPaths && modelPaths.length >= 1 ? (
-            <MultiModelGroup models={modelPaths} containerWidth={containerWidth} />
+            <MultiModelGroup models={modelPaths} containerWidth={containerWidth} explodeConfigs={explodeConfigs} nodeId={nodeId} />
           ) : modelPath ? (
             <SceneModel modelPath={modelPath} containerWidth={containerWidth} modelScale={modelScale} modelGroups={modelGroups} noAnimation={noAnimation} nonInteractive={nonInteractive} />
           ) : null}

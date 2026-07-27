@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { clampExplodeProgress } from "../utils/explodeLayout";
 
 type Store = {
   // ── Selection & hover (mesh-level, backward-compatible) ──
@@ -7,9 +8,12 @@ type Store = {
   // ── Variant-level selection & hover (Phase 3) ──
   selectedVariantId: string | null;
   hoveredVariantId: string | null;
-  // ── Animation ──
+  // ── Animation (normal nodes, GLTF AnimationMixer) ──
   isPlaying: boolean;
   animationProgress: number;
+  // ── Explode (multi-variant, Phase 5) ──
+  explodeProgress: number;
+  activeExplodeVariantId: string | null;
   // ── Linkage toggle ──
   linkageEnabled: boolean;
   // ── Actions ──
@@ -19,6 +23,9 @@ type Store = {
   setHoveredVariantId: (id: string | null) => void;
   setIsPlaying: (v: boolean) => void;
   setAnimationProgress: (v: number) => void;
+  setExplodeProgress: (v: number) => void;
+  setActiveExplodeVariantId: (id: string | null) => void;
+  resetExplode: () => void;
   setLinkageEnabled: (v: boolean) => void;
   resetNodeInteractionState: () => void;
 };
@@ -30,6 +37,8 @@ export const useNodeStore = create<Store>((set) => ({
   hoveredVariantId: null,
   isPlaying: false,
   animationProgress: 0,
+  explodeProgress: 0,
+  activeExplodeVariantId: null,
   linkageEnabled: true,
 
   setSelectedObject: (name) => set({ selectedObject: name }),
@@ -38,6 +47,9 @@ export const useNodeStore = create<Store>((set) => ({
   setHoveredVariantId: (id) => set({ hoveredVariantId: id }),
   setIsPlaying: (v) => set({ isPlaying: v }),
   setAnimationProgress: (v) => set({ animationProgress: v }),
+  setExplodeProgress: (v) => set({ explodeProgress: clampExplodeProgress(v) }),
+  setActiveExplodeVariantId: (id) => set({ activeExplodeVariantId: id }),
+  resetExplode: () => set({ explodeProgress: 0, activeExplodeVariantId: null }),
   setLinkageEnabled: (v) => set({ linkageEnabled: v }),
   resetNodeInteractionState: () =>
     set({
@@ -47,5 +59,7 @@ export const useNodeStore = create<Store>((set) => ({
       hoveredVariantId: null,
       isPlaying: false,
       animationProgress: 0,
+      explodeProgress: 0,
+      activeExplodeVariantId: null,
     }),
 }));
