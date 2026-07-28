@@ -10,6 +10,8 @@ import { computeMultiModelLayout } from "../../utils/layoutModels";
 import { writeVariantIdentity, makeScopedKey, cloneSceneWithMaterials, disposeClonedMaterials } from "../../utils/variantIdentity";
 import { computeExplodedPosition } from "../../utils/explodeLayout";
 import type { ResolvedVariantExplodeConfig, ResolvedExplodeComponent } from "../../utils/explodeLayout";
+import SectionRuntime from "./SectionRuntime";
+import { isPointVisible, type SectionBounds } from "../../utils/sectionMath";
 
 /* ═══════════════════════════════════════════════════════════════
    Material highlight — original-state cache + dual-channel restore
@@ -35,11 +37,53 @@ function hasEmissive(material: THREE.Material): material is THREE.Material & { e
 
 type HighlightMode = "clear" | "hover" | "selected";
 
+import {
+  getModelScene,
+  setModelScene,
+  registerObjects,
+  clearObjectRegistry,
+  isCameraTrackerPaused,
+} from "../../utils/modelSceneRef";
+import CameraLockRuntime from "./CameraLockRuntime";
+
 /* ── Module-level refs (non-animation) ──────────────────────── */
-let _modelScene: THREE.Group | null = null;
 let _controls: OrbitControlsImpl | null = null;
 let _isUserDragging = false;
 const _scaleCache = new Map<string, number>();
+
+/* ── Phase 6 Step 2: Section picking visibility helper ────── */
+
+/**
+ * Test whether a world-space intersection point is on the visible
+ * side of the current section plane.  Called from pointer event
+ * handlers — not per-frame.
+ *
+ * Returns true when section is disabled (everything visible).
+ */
+function isIntersectionVisible(point: THREE.Vector3): boolean {
+  const store = useNodeStore.getState();
+  if (!store.sectionEnabled) return true;
+  const ms = getModelScene();
+  if (!ms) return true;
+
+  // Compute bounds from live model scene on each pointer event.
+  // Pointer events are user-driven (infrequent), so this is NOT
+  // a per-frame operation.
+  const box = new THREE.Box3().setFromObject(ms);
+  const bounds: SectionBounds = {
+    min: [box.min.x, box.min.y, box.min.z],
+    max: [box.max.x, box.max.y, box.max.z],
+  };
+
+  return isPointVisible(
+    [point.x, point.y, point.z],
+    bounds,
+    store.sectionAxis,
+    store.sectionOffset,
+    store.sectionInvert,
+    true,
+  );
+}
 
 /* ── Renderer setup ───────────────────────────────────────── */
 function RendererSetup({ showShadows }: { showShadows: boolean }) {
@@ -59,7 +103,7 @@ function RendererSetup({ showShadows }: { showShadows: boolean }) {
 }
 
 /* ── Model component (auto-center + highlight + animation) ──── */
-function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGroups, noAnimation = false, nonInteractive, noGlobalRef = false, onReady, variantId, variantIndex, variantLabel, variantTitle }: { modelPath: string; containerWidth?: number; modelScale?: number; modelGroups?: Record<string, string>; noAnimation?: boolean; nonInteractive?: string[]; /** If true, skip setting _modelScene (parent handles it). */ noGlobalRef?: boolean; /** Called when model is loaded + centered, with the scene group. */ onReady?: (scene: THREE.Group) => void; /** Phase 3: variant identity for multi-model isolation. */ variantId?: string; variantIndex?: number; variantLabel?: string; variantTitle?: string }) {
+function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGroups, noAnimation = false, nonInteractive, noGlobalRef = false, onReady, variantId, variantIndex, variantLabel, variantTitle }: { modelPath: string; containerWidth?: number; modelScale?: number; modelGroups?: Record<string, string>; noAnimation?: boolean; nonInteractive?: string[]; /** If true, skip setting the global model scene ref (parent handles it). */ noGlobalRef?: boolean; /** Called when model is loaded + centered, with the scene group. */ onReady?: (scene: THREE.Group) => void; /** Phase 3: variant identity for multi-model isolation. */ variantId?: string; variantIndex?: number; variantLabel?: string; variantTitle?: string }) {
   const { scene: sourceScene, animations } = useGLTF(modelPath, true);
   /** Deep-clone with material isolation — each SceneModel owns independent materials. */
   const scene = useMemo(() => cloneSceneWithMaterials(sourceScene), [sourceScene]);
@@ -68,6 +112,8 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
   const clipRef = useRef<THREE.AnimationClip | null>(null);
   const groupRef = useRef<THREE.Group>(null);
   const meshMapRef = useRef<Map<string, THREE.Mesh[]>>(new Map());
+  /** Phase 6 Step 3: unregister functions for Object3D registry. */
+  const unregisterFnsRef = useRef<Array<() => void>>([]);
   const resolveName = useCallback(
     (name: string): string => cnImport(name, modelGroups),
     [modelGroups],
@@ -132,7 +178,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
         src: modelPath,
       });
     }
-    if (!noGlobalRef) _modelScene = scene;
+    if (!noGlobalRef) setModelScene(scene);
     if (onReady) onReady(scene);
 
     const isFirstInit = !scaleApplied.current;
@@ -217,6 +263,16 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
         });
       });
       scaleApplied.current = true;
+
+      // Phase 6 Step 3: register all interactive meshes in Object3D registry
+      const newUnregisterFns: Array<() => void> = [];
+      meshMapRef.current.forEach((meshes, logicalName) => {
+        if (meshes.length === 0) return;
+        const key = makeScopedKey(variantId ?? null, logicalName);
+        const unreg = registerObjects(key, meshes);
+        newUnregisterFns.push(unreg);
+      });
+      unregisterFnsRef.current = newUnregisterFns;
     }
 
     // ── AnimationMixer ──
@@ -259,7 +315,10 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
       }
       unregister();
       disposeClonedMaterials(scene);
-      _modelScene = null;
+      setModelScene(null);
+      // Phase 6 Step 3: unregister all objects from global registry
+      unregisterFnsRef.current.forEach((fn) => fn());
+      unregisterFnsRef.current = [];
     };
     // noGlobalRef and onReady are stable callbacks, intentionally excluded from deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -285,8 +344,9 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     const next = current + (target - current) * Math.min(delta * 6, 1);
     if (Math.abs(next - current) > 0.0005) {
       scene.scale.setScalar(next);
-      if (_modelScene && _controls) {
-        const box = new THREE.Box3().setFromObject(_modelScene);
+      const ms = getModelScene();
+      if (ms && _controls) {
+        const box = new THREE.Box3().setFromObject(ms);
         const center = new THREE.Vector3();
         box.getCenter(center);
         _controls.target.lerp(center, Math.min(delta * 4, 1));
@@ -459,7 +519,14 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
   const handlePointerOver = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation();
     if (useNodeStore.getState().animationProgress < 0.99) return;
-    const name = findNamedMesh(e.object);
+    // Phase 6 Step 2: skip intersections on the clipped side of section plane
+    const vis = e.intersections?.find((ix) => isIntersectionVisible(ix.point));
+    if (!vis) {
+      setHoveredObject(null);
+      if (variantId) useNodeStore.getState().setHoveredVariantId(null);
+      return;
+    }
+    const name = findNamedMesh(vis.object);
     if (name) {
       const key = makeScopedKey(variantId ?? null, name);
       setHoveredObject(key);
@@ -476,7 +543,15 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
     if (useNodeStore.getState().animationProgress < 1) return;
-    const name = findNamedMesh(e.object);
+    // Phase 6 Step 2: skip intersections on the clipped side of section plane
+    const vis = e.intersections?.find((ix) => isIntersectionVisible(ix.point));
+    if (!vis) {
+      // All intersections clipped → treat as blank click
+      setSelectedObject(null);
+      if (variantId) useNodeStore.getState().setSelectedVariantId(null);
+      return;
+    }
+    const name = findNamedMesh(vis.object);
     if (name) {
       const key = makeScopedKey(variantId ?? null, name);
       const current = useNodeStore.getState().selectedObject;
@@ -484,9 +559,23 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
         // Clicking same mesh → deselect (and clear variant selection)
         setSelectedObject(null);
         if (variantId) useNodeStore.getState().setSelectedVariantId(null);
+        // Keep activeExplodeVariantId — blank-click-like behavior (Phase 6)
+      } else if (variantId) {
+        // Phase 6 Step 2: this pick may also change the variant.
+        // If the variant changes, use the unified selectVariant action
+        // (which resets section + explode) but preserve the picked object.
+        const prevVariant = useNodeStore.getState().selectedVariantId;
+        if (variantId !== prevVariant) {
+          // Cross-variant pick → full variant switch protocol
+          useNodeStore.getState().selectVariant(variantId, key);
+        } else {
+          // Same-variant pick → just update selection and sync explode scope
+          setSelectedObject(key);
+          useNodeStore.getState().setActiveExplodeVariantId(variantId);
+        }
       } else {
+        // Normal node (no variantId): plain mesh selection
         setSelectedObject(key);
-        if (variantId) useNodeStore.getState().setSelectedVariantId(variantId);
       }
     }
   };
@@ -553,7 +642,7 @@ function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: numb
 
   useEffect(() => {
     const controls = _controls;
-    const scene = _modelScene;
+    const scene = getModelScene();
     if (!controls || !scene) return;
     const t = setTimeout(() => {
       const box = new THREE.Box3().setFromObject(scene);
@@ -567,9 +656,11 @@ function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: numb
 
   useFrame((_, delta) => {
     const controls = _controls;
-    const scene = _modelScene;
+    const scene = getModelScene();
     if (!controls || !scene) return;
     if (_isUserDragging) return;
+    // Phase 6 Step 3: Camera Lock or lifecycle pause owns target
+    if (isCameraTrackerPaused()) return;
     const box = boxRef.current;
     box.setFromObject(scene);
     box.getCenter(centerRef.current);
@@ -583,7 +674,7 @@ function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: numb
 /* ── Multi-model layout ────────────────────────────────────── */
 interface ModelEntry { id: string; src: string; scale?: number; label?: string; title?: string }
 
-function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId }: { models: ModelEntry[]; containerWidth: number; explodeConfigs?: ExplodeVariantConfig[]; nodeId?: string }) {
+function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId, onAllReady }: { models: ModelEntry[]; containerWidth: number; explodeConfigs?: ExplodeVariantConfig[]; nodeId?: string; onAllReady?: () => void }) {
   const groupRef = useRef<THREE.Group>(null);
   const readyRef = useRef(new Map<string, THREE.Group>());
   const [readyCount, setReadyCount] = useState(0);
@@ -608,7 +699,7 @@ function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId }: { m
 
     if (groupRef.current) {
       groupRef.current.updateMatrixWorld();
-      _modelScene = groupRef.current;
+      setModelScene(groupRef.current);
       // Debug hook (DEV-only in production builds this is a no-op)
       if (typeof window !== "undefined" && import.meta.env.DEV) {
         interface MultiModelDebug {
@@ -657,8 +748,10 @@ function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId }: { m
   useEffect(() => {
     if (readyCount === models.length && models.length > 0) {
       layoutModels();
+      // Phase 6 Step 2: signal parent that model scene is ready for section binding
+      if (onAllReady) onAllReady();
     }
-  }, [readyCount, models.length, layoutModels]);
+  }, [readyCount, models.length, layoutModels, onAllReady]);
 
   /* Phase 5: Explode driver — cache targets + update positions */
   const explodeTargetRef = useRef<Map<string, {
@@ -724,6 +817,7 @@ function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId }: { m
   }, [readyCount, models.length, explodeConfigs, nodeId]);
 
   /* Phase 5 useFrame: apply explode positions based on active scope */
+  // Phase 6 Step 3: priority -100 ensures Explode runs before Camera Lock (-90)
   useFrame(() => {
     // Keep debug hook selection state current for acceptance verification
     if (typeof window !== "undefined" && import.meta.env.DEV && (window as unknown as Record<string,unknown>).__multiModelDebug) {
@@ -750,7 +844,7 @@ function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId }: { m
       });
       target.object.position.set(next[0], next[1], next[2]);
     });
-  });
+  }, -100); // Phase 6 Step 3: run before CameraLockRuntime (-90)
 
 
   return (
@@ -808,6 +902,13 @@ export default function ModelViewer({
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
 
+  // ── Phase 6 Step 2: track when model scene is ready for section binding ──
+  // Initialized false; ModelViewer remounts on node switch (key={nodeId}).
+  const [sceneReady, setSceneReady] = useState(false);
+  const isMulti = !!(modelPaths && modelPaths.length >= 1);
+
+  const handleSceneReady = useCallback(() => { setSceneReady(true); }, []);
+
   // ── Drag-state callbacks for CameraTracker (declarative via drei onStart/onEnd) ──
   const handleControlsStart = useCallback(() => { _isUserDragging = true; }, []);
   const handleControlsEnd = useCallback(() => { _isUserDragging = false; }, []);
@@ -821,6 +922,11 @@ export default function ModelViewer({
     });
     ro.observe(el);
     return () => ro.disconnect();
+  }, []);
+
+  // Phase 6 Step 3: HMR safety net — clear registry on unmount
+  useEffect(() => {
+    return () => { clearObjectRegistry(); };
   }, []);
 
   return (
@@ -839,10 +945,10 @@ export default function ModelViewer({
         <SceneLights showShadows={showShadows} />
         {showShadows && <ShadowPlane />}
         <Suspense fallback={<LoadingFallback />}>
-          {modelPaths && modelPaths.length >= 1 ? (
-            <MultiModelGroup models={modelPaths} containerWidth={containerWidth} explodeConfigs={explodeConfigs} nodeId={nodeId} />
+          {isMulti ? (
+            <MultiModelGroup models={modelPaths!} containerWidth={containerWidth} explodeConfigs={explodeConfigs} nodeId={nodeId} onAllReady={handleSceneReady} />
           ) : modelPath ? (
-            <SceneModel modelPath={modelPath} containerWidth={containerWidth} modelScale={modelScale} modelGroups={modelGroups} noAnimation={noAnimation} nonInteractive={nonInteractive} />
+            <SceneModel modelPath={modelPath} containerWidth={containerWidth} modelScale={modelScale} modelGroups={modelGroups} noAnimation={noAnimation} nonInteractive={nonInteractive} onReady={handleSceneReady} />
           ) : null}
         </Suspense>
         <OrbitControls
@@ -857,6 +963,10 @@ export default function ModelViewer({
           onEnd={handleControlsEnd}
         />
         <CameraTracker layoutKey={layoutKey} containerWidth={containerWidth} />
+        {/* Phase 6 Step 2: Section clipping-plane runtime */}
+        <SectionRuntime sceneVersion={sceneReady ? 1 : 0} />
+        {/* Phase 6 Step 3: Camera Lock runtime */}
+        <CameraLockRuntime />
       </Canvas>
     </div>
   );

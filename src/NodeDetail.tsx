@@ -2,6 +2,7 @@ import { useState, useEffect, useLayoutEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getNodeDefinition } from "./data/nodeDefinitions";
 import { useNodeStore } from "./store/nodeStore";
+import { resumeCameraTracker } from "./utils/modelSceneRef";
 import { animControls } from "./components/viewer/animationController";
 import ModelViewer from "./components/viewer/ModelViewer";
 import NodeDiagramPanel from "./components/viewer/NodeDiagramPanel";
@@ -13,6 +14,8 @@ import { resolveNodeModelSources } from "./utils/resolveNodeModelSources";
 import { resolveVariantExplodeConfig } from "./utils/explodeLayout";
 import type { ExplodeVariantConfig } from "./components/viewer/ModelViewer";
 import VariantLabelBar from "./components/viewer/VariantLabelBar";
+import SectionControls from "./components/viewer/SectionControls";
+import CameraLockControls from "./components/viewer/CameraLockControls";
 
 /**
  * NodeDetail V1 — construction education layout.
@@ -38,6 +41,9 @@ export default function NodeDetail() {
   // ── Reset store when switching nodes (fires before paint) ──
   useLayoutEffect(() => {
     useNodeStore.getState().resetNodeInteractionState();
+    // Phase 6 Step 3: also reset Camera Lock + resume CameraTracker
+    useNodeStore.getState().resetCameraLock();
+    resumeCameraTracker();
   }, [nodeId]);
 
   // ── noAnimation nodes: set progress to 1 after reset ──
@@ -47,6 +53,24 @@ export default function NodeDetail() {
       useNodeStore.getState().setAnimationProgress(1);
     }
   }, [nodeId, noAnimation]);
+
+  // ── Phase 6 Step 3: Escape handler (single page-level listener) ──
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      const store = useNodeStore.getState();
+      if (store.cameraLockEnabled) {
+        store.unlockCamera();
+        store.setSelectedObject(null);
+        // Section, Explode, variant, animation untouched
+        return;
+      }
+      // Fallback: clear selection
+      store.setSelectedObject(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   // ── Track visited node (only record valid nodes) ──
   const addVisitedNode = useAnalysisStore((s) => s.addVisitedNode);
@@ -325,6 +349,18 @@ export default function NodeDetail() {
                 strokeWidth={1.5}
               />
             </button>
+
+            {/* ── Divider ── */}
+            <div className="w-px h-5 bg-hairline mx-0.5 sm:mx-1 shrink-0" />
+
+            {/* Phase 6 Step 2: Section controls */}
+            <SectionControls />
+
+            {/* ── Divider ── */}
+            <div className="w-px h-5 bg-hairline mx-0.5 sm:mx-1 shrink-0" />
+
+            {/* Phase 6 Step 3: Camera Lock controls */}
+            <CameraLockControls />
           </div>
         </div>
 

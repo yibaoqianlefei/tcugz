@@ -20,9 +20,8 @@ export default function VariantLabelBar({
 }) {
   const selectedVariantId = useNodeStore((s) => s.selectedVariantId);
   const hoveredVariantId = useNodeStore((s) => s.hoveredVariantId);
-  const setSelectedVariantId = useNodeStore((s) => s.setSelectedVariantId);
+  const selectVariant = useNodeStore((s) => s.selectVariant);
   const setHoveredVariantId = useNodeStore((s) => s.setHoveredVariantId);
-  const setSelectedObject = useNodeStore((s) => s.setSelectedObject);
 
   if (variants.length < 2) return null;
 
@@ -53,14 +52,13 @@ export default function VariantLabelBar({
                   : "bg-surface-card border-hairline text-muted hover:border-primary/20 hover:text-body",
             ].join(" ")}
             onClick={() => {
+              // Phase 6 Step 2: unified variant selection — atomic update
+              // of selectedVariantId + activeExplodeVariantId + explodeProgress
+              // + selectedObject via selectVariant action.
               if (isSelected) {
-                // Re-clicking selected → deselect variant and clear mesh selection
-                setSelectedVariantId(null);
-                setSelectedObject(null);
+                selectVariant(null);
               } else {
-                setSelectedVariantId(v.id);
-                // Clear mesh-level selection when switching variants
-                setSelectedObject(null);
+                selectVariant(v.id);
               }
             }}
             onMouseEnter={() => setHoveredVariantId(v.id)}
@@ -71,11 +69,9 @@ export default function VariantLabelBar({
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
                 if (isSelected) {
-                  setSelectedVariantId(null);
-                  setSelectedObject(null);
+                  selectVariant(null);
                 } else {
-                  setSelectedVariantId(v.id);
-                  setSelectedObject(null);
+                  selectVariant(v.id);
                 }
               }
             }}

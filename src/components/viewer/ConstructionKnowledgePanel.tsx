@@ -130,6 +130,8 @@ export default function ConstructionKnowledgePanel() {
   const handleNavigateToNode = (targetId: string) => {
     setSelectedObject(null);
     setSelectedVariantId(null);
+    // Phase 6 Step 2: clean up explode scope before navigating
+    useNodeStore.getState().resetExplode();
     navigate(`/node/${targetId}`);
   };
 
