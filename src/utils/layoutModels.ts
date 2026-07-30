@@ -23,15 +23,16 @@ export interface LayoutResult {
   totalWidth: number;
 }
 
-const MIN_GAP = 0.6;
-const MAX_GAP = 2.0;
-const GAP_RATIO = 0.18;
+const MIN_GAP = 0.25;
+const MAX_GAP = 1.2;
+/** Gap as a fraction of average model width.  0.38 → 38% gap-to-width. */
+const GAP_RATIO = 0.38;
 const MIN_WIDTH = 0.5;
 
 /**
  * Compute horizontal positions for 1–N models placed side-by-side.
  *
- * - Gap = clamp(maxWidth × 0.18, 0.6, 2.0)
+ * - Gap = clamp(averageWidth × 0.45, 0.3, 1.5)
  * - Each entry.x is the center of its model in left-to-right order
  * - totalWidth = sum(widths) + (n−1) × gap
  * - Invalid widths (NaN, ≤0, Infinity) are replaced with MIN_WIDTH (0.5)
@@ -42,8 +43,11 @@ export function computeMultiModelLayout(widths: number[]): LayoutResult {
     Number.isFinite(w) && w > 0 ? w : MIN_WIDTH,
   );
 
-  const maxW = Math.max(...safe, MIN_WIDTH);
-  const gap = Math.max(MIN_GAP, Math.min(MAX_GAP, maxW * GAP_RATIO));
+  if (safe.length === 0) {
+    return { entries: [], gap: MIN_GAP, totalWidth: 0 };
+  }
+  const avgW = safe.reduce((a, b) => a + b, 0) / safe.length;
+  const gap = Math.max(MIN_GAP, Math.min(MAX_GAP, avgW * GAP_RATIO));
 
   let cursorX = 0;
   const entries: LayoutEntry[] = safe.map((w) => {

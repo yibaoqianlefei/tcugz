@@ -137,13 +137,13 @@ function makeNode(overrides: Partial<NodeDefinition> = {}): NodeDefinition {
 /* ── Layout: gap lower bound 0.6 ── */
 {
   const r = computeMultiModelLayout([0.1, 0.1]); // tiny models → maxW=0.5, gap=clamp(0.09,0.6,2)=0.6
-  assert(r.gap >= 0.6, `gap >= 0.6 (actual: ${r.gap})`);
+  assert(r.gap >= 0.25, `gap >= 0.25 (actual: ${r.gap})`);
 }
 
 /* ── Layout: gap upper bound 2.0 ── */
 {
   const r = computeMultiModelLayout([50, 50]); // large models → gap=clamp(9,0.6,2)=2.0
-  assert(r.gap <= 2.0, `gap <= 2.0 (actual: ${r.gap})`);
+  assert(r.gap <= 1.2, `gap <= 1.2 (actual: ${r.gap})`);
 }
 
 /* ── Layout: NaN/Infinity/zero/negative widths don't produce NaN positions ── */

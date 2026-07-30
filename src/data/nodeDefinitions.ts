@@ -574,7 +574,7 @@ export const nodeDefinitions: NodeDefinition[] = [
         description:
           "地面垫层采用密实材料时，水平防潮层设置于室内地面附近，垫层具有较好的阻水能力。",
         model: {
-          path: assetPath("models/wall/wall-damp-proof/地面垫层为密实材料.glb"),
+          path: assetPath("models/wall/wall-damp-proof/damp-proof-a-v2.glb"),
           scale: 2,
         },
         differenceSummary: [
@@ -640,7 +640,7 @@ export const nodeDefinitions: NodeDefinition[] = [
         description:
           "地面垫层采用透水材料时，需要调整水平防潮层位置，避免水分进入墙身。",
         model: {
-          path: assetPath("models/wall/wall-damp-proof/地面垫层为透水材料.glb"),
+          path: assetPath("models/wall/wall-damp-proof/damp-proof-b-v2.glb"),
           scale: 2,
         },
         differenceSummary: [
@@ -704,8 +704,8 @@ export const nodeDefinitions: NodeDefinition[] = [
         description:
           "室内外地面存在高差时，需要结合水平与垂直防潮构造处理。",
         model: {
-          path: assetPath("models/wall/wall-damp-proof/室内地面有高差.glb"),
-          scale: 2.5,
+          path: assetPath("models/wall/wall-damp-proof/damp-proof-c-v2.glb"),
+          scale: 2,
         },
         differenceSummary: [
           "高低位置分别处理水平防潮",

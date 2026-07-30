@@ -6,7 +6,7 @@ import { useNodeStore } from "../../store/nodeStore";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { canonicalName as cnImport, isHitboxName } from "../../utils/nameUtils";
 import { registerAnimationActions, getAnimationActions } from "./animationController";
-import { computeMultiModelLayout } from "../../utils/layoutModels";
+// layoutModels is now inline in MultiModelGroup (edge-gap formula)
 import { writeVariantIdentity, makeScopedKey, cloneSceneWithMaterials, disposeClonedMaterials } from "../../utils/variantIdentity";
 import { computeExplodedPosition } from "../../utils/explodeLayout";
 import type { ResolvedVariantExplodeConfig, ResolvedExplodeComponent } from "../../utils/explodeLayout";
@@ -42,13 +42,18 @@ import {
   setModelScene,
   registerObjects,
   clearObjectRegistry,
-  isCameraTrackerPaused,
 } from "../../utils/modelSceneRef";
 import CameraLockRuntime from "./CameraLockRuntime";
 
 /* ── Module-level refs (non-animation) ──────────────────────── */
 let _controls: OrbitControlsImpl | null = null;
-let _isUserDragging = false;
+/** Drag detection: suppress click after pointer moved > threshold. */
+const CLICK_MOVE_THRESHOLD = 5; // px
+let _pointerDownX = 0;
+let _pointerDownY = 0;
+let _pointerMaxDist = 0;
+let _suppressNextClick = false;
+const _pointerIdRef = { current: -1 };
 const _scaleCache = new Map<string, number>();
 
 /* ── Phase 6 Step 2: Section picking visibility helper ────── */
@@ -103,7 +108,7 @@ function RendererSetup({ showShadows }: { showShadows: boolean }) {
 }
 
 /* ── Model component (auto-center + highlight + animation) ──── */
-function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGroups, noAnimation = false, nonInteractive, noGlobalRef = false, onReady, variantId, variantIndex, variantLabel, variantTitle }: { modelPath: string; containerWidth?: number; modelScale?: number; modelGroups?: Record<string, string>; noAnimation?: boolean; nonInteractive?: string[]; /** If true, skip setting the global model scene ref (parent handles it). */ noGlobalRef?: boolean; /** Called when model is loaded + centered, with the scene group. */ onReady?: (scene: THREE.Group) => void; /** Phase 3: variant identity for multi-model isolation. */ variantId?: string; variantIndex?: number; variantLabel?: string; variantTitle?: string }) {
+function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGroups, noAnimation = false, nonInteractive, noGlobalRef = false, onReady, variantId, variantIndex, variantLabel, variantTitle, skipAutoLayout = false }: { modelPath: string; containerWidth?: number; modelScale?: number; modelGroups?: Record<string, string>; noAnimation?: boolean; nonInteractive?: string[]; /** If true, skip setting the global model scene ref (parent handles it). */ noGlobalRef?: boolean; /** Called when model is loaded + centered, with the scene group. */ onReady?: (scene: THREE.Group) => void; /** Phase 3: variant identity for multi-model isolation. */ variantId?: string; variantIndex?: number; variantLabel?: string; variantTitle?: string; /** Phase 6: when true, skip auto-size, auto-center, and viewport-responsive scale. Parent (MultiModelGroup) handles layout via DisplayScale+CenterOffset. */ skipAutoLayout?: boolean }) {
   const { scene: sourceScene, animations } = useGLTF(modelPath, true);
   /** Deep-clone with material isolation — each SceneModel owns independent materials. */
   const scene = useMemo(() => cloneSceneWithMaterials(sourceScene), [sourceScene]);
@@ -144,30 +149,32 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     }
 
     // ── Auto-size ──
-    const cacheKey = `${modelPath}::ms${modelScale}`;
-    if (!_scaleCache.has(cacheKey)) {
-      scene.scale.setScalar(1);
-      scene.updateMatrixWorld();
-      const rawBox = new THREE.Box3().setFromObject(scene);
-      const rawSize = new THREE.Vector3();
-      rawBox.getSize(rawSize);
-      const maxDim = Math.max(rawSize.x, rawSize.y, rawSize.z);
-      if (maxDim > 0.01) {
-        const rawScale = modelScale / maxDim;
-        const scale = Math.max(0.3, Math.min(5, rawScale));
-        _scaleCache.set(cacheKey, scale);
+    if (!skipAutoLayout) {
+      const cacheKey = `${modelPath}::ms${modelScale}`;
+      if (!_scaleCache.has(cacheKey)) {
+        scene.scale.setScalar(1);
+        scene.updateMatrixWorld();
+        const rawBox = new THREE.Box3().setFromObject(scene);
+        const rawSize = new THREE.Vector3();
+        rawBox.getSize(rawSize);
+        const maxDim = Math.max(rawSize.x, rawSize.y, rawSize.z);
+        if (maxDim > 0.01) {
+          const rawScale = modelScale / maxDim;
+          const scale = Math.max(0.3, Math.min(5, rawScale));
+          _scaleCache.set(cacheKey, scale);
+        }
       }
-    }
-    const cachedScale = _scaleCache.get(cacheKey) ?? 1;
-    scene.scale.setScalar(cachedScale);
-    scene.updateMatrixWorld();
-    console.log("[ModelViewer] 最终应用缩放:", cachedScale, "| model:", modelPath);
+      const cachedScale = _scaleCache.get(cacheKey) ?? 1;
+      scene.scale.setScalar(cachedScale);
+      scene.updateMatrixWorld();
+      console.log("[ModelViewer] 最终应用缩放:", cachedScale, "| model:", modelPath);
 
-    // ── Auto-center ──
-    const box = new THREE.Box3().setFromObject(scene);
-    const center = new THREE.Vector3();
-    box.getCenter(center);
-    scene.position.set(-center.x, -center.y, -center.z);
+      // ── Auto-center ──
+      const box = new THREE.Box3().setFromObject(scene);
+      const center = new THREE.Vector3();
+      box.getCenter(center);
+      scene.position.set(-center.x, -center.y, -center.z);
+    }
     // Phase 3: write variant identity on the cloned scene root
     if (variantId) {
       writeVariantIdentity(scene, {
@@ -328,29 +335,23 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
   const initialWidthRef = useRef(0);
   const targetScaleRef = useRef(0);
   useEffect(() => {
-    if (!scene || containerWidth <= 0) return;
+    if (skipAutoLayout || !scene || containerWidth <= 0) return;
     const cacheKey = `${modelPath}::ms${modelScale}`;
     const baseScale = _scaleCache.get(cacheKey) ?? 1;
     if (initialWidthRef.current === 0) initialWidthRef.current = containerWidth;
     const refWidth = initialWidthRef.current;
     const ratio = Math.min(1, Math.max(0.4, containerWidth / refWidth));
     targetScaleRef.current = baseScale * ratio;
-  }, [containerWidth, modelPath, modelScale, scene]);
+  }, [containerWidth, modelPath, modelScale, scene, skipAutoLayout]);
 
   useFrame((_, delta) => {
-    if (!scene || targetScaleRef.current <= 0) return;
+    if (skipAutoLayout || !scene || targetScaleRef.current <= 0) return;
     const current = scene.scale.x;
     const target = targetScaleRef.current;
     const next = current + (target - current) * Math.min(delta * 6, 1);
     if (Math.abs(next - current) > 0.0005) {
       scene.scale.setScalar(next);
-      const ms = getModelScene();
-      if (ms && _controls) {
-        const box = new THREE.Box3().setFromObject(ms);
-        const center = new THREE.Vector3();
-        box.getCenter(center);
-        _controls.target.lerp(center, Math.min(delta * 4, 1));
-      }
+      // Scale adjustment does NOT move camera target — user's view is preserved.
     }
   });
 
@@ -542,6 +543,9 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
+    // Suppress click if user was dragging (orbit/pan)
+    if (_suppressNextClick) { _suppressNextClick = false; return; }
+    if (_pointerMaxDist > CLICK_MOVE_THRESHOLD) return;
     if (useNodeStore.getState().animationProgress < 1) return;
     // Phase 6 Step 2: skip intersections on the clipped side of section plane
     const vis = e.intersections?.find((ix) => isIntersectionVisible(ix.point));
@@ -595,12 +599,38 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
   );
 }
 
-/* ── Lighting ─────────────────────────────────────────────── */
+/* ── Lighting (dynamic shadow camera for multi-model) ──────── */
 function SceneLights({ showShadows }: { showShadows: boolean }) {
+  const lightRef = useRef<THREE.DirectionalLight>(null);
+
+  useFrame(() => {
+    if (!showShadows || !lightRef.current) return;
+    const ms = getModelScene();
+    if (!ms) return;
+    const ub: THREE.Box3 | undefined = ms.userData._unionBox;
+    if (!ub || ub.isEmpty()) return;
+    const pad = 1.0;
+    const l = lightRef.current;
+    // Extend shadow camera frustum to cover the union box + padding
+    const halfW = (ub.max.x - ub.min.x) / 2 + pad;
+    const halfH = (ub.max.z - ub.min.z) / 2 + pad;
+    if (
+      Math.abs(l.shadow.camera.left + halfW) > 0.1 ||
+      Math.abs(l.shadow.camera.top - halfH) > 0.1
+    ) {
+      l.shadow.camera.left = -halfW;
+      l.shadow.camera.right = halfW;
+      l.shadow.camera.top = halfH;
+      l.shadow.camera.bottom = -halfH;
+      l.shadow.camera.updateProjectionMatrix();
+    }
+  });
+
   return (
     <>
       <ambientLight intensity={0.6} color="#ffffff" />
       <directionalLight
+        ref={lightRef}
         position={[8, 12, 6]} intensity={2.5} color="#fffdf7"
         castShadow={showShadows}
         shadow-mapSize-width={2048} shadow-mapSize-height={2048}
@@ -614,12 +644,28 @@ function SceneLights({ showShadows }: { showShadows: boolean }) {
   );
 }
 
-/* ── Ground shadow ────────────────────────────────────────── */
+/* ── Ground shadow (dynamic — covers the union bounding box) ── */
 function ShadowPlane() {
+  const ref = useRef<THREE.Mesh>(null);
+  useFrame(() => {
+    const ms = getModelScene();
+    if (!ms || !ref.current) return;
+    // Read union box cached by MultiModelGroup.layoutModels
+    const ub: THREE.Box3 | undefined = ms.userData._unionBox;
+    if (!ub || ub.isEmpty()) return;
+    // Position just below the lowest model point
+    const py = ub.min.y - 0.05;
+    const pw = ub.max.x - ub.min.x + 1.0;
+    const pd = ub.max.z - ub.min.z + 1.0;
+    if (Math.abs(ref.current.position.y - py) > 0.001) {
+      ref.current.position.set((ub.min.x + ub.max.x) / 2, py, (ub.min.z + ub.max.z) / 2);
+      ref.current.scale.set(pw / 10, 1, pd / 10);
+    }
+  });
   return (
-    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.5, 0]} receiveShadow>
+    <mesh ref={ref} rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.5, 0]} receiveShadow>
       <planeGeometry args={[10, 10]} />
-      <shadowMaterial opacity={0.25} transparent depthWrite={false} />
+      <shadowMaterial opacity={0.2} transparent depthWrite={false} />
     </mesh>
   );
 }
@@ -636,10 +682,9 @@ function LoadingFallback() {
 
 /* ── Camera tracker ───────────────────────────────────────── */
 function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: number; containerWidth?: number }) {
-  const boxRef = useRef(new THREE.Box3());
-  const centerRef = useRef(new THREE.Vector3());
   const { size } = useThree();
 
+  // ── One-time initial fit (NOT continuous lerp) ──
   useEffect(() => {
     const controls = _controls;
     const scene = getModelScene();
@@ -654,19 +699,9 @@ function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: numb
     return () => clearTimeout(t);
   }, [size.width, size.height, containerWidth, layoutKey]);
 
-  useFrame((_, delta) => {
-    const controls = _controls;
-    const scene = getModelScene();
-    if (!controls || !scene) return;
-    if (_isUserDragging) return;
-    // Phase 6 Step 3: Camera Lock or lifecycle pause owns target
-    if (isCameraTrackerPaused()) return;
-    const box = boxRef.current;
-    box.setFromObject(scene);
-    box.getCenter(centerRef.current);
-    const alpha = 1 - Math.exp(-8.0 * delta);
-    controls.target.lerp(centerRef.current, alpha);
-  });
+  // ── No continuous lerp: the user's orbit centre is the target. ──
+  // CameraTracker only fires once on model load / resize / remount.
+  // It does NOT fight the user after manual orbit.
 
   return null;
 }
@@ -674,84 +709,324 @@ function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: numb
 /* ── Multi-model layout ────────────────────────────────────── */
 interface ModelEntry { id: string; src: string; scale?: number; label?: string; title?: string }
 
-function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId, onAllReady }: { models: ModelEntry[]; containerWidth: number; explodeConfigs?: ExplodeVariantConfig[]; nodeId?: string; onAllReady?: () => void }) {
+/** Edge-gap formula constants. */
+const EDGE_GAP_RATIO = 0.25;
+const EDGE_GAP_MIN = 0.18;
+const EDGE_GAP_MAX = 0.65;
+const AUTO_ROTATE_SPEED = 0.6;
+
+function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId, onAllReady, autoRotate }: { models: ModelEntry[]; containerWidth: number; explodeConfigs?: ExplodeVariantConfig[]; nodeId?: string; onAllReady?: () => void; autoRotate?: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   const readyRef = useRef(new Map<string, THREE.Group>());
   const [readyCount, setReadyCount] = useState(0);
 
+  /** Per-variant hierarchy */
+  const layoutRootRefs = useRef<Map<string, THREE.Group>>(new Map());
+  const rotationPivotRefs = useRef<Map<string, THREE.Group>>(new Map());
+  const displayScaleRefs = useRef<Map<string, THREE.Group>>(new Map());
+  const centerOffsetRefs = useRef<Map<string, THREE.Group>>(new Map());
+
+  /** Immutable layout snapshot */
+  interface VariantLayoutSnap { variantId: string; canonicalWidth: number; layoutX: number; centerOffset: readonly [number, number, number]; scene: THREE.Group; }
+  const layoutSnapRef = useRef<VariantLayoutSnap[] | null>(null);
+
+  const layoutDoneRef = useRef(false);
+  const hierarchyBuiltRef = useRef(false);
+  // Reset on unmount so StrictMode double-mount doesn't skip layout
+  useEffect(() => () => { layoutDoneRef.current = false; hierarchyBuiltRef.current = false; }, []);
+  const autoRotateEnabled = autoRotate ?? true;
+
   const layoutModels = useCallback(() => {
-    const widths: number[] = models.map(m => {
+    if (layoutDoneRef.current) return;
+
+    // Phase 6 — canonical centre + separated display-scale layout.
+    //
+    // Hierarchy (per variant):
+    //   LayoutRoot (position.x) → RotationPivot (rotation.y)
+    //     → DisplayScale (scale) → CenterOffset (position = -canonicalCenter)
+    //       → SceneModel (scale=1, position=0)
+    //
+    // Key invariant: geometry centre C maps to S * (C - C) = 0 in DisplayScale
+    // space FOR ANY SCALE S.  Changing DisplayScale can never move the centre.
+
+    // ── 1. Reset scenes to scale=1, compute canonical centres/sizes ──
+    const rawData: Array<{
+      id: string;
+      scene: THREE.Group;
+      canonicalCenter: THREE.Vector3;
+      canonicalHeight: number;
+      canonicalWidth: number;
+    }> = [];
+
+    for (const m of models) {
       const s = readyRef.current.get(m.id);
-      if (!s) return 0;
-      const box = new THREE.Box3().setFromObject(s);
-      const size = new THREE.Vector3(); box.getSize(size);
-      return size.x;
-    });
-
-    const layout = computeMultiModelLayout(widths);
-
-    layout.entries.forEach((entry, i) => {
-      const s = readyRef.current.get(models[i].id);
       if (!s) return;
-      s.position.x = entry.x - layout.totalWidth / 2;
-      s.updateMatrixWorld();
-    });
 
-    if (groupRef.current) {
-      groupRef.current.updateMatrixWorld();
-      setModelScene(groupRef.current);
-      // Debug hook (DEV-only in production builds this is a no-op)
-      if (typeof window !== "undefined" && import.meta.env.DEV) {
-        interface MultiModelDebug {
-          groupUUID: string;
-          childCount: number;
-          selectedObject: string | null;
-          selectedVariantId: string | null;
-          explodeProgress: number;
-          variants: Array<{
-            variantId: string;
-            sceneUUID: string | null;
-            positionX: number | null;
-            hovered: boolean;
-            selected: boolean;
-          }>;
-        }
-        // Deferred read of Zustand state (avoid stale closure)
-        const store = useNodeStore.getState();
-        (window as { __multiModelDebug?: MultiModelDebug }).__multiModelDebug = {
-          // Phase 5: expose selection state for interaction verification
-          selectedObject: store.selectedObject,
-          selectedVariantId: store.selectedVariantId,
-          explodeProgress: store.explodeProgress,
-          groupUUID: groupRef.current.uuid,
-          childCount: groupRef.current.children.length,
-          variants: models.map((m) => {
-            const s = readyRef.current.get(m.id);
-            return {
-              variantId: m.id,
-              sceneUUID: s?.uuid ?? null,
-              positionX: s ? Math.round(s.position.x * 1000) / 1000 : null,
-              hovered: store.hoveredVariantId === m.id,
-              selected: store.selectedVariantId === m.id,
-            };
-          }),
-        };
+      // Reset to canonical state — scale=1, no translation.
+      s.scale.setScalar(1);
+      s.position.set(0, 0, 0);
+      s.updateMatrixWorld();
+
+      // Compute visible-geometry-only bounding box (exclude proxies, edges).
+      const visBox = new THREE.Box3();
+      s.traverse((child) => {
+        if (!(child instanceof THREE.Mesh)) return;
+        if (child.userData._isProxy) return;
+        if (child instanceof THREE.LineSegments) return;
+        visBox.expandByObject(child);
+      });
+      if (visBox.isEmpty()) visBox.setFromObject(s); // fallback
+
+      const canonicalCenter = new THREE.Vector3(); visBox.getCenter(canonicalCenter);
+      const canonicalSize = new THREE.Vector3(); visBox.getSize(canonicalSize);
+
+      rawData.push({
+        id: m.id,
+        scene: s,
+        canonicalCenter: canonicalCenter.clone(),
+        canonicalHeight: canonicalSize.y,
+        canonicalWidth: canonicalSize.x,
+      });
+    }
+
+    // ── 2. Unified display scale: median canonical height → per-model ratio ──
+    const heights = rawData.map((d) => d.canonicalHeight).sort((a, b) => a - b);
+    const targetCanonicalHeight = heights.length >= 3
+      ? heights[1] // median
+      : heights[heights.length - 1];
+
+    const unifiedScaleMap = new Map<string, number>();
+    for (const d of rawData) {
+      if (d.canonicalHeight > 0.01) {
+        const ratio = targetCanonicalHeight / d.canonicalHeight;
+        const safeRatio = Math.max(0.5, Math.min(2.0, ratio));
+        unifiedScaleMap.set(d.id, safeRatio);
+      } else {
+        unifiedScaleMap.set(d.id, 1);
       }
+    }
+
+    // ── 3. Apply to hierarchy: DisplayScale + CenterOffset ──
+    for (const d of rawData) {
+      const unifiedScale = unifiedScaleMap.get(d.id)!;
+
+      // DisplayScale: unified scale (before centering — invariant holds).
+      const ds = displayScaleRefs.current.get(d.id);
+      if (ds) ds.scale.setScalar(unifiedScale);
+
+      // CenterOffset: shift geometry centre to RotatonPivot origin.
+      const co = centerOffsetRefs.current.get(d.id);
+      if (co) co.position.copy(d.canonicalCenter).multiplyScalar(-1);
+
+      // Scene stays at scale=1, position=(0,0,0) — guaranteed by skipAutoLayout.
+    }
+
+    // ── 4. Layout X from scaled canonical widths + edge gap ──
+    const scaledWidths = rawData.map((d) => d.canonicalWidth * unifiedScaleMap.get(d.id)!);
+    const avgW = scaledWidths.reduce((a, b) => a + b, 0) / scaledWidths.length;
+    const gap = Math.max(EDGE_GAP_MIN, Math.min(EDGE_GAP_MAX, avgW * EDGE_GAP_RATIO));
+
+    let cursorX = 0;
+    const snaps: VariantLayoutSnap[] = rawData.map((d, i) => {
+      const cx = cursorX + scaledWidths[i] / 2;
+      cursorX += scaledWidths[i] + gap;
+      return {
+        variantId: d.id,
+        canonicalWidth: scaledWidths[i],
+        layoutX: cx,
+        centerOffset: [d.canonicalCenter.x, d.canonicalCenter.y, d.canonicalCenter.z] as const,
+        scene: d.scene,
+      };
+    });
+    const totalW = cursorX - gap;
+    const groupCenterX = totalW / 2;
+    for (const snap of snaps) snap.layoutX -= groupCenterX;
+
+    // ── 5. Apply layoutX to LayoutRoot ──
+    for (const snap of snaps) {
+      const lr = layoutRootRefs.current.get(snap.variantId);
+      if (lr) lr.position.x = snap.layoutX;
+    }
+
+    // ── 6. Static rotation envelope (covers full 360° Y-rotation) ──
+    // Force world-matrix update through the full new hierarchy.
+    for (const d of rawData) {
+      const ds = displayScaleRefs.current.get(d.id);
+      if (ds) ds.updateMatrixWorld();
+    }
+
+    const unionBox = new THREE.Box3();
+    for (const snap of snaps) {
+      const lr = layoutRootRefs.current.get(snap.variantId);
+      if (!lr) continue;
+      const box = new THREE.Box3().setFromObject(lr);
+      const sz = new THREE.Vector3(); box.getSize(sz);
+      const rXZ = Math.sqrt(sz.x * sz.x + sz.z * sz.z) / 2;
+      unionBox.expandByPoint(new THREE.Vector3(snap.layoutX - rXZ, box.min.y, -rXZ));
+      unionBox.expandByPoint(new THREE.Vector3(snap.layoutX + rXZ, box.max.y, rXZ));
+    }
+    if (groupRef.current) {
+      groupRef.current.userData._unionBox = unionBox;
+      setModelScene(groupRef.current);
+    }
+
+    layoutSnapRef.current = snaps;
+    layoutDoneRef.current = true;
+
+    // DEV debug hook
+    if (typeof window !== "undefined" && import.meta.env.DEV) {
+      const store = useNodeStore.getState();
+      (window as { __multiModelDebug?: Record<string, unknown> }).__multiModelDebug = {
+        groupUUID: groupRef.current?.uuid ?? "",
+        childCount: groupRef.current?.children.length ?? 0,
+        selectedObject: store.selectedObject,
+        selectedVariantId: store.selectedVariantId,
+        explodeProgress: store.explodeProgress,
+        variants: models.map((m) => {
+          const sn = snaps.find((s) => s.variantId === m.id);
+          const uScale = unifiedScaleMap.get(m.id) ?? null;
+          return { variantId: m.id, sceneUUID: sn?.scene.uuid ?? null, layoutX: sn?.layoutX ?? null, unifiedScale: uScale, hovered: store.hoveredVariantId === m.id, selected: store.selectedVariantId === m.id };
+        }),
+      };
     }
   }, [models]);
 
   const handleModelReady = useCallback((id: string) => (scene: THREE.Group) => {
+    // Guard against re-registration from StrictMode or re-renders
+    if (readyRef.current.has(id)) return;
     readyRef.current.set(id, scene);
-    setReadyCount(readyRef.current.size);
+    setReadyCount((c) => c + 1);
   }, []);
 
   useEffect(() => {
     if (readyCount === models.length && models.length > 0) {
-      layoutModels();
-      // Phase 6 Step 2: signal parent that model scene is ready for section binding
-      if (onAllReady) onAllReady();
+      // Wait one tick for R3F to mount hierarchy groups.
+      // Order: layoutModels FIRST (computes correct centering at unified scale),
+      // THEN move centering to CenterOffset so the geometry centre sits exactly
+      // at the RotationPivot origin.
+      // Guard: only run once — StrictMode remount would corrupt the offsets.
+      if (hierarchyBuiltRef.current) return;
+      hierarchyBuiltRef.current = true;
+      queueMicrotask(() => {
+        // layoutModels computes canonical centres → DisplayScale + CenterOffset
+        // + layoutX → LayoutRoot.  Scene stays at scale=1, position=(0,0,0).
+        layoutModels();
+
+        // Force full world-matrix update through the new 5-layer hierarchy
+        // so that CameraTracker and ShadowPlane see correct world bounds.
+        if (groupRef.current) {
+          groupRef.current.updateMatrixWorld();
+          setModelScene(groupRef.current);
+        }
+
+        // ── DEV: debug visualization spheres ──
+        if (typeof window !== "undefined" && import.meta.env.DEV) {
+          rotationPivotRefs.current.forEach((pivot, vid) => {
+            // Remove stale markers from previous mount
+            const oldPivotMarker = pivot.getObjectByName("__dev_pivot_marker");
+            if (oldPivotMarker) pivot.remove(oldPivotMarker);
+            const oldGeoMarker = pivot.getObjectByName("__dev_geo_marker");
+            if (oldGeoMarker) pivot.remove(oldGeoMarker);
+
+            // Red sphere at RotationPivot origin (the rotation centre).
+            const pivotMarker = new THREE.Mesh(
+              new THREE.SphereGeometry(0.06, 16, 16),
+              new THREE.MeshBasicMaterial({ color: 0xff0000, depthTest: false, depthWrite: false }),
+            );
+            pivotMarker.name = "__dev_pivot_marker";
+            pivotMarker.renderOrder = 999;
+            pivot.add(pivotMarker);
+
+            // Green sphere at DisplayScale origin (= geometry centre, by hierarchy invariant).
+            const ds = displayScaleRefs.current.get(vid);
+            if (ds) {
+              const existingGeo = ds.getObjectByName("__dev_geo_marker");
+              if (existingGeo) ds.remove(existingGeo);
+              const geoMarker = new THREE.Mesh(
+                new THREE.SphereGeometry(0.05, 16, 16),
+                new THREE.MeshBasicMaterial({ color: 0x00ff00, depthTest: false, depthWrite: false }),
+              );
+              geoMarker.name = "__dev_geo_marker";
+              geoMarker.renderOrder = 999;
+              ds.add(geoMarker); // at (0,0,0) in DisplayScale space = geometry centre
+            }
+          });
+          console.log("[MultiModelGroup] Dev markers: red=pivot, green=geometry_center");
+        }
+
+        if (onAllReady) onAllReady();
+      });
     }
   }, [readyCount, models.length, layoutModels, onAllReady]);
+
+  // ── Self-rotation useFrame (replaces OrbitControls.autoRotate) ──
+  // Phase 6 diagnostic: sample world centres at 0°/90°/180°/270°/360°.
+  //
+  // Measurement principle:
+  //   - RotationPivot world origin  = pivot centre
+  //   - DisplayScale world origin   = geometry centre (by hierarchy invariant:
+  //     geometry centre C in ModelScene → C-C=0 in CenterOffset → S*0=0 in
+  //     DisplayScale → Ry*0=0 in RotationPivot → world)
+  //   - If centering is correct, both should coincide → distance ≈ 0.
+  const diagSampledRef = useRef(new Set<number>());
+  useFrame((_, delta) => {
+    if (!autoRotateEnabled) return;
+    const dt = Math.min(delta, 0.1);
+    rotationPivotRefs.current.forEach((pivot) => {
+      pivot.rotation.y += dt * AUTO_ROTATE_SPEED;
+    });
+
+    // Diagnostic: sample at each 90° milestone
+    if (typeof window !== "undefined") {
+      const w = window as unknown as Record<string, unknown>;
+      const samples = (w.__rotDiag as Record<string, unknown>[]) || (w.__rotDiag = []);
+      const firstPivot = rotationPivotRefs.current.values().next().value as THREE.Group | undefined;
+      if (!firstPivot) return;
+      const deg = firstPivot.rotation.y;
+      const degNorm = ((deg % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+      const targets = [0, Math.PI / 2, Math.PI, Math.PI * 1.5];
+      for (const t of targets) {
+        const key = Math.round(t * 100);
+        if (Math.abs(degNorm - t) < 0.03 && !diagSampledRef.current.has(key)) {
+          diagSampledRef.current.add(key);
+          const entry: Record<string, unknown> = { angle: Math.round((t / Math.PI) * 180) + "°", time: Date.now() };
+          rotationPivotRefs.current.forEach((piv, vid) => {
+            // Pivot world position = RotationPivot origin in world space.
+            const pw = new THREE.Vector3(); piv.getWorldPosition(pw);
+
+            // Geometry centre world position = DisplayScale origin in world space.
+            // Since DisplayScale has no translation (only scale), its world origin
+            // should coincide with RotationPivot origin when centering is correct.
+            const ds = displayScaleRefs.current.get(vid);
+            let gcw: THREE.Vector3 | null = null;
+            if (ds) {
+              gcw = new THREE.Vector3();
+              ds.getWorldPosition(gcw);
+            }
+
+            // LayoutRoot — must not change during rotation.
+            const lr = layoutRootRefs.current.get(vid);
+            let lrw: THREE.Vector3 | null = null;
+            if (lr) { lrw = new THREE.Vector3(); lr.getWorldPosition(lrw); }
+
+            entry[vid] = {
+              pivotWorld: [pw.x.toFixed(4), pw.y.toFixed(4), pw.z.toFixed(4)],
+              geoCenterWorld: gcw ? [gcw.x.toFixed(4), gcw.y.toFixed(4), gcw.z.toFixed(4)] : null,
+              pivotToGeoDist: gcw ? pw.distanceTo(gcw).toFixed(6) : null,
+              layoutRootWorld: lrw ? [lrw.x.toFixed(4), lrw.y.toFixed(4), lrw.z.toFixed(4)] : null,
+            };
+          });
+          // Camera state snapshot
+          const ctrl = (_controls as OrbitControlsImpl | null);
+          if (ctrl) {
+            entry.controls = { target: [ctrl.target.x.toFixed(4), ctrl.target.y.toFixed(4), ctrl.target.z.toFixed(4)] };
+          }
+          samples.push(entry);
+          if (samples.length >= 4) w.__rotDiagComplete = true;
+        }
+      }
+    }
+  });
 
   /* Phase 5: Explode driver — cache targets + update positions */
   const explodeTargetRef = useRef<Map<string, {
@@ -850,20 +1125,40 @@ function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId, onAll
   return (
     <group ref={groupRef}>
       {models.map((m, i) => (
-        <SceneModel
+        // Phase 6: 5-layer per-model hierarchy
+        // LayoutRoot → RotationPivot → DisplayScale → CenterOffset → SceneModel
+        <group
           key={m.id}
-          modelPath={m.src}
-          containerWidth={containerWidth}
-          modelScale={m.scale ?? 2.5}
-          noAnimation={true}
-          nonInteractive={["其余"]}
-          noGlobalRef
-          onReady={handleModelReady(m.id)}
-          variantId={m.id}
-          variantIndex={i}
-          variantLabel={m.label}
-          variantTitle={m.title}
-        />
+          ref={(el) => { if (el) layoutRootRefs.current.set(m.id, el); }}
+        >
+          <group
+            ref={(el) => { if (el) rotationPivotRefs.current.set(m.id, el); }}
+          >
+            <group
+              ref={(el) => { if (el) displayScaleRefs.current.set(m.id, el); }}
+            >
+              <group
+                ref={(el) => { if (el) centerOffsetRefs.current.set(m.id, el); }}
+              >
+                <SceneModel
+                  key={m.id}
+                  modelPath={m.src}
+                  containerWidth={containerWidth}
+                  modelScale={m.scale ?? 2.5}
+                  noAnimation={true}
+                  nonInteractive={["其余"]}
+                  noGlobalRef
+                  skipAutoLayout
+                  onReady={handleModelReady(m.id)}
+                  variantId={m.id}
+                  variantIndex={i}
+                  variantLabel={m.label}
+                  variantTitle={m.title}
+                />
+              </group>
+            </group>
+          </group>
+        </group>
       ))}
     </group>
   );
@@ -909,9 +1204,13 @@ export default function ModelViewer({
 
   const handleSceneReady = useCallback(() => { setSceneReady(true); }, []);
 
-  // ── Drag-state callbacks for CameraTracker (declarative via drei onStart/onEnd) ──
-  const handleControlsStart = useCallback(() => { _isUserDragging = true; }, []);
-  const handleControlsEnd = useCallback(() => { _isUserDragging = false; }, []);
+  // ── Drag-state + pointer tracking ──
+  const handleControlsStart = useCallback(() => {
+    _suppressNextClick = true; // orbit/pan blocks following click
+  }, []);
+  const handleControlsEnd = useCallback(() => {
+    // _suppressNextClick stays true until next pointerdown clears it
+  }, []);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -935,6 +1234,21 @@ export default function ModelViewer({
         camera={{ near: 0.5, far: 50, position: [0, 0, 8], fov: 40 }}
         dpr={[1, 1.5]} shadows
         gl={{ antialias: true, alpha: false }}
+        onPointerDown={(e) => {
+          _pointerDownX = e.nativeEvent.clientX;
+          _pointerDownY = e.nativeEvent.clientY;
+          _pointerMaxDist = 0;
+          _pointerIdRef.current = e.nativeEvent.pointerId;
+          _suppressNextClick = false;
+        }}
+        onPointerMove={(e) => {
+          if (_pointerIdRef.current !== e.nativeEvent.pointerId) return;
+          const dx = e.nativeEvent.clientX - _pointerDownX;
+          const dy = e.nativeEvent.clientY - _pointerDownY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist > _pointerMaxDist) _pointerMaxDist = dist;
+          if (_pointerMaxDist > CLICK_MOVE_THRESHOLD) _suppressNextClick = true;
+        }}
         onPointerMissed={() => {
           useNodeStore.getState().setSelectedObject(null);
           useNodeStore.getState().setSelectedVariantId(null);
@@ -946,14 +1260,14 @@ export default function ModelViewer({
         {showShadows && <ShadowPlane />}
         <Suspense fallback={<LoadingFallback />}>
           {isMulti ? (
-            <MultiModelGroup models={modelPaths!} containerWidth={containerWidth} explodeConfigs={explodeConfigs} nodeId={nodeId} onAllReady={handleSceneReady} />
+            <MultiModelGroup models={modelPaths!} containerWidth={containerWidth} explodeConfigs={explodeConfigs} nodeId={nodeId} onAllReady={handleSceneReady} autoRotate={autoRotate} />
           ) : modelPath ? (
             <SceneModel modelPath={modelPath} containerWidth={containerWidth} modelScale={modelScale} modelGroups={modelGroups} noAnimation={noAnimation} nonInteractive={nonInteractive} onReady={handleSceneReady} />
           ) : null}
         </Suspense>
         <OrbitControls
           ref={(ctrl) => { _controls = ctrl; }}
-          autoRotate={autoRotate}
+          autoRotate={!isMulti && autoRotate}
           autoRotateSpeed={0.6}
           enableDamping dampingFactor={0.08}
           minDistance={1} maxDistance={40}
