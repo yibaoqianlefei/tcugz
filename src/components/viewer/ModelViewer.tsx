@@ -73,6 +73,9 @@ const _scaleCache = new Map<string, number>();
  *  responsive re-fits so the user's view is never yanked back.  Reset on
  *  each ModelViewer mount (ModelViewer is keyed by nodeId). */
 let _userCameraInteracted = false;
+/** True while the user is actively dragging (orbit/pan).  The single-model
+ *  target-follow pauses during an active drag so it never fights the user. */
+let _isUserDragging = false;
 
 /** DEV-only camera-write log — records every CameraTracker write so a later
  *  overwrite (defaultCamera / preset / reset / another writer) is detectable. */
@@ -337,8 +340,13 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
       setIsPlaying(false);
     }
 
-    // noAnimation: snap to fully-expanded state
-    if (noAnimation && isFirstInit) {
+    // Snap to the fully-expanded ("complete") state for models that have NO
+    // explode animation to play — the noAnimation flag OR a GLB without clips
+    // (e.g. cast-ribbed-floor).  The explode progress bar then reads "done" on
+    // load, and hover/click highlight + knowledge-card linkage are active from
+    // the first frame (they gate on animationProgress >= 0.99 / 1).
+    const hasExplodeAnimation = animations.length > 0 && !noAnimation;
+    if (!hasExplodeAnimation && isFirstInit) {
       setAnimationProgress(1);
       setIsPlaying(false);
     }
@@ -754,6 +762,9 @@ function CameraTracker({
   const { size, camera } = useThree();
   const fittedKeyRef = useRef<string | null>(null);
   const lastSizeRef = useRef<{ w: number; h: number } | null>(null);
+  /** Reusable objects for the single-model target-follow. */
+  const followBoxRef = useRef(new THREE.Box3());
+  const followCenterRef = useRef(new THREE.Vector3());
 
   // ── One-time initial fit + guarded responsive re-fit (NOT continuous) ──
   useEffect(() => {
@@ -873,8 +884,27 @@ function CameraTracker({
     });
   }, [sceneReady, variantCount, fitKey, layoutKey, containerWidth, size.width, size.height, camera]);
 
-  // ── No continuous lerp: after the initial fit the user's orbit centre is
-  // the target, and auto-rotation never rewrites camera.position/target.
+  // ── Single-model "pull back to view centre" (e706b641 behavior) ──
+  // Continuously lerps the orbit target toward the model's world centre so the
+  // model stays centred when it moves (animation / explode) and the view eases
+  // back to centre after the user pans away.  Paused during an active drag and
+  // while Camera Lock owns the target.  Single-model only — multi-model keeps
+  // its fixed union-centre target + user-interaction guard.  The per-frame
+  // bounding-box read is confined to the small single-model scene (the same
+  // cost the pre-multi-model CameraTracker paid every frame).
+  useFrame((_, delta) => {
+    if (variantCount !== 0) return;
+    if (isCameraTrackerPaused()) return;
+    if (_isUserDragging) return;
+    const controls = _controls;
+    const scene = getModelScene();
+    if (!controls || !scene) return;
+    const box = followBoxRef.current;
+    box.setFromObject(scene);
+    box.getCenter(followCenterRef.current);
+    const alpha = 1 - Math.exp(-8.0 * delta);
+    controls.target.lerp(followCenterRef.current, alpha);
+  });
 
   return null;
 }
@@ -1426,9 +1456,11 @@ export default function ModelViewer({
   const handleControlsStart = useCallback(() => {
     _suppressNextClick = true; // orbit/pan blocks following click
     _userCameraInteracted = true; // manual orbit/zoom → block responsive re-fit
+    _isUserDragging = true;
   }, []);
   const handleControlsEnd = useCallback(() => {
     // _suppressNextClick stays true until next pointerdown clears it
+    _isUserDragging = false;
   }, []);
 
   useEffect(() => {
@@ -1489,7 +1521,7 @@ export default function ModelViewer({
           autoRotate={!isMulti && autoRotate}
           autoRotateSpeed={0.6}
           enableDamping dampingFactor={0.08}
-          minDistance={1} maxDistance={120}
+          minDistance={1} maxDistance={40}
           maxPolarAngle={Math.PI / 2.2}
           enablePan
           onStart={handleControlsStart}

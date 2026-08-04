@@ -315,6 +315,9 @@ export const nodeDefinitions: NodeDefinition[] = [
     model: {
       path: assetPath("models/floor/cast-ribbed-floor/cast-ribbed-floor.glb"),
       scale: 2.5,
+      // Static model (no GLTF explode animation) → loads fully-expanded and
+      // the timeline is locked, consistent with the other no-animation nodes.
+      noAnimation: true,
       nonInteractive: ["其他"],
     },
     diagram: {
