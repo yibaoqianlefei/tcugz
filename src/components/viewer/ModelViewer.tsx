@@ -42,7 +42,19 @@ import {
   setModelScene,
   registerObjects,
   clearObjectRegistry,
+  isCameraTrackerPaused,
 } from "../../utils/modelSceneRef";
+import {
+  CAMERA_FIT_PADDING,
+  CAMERA_COMPOSITION_FRACTION,
+  computeVisibleGeometryWorldBox,
+  computeCameraFitTargets,
+  shouldSkipFit,
+  isSizeChangeSignificant,
+  shouldRefitCamera,
+  buildFitKey,
+  type CameraFitResult,
+} from "../../utils/cameraFit";
 import CameraLockRuntime from "./CameraLockRuntime";
 
 /* ── Module-level refs (non-animation) ──────────────────────── */
@@ -55,6 +67,22 @@ let _pointerMaxDist = 0;
 let _suppressNextClick = false;
 const _pointerIdRef = { current: -1 };
 const _scaleCache = new Map<string, number>();
+
+/* ── Multi-model initial camera fit (Phase 6 Step 4) ──────── */
+/** True once the user has manually orbited / zoomed / panned.  Blocks
+ *  responsive re-fits so the user's view is never yanked back.  Reset on
+ *  each ModelViewer mount (ModelViewer is keyed by nodeId). */
+let _userCameraInteracted = false;
+
+/** DEV-only camera-write log — records every CameraTracker write so a later
+ *  overwrite (defaultCamera / preset / reset / another writer) is detectable. */
+function logCameraWrite(source: string, payload: Record<string, unknown>): void {
+  if (typeof window === "undefined" || !import.meta.env.DEV) return;
+  const w = window as unknown as Record<string, unknown>;
+  const arr = (w.__cameraWrites as Record<string, unknown>[]) || (w.__cameraWrites = []);
+  arr.push({ source, timestamp: Date.now(), ...payload });
+  if (arr.length > 60) arr.splice(0, arr.length - 60);
+}
 
 /* ── Phase 6 Step 2: Section picking visibility helper ────── */
 
@@ -322,7 +350,12 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
       }
       unregister();
       disposeClonedMaterials(scene);
-      setModelScene(null);
+      // Only clear the shared model-scene ref when THIS model owns it.  In a
+      // multi-model node (noGlobalRef) MultiModelGroup owns the ref, so this
+      // cleanup must not null it out — otherwise StrictMode's mount→cleanup→
+      // remount cycle leaves getModelScene() null and the initial camera fit
+      // never runs.
+      if (!noGlobalRef) setModelScene(null);
       // Phase 6 Step 3: unregister all objects from global registry
       unregisterFnsRef.current.forEach((fn) => fn());
       unregisterFnsRef.current = [];
@@ -681,27 +714,167 @@ function LoadingFallback() {
 }
 
 /* ── Camera tracker ───────────────────────────────────────── */
-function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: number; containerWidth?: number }) {
-  const { size } = useThree();
 
-  // ── One-time initial fit (NOT continuous lerp) ──
+/**
+ * Imperative write of the initial framing to the R3F camera/controls.
+ * Extracted to a plain (non-hook) function so the direct near/far/aspect
+ * assignments are not treated as mutations of a hook-returned value by
+ * react-hooks/immutability.  Three.js objects are managed imperatively.
+ */
+function applyCameraFraming(
+  camera: THREE.PerspectiveCamera,
+  controls: OrbitControlsImpl,
+  result: CameraFitResult,
+): void {
+  controls.target.copy(result.controlsTarget);
+  camera.position.copy(result.finalCameraPosition);
+  camera.near = result.near;
+  camera.far = result.far;
+  camera.aspect = result.aspect;
+  camera.updateProjectionMatrix();
+  controls.update();
+}
+
+function CameraTracker({
+  layoutKey = 0,
+  containerWidth = 0,
+  sceneReady = false,
+  variantCount = 0,
+  fitKey = "default",
+}: {
+  layoutKey?: number;
+  containerWidth?: number;
+  /** True once the model scene is fully loaded AND laid out (onAllReady). */
+  sceneReady?: boolean;
+  /** Number of variants in a multi-model node (0 = single-model node). */
+  variantCount?: number;
+  /** Node+variant identity — initial fit runs once per distinct key. */
+  fitKey?: string;
+}) {
+  const { size, camera } = useThree();
+  const fittedKeyRef = useRef<string | null>(null);
+  const lastSizeRef = useRef<{ w: number; h: number } | null>(null);
+
+  // ── One-time initial fit + guarded responsive re-fit (NOT continuous) ──
   useEffect(() => {
     const controls = _controls;
     const scene = getModelScene();
     if (!controls || !scene) return;
-    const t = setTimeout(() => {
-      const box = new THREE.Box3().setFromObject(scene);
-      const center = new THREE.Vector3();
-      box.getCenter(center);
-      controls.target.copy(center);
-      controls.update();
-    }, 80);
-    return () => clearTimeout(t);
-  }, [size.width, size.height, containerWidth, layoutKey]);
+    // Strict init order: for multi-model, never fit until A/B/C are ALL
+    // loaded AND laid out (sceneReady flips true only after layoutModels).
+    if (shouldSkipFit(variantCount, sceneReady)) return;
+    // Camera Lock has paused the tracker → never fight it.
+    if (isCameraTrackerPaused()) return;
+    if (size.width <= 0 || size.height <= 0) return;
 
-  // ── No continuous lerp: the user's orbit centre is the target. ──
-  // CameraTracker only fires once on model load / resize / remount.
-  // It does NOT fight the user after manual orbit.
+    // Framing box = the 3-layoutRoot union stored at layout time (multi),
+    // or the visible-geometry box of the single model scene.
+    const group = scene as THREE.Group;
+    const stored = group.userData._fitBox as THREE.Box3 | undefined;
+    const fitBox = stored && !stored.isEmpty()
+      ? stored
+      : computeVisibleGeometryWorldBox(scene);
+    if (fitBox.isEmpty()) return;
+
+    const boxSize = new THREE.Vector3();
+    fitBox.getSize(boxSize);
+    const boxCenter = new THREE.Vector3();
+    fitBox.getCenter(boxCenter);
+
+    const firstFit = fittedKeyRef.current !== fitKey;
+    const sizeChanged = isSizeChangeSignificant(
+      lastSizeRef.current,
+      size.width,
+      size.height,
+    );
+
+    // Initial framing is mandatory; responsive re-frames are skipped after the
+    // user has manually moved the camera (plain re-render / variant switch /
+    // auto-rotation do not change size or fitKey → no re-frame).
+    if (!shouldRefitCamera({ firstFit, sizeChanged, userInteracted: _userCameraInteracted })) {
+      lastSizeRef.current = { w: size.width, h: size.height };
+      return;
+    }
+
+    // ── Single-model nodes: restore the pre-multi-model sizing contract ──
+    // (e706b641).  The model is auto-sized so maxDim = node.model.scale, and
+    // the camera keeps its default distance (z=8) — the per-node `scale` value
+    // therefore controls the on-screen size exactly as originally designed.
+    // We only aim the orbit target at the model centre (no camera.position
+    // write), so the model appears centred without changing its size.
+    if (variantCount === 0) {
+      controls.target.copy(boxCenter);
+      controls.update();
+      fittedKeyRef.current = fitKey;
+      lastSizeRef.current = { w: size.width, h: size.height };
+      const perspectiveCam = camera as THREE.PerspectiveCamera;
+      logCameraWrite("CameraTracker.singleModelTarget", {
+        cameraPosition: [camera.position.x, camera.position.y, camera.position.z],
+        cameraQuaternion: [
+          camera.quaternion.x,
+          camera.quaternion.y,
+          camera.quaternion.z,
+          camera.quaternion.w,
+        ],
+        cameraFov: perspectiveCam.fov,
+        cameraZoom: perspectiveCam.zoom,
+        controlsTarget: [controls.target.x, controls.target.y, controls.target.z],
+        unionBoxSize: [boxSize.x, boxSize.y, boxSize.z],
+        unionBoxCenter: [boxCenter.x, boxCenter.y, boxCenter.z],
+        canvasWidth: size.width,
+        canvasHeight: size.height,
+        aspect: size.width / Math.max(size.height, 1),
+        note: "camera stays at default distance (z=8); target only",
+      });
+      return;
+    }
+
+    // ── Multi-model: distance fit (approved CAMERA_FIT_PADDING) ──
+    const perspectiveCam = camera as THREE.PerspectiveCamera;
+    const result = computeCameraFitTargets({
+      boxSize,
+      boxCenter,
+      canvasWidth: size.width,
+      canvasHeight: size.height,
+      verticalFovDeg: perspectiveCam.fov,
+      cameraPosition: camera.position,
+      controlsTarget: controls.target,
+      padding: CAMERA_FIT_PADDING,
+      compositionFraction: CAMERA_COMPOSITION_FRACTION,
+    });
+
+    // Apply framing (single write to camera.position).
+    applyCameraFraming(perspectiveCam, controls, result);
+
+    // Lock this initialization until node/variant combination changes.
+    fittedKeyRef.current = fitKey;
+    lastSizeRef.current = { w: size.width, h: size.height };
+
+    // DEV: record the write so a later overwrite is detectable.
+    logCameraWrite("CameraTracker.fit", {
+      cameraPosition: [camera.position.x, camera.position.y, camera.position.z],
+      cameraQuaternion: [
+        camera.quaternion.x,
+        camera.quaternion.y,
+        camera.quaternion.z,
+        camera.quaternion.w,
+      ],
+      cameraFov: perspectiveCam.fov,
+      cameraZoom: perspectiveCam.zoom,
+      controlsTarget: [controls.target.x, controls.target.y, controls.target.z],
+      unionBoxSize: [boxSize.x, boxSize.y, boxSize.z],
+      unionBoxCenter: [boxCenter.x, boxCenter.y, boxCenter.z],
+      canvasWidth: size.width,
+      canvasHeight: size.height,
+      aspect: result.aspect,
+      fitDistance: result.fitDistance,
+      finalDistance: result.finalDistance,
+      cameraFitPadding: CAMERA_FIT_PADDING,
+    });
+  }, [sceneReady, variantCount, fitKey, layoutKey, containerWidth, size.width, size.height, camera]);
+
+  // ── No continuous lerp: after the initial fit the user's orbit centre is
+  // the target, and auto-rotation never rewrites camera.position/target.
 
   return null;
 }
@@ -710,10 +883,10 @@ function CameraTracker({ layoutKey = 0, containerWidth = 0 }: { layoutKey?: numb
 interface ModelEntry { id: string; src: string; scale?: number; label?: string; title?: string }
 
 /** Edge-gap formula constants. */
-const EDGE_GAP_RATIO = 0.25;
-const EDGE_GAP_MIN = 0.18;
-const EDGE_GAP_MAX = 0.65;
-const AUTO_ROTATE_SPEED = 0.6;
+const EDGE_GAP_RATIO = 0.38;   // wider inter-model spacing
+const EDGE_GAP_MIN = 0.28;     // raised proportionally
+const EDGE_GAP_MAX = 1.00;     // raised proportionally
+const AUTO_ROTATE_SPEED = 0.12; // rad/s — ~52s per full rotation, comfortable for study
 
 function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId, onAllReady, autoRotate }: { models: ModelEntry[]; containerWidth: number; explodeConfigs?: ExplodeVariantConfig[]; nodeId?: string; onAllReady?: () => void; autoRotate?: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
@@ -789,21 +962,32 @@ function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId, onAll
       });
     }
 
-    // ── 2. Unified display scale: median canonical height → per-model ratio ──
-    const heights = rawData.map((d) => d.canonicalHeight).sort((a, b) => a - b);
-    const targetCanonicalHeight = heights.length >= 3
-      ? heights[1] // median
-      : heights[heights.length - 1];
+    // ── 2. Shared display scale: ONE value for ALL models ──
+    // All three GLBs were exported from the same modelling tool with the
+    // same units.  A single shared scale preserves physical size relationships —
+    // if one model is genuinely taller, it stays taller on screen.
+    //
+    // The scale is chosen so the tallest model reaches a reasonable display
+    // height (~3 units → fits comfortably in viewport at camera z≈8, fov=40).
+    const allHeights = rawData.map((d) => d.canonicalHeight);
+    const maxCanonicalHeight = Math.max(...allHeights);
+    const TARGET_DISPLAY_HEIGHT = 3.0;
+    const sharedDisplayScale = maxCanonicalHeight > 0.01
+      ? TARGET_DISPLAY_HEIGHT / maxCanonicalHeight
+      : 1.0;
 
     const unifiedScaleMap = new Map<string, number>();
     for (const d of rawData) {
-      if (d.canonicalHeight > 0.01) {
-        const ratio = targetCanonicalHeight / d.canonicalHeight;
-        const safeRatio = Math.max(0.5, Math.min(2.0, ratio));
-        unifiedScaleMap.set(d.id, safeRatio);
-      } else {
-        unifiedScaleMap.set(d.id, 1);
+      unifiedScaleMap.set(d.id, sharedDisplayScale);
+    }
+
+    // DEV: log canonical measurements for scale audit
+    if (typeof window !== "undefined" && import.meta.env.DEV) {
+      console.log("[MultiModelGroup] Canonical sizes at scale=1:");
+      for (const d of rawData) {
+        console.log(`  ${d.id}: center=(${d.canonicalCenter.x.toFixed(3)}, ${d.canonicalCenter.y.toFixed(3)}, ${d.canonicalCenter.z.toFixed(3)}) size=(${d.canonicalWidth.toFixed(3)}, ${d.canonicalHeight.toFixed(3)})`);
       }
+      console.log(`  sharedDisplayScale: ${sharedDisplayScale.toFixed(4)} (targetHeight=${TARGET_DISPLAY_HEIGHT}, maxHeight=${maxCanonicalHeight.toFixed(3)})`);
     }
 
     // ── 3. Apply to hierarchy: DisplayScale + CenterOffset ──
@@ -868,6 +1052,22 @@ function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId, onAll
     if (groupRef.current) {
       groupRef.current.userData._unionBox = unionBox;
       setModelScene(groupRef.current);
+    }
+
+    // ── 6b. Static fit box for the initial camera frame ──
+    // Union of the three LayoutRoots' visible-geometry world AABBs at the
+    // standard pose (before auto-rotation).  Used by CameraTracker as the
+    // framing box — it MUST include all three models' final layout positions,
+    // never a single/selected model's box.
+    if (groupRef.current) groupRef.current.updateMatrixWorld(true);
+    const fitBox = new THREE.Box3();
+    for (const snap of snaps) {
+      const lr = layoutRootRefs.current.get(snap.variantId);
+      if (!lr) continue;
+      fitBox.union(computeVisibleGeometryWorldBox(lr));
+    }
+    if (groupRef.current) {
+      groupRef.current.userData._fitBox = fitBox;
     }
 
     layoutSnapRef.current = snaps;
@@ -973,7 +1173,10 @@ function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId, onAll
     if (!autoRotateEnabled) return;
     const dt = Math.min(delta, 0.1);
     rotationPivotRefs.current.forEach((pivot) => {
-      pivot.rotation.y += dt * AUTO_ROTATE_SPEED;
+      pivot.rotation.y = THREE.MathUtils.euclideanModulo(
+        pivot.rotation.y + dt * AUTO_ROTATE_SPEED,
+        Math.PI * 2,
+      );
     });
 
     // Diagnostic: sample at each 90° milestone
@@ -1201,12 +1404,28 @@ export default function ModelViewer({
   // Initialized false; ModelViewer remounts on node switch (key={nodeId}).
   const [sceneReady, setSceneReady] = useState(false);
   const isMulti = !!(modelPaths && modelPaths.length >= 1);
+  // Initial-fit identity: node + variant list ONLY.  Selection / hover /
+  // explode / section state never changes it → no re-fit on those actions.
+  const fitKey = useMemo(
+    () =>
+      isMulti && modelPaths
+        ? buildFitKey(nodeId, modelPaths.map((m) => m.id))
+        : buildFitKey(nodeId, []),
+    [isMulti, modelPaths, nodeId],
+  );
 
   const handleSceneReady = useCallback(() => { setSceneReady(true); }, []);
+
+  // ── Reset the user-interaction guard on each node mount.  ModelViewer is
+  // keyed by nodeId, so this runs once per node entry (StrictMode-safe). ──
+  useEffect(() => {
+    _userCameraInteracted = false;
+  }, []);
 
   // ── Drag-state + pointer tracking ──
   const handleControlsStart = useCallback(() => {
     _suppressNextClick = true; // orbit/pan blocks following click
+    _userCameraInteracted = true; // manual orbit/zoom → block responsive re-fit
   }, []);
   const handleControlsEnd = useCallback(() => {
     // _suppressNextClick stays true until next pointerdown clears it
@@ -1270,13 +1489,19 @@ export default function ModelViewer({
           autoRotate={!isMulti && autoRotate}
           autoRotateSpeed={0.6}
           enableDamping dampingFactor={0.08}
-          minDistance={1} maxDistance={40}
+          minDistance={1} maxDistance={120}
           maxPolarAngle={Math.PI / 2.2}
           enablePan
           onStart={handleControlsStart}
           onEnd={handleControlsEnd}
         />
-        <CameraTracker layoutKey={layoutKey} containerWidth={containerWidth} />
+        <CameraTracker
+          layoutKey={layoutKey}
+          containerWidth={containerWidth}
+          sceneReady={sceneReady}
+          variantCount={isMulti && modelPaths ? modelPaths.length : 0}
+          fitKey={fitKey}
+        />
         {/* Phase 6 Step 2: Section clipping-plane runtime */}
         <SectionRuntime sceneVersion={sceneReady ? 1 : 0} />
         {/* Phase 6 Step 3: Camera Lock runtime */}

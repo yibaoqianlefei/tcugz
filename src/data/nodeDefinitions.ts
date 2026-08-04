@@ -29,6 +29,7 @@ import { stairCompositionLayers, getLayerInfo as getStairCompositionLayer } from
 import { facedPlinthLayers, getLayerInfo as getFacedPlinthLayer } from "./facedPlinthLayers";
 import { stonePlinthLayers, getLayerInfo as getStonePlinthLayer } from "./stonePlinthLayers";
 import { rcElevatedStepsLayers, getLayerInfo as getRcElevatedStepsLayer } from "./rcElevatedStepsLayers";
+import { castRibbedFloorLayers, getLayerInfo as getCastRibbedFloorLayer } from "./castRibbedFloorLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
@@ -299,6 +300,29 @@ export const nodeDefinitions: NodeDefinition[] = [
     layerConfig: {
       layers: eavesGutterLayers as NodeLayerInfo[],
       getLayerInfo: getEavesGutterLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+  },
+
+  /* ── Floor nodes ─────────────────────────────────────────── */
+  {
+    id: "cast-ribbed-floor-01",
+    title: "现浇肋梁楼板",
+    description:
+      "现浇肋梁楼板构造：现浇板、次梁（肋梁）、主梁与柱现浇成整体楼盖，荷载传递路径为 板→次梁→主梁→柱。",
+    category: "楼地层",
+    thumbnail: assetPath("images/floor/cast-ribbed-floor.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/floor/cast-ribbed-floor/cast-ribbed-floor.glb"),
+      scale: 2.5,
+      nonInteractive: ["其他"],
+    },
+    diagram: {
+      path: assetPath("images/floor/cast-ribbed-floor.png"),
+    },
+    layerConfig: {
+      layers: castRibbedFloorLayers as NodeLayerInfo[],
+      getLayerInfo: getCastRibbedFloorLayer as (objectName: string) => NodeLayerInfo | undefined,
     },
   },
 

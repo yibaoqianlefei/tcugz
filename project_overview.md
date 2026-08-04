@@ -2,7 +2,7 @@
 
 ## 1. 项目定位
 
-**建筑构造交互系统**（Building Construction Interactive System）是面向建筑学教育的开源 Web 应用。通过 **三维可视化、多方案对比、程序化爆炸、交互式构件探索、结构化课程体系**，帮助学生和从业者直观理解建筑构造的空间逻辑。
+**建筑构造交互系统**（Building Construction Interactive System）是面向建筑学教育的开源 Web 应用。通过 **三维可视化、多方案对比、程序化爆炸、剖面裁切、构件锁定、交互式构件探索、结构化课程体系**，帮助学生和从业者直观理解建筑构造的空间逻辑。
 
 ```
 定位：教学系统操作中枢
@@ -26,11 +26,11 @@
 | 图表 | Recharts 2 | 学习数据分析可视化 |
 | 样式 | Tailwind CSS v4 | 原子化 CSS + `@theme` 自定义 token |
 | 路由 | React Router DOM 7 | Hash 路由（支持静态部署） |
-| 状态 | Zustand 5 (含 persist 中间件) | 全局状态 + localStorage 持久化 |
+| 状态 | Zustand 5 | 全局状态 |
 | 图标 | lucide-react | UI 图标 |
 | AI | DeepSeek API (chat/completions) | AI 建筑学助教问答 |
 | 压缩 | @gltf-transform/cli (WebP + Draco) | 模型纹理压缩 + 几何压缩 |
-| 测试 | tsx + Playwright | 纯逻辑单测 (276) + Headless 浏览器验收 |
+| 测试 | tsx + Playwright | 纯逻辑单测 + Headless 浏览器验收 |
 
 ---
 
@@ -54,71 +54,76 @@ main.tsx
               └── /games                → GamesPage (lazy)    (作业训练)
 ```
 
-### AIExtendPage — Tab 切换合并页
-
-```
-AIExtendPage
-  ├── Tab "AI 问答"     → lazy(AIPage)     (DeepSeek 对话 + 小g助教)
-  └── Tab "拓展链接"     → lazy(ResourcesPage) (空间设计/建筑规范/热门网址)
-```
-
-### HomePage 侧栏布局 — 双列树状目录
-
-```
-HomePage
-  └── motion.aside (layout, 动态宽度: 24rem → 24rem+260px)
-      ├── 左列 (w-sidebar, 24rem, flex-shrink-0)
-      │   ├── 标题 "建筑构造" (48px) + 装饰线
-      │   ├── 导航菜单 (pt-8, overflow-y-auto 隐藏滚动条)
-      │   │   ├── 📂 构造原理 ▶     ← 展开: 建筑保温/防水/隔热/隔声
-      │   │   ├── 📂 构造基础 ▶     ← 展开: 8模块
-      │   │   ├── 节点库      → /library
-      │   │   ├── 案例应用    → /curriculum/cases
-      │   │   ├── 作业训练    → /games
-      │   │   ├── 数据分析    → /data
-      │   │   └── AI 拓展     → /ai-extend
-      │   ├── 登录按钮 + 统计卡片 + 标语 (flex-shrink-0 固定底部)
-      │
-      ├── 右列 SubMenuPanel (AnimatePresence, 模块手风琴)
-      │
-      └── 右侧 (flex-1) 3D 场景
-          ├── Canvas (MenuBackground)
-          └── 右下角控制 (场景切换 + 旋转 + 阴影)
-```
-
 ### NodeDetail 内部架构（核心页面）
 
 ```
-NodeDetail.tsx (编排器, ~350行)
+NodeDetail.tsx (编排器)
   ├── 统一配置读取: getNodeDefinition(nodeId)             ← ⭐ 单一配置源
   │     ├── node.model / presentationMode / variants
   │     ├── resolveNodeModelSources(node) → 1~3 model entries
   │     ├── resolveVariantExplodeConfig()  → Phase 5 explode 配置
   │     └── node.status → "available" | "development"
   ├── Header (面包屑)
-  ├── VariantLabelBar (多方案节点, Phase 3) ← A/B/C 标签栏
+  ├── VariantLabelBar (多方案节点) ← A/B/C 标签栏
   ├── Body (三栏 flex)
-  │   ├── NodeDiagramPanel (520px)     ← 剖面图
-  │   ├── ErrorBoundary (resetKey=nodeId:multiModelKey)
-  │   │   └── ModelViewer (~830行) + animationController (75行)  ← 3D 视口 ⭐
-  │   │   ├── SceneModel × 1~3         ← GLB + cloneSceneWithMaterials + 高亮 + variant identity
-  │   │   ├── MultiModelGroup           ← Phase 2: 多模型布局 + Phase 5: Explode 驱动
-  │   │   ├── CameraTracker            ← 动态锚点：整体 Box3 → controls.target.lerp
-  │   │   ├── SceneLights              ← 2 方向光 + 环境光
-  │   │   └── ShadowPlane              ← 地面阴影
-  │   └── ConstructionKnowledgePanel (360px) ← Phase 3-4: 多方案知识联动
+  │   ├── NodeDiagramPanel           ← 剖面图
+  │   ├── ErrorBoundary (resetKey=nodeId)
+  │   │   └── ModelViewer (~1250行)  ← 3D 视口 ⭐
+  │   │   │   ├── SceneModel × 1~3   ← GLB + 材质克隆 + 高亮 + Picking + variant identity
+  │   │   │   ├── MultiModelGroup    ← 5 层旋转层级 + 多模型布局 + Explode
+  │   │   │   ├── CameraTracker      ← 一次性相机适配 + target + 距离拟合
+  │   │   │   ├── SceneLights        ← 动态方向光 + 阴影相机自适应
+  │   │   │   ├── ShadowPlane        ← 动态阴影接收平面
+  │   │   │   ├── SectionRuntime     ← Phase 6 Step 2: clippingPlanes 裁切
+  │   │   │   └── CameraLockRuntime  ← Phase 6 Step 3: 相机锁定构件
+  │   └── ConstructionKnowledgePanel ← 多方案知识面板
+  ├── SectionControls                ← 剖面裁切 UI 控件
+  ├── CameraLockControls             ← 相机锁定 UI 按钮
   └── Floating Timeline (居中浮动)
         ├── 收起/播放爆炸 (多方案禁用)
         ├── 滑块: explodeProgress (多方案) / animationProgress (普通)
-        ├── 旋转切换 (RotateCw + R 键提示)
-        └── 阴影切换 (Sun) + 联动开关 (Link2)
+        ├── 旋转切换 + 阴影切换 + 联动开关
 ```
 
 ---
 
-## 4. 多方案系统（Phase 2–5）
+## 4. 多方案系统 — 5 层旋转层级
 
-### 调用链总览
+### 完整层级（MultiModelGroup）
+
+```
+MultiModelGroup (groupRef, 单位变换)
+├── VariantLayoutRoot A       # position.x = fixedLayoutX — 固定排列位置
+│   └── VariantRotationPivot A   # rotation.y = self-rotation — 独立自转
+│       └── VariantDisplayScale A # scale = sharedDisplayScale — 统一比例
+│           └── VariantCenterOffset A # position = -canonicalCenter — 几何中心校正
+│               └── SceneModel A     # scale=1, position=0 — 原始 GLB (skipAutoLayout)
+├── VariantLayoutRoot B       # (同上结构)
+└── VariantLayoutRoot C       # (同上结构)
+```
+
+**关键数学不变量**：几何中心 C 经过 `CenterOffset(-C)` → (0,0,0)，经过 `DisplayScale(S)` → S×(0,0,0) = (0,0,0) **对任意 S 成立**。改变 DisplayScale 永远不会移动旋转中心。
+
+### 布局算法
+
+1. 重置所有模型到 scale=1，计算仅可见 Mesh 的 canonical 包围盒（排除 proxy、LineSegments）
+2. 计算 **单一** `sharedDisplayScale = TARGET_DISPLAY_HEIGHT / maxCanonicalHeight`（所有模型共用，保留真实体量差异）
+3. 分别设置 `DisplayScale.scale = sharedDisplayScale`、`CenterOffset.position = -canonicalCenter`
+4. 计算 layoutX：`cursorX += scaledWidth + gap`，整体居中
+5. 计算静态联合包围盒（rotation envelope — 覆盖 360° Y 轴旋转）
+6. 相机一次性适配整组：`controls.target = unionCenter`，`camera.position` 按 FOV 拟合距离
+
+### 布局常量
+
+| 常量 | 值 | 说明 |
+|------|------|------|
+| `EDGE_GAP_RATIO` | 0.38 | 间距 = 平均显示宽度 × 38% |
+| `EDGE_GAP_MIN` | 0.28 | 最小间距 |
+| `EDGE_GAP_MAX` | 1.00 | 最大间距 |
+| `AUTO_ROTATE_SPEED` | 0.12 rad/s | 约 52 秒/周，delta 驱动 + euclideanModulo 防溢出 |
+| `TARGET_DISPLAY_HEIGHT` | 3.0 | 最高模型的目标显示高度（fov=40, camera z≈8） |
+
+### 调用链
 
 ```
 NodeDetail
@@ -129,20 +134,20 @@ NodeDetail
         ├── Single-model path: SceneModel ×1 (GLTF Animation, backward compat)
         │
         └── Multi-model path: MultiModelGroup
-              ├── SceneModel ×N (noAnimation, noGlobalRef)
+              ├── SceneModel ×N (noAnimation, noGlobalRef, skipAutoLayout)
               │     ├── cloneSceneWithMaterials(sourceScene)  ← 材质隔离
               │     ├── writeVariantIdentity(scene, identity)   ← Phase 3
               │     ├── meshMapRef per-instance
               │     └── Picking: scoped key `${variantId}::${objectName}`
               │
-              ├── layoutModels() → computeMultiModelLayout(widths)
+              ├── layoutModels() → 5 层层级应用 + 布局
               │
-              └── ExplodeDriver (Phase 5)
+              ├── Self-rotation useFrame: pivot.rotation.y += dt × AUTO_ROTATE_SPEED
+              │
+              └── Explode driver (Phase 5)
                     ├── 一次性 traverse 构建 target cache
-                    │     cache key = `${nodeId}::${variantId}::${objectName}`
-                    │     basePosition = [local.x, local.y, local.z]
-                    ├── useFrame: effectiveProgress = (variantId===activeId ? progress : 0)
-                    └── computeExplodedPosition({base, direction, distance, progress}) → position.set()
+                    ├── useFrame(priority=-100): effectiveProgress = scope 隔离
+                    └── computeExplodedPosition() → position.set()
 ```
 
 ### Variant Identity 协议
@@ -151,96 +156,128 @@ NodeDetail
 每个克隆 scene 根节点:
   scene.userData.__variantIdentity = { variantId, variantIndex, label, title, src }
 
-向上解析:
-  resolveVariantIdentity(mesh) → 沿 parent 链查找 → VariantIdentity | null
-
 Scoped key:
   makeScopedKey(variantId, objectName) → "variantId::objectName"
   parseScopedKey(key) → { variantId, objectName }
-  只按第一个 "::" 拆分，objectName 可包含 "::"
-```
-
-### Explode 系统
-
-```
-状态:
-  nodeStore.explodeProgress (0–1, clampExplodeProgress)
-  nodeStore.activeExplodeVariantId (string | null)
-
-作用域:
-  A active → A=progress, B=0, C=0
-  null    → 全部=0
-
-复位:
-  切换 variant → progress=0, active=新variant
-  切换 node   → progress=0, active=null
-  relatedNode → progress=0, active=null
-  空白点击    → progress 不变
-
-缓存:
-  一次性 traverse (非 per-frame)
-  目标: Mesh 直接子对象, 跳过 proxy/LineSegments/父Group
-  父子规则: 父为 target → 跳过子 (父移则子随)
-
-位置更新:
-  绝对赋值: position.set(next), 非 "position += offset"
-  公式: basePosition + normalizedDirection × safeDistance × localProgress
-  0→1→0 精确归位 (无漂移)
 ```
 
 ---
 
-## 5. Stores 总览
+## 5. 功能系统
 
-| Store | Key | 持久化 | 功能 |
-|-------|-----|--------|------|
-| `nodeStore` | — | 否 | 3D 悬停/选中/动画进度/联动开关 + **explodeProgress** + **activeExplodeVariantId** + `resetNodeInteractionState()` |
-| `chatStore` | — | 否 | AI 对话消息/加载/错误 + DeepSeek API |
-| `authStore` | — | 否 | 模拟用户登录/登出 |
-| `analysisStore` | `construction-analysis` | ✅ localStorage | 访问节点/提问分类/交互次数 |
+### Explode 系统（Phase 5）
+
+| 字段 | 说明 |
+|------|------|
+| `nodeStore.explodeProgress` | 0–1，clampExplodeProgress |
+| `nodeStore.activeExplodeVariantId` | 当前 active scope |
+| 作用域规则 | A active → A=progress, B=0, C=0；null → 全部=0 |
+| 位置更新 | 绝对赋值 `position.set(next)`，非增量 |
+| 公式 | `basePosition + direction × distance × localProgress` |
+| Cache key | `nodeId::variantId::objectName` |
+
+### 剖面裁切 Section V1（Phase 6 Step 2）
+
+```
+状态:
+  nodeStore.sectionEnabled / sectionAxis ("x"|"y"|"z") / sectionOffset / sectionInvert
+
+实现:
+  SectionRuntime: 管理 clippingPlanes → unbindAll/bindAll per material
+  sectionMath.ts: 纯函数 — getSectionNormal, clampSectionOffset, 
+    resolveSectionPlaneConstant, isPointVisible, isObjectCompletelyClipped (8 角点检测)
+
+关键行为:
+  - gl.localClippingEnabled 管理（保存/恢复先前值）
+  - ShadowPlane + SceneLights 阴影相机动态适配
+  - 裁切面 Picking 过滤（isIntersectionVisible）
+  - 全部裁切时 Camera Lock 自动退出
+```
+
+### 相机锁定 Camera Lock V1（Phase 6 Step 3）
+
+```
+状态:
+  nodeStore.cameraLockEnabled / cameraLockTargetKey
+
+实现:
+  CameraLockRuntime: useFrame(priority=-90), dirtyRef, queueMicrotask unlock
+  CameraLockControls: UI 按钮（Crosshair 图标）
+  modelSceneRef: Object3D 注册表 + CameraTracker pause gate
+
+协议:
+  - Lock → controls.target = 构件世界中心（一次性 copy，非 lerp）
+  - Explode 进度变化 → dirtyRef → 下一帧更新 target
+  - Section 完全裁切 → queueMicrotask 验证 → 自动 unlock
+  - Escape → unlock + clear selectedObject
+  - Variant/node 切换 → resetCameraLock + resumeCameraTracker
+```
+
+---
+
+## 6. Stores 总览
+
+| Store | 持久化 | 功能 |
+|-------|:--:|------|
+| `nodeStore` | 否 | 3D 选择/悬停/动画/爆炸/剖面/相机锁/联动 |
+| `chatStore` | 否 | AI 对话消息/加载/错误 + DeepSeek API |
+| `authStore` | 否 | 模拟用户登录/登出 |
+| `analysisStore` | localStorage | 访问节点/提问分类/交互次数 |
 
 ### nodeStore 完整字段
 
 | 字段 | 类型 | Phase | 用途 |
 |------|------|:--:|------|
-| `selectedObject` | `string \| null` | 1 | mesh 选择 (多方案: `variantId::objectName`) |
+| `selectedObject` | `string \| null` | 1 | mesh 选择 (scoped key) |
 | `hoveredObject` | `string \| null` | 1 | mesh hover |
 | `selectedVariantId` | `string \| null` | 3 | 方案标签选中 |
 | `hoveredVariantId` | `string \| null` | 3 | 方案标签 hover |
-| `animationProgress` | `number` (0–1) | 1 | GLTF Animation 进度 (普通节点) |
+| `animationProgress` | `number` (0–1) | 1 | GLTF Animation 进度 |
 | `isPlaying` | `boolean` | 1 | AnimationMixer 播放状态 |
-| `explodeProgress` | `number` (0–1) | 5 | 程序化 Explode 进度 (多方案) |
-| `activeExplodeVariantId` | `string \| null` | 5 | 当前 Explode active scope |
+| `explodeProgress` | `number` (0–1) | 5 | 程序化 Explode 进度 |
+| `activeExplodeVariantId` | `string \| null` | 5 | Explode active scope |
 | `linkageEnabled` | `boolean` | 1 | 知识面板联动开关 |
+| `sectionEnabled` | `boolean` | 6.2 | 剖面裁切开关 |
+| `sectionAxis` | `"x" \| "y" \| "z"` | 6.2 | 裁切轴 |
+| `sectionOffset` | `number` | 6.2 | 裁切位置 (clamped) |
+| `sectionInvert` | `boolean` | 6.2 | 裁切方向反转 |
+| `cameraLockEnabled` | `boolean` | 6.3 | 相机锁定开关 |
+| `cameraLockTargetKey` | `string \| null` | 6.3 | 锁定目标 scoped key |
+
+关键 action：
+- `selectVariant(variantId, keepObject?)` — 原子设置 scheme 选择 + explode scope + 重置 section + cameraLock
+- `resetNodeInteractionState()` — 全量复位（node 切换时调用）
 
 ---
 
-## 6. 目录结构（src/）
+## 7. 目录结构（src/）
 
 ```
 src/
 ├── main.tsx
 ├── routes.tsx
-├── index.css
 ├── NodeDetail.tsx                        # ⭐ 核心编排
 │
 ├── components/
-│   ├── AppLayout.tsx
-│   ├── ErrorBoundary.tsx
-│   ├── RouteSuspense.tsx
+│   ├── AppLayout.tsx / ErrorBoundary.tsx / RouteSuspense.tsx
 │   └── viewer/
-│       ├── ModelViewer.tsx               # ⭐ 3D 视口 (~830行)
+│       ├── ModelViewer.tsx               # ⭐ 3D 视口 (~1250行)
 │       │   ├── SceneModel               # GLB加载+克隆+高亮+Picking+动画
-│       │   ├── MultiModelGroup           # Phase 2-5: 多模型布局+Explode
-│       │   ├── CameraTracker
-│       │   ├── SceneLights
-│       │   └── ShadowPlane
-│       ├── animationController.ts         # GLTF Animation 单例控制器
-│       ├── VariantLabelBar.tsx           # Phase 3: A/B/C 标签 UI
-│       ├── ConstructionKnowledgePanel.tsx # Phase 4: 多方案知识面板
+│       │   ├── MultiModelGroup           # 5层旋转层级+布局+Explode
+│       │   ├── CameraTracker            # 一次性相机适配(含距离拟合)
+│       │   ├── SceneLights              # 动态方向光+阴影相机
+│       │   └── ShadowPlane              # 动态阴影接收平面
+│       ├── animationController.ts        # GLTF Animation 单例控制器
+│       ├── VariantLabelBar.tsx           # A/B/C 标签 UI
+│       ├── ConstructionKnowledgePanel.tsx # 多方案知识面板
 │       ├── NodeDiagramPanel.tsx
 │       ├── MenuBackground.tsx
-│       └── LoadingOverlay.tsx
+│       ├── LoadingOverlay.tsx
+│       ├── SectionRuntime.tsx            # Phase 6.2: clippingPlanes
+│       ├── SectionControls.tsx           # Phase 6.2: 裁切 UI
+│       ├── CameraLockRuntime.tsx         # Phase 6.3: 相机锁定运行时
+│       ├── CameraLockControls.tsx        # Phase 6.3: 锁定按钮
+│       └── variants/                     # 多方案组件
 │
 ├── pages/
 │   ├── HomePage.tsx / CurriculumPage.tsx / SectionSubPage.tsx
@@ -249,38 +286,33 @@ src/
 │   ├── ResourcesPage.tsx / GamesPage.tsx / PlaceholderPage.tsx
 │
 ├── data/
-│   ├── nodeDefinitions.ts                # ⭐ 单一配置源 (15节点)
-│   ├── nodesIndex.ts
-│   ├── courseModules.ts
-│   ├── backgroundScenes.ts
-│   ├── *_Layers.ts                       # 各节点层数据 (13个)
-│   ├── *.ts                              # 详细课程数据
-│   ├── sections/ (*.js)                  # 子章节
-│   └── textbook/                         # MD 教材
+│   ├── nodeDefinitions.ts                # ⭐ 单一配置源
+│   ├── nodesIndex.ts / nodes.ts / courseModules.ts
+│   ├── *_Layers.ts                       # 各节点层数据
+│   └── sections/ (*.js)                  # 子章节
 │
 ├── utils/
 │   ├── nameUtils.ts                      # canonicalName() + isHitboxName()
-│   ├── resolveNodeModelSources.ts        # Phase 2: 节点→模型列表解析
-│   ├── layoutModels.ts                   # Phase 2: 多模型排列纯函数
-│   ├── variantIdentity.ts                # Phase 3: 身份协议+材质隔离+scoped key
-│   ├── resolveComponentKnowledge.ts      # Phase 4: 多方案知识解析
-│   └── explodeLayout.ts                  # Phase 5: Explode 纯函数
+│   ├── resolveNodeModelSources.ts        # 节点→模型列表解析
+│   ├── layoutModels.ts                   # 多模型排列纯函数
+│   ├── variantIdentity.ts                # 身份协议+材质克隆+scoped key
+│   ├── resolveComponentKnowledge.ts      # 多方案知识解析
+│   ├── explodeLayout.ts                  # Explode 纯函数
+│   ├── modelSceneRef.ts                  # 模型场景全局引用+Object3D注册表+CameraTracker gate
+│   └── sectionMath.ts                    # 剖面裁切纯函数
 │
 ├── store/
-│   ├── nodeStore.ts
-│   ├── chatStore.ts
-│   ├── authStore.ts
-│   └── analysisStore.ts
+│   ├── nodeStore.ts / chatStore.ts / authStore.ts / analysisStore.ts
 │
 └── assets/
 ```
 
 ---
 
-## 7. 路由表
+## 8. 路由表
 
 | 路由 | 页面 | 加载 | 说明 |
-|------|------|------|------|
+|------|------|:--:|------|
 | `/` | HomePage | 直接 | 主控制台 |
 | `/curriculum` | CurriculumPage | 直接 | 8 模块网格 |
 | `/curriculum/:moduleId` | SectionSubPage | 直接 | 子章节 |
@@ -296,52 +328,35 @@ src/
 
 ---
 
-## 8. 节点清单
+## 9. 节点清单
 
-### 普通节点 (12)
-
-| ID | 标题 | 分类 | modelScale | 层数 | 动画 |
-|----|------|------|:--:|:--:|:--:|
-| `flat-roof-01` | 平屋面构造 | 屋顶 | 2.5 | 8 | GLTF Animation |
-| `sloped-roof-01` | 坡屋顶构造 | 屋顶 | 2.5 | 9 | GLTF Animation |
-| `roof-drainage-01` | 无组织排水 | 屋顶 | 2.5 | 3 | GLTF Animation |
-| `organized-drainage-01` | 有组织排水 | 屋顶 | 2.5 | 4 | GLTF Animation |
-| `eaves-gutter-01` | 檐沟外排水 | 屋顶 | 2 | 6 | GLTF Animation |
-| `construction-column-01` | 构造柱 | 墙体 | 4 | 7 | GLTF Animation |
-| `apron-flashing-01` | 细石混凝土散水 | 墙体 | 2 | 9 | GLTF Animation |
-| `stone-apron-01` | 块石散水 | 墙体 | 2 | 9 | GLTF Animation |
-| `foam-insulation-01` | 泡沫塑料保温板 | 墙体 | 2 | 7 | noAnimation |
-| `rockwool-insulation-01` | 岩棉防火保温板 | 墙体 | 2 | 7 | noAnimation |
-| `faced-plinth-01` | 贴面勒脚 | 墙体 | 2 | 5 | noAnimation |
-| `stone-plinth-01` | 石砌勒脚 | 墙体 | 2 | 4 | noAnimation |
-| `plaster-plinth-01` | 抹灰勒脚 | 墙体 | 2 | 5 | noAnimation |
-| `rc-elevated-steps-01` | 钢筋混凝土架空台阶 | 楼梯 | 2 | 7 | — |
-| `stair-composition-01` | 楼梯的组成 | 楼梯 | 3.5 | 6 | noAnimation |
-| `concrete-steps-01` | 混凝土台阶 | 楼梯 | 2 | 5 | GLTF Animation |
-
-### 多方案节点 (1)
+### 多方案节点
 
 | ID | 标题 | 方案 | GLB |
 |----|------|------|-----|
-| `wall-damp-proof-course` | 墙身防潮层的位置 | A: 密实材料垫层 | `wall-damp-proof/地面垫层为密实材料.glb` (111KB) |
-| | | B: 透水材料垫层 | `wall-damp-proof/地面垫层为透水材料.glb` (131KB) |
-| | | C: 室内外地面有高差 | `wall-damp-proof/室内地面有高差.glb` (116KB) |
+| `wall-damp-proof-course` | 墙身防潮层的位置 | A: 密实材料垫层 | `damp-proof-a-v2.glb` |
+| | | B: 透水材料垫层 | `damp-proof-b-v2.glb` |
+| | | C: 室内外地面有高差 | `damp-proof-c-v2.glb` |
 
-每个方案含 explode 配置 (3 目标/方案)、componentKnowledge (2 知识条目/方案)、label/title/description。
+每个方案含 explode 配置、componentKnowledge、统一 `scale: 2`。
 
-### 案例节点 (3, development)
+### 普通节点 (部分)
 
-| ID | 标题 |
-|----|------|
-| `yuncheng-c-01` | 郓城案例 01 |
-| `yuncheng-c-02` | 郓城案例 02 |
-| `yuncheng-c-03` | 郓城案例 03 |
+| ID | 标题 | 分类 | 动画 |
+|----|------|------|:--:|
+| `flat-roof-01` | 平屋面构造 | 屋顶 | GLTF Animation |
+| `sloped-roof-01` | 坡屋顶构造 | 屋顶 | GLTF Animation |
+| `roof-drainage-01` | 无组织排水 | 屋顶 | GLTF Animation |
+| `organized-drainage-01` | 有组织排水 | 屋顶 | GLTF Animation |
+| `construction-column-01` | 构造柱 | 墙体 | GLTF Animation |
+| `apron-flashing-01` | 细石混凝土散水 | 墙体 | GLTF Animation |
+| `faced-plinth-01` | 贴面勒脚 | 墙体 | noAnimation |
+| `stone-plinth-01` | 石砌勒脚 | 墙体 | noAnimation |
+| … | … | … | … |
 
 ---
 
-## 9. 设计系统
-
-### 色彩
+## 10. 设计系统
 
 | Token | 值 | 用途 |
 |-------|-----|------|
@@ -356,100 +371,97 @@ src/
 
 ---
 
-## 10. 完成状态
+## 11. 完成状态
 
 ### Phase 1 — 基线 ✅
 - 三栏布局 + GLB + 动画 + 高亮 + Picking + 材质隔离
 - CameraTracker + 边缘线 + PCF阴影 + 联动开关
-- 14 节点 + 单一配置源 + 名称标准化
 
-### Phase 2 — 多模型同屏 ✅ (commit `e494ca5`)
+### Phase 2 — 多模型同屏 ✅ (`e494ca5`)
 - 同一 Canvas 支持 1~3 个 GLB
-- MultiModelGroup 水平排列
 - `resolveNodeModelSources` 数据解析
-- 18 纯逻辑测试
 
 ### Phase 3 — 方案身份与标签 ✅
-- VariantLabelBar A/B/C 标签 + 双向同步
-- Variant identity 协议 (userData)
-- Scoped key: `variantId::objectName`
-- `cloneSceneWithMaterials` 材质隔离 + `disposeClonedMaterials` 生命周期
-- StrictMode 安全的 WeakMap 清理
-- 110 测试基线
+- VariantLabelBar A/B/C 标签 + scoped key
+- `cloneSceneWithMaterials` 材质隔离
 
 ### Phase 4 — 构件知识联动 V1 ✅
-- `resolveComponentKnowledge` 多方案知识解析
-- `VariantComponentKnowledge` 类型: 图片/表格/关联节点
-- ConstructionKnowledgePanel 四态渲染
-- 同名 mesh 跨 variant 隔离 (协议级)
-- 142 测试基线
+- `resolveComponentKnowledge` + ConstructionKnowledgePanel 四态渲染
 
 ### Phase 5 — 程序化 Explode V1 ✅
-- `nodeStore.explodeProgress + activeExplodeVariantId`
-- A/B/C 各 3 目标 Explode 配置
-- Pure functions: clamp, localProgress, position, resolve
-- useFrame 绝对位置赋值 + active scope 隔离
-- Cache key: `nodeId::variantId::objectName`
-- 父子规则: 保留配置祖先、跳过配置后代
-- 普通节点 GLTF Animation 独立
-- **276 测试基线** (142 + 69 explodeLayout + 65 explodeRuntime)
+- `explodeProgress + activeExplodeVariantId` + useFrame 驱动
 
-### 待完成
+### Phase 6 Step 1 — 视图运行时审计 ✅
 
-| 功能 | 优先级 |
-|------|--------|
-| Section 剖切 | 中 |
-| 多方案 Explode 自动播放/惯性动画 | 低 |
-| 拖拽组装游戏 | 中 |
-| 郓城案例模型迁移 | 低 |
-| 课本内容填充 | 中 |
+### Phase 6 Step 2 — 剖面裁切 V1 ✅
+- clippingPlanes + SectionRuntime + sectionMath.ts
+- activeExplodeVariantId sync bug fix
+- ShadowPlane/SceneLights 动态适配
+
+### Phase 6 Step 3 — 相机锁定 V1 ✅
+- CameraLockRuntime + Controls + Object3D 注册表
+- CameraTracker pause gate + Escape 协议
+
+### Phase 6 — 旋转中心修复 ✅
+- 5 层旋转层级（DisplayScale + CenterOffset 分离）
+- 独立自转（pivot.rotation.y，euclideanModulo）
+- 中心校正数学不变量验证
+
+### Phase 6 — 比例一致性修复 ✅
+- 单⼀ sharedDisplayScale（替代每模型独立高度归一化）
+- 相机距离拟合（FOV 自适应整组包围盒）
 
 ---
 
-## 11. 测试基础设施
+## 12. 约束与规范
+
+- 禁止修改 GLB 几何体
+- 禁止新增 Canvas 或 OrbitControls
+- 禁止每帧 `scene.traverse`
+- 禁止在 `useFrame` 中调用 Zustand action
+- Camera Lock 禁止写 `camera.position`
+- 仅使用等比缩放（`setScalar`），禁止非均匀缩放
+- 多方案节点使用单一 `sharedDisplayScale`，禁止每模型独立归一化
+
+---
+
+## 13. 测试基础设施
 
 ```
 npm test:
-  npx tsx tests/resolveNodeModelSources.test.ts  (142 asserts)
-  npx tsx tests/explodeLayout.test.ts             (69 asserts)
-  npx tsx tests/explodeRuntime.test.ts            (65 asserts)
-  ─────────────────────────────────────────────────────
-  总计: 276
-
-浏览器验收:
-  DEV_URL=http://localhost:xxxx node tests/acceptance.mjs
-  → variant-multi ×5, normal-column ×3, normal-flat-roof ×3, route-switch ×10
+  npx tsx tests/resolveNodeModelSources.test.ts
+  npx tsx tests/explodeLayout.test.ts
+  npx tsx tests/explodeRuntime.test.ts
+  npx tsx tests/phase6-step2.test.ts
+  npx tsx tests/phase6-step3.test.ts
+  npx tsx tests/phase6-multi-model-rotation.test.ts  ← 新增 (旋转中心+比例一致性)
 ```
 
-## 12. 开发命令
+纯逻辑测试，使用自定义 `assert`/`assertApprox` 函数。
+
+---
+
+## 14. 开发命令
 
 ```bash
 npm run dev              # localhost:5173
-npm test                 # 276 纯逻辑测试
-npm run build            # 生产构建
+npm test                 # 全量测试
+npm run build            # tsc + vite build
 npm run lint             # ESLint
-npx tsc --noEmit         # 类型检查
+npx tsc --noEmit         # 仅类型检查
 npm run compress-models  # 压缩 GLB
 npm run deploy           # gh-pages 部署
 ```
 
-## 13. 添加新节点（3 步）
+---
 
-1. **准备文件**: `public/models/{类别}/{节点名}/` + 剖面图 + `src/data/{节点名}Layers.ts`
-2. **注册节点**: `nodeDefinitions.ts` 添加 `NodeDefinition`
-3. **多方案节点**: 设置 `presentationMode: "variants"` + `variants[]` (含 model/explode/componentKnowledge)
+## 15. 添加新多方案节点
+
+1. **准备 GLB 文件**: `public/models/{类别}/{节点名}/` 下放置 `*-a-v2.glb`、`*-b-v2.glb`、`*-c-v2.glb`
+2. **注册节点**: `nodeDefinitions.ts` 添加 `NodeDefinition`，设置 `presentationMode: "variants"`
+3. **配置 variants[]**: 每个方案含 `id`、`label`、`model.path`、`model.scale`（统一值）、`components`、`explode` 配置、`componentKnowledge`
+4. **准备图层数据**: 创建 `src/data/{节点名}Layers.ts`
 
 ---
 
-## 14. Git 历史（关键 commit）
-
-| Commit | 说明 |
-|------|------|
-| `e706b64` | Phase 1 基线 |
-| `52f2028` | Phase 1 封板 |
-| `e494ca5` | Phase 2 封板: multi-model variant presentation |
-| `...` | Phase 3–5 (待封板) |
-
----
-
-_最后更新：2026-07-27_
+_最后更新：2026-07-30_
