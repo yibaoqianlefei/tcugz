@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect, useMemo } from "react";
+import { useState, useEffect, useLayoutEffect, useMemo, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getNodeDefinition } from "./data/nodeDefinitions";
 import { useNodeStore } from "./store/nodeStore";
@@ -7,15 +7,14 @@ import { animControls } from "./components/viewer/animationController";
 import ModelViewer from "./components/viewer/ModelViewer";
 import NodeDiagramPanel from "./components/viewer/NodeDiagramPanel";
 import ConstructionKnowledgePanel from "./components/viewer/ConstructionKnowledgePanel";
-import { RotateCw, ChevronsLeft, ChevronsRight, Sun, Link2 } from "lucide-react";
 import { useAnalysisStore } from "./store/analysisStore";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { resolveNodeModelSources } from "./utils/resolveNodeModelSources";
 import { resolveVariantExplodeConfig } from "./utils/explodeLayout";
 import type { ExplodeVariantConfig } from "./components/viewer/ModelViewer";
 import VariantLabelBar from "./components/viewer/VariantLabelBar";
-import SectionControls from "./components/viewer/SectionControls";
-import CameraLockControls from "./components/viewer/CameraLockControls";
+import ControlBar from "./components/viewer/ControlBar";
+import { resolveVisibleControls } from "./utils/nodeDetailControls";
 
 /**
  * NodeDetail V1 — construction education layout.
@@ -32,7 +31,6 @@ export default function NodeDetail() {
   const setExplodeProgress = useNodeStore((s) => s.setExplodeProgress);
   const activeExplodeVariantId = useNodeStore((s) => s.activeExplodeVariantId);
 
-  const [autoRotate, setAutoRotate] = useState(true);
   const [showShadows, setShowShadows] = useState(true);
   const linkageEnabled = useNodeStore((s) => s.linkageEnabled);
   const setLinkageEnabled = useNodeStore((s) => s.setLinkageEnabled);
@@ -78,9 +76,25 @@ export default function NodeDetail() {
     if (nodeId && node) addVisitedNode(nodeId);
   }, [nodeId, node, addVisitedNode]);
 
-  // ── Play explosion — multi-model uses slider only ──
-  const playExplosion = () => {
-    if (isMultiModel || noAnimation) return;
+  // ── Collapse (收拢) — multi-model drives the established explodeProgress
+  //    (no algorithm rewrite); single-model reverses the AnimationMixer. ──
+  const handleCollapse = () => {
+    if (isMultiModel) {
+      setExplodeProgress(0);
+      return;
+    }
+    if (noAnimation) return;
+    if (animationProgress <= 0) return;
+    animControls.playReverse();
+  };
+
+  // ── Expand (展开) — multi-model drives explodeProgress to 1. ──
+  const handleExpand = () => {
+    if (isMultiModel) {
+      setExplodeProgress(1);
+      return;
+    }
+    if (noAnimation) return;
     if (animationProgress >= 1) {
       setAnimationProgress(0);
       animControls.setTime(0);
@@ -88,12 +102,36 @@ export default function NodeDetail() {
     animControls.play();
   };
 
-  // ── Collapse explosion — multi-model uses slider only ──
-  const collapseExplosion = () => {
-    if (isMultiModel || noAnimation) return;
-    if (animationProgress <= 0) return;
-    animControls.playReverse();
-  };
+  // ── Reset (R) — restore the initial interaction state without touching the
+  //    unified model scale / layoutX / spacing.  Clears selection, explosion
+  //    and section/lock state, then asks CameraTracker to re-apply the initial
+  //    composition (the multi-model union-box fit reproduces the approved
+  //    framing — it does not change the fit definition). ──
+  const handleReset = useCallback(() => {
+    useNodeStore.getState().resetNodeInteractionState();
+    resumeCameraTracker();
+    if (node?.model?.noAnimation) {
+      useNodeStore.getState().setAnimationProgress(1);
+    }
+    useNodeStore.getState().requestCameraRefit();
+  }, [node]);
+
+  // ── R — reset (visible on the control bar's reset button).  Hidden
+  //    advanced features (X/Y/Z axis, section, reverse, camera lock, target)
+  //    have no keyboard bindings, so a stray keypress can never change the
+  //    model state.  Ignored while typing in inputs/textareas. ──
+  useEffect(() => {
+    const handleR = (e: KeyboardEvent) => {
+      if (e.key !== "r" && e.key !== "R") return;
+      const target = e.target as HTMLElement | null;
+      const tag = target?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || target?.isContentEditable) return;
+      e.preventDefault();
+      handleReset();
+    };
+    window.addEventListener("keydown", handleR);
+    return () => window.removeEventListener("keydown", handleR);
+  }, [handleReset]);
 
   // ── Slider change — routes to explodeProgress or animationProgress ──
   const onSliderChange = (value: number) => {
@@ -125,6 +163,10 @@ export default function NodeDetail() {
   const hasExplodeConfig = isMultiModel && explodeConfigs?.some((c) => c.config.enabled);
   // activeExplodeVariantId is consumed by ModelViewer via store; read here for reactive re-render
   void activeExplodeVariantId;
+
+  /* ── Visible control-bar whitelist — identical for single- and multi-model.
+       Never widened by variant count or debug flags. ── */
+  const visibleControls = resolveVisibleControls();
 
   /* ── Node not found ── */
   if (!node) {
@@ -211,7 +253,6 @@ export default function NodeDetail() {
                 >
                   <ModelViewer
                     key={nodeId}
-                    autoRotate={autoRotate}
                     showShadows={showShadows}
                     modelPath={isMultiModel ? undefined : modelSources[0].src}
                     modelPaths={isMultiModel ? modelSources : undefined}
@@ -229,139 +270,24 @@ export default function NodeDetail() {
                 </div>
               )}
 
-              {/* Floating timeline — 02-2 style */}
-              <div
-                className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10
-                  flex items-center gap-0.5 sm:gap-2
-                  px-2 sm:px-4 py-2 sm:py-2.5
-                  bg-canvas border border-hairline rounded-xl"
-                onPointerDown={(e) => e.stopPropagation()}
-              >
-            {/* ── Collapse ── */}
-            <button
-              onClick={collapseExplosion}
-              disabled={isMultiModel}
-              className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center
-                text-muted-soft hover:text-primary hover:bg-hairline
-                transition-all duration-200 relative shrink-0
-                disabled:opacity-30 disabled:cursor-not-allowed"
-              title="收起爆炸"
-            >
-              <ChevronsLeft size={16} className="sm:size-[18px]" strokeWidth={1.5} />
-            </button>
-
-            {/* ── Slider ── */}
-            <input
-              type="range"
-              min={0}
-              max={1}
-              step={0.001}
-              value={isMultiModel ? explodeProgress : animationProgress}
-              onChange={(e) => onSliderChange(Number(e.target.value))}
-              disabled={isMultiModel ? !hasExplodeConfig : noAnimation}
-              className="w-14 sm:w-24 md:w-32 h-6 py-1 bg-hairline rounded-full appearance-none cursor-pointer
-                accent-primary shrink
-                disabled:opacity-30 disabled:cursor-not-allowed
-                [&::-webkit-slider-thumb]:appearance-none
-                [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5
-                sm:[&::-webkit-slider-thumb]:w-4 sm:[&::-webkit-slider-thumb]:h-4
-                [&::-webkit-slider-thumb]:rounded-full
-                [&::-webkit-slider-thumb]:bg-white
-                [&::-webkit-slider-thumb]:border-2
-                [&::-webkit-slider-thumb]:border-primary/30
-                [&::-webkit-slider-thumb]:shadow-sm
-                [&::-webkit-slider-thumb]:hover:border-primary
-                [&::-webkit-slider-thumb]:transition-colors"
-              style={{ touchAction: "none" }}
-            />
-
-            {/* ── Play explosion ── */}
-            <button
-              onClick={playExplosion}
-              disabled={isMultiModel}
-              className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center
-                text-muted-soft hover:text-primary hover:bg-hairline
-                transition-all duration-200 relative shrink-0
-                disabled:opacity-30 disabled:cursor-not-allowed"
-              title="播放爆炸"
-            >
-              <ChevronsRight size={16} className="sm:size-[18px]" strokeWidth={1.5} />
-            </button>
-
-            {/* ── Divider ── */}
-            <div className="w-px h-5 bg-hairline mx-0.5 sm:mx-1 shrink-0" />
-
-            {/* ── Auto-rotate toggle ── */}
-            <button
-              onClick={() => setAutoRotate((v) => !v)}
-              className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center
-                transition-all duration-300 relative shrink-0
-                ${autoRotate ? "bg-hairline" : ""}`}
-              title={autoRotate ? "暂停旋转 (R)" : "自动旋转 (R)"}
-            >
-              <RotateCw
-                size={16}
-                className={`sm:size-[18px] transition-colors duration-300 ${
-                  autoRotate ? "text-primary" : "text-muted-soft"
-                }`}
-                strokeWidth={1.5}
-                style={{ animation: autoRotate ? "spin 3s linear infinite" : "none" }}
+              {/* ── Bottom control bar — same shell for single- and multi-model.
+                     Renders ONLY the NODE_DETAIL_PRIMARY_CONTROLS whitelist
+                     (explode | reset | link | lighting).  Section / Camera Lock
+                     / axis / reverse stay as runtime-only capabilities — the
+                     runtimes are inert while their store flags are off. ── */}
+              <ControlBar
+                visible={visibleControls}
+                explodeDisabled={isMultiModel ? !hasExplodeConfig : noAnimation}
+                sliderValue={isMultiModel ? explodeProgress : animationProgress}
+                onSliderChange={onSliderChange}
+                onCollapse={handleCollapse}
+                onExpand={handleExpand}
+                onReset={handleReset}
+                linkageEnabled={linkageEnabled}
+                onToggleLinkage={() => setLinkageEnabled(!linkageEnabled)}
+                showShadows={showShadows}
+                onToggleLighting={() => setShowShadows((v) => !v)}
               />
-              <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 text-[10px] text-muted-soft hidden sm:block">R</span>
-            </button>
-
-            {/* ── Divider ── */}
-            <div className="w-px h-5 bg-hairline mx-0.5 sm:mx-1 shrink-0" />
-
-            {/* ── Linkage toggle ── */}
-            <button
-              onClick={() => setLinkageEnabled(!linkageEnabled)}
-              className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center
-                transition-all duration-300 relative shrink-0
-                ${linkageEnabled ? "bg-hairline" : ""}`}
-              title={linkageEnabled ? "联动已开启：点击关闭" : "联动已关闭：点击开启"}
-            >
-              <Link2
-                size={16}
-                className={`sm:size-[18px] transition-colors duration-300 ${
-                  linkageEnabled ? "text-primary" : "text-muted-soft"
-                }`}
-                strokeWidth={1.5}
-              />
-            </button>
-
-            {/* ── Divider ── */}
-            <div className="w-px h-5 bg-hairline mx-0.5 sm:mx-1 shrink-0" />
-
-            {/* ── Shadow toggle ── */}
-            <button
-              onClick={() => setShowShadows((v) => !v)}
-              className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center
-                transition-all duration-300 relative shrink-0
-                ${showShadows ? "bg-hairline" : ""}`}
-              title={showShadows ? "关闭阴影" : "开启阴影"}
-            >
-              <Sun
-                size={16}
-                className={`sm:size-[18px] transition-colors duration-300 ${
-                  showShadows ? "text-primary" : "text-muted-soft"
-                }`}
-                strokeWidth={1.5}
-              />
-            </button>
-
-            {/* ── Divider ── */}
-            <div className="w-px h-5 bg-hairline mx-0.5 sm:mx-1 shrink-0" />
-
-            {/* Phase 6 Step 2: Section controls */}
-            <SectionControls />
-
-            {/* ── Divider ── */}
-            <div className="w-px h-5 bg-hairline mx-0.5 sm:mx-1 shrink-0" />
-
-            {/* Phase 6 Step 3: Camera Lock controls */}
-            <CameraLockControls />
-          </div>
         </div>
 
         {/* Right: knowledge panel */}

@@ -765,9 +765,22 @@ function CameraTracker({
   /** Reusable objects for the single-model target-follow. */
   const followBoxRef = useRef(new THREE.Box3());
   const followCenterRef = useRef(new THREE.Vector3());
+  /** Manual reset (R) → re-run the initial fit.  Consumed from the store so a
+   *  ControlBar reset (outside the Canvas) can drive the CameraTracker. */
+  const refitToken = useNodeStore((s) => s.refitToken);
+  const prevRefitTokenRef = useRef(refitToken);
 
   // ── One-time initial fit + guarded responsive re-fit (NOT continuous) ──
   useEffect(() => {
+    // A new refitToken means the R reset fired: force the next run to be a
+    // first-fit again and clear the user-interaction guard so it is not
+    // blocked by a prior manual orbit/zoom/pan.
+    if (refitToken !== prevRefitTokenRef.current) {
+      prevRefitTokenRef.current = refitToken;
+      fittedKeyRef.current = null;
+      _userCameraInteracted = false;
+    }
+
     const controls = _controls;
     const scene = getModelScene();
     if (!controls || !scene) return;
@@ -882,7 +895,7 @@ function CameraTracker({
       finalDistance: result.finalDistance,
       cameraFitPadding: CAMERA_FIT_PADDING,
     });
-  }, [sceneReady, variantCount, fitKey, layoutKey, containerWidth, size.width, size.height, camera]);
+  }, [sceneReady, variantCount, fitKey, layoutKey, containerWidth, size.width, size.height, camera, refitToken]);
 
   // ── Single-model "pull back to view centre" (e706b641 behavior) ──
   // Continuously lerps the orbit target toward the model's world centre so the

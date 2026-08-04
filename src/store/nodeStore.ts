@@ -26,6 +26,9 @@ type Store = {
   // ── Camera Lock (Phase 6 Step 3) ──
   cameraLockEnabled: boolean;
   cameraLockTargetKey: string | null;
+  // ── Manual camera re-fit (R reset) ──
+  /** Monotonic token; CameraTracker re-fits whenever it changes. */
+  refitToken: number;
   // ── Actions ──
   setSelectedObject: (name: string | null) => void;
   setHoveredObject: (name: string | null) => void;
@@ -65,6 +68,9 @@ type Store = {
   /** Full Camera Lock reset for node/variant/relatedNode lifecycle.
    *  Resets lock state AND resumes CameraTracker. */
   resetCameraLock: () => void;
+  /** Ask CameraTracker to re-run the initial camera fit (R reset).
+   *  Only bumps a token — CameraTracker consumes it and re-fits. */
+  requestCameraRefit: () => void;
 };
 
 export const useNodeStore = create<Store>((set) => ({
@@ -85,6 +91,7 @@ export const useNodeStore = create<Store>((set) => ({
   /* ── Camera Lock defaults (Phase 6 Step 3) ── */
   cameraLockEnabled: false,
   cameraLockTargetKey: null,
+  refitToken: 0,
 
   setSelectedObject: (name) => set({ selectedObject: name }),
   setHoveredObject: (name) => set({ hoveredObject: name }),
@@ -158,4 +165,6 @@ export const useNodeStore = create<Store>((set) => ({
       cameraLockEnabled: false,
       cameraLockTargetKey: null,
     }),
+  requestCameraRefit: () =>
+    set((s) => ({ refitToken: s.refitToken + 1 })),
 }));
