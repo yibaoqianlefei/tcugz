@@ -5,7 +5,6 @@ const organizedDrainageData = {
   description:
     "有组织排水屋面构造节点，包含天沟、雨水斗、落水管等构件。",
   diagramImage: null,
-  explodeAxis: "y",
   floatDirection: "z",
   floatDistance: 0.22,
   modelRotation: [0, 0, 0],

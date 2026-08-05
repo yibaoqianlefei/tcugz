@@ -30,10 +30,17 @@ import { facedPlinthLayers, getLayerInfo as getFacedPlinthLayer } from "./facedP
 import { stonePlinthLayers, getLayerInfo as getStonePlinthLayer } from "./stonePlinthLayers";
 import { rcElevatedStepsLayers, getLayerInfo as getRcElevatedStepsLayer } from "./rcElevatedStepsLayers";
 import { castRibbedFloorLayers, getLayerInfo as getCastRibbedFloorLayer } from "./castRibbedFloorLayers";
+import { steelBattenTileRoofLayers, getLayerInfo as getSteelBattenTileRoofLayer } from "./steelBattenTileRoofLayers";
+import { mortarBedTileRoofLayers, getLayerInfo as getMortarBedTileRoofLayer } from "./mortarBedTileRoofLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
-const BASE_URL = import.meta.env.BASE_URL;
+// Guarded so the single source of truth can be imported by Node/tsx tests
+// (where `import.meta.env` is absent).  Vite statically replaces
+// `import.meta.env` with the env object, so `?.BASE_URL` still resolves to
+// the real base in dev (/ ) and production (/tcugz/); outside Vite it falls
+// back to "/", which is the correct public-root interpretation for tests.
+const BASE_URL = import.meta.env?.BASE_URL ?? "/";
 
 function assetPath(path: string): string {
   return `${BASE_URL}${path.replace(/^\/+/, "")}`;
@@ -239,6 +246,48 @@ export const nodeDefinitions: NodeDefinition[] = [
   },
 
   {
+    id: "steel-batten-tile-roof-01",
+    title: "钢挂瓦条块瓦屋面构造",
+    description:
+      "钢挂瓦条块瓦屋面：块瓦→挂瓦条→顺水条→防水卷材→水泥砂浆找平层→细石混凝土找平层→钢筋混凝土屋面板。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/steel-batten-tile-roof-01.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/steel-batten-tile-roof/steel-batten-tile-roof.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/steel-batten-tile-roof-01.png"),
+    },
+    layerConfig: {
+      layers: steelBattenTileRoofLayers as NodeLayerInfo[],
+      getLayerInfo: getSteelBattenTileRoofLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+  },
+
+  {
+    id: "mortar-bed-tile-roof-01",
+    title: "砂浆卧瓦块瓦屋面构造",
+    description:
+      "砂浆卧瓦块瓦屋面：块瓦→水泥砂浆卧瓦层→防水卷材→水泥砂浆找平层→钢筋混凝土屋面板。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/mortar-bed-tile-roof-01.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/mortar-bed-tile-roof/mortar-bed-tile-roof.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/mortar-bed-tile-roof-01.png"),
+    },
+    layerConfig: {
+      layers: mortarBedTileRoofLayers as NodeLayerInfo[],
+      getLayerInfo: getMortarBedTileRoofLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+  },
+
+  {
     id: "roof-drainage-01",
     title: "无组织排水屋顶",
     description:
@@ -314,7 +363,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     status: "available",
     model: {
       path: assetPath("models/floor/cast-ribbed-floor/cast-ribbed-floor.glb"),
-      scale: 2.5,
+      scale: 3.5,
       // Static model (no GLTF explode animation) → loads fully-expanded and
       // the timeline is locked, consistent with the other no-animation nodes.
       noAnimation: true,
@@ -923,6 +972,6 @@ function validateNodeDefinitions(defs: NodeDefinition[]): void {
   }
 }
 
-if (import.meta.env.DEV) {
+if (import.meta.env?.DEV) {
   validateNodeDefinitions(nodeDefinitions);
 }

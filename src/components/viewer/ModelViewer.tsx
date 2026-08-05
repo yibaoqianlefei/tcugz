@@ -7,11 +7,10 @@ import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { canonicalName as cnImport, isHitboxName } from "../../utils/nameUtils";
 import { registerAnimationActions, getAnimationActions } from "./animationController";
 // layoutModels is now inline in MultiModelGroup (edge-gap formula)
-import { writeVariantIdentity, makeScopedKey, cloneSceneWithMaterials, disposeClonedMaterials } from "../../utils/variantIdentity";
+import { writeVariantIdentity, makeScopedKey, parseScopedKey, matchesVariantScope, cloneSceneWithMaterials, disposeClonedMaterials } from "../../utils/variantIdentity";
 import { computeExplodedPosition } from "../../utils/explodeLayout";
 import type { ResolvedVariantExplodeConfig, ResolvedExplodeComponent } from "../../utils/explodeLayout";
-import SectionRuntime from "./SectionRuntime";
-import { isPointVisible, type SectionBounds } from "../../utils/sectionMath";
+import { isInteractionAllowed } from "../../utils/interactionGates";
 
 /* ═══════════════════════════════════════════════════════════════
    Material highlight — original-state cache + dual-channel restore
@@ -40,9 +39,6 @@ type HighlightMode = "clear" | "hover" | "selected";
 import {
   getModelScene,
   setModelScene,
-  registerObjects,
-  clearObjectRegistry,
-  isCameraTrackerPaused,
 } from "../../utils/modelSceneRef";
 import {
   CAMERA_FIT_PADDING,
@@ -55,7 +51,6 @@ import {
   buildFitKey,
   type CameraFitResult,
 } from "../../utils/cameraFit";
-import CameraLockRuntime from "./CameraLockRuntime";
 
 /* ── Module-level refs (non-animation) ──────────────────────── */
 let _controls: OrbitControlsImpl | null = null;
@@ -87,40 +82,6 @@ function logCameraWrite(source: string, payload: Record<string, unknown>): void 
   if (arr.length > 60) arr.splice(0, arr.length - 60);
 }
 
-/* ── Phase 6 Step 2: Section picking visibility helper ────── */
-
-/**
- * Test whether a world-space intersection point is on the visible
- * side of the current section plane.  Called from pointer event
- * handlers — not per-frame.
- *
- * Returns true when section is disabled (everything visible).
- */
-function isIntersectionVisible(point: THREE.Vector3): boolean {
-  const store = useNodeStore.getState();
-  if (!store.sectionEnabled) return true;
-  const ms = getModelScene();
-  if (!ms) return true;
-
-  // Compute bounds from live model scene on each pointer event.
-  // Pointer events are user-driven (infrequent), so this is NOT
-  // a per-frame operation.
-  const box = new THREE.Box3().setFromObject(ms);
-  const bounds: SectionBounds = {
-    min: [box.min.x, box.min.y, box.min.z],
-    max: [box.max.x, box.max.y, box.max.z],
-  };
-
-  return isPointVisible(
-    [point.x, point.y, point.z],
-    bounds,
-    store.sectionAxis,
-    store.sectionOffset,
-    store.sectionInvert,
-    true,
-  );
-}
-
 /* ── Renderer setup ───────────────────────────────────────── */
 function RendererSetup({ showShadows }: { showShadows: boolean }) {
   const { gl } = useThree();
@@ -149,7 +110,6 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
   const groupRef = useRef<THREE.Group>(null);
   const meshMapRef = useRef<Map<string, THREE.Mesh[]>>(new Map());
   /** Phase 6 Step 3: unregister functions for Object3D registry. */
-  const unregisterFnsRef = useRef<Array<() => void>>([]);
   const resolveName = useCallback(
     (name: string): string => cnImport(name, modelGroups),
     [modelGroups],
@@ -301,16 +261,6 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
         });
       });
       scaleApplied.current = true;
-
-      // Phase 6 Step 3: register all interactive meshes in Object3D registry
-      const newUnregisterFns: Array<() => void> = [];
-      meshMapRef.current.forEach((meshes, logicalName) => {
-        if (meshes.length === 0) return;
-        const key = makeScopedKey(variantId ?? null, logicalName);
-        const unreg = registerObjects(key, meshes);
-        newUnregisterFns.push(unreg);
-      });
-      unregisterFnsRef.current = newUnregisterFns;
     }
 
     // ── AnimationMixer ──
@@ -364,9 +314,6 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
       // remount cycle leaves getModelScene() null and the initial camera fit
       // never runs.
       if (!noGlobalRef) setModelScene(null);
-      // Phase 6 Step 3: unregister all objects from global registry
-      unregisterFnsRef.current.forEach((fn) => fn());
-      unregisterFnsRef.current = [];
     };
     // noGlobalRef and onReady are stable callbacks, intentionally excluded from deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -428,7 +375,11 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
   const selectedObject = useNodeStore((s) => s.selectedObject);
   const hoveredVariantId = useNodeStore((s) => s.hoveredVariantId);
   const selectedVariantId = useNodeStore((s) => s.selectedVariantId);
-  const highlightEnabled = useNodeStore((s) => s.animationProgress >= 0.99);
+  // Interaction is gated on animation progress ONLY for models with a real
+  // GLTF animation timeline.  Multi-model variants and static single-model
+  // nodes (noAnimation) are always interactable — an R reset zeroes
+  // animationProgress, and they have no mixer to drive it back.
+  const highlightEnabled = useNodeStore((s) => isInteractionAllowed(noAnimation, s.animationProgress, 0.99));
 
   /** Restore a material to its original GLB state from the WeakMap cache. */
   function restoreMaterial(m: THREE.Material): void {
@@ -472,7 +423,13 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
   const setGroupHighlight = useCallback(
     (name: string | null, mode: HighlightMode) => {
       if (!name) return;
-      const clean = resolveName(name);
+      // Scoped-key identity protocol (variantId::objectName).  Only the
+      // SceneModel whose variant matches the key may highlight its meshes —
+      // same-named meshes in other variants must never cross-highlight.
+      // Single-model nodes (variantId == null) use unscoped keys.
+      if (!matchesVariantScope(name, variantId ?? null)) return;
+      const { objectName } = parseScopedKey(name);
+      const clean = resolveName(objectName);
       const meshes = meshMapRef.current.get(clean);
       if (!meshes) { if (import.meta.env.DEV) console.log("[highlight] MISS:", name, "→", clean); return; }
       meshes.forEach((mesh) => {
@@ -501,7 +458,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
         });
       });
     },
-    [resolveName],
+    [resolveName, variantId],
   );
 
   // ── Apply highlights: variant then mesh, priority-based ──
@@ -560,9 +517,8 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
 
   const handlePointerOver = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation();
-    if (useNodeStore.getState().animationProgress < 0.99) return;
-    // Phase 6 Step 2: skip intersections on the clipped side of section plane
-    const vis = e.intersections?.find((ix) => isIntersectionVisible(ix.point));
+    if (!isInteractionAllowed(noAnimation, useNodeStore.getState().animationProgress, 0.99)) return;
+    const vis = e.intersections?.[0];
     if (!vis) {
       setHoveredObject(null);
       if (variantId) useNodeStore.getState().setHoveredVariantId(null);
@@ -587,9 +543,8 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     // Suppress click if user was dragging (orbit/pan)
     if (_suppressNextClick) { _suppressNextClick = false; return; }
     if (_pointerMaxDist > CLICK_MOVE_THRESHOLD) return;
-    if (useNodeStore.getState().animationProgress < 1) return;
-    // Phase 6 Step 2: skip intersections on the clipped side of section plane
-    const vis = e.intersections?.find((ix) => isIntersectionVisible(ix.point));
+    if (!isInteractionAllowed(noAnimation, useNodeStore.getState().animationProgress, 1)) return;
+    const vis = e.intersections?.[0];
     if (!vis) {
       // All intersections clipped → treat as blank click
       setSelectedObject(null);
@@ -787,8 +742,6 @@ function CameraTracker({
     // Strict init order: for multi-model, never fit until A/B/C are ALL
     // loaded AND laid out (sceneReady flips true only after layoutModels).
     if (shouldSkipFit(variantCount, sceneReady)) return;
-    // Camera Lock has paused the tracker → never fight it.
-    if (isCameraTrackerPaused()) return;
     if (size.width <= 0 || size.height <= 0) return;
 
     // Framing box = the 3-layoutRoot union stored at layout time (multi),
@@ -900,14 +853,13 @@ function CameraTracker({
   // ── Single-model "pull back to view centre" (e706b641 behavior) ──
   // Continuously lerps the orbit target toward the model's world centre so the
   // model stays centred when it moves (animation / explode) and the view eases
-  // back to centre after the user pans away.  Paused during an active drag and
-  // while Camera Lock owns the target.  Single-model only — multi-model keeps
-  // its fixed union-centre target + user-interaction guard.  The per-frame
-  // bounding-box read is confined to the small single-model scene (the same
-  // cost the pre-multi-model CameraTracker paid every frame).
+  // back to centre after the user pans away.  Paused during an active drag.
+  // Single-model only — multi-model keeps its fixed union-centre target +
+  // user-interaction guard.  The per-frame bounding-box read is confined to
+  // the small single-model scene (the same cost the pre-multi-model
+  // CameraTracker paid every frame).
   useFrame((_, delta) => {
     if (variantCount !== 0) return;
-    if (isCameraTrackerPaused()) return;
     if (_isUserDragging) return;
     const controls = _controls;
     const scene = getModelScene();
@@ -1365,7 +1317,7 @@ function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId, onAll
       });
       target.object.position.set(next[0], next[1], next[2]);
     });
-  }, -100); // Phase 6 Step 3: run before CameraLockRuntime (-90)
+  });
 
 
   return (
@@ -1487,11 +1439,6 @@ export default function ModelViewer({
     return () => ro.disconnect();
   }, []);
 
-  // Phase 6 Step 3: HMR safety net — clear registry on unmount
-  useEffect(() => {
-    return () => { clearObjectRegistry(); };
-  }, []);
-
   return (
     <div ref={containerRef} className="flex-1 h-full relative bg-[#f5f5f7]">
       <Canvas
@@ -1547,10 +1494,6 @@ export default function ModelViewer({
           variantCount={isMulti && modelPaths ? modelPaths.length : 0}
           fitKey={fitKey}
         />
-        {/* Phase 6 Step 2: Section clipping-plane runtime */}
-        <SectionRuntime sceneVersion={sceneReady ? 1 : 0} />
-        {/* Phase 6 Step 3: Camera Lock runtime */}
-        <CameraLockRuntime />
       </Canvas>
     </div>
   );

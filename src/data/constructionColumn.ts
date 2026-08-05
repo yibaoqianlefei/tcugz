@@ -5,7 +5,6 @@ const constructionColumnData = {
   description:
     "砖混结构墙体交接处设置的钢筋混凝土构造柱，增强建筑整体刚度和抗震性能。",
   directionLabel: "构造柱组成构件",
-  explodeAxis: "y",
   floatDirection: "z",
   floatDistance: 0.3,
   cameraPosition: [4, 5, 6],

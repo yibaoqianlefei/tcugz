@@ -90,6 +90,25 @@ export function parseScopedKey(
   };
 }
 
+/**
+ * True when a scoped key belongs to the given variant scope.
+ *
+ * - Variant scene (`variantId != null`): the key must carry that exact
+ *   variantId, so same-named meshes in other variants never match.
+ * - Single-model (`variantId == null`): the key must be unscoped.
+ *
+ * Used by the per-variant highlight path to decide whether a hovered /
+ * selected key may touch THIS variant's meshes.
+ */
+export function matchesVariantScope(
+  key: string,
+  variantId: string | null,
+): boolean {
+  const { variantId: keyVariant } = parseScopedKey(key);
+  if (variantId != null) return keyVariant === variantId;
+  return keyVariant == null;
+}
+
 /* ═══════════════════════════════════════════════════════════════
    Scene cloning with material isolation (Phase 3 P1)
    ═══════════════════════════════════════════════════════════════ */

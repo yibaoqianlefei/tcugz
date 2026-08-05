@@ -11,7 +11,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "compress-models": "node scripts/compress-models.mjs",
-    "test": "npx tsx tests/resolveNodeModelSources.test.ts && npx tsx tests/explodeLayout.test.ts && npx tsx tests/explodeRuntime.test.ts && npx tsx tests/phase6-step2.test.ts && npx tsx tests/phase6-step3.test.ts && npx tsx tests/phase6-multi-model-rotation.test.ts && npx tsx tests/phase6-camera-fit.test.ts && npx tsx tests/nodeDetail-controls.test.ts"
+    "test": "npx tsx tests/resolveNodeModelSources.test.ts && npx tsx tests/explodeLayout.test.ts && npx tsx tests/explodeRuntime.test.ts && npx tsx tests/phase6-multi-model-rotation.test.ts && npx tsx tests/phase6-camera-fit.test.ts && npx tsx tests/nodeDetail-controls.test.ts && npx tsx tests/interaction-fixes.test.ts && npx tsx tests/node-definition-contract.test.ts && npx tsx tests/node-assets.test.ts && npx tsx tests/node-behavior-archetypes.test.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",

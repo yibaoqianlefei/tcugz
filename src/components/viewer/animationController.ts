@@ -39,6 +39,42 @@ export function getAnimationActions(): AnimationAction[] {
   return _actions;
 }
 
+/* ── Pure reset helper ───────────────────────────────────────── */
+
+/** Minimal action surface that {@link resetActionsToStart} manipulates.
+ *  Defined structurally so the reset can be unit-tested with a light fake
+ *  while production passes the real THREE.AnimationAction[]. */
+export interface ResettableAnimationAction {
+  paused: boolean;
+  enabled: boolean;
+  time: number;
+  getMixer(): { setTime(time: number): unknown };
+}
+
+/**
+ * Atomically return every action to its initial frame (t=0) and HOLD — no
+ * playback is started.  For each unique mixer the pose is force-evaluated at
+ * t=0 so the model visually snaps to the animation start and the next render
+ * frame does not bounce back to a stale time.
+ *
+ * @param actions  the actions to rewind (all clips that participate in the
+ *                 current model's pose).
+ */
+export function resetActionsToStart(
+  actions: readonly ResettableAnimationAction[],
+): void {
+  const mixers = new Set<ReturnType<ResettableAnimationAction["getMixer"]>>();
+  actions.forEach((a) => {
+    a.paused = true;
+    a.enabled = true;
+    a.time = 0;
+    mixers.add(a.getMixer());
+  });
+  // Jump every unique mixer to t=0 (zeroes all action times + re-evaluates
+  // the pose), then it stays frozen because all actions are paused.
+  mixers.forEach((m) => m.setTime(0));
+}
+
 /* ── Public controller API ────────────────────────────────────── */
 
 export const animControls = {
@@ -71,5 +107,11 @@ export const animControls = {
       a.paused = true;
       a.getMixer().update(0);
     });
+  },
+
+  /** Rewind to frame 0 and hold (R reset). Stops any ongoing playback. */
+  rewindToStart() {
+    resetActionsToStart(_actions);
+    useNodeStore.getState().setIsPlaying(false);
   },
 };

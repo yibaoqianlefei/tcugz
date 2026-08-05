@@ -5,7 +5,6 @@ const flatRoofData = {
   description:
     "典型上人平屋面构造，由上至下共六层，适用于寒冷及夏热冬冷地区。",
   directionLabel: "由上至下：保护层→结构层",
-  explodeAxis: "y",
   floatDirection: "z",
   floatDistance: 0.22,
   cameraPosition: [4, 5, 6],

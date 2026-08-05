@@ -2,7 +2,6 @@ import { useState, useEffect, useLayoutEffect, useMemo, useCallback } from "reac
 import { useParams, Link } from "react-router-dom";
 import { getNodeDefinition } from "./data/nodeDefinitions";
 import { useNodeStore } from "./store/nodeStore";
-import { resumeCameraTracker } from "./utils/modelSceneRef";
 import { animControls } from "./components/viewer/animationController";
 import ModelViewer from "./components/viewer/ModelViewer";
 import NodeDiagramPanel from "./components/viewer/NodeDiagramPanel";
@@ -39,32 +38,30 @@ export default function NodeDetail() {
   // ── Reset store when switching nodes (fires before paint) ──
   useLayoutEffect(() => {
     useNodeStore.getState().resetNodeInteractionState();
-    // Phase 6 Step 3: also reset Camera Lock + resume CameraTracker
-    useNodeStore.getState().resetCameraLock();
-    resumeCameraTracker();
   }, [nodeId]);
 
   // ── noAnimation nodes: set progress to 1 after reset ──
   const noAnimation = !!node?.model?.noAnimation;
+
+  /* ── Resolve model sources (Phase 2: supports 1–3 models) ── */
+  // Must compute BEFORE early returns (hooks ordering) — also used by the
+  // reset handler below.
+  const modelSources = node ? resolveNodeModelSources(node) : [];
+  const hasModel = modelSources.length > 0;
+  const isMultiModel = modelSources.length >= 2;
+
   useEffect(() => {
     if (noAnimation) {
       useNodeStore.getState().setAnimationProgress(1);
     }
   }, [nodeId, noAnimation]);
 
-  // ── Phase 6 Step 3: Escape handler (single page-level listener) ──
+  // ── Escape handler (single page-level listener) ──
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
-      const store = useNodeStore.getState();
-      if (store.cameraLockEnabled) {
-        store.unlockCamera();
-        store.setSelectedObject(null);
-        // Section, Explode, variant, animation untouched
-        return;
-      }
-      // Fallback: clear selection
-      store.setSelectedObject(null);
+      // Clear selection
+      useNodeStore.getState().setSelectedObject(null);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
@@ -108,24 +105,37 @@ export default function NodeDetail() {
   //    composition (the multi-model union-box fit reproduces the approved
   //    framing — it does not change the fit definition). ──
   const handleReset = useCallback(() => {
+    // Animated single-model: stop playback and rewind the REAL AnimationMixer
+    // to frame 0 first, so the pose actually returns to the start and the
+    // store progress (set to 0 below) is not bounced back by the next frame.
+    if (!isMultiModel && !noAnimation) {
+      animControls.rewindToStart();
+    }
     useNodeStore.getState().resetNodeInteractionState();
-    resumeCameraTracker();
-    if (node?.model?.noAnimation) {
+    if (noAnimation) {
       useNodeStore.getState().setAnimationProgress(1);
     }
     useNodeStore.getState().requestCameraRefit();
-  }, [node]);
+  }, [isMultiModel, noAnimation]);
 
   // ── R — reset (visible on the control bar's reset button).  Hidden
   //    advanced features (X/Y/Z axis, section, reverse, camera lock, target)
   //    have no keyboard bindings, so a stray keypress can never change the
-  //    model state.  Ignored while typing in inputs/textareas. ──
+  //    model state.  Ignored while TYPING in a text-entry input/textarea, but
+  //    NOT while a range slider is focused — after scrubbing the explode
+  //    slider, R must still reset to the initial state. ──
   useEffect(() => {
     const handleR = (e: KeyboardEvent) => {
       if (e.key !== "r" && e.key !== "R") return;
       const target = e.target as HTMLElement | null;
-      const tag = target?.tagName;
-      if (tag === "INPUT" || tag === "TEXTAREA" || target?.isContentEditable) return;
+      if (!target || target.isContentEditable) return;
+      const tag = target.tagName;
+      if (tag === "TEXTAREA") return;
+      if (tag === "INPUT") {
+        const type = target.getAttribute("type") ?? "text";
+        // Only text-entry inputs swallow R (typing); range/number/checkbox do not.
+        if (["text", "search", "number", "email", "password", "tel", "url"].includes(type)) return;
+      }
       e.preventDefault();
       handleReset();
     };
@@ -144,12 +154,6 @@ export default function NodeDetail() {
     setAnimationProgress(value);
     animControls.setTime(value * totalDuration);
   };
-
-  /* ── Resolve model sources (Phase 2: supports 1–3 models) ── */
-  // Must compute BEFORE early returns (hooks ordering)
-  const modelSources = node ? resolveNodeModelSources(node) : [];
-  const hasModel = modelSources.length > 0;
-  const isMultiModel = modelSources.length >= 2;
 
   /* ── Resolve explode configs (Phase 5: multi-model only) ── */
   const explodeConfigs: ExplodeVariantConfig[] | undefined = useMemo(() => {

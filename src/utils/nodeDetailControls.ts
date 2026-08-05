@@ -4,8 +4,11 @@
  * Separates what the runtime CAN do (`RUNTIME_CAPABILITIES`) from what the
  * teaching page is allowed to SHOW (`NODE_DETAIL_PRIMARY_CONTROLS`).  The
  * NodeDetail control bar renders ONLY from the whitelist — it never iterates
- * the runtime capabilities — so multi-model-era additions (Section, Camera
- * Lock, explode-axis, reverse, debug) can never leak buttons into the page.
+ * the runtime capabilities.
+ *
+ * The abandoned advanced feature chains (Section / Camera Lock / explode-axis
+ * / reverse / target / debug) have been fully deleted from the codebase; the
+ * runtime capability list below contains only the live capabilities.
  *
  * Rules enforced here:
  *   - A multi-model node must never implicitly flip a whitelisted-off control
@@ -21,8 +24,8 @@
  *   1. explode — [collapse] [slider] [expand]  (single: AnimationMixer,
  *      multi: explodeProgress)
  *   2. reset   — circular arrow + R; restores the initial interaction state
- *      (explode/animation back to initial, selection/section/lock cleared,
- *      initial camera composition re-applied).
+ *      (explode/animation back to initial, selection cleared, initial camera
+ *      composition re-applied).
  *   3. link    — knowledge-panel linkage toggle.
  *   4. lighting— sun; toggles the shadow/lighting setup.
  */
@@ -35,18 +38,13 @@ export const NODE_DETAIL_PRIMARY_CONTROLS = [
 
 export type NodeDetailControl = (typeof NODE_DETAIL_PRIMARY_CONTROLS)[number];
 
-/** Everything the runtime supports under the hood.  Never rendered directly. */
+/** The live runtime capabilities.  Never rendered directly by the control
+ *  bar, and never containing a deprecated capability. */
 export const RUNTIME_CAPABILITIES = [
   "explode",      // both single-model AnimationMixer + multi-model explode
   "reset",        // R — store reset + camera re-fit
   "link",         // linkage toggle
   "lighting",     // shadow/lighting toggle
-  "section",      // SectionRuntime clipping planes (no visible button on page)
-  "cameraLock",   // CameraLockRuntime orbit-target lock (no visible button)
-  "explodeAxis",  // per-axis explode (reserved, no button)
-  "reverse",      // reverse playback (reserved, no button)
-  "target",       // aim / lock-target (reserved, no button)
-  "debug",        // DEV-only diagnostics (never part of the page surface)
 ] as const;
 
 export type RuntimeCapability = (typeof RUNTIME_CAPABILITIES)[number];

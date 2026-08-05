@@ -5,7 +5,6 @@ const roofDrainageData = {
   description:
     "无组织排水屋面构造节点，包含防水层、保温层、结构层等关键构件。",
   diagramImage: null,
-  explodeAxis: "y",
   floatDirection: "z",
   floatDistance: 0.22,
   modelRotation: [0, 0, 0],

@@ -1,0 +1,23 @@
+# 工程命令验证输出摘要（审计时点）
+
+## tsc
+exit=0
+
+## lint
+  138:9  warning  The 'modelSources' conditional could make the dependencies of useMemo Hook (at line 149) change on every render. To fix this, wrap the initialization of 'modelSources' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+## test
+All tests passed.
+All explode layout tests passed.
+All explode runtime tests passed.
+── All Phase 6 scale consistency tests passed. ──
+── All Phase 6 multi-model rotation centre tests passed. ──
+All camera-fit tests passed (14 groups).
+All nodeDetail-controls tests passed (13 groups).
+
+## build
+[2Ktransforming...✓ 3615 modules transformed.
+[32m✓ built in 997ms[39m
