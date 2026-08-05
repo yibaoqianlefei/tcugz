@@ -32,6 +32,8 @@ import { rcElevatedStepsLayers, getLayerInfo as getRcElevatedStepsLayer } from "
 import { castRibbedFloorLayers, getLayerInfo as getCastRibbedFloorLayer } from "./castRibbedFloorLayers";
 import { steelBattenTileRoofLayers, getLayerInfo as getSteelBattenTileRoofLayer } from "./steelBattenTileRoofLayers";
 import { mortarBedTileRoofLayers, getLayerInfo as getMortarBedTileRoofLayer } from "./mortarBedTileRoofLayers";
+import { woodBattenTileRoofLayers, getLayerInfo as getWoodBattenTileRoofLayer } from "./woodBattenTileRoofLayers";
+import { blockWallCoreColumnLayers, getLayerInfo as getBlockWallCoreColumnLayer } from "./blockWallCoreColumnLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
@@ -288,6 +290,27 @@ export const nodeDefinitions: NodeDefinition[] = [
   },
 
   {
+    id: "wood-batten-tile-roof-01",
+    title: "木挂瓦条块瓦屋面构造",
+    description:
+      "木挂瓦条块瓦屋面：块瓦→木挂瓦条→木顺水条→防水卷材（或防水涂膜）→水泥砂浆找平层→细石混凝土找平层→钢筋混凝土屋面板。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/wood-batten-tile-roof-01.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/wood-batten-tile-roof/wood-batten-tile-roof.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/wood-batten-tile-roof-01.png"),
+    },
+    layerConfig: {
+      layers: woodBattenTileRoofLayers as NodeLayerInfo[],
+      getLayerInfo: getWoodBattenTileRoofLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+  },
+
+  {
     id: "roof-drainage-01",
     title: "无组织排水屋顶",
     description:
@@ -400,6 +423,28 @@ export const nodeDefinitions: NodeDefinition[] = [
       getLayerInfo: getConstructionColumnLayer as (objectName: string) => NodeLayerInfo | undefined,
     },
     loadContent: () => import("./constructionColumn"),
+  },
+
+  {
+    id: "block-wall-core-column-01",
+    title: "砌块墙墙芯柱构造",
+    description:
+      "砌块墙墙芯柱构造：砌块墙体→2Φ12通长筋→灌C15细石混凝土，在空心砌块孔洞内形成钢筋混凝土芯柱。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/block-wall-core-column-01.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/wall/block-wall-core-column/block-wall-core-column.glb"),
+      scale: 3.5,
+      noAnimation: true,
+    },
+    diagram: {
+      path: assetPath("images/wall/block-wall-core-column-01.png"),
+    },
+    layerConfig: {
+      layers: blockWallCoreColumnLayers as NodeLayerInfo[],
+      getLayerInfo: getBlockWallCoreColumnLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
   },
 
   {
