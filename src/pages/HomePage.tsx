@@ -4,24 +4,16 @@ import { Canvas } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Layers,
-  Hammer,
-  BookOpen,
   Info,
   GitPullRequest,
   X,
   Pause,
   Play,
-  Briefcase,
-  GraduationCap,
-  Sparkles,
-  BarChart3,
   SwitchCamera,
   Sun,
   LogIn,
   LogOut,
   ChevronRight,
-  type LucideIcon,
 } from "lucide-react";
 import MenuBackground from "../components/viewer/MenuBackground";
 import LoadingOverlay from "../components/viewer/LoadingOverlay";
@@ -29,22 +21,7 @@ import backgroundScenes from "../data/backgroundScenes";
 import { nodesIndex } from "../data/nodesIndex";
 import { useAuthStore } from "../store/authStore";
 import courseModules from "../data/courseModules";
-
-import introSections from "../data/sections/introSections.js";
-
-import wallSections from "../data/sections/wallSections.js";
-
-import windowSections from "../data/sections/windowSections.js";
-
-import foundationSections from "../data/sections/foundationSections.js";
-
-import floorSections from "../data/sections/floorSections.js";
-
-import stairsSections from "../data/sections/stairsSections.js";
-
-import roofSections from "../data/sections/roofSections.js";
-
-import deformationJointSections from "../data/sections/deformationJointSections.js";
+import { menuItems, getExpandedChildren, sectionMap } from "../data/homeMenu";
 
 /* ── Animation variants ───────────────────────────────────── */
 const containerVariants = {
@@ -87,27 +64,6 @@ const lineVariants = {
   },
 } as const;
 
-/* ── Section data lookup ──────────────────────────────────── */
-interface SectionItem {
-  id: string;
-  title: string;
-  description: string;
-  nodeIds: string[];
-  available: boolean;
-  hasTextbook?: boolean;
-}
-
-const sectionMap: Record<string, SectionItem[]> = {
-  introduction: introSections,
-  wall: wallSections,
-  "door-window": windowSections,
-  foundation: foundationSections,
-  floor: floorSections,
-  stairs: stairsSections,
-  roof: roofSections,
-  "deformation-joint": deformationJointSections,
-};
-
 /* ── Console dump: 8 modules + sections ────────────────────── */
 console.group("📚 构造原理 — 8 个主模块及其子章节");
 courseModules.forEach((mod) => {
@@ -121,55 +77,6 @@ courseModules.forEach((mod) => {
 });
 console.groupEnd();
 
-/* ── Module-level menu definition ──────────────────────────── */
-interface MenuChildDef {
-  id: string;
-  label: string;
-  icon?: string;
-  description?: string;
-  path?: string;
-  sections?: SectionItem[];
-}
-
-interface MenuItemDef {
-  icon: LucideIcon;
-  label: string;
-  id: string;
-  to?: string;
-  children?: MenuChildDef[];
-}
-
-const menuItems: MenuItemDef[] = [
-  { icon: BookOpen, label: "构造原理", id: "curriculum",
-    children: [
-      { id: "thermal", label: "建筑保温", icon: "🔥", description: "建筑保温构造原理与设计" },
-      { id: "waterproof", label: "建筑防水", icon: "💧", description: "建筑防水构造原理与设计" },
-      { id: "insulation", label: "建筑隔热", icon: "☀️", description: "建筑隔热构造原理与设计" },
-      { id: "acoustic", label: "建筑隔声", icon: "🔇", description: "建筑隔声构造原理与设计" },
-      { id: "fire", label: "建筑防火", icon: "🧯", description: "建筑防火构造原理与设计" },
-      { id: "moisture", label: "建筑防潮", icon: "💨", description: "建筑防潮构造原理与设计" },
-    ],
-  },
-  { icon: GraduationCap, label: "构造基础", id: "textbook",
-    children: courseModules.map((m) => ({
-      id: m.id,
-      label: m.title,
-      icon: m.icon,
-      description: m.description,
-      sections: sectionMap[m.id] || [],
-    })),
-  },
-  { icon: Layers, label: "节点库", id: "library", to: "/library" },
-  { icon: Briefcase, label: "案例应用", id: "cases", to: "/curriculum/cases" },
-  { icon: Hammer, label: "作业训练", id: "games", to: "/games" },
-  { icon: BarChart3, label: "数据分析", id: "data", to: "/data" },
-  { icon: Sparkles, label: "AI 拓展", id: "ai-extend", to: "/ai-extend" },
-];
-
-function getExpandedChildren(id: string | null): MenuChildDef[] | null {
-  if (!id) return null;
-  return menuItems.find((m) => m.id === id)?.children ?? null;
-}
 /* ── Left Column — Main Menu ────────────────────────────────── */
 function MenuContent({
   expandedId,
@@ -216,6 +123,7 @@ function MenuContent({
               {hasChildren ? (
                 <button
                   onClick={() => setExpandedId(isExpanded ? null : item.id)}
+                  aria-expanded={isExpanded}
                   className={`w-full flex items-center gap-3 pl-3 h-menu-item-h rounded-[12px]
                     transition-all duration-300 ease-out cursor-pointer group text-left
                     hover:bg-primary/12 hover:shadow-md hover:-translate-y-[1px] active:scale-[0.98]
@@ -342,7 +250,16 @@ function SubMenuPanel({
               >
                 {/* ── Module header (clickable) ── */}
                 <button
-                  onClick={() => setActiveModuleId(isActive ? null : mod.id)}
+                  onClick={() => {
+                    if (mod.sections && mod.sections.length > 0) {
+                      setActiveModuleId(isActive ? null : mod.id);
+                    } else if (mod.path) {
+                      // Leaf child with a direct route (e.g. 绪论子章节) → navigate.
+                      window.location.hash = `#${mod.path}`;
+                    } else {
+                      setActiveModuleId(isActive ? null : mod.id);
+                    }
+                  }}
                   className={`w-full flex items-center gap-2.5 px-3 py-3 rounded-[8px]
                     text-left transition-all duration-200 cursor-pointer
                     ${isActive
@@ -657,7 +574,7 @@ export default function HomePage() {
       {/* ── Right: 3D Scene ── */}
       <div ref={container3dRef} className="hidden md:block flex-1 h-full relative min-w-0">
         {/* Top nav bar */}
-        <div className="absolute top-0 left-0 right-0 z-20 flex justify-end items-center h-10 px-4 bg-white/60 backdrop-blur-md border-b border-white/20">
+        <div className="absolute top-0 left-0 right-0 z-20 flex justify-end items-center h-10 px-4 bg-transparent">
           <Link to="/contribute"
             className="flex items-center gap-1.5 text-sm text-muted hover:text-primary transition-colors px-2 py-1 rounded-md hover:bg-surface-card">
             <GitPullRequest size={14} strokeWidth={1.5} />
