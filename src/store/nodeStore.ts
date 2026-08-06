@@ -16,6 +16,10 @@ type Store = {
   activeExplodeVariantId: string | null;
   // ── Linkage toggle ──
   linkageEnabled: boolean;
+  // ── Rotation toggle (single source — feeds ModelViewer's autoRotate prop,
+  //    consumed by OrbitControls.autoRotate (single-model) AND the multi-model
+  //    self-rotation useFrame through the SAME prop) ──
+  autoRotate: boolean;
   // ── Manual camera re-fit (R reset) ──
   /** Monotonic token; CameraTracker re-fits whenever it changes. */
   refitToken: number;
@@ -39,6 +43,7 @@ type Store = {
    *                     the variant — avoids clearing the just-picked object). */
   selectVariant: (variantId: string | null, keepObject?: string | null) => void;
   setLinkageEnabled: (v: boolean) => void;
+  setAutoRotate: (v: boolean) => void;
   resetNodeInteractionState: () => void;
   /** Ask CameraTracker to re-run the initial camera fit (R reset).
    *  Only bumps a token — CameraTracker consumes it and re-fits. */
@@ -55,6 +60,7 @@ export const useNodeStore = create<Store>((set) => ({
   explodeProgress: 0,
   activeExplodeVariantId: null,
   linkageEnabled: true,
+  autoRotate: true, // product default: models auto-rotate on load (existing setting)
   refitToken: 0,
 
   setSelectedObject: (name) => set({ selectedObject: name }),
@@ -74,6 +80,7 @@ export const useNodeStore = create<Store>((set) => ({
       explodeProgress: 0,
     }),
   setLinkageEnabled: (v) => set({ linkageEnabled: v }),
+  setAutoRotate: (v) => set({ autoRotate: v }),
   resetNodeInteractionState: () =>
     set({
       selectedObject: null,
@@ -84,6 +91,10 @@ export const useNodeStore = create<Store>((set) => ({
       animationProgress: 0,
       explodeProgress: 0,
       activeExplodeVariantId: null,
+      // Rotation is part of the initial interaction state (product default =
+      // rotating), so R reset AND node switch restore it — the next node never
+      // inherits a stale rotation toggle.
+      autoRotate: true,
     }),
   requestCameraRefit: () =>
     set((s) => ({ refitToken: s.refitToken + 1 })),

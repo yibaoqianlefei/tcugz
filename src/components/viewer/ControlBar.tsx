@@ -9,15 +9,15 @@
  * iterates runtime capabilities, so Section / Camera Lock / axis / reverse /
  * debug controls can never appear here regardless of node type or debug flags.
  *
- * Visible surface (e706b641 "图二"):
- *   [收起] [爆炸滑块] [展开] | [重置 R] | [联动] | [光照]
+ * Visible surface:
+ *   [收起] [爆炸滑块] [展开] | [旋转] | [联动] | [光照]
  *
  * Layout is anchored to the CENTRAL 3D viewport (parent is `relative`), not
  * the browser window, and sized by content so it never spans the whole canvas.
  */
 
 import type { ReactNode } from "react";
-import { ChevronsLeft, ChevronsRight, Link2, RotateCw, Sun } from "lucide-react";
+import { ChevronsLeft, ChevronsRight, Link2, Rotate3d, Sun } from "lucide-react";
 import type { NodeDetailControl } from "../../utils/nodeDetailControls";
 
 export interface ControlBarProps {
@@ -29,7 +29,9 @@ export interface ControlBarProps {
   onSliderChange: (value: number) => void;
   onCollapse: () => void;
   onExpand: () => void;
-  onReset: () => void;
+  /** Rotation toggle — true while the model auto-rotates (pressed/active). */
+  autoRotate: boolean;
+  onToggleAutoRotate: () => void;
   linkageEnabled: boolean;
   onToggleLinkage: () => void;
   showShadows: boolean;
@@ -56,7 +58,8 @@ export default function ControlBar(props: ControlBarProps) {
     onSliderChange,
     onCollapse,
     onExpand,
-    onReset,
+    autoRotate,
+    onToggleAutoRotate,
     linkageEnabled,
     onToggleLinkage,
     showShadows,
@@ -119,20 +122,18 @@ export default function ControlBar(props: ControlBarProps) {
     );
   }
 
-  if (visible.includes("reset")) {
+  if (visible.includes("rotate")) {
     groups.push(
       <button
-        key="reset"
+        key="rotate"
         type="button"
-        onClick={onReset}
-        className={BTN}
-        title="重置 (R)"
-        aria-label="重置 (R)"
+        onClick={onToggleAutoRotate}
+        aria-pressed={autoRotate}
+        className={`${BTN} ${autoRotate ? ACTIVE : "border border-transparent"}`}
+        title={autoRotate ? "暂停旋转" : "开启旋转"}
+        aria-label={autoRotate ? "暂停旋转" : "开启旋转"}
       >
-        <RotateCw size={18} className="lg:size-5" strokeWidth={1.5} />
-        <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 text-[10px] text-muted-soft">
-          R
-        </span>
+        <Rotate3d size={18} className="lg:size-5" strokeWidth={1.5} />
       </button>,
     );
   }

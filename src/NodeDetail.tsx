@@ -33,6 +33,12 @@ export default function NodeDetail() {
   const [showShadows, setShowShadows] = useState(true);
   const linkageEnabled = useNodeStore((s) => s.linkageEnabled);
   const setLinkageEnabled = useNodeStore((s) => s.setLinkageEnabled);
+  // ── Rotation toggle — single source consumed by ModelViewer's autoRotate
+  //    prop (OrbitControls for single-model, self-rotation useFrame for
+  //    multi-model).  Reset to the product default by resetNodeInteractionState
+  //    on node switch / R. ──
+  const autoRotate = useNodeStore((s) => s.autoRotate);
+  const setAutoRotate = useNodeStore((s) => s.setAutoRotate);
   const totalDuration = 4;
 
   // ── Reset store when switching nodes (fires before paint) ──
@@ -118,12 +124,13 @@ export default function NodeDetail() {
     useNodeStore.getState().requestCameraRefit();
   }, [isMultiModel, noAnimation]);
 
-  // ── R — reset (visible on the control bar's reset button).  Hidden
-  //    advanced features (X/Y/Z axis, section, reverse, camera lock, target)
-  //    have no keyboard bindings, so a stray keypress can never change the
-  //    model state.  Ignored while TYPING in a text-entry input/textarea, but
-  //    NOT while a range slider is focused — after scrubbing the explode
-  //    slider, R must still reset to the initial state. ──
+  // ── R — reset keyboard shortcut (the control-bar R button UI is removed,
+  //    but the shortcut stays).  Hidden advanced features (X/Y/Z axis,
+  //    section, reverse, camera lock, target) have no keyboard bindings, so a
+  //    stray keypress can never change the model state.  Ignored while TYPING
+  //    in a text-entry input/textarea, but NOT while a range slider is
+  //    focused — after scrubbing the explode slider, R must still reset to
+  //    the initial state. ──
   useEffect(() => {
     const handleR = (e: KeyboardEvent) => {
       if (e.key !== "r" && e.key !== "R") return;
@@ -266,6 +273,7 @@ export default function NodeDetail() {
                     nonInteractive={node.model?.nonInteractive}
                     explodeConfigs={explodeConfigs}
                     nodeId={nodeId}
+                    autoRotate={autoRotate}
                   />
                 </ErrorBoundary>
               ) : (
@@ -276,7 +284,7 @@ export default function NodeDetail() {
 
               {/* ── Bottom control bar — same shell for single- and multi-model.
                      Renders ONLY the NODE_DETAIL_PRIMARY_CONTROLS whitelist
-                     (explode | reset | link | lighting).  Section / Camera Lock
+                     (explode | rotate | link | lighting).  Section / Camera Lock
                      / axis / reverse stay as runtime-only capabilities — the
                      runtimes are inert while their store flags are off. ── */}
               <ControlBar
@@ -286,7 +294,8 @@ export default function NodeDetail() {
                 onSliderChange={onSliderChange}
                 onCollapse={handleCollapse}
                 onExpand={handleExpand}
-                onReset={handleReset}
+                autoRotate={autoRotate}
+                onToggleAutoRotate={() => setAutoRotate(!autoRotate)}
                 linkageEnabled={linkageEnabled}
                 onToggleLinkage={() => setLinkageEnabled(!linkageEnabled)}
                 showShadows={showShadows}

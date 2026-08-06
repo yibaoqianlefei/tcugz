@@ -10,6 +10,11 @@
  * / reverse / target / debug) have been fully deleted from the codebase; the
  * runtime capability list below contains only the live capabilities.
  *
+ * `rotate` — rotation toggle.  Drives the single `autoRotate` store field,
+ * which is passed to ModelViewer's existing `autoRotate` prop.  Single-model
+ * consumes it via OrbitControls.autoRotate, multi-model via the self-rotation
+ * useFrame — one button, one control chain.
+ *
  * Rules enforced here:
  *   - A multi-model node must never implicitly flip a whitelisted-off control
  *     to true.
@@ -23,15 +28,18 @@
  *
  *   1. explode — [collapse] [slider] [expand]  (single: AnimationMixer,
  *      multi: explodeProgress)
- *   2. reset   — circular arrow + R; restores the initial interaction state
- *      (explode/animation back to initial, selection cleared, initial camera
- *      composition re-applied).
+ *   2. rotate — Rotate3d; toggles the `autoRotate` store field (single-source
+ *      rotation control chain shared by single- and multi-model).
  *   3. link    — knowledge-panel linkage toggle.
  *   4. lighting— sun; toggles the shadow/lighting setup.
+ *
+ * The reset protocol (R key / resetNodeInteractionState / requestCameraRefit)
+ * is NOT a visible control: the R button UI was removed, but the R keyboard
+ * shortcut and the store reset remain bound at the NodeDetail level.
  */
 export const NODE_DETAIL_PRIMARY_CONTROLS = [
   "explode",
-  "reset",
+  "rotate",
   "link",
   "lighting",
 ] as const;
@@ -42,7 +50,7 @@ export type NodeDetailControl = (typeof NODE_DETAIL_PRIMARY_CONTROLS)[number];
  *  bar, and never containing a deprecated capability. */
 export const RUNTIME_CAPABILITIES = [
   "explode",      // both single-model AnimationMixer + multi-model explode
-  "reset",        // R — store reset + camera re-fit
+  "rotate",       // autoRotate toggle — OrbitControls (single) / self-rotation (multi)
   "link",         // linkage toggle
   "lighting",     // shadow/lighting toggle
 ] as const;

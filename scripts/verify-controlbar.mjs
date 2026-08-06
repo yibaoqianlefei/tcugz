@@ -84,7 +84,8 @@ for (const nodeId of ["wall-damp-proof-course", "plaster-plinth-01"]) {
     ok(labels.length === 5, `5 buttons (got ${labels.length}: ${labels.join(",")})`);
     ok(labels.some((l) => l.includes("收起")), "collapse present");
     ok(labels.some((l) => l.includes("播放")), "expand present");
-    ok(labels.some((l) => l.includes("重置")), "reset (R) present");
+    ok(labels.some((l) => l.includes("暂停旋转") || l.includes("开启旋转")), "rotate present");
+    ok(!labels.some((l) => l.includes("重置")), "reset (R) button removed");
     ok(labels.some((l) => l.includes("联动")), "link present");
     ok(labels.some((l) => l.includes("阴影") || l.includes("光照")), "lighting present");
     ok(toolbar.sliderCount === 1, `exactly 1 slider (got ${toolbar.sliderCount})`);

@@ -1,8 +1,8 @@
 /**
  * NodeDetail — control-bar whitelist + abandoned-feature deletion tests.
  *
- * Verifies the visible-controls contract (explode | reset | link | lighting,
- * for BOTH single- and multi-model) AND that the abandoned Section / Camera
+ * Verifies the visible-controls contract (explode | rotate | reset | link |
+ * lighting, for BOTH single- and multi-model) AND that the abandoned Section / Camera
  * Lock / explode-axis feature chains have been fully deleted — not merely
  * hidden:
  *   - The feature components / runtimes / math module no longer exist on disk.
@@ -132,7 +132,7 @@ group("Runtime capability list contains no abandoned capabilities");
    Visible-controls whitelist (unchanged contract)
    ═══════════════════════════════════════════════════════════════ */
 
-group("Single-model visible surface = explode | reset | link | lighting (exactly)");
+group("Single-model visible surface = explode | rotate | link | lighting (exactly)");
 {
   const visible = resolveVisibleControls();
   const asSet = new Set(visible);
@@ -143,8 +143,12 @@ group("Single-model visible surface = explode | reset | link | lighting (exactly
     ),
     "every whitelisted control is visible",
   );
-  assert(asSet.has("explode") && asSet.has("reset") && asSet.has("link") && asSet.has("lighting"),
-    "contains explode/reset/link/lighting");
+  assert(
+    asSet.has("explode") && asSet.has("rotate") &&
+      asSet.has("link") && asSet.has("lighting"),
+    "contains explode/rotate/link/lighting",
+  );
+  assert(!asSet.has("reset"), "reset is NOT a visible control (R button UI removed)");
   assert(asSet.size === visible.length, "whitelist has no duplicate entries");
 }
 
@@ -212,6 +216,7 @@ group("R reset semantics — resetNodeInteractionState + requestCameraRefit");
   s.setAnimationProgress(0.42);
   s.setSelectedObject("plinth");
   s.setLinkageEnabled(false);
+  s.setAutoRotate(false);
 
   const beforeToken = useNodeStore.getState().refitToken;
   useNodeStore.getState().requestCameraRefit();
@@ -223,15 +228,21 @@ group("R reset semantics — resetNodeInteractionState + requestCameraRefit");
   assert(after.animationProgress === 0, "reset → animationProgress 0");
   assert(after.selectedObject === null, "reset → selection cleared");
   assert(after.linkageEnabled === false, "reset preserves the linkage preference (not reset)");
+  assert(after.autoRotate === true, "reset restores autoRotate to the product default (rotating)");
 }
 
-group("Hidden advanced features have no default keyboard surface (module contract)");
+group("Hidden advanced features have no default keyboard surface; R stays a NodeDetail-level shortcut");
 {
   // No X/Y/Z, section, reverse, cameraLock or target entries are in the
-  // visible whitelist, so a stray keypress cannot toggle them.  (NodeDetail
-  // binds only Escape and R — R triggers the whitelisted reset.)
-  const visibleKeys = NODE_DETAIL_PRIMARY_CONTROLS as readonly string[];
-  assert(visibleKeys.includes("reset"), "R remains the visible reset shortcut");
+  // visible whitelist, so a stray keypress cannot toggle them.
+  for (const dep of ["xAxis", "yAxis", "zAxis", "section", "reverse", "cameraLock", "target"]) {
+    assert(isControlVisible(dep) === false, `${dep} has no visible surface`);
+  }
+  // The R-button UI is gone from the whitelist, but the R keyboard shortcut is
+  // bound at the NodeDetail level (see the "R reset semantics" group for the
+  // real reset protocol it triggers — resetNodeInteractionState + refit).
+  assert(isControlVisible("reset") === false,
+    "reset is no longer a visible control (R button UI removed)");
 }
 
 console.log(`\nAll nodeDetail-controls tests passed (${testCount} groups).`);

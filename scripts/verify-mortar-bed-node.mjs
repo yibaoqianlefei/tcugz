@@ -66,7 +66,6 @@ if (toolbar) {
   ok(toolbar.labels.length === 5, `5 whitelisted buttons (got ${toolbar.labels.length})`);
   ok(toolbar.labels.some((l) => l.includes("播放")), "expand (播放爆炸) present");
   ok(toolbar.labels.some((l) => l.includes("收起")), "collapse (收起爆炸) present");
-  ok(toolbar.labels.some((l) => l.includes("重置")), "reset (R) present");
   ok(toolbar.sliderCount === 1, "exactly 1 slider");
   ok(toolbar.sliderVal === 0, `slider starts at 0 (got ${toolbar.sliderVal})`);
   ok(toolbar.sliderDisabled === false, "slider enabled (animated single-model)");

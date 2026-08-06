@@ -1477,7 +1477,14 @@ export default function ModelViewer({
           ) : null}
         </Suspense>
         <OrbitControls
-          ref={(ctrl) => { _controls = ctrl; }}
+          ref={(ctrl) => {
+            _controls = ctrl;
+            // DEV diagnostic for the rotation-toggle browser acceptance
+            // (mirrors __cameraWrites / __rotDiag / __multiModelDebug).
+            if (typeof window !== "undefined" && import.meta.env.DEV) {
+              (window as unknown as Record<string, unknown>).__controls = ctrl;
+            }
+          }}
           autoRotate={!isMulti && autoRotate}
           autoRotateSpeed={0.6}
           enableDamping dampingFactor={0.08}
