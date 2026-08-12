@@ -39,6 +39,8 @@ import { bottomLandingEntranceLayers, getLayerInfo as getBottomLandingEntranceLa
 import { bottomLandingEntranceLoweredLayers, getLayerInfo as getBottomLandingEntranceLoweredLayer } from "./bottomLandingEntranceLoweredLayers";
 import { bottomLandingEntranceCombinedLayers, getLayerInfo as getBottomLandingEntranceCombinedLayer } from "./bottomLandingEntranceCombinedLayers";
 import { bottomLandingEntranceStraightLayers, getLayerInfo as getBottomLandingEntranceStraightLayer } from "./bottomLandingEntranceStraightLayers";
+import { hollowBlockFormsLayers, getLayerInfo as getHollowBlockFormsLayer } from "./hollowBlockFormsLayers";
+import { independentFoundationLayers, getLayerInfo as getIndependentFoundationLayer } from "./independentFoundationLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
@@ -449,6 +451,28 @@ export const nodeDefinitions: NodeDefinition[] = [
     layerConfig: {
       layers: blockWallCoreColumnLayers as NodeLayerInfo[],
       getLayerInfo: getBlockWallCoreColumnLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+  },
+
+  {
+    id: "hollow-block-forms-01",
+    title: "空心砌块的常见形式",
+    description:
+      "混凝土空心砌块的四种常见孔型：多排扁孔、单排双孔、单排圆孔、单排组合孔。孔型、孔洞率与排布方式直接影响砌块的强度、自重及保温隔热性能。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/hollow-block-forms-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/wall/hollow-block-forms/hollow-block-forms.glb"),
+      scale: 2,
+      noAnimation: true,
+    },
+    diagram: {
+      path: assetPath("images/wall/hollow-block-forms-diagram.png"),
+    },
+    layerConfig: {
+      layers: hollowBlockFormsLayers as NodeLayerInfo[],
+      getLayerInfo: getHollowBlockFormsLayer as (objectName: string) => NodeLayerInfo | undefined,
     },
   },
 
@@ -1100,6 +1124,132 @@ export const nodeDefinitions: NodeDefinition[] = [
               { src: assetPath("images/floor/cantilever-slab-diagram.png"), alt: "挑梁搭板剖面", caption: "挑梁搭板构造示意" },
             ],
             relatedNodeIds: ["cast-ribbed-floor-01"],
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: "independent-foundation-01",
+    title: "独立式基础三种形式",
+    description:
+      "独立式基础（独立柱基础）的三种常见形式：杯形基础、阶梯形基础、锥形基础，对比柱下独立基础在不同装配与施工要求下的台身形式。",
+    category: "基础",
+    thumbnail: null,
+    status: "available",
+    presentationMode: "variants",
+    /** layerConfig required by ConstructionKnowledgePanel (general layers). */
+    layerConfig: {
+      layers: independentFoundationLayers as NodeLayerInfo[],
+      getLayerInfo: getIndependentFoundationLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+    diagram: {
+      path: assetPath("images/foundation/independent-foundation-diagram.png"),
+    },
+    variants: [
+      {
+        id: "cup-base",
+        label: "A",
+        title: "杯形基础",
+        description:
+          "杯形独立基础在基础顶部预留杯口，预制钢筋混凝土柱插入杯口后用细石混凝土灌实，适用于装配式钢筋混凝土柱的独立基础。",
+        model: {
+          path: assetPath("models/foundation/independent-foundation/cup-base.glb"),
+          scale: 2,
+        },
+        differenceSummary: [
+          "顶部设杯口，预制柱插入灌实",
+          "适用于装配式预制钢筋混凝土柱",
+        ],
+        components: [
+          { name: "杯形基础（含杯口）", material: "钢筋混凝土", thickness: "按结构计算" },
+          { name: "预制柱", material: "钢筋混凝土（预制）", thickness: "按结构计算" },
+          { name: "垫层", material: "C10/C15素混凝土", thickness: "100mm" },
+        ],
+        componentKnowledge: [
+          {
+            objectName: "杯形基础",
+            title: "杯形基础",
+            category: "基础",
+            material: "钢筋混凝土",
+            construction: "顶部预留杯口，预制柱插入后用细石混凝土灌实（灌实后略高于柱面，二次浇筑成斜坡）",
+            description:
+              "杯形基础是独立基础的一种形式，其顶部预留上大下小的杯口，供装配式预制钢筋混凝土柱插入。柱插入后先用楔块临时校正位置，再用比基础高一强度等级的细石混凝土灌实杯口；杯口顶面四周留50mm深二次浇灌层，形成放坡，防止水分侵入柱脚并加强连接。适用于装配式框架结构中的柱下独立基础。",
+            images: [
+              { src: assetPath("images/foundation/independent-foundation-diagram.png"), alt: "独立式基础剖面", caption: "独立式基础构造示意" },
+            ],
+            relatedNodeIds: ["independent-foundation-01"],
+          },
+        ],
+      },
+      {
+        id: "stepped-base",
+        label: "B",
+        title: "阶梯形基础",
+        description:
+          "阶梯形独立基础按台阶逐级收分，每级厚度由计算确定，施工时分层浇筑或整浇，是现浇柱下独立基础最常用的形式。",
+        model: {
+          path: assetPath("models/foundation/independent-foundation/stepped-base.glb"),
+          scale: 2,
+        },
+        differenceSummary: [
+          "按台阶逐级收分，施工支模简单",
+          "现浇柱下独立基础最常用形式",
+        ],
+        components: [
+          { name: "阶梯形基础", material: "钢筋混凝土", thickness: "每级按计算" },
+          { name: "上部柱", material: "钢筋混凝土（现浇）", thickness: "按结构计算" },
+          { name: "垫层", material: "C10/C15素混凝土", thickness: "100mm" },
+        ],
+        componentKnowledge: [
+          {
+            objectName: "阶梯形基础",
+            title: "阶梯形基础",
+            category: "基础",
+            material: "钢筋混凝土",
+            construction: "按台阶逐级放大收分，与上部柱整体现浇（柱纵筋锚入底板）",
+            description:
+              "阶梯形基础是独立基础最常用的形式，台身按台阶逐级收分、每一级台阶的高度与宽度由刚性角控制或按计算配筋确定。施工时按台阶支模、分层或整体浇筑，支模简单、质量易保证。上部柱与基础整体现浇，柱纵筋按锚固长度伸入基础底板，保证柱根可靠传力。",
+            images: [
+              { src: assetPath("images/foundation/independent-foundation-diagram.png"), alt: "独立式基础剖面", caption: "独立式基础构造示意" },
+            ],
+            relatedNodeIds: ["independent-foundation-01"],
+          },
+        ],
+      },
+      {
+        id: "tapered-base",
+        label: "C",
+        title: "锥形基础",
+        description:
+          "锥形独立基础台身以斜边连续收分，基础顶面为斜坡，用料较省，但斜面支模与混凝土浇筑稍复杂。",
+        model: {
+          path: assetPath("models/foundation/independent-foundation/tapered-base.glb"),
+          scale: 2,
+        },
+        differenceSummary: [
+          "台身以斜边连续收分，基础顶面为斜面",
+          "用料较省，斜面支模与浇筑稍复杂",
+        ],
+        components: [
+          { name: "锥形基础（斜面台身）", material: "钢筋混凝土", thickness: "按结构计算" },
+          { name: "上部柱", material: "钢筋混凝土（现浇）", thickness: "按结构计算" },
+          { name: "垫层", material: "C10/C15素混凝土", thickness: "100mm" },
+        ],
+        componentKnowledge: [
+          {
+            objectName: "锥形基础",
+            title: "锥形基础",
+            category: "基础",
+            material: "钢筋混凝土",
+            construction: "台身以斜边连续收分，基础顶面呈斜坡，与上部柱整体现浇",
+            description:
+              "锥形基础的台身以斜边连续收分，基础顶面为向柱根方向的斜坡，截面随高度连续减小，相比阶梯形基础用料更省、混凝土体积更小。缺点是斜面支模与混凝土浇筑振捣稍复杂，施工时需控制斜面坡度与混凝土坍落度。适用于荷载适中、施工条件较好的现浇柱下独立基础。",
+            images: [
+              { src: assetPath("images/foundation/independent-foundation-diagram.png"), alt: "独立式基础剖面", caption: "独立式基础构造示意" },
+            ],
+            relatedNodeIds: ["independent-foundation-01"],
           },
         ],
       },
