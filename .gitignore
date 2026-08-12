@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# 演示文稿（PPT）相关产物，不纳入版本管理
+presentation/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

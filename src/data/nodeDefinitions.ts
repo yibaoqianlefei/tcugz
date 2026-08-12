@@ -34,6 +34,11 @@ import { steelBattenTileRoofLayers, getLayerInfo as getSteelBattenTileRoofLayer 
 import { mortarBedTileRoofLayers, getLayerInfo as getMortarBedTileRoofLayer } from "./mortarBedTileRoofLayers";
 import { woodBattenTileRoofLayers, getLayerInfo as getWoodBattenTileRoofLayer } from "./woodBattenTileRoofLayers";
 import { blockWallCoreColumnLayers, getLayerInfo as getBlockWallCoreColumnLayer } from "./blockWallCoreColumnLayers";
+import { cantileverSlabLayers, getLayerInfo as getCantileverSlabLayer } from "./cantileverSlabLayers";
+import { bottomLandingEntranceLayers, getLayerInfo as getBottomLandingEntranceLayer } from "./bottomLandingEntranceLayers";
+import { bottomLandingEntranceLoweredLayers, getLayerInfo as getBottomLandingEntranceLoweredLayer } from "./bottomLandingEntranceLoweredLayers";
+import { bottomLandingEntranceCombinedLayers, getLayerInfo as getBottomLandingEntranceCombinedLayer } from "./bottomLandingEntranceCombinedLayers";
+import { bottomLandingEntranceStraightLayers, getLayerInfo as getBottomLandingEntranceStraightLayer } from "./bottomLandingEntranceStraightLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
@@ -667,6 +672,94 @@ export const nodeDefinitions: NodeDefinition[] = [
     },
   },
 
+  {
+    id: "bottom-landing-entrance-01",
+    title: "底层中间平台下作出入口（底层长短跑）",
+    description:
+      "底层平行双跑楼梯在中间平台下作出入口的构造处理方式——底层长短跑：将底层两个梯段改为不等跑，起步第一跑为长跑（级数增多）、第二跑为短跑（级数减少），抬高中间平台标高，使平台下净高满足通行要求（≥2000mm）。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/bottom-landing-entrance-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/bottom-landing-entrance/bottom-landing-entrance.glb"),
+      scale: 2,
+      noAnimation: true,
+    },
+    diagram: {
+      path: assetPath("images/stairs/bottom-landing-entrance-diagram.png"),
+    },
+    layerConfig: {
+      layers: bottomLandingEntranceLayers as NodeLayerInfo[],
+      getLayerInfo: getBottomLandingEntranceLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+  },
+
+  {
+    id: "bottom-landing-entrance-02",
+    title: "底层中间平台下作出入口（局部降低地坪）",
+    description:
+      "底层平行双跑楼梯在中间平台下作出入口的构造处理方式——局部降低地坪：保持底层两个梯段等跑不变，将中间平台下的地面标高局部降低（将室外台阶部分内移），使平台下净高满足通行要求（≥2000mm）。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/bottom-landing-entrance-lowered-floor-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/bottom-landing-entrance/bottom-landing-entrance-lowered-floor.glb"),
+      scale: 2,
+      noAnimation: true,
+    },
+    diagram: {
+      path: assetPath("images/stairs/bottom-landing-entrance-lowered-floor-diagram.png"),
+    },
+    layerConfig: {
+      layers: bottomLandingEntranceLoweredLayers as NodeLayerInfo[],
+      getLayerInfo: getBottomLandingEntranceLoweredLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+  },
+
+  {
+    id: "bottom-landing-entrance-03",
+    title: "底层中间平台下作出入口（底层长短跑并局部降低地坪）",
+    description:
+      "底层平行双跑楼梯在中间平台下作出入口的构造处理方式——长短跑并局部降低地坪：既将底层第一跑加长（长短跑）抬高中间平台，又适当降低平台下地坪标高，两者叠加共同满足平台下净高（≥2000mm），兼有两种方法的优点，在工程中应用最为广泛。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/bottom-landing-entrance-combined-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/bottom-landing-entrance/bottom-landing-entrance-combined.glb"),
+      scale: 2,
+      noAnimation: true,
+    },
+    diagram: {
+      path: assetPath("images/stairs/bottom-landing-entrance-combined-diagram.png"),
+    },
+    layerConfig: {
+      layers: bottomLandingEntranceCombinedLayers as NodeLayerInfo[],
+      getLayerInfo: getBottomLandingEntranceCombinedLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+  },
+
+  {
+    id: "bottom-landing-entrance-04",
+    title: "底层中间平台下作出入口（底层直跑）",
+    description:
+      "底层平行双跑楼梯在中间平台下作出入口的构造处理方式——底层直跑：底层采用直行单跑楼梯，从底层地坪直达楼层，中间不设休息平台，从根上避免平台下空间不足的问题；入口设于梯段一侧，入口处雨篷底面标高应保证净高≥2m，常用于南方地区住宅建筑。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/bottom-landing-entrance-straight-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/bottom-landing-entrance/bottom-landing-entrance-straight.glb"),
+      scale: 2,
+      noAnimation: true,
+    },
+    diagram: {
+      path: assetPath("images/stairs/bottom-landing-entrance-straight-diagram.png"),
+    },
+    layerConfig: {
+      layers: bottomLandingEntranceStraightLayers as NodeLayerInfo[],
+      getLayerInfo: getBottomLandingEntranceStraightLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+  },
+
   /* ── Multi-variant presentation — Phase 2 ──
      ════════════════════════════════════════════════════════════
      Three models loaded in single ModelViewer Canvas with shared
@@ -882,6 +975,131 @@ export const nodeDefinitions: NodeDefinition[] = [
               },
             ],
             relatedNodeIds: ["faced-plinth-01", "plaster-plinth-01"],
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: "cantilever-slab-01",
+    title: "挑梁搭板三种构造",
+    description:
+      "挑梁搭板的三种构造做法：设置边梁、挑梁外露、L形挑梁卡口板，对比悬挑板与挑梁的不同连接与支承方式。",
+    category: "楼地层",
+    thumbnail: null,
+    status: "available",
+    presentationMode: "variants",
+    /** layerConfig required by ConstructionKnowledgePanel (general layers). */
+    layerConfig: {
+      layers: cantileverSlabLayers as NodeLayerInfo[],
+      getLayerInfo: getCantileverSlabLayer as (objectName: string) => NodeLayerInfo | undefined,
+    },
+    diagram: {
+      path: assetPath("images/floor/cantilever-slab-diagram.png"),
+    },
+    variants: [
+      {
+        id: "edge-beam",
+        label: "A",
+        title: "设置边梁",
+        description:
+          "挑梁搭板在悬挑端设置边梁，与挑梁、现浇板整体现浇形成封闭框架，提高悬挑端的整体刚度与抗扭能力，边梁兼作栏杆或女儿墙的支承。",
+        model: {
+          path: assetPath("models/floor/cantilever-slab/cantilever-slab-edge-beam.glb"),
+          scale: 2,
+        },
+        differenceSummary: [
+          "悬挑端设置边梁，与挑梁、板形成整体框架",
+          "边梁提高悬挑端刚度与抗扭能力，兼作栏杆支承",
+        ],
+        components: [
+          { name: "挑梁", material: "钢筋混凝土", thickness: "按结构计算" },
+          { name: "现浇挑板", material: "钢筋混凝土", thickness: "按结构计算" },
+          { name: "边梁", material: "钢筋混凝土", thickness: "按结构计算" },
+        ],
+        componentKnowledge: [
+          {
+            objectName: "挑梁搭板-_设置边梁",
+            title: "设置边梁挑梁搭板",
+            category: "楼地层",
+            material: "钢筋混凝土",
+            construction: "挑梁与边梁、现浇板整体现浇，边梁设于悬挑端",
+            description:
+              "设置边梁的挑梁搭板在悬挑端沿板边设置边梁，与挑梁和板整体现浇成封闭的框架体系。边梁一方面约束悬挑端的扭转与变形、提高整体刚度，另一方面兼作阳台栏杆或女儿墙的支承构件，常用于需要较强整体性与抗风压的悬挑部位。",
+            images: [
+              { src: assetPath("images/floor/cantilever-slab-diagram.png"), alt: "挑梁搭板剖面", caption: "挑梁搭板构造示意" },
+            ],
+            relatedNodeIds: ["cast-ribbed-floor-01"],
+          },
+        ],
+      },
+      {
+        id: "exposed-beam",
+        label: "B",
+        title: "挑梁外露",
+        description:
+          "挑梁从墙体悬挑、梁底直接外露，不设边梁。挑梁支承悬挑板，梁的截面与布置直接可见，构造简洁、支模方便。",
+        model: {
+          path: assetPath("models/floor/cantilever-slab/cantilever-slab-exposed-beam.glb"),
+          scale: 2,
+        },
+        differenceSummary: [
+          "挑梁梁底外露，不设边梁",
+          "构造简洁，梁截面与布置直接可见",
+        ],
+        components: [
+          { name: "挑梁（外露）", material: "钢筋混凝土", thickness: "按结构计算" },
+          { name: "现浇挑板", material: "钢筋混凝土", thickness: "按结构计算" },
+        ],
+        componentKnowledge: [
+          {
+            objectName: "挑梁搭板-挑梁外露",
+            title: "挑梁外露构造",
+            category: "楼地层",
+            material: "钢筋混凝土",
+            construction: "挑梁从墙体悬挑、梁底外露，与现浇板整体浇筑",
+            description:
+              "挑梁外露做法中挑梁从墙体悬挑而出，梁底直接外露，悬挑端不设边梁。挑梁支承悬挑板，梁的截面尺寸与布置间距直接可见，构造简洁、支模与配筋方便。外露梁底面应注意滴水线处理，防止雨水沿梁底流至墙体。",
+            images: [
+              { src: assetPath("images/floor/cantilever-slab-diagram.png"), alt: "挑梁搭板剖面", caption: "挑梁搭板构造示意" },
+            ],
+            relatedNodeIds: ["cast-ribbed-floor-01"],
+          },
+        ],
+      },
+      {
+        id: "l-notch-board",
+        label: "C",
+        title: "L形挑梁卡口板",
+        description:
+          "采用L形截面的挑梁，板端设卡口（企口）与L形挑梁相互咬合，板嵌入梁的卡口槽内，增强板梁连接的整体性，防止板端翘起或脱离。",
+        model: {
+          path: assetPath("models/floor/cantilever-slab/cantilever-slab-l-notch-board.glb"),
+          scale: 2,
+        },
+        differenceSummary: [
+          "L形截面的挑梁，提供承托卡槽",
+          "卡口板端嵌入挑梁卡口，板梁咬合连接",
+        ],
+        components: [
+          { name: "L形挑梁", material: "钢筋混凝土", thickness: "按结构计算" },
+          { name: "卡口板", material: "钢筋混凝土", thickness: "按结构计算" },
+          { name: "现浇挑板", material: "钢筋混凝土", thickness: "按结构计算" },
+        ],
+        componentKnowledge: [
+          {
+            objectName: "挑梁搭板-_L形挑梁卡口板",
+            title: "L形挑梁卡口板构造",
+            category: "楼地层",
+            material: "钢筋混凝土",
+            construction: "L形挑梁与卡口板咬合连接，板端嵌入挑梁卡口槽",
+            description:
+              "L形挑梁卡口板采用L形截面的挑梁，悬挑板板端设置卡口（企口），卡口板端嵌入L形挑梁的卡口槽内，使板与梁相互咬合。这种连接方式提高板梁结合的整体性，约束板端的竖向位移与翘曲，避免使用中板端与梁脱离，适用于预制与现浇相结合的悬挑构造。",
+            images: [
+              { src: assetPath("images/floor/cantilever-slab-diagram.png"), alt: "挑梁搭板剖面", caption: "挑梁搭板构造示意" },
+            ],
+            relatedNodeIds: ["cast-ribbed-floor-01"],
           },
         ],
       },
