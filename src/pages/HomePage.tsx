@@ -64,18 +64,20 @@ const lineVariants = {
   },
 } as const;
 
-/* ── Console dump: 8 modules + sections ────────────────────── */
-console.group("📚 构造原理 — 8 个主模块及其子章节");
-courseModules.forEach((mod) => {
-  const secs = sectionMap[mod.id] || [];
-  console.log(
-    `\n📁 ${mod.icon} ${mod.title} (${mod.id})${secs.length ? ` — ${secs.length} 个子章节` : " — 暂无子章节"}`,
-  );
-  secs.forEach((s) => {
-    console.log(`   ├─ ${s.title} [${s.id}] ${s.available ? "✅" : "⏳"}`);
+/* ── Console dump: 8 modules + sections (dev only) ──────────── */
+if (import.meta.env.DEV) {
+  console.group("📚 构造原理 — 8 个主模块及其子章节");
+  courseModules.forEach((mod) => {
+    const secs = sectionMap[mod.id] || [];
+    console.log(
+      `\n📁 ${mod.icon} ${mod.title} (${mod.id})${secs.length ? ` — ${secs.length} 个子章节` : " — 暂无子章节"}`,
+    );
+    secs.forEach((s) => {
+      console.log(`   ├─ ${s.title} [${s.id}] ${s.available ? "✅" : "⏳"}`);
+    });
   });
-});
-console.groupEnd();
+  console.groupEnd();
+}
 
 /* ── Left Column — Main Menu ────────────────────────────────── */
 function MenuContent({

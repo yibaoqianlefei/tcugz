@@ -6,7 +6,9 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
   return {
-    base: mode === 'production' ? '/tcugz/' : '/',
+    // 部署基础路径：由环境变量 VITE_BASE_URL 驱动，默认 "/"（域名根目录）。
+    // 腾讯云服务器按需设置，例如 .env.production 里写 VITE_BASE_URL=/subpath/
+    base: env.VITE_BASE_URL ?? '/',
     plugins: [react(), tailwindcss()],
 
     server: {

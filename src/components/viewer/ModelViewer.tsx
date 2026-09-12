@@ -128,15 +128,17 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
   useEffect(() => {
     if (!scene) return;
 
-    // Debug: log animation info
-    console.log("[GLB] animations:", animations);
-    console.log("[GLB] animations.length:", animations.length);
-    if (animations.length > 0) {
-      console.log("[GLB] clip:", animations[0]);
-      console.log("[GLB] clip.name:", animations[0]?.name);
-      console.log("[GLB] clip.duration:", animations[0]?.duration);
-      console.log("[GLB] tracks:", animations[0]?.tracks);
-      console.log("[GLB] tracks.length:", animations[0]?.tracks?.length);
+    // Debug: log animation info (dev only)
+    if (import.meta.env.DEV) {
+      console.log("[GLB] animations:", animations);
+      console.log("[GLB] animations.length:", animations.length);
+      if (animations.length > 0) {
+        console.log("[GLB] clip:", animations[0]);
+        console.log("[GLB] clip.name:", animations[0]?.name);
+        console.log("[GLB] clip.duration:", animations[0]?.duration);
+        console.log("[GLB] tracks:", animations[0]?.tracks);
+        console.log("[GLB] tracks.length:", animations[0]?.tracks?.length);
+      }
     }
 
     // ── Auto-size ──
@@ -158,7 +160,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
       const cachedScale = _scaleCache.get(cacheKey) ?? 1;
       scene.scale.setScalar(cachedScale);
       scene.updateMatrixWorld();
-      console.log("[ModelViewer] 最终应用缩放:", cachedScale, "| model:", modelPath);
+      if (import.meta.env.DEV) console.log("[ModelViewer] 最终应用缩放:", cachedScale, "| model:", modelPath);
 
       // ── Auto-center ──
       const box = new THREE.Box3().setFromObject(scene);
@@ -181,6 +183,11 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
 
     const isFirstInit = !scaleApplied.current;
 
+    // Track proxy meshes + edge lines created below so they can be disposed on
+    // unmount — they are NOT GLB material clones, so disposeClonedMaterials()
+    // never touches them; leaking one set per node visit was the largest GPU leak.
+    const createdResources: Array<{ geometry: THREE.BufferGeometry; material: THREE.Material }> = [];
+
     // ── Pass 1: detect hitboxes ──
     const hasHitbox = new Set<string>();
     if (isFirstInit) {
@@ -189,7 +196,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
           hasHitbox.add(resolveName(c.name));
         }
       });
-      if (hasHitbox.size > 0) console.log("[V7] hitbox components:", [...hasHitbox]);
+      if (import.meta.env.DEV && hasHitbox.size > 0) console.log("[V7] hitbox components:", [...hasHitbox]);
     }
 
     // ── Pass 2: process meshes ──
@@ -221,7 +228,10 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
             } else if (hasHitbox.has(logicalName)) {
               child.raycast = () => {};
             } else {
-              const proxy = new THREE.Mesh(child.geometry.clone(), new THREE.MeshBasicMaterial());
+              const proxyGeo = child.geometry.clone();
+              const proxyMat = new THREE.MeshBasicMaterial();
+              const proxy = new THREE.Mesh(proxyGeo, proxyMat);
+              createdResources.push({ geometry: proxyGeo, material: proxyMat });
               proxy.name = logicalName;
               proxy.visible = false;
               proxy.scale.set(1.06, 1.06, 1.06);
@@ -234,10 +244,9 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
 
         if (isFirstInit && !isHitboxName(child.name)) {
           const edges = new THREE.EdgesGeometry(child.geometry, 15);
-          const line = new THREE.LineSegments(
-            edges,
-            new THREE.LineBasicMaterial({ color: "#1a1a1a", toneMapped: false, transparent: true, opacity: 0.85 }),
-          );
+          const lineMat = new THREE.LineBasicMaterial({ color: "#1a1a1a", toneMapped: false, transparent: true, opacity: 0.85 });
+          const line = new THREE.LineSegments(edges, lineMat);
+          createdResources.push({ geometry: edges, material: lineMat });
           line.raycast = () => {};
           child.add(line);
         }
@@ -276,7 +285,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
         action.paused = true;
         action.play();
         actions.push(action);
-        console.log(`[GLB] clip[${i}] "${clip.name}" loaded, duration=${clip.duration}`);
+        if (import.meta.env.DEV) console.log(`[GLB] clip[${i}] "${clip.name}" loaded, duration=${clip.duration}`);
       });
       mixerRef.current = mixer;
       actionRef.current = actions[0];
@@ -308,6 +317,11 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
       }
       unregister();
       disposeClonedMaterials(scene);
+      // Dispose proxy/edge resources created in the first-init pass above.
+      for (const r of createdResources) {
+        r.geometry.dispose();
+        r.material.dispose();
+      }
       // Only clear the shared model-scene ref when THIS model owns it.  In a
       // multi-model node (noGlobalRef) MultiModelGroup owns the ref, so this
       // cleanup must not null it out — otherwise StrictMode's mount→cleanup→
@@ -1174,8 +1188,8 @@ function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId, onAll
       );
     });
 
-    // Diagnostic: sample at each 90° milestone
-    if (typeof window !== "undefined") {
+    // Diagnostic: sample at each 90° milestone (dev only)
+    if (import.meta.env.DEV && typeof window !== "undefined") {
       const w = window as unknown as Record<string, unknown>;
       const samples = (w.__rotDiag as Record<string, unknown>[]) || (w.__rotDiag = []);
       const firstPivot = rotationPivotRefs.current.values().next().value as THREE.Group | undefined;

@@ -47,8 +47,8 @@ import { independentFoundationLayers, getLayerInfo as getIndependentFoundationLa
 // Guarded so the single source of truth can be imported by Node/tsx tests
 // (where `import.meta.env` is absent).  Vite statically replaces
 // `import.meta.env` with the env object, so `?.BASE_URL` still resolves to
-// the real base in dev (/ ) and production (/tcugz/); outside Vite it falls
-// back to "/", which is the correct public-root interpretation for tests.
+// the real base (e.g. "/", or a subpath when VITE_BASE_URL is set); outside
+// Vite it falls back to "/", the correct public-root interpretation for tests.
 const BASE_URL = import.meta.env?.BASE_URL ?? "/";
 
 function assetPath(path: string): string {

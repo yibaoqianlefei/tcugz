@@ -1,5 +1,42 @@
 import { Outlet, useLocation, useNavigate, Link } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
+import { ErrorBoundary } from "./ErrorBoundary";
+
+/**
+ * Root-level error fallback — shown when any (eager or lazy) route throws
+ * during render, so a single page error never blanks the whole app.
+ */
+function PageErrorFallback({ error, reset }: { error: Error; reset: () => void }) {
+  return (
+    <div className="min-h-screen bg-canvas flex flex-col items-center justify-center px-6 text-center">
+      <h2 className="text-xl font-medium text-ink mb-3">页面出错了</h2>
+      <p className="text-sm text-muted mb-2 max-w-md">
+        页面渲染时出现问题，请重试或返回首页
+      </p>
+      {import.meta.env.DEV && (
+        <p className="text-xs text-muted-soft mb-6 font-mono max-w-lg break-all">
+          {error.message}
+        </p>
+      )}
+      <div className="flex gap-4 mt-4">
+        <button
+          onClick={reset}
+          className="px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-medium
+            hover:bg-primary-active transition-colors"
+        >
+          重试
+        </button>
+        <Link
+          to="/"
+          className="px-5 py-2.5 rounded-lg border border-hairline text-sm text-muted
+            hover:text-primary hover:border-primary/30 transition-colors"
+        >
+          返回首页
+        </Link>
+      </div>
+    </div>
+  );
+}
 
 /**
  * Global layout wrapper — sticky nav bar on all non-home pages.
@@ -44,7 +81,12 @@ function AppLayout() {
           </div>
         </nav>
       )}
-      <Outlet />
+      <ErrorBoundary
+        resetKey={pathname}
+        fallback={(opts) => <PageErrorFallback error={opts.error} reset={opts.reset} />}
+      >
+        <Outlet />
+      </ErrorBoundary>
     </>
   );
 }
