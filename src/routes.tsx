@@ -8,11 +8,9 @@ import PlaceholderPage from "./pages/PlaceholderPage";
 import ResourcesPage from "./pages/ResourcesPage";
 import CasesPage from "./pages/CasesPage";
 import {
-  AIExtendPage,
   NodeDetail,
   GamesPage,
   TextbookPage,
-  AIPage,
   DataAnalysis,
   RouteSuspense,
 } from "./components/RouteSuspense";
@@ -34,8 +32,8 @@ export const router = createHashRouter([
       { path: "/contribute", element: <PlaceholderPage title="贡献节点" /> },
       { path: "/curriculum/cases", element: <CasesPage /> },
       { path: "/resources", element: <ResourcesPage /> },
-      { path: "/ai", element: <RouteSuspense component={AIPage} /> },
-      { path: "/ai-extend", element: <RouteSuspense component={AIExtendPage} /> },
+      { path: "/ai", element: <PlaceholderPage title="AI 助教" /> },
+      { path: "/ai-extend", element: <PlaceholderPage title="AI 拓展" /> },
       { path: "/data", element: <RouteSuspense component={DataAnalysis} /> },
     ],
   },

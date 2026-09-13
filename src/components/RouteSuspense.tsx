@@ -14,11 +14,9 @@ export function LazyFallback() {
 
 /* ── Lazy-loaded page components ────────────────────────────── */
 
-export const AIExtendPage = lazy(() => import("../pages/AIExtendPage"));
 export const NodeDetail = lazy(() => import("../NodeDetail"));
 export const GamesPage = lazy(() => import("../pages/GamesPage"));
 export const TextbookPage = lazy(() => import("../pages/TextbookPage"));
-export const AIPage = lazy(() => import("../pages/AIPage"));
 export const DataAnalysis = lazy(() => import("../pages/DataAnalysis"));
 
 /* ── Route error fallback (chunk load failure) ──────────────── */
