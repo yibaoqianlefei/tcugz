@@ -8,8 +8,6 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "compress-models": "node scripts/compress-models.mjs",
     "test": "npx tsx tests/resolveNodeModelSources.test.ts && npx tsx tests/explodeLayout.test.ts && npx tsx tests/explodeRuntime.test.ts && npx tsx tests/phase6-multi-model-rotation.test.ts && npx tsx tests/phase6-camera-fit.test.ts && npx tsx tests/home-menu.test.ts && npx tsx tests/nodeDetail-controls.test.ts && npx tsx tests/rotation-toggle.test.ts && npx tsx tests/interaction-fixes.test.ts && npx tsx tests/node-definition-contract.test.ts && npx tsx tests/node-assets.test.ts && npx tsx tests/node-behavior-archetypes.test.ts"
   },
@@ -42,7 +40,6 @@
     "eslint": "^10.3.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
-    "gh-pages": "^6.3.0",
     "globals": "^17.6.0",
     "playwright": "^1.61.0",
     "tsx": "^4.23.1",
