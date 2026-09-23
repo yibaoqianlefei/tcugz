@@ -21,8 +21,9 @@ fs.mkdirSync(OUT, { recursive: true });
 const ROUTES = [
   ["/", "home"],
   ["/library", "library"],
-  ["/curriculum", "curriculum"],
-  ["/textbook/wall-construction/1", "textbook"],
+  ["/textbook/wall", "textbook-wall"],
+  ["/textbook/wall/wall-design-requirements", "textbook-chapter"],
+  ["/curriculum/cases", "cases"],
   ["/node/wall-damp-proof-course", "node-multi"],
   ["/node/construction-column-01", "node-animated"],
   ["/node/cast-ribbed-floor-01", "node-noanim"],
