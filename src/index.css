@@ -179,3 +179,121 @@
     min-height: 320px;
   }
 }
+
+/* Node detail: the application nav occupies 4rem above this view. */
+.node-detail-page {
+  height: calc(100vh - 4rem);
+  height: calc(100dvh - 4rem);
+  min-height: 0;
+}
+.node-detail-grid {
+  --diagram-width: 360px;
+  --knowledge-width: 320px;
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--diagram-width) minmax(0, 1fr) var(--knowledge-width);
+  grid-template-rows: minmax(0, 1fr);
+  overflow: hidden;
+}
+.node-diagram { grid-column: 1; grid-row: 1; }
+.node-viewport { grid-column: 2; grid-row: 1; overflow: hidden; }
+.node-knowledge { grid-column: 3; grid-row: 1; }
+.node-layout-presets { display: flex; }
+.node-tablet-diagram-button, .node-mobile-tabs, .node-diagram-backdrop, .node-diagram-close { display: none; }
+.node-divider {
+  position: absolute;
+  z-index: 11;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  transform: translateX(-50%);
+  cursor: col-resize;
+  touch-action: none;
+}
+.node-divider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5px;
+  width: 2px;
+  background: transparent;
+  transition: background .15s ease;
+}
+.node-divider:hover::after, .node-divider:focus-visible::after { background: var(--color-primary, #bb6b4b); }
+.node-divider:focus-visible { outline: 2px solid var(--color-primary, #bb6b4b); outline-offset: -2px; }
+.node-divider-left { left: var(--diagram-width); }
+.node-divider-right { right: var(--knowledge-width); transform: translateX(50%); }
+.node-control-bar { max-width: calc(100% - 24px); }
+.node-explode-slider { width: clamp(56px, 10vw, 160px); flex: 1 1 56px; }
+
+@media (max-width: 1279px) {
+  .node-detail-grid { grid-template-columns: minmax(0, 1fr) clamp(280px, 30vw, 340px); }
+  .node-viewport { grid-column: 1; }
+  .node-knowledge { grid-column: 2; }
+  .node-divider, .node-layout-presets { display: none; }
+  .node-tablet-diagram-button { display: inline-flex; }
+  .node-detail-grid[data-diagram-open="true"] .node-diagram-backdrop {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    background: rgb(0 0 0 / .26);
+  }
+  .node-diagram {
+    display: none;
+    position: absolute;
+    inset: 0 auto 0 0;
+    z-index: 21;
+    width: min(520px, 90%);
+    box-shadow: 12px 0 35px rgb(0 0 0 / .1);
+  }
+  .node-detail-grid[data-diagram-open="true"] .node-diagram { display: flex; }
+  .node-detail-grid[data-diagram-open="true"] .node-diagram-close {
+    display: flex;
+    position: absolute;
+    top: 12px;
+    left: min(470px, calc(90% - 50px));
+    z-index: 22;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: white;
+    color: #666;
+  }
+}
+
+@media (max-width: 767px) {
+  .node-detail-grid { display: block; }
+  .node-mobile-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    flex: none;
+    height: 42px;
+    border-bottom: 1px solid var(--color-hairline, #eee);
+    background: white;
+  }
+  .node-mobile-tabs button { font-size: 12px; color: #777; border-bottom: 2px solid transparent; }
+  .node-mobile-tabs button.active { color: var(--color-primary, #bb6b4b); border-bottom-color: currentColor; font-weight: 600; }
+  .node-tablet-diagram-button { display: none; }
+  .node-viewport { position: absolute; inset: 0; }
+  .node-diagram, .node-knowledge {
+    display: none !important;
+    position: absolute;
+    inset: 0;
+    z-index: 12;
+    width: 100%;
+    box-shadow: none;
+    border: 0;
+  }
+  .node-detail-grid[data-mobile-tab="diagram"] .node-diagram,
+  .node-detail-grid[data-mobile-tab="knowledge"] .node-knowledge { display: flex !important; }
+  .node-diagram-backdrop, .node-diagram-close { display: none !important; }
+  .node-control-bar { bottom: 12px; gap: 4px; padding: 8px; }
+  .node-control-bar > div { gap: 4px; }
+  .node-explode-slider { width: clamp(48px, 17vw, 90px); }
+  .node-fit-button { top: 10px; right: 10px; }
+  .node-fit-button span { display: none; }
+}

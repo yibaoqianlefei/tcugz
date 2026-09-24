@@ -43,7 +43,7 @@ function findMatchingLayer(
    Component
    ═══════════════════════════════════════════════════════════════ */
 
-export default function ConstructionKnowledgePanel() {
+export default function ConstructionKnowledgePanel({ isResizing = false }: { isResizing?: boolean }) {
   const { nodeId } = useParams<{ nodeId: string }>();
   const node = getNodeDefinition(nodeId);
   const navigate = useNavigate();
@@ -140,10 +140,7 @@ export default function ConstructionKnowledgePanel() {
      ═══════════════════════════════════════════════════════════════ */
 
   return (
-    <div
-      className="hidden lg:flex flex-col flex-shrink-0 bg-canvas border-l border-hairline overflow-y-auto"
-      style={{ width: 360 }}
-    >
+    <div className="node-knowledge flex flex-col min-w-0 min-h-0 bg-canvas border-l border-hairline overflow-y-auto">
       {/* ── Node Info Header ── */}
       <div className="flex-shrink-0 px-5 py-5 border-b border-hairline">
         <div className="flex items-center gap-2 mb-2">
@@ -369,13 +366,13 @@ export default function ConstructionKnowledgePanel() {
               暂无构件数据
             </p>
           ) : (
-            <motion.ul layout className="space-y-2.5">
+            <motion.ul layout={!isResizing} className="space-y-2.5">
               {layers.map((layer) => {
                 const isExpanded = expandedId === layer.objectName;
                 const info = config?.getLayerInfo(layer.objectName);
 
                 return (
-                  <motion.li key={layer.objectName} layout>
+                  <motion.li key={layer.objectName} layout={!isResizing}>
                     <button
                       onClick={() => handleToggle(layer.objectName)}
                       className={`w-full text-left p-3 rounded-xl border transition-colors duration-200

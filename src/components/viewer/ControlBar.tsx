@@ -72,7 +72,7 @@ export default function ControlBar(props: ControlBarProps) {
 
   if (visible.includes("explode")) {
     groups.push(
-      <div key="explode" className="flex items-center gap-1 sm:gap-1.5 shrink-0">
+      <div key="explode" className="flex items-center gap-1 sm:gap-1.5 min-w-0">
         <button
           type="button"
           onClick={onCollapse}
@@ -93,8 +93,8 @@ export default function ControlBar(props: ControlBarProps) {
           disabled={explodeDisabled}
           aria-label="爆炸程度"
           title="爆炸程度"
-          className="w-28 sm:w-32 lg:w-40 h-6 py-1 bg-hairline rounded-full appearance-none cursor-pointer
-            accent-primary shrink
+          className="node-explode-slider h-6 py-1 bg-hairline rounded-full appearance-none cursor-pointer
+            accent-primary min-w-0
             disabled:opacity-30 disabled:cursor-not-allowed
             [&::-webkit-slider-thumb]:appearance-none
             [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5
@@ -174,14 +174,14 @@ export default function ControlBar(props: ControlBarProps) {
     <div
       role="toolbar"
       aria-label="模型控制栏"
-      className="absolute bottom-5 left-1/2 -translate-x-1/2 z-10
+      className="node-control-bar absolute bottom-5 left-1/2 -translate-x-1/2 z-10
         flex items-center gap-1.5 sm:gap-2 lg:gap-3
-        px-4 sm:px-5 lg:px-6 py-2.5 lg:py-3
+        px-3 sm:px-4 lg:px-5 py-2.5 lg:py-3
         bg-canvas border border-hairline rounded-2xl shadow-sm"
       onPointerDown={(e) => e.stopPropagation()}
     >
       {groups.map((group, i) => (
-        <div key={`grp-${i}`} className="flex items-center gap-1.5 sm:gap-2 lg:gap-3 shrink-0">
+        <div key={`grp-${i}`} className={`flex items-center gap-1.5 sm:gap-2 lg:gap-3 ${i === 0 ? "min-w-0" : "shrink-0"}`}>
           {i > 0 && <Divider />}
           {group}
         </div>

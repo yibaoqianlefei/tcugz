@@ -34,6 +34,10 @@ function hasEmissive(material: THREE.Material): material is THREE.Material & { e
   );
 }
 
+function cacheSingleModelBounds(scene: THREE.Group): void {
+  scene.userData._unionBox = computeVisibleGeometryWorldBox(scene);
+}
+
 type HighlightMode = "clear" | "hover" | "selected";
 
 import {
@@ -68,6 +72,7 @@ const _scaleCache = new Map<string, number>();
  *  responsive re-fits so the user's view is never yanked back.  Reset on
  *  each ModelViewer mount (ModelViewer is keyed by nodeId). */
 let _userCameraInteracted = false;
+let _cameraInteractionVersion = 0;
 /** True while the user is actively dragging (orbit/pan).  The single-model
  *  target-follow pauses during an active drag so it never fights the user. */
 let _isUserDragging = false;
@@ -100,7 +105,7 @@ function RendererSetup({ showShadows }: { showShadows: boolean }) {
 }
 
 /* ── Model component (auto-center + highlight + animation) ──── */
-function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGroups, noAnimation = false, nonInteractive, noGlobalRef = false, onReady, variantId, variantIndex, variantLabel, variantTitle, skipAutoLayout = false }: { modelPath: string; containerWidth?: number; modelScale?: number; modelGroups?: Record<string, string>; noAnimation?: boolean; nonInteractive?: string[]; /** If true, skip setting the global model scene ref (parent handles it). */ noGlobalRef?: boolean; /** Called when model is loaded + centered, with the scene group. */ onReady?: (scene: THREE.Group) => void; /** Phase 3: variant identity for multi-model isolation. */ variantId?: string; variantIndex?: number; variantLabel?: string; variantTitle?: string; /** Phase 6: when true, skip auto-size, auto-center, and viewport-responsive scale. Parent (MultiModelGroup) handles layout via DisplayScale+CenterOffset. */ skipAutoLayout?: boolean }) {
+function SceneModel({ modelPath, modelScale = 2.5, modelGroups, noAnimation = false, nonInteractive, noGlobalRef = false, onReady, variantId, variantIndex, variantLabel, variantTitle, skipAutoLayout = false }: { modelPath: string; modelScale?: number; modelGroups?: Record<string, string>; noAnimation?: boolean; nonInteractive?: string[]; /** If true, skip setting the global model scene ref (parent handles it). */ noGlobalRef?: boolean; /** Called when model is loaded + centered, with the scene group. */ onReady?: (scene: THREE.Group) => void; /** Phase 3: variant identity for multi-model isolation. */ variantId?: string; variantIndex?: number; variantLabel?: string; variantTitle?: string; /** Phase 6: when true, skip auto-size and auto-center. Parent (MultiModelGroup) handles layout via DisplayScale+CenterOffset. */ skipAutoLayout?: boolean }) {
   const { scene: sourceScene, animations } = useGLTF(modelPath, true);
   /** Deep-clone with material isolation — each SceneModel owns independent materials. */
   const scene = useMemo(() => cloneSceneWithMaterials(sourceScene), [sourceScene]);
@@ -167,6 +172,7 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
       const center = new THREE.Vector3();
       box.getCenter(center);
       scene.position.set(-center.x, -center.y, -center.z);
+      cacheSingleModelBounds(scene);
     }
     // Phase 3: write variant identity on the cloned scene root
     if (variantId) {
@@ -332,30 +338,6 @@ function SceneModel({ modelPath, containerWidth = 0, modelScale = 2.5, modelGrou
     // noGlobalRef and onReady are stable callbacks, intentionally excluded from deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene, animations, setIsPlaying, modelScale, modelPath, resolveName, noAnimation, setAnimationProgress, nonInteractive]);
-
-  // ── Viewport-responsive scale ──
-  const initialWidthRef = useRef(0);
-  const targetScaleRef = useRef(0);
-  useEffect(() => {
-    if (skipAutoLayout || !scene || containerWidth <= 0) return;
-    const cacheKey = `${modelPath}::ms${modelScale}`;
-    const baseScale = _scaleCache.get(cacheKey) ?? 1;
-    if (initialWidthRef.current === 0) initialWidthRef.current = containerWidth;
-    const refWidth = initialWidthRef.current;
-    const ratio = Math.min(1, Math.max(0.4, containerWidth / refWidth));
-    targetScaleRef.current = baseScale * ratio;
-  }, [containerWidth, modelPath, modelScale, scene, skipAutoLayout]);
-
-  useFrame((_, delta) => {
-    if (skipAutoLayout || !scene || targetScaleRef.current <= 0) return;
-    const current = scene.scale.x;
-    const target = targetScaleRef.current;
-    const next = current + (target - current) * Math.min(delta * 6, 1);
-    if (Math.abs(next - current) > 0.0005) {
-      scene.scale.setScalar(next);
-      // Scale adjustment does NOT move camera target — user's view is preserved.
-    }
-  });
 
   // ── Per-frame: mixer update + boundary auto-pause ──
   useFrame((_, delta) => {
@@ -622,8 +604,10 @@ function SceneLights({ showShadows }: { showShadows: boolean }) {
     const pad = 1.0;
     const l = lightRef.current;
     // Extend shadow camera frustum to cover the union box + padding
-    const halfW = (ub.max.x - ub.min.x) / 2 + pad;
-    const halfH = (ub.max.z - ub.min.z) / 2 + pad;
+    // The light's shadow camera is centred on its target, not on the model.
+    // Use absolute extents so offset single-model bounds remain inside it.
+    const halfW = Math.max(Math.abs(ub.min.x), Math.abs(ub.max.x)) + pad;
+    const halfH = Math.max(Math.abs(ub.min.z), Math.abs(ub.max.z)) + pad;
     if (
       Math.abs(l.shadow.camera.left + halfW) > 0.1 ||
       Math.abs(l.shadow.camera.top - halfH) > 0.1
@@ -665,11 +649,26 @@ function ShadowPlane() {
     if (!ub || ub.isEmpty()) return;
     // Position just below the lowest model point
     const py = ub.min.y - 0.05;
-    const pw = ub.max.x - ub.min.x + 1.0;
-    const pd = ub.max.z - ub.min.z + 1.0;
-    if (Math.abs(ref.current.position.y - py) > 0.001) {
-      ref.current.position.set((ub.min.x + ub.max.x) / 2, py, (ub.min.z + ub.max.z) / 2);
-      ref.current.scale.set(pw / 10, 1, pd / 10);
+    const height = Math.max(0, ub.max.y - py);
+    const shadowReachX = height * 8 / 12;
+    const shadowReachZ = height * 6 / 12;
+    const minX = ub.min.x - shadowReachX - 0.4;
+    const maxX = ub.max.x + 0.4;
+    const minZ = ub.min.z - shadowReachZ - 0.4;
+    const maxZ = ub.max.z + 0.4;
+    const px = (minX + maxX) / 2;
+    const pz = (minZ + maxZ) / 2;
+    if (Math.abs(ref.current.position.x - px) > 0.001 ||
+      Math.abs(ref.current.position.y - py) > 0.001 ||
+      Math.abs(ref.current.position.z - pz) > 0.001) {
+      ref.current.position.set(px, py, pz);
+    }
+    // PlaneGeometry lies in local XY; after rotation its local Y is world Z.
+    const scaleX = (maxX - minX) / 10;
+    const scaleZ = (maxZ - minZ) / 10;
+    if (Math.abs(ref.current.scale.x - scaleX) > 0.001 ||
+      Math.abs(ref.current.scale.y - scaleZ) > 0.001) {
+      ref.current.scale.set(scaleX, scaleZ, 1);
     }
   });
   return (
@@ -712,12 +711,38 @@ function applyCameraFraming(
   controls.update();
 }
 
+type CameraDistanceTransition = { from: number; to: number; elapsed: number; interactionVersion: number };
+
+function prepareDistanceTransition(
+  camera: THREE.PerspectiveCamera,
+  controls: OrbitControlsImpl,
+  distance: number,
+  target: THREE.Vector3 | null,
+  near: number,
+  far: number,
+  interactionVersion: number,
+): CameraDistanceTransition | null {
+  if (target) {
+    camera.position.add(target.clone().sub(controls.target));
+    controls.target.copy(target);
+  }
+  const currentDistance = camera.position.distanceTo(controls.target);
+  camera.near = near;
+  camera.far = far;
+  camera.updateProjectionMatrix();
+  controls.update();
+  return Math.abs(currentDistance - distance) > 0.02
+    ? { from: currentDistance, to: distance, elapsed: 0, interactionVersion }
+    : null;
+}
+
 function CameraTracker({
   layoutKey = 0,
   containerWidth = 0,
   sceneReady = false,
   variantCount = 0,
   fitKey = "default",
+  suspendResponsiveFit = false,
 }: {
   layoutKey?: number;
   containerWidth?: number;
@@ -727,10 +752,15 @@ function CameraTracker({
   variantCount?: number;
   /** Node+variant identity — initial fit runs once per distinct key. */
   fitKey?: string;
+  /** A divider is moving; defer camera fitting until its final width. */
+  suspendResponsiveFit?: boolean;
 }) {
-  const { size, camera } = useThree();
+  const { size, camera, gl } = useThree();
   const fittedKeyRef = useRef<string | null>(null);
   const lastSizeRef = useRef<{ w: number; h: number } | null>(null);
+  const [settledSize, setSettledSize] = useState({ width: size.width, height: size.height });
+  const distanceTransitionRef = useRef<CameraDistanceTransition | null>(null);
+  const directionRef = useRef(new THREE.Vector3());
   /** Reusable objects for the single-model target-follow. */
   const followBoxRef = useRef(new THREE.Box3());
   const followCenterRef = useRef(new THREE.Vector3());
@@ -739,14 +769,25 @@ function CameraTracker({
   const refitToken = useNodeStore((s) => s.refitToken);
   const prevRefitTokenRef = useRef(refitToken);
 
+  // Browser resizing can briefly expose a canvas width from the old grid
+  // columns before the responsive panel widths settle.  Fit only the final
+  // size, and coalesce continuous window-resize events into one transition.
+  useEffect(() => {
+    if (suspendResponsiveFit) return;
+    const timer = window.setTimeout(() => setSettledSize({ width: size.width, height: size.height }), 100);
+    return () => window.clearTimeout(timer);
+  }, [size.width, size.height, suspendResponsiveFit]);
+
   // ── One-time initial fit + guarded responsive re-fit (NOT continuous) ──
   useEffect(() => {
     // A new refitToken means the R reset fired: force the next run to be a
     // first-fit again and clear the user-interaction guard so it is not
     // blocked by a prior manual orbit/zoom/pan.
-    if (refitToken !== prevRefitTokenRef.current) {
+    const forcedRefit = refitToken !== prevRefitTokenRef.current;
+    if (forcedRefit) {
       prevRefitTokenRef.current = refitToken;
       fittedKeyRef.current = null;
+      distanceTransitionRef.current = null;
       _userCameraInteracted = false;
     }
 
@@ -756,7 +797,14 @@ function CameraTracker({
     // Strict init order: for multi-model, never fit until A/B/C are ALL
     // loaded AND laid out (sceneReady flips true only after layoutModels).
     if (shouldSkipFit(variantCount, sceneReady)) return;
-    if (size.width <= 0 || size.height <= 0) return;
+    const firstFit = fittedKeyRef.current !== fitKey;
+    if (suspendResponsiveFit && !firstFit && !forcedRefit) return;
+    const viewportWidth = firstFit ? size.width : settledSize.width;
+    const viewportHeight = firstFit ? size.height : settledSize.height;
+    if (viewportWidth <= 0 || viewportHeight <= 0) return;
+    const liveCanvas = gl.domElement.getBoundingClientRect();
+    if (!firstFit && (Math.abs(viewportWidth - liveCanvas.width) > 1 ||
+      Math.abs(viewportHeight - liveCanvas.height) > 1)) return;
 
     // Framing box = the 3-layoutRoot union stored at layout time (multi),
     // or the visible-geometry box of the single model scene.
@@ -772,33 +820,60 @@ function CameraTracker({
     const boxCenter = new THREE.Vector3();
     fitBox.getCenter(boxCenter);
 
-    const firstFit = fittedKeyRef.current !== fitKey;
     const sizeChanged = isSizeChangeSignificant(
       lastSizeRef.current,
-      size.width,
-      size.height,
+      viewportWidth,
+      viewportHeight,
     );
 
     // Initial framing is mandatory; responsive re-frames are skipped after the
     // user has manually moved the camera (plain re-render / variant switch /
     // auto-rotation do not change size or fitKey → no re-frame).
-    if (!shouldRefitCamera({ firstFit, sizeChanged, userInteracted: _userCameraInteracted })) {
-      lastSizeRef.current = { w: size.width, h: size.height };
+    const regularRefit = shouldRefitCamera({ firstFit, sizeChanged, userInteracted: _userCameraInteracted });
+    // After manual orbit/zoom, preserve the view unless a narrower canvas
+    // requires a safety pull-back to keep the model visible.
+    if (!regularRefit && !(sizeChanged && _userCameraInteracted)) {
+      lastSizeRef.current = { w: viewportWidth, h: viewportHeight };
       return;
     }
 
-    // ── Single-model nodes: restore the pre-multi-model sizing contract ──
-    // (e706b641).  The model is auto-sized so maxDim = node.model.scale, and
-    // the camera keeps its default distance (z=8) — the per-node `scale` value
-    // therefore controls the on-screen size exactly as originally designed.
-    // We only aim the orbit target at the model centre (no camera.position
-    // write), so the model appears centred without changing its size.
+    const animateDistance = (distance: number, target: THREE.Vector3 | null, near: number, far: number) => {
+      distanceTransitionRef.current = prepareDistanceTransition(
+        camera as THREE.PerspectiveCamera, controls, distance, target, near, far, _cameraInteractionVersion,
+      );
+    };
+
+    // Keep a single model's authored world scale stable across panel drags.
+    // Only move the camera when the final viewport cannot fit that scale.
     if (variantCount === 0) {
-      controls.target.copy(boxCenter);
-      controls.update();
-      fittedKeyRef.current = fitKey;
-      lastSizeRef.current = { w: size.width, h: size.height };
       const perspectiveCam = camera as THREE.PerspectiveCamera;
+      const result = computeCameraFitTargets({
+        boxSize,
+        boxCenter,
+        canvasWidth: viewportWidth,
+        canvasHeight: viewportHeight,
+        verticalFovDeg: perspectiveCam.fov,
+        cameraPosition: camera.position,
+        controlsTarget: controls.target,
+        padding: 1.2,
+        compositionFraction: 0,
+      });
+      const desiredDistance = _userCameraInteracted
+        ? Math.max(camera.position.distanceTo(controls.target), result.finalDistance)
+        : Math.max(8, result.finalDistance);
+      if (firstFit) {
+        const direction = camera.position.clone().sub(controls.target).normalize();
+        result.finalCameraPosition.copy(boxCenter).addScaledVector(direction, desiredDistance);
+        result.near = desiredDistance > 8 ? result.near : 0.5;
+        result.far = desiredDistance > 8 ? result.far : 50;
+        applyCameraFraming(perspectiveCam, controls, result);
+      } else if (!_userCameraInteracted || desiredDistance > camera.position.distanceTo(controls.target) + 0.02) {
+        animateDistance(desiredDistance, _userCameraInteracted ? null : boxCenter,
+          desiredDistance > 8 ? result.near : 0.5,
+          desiredDistance > 8 ? result.far : 50);
+      }
+      fittedKeyRef.current = fitKey;
+      lastSizeRef.current = { w: viewportWidth, h: viewportHeight };
       logCameraWrite("CameraTracker.singleModelTarget", {
         cameraPosition: [camera.position.x, camera.position.y, camera.position.z],
         cameraQuaternion: [
@@ -812,10 +887,10 @@ function CameraTracker({
         controlsTarget: [controls.target.x, controls.target.y, controls.target.z],
         unionBoxSize: [boxSize.x, boxSize.y, boxSize.z],
         unionBoxCenter: [boxCenter.x, boxCenter.y, boxCenter.z],
-        canvasWidth: size.width,
-        canvasHeight: size.height,
-        aspect: size.width / Math.max(size.height, 1),
-        note: "camera stays at default distance (z=8); target only",
+        canvasWidth: viewportWidth,
+        canvasHeight: viewportHeight,
+        aspect: viewportWidth / Math.max(viewportHeight, 1),
+        note: result.finalDistance > 8 ? "responsive camera fit; model scale unchanged" : "default distance; model scale unchanged",
       });
       return;
     }
@@ -825,8 +900,8 @@ function CameraTracker({
     const result = computeCameraFitTargets({
       boxSize,
       boxCenter,
-      canvasWidth: size.width,
-      canvasHeight: size.height,
+      canvasWidth: viewportWidth,
+      canvasHeight: viewportHeight,
       verticalFovDeg: perspectiveCam.fov,
       cameraPosition: camera.position,
       controlsTarget: controls.target,
@@ -834,12 +909,21 @@ function CameraTracker({
       compositionFraction: CAMERA_COMPOSITION_FRACTION,
     });
 
-    // Apply framing (single write to camera.position).
-    applyCameraFraming(perspectiveCam, controls, result);
+    if (firstFit) {
+      applyCameraFraming(perspectiveCam, controls, result);
+    } else {
+      const currentDistance = camera.position.distanceTo(controls.target);
+      const desiredDistance = _userCameraInteracted
+        ? Math.max(currentDistance, result.finalDistance)
+        : result.finalDistance;
+      if (!_userCameraInteracted || desiredDistance > currentDistance + 0.02) {
+        animateDistance(desiredDistance, _userCameraInteracted ? null : result.controlsTarget, result.near, result.far);
+      }
+    }
 
     // Lock this initialization until node/variant combination changes.
     fittedKeyRef.current = fitKey;
-    lastSizeRef.current = { w: size.width, h: size.height };
+    lastSizeRef.current = { w: viewportWidth, h: viewportHeight };
 
     // DEV: record the write so a later overwrite is detectable.
     logCameraWrite("CameraTracker.fit", {
@@ -855,14 +939,36 @@ function CameraTracker({
       controlsTarget: [controls.target.x, controls.target.y, controls.target.z],
       unionBoxSize: [boxSize.x, boxSize.y, boxSize.z],
       unionBoxCenter: [boxCenter.x, boxCenter.y, boxCenter.z],
-      canvasWidth: size.width,
-      canvasHeight: size.height,
+      canvasWidth: viewportWidth,
+      canvasHeight: viewportHeight,
       aspect: result.aspect,
       fitDistance: result.fitDistance,
       finalDistance: result.finalDistance,
       cameraFitPadding: CAMERA_FIT_PADDING,
     });
-  }, [sceneReady, variantCount, fitKey, layoutKey, containerWidth, size.width, size.height, camera, refitToken]);
+  }, [sceneReady, variantCount, fitKey, layoutKey, containerWidth, size.width, size.height, settledSize, camera, gl, refitToken, suspendResponsiveFit]);
+
+  // Resize only the camera distance, preserving the live orbit direction.
+  // This keeps auto-rotation running and avoids a release-frame zoom jump.
+  useFrame((_, delta) => {
+    const transition = distanceTransitionRef.current;
+    if (!transition) return;
+    if (suspendResponsiveFit || _isUserDragging || transition.interactionVersion !== _cameraInteractionVersion) {
+      distanceTransitionRef.current = null;
+      return;
+    }
+    const controls = _controls;
+    if (!controls) return;
+    transition.elapsed = Math.min(0.28, transition.elapsed + Math.min(delta, 0.05));
+    const t = transition.elapsed / 0.28;
+    const eased = t * t * (3 - 2 * t);
+    const distance = THREE.MathUtils.lerp(transition.from, transition.to, eased);
+    const direction = directionRef.current.copy(camera.position).sub(controls.target);
+    if (direction.lengthSq() < 1e-9) direction.set(0, 0, 1);
+    camera.position.copy(controls.target).addScaledVector(direction.normalize(), distance);
+    controls.update();
+    if (t >= 1) distanceTransitionRef.current = null;
+  });
 
   // ── Single-model "pull back to view centre" (e706b641 behavior) ──
   // Continuously lerps the orbit target toward the model's world centre so the
@@ -897,7 +1003,7 @@ const EDGE_GAP_MIN = 0.28;     // raised proportionally
 const EDGE_GAP_MAX = 1.00;     // raised proportionally
 const AUTO_ROTATE_SPEED = 0.12; // rad/s — ~52s per full rotation, comfortable for study
 
-function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId, onAllReady, autoRotate }: { models: ModelEntry[]; containerWidth: number; explodeConfigs?: ExplodeVariantConfig[]; nodeId?: string; onAllReady?: () => void; autoRotate?: boolean }) {
+function MultiModelGroup({ models, explodeConfigs, nodeId, onAllReady, autoRotate }: { models: ModelEntry[]; explodeConfigs?: ExplodeVariantConfig[]; nodeId?: string; onAllReady?: () => void; autoRotate?: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   const readyRef = useRef(new Map<string, THREE.Group>());
   const [readyCount, setReadyCount] = useState(0);
@@ -1355,7 +1461,6 @@ function MultiModelGroup({ models, containerWidth, explodeConfigs, nodeId, onAll
                 <SceneModel
                   key={m.id}
                   modelPath={m.src}
-                  containerWidth={containerWidth}
                   modelScale={m.scale ?? 2.5}
                   noAnimation={true}
                   nonInteractive={["其余"]}
@@ -1391,6 +1496,7 @@ export default function ModelViewer({
   nonInteractive,
   explodeConfigs,
   nodeId,
+  suspendResponsiveFit = false,
 }: {
   autoRotate?: boolean;
   modelPath?: string;
@@ -1405,6 +1511,7 @@ export default function ModelViewer({
   explodeConfigs?: ExplodeVariantConfig[];
   /** Phase 5: nodeId for explode cache key identity. */
   nodeId?: string;
+  suspendResponsiveFit?: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -1435,6 +1542,7 @@ export default function ModelViewer({
   const handleControlsStart = useCallback(() => {
     _suppressNextClick = true; // orbit/pan blocks following click
     _userCameraInteracted = true; // manual orbit/zoom → block responsive re-fit
+    _cameraInteractionVersion += 1;
     _isUserDragging = true;
   }, []);
   const handleControlsEnd = useCallback(() => {
@@ -1454,7 +1562,7 @@ export default function ModelViewer({
   }, []);
 
   return (
-    <div ref={containerRef} className="flex-1 h-full relative bg-[#f5f5f7]">
+    <div ref={containerRef} className="flex-1 min-w-0 h-full relative bg-[#f5f5f7]">
       <Canvas
         camera={{ near: 0.5, far: 50, position: [0, 0, 8], fov: 40 }}
         dpr={[1, 1.5]} shadows
@@ -1485,9 +1593,9 @@ export default function ModelViewer({
         {showShadows && <ShadowPlane />}
         <Suspense fallback={<LoadingFallback />}>
           {isMulti ? (
-            <MultiModelGroup models={modelPaths!} containerWidth={containerWidth} explodeConfigs={explodeConfigs} nodeId={nodeId} onAllReady={handleSceneReady} autoRotate={autoRotate} />
+            <MultiModelGroup models={modelPaths!} explodeConfigs={explodeConfigs} nodeId={nodeId} onAllReady={handleSceneReady} autoRotate={autoRotate} />
           ) : modelPath ? (
-            <SceneModel modelPath={modelPath} containerWidth={containerWidth} modelScale={modelScale} modelGroups={modelGroups} noAnimation={noAnimation} nonInteractive={nonInteractive} onReady={handleSceneReady} />
+            <SceneModel modelPath={modelPath} modelScale={modelScale} modelGroups={modelGroups} noAnimation={noAnimation} nonInteractive={nonInteractive} onReady={handleSceneReady} />
           ) : null}
         </Suspense>
         <OrbitControls
@@ -1514,6 +1622,7 @@ export default function ModelViewer({
           sceneReady={sceneReady}
           variantCount={isMulti && modelPaths ? modelPaths.length : 0}
           fitKey={fitKey}
+          suspendResponsiveFit={suspendResponsiveFit}
         />
       </Canvas>
     </div>

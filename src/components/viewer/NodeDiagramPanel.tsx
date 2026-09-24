@@ -1,15 +1,12 @@
 /**
- * NodeDiagramPanel — left panel (520px), the primary cognitive view.
+ * NodeDiagramPanel — responsive diagram panel, the primary cognitive view.
  * Displays 2D section diagram. Pure image area — layer interaction
  * belongs in ConstructionKnowledgePanel (right panel).
  */
 export default function NodeDiagramPanel({ diagramImage }: { diagramImage?: string }) {
 
   return (
-    <div
-      className="hidden lg:flex flex-col flex-shrink-0 bg-canvas border-r border-hairline overflow-hidden"
-      style={{ width: 520 }}
-    >
+    <div className="node-diagram flex flex-col min-w-0 min-h-0 bg-canvas border-r border-hairline overflow-hidden">
       {/* Header */}
       <div className="flex-shrink-0 px-6 py-4 border-b border-hairline">
         <div className="flex items-center justify-between">
@@ -26,13 +23,11 @@ export default function NodeDiagramPanel({ diagramImage }: { diagramImage?: stri
       </div>
 
       {/* Diagram area — image only */}
-      <div className="flex-1 flex items-center justify-center p-6">
+      <div className="flex-1 min-h-0 overflow-y-auto p-4 md:p-5">
         {diagramImage ? (
-          <img
-            src={diagramImage}
-            alt="剖面图"
-            className="max-w-full max-h-full object-contain rounded-xl"
-          />
+          <a href={diagramImage} target="_blank" rel="noopener noreferrer" title="在新标签页查看原图" className="block w-full">
+            <img src={diagramImage} alt="构造剖面图，点击查看原图" className="w-full h-auto object-contain rounded-xl" />
+          </a>
         ) : (
           <div className="flex flex-col items-center gap-4 text-center max-w-[280px]">
             <div className="w-20 h-20 rounded-2xl bg-surface-card flex items-center justify-center">

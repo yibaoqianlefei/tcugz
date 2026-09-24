@@ -14,15 +14,20 @@ import type { ExplodeVariantConfig } from "./components/viewer/ModelViewer";
 import VariantLabelBar from "./components/viewer/VariantLabelBar";
 import ControlBar from "./components/viewer/ControlBar";
 import { resolveVisibleControls } from "./utils/nodeDetailControls";
+import { useNodePanelLayout } from "./components/viewer/useNodePanelLayout";
+import { Images, Maximize2, X } from "lucide-react";
 
 /**
- * NodeDetail V1 — construction education layout.
- * Left: 520px diagram | Center: 3D (flex-1) + floating timeline | Right: 360px knowledge
+ * Responsive construction education layout with adjustable desktop panels.
  *
  * 所有节点配置统一来自 src/data/nodeDefinitions.ts（单一配置源）。
  */
 export default function NodeDetail() {
   const { nodeId } = useParams<{ nodeId: string }>();
+  return <NodeDetailContent key={nodeId ?? "missing"} nodeId={nodeId} />;
+}
+
+function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
   const node = getNodeDefinition(nodeId);
   const animationProgress = useNodeStore((s) => s.animationProgress);
   const setAnimationProgress = useNodeStore((s) => s.setAnimationProgress);
@@ -40,6 +45,9 @@ export default function NodeDetail() {
   const autoRotate = useNodeStore((s) => s.autoRotate);
   const setAutoRotate = useNodeStore((s) => s.setAutoRotate);
   const totalDuration = 4;
+  const { setContainer, preset: layoutPreset, isResizing, selectPreset, adjust: adjustPanel, beginDrag } = useNodePanelLayout();
+  const [diagramOpen, setDiagramOpen] = useState(false);
+  const [mobileTab, setMobileTab] = useState<"diagram" | "model" | "knowledge">("model");
 
   // ── Reset store when switching nodes (fires before paint) ──
   useLayoutEffect(() => {
@@ -52,7 +60,7 @@ export default function NodeDetail() {
   /* ── Resolve model sources (Phase 2: supports 1–3 models) ── */
   // Must compute BEFORE early returns (hooks ordering) — also used by the
   // reset handler below.
-  const modelSources = node ? resolveNodeModelSources(node) : [];
+  const modelSources = useMemo(() => node ? resolveNodeModelSources(node) : [], [node]);
   const hasModel = modelSources.length > 0;
   const isMultiModel = modelSources.length >= 2;
 
@@ -66,12 +74,13 @@ export default function NodeDetail() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
+      if (diagramOpen) { setDiagramOpen(false); return; }
       // Clear selection
       useNodeStore.getState().setSelectedObject(null);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [diagramOpen]);
 
   // ── Track visited node (only record valid nodes) ──
   const addVisitedNode = useAnalysisStore((s) => s.addVisitedNode);
@@ -182,7 +191,7 @@ export default function NodeDetail() {
   /* ── Node not found ── */
   if (!node) {
     return (
-      <div className="h-screen flex flex-col bg-canvas overflow-hidden items-center justify-center">
+      <div className="node-detail-page flex flex-col bg-canvas overflow-hidden items-center justify-center">
         <p className="text-muted text-lg">节点不存在</p>
         <Link to="/library" className="text-primary text-sm mt-3 hover:underline">返回节点库</Link>
       </div>
@@ -192,7 +201,7 @@ export default function NodeDetail() {
   /* ── Node under development ── */
   if (node.status === "development") {
     return (
-      <div className="h-screen flex flex-col bg-canvas overflow-hidden items-center justify-center">
+      <div className="node-detail-page flex flex-col bg-canvas overflow-hidden items-center justify-center">
         <p className="text-muted text-lg">该节点正在开发中</p>
         <p className="text-muted-soft text-sm mt-1">{node.description}</p>
         <Link to="/library" className="text-primary text-sm mt-3 hover:underline">返回节点库</Link>
@@ -204,33 +213,51 @@ export default function NodeDetail() {
   const { model, diagram, layerConfig } = node;
 
   return (
-    <div className="h-screen flex flex-col bg-canvas overflow-hidden">
+    <div className="node-detail-page flex flex-col bg-canvas overflow-hidden">
       {/* ── Header ── */}
-      <header className="flex-shrink-0 flex items-center justify-between h-12 px-5 bg-canvas border-b border-hairline z-30">
-        <div className="flex items-center gap-2 text-sm">
+      <header className="flex-shrink-0 flex items-center justify-between gap-3 min-h-12 px-4 md:px-5 bg-canvas border-b border-hairline z-20">
+        <div className="flex items-center gap-2 text-sm min-w-0">
           <Link to="/library" className="text-muted-soft hover:text-primary transition-colors">
             节点库
           </Link>
           <span className="text-muted-soft">›</span>
-          <span className="text-muted font-medium">{node.title}</span>
+          <span className="text-muted font-medium truncate">{node.title}</span>
         </div>
-        {node.category && (
-          <span className="text-[10px] font-medium text-muted-soft uppercase tracking-wider bg-surface-card px-2 py-0.5 rounded-full">
-            {node.category}
-          </span>
-        )}
+        <div className="flex items-center gap-2 shrink-0">
+          <button type="button" onClick={() => setDiagramOpen(true)} className="node-tablet-diagram-button items-center gap-1.5 rounded-lg border border-hairline px-2.5 py-1.5 text-xs text-muted hover:text-primary" aria-label="查看构造剖面图">
+            <Images size={15} /> 图纸
+          </button>
+          <div className="node-layout-presets items-center gap-1 rounded-lg border border-hairline bg-surface-soft/50 p-0.5" role="group" aria-label="三栏布局预设">
+            {([ ["balanced", "均衡"], ["model", "专注模型"], ["diagram", "专注图纸"] ] as const).map(([value, label]) => (
+              <button key={value} type="button" onClick={() => selectPreset(value)} aria-pressed={layoutPreset === value} className={`rounded-md px-2 py-1 text-[11px] whitespace-nowrap transition-colors ${layoutPreset === value ? "bg-canvas text-primary shadow-sm" : "text-muted-soft hover:text-muted"}`}>{label}</button>
+            ))}
+          </div>
+          {node.category && <span className="hidden sm:inline text-[10px] font-medium text-muted-soft uppercase tracking-wider bg-surface-card px-2 py-0.5 rounded-full">{node.category}</span>}
+        </div>
       </header>
+
+      <div className="node-mobile-tabs" role="tablist" aria-label="节点内容">
+        {([ ["diagram", "图纸"], ["model", "3D 模型"], ["knowledge", "构件知识"] ] as const).map(([value, label]) => (
+          <button key={value} type="button" role="tab" aria-selected={mobileTab === value} onClick={() => setMobileTab(value)} className={mobileTab === value ? "active" : ""}>{label}</button>
+        ))}
+      </div>
 
       {/* ── Variant label bar (Phase 3: only for multi-variant nodes) ── */}
       {isMultiModel && <VariantLabelBar variants={modelSources} />}
 
       {/* ── Body ── */}
-      <div className="flex-1 flex min-h-0">
+      <div ref={setContainer} className="node-detail-grid flex-1 min-h-0" data-diagram-open={diagramOpen} data-mobile-tab={mobileTab}>
+        {diagramOpen && <button type="button" className="node-diagram-backdrop" onClick={() => setDiagramOpen(false)} aria-label="关闭图纸面板" />}
         {/* Left: 2D diagram */}
         <NodeDiagramPanel diagramImage={diagram?.path} />
 
+        <button type="button" className="node-diagram-close" onClick={() => setDiagramOpen(false)} aria-label="关闭图纸面板" title="关闭图纸面板"><X size={18} /></button>
+
+        <div className="node-divider node-divider-left" role="separator" aria-label="调整图纸与模型宽度" aria-orientation="vertical" tabIndex={0} onPointerDown={(e) => beginDrag("left", e)} onKeyDown={(e) => { if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); adjustPanel("left", e.key === "ArrowRight" ? 16 : -16); } }} />
+
         {/* Center: 3D viewport + floating timeline */}
-        <div className="flex-1 flex min-w-0 relative">
+        <div className="node-viewport flex min-w-0 min-h-0 relative">
+              <button type="button" className="node-fit-button absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas/90 px-2.5 py-1.5 text-xs text-muted hover:text-primary shadow-sm" onClick={() => useNodeStore.getState().requestCameraRefit()} title="重新适配模型视图" aria-label="适配模型视图"><Maximize2 size={14} /> <span>适配视图</span></button>
               {hasModel && layerConfig ? (
                 <ErrorBoundary
                   resetKey={`${nodeId}:${isMultiModel ? "multi" : modelSources[0].src}`}
@@ -264,6 +291,7 @@ export default function NodeDetail() {
                 >
                   <ModelViewer
                     key={nodeId}
+                    suspendResponsiveFit={isResizing}
                     showShadows={showShadows}
                     modelPath={isMultiModel ? undefined : modelSources[0].src}
                     modelPaths={isMultiModel ? modelSources : undefined}
@@ -303,8 +331,10 @@ export default function NodeDetail() {
               />
         </div>
 
+        <div className="node-divider node-divider-right" role="separator" aria-label="调整模型与知识宽度" aria-orientation="vertical" tabIndex={0} onPointerDown={(e) => beginDrag("right", e)} onKeyDown={(e) => { if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); adjustPanel("right", e.key === "ArrowRight" ? 16 : -16); } }} />
+
         {/* Right: knowledge panel */}
-        <ConstructionKnowledgePanel />
+        <ConstructionKnowledgePanel isResizing={isResizing} />
       </div>
     </div>
   );
