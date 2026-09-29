@@ -303,17 +303,24 @@ function SubMenuPanel({
                             initial={{ opacity: 0, x: -8 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.15, delay: si * 0.03 }}
+                            type="button"
+                            // Non-available chapters previously swallowed the click
+                            // with no feedback; disable them explicitly instead.
+                            disabled={!sec.available}
+                            aria-disabled={!sec.available}
+                            title={sec.available ? sec.title : "本章节内容筹备中"}
                             onClick={() => {
                               if (sec.available) {
                                 window.location.hash = `#/textbook/${mod.id}/${sec.id}`;
                               }
                             }}
-                            className="w-full flex items-start gap-2 px-2 py-1.5 rounded-[6px]
-                              text-left text-sm text-muted leading-snug
-                              hover:bg-primary/8 hover:text-ink
-                              transition-all duration-200 cursor-pointer"
+                            className={`w-full flex items-start gap-2 px-2 py-1.5 rounded-[6px]
+                              text-left text-sm leading-snug transition-all duration-200
+                              ${sec.available
+                                ? "text-muted hover:bg-primary/8 hover:text-ink cursor-pointer"
+                                : "text-muted-soft/60 cursor-not-allowed"}`}
                           >
-                            <span className="w-1 h-1 rounded-full bg-muted-soft/30 flex-shrink-0 mt-[9px]" />
+                            <span className={`w-1 h-1 rounded-full flex-shrink-0 mt-[9px] ${sec.available ? "bg-muted-soft/30" : "bg-muted-soft/20"}`} />
                             <span className="whitespace-normal">{sec.title}</span>
                           </motion.button>
                         ))}
@@ -331,7 +338,7 @@ function SubMenuPanel({
                       exit={{ height: 0, opacity: 0 }}
                       className="text-sm text-muted-soft ml-9 pl-1.5 py-1.5 italic overflow-hidden"
                     >
-                      暂无子章节
+                      内容筹备中，暂未上线
                     </motion.p>
                   </AnimatePresence>
                 )}
