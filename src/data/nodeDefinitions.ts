@@ -41,6 +41,7 @@ import { bottomLandingEntranceCombinedLayers, getLayerInfo as getBottomLandingEn
 import { bottomLandingEntranceStraightLayers, getLayerInfo as getBottomLandingEntranceStraightLayer } from "./bottomLandingEntranceStraightLayers";
 import { hollowBlockFormsLayers, getLayerInfo as getHollowBlockFormsLayer } from "./hollowBlockFormsLayers";
 import { independentFoundationLayers, getLayerInfo as getIndependentFoundationLayer } from "./independentFoundationLayers";
+import { rampHandrailLayers, getLayerInfo as getRampHandrailLayer } from "./rampHandrailLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
@@ -86,6 +87,7 @@ export interface NodeModelConfig {
 
 export interface NodeDiagramConfig {
   path: string;
+  subtitle?: string;
 }
 
 export type NodeStatus = "available" | "development";
@@ -93,7 +95,7 @@ export type NodeStatus = "available" | "development";
 /** Node presentation mode: single-model (default) or multi-variant. */
 export type NodePresentationMode = "single" | "variants";
 
-/** Per-variant component detail (reserved for Phase 3 teaching panel). */
+/** Per-variant component summary shown in the knowledge panel. */
 export interface VariantComponent {
   name: string;
   material: string;
@@ -147,7 +149,7 @@ export interface NodeModelVariant {
     rotation?: [number, number, number];
   };
   differenceSummary?: string[];
-  /** Per-variant component breakdown (reserved for Phase 3, not yet rendered). */
+  /** Per-variant component breakdown shown alongside the detailed knowledge entries. */
   components?: VariantComponent[];
   /** Per-variant detailed knowledge entries for Phase 4. */
   componentKnowledge?: VariantComponentKnowledge[];
@@ -784,6 +786,27 @@ export const nodeDefinitions: NodeDefinition[] = [
     },
   },
 
+  {
+    id: "ramp-handrail-01",
+    title: "坡道扶手",
+    description: "坡道与扶手组合构造。通过扶手分离动画，观察扶手与坡面的位置关系，并对照剖面图理解扶手截面与支承方式。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/ramp-handrail-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/ramp-handrail/ramp-handrail.glb"),
+      scale: 4,
+    },
+    diagram: {
+      path: assetPath("images/stairs/ramp-handrail-diagram.png"),
+      subtitle: "扶手截面及与坡道的安装关系",
+    },
+    layerConfig: {
+      layers: rampHandrailLayers,
+      getLayerInfo: getRampHandrailLayer,
+    },
+  },
+
   /* ── Multi-variant presentation — Phase 2 ──
      ════════════════════════════════════════════════════════════
      Three models loaded in single ModelViewer Canvas with shared
@@ -1179,7 +1202,6 @@ export const nodeDefinitions: NodeDefinition[] = [
             images: [
               { src: assetPath("images/foundation/independent-foundation-diagram.png"), alt: "独立式基础剖面", caption: "独立式基础构造示意" },
             ],
-            relatedNodeIds: ["independent-foundation-01"],
           },
         ],
       },
@@ -1214,7 +1236,6 @@ export const nodeDefinitions: NodeDefinition[] = [
             images: [
               { src: assetPath("images/foundation/independent-foundation-diagram.png"), alt: "独立式基础剖面", caption: "独立式基础构造示意" },
             ],
-            relatedNodeIds: ["independent-foundation-01"],
           },
         ],
       },
@@ -1249,7 +1270,6 @@ export const nodeDefinitions: NodeDefinition[] = [
             images: [
               { src: assetPath("images/foundation/independent-foundation-diagram.png"), alt: "独立式基础剖面", caption: "独立式基础构造示意" },
             ],
-            relatedNodeIds: ["independent-foundation-01"],
           },
         ],
       },

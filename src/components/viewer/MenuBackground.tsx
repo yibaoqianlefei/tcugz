@@ -1,8 +1,9 @@
-import { useRef, useEffect, Suspense, useMemo, useCallback, Component, type ReactNode, type RefObject } from "react";
+import { useRef, useEffect, Suspense, useMemo, useCallback, useState, Component, type ReactNode } from "react";
 import { useThree, useFrame } from "@react-three/fiber";
 import { useGLTF, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
+import { fitHomeSceneScale } from "../../utils/homeSceneFit";
 
 /* ── Error Boundary (class component for GLB load failures) ── */
 interface ErrorBoundaryProps {
@@ -48,10 +49,16 @@ function LoadingFallback() {
 }
 
 /* ── Model Loader (auto-center + material fixes) ── */
-function SceneModel({ modelPath, onReady }: { modelPath: string; onReady?: () => void }) {
+function SceneModel({
+  modelPath,
+  onReady,
+  onBounds,
+}: {
+  modelPath: string;
+  onReady?: () => void;
+  onBounds: (bounds: THREE.Box3) => void;
+}) {
   const { scene } = useGLTF(modelPath, true); // Draco enabled
-
-  useEffect(() => { if (scene) onReady?.(); }, [scene, onReady]);
 
   const fixed = useMemo(() => {
     if (!scene) return null;
@@ -80,11 +87,17 @@ function SceneModel({ modelPath, onReady }: { modelPath: string; onReady?: () =>
     });
 
     cloned.position.set(-center.x, -center.y, -center.z);
-    return cloned;
+    return { model: cloned, bounds: bbox.translate(center.negate()) };
   }, [scene]);
 
+  useEffect(() => {
+    if (!fixed) return;
+    onBounds(fixed.bounds);
+    onReady?.();
+  }, [fixed, onBounds, onReady]);
+
   if (!fixed) return <LoadingFallback />;
-  return <primitive object={fixed} />;
+  return <primitive object={fixed.model} />;
 }
 
 /* ── Shadow Light ── */
@@ -134,19 +147,6 @@ function ShadowPlane() {
   );
 }
 
-/* ── Canvas resize handler ─────────────────────────────────── */
-function ResizeWatcher({ controlsRef }: { controlsRef: RefObject<OrbitControlsImpl | null> }) {
-  const { size } = useThree();
-  useEffect(() => {
-    const ctrl = controlsRef.current;
-    if (ctrl) {
-      const t = setTimeout(() => ctrl.update(), 60);
-      return () => clearTimeout(t);
-    }
-  }, [size.width, size.height, controlsRef]);
-  return null;
-}
-
 /* ── Pan-return constants ──────────────────────────────────── */
 
 /** Home target — mirrors OrbitControls target prop. Only panning
@@ -163,9 +163,6 @@ interface MenuBackgroundProps {
   position?: [number, number, number];
   onLoaded?: () => void;
   showShadows?: boolean;
-  layoutKey?: number;
-  containerWidth?: number;
-  initialContainerWidth?: number | null;
 }
 
 function MenuBackground({
@@ -174,12 +171,13 @@ function MenuBackground({
   position = [0, 0, 0],
   onLoaded,
   showShadows = true,
-  layoutKey = 0,
-  containerWidth = 0,
-  initialContainerWidth = null,
 }: MenuBackgroundProps) {
+  const { camera, gl, size } = useThree();
   const groupRef = useRef<THREE.Group>(null);
   const controlsRef = useRef<OrbitControlsImpl | null>(null);
+  const [centeredBounds, setCenteredBounds] = useState<THREE.Box3 | null>(null);
+  const lastFitRef = useRef({ width: 0, height: 0, bounds: null as THREE.Box3 | null });
+  const groupPosition = useMemo(() => new THREE.Vector3(...position), [position]);
   const handleSceneReady = useCallback(() => onLoaded?.(), [onLoaded]);
 
   // ── Pan-return: restore target to centre while keeping rotation & zoom ──
@@ -227,22 +225,23 @@ function MenuBackground({
     ctrl.update();
   });
 
-  // Viewport-responsive scale: use first non-zero canvas width as baseline.
-  // initialContainerWidth is captured once by the parent ResizeObserver callback.
-  const baseScale = 1.5;
-  const refWidth = initialContainerWidth || containerWidth || 1200;
-  const ratio = containerWidth > 0 ? Math.min(1, Math.max(0.4, containerWidth / refWidth)) : 1;
-  const targetScale = baseScale * ratio;
+  // Follow the *visible* canvas container on the same frame as the sidebar.
+  // A React ResizeObserver update plus a second scale lerp used to lag behind
+  // the 280 ms sidebar transition, temporarily clipping the model.
+  useFrame(() => {
+    const group = groupRef.current;
+    if (!group || !centeredBounds) return;
+    const container = gl.domElement.parentElement;
+    const width = container?.clientWidth || size.width;
+    const height = container?.clientHeight || size.height;
+    const last = lastFitRef.current;
+    if (width <= 0 || height <= 0 ||
+      (Math.abs(width - last.width) < 0.5 && Math.abs(height - last.height) < 0.5 && last.bounds === centeredBounds)) return;
 
-  // Smooth lerp scale on each frame (avoids jank)
-  useFrame((_, delta) => {
-    if (groupRef.current) {
-      const current = groupRef.current.scale.x;
-      const next = current + (targetScale - current) * Math.min(delta * 6, 1);
-      if (Math.abs(next - current) > 0.0005) {
-        groupRef.current.scale.setScalar(next);
-      }
-    }
+    group.scale.setScalar(fitHomeSceneScale(
+      centeredBounds, groupPosition, camera as THREE.PerspectiveCamera, width, height,
+    ));
+    lastFitRef.current = { width, height, bounds: centeredBounds };
   });
 
   // Preload model
@@ -250,21 +249,9 @@ function MenuBackground({
     useGLTF.preload(modelPath, true);
   }, [modelPath]);
 
-  // Force camera re-center on layout change (sidebar expand/collapse)
-  useEffect(() => {
-    if (controlsRef.current) {
-      // Small delay to let the canvas resize complete
-      const t = setTimeout(() => {
-        controlsRef.current?.update();
-      }, 50);
-      return () => clearTimeout(t);
-    }
-  }, [layoutKey]);
-
   return (
     <>
       <RendererSetup showShadows={showShadows} />
-      <ResizeWatcher controlsRef={controlsRef} />
       <color attach="background" args={["#faf9f5"]} />
 
       <ambientLight intensity={1.2} color="#ffffff" />
@@ -290,10 +277,10 @@ function MenuBackground({
         onEnd={handleEnd}
       />
 
-      <group ref={groupRef} position={position} scale={baseScale}>
+      <group ref={groupRef} position={position} scale={1.5}>
         <Suspense fallback={<LoadingFallback />}>
           <ErrorBoundary fallback={<SceneModelPlaceholder />}>
-            <SceneModel modelPath={modelPath} onReady={handleSceneReady} />
+            <SceneModel modelPath={modelPath} onReady={handleSceneReady} onBounds={setCenteredBounds} />
           </ErrorBoundary>
         </Suspense>
       </group>

@@ -11,7 +11,6 @@ import { ErrorBoundary } from "./components/ErrorBoundary";
 import { resolveNodeModelSources } from "./utils/resolveNodeModelSources";
 import { resolveVariantExplodeConfig } from "./utils/explodeLayout";
 import type { ExplodeVariantConfig } from "./components/viewer/ModelViewer";
-import VariantLabelBar from "./components/viewer/VariantLabelBar";
 import ControlBar from "./components/viewer/ControlBar";
 import { resolveVisibleControls } from "./utils/nodeDetailControls";
 import { useNodePanelLayout } from "./components/viewer/useNodePanelLayout";
@@ -35,7 +34,8 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
   const setExplodeProgress = useNodeStore((s) => s.setExplodeProgress);
   const activeExplodeVariantId = useNodeStore((s) => s.activeExplodeVariantId);
 
-  const [showShadows, setShowShadows] = useState(true);
+  // Each node visit starts with shadows off; the control bar can enable them on demand.
+  const [showShadows, setShowShadows] = useState(false);
   const linkageEnabled = useNodeStore((s) => s.linkageEnabled);
   const setLinkageEnabled = useNodeStore((s) => s.setLinkageEnabled);
   // ── Rotation toggle — single source consumed by ModelViewer's autoRotate
@@ -63,6 +63,13 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
   const modelSources = useMemo(() => node ? resolveNodeModelSources(node) : [], [node]);
   const hasModel = modelSources.length > 0;
   const isMultiModel = modelSources.length >= 2;
+  const knowledgeNamesByVariant = useMemo(
+    () => Object.fromEntries((node?.variants ?? []).map((variant) => [
+      variant.id,
+      (variant.componentKnowledge ?? []).flatMap((entry) => [entry.objectName, ...(entry.aliases ?? [])]),
+    ])),
+    [node],
+  );
 
   useEffect(() => {
     if (noAnimation) {
@@ -180,9 +187,9 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
     }));
   }, [isMultiModel, node, modelSources]);
 
-  const hasExplodeConfig = isMultiModel && explodeConfigs?.some((c) => c.config.enabled);
-  // activeExplodeVariantId is consumed by ModelViewer via store; read here for reactive re-render
-  void activeExplodeVariantId;
+  const activeExplodeEnabled = !!activeExplodeVariantId && !!explodeConfigs?.some(
+    (entry) => entry.variantId === activeExplodeVariantId && entry.config.enabled,
+  );
 
   /* ── Visible control-bar whitelist — identical for single- and multi-model.
        Never widened by variant count or debug flags. ── */
@@ -242,14 +249,11 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
         ))}
       </div>
 
-      {/* ── Variant label bar (Phase 3: only for multi-variant nodes) ── */}
-      {isMultiModel && <VariantLabelBar variants={modelSources} />}
-
       {/* ── Body ── */}
       <div ref={setContainer} className="node-detail-grid flex-1 min-h-0" data-diagram-open={diagramOpen} data-mobile-tab={mobileTab}>
         {diagramOpen && <button type="button" className="node-diagram-backdrop" onClick={() => setDiagramOpen(false)} aria-label="关闭图纸面板" />}
         {/* Left: 2D diagram */}
-        <NodeDiagramPanel diagramImage={diagram?.path} />
+        <NodeDiagramPanel diagramImage={diagram?.path} subtitle={diagram?.subtitle} />
 
         <button type="button" className="node-diagram-close" onClick={() => setDiagramOpen(false)} aria-label="关闭图纸面板" title="关闭图纸面板"><X size={18} /></button>
 
@@ -300,6 +304,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
                     noAnimation={node.model?.noAnimation}
                     nonInteractive={node.model?.nonInteractive}
                     explodeConfigs={explodeConfigs}
+                    knowledgeNamesByVariant={knowledgeNamesByVariant}
                     nodeId={nodeId}
                     autoRotate={autoRotate}
                   />
@@ -317,7 +322,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
                      runtimes are inert while their store flags are off. ── */}
               <ControlBar
                 visible={visibleControls}
-                explodeDisabled={isMultiModel ? !hasExplodeConfig : noAnimation}
+                explodeDisabled={isMultiModel ? !activeExplodeEnabled : noAnimation}
                 sliderValue={isMultiModel ? explodeProgress : animationProgress}
                 onSliderChange={onSliderChange}
                 onCollapse={handleCollapse}

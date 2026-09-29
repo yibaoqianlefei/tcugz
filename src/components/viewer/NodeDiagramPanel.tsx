@@ -1,9 +1,11 @@
+import CenteredDiagramImage from "./CenteredDiagramImage";
+
 /**
  * NodeDiagramPanel — responsive diagram panel, the primary cognitive view.
  * Displays 2D section diagram. Pure image area — layer interaction
  * belongs in ConstructionKnowledgePanel (right panel).
  */
-export default function NodeDiagramPanel({ diagramImage }: { diagramImage?: string }) {
+export default function NodeDiagramPanel({ diagramImage, subtitle }: { diagramImage?: string; subtitle?: string }) {
 
   return (
     <div className="node-diagram flex flex-col min-w-0 min-h-0 bg-canvas border-r border-hairline overflow-hidden">
@@ -13,7 +15,7 @@ export default function NodeDiagramPanel({ diagramImage }: { diagramImage?: stri
           <div>
             <h3 className="text-sm font-medium text-ink">构造剖面图</h3>
             <p className="text-[11px] text-muted-soft mt-0.5">
-              由上至下：保护层 → 结构层
+              {subtitle ?? "由上至下：保护层 → 结构层"}
             </p>
           </div>
           <span className="text-[10px] text-muted-soft bg-surface-card px-2 py-0.5 rounded-full">
@@ -22,12 +24,10 @@ export default function NodeDiagramPanel({ diagramImage }: { diagramImage?: stri
         </div>
       </div>
 
-      {/* Diagram area — image only */}
-      <div className="flex-1 min-h-0 overflow-y-auto p-4 md:p-5">
+      {/* Keep the complete diagram centered within the space between header and footer. */}
+      <div className="flex flex-1 min-h-0 items-center justify-center overflow-hidden p-4 md:p-5">
         {diagramImage ? (
-          <a href={diagramImage} target="_blank" rel="noopener noreferrer" title="在新标签页查看原图" className="block w-full">
-            <img src={diagramImage} alt="构造剖面图，点击查看原图" className="w-full h-auto object-contain rounded-xl" />
-          </a>
+          <CenteredDiagramImage src={diagramImage} alt="构造剖面图，点击查看原图" openOriginal />
         ) : (
           <div className="flex flex-col items-center gap-4 text-center max-w-[280px]">
             <div className="w-20 h-20 rounded-2xl bg-surface-card flex items-center justify-center">

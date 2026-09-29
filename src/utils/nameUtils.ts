@@ -28,6 +28,15 @@ export function canonicalName(name: string, modelGroups?: Record<string, string>
     .replace(/[_.]\d+$/, ""); // Step 4: double-pass for nested suffixes
 }
 
+/** Keep a distinct GLB sub-mesh identity only when it has its own teaching entry. */
+export function interactiveMeshName(
+  name: string,
+  knowledgeNames?: ReadonlySet<string>,
+  modelGroups?: Record<string, string>,
+): string {
+  return knowledgeNames?.has(name) ? name : canonicalName(name, modelGroups);
+}
+
 export function isHitboxName(name: string): boolean {
   return /_hitbox$/.test(name);
 }

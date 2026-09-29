@@ -31,7 +31,9 @@ function fit(sizes: Sizes, width: number): Sizes {
 
 function presetSizes(preset: Exclude<LayoutPreset, "custom">, width: number): Sizes {
   if (preset === "model") return fit({ left: 280, right: 300 }, width);
-  if (preset === "diagram") return fit({ left: 480, right: 320 }, width);
+  // At a 1920px desktop viewport: 600px diagram | 1020px model | 300px knowledge.
+  // fit() reduces the diagram first on narrower desktops to protect the model viewport.
+  if (preset === "diagram") return fit({ left: 600, right: 300 }, width);
   return fit({ left: Math.min(440, width * 0.26), right: Math.min(380, width * 0.23) }, width);
 }
 

@@ -1,12 +1,14 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNodeStore } from "../../store/nodeStore";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUp, ExternalLink, ImageIcon, Table2 } from "lucide-react";
 import { getNodeDefinition, type NodeLayerInfo } from "../../data/nodeDefinitions";
 import { canonicalName } from "../../utils/nameUtils";
-import { parseScopedKey } from "../../utils/variantIdentity";
+import { makeScopedKey, parseScopedKey } from "../../utils/variantIdentity";
 import { resolveComponentKnowledge } from "../../utils/resolveComponentKnowledge";
+import VariantLabelBar from "./VariantLabelBar";
+import VariantComparisonOverview from "./VariantComparisonOverview";
 
 /* ═══════════════════════════════════════════════════════════════
    Pure helpers — no component state dependencies
@@ -63,33 +65,41 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
 
   // ── Sorted layers (normal nodes only) ──
   const config = node?.layerConfig;
-  const layers = useMemo(
-    () =>
-      [...(config?.layers ?? [])].sort(
-        (a, b) => (b.order ?? 0) - (a.order ?? 0),
-      ),
-    [config],
+  const layers = [...(config?.layers ?? [])].sort(
+    (a, b) => (b.order ?? 0) - (a.order ?? 0),
   );
 
   const isMultiModel = node?.presentationMode === "variants";
+  const activeVariant = node?.variants?.find((variant) => variant.id === selectedVariantId);
+  const [manualKnowledge, setManualKnowledge] = useState<{
+    nodeId: string | undefined;
+    key: string | null;
+  }>({ nodeId, key: null });
+  const previousLinkage = useRef(linkageEnabled);
+  useEffect(() => {
+    if (previousLinkage.current && !linkageEnabled) {
+      setManualKnowledge({ nodeId, key: selectedObject });
+    }
+    previousLinkage.current = linkageEnabled;
+  }, [linkageEnabled, nodeId, selectedObject]);
+  const manualKey = manualKnowledge.nodeId === nodeId ? manualKnowledge.key : null;
+  const displayedSelectedObject = linkageEnabled
+    ? selectedObject
+    : manualKey && parseScopedKey(manualKey).variantId === selectedVariantId ? manualKey : null;
 
   // ── Resolve knowledge (Phase 4) ──
-  const knowledge = useMemo(() => {
-    if (!node) return null;
-    return resolveComponentKnowledge({
+  const knowledge = node
+    ? resolveComponentKnowledge({
       node,
-      selectedObject,
+      selectedObject: displayedSelectedObject,
       selectedVariantId,
-    });
-  }, [node, selectedObject, selectedVariantId]);
+    })
+    : null;
 
   // ── Derived: which card 3D selection points to (normal nodes only) ──
-  const linkedExpandedId = useMemo(() => {
-    if (!linkageEnabled || !selectedObject || isMultiModel) return null;
-    const { objectName } = parseScopedKey(selectedObject);
-    const matched = findMatchingLayer(objectName, layers);
-    return matched?.objectName ?? null;
-  }, [linkageEnabled, selectedObject, layers, isMultiModel]);
+  const linkedExpandedId = linkageEnabled && selectedObject && !isMultiModel
+    ? findMatchingLayer(parseScopedKey(selectedObject).objectName, layers)?.objectName ?? null
+    : null;
 
   useEffect(() => {
     if (
@@ -161,29 +171,66 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
         )}
       </div>
 
+      {isMultiModel && node?.variants && <VariantLabelBar variants={node.variants} />}
+
       {/* ═══════════════════════════════════════════════════════
          Multi-variant knowledge detail (Phase 4)
          ═══════════════════════════════════════════════════════ */}
       {isMultiModel && (
-        <div className="flex-1 px-5 py-5">
-          {!selectedObject && !selectedVariantId ? (
-            /* State 1: nothing selected */
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <p className="text-xs text-muted-soft">
-                选择上方方案标签，然后点击模型构件
-              </p>
-              <p className="text-[10px] text-muted-soft/70 mt-1">
-                查看构造做法与工程参数
-              </p>
-            </div>
-          ) : selectedVariantId && !selectedObject ? (
+        <div className="flex-1 px-5 py-5 space-y-5">
+          {activeVariant && (
+            <section className="space-y-4" aria-label="当前方案概览">
+              <div>
+                <h3 className="text-sm font-medium text-ink">{activeVariant.title}</h3>
+                {activeVariant.description && (
+                  <p className="mt-1 text-xs leading-relaxed text-muted">{activeVariant.description}</p>
+                )}
+              </div>
+              {!!activeVariant.differenceSummary?.length && (
+                <div>
+                  <h4 className="text-xs font-medium text-muted mb-2">方案特点</h4>
+                  <ul className="space-y-1 text-xs leading-relaxed text-body">
+                    {activeVariant.differenceSummary.map((item) => <li key={item}>• {item}</li>)}
+                  </ul>
+                </div>
+              )}
+              {!!activeVariant.componentKnowledge?.length && (
+                <div>
+                  <h4 className="text-xs font-medium text-muted mb-2">构造知识</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {activeVariant.componentKnowledge.map((entry) => {
+                      const key = makeScopedKey(activeVariant.id, entry.objectName);
+                      const pressed = displayedSelectedObject === key;
+                      return (
+                        <button
+                          key={entry.objectName}
+                          type="button"
+                          aria-label={`查看知识：${entry.title}`}
+                          aria-pressed={pressed}
+                          onClick={() => {
+                            const next = pressed ? null : key;
+                            if (linkageEnabled) setSelectedObject(next);
+                            else setManualKnowledge({ nodeId, key: next });
+                          }}
+                          className={`rounded-lg border px-2.5 py-1.5 text-xs transition-colors ${pressed ? "border-primary/40 bg-primary/10 text-primary" : "border-hairline bg-surface-card text-body hover:border-primary/30"}`}
+                        >
+                          {entry.title}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </section>
+          )}
+          {!selectedVariantId ? (
+            /* State 1: compare every construction before choosing a variant */
+            node?.variants && <VariantComparisonOverview variants={node.variants} />
+          ) : !displayedSelectedObject ? (
             /* State 2: variant selected but no mesh */
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <p className="text-sm font-medium text-body">
-                {knowledge?.variantTitle}
-              </p>
-              <p className="text-xs text-muted-soft mt-2">
-                点击模型构件查看构造知识
+            <div className="border-t border-hairline pt-4 text-center">
+              <p className="text-xs text-muted-soft">
+                点击模型构件或上方知识条目查看详情
               </p>
             </div>
           ) : knowledge && knowledge.isUnconfigured ? (
@@ -346,6 +393,19 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
                 )}
             </div>
           ) : null}
+          {!!activeVariant?.components?.length && (
+            <section className="border-t border-hairline pt-4" aria-label="方案构件清单">
+              <h4 className="text-xs font-medium text-muted mb-2">构件清单</h4>
+              <ul className="space-y-1.5">
+                {activeVariant.components.map((component) => (
+                  <li key={component.name} className="rounded-lg border border-hairline bg-surface-card px-3 py-2">
+                    <p className="text-xs font-medium text-body">{component.name}</p>
+                    <p className="mt-0.5 text-[10px] text-muted-soft">{component.material} · {component.thickness}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
         </div>
       )}
 

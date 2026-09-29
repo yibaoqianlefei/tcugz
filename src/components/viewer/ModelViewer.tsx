@@ -4,7 +4,7 @@ import { OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { useNodeStore } from "../../store/nodeStore";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
-import { canonicalName as cnImport, isHitboxName } from "../../utils/nameUtils";
+import { interactiveMeshName, isHitboxName } from "../../utils/nameUtils";
 import { registerAnimationActions, getAnimationActions } from "./animationController";
 // layoutModels is now inline in MultiModelGroup (edge-gap formula)
 import { writeVariantIdentity, makeScopedKey, parseScopedKey, matchesVariantScope, cloneSceneWithMaterials, disposeClonedMaterials } from "../../utils/variantIdentity";
@@ -105,7 +105,7 @@ function RendererSetup({ showShadows }: { showShadows: boolean }) {
 }
 
 /* ── Model component (auto-center + highlight + animation) ──── */
-function SceneModel({ modelPath, modelScale = 2.5, modelGroups, noAnimation = false, nonInteractive, noGlobalRef = false, onReady, variantId, variantIndex, variantLabel, variantTitle, skipAutoLayout = false }: { modelPath: string; modelScale?: number; modelGroups?: Record<string, string>; noAnimation?: boolean; nonInteractive?: string[]; /** If true, skip setting the global model scene ref (parent handles it). */ noGlobalRef?: boolean; /** Called when model is loaded + centered, with the scene group. */ onReady?: (scene: THREE.Group) => void; /** Phase 3: variant identity for multi-model isolation. */ variantId?: string; variantIndex?: number; variantLabel?: string; variantTitle?: string; /** Phase 6: when true, skip auto-size and auto-center. Parent (MultiModelGroup) handles layout via DisplayScale+CenterOffset. */ skipAutoLayout?: boolean }) {
+function SceneModel({ modelPath, modelScale = 2.5, modelGroups, knowledgeObjectNames, noAnimation = false, nonInteractive, noGlobalRef = false, onReady, variantId, variantIndex, variantLabel, variantTitle, skipAutoLayout = false }: { modelPath: string; modelScale?: number; modelGroups?: Record<string, string>; knowledgeObjectNames?: readonly string[]; noAnimation?: boolean; nonInteractive?: string[]; /** If true, skip setting the global model scene ref (parent handles it). */ noGlobalRef?: boolean; /** Called when model is loaded + centered, with the scene group. */ onReady?: (scene: THREE.Group) => void; /** Phase 3: variant identity for multi-model isolation. */ variantId?: string; variantIndex?: number; variantLabel?: string; variantTitle?: string; /** Phase 6: when true, skip auto-size and auto-center. Parent (MultiModelGroup) handles layout via DisplayScale+CenterOffset. */ skipAutoLayout?: boolean }) {
   const { scene: sourceScene, animations } = useGLTF(modelPath, true);
   /** Deep-clone with material isolation — each SceneModel owns independent materials. */
   const scene = useMemo(() => cloneSceneWithMaterials(sourceScene), [sourceScene]);
@@ -115,9 +115,10 @@ function SceneModel({ modelPath, modelScale = 2.5, modelGroups, noAnimation = fa
   const groupRef = useRef<THREE.Group>(null);
   const meshMapRef = useRef<Map<string, THREE.Mesh[]>>(new Map());
   /** Phase 6 Step 3: unregister functions for Object3D registry. */
+  const knowledgeNameSet = useMemo(() => new Set(knowledgeObjectNames), [knowledgeObjectNames]);
   const resolveName = useCallback(
-    (name: string): string => cnImport(name, modelGroups),
-    [modelGroups],
+    (name: string): string => interactiveMeshName(name, knowledgeNameSet, modelGroups),
+    [knowledgeNameSet, modelGroups],
   );
   const prevHovered = useRef<string | null>(null);
   const prevSelected = useRef<string | null>(null);
@@ -1003,7 +1004,7 @@ const EDGE_GAP_MIN = 0.28;     // raised proportionally
 const EDGE_GAP_MAX = 1.00;     // raised proportionally
 const AUTO_ROTATE_SPEED = 0.12; // rad/s — ~52s per full rotation, comfortable for study
 
-function MultiModelGroup({ models, explodeConfigs, nodeId, onAllReady, autoRotate }: { models: ModelEntry[]; explodeConfigs?: ExplodeVariantConfig[]; nodeId?: string; onAllReady?: () => void; autoRotate?: boolean }) {
+function MultiModelGroup({ models, explodeConfigs, knowledgeNamesByVariant, nodeId, onAllReady, autoRotate }: { models: ModelEntry[]; explodeConfigs?: ExplodeVariantConfig[]; knowledgeNamesByVariant?: Record<string, string[]>; nodeId?: string; onAllReady?: () => void; autoRotate?: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   const readyRef = useRef(new Map<string, THREE.Group>());
   const [readyCount, setReadyCount] = useState(0);
@@ -1471,6 +1472,7 @@ function MultiModelGroup({ models, explodeConfigs, nodeId, onAllReady, autoRotat
                   variantIndex={i}
                   variantLabel={m.label}
                   variantTitle={m.title}
+                  knowledgeObjectNames={knowledgeNamesByVariant?.[m.id]}
                 />
               </group>
             </group>
@@ -1489,12 +1491,13 @@ export default function ModelViewer({
   modelPath,
   modelPaths,
   modelScale = 2.5,
-  showShadows = true,
+  showShadows = false,
   layoutKey = 0,
   modelGroups,
   noAnimation = false,
   nonInteractive,
   explodeConfigs,
+  knowledgeNamesByVariant,
   nodeId,
   suspendResponsiveFit = false,
 }: {
@@ -1509,6 +1512,7 @@ export default function ModelViewer({
   nonInteractive?: string[];
   /** Phase 5: per-variant explode configs for multi-model nodes. */
   explodeConfigs?: ExplodeVariantConfig[];
+  knowledgeNamesByVariant?: Record<string, string[]>;
   /** Phase 5: nodeId for explode cache key identity. */
   nodeId?: string;
   suspendResponsiveFit?: boolean;
@@ -1593,7 +1597,7 @@ export default function ModelViewer({
         {showShadows && <ShadowPlane />}
         <Suspense fallback={<LoadingFallback />}>
           {isMulti ? (
-            <MultiModelGroup models={modelPaths!} explodeConfigs={explodeConfigs} nodeId={nodeId} onAllReady={handleSceneReady} autoRotate={autoRotate} />
+            <MultiModelGroup models={modelPaths!} explodeConfigs={explodeConfigs} knowledgeNamesByVariant={knowledgeNamesByVariant} nodeId={nodeId} onAllReady={handleSceneReady} autoRotate={autoRotate} />
           ) : modelPath ? (
             <SceneModel modelPath={modelPath} modelScale={modelScale} modelGroups={modelGroups} noAnimation={noAnimation} nonInteractive={nonInteractive} onReady={handleSceneReady} />
           ) : null}

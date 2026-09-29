@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
@@ -222,9 +222,10 @@ function MenuContent({
 /* ── Right Column — Sub-menu Panel ──────────────────────────── */
 function SubMenuPanel({
   expandedId,
+  compact = false,
 }: {
   expandedId: string;
-  onClose?: () => void;
+  compact?: boolean;
 }) {
   const children = getExpandedChildren(expandedId);
   const [activeModuleId, setActiveModuleId] = useState<string | null>(null);
@@ -236,7 +237,7 @@ function SubMenuPanel({
       {/* Modules + Sections (scrollable, hidden scrollbar) */}
       <div
         className="flex-1 overflow-y-auto px-4 [&::-webkit-scrollbar]:hidden"
-        style={{ paddingTop: "194px", scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
+        style={{ paddingTop: compact ? "8px" : "194px", scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
       >
         <div className="space-y-0.5">
           {children.map((mod, mi) => {
@@ -252,6 +253,7 @@ function SubMenuPanel({
               >
                 {/* ── Module header (clickable) ── */}
                 <button
+                  type="button"
                   onClick={() => {
                     if (mod.sections && mod.sections.length > 0) {
                       setActiveModuleId(isActive ? null : mod.id);
@@ -273,11 +275,15 @@ function SubMenuPanel({
                   <span className="text-lg font-medium truncate">
                     {mod.label}
                   </span>
-                  <span className="text-xs text-muted-soft ml-auto flex-shrink-0">
-                    {hasSections ? mod.sections!.length : 0}
-                  </span>
-                  <ChevronRight size={16} strokeWidth={1.5}
-                    className={`flex-shrink-0 transition-all duration-200 ${isActive ? "text-primary rotate-90" : "text-muted-soft"}`} />
+                  {hasSections && (
+                    <>
+                      <span className="text-xs text-muted-soft ml-auto flex-shrink-0">
+                        {mod.sections!.length}
+                      </span>
+                      <ChevronRight size={16} strokeWidth={1.5}
+                        className={`flex-shrink-0 transition-all duration-200 ${isActive ? "text-primary rotate-90" : "text-muted-soft"}`} />
+                    </>
+                  )}
                 </button>
 
                 {/* ── Sections (accordion) ── */}
@@ -317,7 +323,7 @@ function SubMenuPanel({
                 </AnimatePresence>
 
                 {/* Empty state */}
-                {isActive && !hasSections && (
+                {isActive && !hasSections && !mod.path && (
                   <AnimatePresence>
                     <motion.p
                       initial={{ height: 0, opacity: 0 }}
@@ -333,6 +339,24 @@ function SubMenuPanel({
             );
           })}
         </div>
+      </div>
+    </div>
+  );
+}
+
+function CompactSubMenu({ expandedId, onClose }: { expandedId: string; onClose: () => void }) {
+  const title = menuItems.find((item) => item.id === expandedId)?.label ?? "目录";
+  return (
+    <div className="flex flex-col h-full min-h-0 bg-canvas">
+      <div className="flex-shrink-0 flex items-center gap-3 h-16 border-b border-hairline">
+        <button type="button" onClick={onClose} aria-label="返回主菜单"
+          className="inline-flex items-center gap-1 text-muted hover:text-primary">
+          <ChevronRight size={18} className="rotate-180" /> 返回
+        </button>
+        <span className="text-lg font-medium text-ink">{title}</span>
+      </div>
+      <div className="flex-1 min-h-0">
+        <SubMenuPanel expandedId={expandedId} compact />
       </div>
     </div>
   );
@@ -490,37 +514,6 @@ export default function HomePage() {
   const [showShadows, setShowShadows] = useState(true);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const currentScene = backgroundScenes[sceneIndex];
-  const container3dRef = useRef<HTMLDivElement>(null);
-  interface ContainerMetrics {
-    currentWidth: number;
-    initialWidth: number | null;
-  }
-  const [containerMetrics, setContainerMetrics] = useState<ContainerMetrics>({
-    currentWidth: 0,
-    initialWidth: null,
-  });
-
-  // ResizeObserver: throttled via rAF to avoid per-frame state updates.
-  // Captures the first non-zero width as the baseline (initialWidth) for
-  // responsive scaling; subsequent resizes only update currentWidth.
-  useEffect(() => {
-    const el = container3dRef.current;
-    if (!el) return;
-    let raf = 0;
-    const ro = new ResizeObserver((entries) => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const nextWidth = entries[0]?.contentRect.width ?? 0;
-        setContainerMetrics((prev) => ({
-          currentWidth: nextWidth,
-          initialWidth: prev.initialWidth ?? (nextWidth > 0 ? nextWidth : null),
-        }));
-      });
-    });
-    ro.observe(el);
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); };
-  }, []);
-
   // Derived: loading when current scene hasn't been marked as loaded yet
   const bgLoading = loadedSceneIndex !== sceneIndex;
 
@@ -538,17 +531,18 @@ export default function HomePage() {
     <div className="flex h-screen overflow-hidden bg-canvas">
       {/* ── Left Sidebar (two-column: main menu + sub-menu panel) ── */}
       <motion.aside
-        layout
-        transition={{ duration: 0.28, ease: "easeInOut" }}
         className="hidden md:flex flex-shrink-0 h-screen overflow-hidden bg-canvas"
       >
-        {/* ── Left column: main menu (fixed width) ── */}
-        <div className="w-sidebar flex-shrink-0 flex flex-col h-full px-10 bg-canvas">
-          <MenuContent
-            expandedId={expandedId}
-            setExpandedId={setExpandedId}
-  
-          />
+        {/* On tablets the submenu replaces the main menu, preserving 3D width. */}
+        <div className="w-[clamp(20rem,30vw,24rem)] flex-shrink-0 flex flex-col h-full px-10 bg-canvas">
+          <div className={`h-full min-h-0 ${expandedId ? "hidden min-[1200px]:block" : ""}`}>
+            <MenuContent expandedId={expandedId} setExpandedId={setExpandedId} />
+          </div>
+          {expandedId && (
+            <div className="h-full min-h-0 min-[1200px]:hidden">
+              <CompactSubMenu expandedId={expandedId} onClose={() => setExpandedId(null)} />
+            </div>
+          )}
         </div>
 
         {/* ── Right column: sub-menu panel (animated width) ── */}
@@ -559,14 +553,11 @@ export default function HomePage() {
               animate={{ width: 260, opacity: 1 }}
               exit={{ width: 0, opacity: 0 }}
               transition={{ duration: 0.28, ease: "easeOut" }}
-              className="overflow-hidden bg-canvas border-r border-hairline flex-shrink-0"
+              className="hidden min-[1200px]:block overflow-hidden bg-canvas border-r border-hairline flex-shrink-0"
               style={{ minWidth: 0 }}
             >
               <div style={{ width: 260 }} className="h-full">
-                <SubMenuPanel
-                  expandedId={expandedId}
-                  onClose={() => setExpandedId(null)}
-                />
+                <SubMenuPanel expandedId={expandedId} />
               </div>
             </motion.div>
           )}
@@ -574,7 +565,7 @@ export default function HomePage() {
       </motion.aside>
 
       {/* ── Right: 3D Scene ── */}
-      <div ref={container3dRef} className="hidden md:block flex-1 h-full relative min-w-0">
+      <div className="hidden md:block flex-1 h-full relative min-w-0 overflow-hidden">
         {/* Top nav bar */}
         <div className="absolute top-0 left-0 right-0 z-20 flex justify-end items-center h-10 px-4 bg-transparent">
           <Link to="/contribute"
@@ -603,9 +594,6 @@ export default function HomePage() {
             position={currentScene.position as [number, number, number]}
             onLoaded={handleBgLoaded}
             showShadows={showShadows}
-            layoutKey={expandedId ? 1 : 0}
-            containerWidth={containerMetrics.currentWidth}
-            initialContainerWidth={containerMetrics.initialWidth}
           />
         </Canvas>
 
@@ -647,11 +635,11 @@ export default function HomePage() {
 
       {/* ── Mobile: nav only ── */}
       <div className="flex md:hidden w-full h-full bg-canvas flex-col justify-center px-8">
-        <MenuContent
-          expandedId={expandedId}
-          setExpandedId={setExpandedId}
-
-        />
+        {expandedId ? (
+          <CompactSubMenu expandedId={expandedId} onClose={() => setExpandedId(null)} />
+        ) : (
+          <MenuContent expandedId={expandedId} setExpandedId={setExpandedId} />
+        )}
       </div>
 
       <AboutModal open={modalOpen} onClose={() => setModalOpen(false)} />

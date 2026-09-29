@@ -9,6 +9,13 @@ try {
   await page.goto(`${process.env.LAYOUT_TEST_URL ?? "http://127.0.0.1:5173"}/#/node/block-wall-core-column-01`);
   await page.locator(".node-detail-grid").waitFor();
   await page.locator(".node-viewport canvas").waitFor();
+  const enableShadows = page.getByRole("button", { name: "开启阴影" });
+  assert(await enableShadows.isVisible(), "single-model node enters with shadows off");
+  assert.equal(await enableShadows.getAttribute("aria-pressed"), "false");
+  await enableShadows.click();
+  assert.equal(await page.getByRole("button", { name: "关闭阴影" }).getAttribute("aria-pressed"), "true",
+    "shadows can still be enabled manually");
+  await page.getByRole("button", { name: "关闭阴影" }).click();
 
   async function layout() {
     return page.evaluate(() => {
@@ -24,6 +31,25 @@ try {
     });
   }
 
+  async function assertDiagramCentered(label) {
+    const image = page.locator(".node-diagram img");
+    await image.evaluate((img) => img.decode());
+    const offset = await page.evaluate(() => {
+      const area = document.querySelector(".node-diagram").children[1].getBoundingClientRect();
+      const img = document.querySelector(".node-diagram img");
+      const box = img.getBoundingClientRect();
+      const scale = Math.min(box.width / img.naturalWidth, box.height / img.naturalHeight);
+      const imageWidth = img.naturalWidth * scale;
+      const imageHeight = img.naturalHeight * scale;
+      return {
+        x: box.x + (box.width - imageWidth) / 2 + imageWidth / 2 - (area.x + area.width / 2),
+        y: box.y + (box.height - imageHeight) / 2 + imageHeight / 2 - (area.y + area.height / 2),
+      };
+    });
+    assert(Math.abs(offset.x) <= 1 && Math.abs(offset.y) <= 1,
+      `diagram is centered in its content area (${label})`);
+  }
+
   for (const width of [1920, 1440, 1280]) {
     await page.setViewportSize({ width, height: 900 });
     await page.waitForFunction(() => document.querySelector(".node-viewport").getBoundingClientRect().width >= 599);
@@ -34,9 +60,26 @@ try {
     assert(value.toolbar.x >= value.center.x, `toolbar left bound at ${width}`);
     assert(value.toolbar.x + value.toolbar.width <= value.center.x + value.center.width, `toolbar right bound at ${width}`);
     assert(value.pageOverflow <= 1, `page overflow at ${width}: ${value.pageOverflow}`);
+    if (width === 1440) await assertDiagramCentered("desktop");
     if (width === 1440 && process.env.LAYOUT_SCREENSHOT_DIR) {
       await page.screenshot({ path: path.join(process.env.LAYOUT_SCREENSHOT_DIR, "node-layout-desktop.png") });
     }
+  }
+
+  // Diagram-focus matches the approved wide-screen composition and keeps a
+  // 600px model viewport on narrower desktop widths.
+  for (const [width, expectedDiagram] of [[1920, 600], [1440, 540], [1280, 380]]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.getByRole("button", { name: "专注图纸" }).click();
+    await page.waitForFunction((expected) => Math.round(document.querySelector(".node-diagram")?.getBoundingClientRect().width) === expected, expectedDiagram);
+    const focused = await layout();
+    assert.equal(Math.round(focused.left.width), expectedDiagram, `diagram focus left width at ${width}`);
+    assert.equal(Math.round(focused.right.width), 300, `diagram focus knowledge width at ${width}`);
+    assert.equal(Math.round(focused.center.width), width - expectedDiagram - 300, `diagram focus model width at ${width}`);
+    assert(focused.toolbar.x >= focused.center.x, `diagram focus toolbar left bound at ${width}`);
+    assert(focused.toolbar.x + focused.toolbar.width <= focused.center.x + focused.center.width, `diagram focus toolbar right bound at ${width}`);
+    assert(focused.pageOverflow <= 1, `diagram focus page overflow at ${width}`);
+    if (width === 1920) await assertDiagramCentered("diagram focus desktop");
   }
 
   await page.getByRole("button", { name: "专注模型" }).click();
@@ -95,6 +138,7 @@ try {
   await page.goBack();
   await page.waitForFunction(() => Math.round(document.querySelector(".node-knowledge")?.getBoundingClientRect().width) === 380);
   assert.equal(Math.round((await layout()).left.width), 440, "returning to node restores balanced layout");
+  assert(await page.getByRole("button", { name: "开启阴影" }).isVisible(), "returning to a node restores shadows-off default");
 
   await page.getByRole("button", { name: "专注模型" }).click();
   assert.equal(Math.round((await layout()).right.width), 300, "preset still works within a node visit");
@@ -131,6 +175,7 @@ try {
     assert(value.center.width > 400, `tablet model width at ${width}`);
     await page.getByRole("button", { name: "查看构造剖面图" }).click();
     assert(await page.locator(".node-diagram").isVisible(), `tablet diagram opens at ${width}`);
+    await assertDiagramCentered(`tablet ${width}`);
     await page.keyboard.press("Escape");
     assert(!(await page.locator(".node-diagram").isVisible()), `tablet diagram closes at ${width}`);
     assert(value.pageOverflow <= 1, `page overflow at ${width}`);
@@ -141,6 +186,7 @@ try {
   for (const name of ["图纸", "3D 模型", "构件知识"]) {
     await page.getByRole("tab", { name }).click();
     assert.equal(await page.getByRole("tab", { name }).getAttribute("aria-selected"), "true");
+    if (name === "图纸") await assertDiagramCentered("mobile");
   }
   const mobile = await layout();
   if (process.env.LAYOUT_DEBUG_CAMERA) console.log("mobile layout", mobile);

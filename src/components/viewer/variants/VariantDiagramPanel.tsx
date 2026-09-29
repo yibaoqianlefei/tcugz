@@ -1,4 +1,5 @@
 import type { NodeModelVariant, VariantSelection } from "./variantTypes";
+import CenteredDiagramImage from "../CenteredDiagramImage";
 
 /* ═══════════════════════════════════════════════════════════════
    VariantDiagramPanel — left column for multi-variant nodes.
@@ -23,7 +24,7 @@ export default function VariantDiagramPanel({
       : null;
 
   return (
-    <div className="flex flex-col bg-canvas border-r border-hairline overflow-hidden min-h-0">
+    <div className="flex h-full flex-col bg-canvas border-r border-hairline overflow-hidden min-h-0">
       {/* ── Header ── */}
       <div className="flex-shrink-0 px-5 py-4 border-b border-hairline">
         <div className="flex items-center justify-between">
@@ -43,14 +44,10 @@ export default function VariantDiagramPanel({
       </div>
 
       {/* ── Main diagram area ── */}
-      <div className="flex-1 flex items-center justify-center p-4 min-h-0 overflow-y-auto">
+      <div className={`flex flex-1 min-h-0 items-center justify-center p-4 ${selectedVariant?.diagram ? "overflow-hidden" : "overflow-y-auto"}`}>
         {selectedVariant ? (
           selectedVariant.diagram ? (
-            <img
-              src={selectedVariant.diagram}
-              alt={`方案 ${selectedVariant.label} 剖面图`}
-              className="max-w-full max-h-full object-contain rounded-xl"
-            />
+            <CenteredDiagramImage src={selectedVariant.diagram} alt={`方案 ${selectedVariant.label} 剖面图`} />
           ) : (
             <div className="flex flex-col items-center gap-3 text-center max-w-[240px]">
               <div className="w-16 h-16 rounded-2xl bg-surface-card flex items-center justify-center">
