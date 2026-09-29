@@ -185,20 +185,43 @@ export default function TextbookPage() {
     <div className="min-h-screen bg-canvas flex flex-col">
       <main className="flex-1 max-w-7xl mx-auto w-full px-6 md:px-10 py-7">
         {/* ── Breadcrumb ── */}
-        <nav className="mb-5 text-sm text-muted">
-          <Link to="/" className="hover:text-primary transition-colors">首页</Link>
-          <span className="mx-1.5">›</span>
-          <span className="text-muted">构造基础</span>
-          <span className="mx-1.5">›</span>
-          <Link to={`/textbook/${mod.id}`} className="hover:text-primary transition-colors">
-            {mod.title}
-          </Link>
-          {!isModule && (
-            <>
-              <span className="mx-1.5">›</span>
-              <span className="text-muted">{displayTitle}</span>
-            </>
-          )}
+        {/* 上级板块名按模块实际归属推导，而非写死：「绪论」在首页菜单中
+            是独立顶级项，不属于「构造基础」（见 src/data/homeMenu.ts 对
+            introduction 的过滤）。同时按标签去重，避免「绪论 › 绪论」
+            这类同级重复（该模块与同名章节共用 id）。 */}
+        <nav aria-label="面包屑" className="mb-5 text-sm text-muted">
+          {(() => {
+            const parentLabel = modId === "introduction" ? "绪论" : "构造基础";
+            // 若上级标签与模块名相同，则合并为一项，只保留当前页标记
+            const showModule = parentLabel !== mod.title;
+            return (
+              <>
+                <Link to="/" className="hover:text-primary transition-colors">首页</Link>
+                <span className="mx-1.5" aria-hidden="true">›</span>
+                {!showModule ? (
+                  <span className="text-ink" aria-current="page">{parentLabel}</span>
+                ) : (
+                  <>
+                    <span className="text-muted">{parentLabel}</span>
+                    <span className="mx-1.5" aria-hidden="true">›</span>
+                    {isModule ? (
+                      <span className="text-ink" aria-current="page">{mod.title}</span>
+                    ) : (
+                      <Link to={`/textbook/${mod.id}`} className="hover:text-primary transition-colors">
+                        {mod.title}
+                      </Link>
+                    )}
+                    {!isModule && (
+                      <>
+                        <span className="mx-1.5" aria-hidden="true">›</span>
+                        <span className="text-ink" aria-current="page">{displayTitle}</span>
+                      </>
+                    )}
+                  </>
+                )}
+              </>
+            );
+          })()}
         </nav>
 
         {/* ── Hero ── */}
