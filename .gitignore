@@ -25,3 +25,6 @@ presentation/
 *.njsproj
 *.sln
 *.sw?
+
+# 提交信息临时文件
+.git-commit-msg.txt

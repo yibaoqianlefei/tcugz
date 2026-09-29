@@ -20,7 +20,9 @@
   --color-body-strong: #252523;
   --color-body: #3d3d3a;
   --color-muted: #625f59;
-  --color-muted-soft: #77736c;
+  /* muted-soft 需在 canvas(#faf9f6) 上达到 4.5:1（WCAG 2.2 SC 1.4.3 正文门槛）。
+     原值 #77736c 实测 4.48:1，差 0.02 未达标；#74706a 为最小改动达标值（4.67:1）。 */
+  --color-muted-soft: #74706a;
 
   /* ── Borders (hairlines) ── */
   --color-hairline: #ded9d0;

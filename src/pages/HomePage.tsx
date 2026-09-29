@@ -132,12 +132,12 @@ function MenuContent({
                     ${isExpanded ? "bg-primary/8 ring-1 ring-primary/20" : ""}`}
                 >
                   <item.icon size={19} strokeWidth={1.6}
-                    className={`flex-shrink-0 transition-colors duration-300 ${isExpanded ? "text-primary" : "text-muted-soft group-hover:text-primary"}`} />
-                  <span className={`text-[18px] font-medium transition-colors duration-300 ${isExpanded ? "text-primary" : "text-muted group-hover:text-primary"}`}>
+                    className={`flex-shrink-0 transition-colors duration-300 ${isExpanded ? "text-primary-active" : "text-muted-soft group-hover:text-primary-active"}`} />
+                  <span className={`text-[18px] font-medium transition-colors duration-300 ${isExpanded ? "text-ink" : "text-muted group-hover:text-ink"}`}>
                     {item.label}
                   </span>
                   <ChevronRight size={18} strokeWidth={1.5}
-                    className={`ml-auto transition-all duration-300 ${isExpanded ? "text-primary rotate-90" : "text-muted-soft group-hover:text-primary"}`} />
+                    className={`ml-auto transition-all duration-300 ${isExpanded ? "text-primary-active rotate-90" : "text-muted-soft group-hover:text-primary-active"}`} />
                 </button>
               ) : item.to ? (
                 <Link to={item.to}
@@ -146,8 +146,8 @@ function MenuContent({
                     hover:bg-primary/12 hover:shadow-md hover:-translate-y-[1px] active:scale-[0.98] cursor-pointer group text-left"
                 >
                   <item.icon size={19} strokeWidth={1.6}
-                    className="flex-shrink-0 transition-colors duration-300 text-muted-soft group-hover:text-primary" />
-                  <span className="text-[18px] font-medium transition-colors duration-300 text-muted group-hover:text-primary">
+                    className="flex-shrink-0 transition-colors duration-300 text-muted-soft group-hover:text-primary-active" />
+                  <span className="text-[18px] font-medium transition-colors duration-300 text-muted group-hover:text-ink">
                     {item.label}
                   </span>
                 </Link>
@@ -168,14 +168,14 @@ function MenuContent({
           {isLoggedIn ? (
             <>
               <div className="w-5 h-5 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0">
-                <span className="text-[10px] text-primary font-semibold">{userName[0]}</span>
+                <span className="text-[10px] text-ink font-semibold">{userName[0]}</span>
               </div>
-              <span className="text-[18px] font-medium text-muted group-hover:text-primary transition-colors">
+              <span className="text-[18px] font-medium text-muted group-hover:text-ink transition-colors">
                 {userName}
               </span>
               <button
                 onClick={(e) => { e.stopPropagation(); logout(); }}
-                className="ml-auto text-muted-soft hover:text-primary transition-colors p-1"
+                className="ml-auto text-muted-soft hover:text-primary-active transition-colors p-1"
                 title="退出登录"
               >
                 <LogOut size={16} strokeWidth={1.5} />
@@ -184,8 +184,8 @@ function MenuContent({
           ) : (
             <>
               <LogIn size={20} strokeWidth={1.5}
-                className="flex-shrink-0 transition-colors duration-300 text-muted-soft group-hover:text-primary" />
-              <span className="text-[18px] font-medium transition-colors duration-300 text-muted group-hover:text-primary">
+                className="flex-shrink-0 transition-colors duration-300 text-muted-soft group-hover:text-primary-active" />
+              <span className="text-[18px] font-medium transition-colors duration-300 text-muted group-hover:text-ink">
                 用户登录
               </span>
             </>
@@ -267,11 +267,11 @@ function SubMenuPanel({
                   className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-[8px]
                     text-left transition-all duration-200 cursor-pointer
                     ${isActive
-                      ? "bg-primary/8 text-primary"
-                      : "hover:bg-primary/5 text-muted hover:text-primary"
+                      ? "bg-primary/8 text-ink"
+                      : "hover:bg-primary/5 text-muted hover:text-ink"
                     }`}
                 >
-                  <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 transition-colors duration-200 ${isActive ? "bg-primary" : "bg-muted-soft/40"}`} />
+                  <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 transition-colors duration-200 ${isActive ? "bg-primary-active" : "bg-muted-soft/40"}`} />
                   <span className="text-base font-medium truncate">
                     {mod.label}
                   </span>
@@ -281,7 +281,7 @@ function SubMenuPanel({
                         {mod.sections!.length}
                       </span>
                       <ChevronRight size={16} strokeWidth={1.5}
-                        className={`flex-shrink-0 transition-all duration-200 ${isActive ? "text-primary rotate-90" : "text-muted-soft"}`} />
+                        className={`flex-shrink-0 transition-all duration-200 ${isActive ? "text-primary-active rotate-90" : "text-muted-soft"}`} />
                     </>
                   )}
                 </button>
@@ -310,7 +310,7 @@ function SubMenuPanel({
                             }}
                             className="w-full flex items-start gap-2 px-2 py-1.5 rounded-[6px]
                               text-left text-sm text-muted leading-snug
-                              hover:bg-primary/8 hover:text-primary
+                              hover:bg-primary/8 hover:text-ink
                               transition-all duration-200 cursor-pointer"
                           >
                             <span className="w-1 h-1 rounded-full bg-muted-soft/30 flex-shrink-0 mt-[9px]" />
