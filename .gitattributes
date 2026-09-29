@@ -1,0 +1,21 @@
+# 统一换行符：仓库内一律存 LF，避免 Windows 工作区出现 LF/CRLF 混用与告警
+* text=auto eol=lf
+
+# 显式声明二进制资产，防止被当作文本做换行转换而损坏
+*.glb   binary
+*.gltf  binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+*.gif   binary
+*.ico   binary
+*.woff  binary
+*.woff2 binary
+
+# 锁文件与快照：不参与 diff 统计与语言识别
+package-lock.json  -diff linguist-generated
+pnpm-lock.yaml     -diff linguist-generated
+
+# 审计产出的截图不参与语言统计
+audit-output/**    linguist-generated

@@ -1,12 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(rm -f \"d:\\\\vscode project\\\\建筑构造交互教材\\\\building-node\\\\screenshot-*.png\" 2>&1)",
-      "Bash(node -e ' *)",
-      "Bash(cd \"d:\\\\\\\\vscode project\\\\\\\\建筑构造交互教材\")"
+      "Bash(node -e ' *)"
     ],
     "additionalDirectories": [
-      "d:\\vscode project\\建筑构造交互教材\\building-node"
+      "d:\\vscode project\\建筑构造交互教材"
     ]
   }
 }
