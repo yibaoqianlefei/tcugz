@@ -4,37 +4,37 @@ import CalloutBlock from "./CalloutBlock";
 
 export const markdownComponents = {
   h1: ({ children, ...props }: ComponentPropsWithoutRef<"h1">) => (
-    <h1 className="text-3xl font-serif font-normal text-ink mt-0 mb-4" {...props}>
+    <h1 className="text-2xl font-medium text-ink mt-0 mb-4" {...props}>
       {children}
     </h1>
   ),
   h2: ({ children, ...props }: ComponentPropsWithoutRef<"h2">) => (
-    <h2 className="text-xl font-serif font-normal text-ink mt-10 mb-4 border-l-2 border-primary pl-4" {...props}>
+    <h2 className="text-lg font-medium text-ink mt-8 mb-3 border-l-2 border-primary pl-3" {...props}>
       {children}
     </h2>
   ),
   h3: ({ children, ...props }: ComponentPropsWithoutRef<"h3">) => (
-    <h3 className="text-base font-medium text-body-strong mt-6 mb-2" {...props}>
+    <h3 className="text-base font-medium text-body-strong mt-5 mb-2" {...props}>
       {children}
     </h3>
   ),
   p: ({ children, ...props }: ComponentPropsWithoutRef<"p">) => (
-    <p className="text-base text-body leading-[1.8] mb-4" {...props}>
+    <p className="text-[15px] text-body leading-[1.75] mb-3" {...props}>
       {children}
     </p>
   ),
   ul: ({ children, ...props }: ComponentPropsWithoutRef<"ul">) => (
-    <ul className="list-disc pl-6 mb-4 space-y-1.5" {...props}>
+    <ul className="list-disc pl-6 mb-3 space-y-1" {...props}>
       {children}
     </ul>
   ),
   ol: ({ children, ...props }: ComponentPropsWithoutRef<"ol">) => (
-    <ol className="list-decimal pl-6 mb-4 space-y-1.5" {...props}>
+    <ol className="list-decimal pl-6 mb-3 space-y-1" {...props}>
       {children}
     </ol>
   ),
   li: ({ children, ...props }: ComponentPropsWithoutRef<"li">) => (
-    <li className="text-base text-body leading-relaxed" {...props}>
+    <li className="text-[15px] text-body leading-relaxed" {...props}>
       {children}
     </li>
   ),

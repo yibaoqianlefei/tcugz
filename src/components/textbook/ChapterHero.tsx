@@ -7,13 +7,13 @@ interface Props {
 
 export default function ChapterHero({ moduleTitle, chapterTitle, description, learningGoals }: Props) {
   return (
-    <header className="mb-8">
-      <p className="text-xs text-muted-soft uppercase tracking-wider mb-2">{moduleTitle}</p>
-      <h1 className="text-3xl font-serif font-normal text-ink tracking-tight">
+    <header className="mb-6 pb-5 border-b border-hairline">
+      <p className="ui-eyebrow mb-2">{moduleTitle}</p>
+      <h1 className="ui-page-heading">
         {chapterTitle}
       </h1>
       {description && (
-        <p className="mt-2 text-base text-muted leading-relaxed max-w-[720px]">
+        <p className="ui-supporting-text mt-2 max-w-[720px]">
           {description}
         </p>
       )}

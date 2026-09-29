@@ -169,6 +169,10 @@ export default function TextbookPage() {
   /* ── Markdown content ── */
   const fileKey = isModule ? `${modId}/index` : `${modId}/${chapId}`;
   const mdContent = MD_MAP[fileKey] ?? "";
+  // The page hero already names the chapter; avoid repeating the same H1 in the article.
+  const articleContent = mdContent.replace(/^#\s+([^\r\n]+)\r?\n/, (heading, title: string) =>
+    title.trim() === displayTitle ? "" : heading,
+  );
 
   /* ── Related nodes ── */
   const sectionNodeIds: string[] = section?.nodeIds ?? [];
@@ -179,9 +183,9 @@ export default function TextbookPage() {
 
   return (
     <div className="min-h-screen bg-canvas flex flex-col">
-      <main className="flex-1 max-w-7xl mx-auto w-full px-6 md:px-10 py-8">
+      <main className="flex-1 max-w-7xl mx-auto w-full px-6 md:px-10 py-7">
         {/* ── Breadcrumb ── */}
-        <nav className="mb-6 text-sm text-muted-soft">
+        <nav className="mb-5 text-sm text-muted">
           <Link to="/" className="hover:text-primary transition-colors">首页</Link>
           <span className="mx-1.5">›</span>
           <span className="text-muted">构造基础</span>
@@ -207,7 +211,7 @@ export default function TextbookPage() {
           />
         </motion.div>
 
-        <div className="flex gap-10 mt-8">
+        <div className="flex gap-8 mt-6">
           {/* ── Left: Article ── */}
           <article className="flex-1 min-w-0 max-w-[760px]">
             {isModule ? (
@@ -216,7 +220,7 @@ export default function TextbookPage() {
                 {mdContent ? (
                   <div className="prose prose-stone max-w-none">
                     <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
-                      {mdContent}
+                      {articleContent}
                     </ReactMarkdown>
                   </div>
                 ) : (
@@ -225,8 +229,8 @@ export default function TextbookPage() {
                   </div>
                 )}
                 {sections.length > 0 && (
-                  <section className="mt-10 pt-8 border-t border-hairline">
-                    <h2 className="text-xl font-serif font-normal text-ink mb-4">章节列表</h2>
+                  <section className="mt-8 pt-6 border-t border-hairline">
+                    <h2 className="ui-section-heading mb-4">章节列表</h2>
                     <div className="grid gap-3">
                       {sections.map((sec) => (
                         <Link
@@ -258,7 +262,7 @@ export default function TextbookPage() {
                 {mdContent ? (
                   <div className="prose prose-stone max-w-none">
                     <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
-                      {mdContent}
+                      {articleContent}
                     </ReactMarkdown>
                   </div>
                 ) : (
@@ -278,7 +282,7 @@ export default function TextbookPage() {
           </article>
 
           {/* ── Right: Sidebar ── */}
-          <aside className="hidden lg:block w-[320px] flex-shrink-0">
+          <aside className="hidden lg:block w-[288px] flex-shrink-0">
             <div className="sticky top-24">
               <RelatedModelsPanel nodeIds={relatedNodeIds} />
               {!isModule && mdContent && <ChapterTOC markdown={mdContent} />}

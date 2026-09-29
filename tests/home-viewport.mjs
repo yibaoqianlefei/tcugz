@@ -24,8 +24,8 @@ try {
     assert(overflow <= 1, `no horizontal page overflow at ${width}px`);
 
     if (width >= 1200) {
-      assert(initialCanvas - openedCanvas > 250 && initialCanvas - openedCanvas < 270,
-        `desktop submenu uses its 260px panel at ${width}px`);
+      assert(initialCanvas - openedCanvas > 234 && initialCanvas - openedCanvas < 254,
+        `desktop submenu uses its 244px panel at ${width}px`);
       await page.locator("nav button:visible").filter({ hasText: "绪论" }).first().click();
     } else {
       assert(Math.abs(initialCanvas - openedCanvas) <= 1,

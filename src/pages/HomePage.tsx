@@ -100,20 +100,20 @@ function MenuContent({
       {/* ── Title ── */}
       <div className="flex-shrink-0">
         <motion.h1
-          className="text-[48px] font-normal font-serif tracking-tight text-ink"
+          className="text-[38px] font-medium font-serif tracking-tight text-ink leading-tight"
           variants={titleContainerVariants}>
           {"建筑构造".split("").map((ch, i) => (
             <motion.span key={i} variants={charVariants} className="inline-block">{ch}</motion.span>
           ))}
         </motion.h1>
         <motion.div
-          className="w-16 h-[2px] bg-primary rounded-full mt-6"
+          className="w-12 h-[2px] bg-primary rounded-full mt-4"
           variants={lineVariants} />
       </div>
 
       {/* ── Navigation: scrollable menu area ── */}
       <nav
-        className="flex-1 flex flex-col gap-3 pt-8 overflow-y-auto [&::-webkit-scrollbar]:hidden"
+        className="flex-1 flex flex-col gap-1.5 pt-7 overflow-y-auto [&::-webkit-scrollbar]:hidden"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
       >
         {menuItems.map((item) => {
@@ -131,9 +131,9 @@ function MenuContent({
                     hover:bg-primary/12 hover:shadow-md hover:-translate-y-[1px] active:scale-[0.98]
                     ${isExpanded ? "bg-primary/8 ring-1 ring-primary/20" : ""}`}
                 >
-                  <item.icon size={22} strokeWidth={1.5}
+                  <item.icon size={19} strokeWidth={1.6}
                     className={`flex-shrink-0 transition-colors duration-300 ${isExpanded ? "text-primary" : "text-muted-soft group-hover:text-primary"}`} />
-                  <span className={`text-[22px] font-medium transition-colors duration-300 ${isExpanded ? "text-primary" : "text-muted group-hover:text-primary"}`}>
+                  <span className={`text-[18px] font-medium transition-colors duration-300 ${isExpanded ? "text-primary" : "text-muted group-hover:text-primary"}`}>
                     {item.label}
                   </span>
                   <ChevronRight size={18} strokeWidth={1.5}
@@ -145,9 +145,9 @@ function MenuContent({
                     transition-all duration-300 ease-out
                     hover:bg-primary/12 hover:shadow-md hover:-translate-y-[1px] active:scale-[0.98] cursor-pointer group text-left"
                 >
-                  <item.icon size={22} strokeWidth={1.5}
+                  <item.icon size={19} strokeWidth={1.6}
                     className="flex-shrink-0 transition-colors duration-300 text-muted-soft group-hover:text-primary" />
-                  <span className="text-[22px] font-medium transition-colors duration-300 text-muted group-hover:text-primary">
+                  <span className="text-[18px] font-medium transition-colors duration-300 text-muted group-hover:text-primary">
                     {item.label}
                   </span>
                 </Link>
@@ -170,7 +170,7 @@ function MenuContent({
               <div className="w-5 h-5 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0">
                 <span className="text-[10px] text-primary font-semibold">{userName[0]}</span>
               </div>
-              <span className="text-[22px] font-medium text-muted group-hover:text-primary transition-colors">
+              <span className="text-[18px] font-medium text-muted group-hover:text-primary transition-colors">
                 {userName}
               </span>
               <button
@@ -185,7 +185,7 @@ function MenuContent({
             <>
               <LogIn size={20} strokeWidth={1.5}
                 className="flex-shrink-0 transition-colors duration-300 text-muted-soft group-hover:text-primary" />
-              <span className="text-[22px] font-medium transition-colors duration-300 text-muted group-hover:text-primary">
+              <span className="text-[18px] font-medium transition-colors duration-300 text-muted group-hover:text-primary">
                 用户登录
               </span>
             </>
@@ -194,18 +194,18 @@ function MenuContent({
       </motion.div>
 
       {/* ── Stats (fixed bottom) ── */}
-      <motion.div variants={itemVariants} className="flex-shrink-0 border-t border-hairline pt-5">
+      <motion.div variants={itemVariants} className="flex-shrink-0 border-t border-hairline pt-4">
         <div className="flex gap-3">
           <StatCard value={totalNodes} label="构造节点" />
           <StatCard value={categories.length} label="分类" />
           <StatCard value="3D" label="交互视图" />
         </div>
-        <p className="text-xs text-muted-soft mt-3 leading-relaxed">
+        <p className="text-xs text-muted mt-2 leading-relaxed">
           三维可视化 · 交互式学习
         </p>
       </motion.div>
 
-      <motion.p className="text-xs text-muted-soft tracking-wide flex-shrink-0 mt-4" variants={itemVariants}>
+      <motion.p className="text-xs text-muted-soft tracking-wide flex-shrink-0 mt-2" variants={itemVariants}>
         探索建筑构造的空间逻辑
       </motion.p>
 
@@ -237,7 +237,7 @@ function SubMenuPanel({
       {/* Modules + Sections (scrollable, hidden scrollbar) */}
       <div
         className="flex-1 overflow-y-auto px-4 [&::-webkit-scrollbar]:hidden"
-        style={{ paddingTop: compact ? "8px" : "194px", scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
+        style={{ paddingTop: compact ? "8px" : "164px", scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
       >
         <div className="space-y-0.5">
           {children.map((mod, mi) => {
@@ -264,7 +264,7 @@ function SubMenuPanel({
                       setActiveModuleId(isActive ? null : mod.id);
                     }
                   }}
-                  className={`w-full flex items-center gap-2.5 px-3 py-3 rounded-[8px]
+                  className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-[8px]
                     text-left transition-all duration-200 cursor-pointer
                     ${isActive
                       ? "bg-primary/8 text-primary"
@@ -272,7 +272,7 @@ function SubMenuPanel({
                     }`}
                 >
                   <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 transition-colors duration-200 ${isActive ? "bg-primary" : "bg-muted-soft/40"}`} />
-                  <span className="text-lg font-medium truncate">
+                  <span className="text-base font-medium truncate">
                     {mod.label}
                   </span>
                   {hasSections && (
@@ -309,7 +309,7 @@ function SubMenuPanel({
                               }
                             }}
                             className="w-full flex items-start gap-2 px-2 py-1.5 rounded-[6px]
-                              text-left text-lg text-muted leading-snug
+                              text-left text-sm text-muted leading-snug
                               hover:bg-primary/8 hover:text-primary
                               transition-all duration-200 cursor-pointer"
                           >
@@ -452,9 +452,9 @@ function LoginModal({
 /* ── Small stat card for sidebar ── */
 function StatCard({ value, label }: { value: number | string; label: string }) {
   return (
-    <div className="flex-1 bg-surface-card rounded-lg border border-hairline px-3 py-2 text-center">
-      <div className="text-lg font-semibold text-primary tabular-nums">{value}</div>
-      <div className="text-[11px] text-muted-soft">{label}</div>
+    <div className="flex-1 bg-surface-soft rounded-lg border border-hairline px-2 py-1.5 text-center">
+      <div className="text-base font-semibold text-primary tabular-nums">{value}</div>
+      <div className="text-[11px] text-muted">{label}</div>
     </div>
   );
 }
@@ -534,7 +534,7 @@ export default function HomePage() {
         className="hidden md:flex flex-shrink-0 h-screen overflow-hidden bg-canvas"
       >
         {/* On tablets the submenu replaces the main menu, preserving 3D width. */}
-        <div className="w-[clamp(20rem,30vw,24rem)] flex-shrink-0 flex flex-col h-full px-10 bg-canvas">
+        <div className="w-[clamp(19rem,26vw,21rem)] flex-shrink-0 flex flex-col h-full px-8 bg-canvas">
           <div className={`h-full min-h-0 ${expandedId ? "hidden min-[1200px]:block" : ""}`}>
             <MenuContent expandedId={expandedId} setExpandedId={setExpandedId} />
           </div>
@@ -550,13 +550,13 @@ export default function HomePage() {
           {expandedId && (
             <motion.div
               initial={{ width: 0, opacity: 0 }}
-              animate={{ width: 260, opacity: 1 }}
+              animate={{ width: 244, opacity: 1 }}
               exit={{ width: 0, opacity: 0 }}
               transition={{ duration: 0.28, ease: "easeOut" }}
               className="hidden min-[1200px]:block overflow-hidden bg-canvas border-r border-hairline flex-shrink-0"
               style={{ minWidth: 0 }}
             >
-              <div style={{ width: 260 }} className="h-full">
+              <div style={{ width: 244 }} className="h-full">
                 <SubMenuPanel expandedId={expandedId} />
               </div>
             </motion.div>

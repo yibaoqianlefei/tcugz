@@ -10,15 +10,15 @@ export default function NodeDiagramPanel({ diagramImage, subtitle }: { diagramIm
   return (
     <div className="node-diagram flex flex-col min-w-0 min-h-0 bg-canvas border-r border-hairline overflow-hidden">
       {/* Header */}
-      <div className="flex-shrink-0 px-6 py-4 border-b border-hairline">
+      <div className="flex-shrink-0 px-4 py-3 border-b border-hairline">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-sm font-medium text-ink">构造剖面图</h3>
-            <p className="text-[11px] text-muted-soft mt-0.5">
+            <p className="text-xs text-muted mt-0.5 leading-snug">
               {subtitle ?? "由上至下：保护层 → 结构层"}
             </p>
           </div>
-          <span className="text-[10px] text-muted-soft bg-surface-card px-2 py-0.5 rounded-full">
+          <span className="text-xs text-muted bg-surface-soft px-2 py-0.5 rounded-full whitespace-nowrap ml-2">
             主认知视图
           </span>
         </div>
@@ -52,8 +52,8 @@ export default function NodeDiagramPanel({ diagramImage, subtitle }: { diagramIm
       </div>
 
       {/* Footer */}
-      <div className="flex-shrink-0 px-6 py-3 border-t border-hairline bg-surface-soft/50">
-        <p className="text-[10px] text-muted-soft text-center">
+      <div className="flex-shrink-0 px-4 py-2 border-t border-hairline bg-surface-soft/50">
+        <p className="text-xs text-muted text-center">
           点击 3D 构件或右侧面板查看构造详情
         </p>
       </div>

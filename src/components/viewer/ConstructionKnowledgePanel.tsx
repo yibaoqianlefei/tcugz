@@ -152,19 +152,19 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
   return (
     <div className="node-knowledge flex flex-col min-w-0 min-h-0 bg-canvas border-l border-hairline overflow-y-auto">
       {/* ── Node Info Header ── */}
-      <div className="flex-shrink-0 px-5 py-5 border-b border-hairline">
+      <div className="flex-shrink-0 px-4 py-4 border-b border-hairline">
         <div className="flex items-center gap-2 mb-2">
-          <span className="w-1.5 h-5 bg-primary rounded-full flex-shrink-0" />
-          <h2 className="text-lg font-normal font-serif text-ink tracking-tight">
+          <span className="w-1 h-5 bg-primary rounded-full flex-shrink-0" />
+          <h2 className="text-base font-medium text-ink tracking-tight leading-snug">
             {node?.title ?? "未知节点"}
           </h2>
         </div>
         {node?.description && (
-          <p className="text-sm text-muted leading-relaxed">{node.description}</p>
+          <p className="text-[13px] text-muted leading-[1.6]">{node.description}</p>
         )}
         {node?.category && (
-          <div className="mt-3">
-            <span className="text-[10px] font-medium text-muted-soft uppercase tracking-wider bg-surface-card px-2 py-0.5 rounded-full">
+          <div className="mt-2.5">
+            <span className="text-xs font-medium text-muted bg-surface-soft px-2 py-0.5 rounded-full">
               {node.category}
             </span>
           </div>
@@ -177,7 +177,7 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
          Multi-variant knowledge detail (Phase 4)
          ═══════════════════════════════════════════════════════ */}
       {isMultiModel && (
-        <div className="flex-1 px-5 py-5 space-y-5">
+        <div className="flex-1 px-4 py-4 space-y-4">
           {activeVariant && (
             <section className="space-y-4" aria-label="当前方案概览">
               <div>
@@ -413,11 +413,11 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
          Normal node accordion (existing behavior)
          ═══════════════════════════════════════════════════════ */}
       {!isMultiModel && (
-        <div className="flex-1 px-5 py-5">
-          <h3 className="text-xs font-medium text-muted uppercase tracking-wider mb-1">
+        <div className="flex-1 px-4 py-4">
+          <h3 className="text-sm font-medium text-ink mb-0.5">
             构件列表
           </h3>
-          <p className="text-[10px] text-muted-soft mb-3">
+          <p className="text-xs text-muted mb-3">
             点击构件展开查看详情
           </p>
 
@@ -426,7 +426,7 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
               暂无构件数据
             </p>
           ) : (
-            <motion.ul layout={!isResizing} className="space-y-2.5">
+            <motion.ul layout={!isResizing} className="space-y-2">
               {layers.map((layer) => {
                 const isExpanded = expandedId === layer.objectName;
                 const info = config?.getLayerInfo(layer.objectName);
@@ -435,10 +435,10 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
                   <motion.li key={layer.objectName} layout={!isResizing}>
                     <button
                       onClick={() => handleToggle(layer.objectName)}
-                      className={`w-full text-left p-3 rounded-xl border transition-colors duration-200
+                      className={`w-full text-left px-3 py-2.5 rounded-lg border transition-colors duration-200
                         ${isExpanded
-                          ? "bg-primary/5 border-primary/30 shadow-sm rounded-b-none border-b-0"
-                          : "bg-surface-card border-hairline hover:border-primary/20 hover:bg-surface-cream-strong/50"
+                          ? "bg-primary/5 border-primary/35 rounded-b-none border-b-0"
+                          : "bg-white border-hairline hover:border-primary/35 hover:bg-surface-soft/60"
                         }`}
                     >
                       <div className="flex items-center gap-2">
@@ -449,7 +449,7 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
                           {layer.objectName}
                         </span>
                       </div>
-                      <div className="ml-4 flex gap-3 text-[10px] text-muted-soft mt-1">
+                      <div className="ml-4 flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-muted mt-0.5">
                         <span>{layer.thickness}</span>
                         <span>{layer.material}</span>
                       </div>
@@ -464,7 +464,7 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
                           transition={{ duration: 0.3, ease: "easeOut" }}
                           className="overflow-hidden"
                         >
-                          <div className="bg-primary/5 border border-primary/30 border-t-0 rounded-b-xl px-4 pb-4 pt-3 space-y-3">
+                          <div className="bg-primary/5 border border-primary/35 border-t-0 rounded-b-lg px-3 pb-3 pt-2 space-y-2.5">
                             <DetailField label="厚度" value={info.thickness} />
                             <DetailField label="材料" value={info.material} />
                             <DetailField label="说明" value={info.description} />
@@ -489,8 +489,8 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
       )}
 
       {/* ── Footer ── */}
-      <div className="flex-shrink-0 px-5 py-3 border-t border-hairline">
-        <p className="text-[10px] text-muted-soft text-center">
+      <div className="flex-shrink-0 px-4 py-2 border-t border-hairline">
+        <p className="text-xs text-muted-soft text-center">
           建筑构造交互系统
         </p>
       </div>
@@ -502,7 +502,7 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
 function DetailField({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <span className="text-[10px] font-medium text-muted-soft uppercase tracking-wider">
+      <span className="text-xs font-medium text-muted">
         {label}
       </span>
       <p className="text-sm text-body mt-0.5 leading-relaxed">{value}</p>

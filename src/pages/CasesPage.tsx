@@ -9,28 +9,27 @@ function CaseCard({ node, index }: { node: (typeof nodesIndex)[0]; index: number
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
-      className="bg-white border border-[#e6dfd8] rounded-lg p-6 shadow-sm
-        hover:shadow-[0_2px_8px_rgba(20,20,19,0.08)] hover:-translate-y-1
-        transition-all duration-300 ease-out
-        relative group"
+      className="ui-resource-card flex h-full flex-col p-4
+        hover:shadow-[0_8px_24px_rgba(20,20,19,0.07)] hover:-translate-y-0.5
+        transition-all duration-200 group"
     >
       {/* Placeholder thumbnail */}
-      <div className="w-full h-28 bg-surface-soft rounded-lg mb-4 flex items-center justify-center overflow-hidden">
-        <Building2 size={48} strokeWidth={1} className="text-muted-soft opacity-30" />
+      <div className="w-full h-28 bg-surface-soft rounded-lg mb-3 flex items-center justify-center overflow-hidden">
+        <Building2 size={38} strokeWidth={1.25} className="text-muted-soft" />
       </div>
 
       {/* Case title */}
-      <h3 className="text-lg font-normal font-serif text-ink tracking-tight">
+      <h3 className="text-base font-medium text-ink leading-snug">
         郓城案例 {node.title}
       </h3>
 
       {/* Description */}
-      <p className="text-sm text-muted mt-1.5 leading-relaxed line-clamp-2">
+      <p className="text-[13px] text-muted mt-1.5 leading-relaxed line-clamp-2">
         {node.description}
       </p>
 
       {/* Red tag */}
-      <span className="absolute bottom-4 right-4 text-[10px] font-medium text-error bg-error/5 px-2 py-0.5 rounded-full">
+      <span className="self-start mt-3 text-xs font-medium text-muted bg-surface-soft px-2 py-1 rounded-full">
         模型开发中
       </span>
     </motion.div>
@@ -44,9 +43,10 @@ export default function CasesPage() {
   return (
     <div className="min-h-screen bg-canvas flex flex-col">
       {/* ── Header ── */}
-      <header className="pt-12 pb-8 md:pt-16 md:pb-10 px-6 text-center">
+      <header className="max-w-6xl mx-auto w-full px-6 md:px-10 pt-9 pb-7 md:pt-12 md:pb-9">
+        <p className="ui-eyebrow mb-2">案例学习</p>
         <motion.h1
-          className="text-3xl md:text-4xl font-normal font-serif text-ink tracking-tight"
+          className="ui-page-heading"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
@@ -54,7 +54,7 @@ export default function CasesPage() {
           案例应用
         </motion.h1>
         <motion.p
-          className="mt-2 text-muted text-base max-w-lg mx-auto"
+          className="ui-supporting-text mt-2 max-w-2xl"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
@@ -64,13 +64,13 @@ export default function CasesPage() {
       </header>
 
       {/* ── Grid ── */}
-      <main className="flex-1 px-6 md:px-10 pb-20 max-w-5xl mx-auto w-full">
+      <main className="flex-1 px-6 md:px-10 pb-16 max-w-6xl mx-auto w-full">
         {caseNodes.length === 0 ? (
           <div className="text-center py-20 text-muted-soft text-sm">
             暂无案例数据
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {caseNodes.map((node, i) => (
               <CaseCard key={node.id} node={node} index={i} />
             ))}
