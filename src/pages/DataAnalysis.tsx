@@ -19,11 +19,16 @@ import { useAnalysisStore } from "../store/analysisStore";
 import { nodesIndex } from "../data/nodesIndex";
 
 /* ── Constants ──────────────────────────────────────────────── */
-const TOTAL_NODES = 3;
+/* 进度分母必须来自真实节点数。原为写死的 3，导致仅访问 3 个节点
+   即显示「学习进度 100%」（真实节点数见 nodesIndex）。 */
+const TOTAL_NODES = nodesIndex.length;
+/* 图表色需与 index.css 的 @theme token 保持同步（Recharts 接收具体色值，
+   无法直接使用 CSS 变量）。改动 token 时请同步此处。 */
 const CHART_COLORS = {
-  primary: "#cc785c",
-  hairline: "#e6dfd8",
-  ink: "#141413",
+  primary: "#cc785c",   // --color-primary
+  hairline: "#ded9d0",  // --color-hairline
+  ink: "#141413",       // --color-ink
+  muted: "#625f59",     // --color-muted
 };
 
 const AI_CATEGORIES = ["构造做法", "材料特性", "空间逻辑", "其他"] as const;
@@ -39,9 +44,10 @@ function categorizeQuestion(text: string): string {
   return "其他";
 }
 const CATEGORY_COLORS: Record<string, string> = {
-  "构造做法": "#cc785c",
-  "材料特性": "#e6dfd8",
-  "空间逻辑": "#6c6a64",
+  "构造做法": CHART_COLORS.primary,
+  "材料特性": CHART_COLORS.hairline,
+  // 原为 #6c6a64（--color-muted 的旧值），已同步为当前 token
+  "空间逻辑": CHART_COLORS.muted,
   "其他": "#d4cfc7",
 };
 
@@ -215,7 +221,7 @@ export default function DataAnalysis() {
           {/* Card 1: 学习进度 — RadialBar */}
           <motion.div
             variants={cardVariants}
-            className="bg-white border border-[#e6dfd8] rounded-lg p-6 flex flex-col min-h-[280px] shadow-sm"
+            className="bg-white border border-hairline rounded-lg p-6 flex flex-col min-h-[280px] shadow-sm"
           >
             <div className="flex items-center gap-2 mb-2">
               <span className="w-1 h-4 bg-primary rounded-full inline-block flex-shrink-0" />
@@ -255,7 +261,7 @@ export default function DataAnalysis() {
             {/* Recent node */}
             {visitedNodes.length > 0 && (
               <div className="flex items-center gap-1.5 text-xs text-muted-soft pt-1">
-                <Circle size={6} fill="#cc785c" stroke="none" className="flex-shrink-0" />
+                <Circle size={6} fill={CHART_COLORS.primary} stroke="none" className="flex-shrink-0" />
                 <span>最近探索：{getNodeTitle(visitedNodes[visitedNodes.length - 1])}</span>
               </div>
             )}
@@ -264,7 +270,7 @@ export default function DataAnalysis() {
           {/* Card 2: 构件热力 — Horizontal BarChart */}
           <motion.div
             variants={cardVariants}
-            className="bg-white border border-[#e6dfd8] rounded-lg p-6 flex flex-col min-h-[280px] shadow-sm"
+            className="bg-white border border-hairline rounded-lg p-6 flex flex-col min-h-[280px] shadow-sm"
           >
             <div className="flex items-center gap-2 mb-2">
               <span className="w-1 h-4 bg-primary rounded-full inline-block flex-shrink-0" />
@@ -287,7 +293,7 @@ export default function DataAnalysis() {
                     <YAxis
                       type="category"
                       dataKey="name"
-                      tick={{ fontSize: 12, fill: "#6c6a64" }}
+                      tick={{ fontSize: 12, fill: CHART_COLORS.muted }}
                       axisLine={false}
                       tickLine={false}
                       width={80}
@@ -311,7 +317,7 @@ export default function DataAnalysis() {
                             <text
                               x={nx + nw + 6}
                               y={ny + 14}
-                              fill="#6c6a64"
+                              fill={CHART_COLORS.muted}
                               fontSize={12}
                               textAnchor="start"
                             >
@@ -343,7 +349,7 @@ export default function DataAnalysis() {
           {/* Card 3: AI 问答画像 — PieChart */}
           <motion.div
             variants={cardVariants}
-            className="bg-white border border-[#e6dfd8] rounded-lg p-6 flex flex-col min-h-[280px] shadow-sm"
+            className="bg-white border border-hairline rounded-lg p-6 flex flex-col min-h-[280px] shadow-sm"
           >
             <div className="flex items-center gap-2 mb-2">
               <span className="w-1 h-4 bg-primary rounded-full inline-block flex-shrink-0" />

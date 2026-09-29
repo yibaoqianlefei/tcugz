@@ -33,7 +33,8 @@ function SceneModelPlaceholder() {
   return (
     <mesh>
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="#e6dfd8" wireframe />
+      {/* 与 --color-surface-cream-strong 同步（原值为该 token 的旧值 #e6dfd8） */}
+      <meshStandardMaterial color="#e8e0d2" wireframe />
     </mesh>
   );
 }
@@ -252,7 +253,9 @@ function MenuBackground({
   return (
     <>
       <RendererSetup showShadows={showShadows} />
-      <color attach="background" args={["#faf9f5"]} />
+      {/* 与 index.css 的 --color-canvas 保持一致（Three.js 无法直接消费 CSS 变量，
+          此值需与 token 手工同步；原值 #faf9f5 是 token 改动前的旧值）。 */}
+      <color attach="background" args={["#faf9f6"]} />
 
       <ambientLight intensity={1.2} color="#ffffff" />
       <ShadowLight showShadows={showShadows} />

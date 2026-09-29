@@ -266,7 +266,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
                 <ErrorBoundary
                   resetKey={`${nodeId}:${isMultiModel ? "multi" : modelSources[0].src}`}
                   fallback={(opts) => (
-                    <div className="flex-1 h-full flex flex-col items-center justify-center bg-[#f5f5f7] gap-2">
+                    <div className="flex-1 h-full flex flex-col items-center justify-center bg-surface-soft gap-2">
                       <p className="text-sm text-muted">3D 模型加载失败</p>
                       <p className="text-xs text-muted-soft">模型资源暂时无法显示</p>
                       <div className="flex gap-3 mt-2">

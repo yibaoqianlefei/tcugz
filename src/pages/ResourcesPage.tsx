@@ -85,10 +85,10 @@ function ResourceCard({ section }: { section: ResourceSection }) {
                       onClick={(e) => { if (!hasUrl) e.preventDefault(); }}
                       className={`flex items-center justify-between gap-2 px-4 py-2.5 rounded-lg
                         min-w-[130px]
-                        border border-[#e6dfd8] bg-white
+                        border border-hairline bg-white
                         transition-all duration-200
                         ${hasUrl
-                          ? "hover:bg-[#efe9de] hover:border-primary/20 cursor-pointer group"
+                          ? "hover:bg-surface-card hover:border-primary/20 cursor-pointer group"
                           : "opacity-40 cursor-not-allowed"
                         }`}
                     >
@@ -107,7 +107,7 @@ function ResourceCard({ section }: { section: ResourceSection }) {
               </div>
 
               {/* ── Footer note ── */}
-              <div className="border-t border-[#e6dfd8] mt-4 pt-3 text-center">
+              <div className="border-t border-hairline mt-4 pt-3 text-center">
                 <p className="text-[11px] text-muted tracking-wide">
                   本站坚持人工甄选 · 持续更新行业资源
                 </p>
