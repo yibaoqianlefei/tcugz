@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>墙体 · 二级目录预览</title>
+  <link rel="stylesheet" href="/previews/wall-v1.css" />
+  <style>
+    .wall-intro{padding:76px 0 62px;border-bottom:1px solid var(--line)}
+    .wall-intro h1{font-size:clamp(54px,6vw,88px);margin:25px 0 20px}
+    .wall-intro p{max-width:680px;color:#58637d;font-size:16px;line-height:1.9;margin:0}
+    .wall-back{display:inline-flex;align-items:center;gap:9px;margin-top:32px;color:var(--accent-dark);font-size:14px;font-weight:700}
+    .wall-back:hover{text-decoration:underline}
+    .wall-section{padding-top:58px}
+    .wall-section .module-card{min-height:218px}
+    .wall-section .module-title{margin-top:47px}
+    .wall-back:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    @media(max-width:760px){.wall-intro{padding:44px 0 42px}.wall-intro h1{font-size:54px}.wall-intro p{font-size:14px}.wall-section{padding-top:42px}.wall-section .module-card{min-height:176px}.wall-section .module-title{margin-top:32px}}
+  </style>
+</head>
+<body>
+  <div class="app wall-page">
+    <button class="mobile-backdrop" id="mobile-backdrop" type="button" aria-label="关闭导航"></button>
+    <aside class="sidebar" id="preview-sidebar">
+      <button class="mobile-nav-close" id="mobile-nav-close" type="button" aria-label="关闭导航"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button>
+      <a class="brand" href="/previews/homepage-v1.html#top" title="返回学习首页"><span class="brand-mark">构</span><span class="brand-copy"><span class="brand-name">建筑构造</span><span class="brand-sub">INTERACTIVE TEXTBOOK</span></span></a>
+      <button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="折叠侧边导航" aria-expanded="true" aria-controls="preview-nav" title="折叠侧边导航"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="3.5" width="19" height="17" rx="2"/><path d="M9 3.5v17"/></svg></button>
+      <div class="nav-label">学习导航 / EXPLORE</div>
+      <nav class="nav" id="preview-nav" aria-label="预览导航">
+        <a href="/previews/homepage-v1.html#top" aria-label="学习首页" title="学习首页"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/></svg><span class="nav-text">学习首页</span></a>
+        <a href="/previews/homepage-v1.html#introduction" aria-label="建筑绪论" title="建筑绪论"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6.5C9.5 4.8 6.7 4.5 3 5v14c3.7-.5 6.5-.2 9 1.5 2.5-1.7 5.3-2 9-1.5V5c-3.7-.5-6.5-.2-9 1.5Z"/><path d="M12 6.5v14"/></svg><span class="nav-text">建筑绪论</span></a>
+        <a href="/previews/homepage-v1.html#modules" aria-label="构造基础" title="构造基础"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 19.5V5a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v15H6a2 2 0 0 0 0 4h14"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/></svg><span class="nav-text">构造基础</span></a>
+        <a class="active" href="#chapters" aria-label="墙体章节" aria-current="page" title="墙体章节"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 4h18v16H3zM3 11h18M11 4v16"/></svg><span class="nav-text">墙体章节</span></a>
+        <a href="/previews/homepage-v1.html#principles" aria-label="构造原理" title="构造原理"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></svg><span class="nav-text">构造原理</span></a>
+        <div class="nav-divider" aria-hidden="true">探索与实践</div>
+        <a href="/#/library" aria-label="节点库" title="节点库"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span class="nav-text">节点库</span></a>
+        <a href="/#/curriculum/cases" aria-label="案例应用" title="案例应用"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg><span class="nav-text">案例应用</span></a>
+        <a href="/#/games" aria-label="作业训练" title="作业训练"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="m14.7 6.3 3 3M4 20l6.3-6.3M8 6l10 10M4 4l4 2-2 4-2-6ZM18 14l2 6-6-2 4-4Z"/></svg><span class="nav-text">作业训练</span></a>
+        <a href="/#/ai-extend" aria-label="AI 拓展" title="AI 拓展"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3ZM19 17l.7 2.3L22 20l-2.3.7L19 23l-.7-2.3L16 20l2.3-.7L19 17Z"/></svg><span class="nav-text">AI 拓展</span></a>
+      </nav>
+      <div class="side-footer"><a href="/previews/homepage-v1.html#modules" title="返回构造基础" aria-label="返回构造基础"><span>↖</span><span class="footer-text">返回构造基础</span></a><small>墙体目录预览 · 仅用于版式确认</small></div>
+    </aside>
+    <main class="main" id="top">
+      <div class="mobile-header"><button class="mobile-menu-toggle" id="mobile-menu-toggle" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="preview-sidebar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><strong>建筑构造</strong><a href="/previews/homepage-v1.html#modules">返回构造基础 ↖</a></div>
+      <header class="topbar"><span class="crumb">建筑构造 / 构造基础 / 墙体</span><div class="top-actions"><a href="/previews/homepage-v1.html#modules">构造基础</a><a href="/#/library">节点库</a><span class="preview-pill">UI 预览 · 墙体目录</span></div></header>
+      <div class="content">
+        <section class="wall-intro" aria-labelledby="wall-heading"><div class="eyebrow">构造基础 · 二级目录</div><h1 id="wall-heading">墙体</h1><p>从作用与类型开始，逐步认识砌体、隔墙和墙体设计要求。选择一个章节，继续探索建筑墙体如何承担结构、围护与空间分隔的任务。</p><a class="wall-back" href="/previews/homepage-v1.html#modules">← 返回构造基础</a></section>
+        <section class="section wall-section" id="chapters" aria-labelledby="chapters-heading">
+          <div class="section-top"><div><span class="mini-label">WALL / 06 CHAPTERS</span><h2 id="chapters-heading">墙体章节</h2></div><p>按照概述、功能、类型、做法与设计要求逐步阅读</p></div>
+          <div class="module-grid">
+            <a class="module-card" href="/#/textbook/wall"><div class="module-meta"><span class="module-index">CHAPTER 01</span><span class="module-status">可阅读</span></div><strong class="module-title">墙体概述</strong><span class="module-desc">建立对墙体功能与基本构造的整体认识</span></a>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">CHAPTER 02</span><span class="module-status">内容建设中</span></div><strong class="module-title">墙体在建筑中的作用</strong><span class="module-desc">理解承重、围护与空间分隔三大功能</span></div>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">CHAPTER 03</span><span class="module-status">内容建设中</span></div><strong class="module-title">墙体的类型</strong><span class="module-desc">按受力、位置与材料认识不同墙体</span></div>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">CHAPTER 04</span><span class="module-status">内容建设中</span></div><strong class="module-title">砌体结构</strong><span class="module-desc">认识砖砌体、砌块墙与构造柱圈梁</span></div>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">CHAPTER 05</span><span class="module-status">内容建设中</span></div><strong class="module-title">隔墙</strong><span class="module-desc">了解非承重隔墙的类型与构造做法</span></div>
+            <a class="module-card" href="/#/textbook/wall/wall-design-requirements"><div class="module-meta"><span class="module-index">CHAPTER 06</span><span class="module-status">可阅读</span></div><strong class="module-title">墙体的设计要求</strong><span class="module-desc">串联结构、保温、防水、隔声与防火要求</span></a>
+          </div>
+          <div class="section-note"><span>墙体概述和设计要求已有正文，其余章节正在建设。</span><a href="/#/textbook/wall/wall-design-requirements">阅读墙体设计要求</a></div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script>
+    const previewApp = document.querySelector('.app');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    sidebarToggle.addEventListener('click', () => {
+      const collapsed = previewApp.classList.toggle('sidebar-collapsed');
+      sidebarToggle.setAttribute('aria-expanded', String(!collapsed));
+      sidebarToggle.setAttribute('aria-label', collapsed ? '展开侧边导航' : '折叠侧边导航');
+      sidebarToggle.title = collapsed ? '展开侧边导航' : '折叠侧边导航';
+    });
+    const sidebar = document.getElementById('preview-sidebar');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileNavClose = document.getElementById('mobile-nav-close');
+    const mobileBackdrop = document.getElementById('mobile-backdrop');
+    const mobileMedia = window.matchMedia('(max-width: 760px)');
+    function setMobileNavOpen(open, returnFocus = false) {
+      previewApp.classList.toggle('mobile-nav-open', open);
+      document.body.classList.toggle('mobile-nav-open', open);
+      mobileMenuToggle.setAttribute('aria-expanded', String(open));
+      mobileMenuToggle.setAttribute('aria-label', open ? '关闭导航' : '打开导航');
+      sidebar.inert = mobileMedia.matches && !open;
+      document.querySelector('.main').inert = mobileMedia.matches && open;
+      if (open) mobileNavClose.focus();
+      else if (returnFocus && mobileMedia.matches) mobileMenuToggle.focus();
+    }
+    mobileMenuToggle.addEventListener('click', () => setMobileNavOpen(true));
+    mobileNavClose.addEventListener('click', () => setMobileNavOpen(false, true));
+    mobileBackdrop.addEventListener('click', () => setMobileNavOpen(false, true));
+    document.getElementById('preview-nav').addEventListener('click', event => {
+      if (mobileMedia.matches && event.target.closest('a')) setMobileNavOpen(false);
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && previewApp.classList.contains('mobile-nav-open')) setMobileNavOpen(false, true);
+    });
+    mobileMedia.addEventListener('change', () => {
+      setMobileNavOpen(false);
+      if (mobileMedia.matches) {
+        previewApp.classList.remove('sidebar-collapsed');
+        sidebarToggle.setAttribute('aria-expanded', 'true');
+        sidebarToggle.setAttribute('aria-label', '折叠侧边导航');
+        sidebarToggle.title = '折叠侧边导航';
+      }
+    });
+    sidebar.inert = mobileMedia.matches;
+  </script>
+</body>
+</html>

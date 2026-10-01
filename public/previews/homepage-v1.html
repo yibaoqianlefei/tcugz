@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>建筑构造 · 首页改版预览 01</title>
+  <style>
+    :root{--paper:#f8f8f5;--white:#fff;--cream:#eff0f5;--ink:#1c2544;--body:#434b63;--muted:#707991;--line:#dce1ed;--accent:#5b6dad;--accent-dark:#43558e;--dark:#2e3d71}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}.app{display:grid;grid-template-columns:252px minmax(0,1fr);min-height:100vh}.sidebar{position:sticky;top:0;height:100vh;background:#f2f3f7;border-right:1px solid var(--line);padding:34px 25px 24px;display:flex;flex-direction:column;z-index:4}.brand{display:flex;align-items:center;gap:11px;padding:4px 4px 26px;border-bottom:1px solid var(--line)}.brand-mark{width:34px;height:34px;border:1.5px solid var(--ink);display:grid;place-items:center;font-size:17px;font-weight:700;letter-spacing:-.16em;padding-right:3px}.brand-name{display:block;font-size:17px;line-height:1.15;font-weight:650;letter-spacing:.02em}.brand-sub{display:block;font-size:10px;color:var(--muted);letter-spacing:.13em;margin-top:6px}.nav-label,.mini-label{font-size:10px;letter-spacing:.19em;font-weight:700;color:#8b94a9}.nav-label{padding:26px 12px 10px}.nav{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;min-height:410px;max-height:690px}.nav a{display:flex;align-items:center;gap:15px;min-height:46px;padding:0 13px;color:#5e6880;font-size:14px;border-radius:9px;transition:.2s}.nav a:hover{background:#e8ecf5;color:var(--ink)}.nav a.active{background:#e2e8f5;color:#263354;font-weight:650}.nav svg{width:17px;height:17px;stroke-width:1.65;flex:none}.nav .tail{margin-left:auto;color:#929bb0;font-size:15px}.side-footer{border-top:1px solid var(--line);padding:20px 10px 1px}.side-footer a{display:flex;align-items:center;gap:12px;color:var(--body);font-size:13px}.side-footer small{display:block;margin-top:14px;color:#9299aa;font-size:11px;line-height:1.5}.main{min-width:0}.topbar{height:76px;padding:0 clamp(30px,5.4vw,100px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.crumb{font-size:12px;color:#818ba2;letter-spacing:.06em}.top-actions{display:flex;align-items:center;gap:28px;font-size:12px;color:#667089}.top-actions a:hover{color:var(--accent-dark)}.preview-pill{padding:7px 11px;border:1px solid #cbd4ec;border-radius:100px;color:#50629d;background:#eef1fa;font-size:10px;letter-spacing:.08em}.content{max-width:1500px;margin:auto;padding:0 clamp(30px,5.4vw,100px) 90px}.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(330px,.9fr);gap:clamp(45px,6vw,110px);align-items:center;min-height:490px;padding:67px 0 69px;border-bottom:1px solid var(--line)}.eyebrow{display:flex;align-items:center;gap:12px;color:var(--accent-dark);font-size:11px;letter-spacing:.2em;font-weight:700}.eyebrow::before{content:"";width:29px;height:1px;background:var(--accent)}h1{font-size:clamp(48px,5vw,82px);line-height:1.22;letter-spacing:-.065em;font-weight:560;margin:25px 0 22px}h1 em{color:var(--accent);font-style:normal}.lead{font-size:15px;line-height:1.95;color:#6b758d;max-width:480px;margin:0}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}.btn{height:45px;min-width:142px;padding:0 19px;display:inline-flex;justify-content:space-between;align-items:center;gap:25px;border-radius:6px;font-size:12px;font-weight:650;transition:.2s}.btn-primary{background:var(--dark);color:white}.btn-primary:hover{background:#40538d;transform:translateY(-2px)}.btn-secondary{border:1px solid #c8d0e0;color:#394765;background:transparent}.btn-secondary:hover{background:white;transform:translateY(-2px)}.hero-right{align-self:stretch;display:flex;align-items:center}.path-card{background:#e9edf7;border:1px solid #d9e0ef;width:100%;padding:28px 30px 31px;position:relative;overflow:hidden}.path-card:before{content:"";position:absolute;right:-84px;top:-95px;width:250px;height:250px;border:1px solid #d2dbed;border-radius:50%;box-shadow:0 0 0 35px #e9edf7,0 0 0 36px #d6deef,0 0 0 70px #e9edf7,0 0 0 71px #dce2ef;opacity:.5}.path-head{display:flex;justify-content:space-between;position:relative;z-index:1}.path-head strong{font-size:16px;font-weight:650}.path-head span{font-size:10px;color:#8792aa;letter-spacing:.1em}.path-copy{color:#78839b;font-size:11px;margin:10px 0 24px}.path-list{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.path-item{background:#f9faff;border:1px solid #e1e6f0;padding:14px 15px;min-height:68px;display:flex;align-items:center;justify-content:space-between;transition:.2s}.path-item:hover{background:white;border-color:#b6c2dc;transform:translateY(-2px)}.path-item small{display:block;font-size:10px;color:#8996b0;margin-bottom:5px;letter-spacing:.1em}.path-item strong{font-size:14px;font-weight:600}.path-item b{font-size:15px;color:var(--accent);font-weight:500}.path-note{font-size:11px;color:#76819c;margin-top:20px;display:flex;gap:8px;align-items:center}.path-note i{display:block;width:5px;height:5px;background:var(--accent);border-radius:50%}.section{padding-top:49px}.section-top{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:22px}.section-top h2{font-size:27px;line-height:1.25;font-weight:600;letter-spacing:-.04em;margin:8px 0 0}.section-top p{font-size:12px;color:#8791a7;margin:0 0 3px}.section-top a{font-size:12px;color:#4b5f9d}.section-top a:hover{text-decoration:underline}.module-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.module-card{background:#fff;border:1px solid var(--line);min-height:167px;padding:21px 23px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:.23s}.module-card:hover{border-color:#aebcde;box-shadow:0 11px 30px #2d3f790d;transform:translateY(-3px)}.module-card:after{content:"";width:145px;height:145px;position:absolute;right:-42px;bottom:-78px;border:1px solid #e8ecf5;border-radius:50%;box-shadow:0 0 0 22px #fff,0 0 0 23px #e9eef8,0 0 0 45px #fff,0 0 0 46px #f0f3fa}.module-index{font-size:10px;color:#8994ab;letter-spacing:.14em}.module-title{font-size:20px;font-weight:600;margin:22px 0 7px;position:relative;z-index:1}.module-desc{font-size:11px;color:#818ba3;line-height:1.6;position:relative;z-index:1}.module-arrow{position:absolute;top:18px;right:22px;color:#687db6;font-size:17px;z-index:1}.explore{margin-top:46px;background:#2c396a;color:#f7f8fd;padding:28px 34px;display:grid;grid-template-columns:1.1fr repeat(3,1fr);gap:15px;align-items:center}.explore h3{font-size:20px;font-weight:550;margin:7px 0 0}.explore .mini-label{color:#b6c4e4}.explore a{padding:6px 16px;border-left:1px solid #60709d;min-height:54px;display:flex;flex-direction:column;justify-content:center;gap:6px;transition:.2s}.explore a:hover{background:#384879}.explore a strong{font-size:13px;font-weight:550}.explore a span{font-size:10px;color:#b8c4df}.mobile-header{display:none}@media(max-width:1080px){.app{grid-template-columns:220px minmax(0,1fr)}.sidebar{padding-left:16px;padding-right:16px}.hero{gap:35px;grid-template-columns:1fr .9fr}h1{font-size:clamp(42px,5vw,64px)}.path-card{padding:24px}.module-grid{grid-template-columns:repeat(2,1fr)}.explore{grid-template-columns:repeat(2,1fr)}}@media(max-width:760px){.app{display:block}.sidebar{display:none}.mobile-header{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;border-bottom:1px solid var(--line);background:#f2f3f7}.mobile-header strong{font-size:17px}.mobile-header a{font-size:11px;color:#50629d}.topbar{height:51px;padding:0 20px}.top-actions{gap:13px}.top-actions a{display:none}.content{padding:0 20px 60px}.hero{display:block;padding:55px 0 49px;min-height:0}h1{font-size:clamp(43px,11vw,62px);margin-top:21px}.lead{font-size:14px}.hero-right{margin-top:43px}.path-card{max-width:600px}.section{padding-top:42px}.section-top{display:block}.section-top p{margin-top:8px}.module-grid{grid-template-columns:repeat(2,1fr)}.explore{padding:24px;grid-template-columns:1fr 1fr}.explore>div{grid-column:1/-1}.explore a:nth-of-type(1){border-left:0;padding-left:0}}@media(max-width:520px){.module-grid{grid-template-columns:1fr}.module-card{min-height:143px}.hero-actions{display:grid;grid-template-columns:1fr 1fr}.btn{min-width:0;gap:10px;padding:0 12px}.path-list{grid-template-columns:1fr 1fr}.path-card{padding:21px}.explore{grid-template-columns:1fr}.explore a{border-left:0;border-top:1px solid #60709d;padding:12px 0}.explore a:nth-of-type(1){border-top:1px solid #60709d}}
+    .app,.sidebar{transition:grid-template-columns .28s ease,padding .28s ease}
+    .sidebar-toggle{position:absolute;top:39px;right:-15px;z-index:5;width:29px;height:29px;padding:0;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--accent-dark);box-shadow:0 2px 8px #26375b14;cursor:pointer;font-size:20px;line-height:1;transition:background .2s,transform .2s}
+    .sidebar-toggle svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7;transition:transform .2s}
+    .sidebar-collapsed .sidebar-toggle svg{transform:scaleX(-1)}
+    .sidebar-toggle:hover{background:#e9edf7;transform:scale(1.06)}
+    .sidebar-toggle:focus-visible,.nav a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .app.sidebar-collapsed{grid-template-columns:76px minmax(0,1fr)}
+    .sidebar-collapsed .sidebar{padding-left:11px;padding-right:11px}
+    .sidebar-collapsed .brand{justify-content:center;padding-left:0;padding-right:0}
+    .sidebar-collapsed .brand-copy,.sidebar-collapsed .nav-label,.sidebar-collapsed .nav-text,.sidebar-collapsed .nav .tail,.sidebar-collapsed .footer-text,.sidebar-collapsed .side-footer small{display:none}
+    .sidebar-collapsed .nav a{width:48px;padding:0;justify-content:center;margin:0 auto}
+    .sidebar-collapsed .nav svg{width:19px;height:19px}
+    .sidebar-collapsed .side-footer{padding:18px 0 1px}
+    .sidebar-collapsed .side-footer a{width:48px;justify-content:center;font-size:19px}
+    .nav-label{font-size:11px;color:#5c6987;font-weight:700}
+    .nav a{min-height:50px;color:#34415f;font-size:20px;font-weight:650;letter-spacing:.01em}
+    .nav a:hover{color:#243458}
+    .nav a.active{color:#233760;font-weight:700}
+    .nav svg{width:21px;height:21px;stroke-width:1.9}
+    .nav .tail{display:none}
+    .nav-label{margin-top:clamp(32px,4.4vh,62px);padding:0 12px 16px}
+    .nav{flex:0 0 auto;min-height:0;max-height:none;justify-content:flex-start;gap:8px;margin-bottom:auto}
+    .nav a{min-height:52px}
+    .nav a.active{position:relative}
+    .nav a.active::before{content:"";position:absolute;left:0;top:15px;width:3px;height:22px;border-radius:0 3px 3px 0;background:var(--accent)}
+    .nav-divider{margin:14px 12px 0;padding-top:16px;border-top:1px solid var(--line);color:#63718f;font-size:12px;font-weight:700;letter-spacing:.13em}
+    .side-footer a{font-size:14px;font-weight:600;color:#4b5976}
+    .hero-actions .btn{justify-content:center}
+    .sidebar-collapsed .nav-divider{height:1px;margin:12px 5px 2px;padding:0;font-size:0}
+    .sidebar-collapsed .nav{margin-top:clamp(32px,4.4vh,62px)}
+    .sidebar-collapsed .nav svg{width:21px;height:21px}
+    /* Responsive navigation and readable secondary text. */
+    .app{--sidebar-width:252px}
+    .sidebar{overflow-y:auto;scrollbar-width:thin;overscroll-behavior:contain}
+    .sidebar-toggle{position:fixed;left:calc(var(--sidebar-width) - 15px);right:auto}
+    .app.sidebar-collapsed{--sidebar-width:76px}
+    .mobile-nav-close,.mobile-backdrop,.mobile-menu-toggle{display:none}
+    .mini-label,.module-index{font-size:12px;color:#5c6987}
+    .brand-sub,.preview-pill{font-size:11px}
+    .lead{color:#58637d}
+    .path-copy{font-size:13px;color:#56637f;line-height:1.7}
+    .path-head span,.path-item small{font-size:11px;color:#5c6987}
+    .path-note{font-size:12px;color:#596785}
+    .section-top p{font-size:13px;color:#66728a}
+    .module-desc{font-size:13px;color:#64718b}
+    .explore a span{font-size:12px}
+    .module-meta{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .module-status{font-size:11px;font-weight:650;color:#40578d;background:#edf1fa;padding:4px 8px;border-radius:100px;white-space:nowrap}
+    .module-card.is-unavailable{background:#f8f9fc;cursor:default}
+    .module-card.is-unavailable:hover{border-color:var(--line);box-shadow:none;transform:none}
+    .module-card.is-unavailable .module-status{color:#65728b;background:#e9edf4}
+    .curriculum-section{padding-top:56px}
+    .curriculum-section + .curriculum-section{margin-top:30px;border-top:1px solid var(--line)}
+    .section-note{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:22px;padding:17px 20px;border:1px solid var(--line);color:#65718b;background:#f0f3fa;font-size:13px;line-height:1.6}
+    .section-note a{color:var(--accent-dark);font-weight:700;white-space:nowrap}
+    .section-note a:hover{text-decoration:underline}
+    .module-card:focus-visible,.path-item:focus-visible,.btn:focus-visible,.section-note a:focus-visible,.explore a:focus-visible,.mobile-menu-toggle:focus-visible,.mobile-nav-close:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    @media(max-width:1200px){
+      .hero{grid-template-columns:1fr;gap:30px;min-height:0;padding:55px 0}
+      .hero-right{max-width:700px}
+      h1{font-size:clamp(46px,6vw,68px)}
+    }
+    @media(max-width:1080px){.app{--sidebar-width:220px}}
+    @media(max-width:760px){
+      .app,.app.sidebar-collapsed{display:block}
+      .sidebar,.sidebar-collapsed .sidebar{display:flex;position:fixed;left:0;top:0;width:min(86vw,310px);height:100dvh;padding:25px 20px 24px;z-index:12;transform:translateX(-105%);visibility:hidden;transition:transform .25s ease,visibility .25s ease;box-shadow:12px 0 35px #1c254422}
+      .app.mobile-nav-open .sidebar{transform:translateX(0);visibility:visible}
+      .sidebar-toggle{display:none}
+      .mobile-backdrop{position:fixed;inset:0;width:100%;height:100%;border:0;background:#17224380;z-index:11;cursor:pointer}
+      .app.mobile-nav-open .mobile-backdrop{display:block}
+      body.mobile-nav-open{overflow:hidden}
+      .mobile-menu-toggle,.mobile-nav-close{display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid #cbd4e6;border-radius:8px;background:#fff;color:#263b70;cursor:pointer}
+      .mobile-menu-toggle svg,.mobile-nav-close svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8}
+      .mobile-nav-close{position:absolute;top:24px;right:18px}
+      .mobile-header{gap:12px}
+      .mobile-header strong{margin-right:auto}
+      .mobile-header a{white-space:nowrap}
+      .sidebar-collapsed .brand-copy,.sidebar-collapsed .nav-label,.sidebar-collapsed .nav-text,.sidebar-collapsed .footer-text,.sidebar-collapsed .side-footer small{display:block}
+      .sidebar-collapsed .nav a{width:auto;padding:0 13px;justify-content:flex-start;margin:0}
+      .sidebar-collapsed .nav svg{width:21px;height:21px}
+      .sidebar-collapsed .nav-divider{height:auto;margin:14px 12px 0;padding:16px 0 0;font-size:12px}
+      .sidebar-collapsed .nav{margin-top:0}
+      .brand{padding-right:42px}
+      .nav-label{margin-top:28px}
+      .hero{padding:55px 0 49px}
+    }
+    @media(max-width:520px){
+      .section-note{display:block}
+      .section-note a{display:inline-block;margin-top:7px}
+      .module-status{font-size:10px}
+    }
+    /* Three manually controlled highlights in the preview hero. */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .hero-carousel{position:relative;border-bottom:1px solid var(--line)}
+    .hero-mobile-hint{display:none}
+    .hero-viewport{overflow:hidden}
+    .hero-track{display:flex;align-items:stretch;transition:transform .55s cubic-bezier(.22,.61,.36,1);will-change:transform}
+    .hero-slide{flex:0 0 100%;min-width:0;min-height:clamp(600px,62vh,720px);align-items:stretch;border-bottom:0;padding:80px 12px}
+    .hero-slide .hero-copy{display:grid;grid-template-rows:auto auto 1fr auto;align-items:start}
+    .hero-slide .hero-headline{margin:28px 0 20px}
+    .hero-slide .lead{align-self:center}
+    .hero-slide .hero-actions{margin-top:0;align-self:end}
+    .hero-slide .hero-right{align-items:stretch}
+    .hero-slide .path-card{height:100%;min-height:0;display:grid;grid-template-rows:auto auto 1fr auto}
+    .hero-slide .path-list{align-self:center}
+    .hero-headline{font-size:clamp(48px,5vw,82px);line-height:1.22;letter-spacing:-.065em;font-weight:560;margin:25px 0 22px}
+    .hero-headline em{color:var(--accent);font-style:normal}
+    .hero-controls{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+    .hero-controls button{display:grid;place-items:center;width:48px;height:48px;padding:0;border:1px solid #cbd4e5;border-radius:50%;background:var(--paper);color:var(--accent-dark);box-shadow:0 4px 16px #26375b12;cursor:pointer;pointer-events:auto;transition:background .2s,transform .2s}
+    .hero-controls button:first-child{transform:translateX(-44px)}
+    .hero-controls button:nth-child(2){transform:translateX(44px)}
+    .hero-controls button:hover{background:#e8edfa}
+    .hero-controls button svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .hero-controls button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .feature-paper,.drawing-card{width:100%;min-height:440px;padding:28px 30px;border:1px solid #d9e0ef;background:#e9edf7;position:relative;overflow:hidden}
+    .feature-paper{display:grid;grid-template-rows:auto auto 1fr auto}
+    .feature-paper .feature-grid{align-self:center}
+    .feature-paper::before{content:"";position:absolute;width:270px;height:270px;border:1px solid #d4ddee;border-radius:50%;right:-90px;top:-110px;box-shadow:0 0 0 37px #e9edf7,0 0 0 38px #dce3f1,0 0 0 76px #e9edf7,0 0 0 77px #dce3f1;opacity:.65}
+    .feature-topline{position:relative;z-index:1;display:flex;justify-content:space-between;gap:16px;font-size:11px;letter-spacing:.12em;color:#64728e;font-weight:700}
+    .feature-paper h3{position:relative;z-index:1;font-size:29px;line-height:1.3;margin:20px 0 18px;color:var(--ink)}
+    .feature-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+    .feature-grid div{display:flex;flex-direction:column;min-height:79px;padding:12px 14px;background:#fbfcff;border:1px solid #dce3f0}
+    .feature-grid span{font-size:11px;color:#6678a0;letter-spacing:.1em}
+    .feature-grid strong{font-size:16px;color:#253559;margin-top:6px}
+    .feature-grid small{font-size:11px;color:#64718b;margin-top:3px}
+    .feature-foot{position:relative;z-index:1;margin-top:18px;color:#596885;font-size:12px}
+    .drawing-card{display:flex;flex-direction:column;gap:13px;background:#eef1f8}
+    .drawing-card .feature-topline{flex:none}
+    .drawing-frame{flex:1;min-height:225px;display:grid;place-items:center;background:#fff;border:1px solid #dce2ed;padding:16px}
+    .drawing-frame img{display:block;max-width:100%;max-height:222px;object-fit:contain;mix-blend-mode:multiply}
+    .drawing-caption{display:flex;align-items:center;justify-content:space-between;gap:14px;font-size:12px;color:#5c6883}
+    .drawing-caption strong{font-size:14px;color:#273859}
+    @media(max-width:1200px){.hero-controls{position:static;padding-bottom:22px}.hero-controls button:first-child,.hero-controls button:nth-child(2){transform:none}.hero-headline{font-size:clamp(46px,6vw,68px)}.hero-slide{min-height:0;padding:67px 0 30px}.hero-slide .hero-copy{display:block}.hero-slide .hero-headline{margin:25px 0 22px}.hero-slide .hero-actions{margin-top:36px}.hero-slide .hero-right{align-items:center}.hero-slide .path-card{display:block;height:auto;min-height:0}.feature-paper{display:block;height:auto}.drawing-card{height:auto}.feature-paper,.drawing-card{max-width:700px;min-height:345px}}
+    @media(max-width:760px){.hero-mobile-hint{display:flex;align-items:center;gap:8px;padding-top:24px;color:#5c6b8d;font-size:12px;font-weight:650;letter-spacing:.04em}.hero-mobile-hint::before{content:"";width:18px;height:1px;background:var(--accent)}.hero-slide{padding-top:25px}.hero-controls{position:static;padding:0 0 23px}.hero-controls button:first-child,.hero-controls button:nth-child(2){transform:none}.hero-headline{font-size:clamp(43px,11vw,62px);margin-top:21px}.feature-paper,.drawing-card{min-height:315px}}
+    @media(max-width:520px){.feature-paper,.drawing-card{padding:21px}.feature-paper h3{font-size:24px}.feature-grid div{padding:10px;min-height:75px}.feature-grid strong{font-size:14px}.feature-grid small{font-size:10px}.drawing-caption{font-size:11px}.drawing-caption strong{font-size:12px}}
+    @media(prefers-reduced-motion:reduce){.hero-track{transition:none}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <button class="mobile-backdrop" id="mobile-backdrop" type="button" aria-label="关闭导航"></button>
+    <aside class="sidebar" id="preview-sidebar">
+      <button class="mobile-nav-close" id="mobile-nav-close" type="button" aria-label="关闭导航"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button>
+      <a class="brand" href="/#/" title="返回当前首页"><span class="brand-mark">构</span><span class="brand-copy"><span class="brand-name">建筑构造</span><span class="brand-sub">INTERACTIVE TEXTBOOK</span></span></a>
+      <button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="折叠侧边导航" aria-expanded="true" aria-controls="preview-nav" title="折叠侧边导航"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="3.5" width="19" height="17" rx="2"/><path d="M9 3.5v17"/></svg></button>
+      <div class="nav-label">学习导航 / EXPLORE</div>
+      <nav class="nav" id="preview-nav" aria-label="预览导航">
+        <a class="active" href="#top" aria-label="学习首页" aria-current="page" title="学习首页"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/></svg><span class="nav-text">学习首页</span></a>
+        <a href="#introduction" aria-label="建筑绪论" title="建筑绪论"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6.5C9.5 4.8 6.7 4.5 3 5v14c3.7-.5 6.5-.2 9 1.5 2.5-1.7 5.3-2 9-1.5V5c-3.7-.5-6.5-.2-9 1.5Z"/><path d="M12 6.5v14"/></svg><span class="nav-text">建筑绪论</span></a>
+        <a href="#modules" aria-label="构造基础" title="构造基础"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 19.5V5a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v15H6a2 2 0 0 0 0 4h14"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/></svg><span class="nav-text">构造基础</span></a>
+        <a href="#principles" aria-label="构造原理" title="构造原理"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></svg><span class="nav-text">构造原理</span></a>
+        <div class="nav-divider" aria-hidden="true">探索与实践</div>
+        <a href="/#/library" aria-label="节点库" title="节点库"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span class="nav-text">节点库</span></a>
+        <a href="/#/curriculum/cases" aria-label="案例应用" title="案例应用"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg><span class="nav-text">案例应用</span></a>
+        <a href="/#/games" aria-label="作业训练" title="作业训练"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="m14.7 6.3 3 3M4 20l6.3-6.3M8 6l10 10M4 4l4 2-2 4-2-6ZM18 14l2 6-6-2 4-4Z"/></svg><span class="nav-text">作业训练</span></a>
+        <a href="/#/ai-extend" aria-label="AI 拓展" title="AI 拓展"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3ZM19 17l.7 2.3L22 20l-2.3.7L19 23l-.7-2.3L16 20l2.3-.7L19 17Z"/></svg><span class="nav-text">AI 拓展</span></a>
+      </nav>
+      <div class="side-footer"><a href="/#/" title="返回当前版本" aria-label="返回当前版本"><span>↗</span><span class="footer-text">返回当前版本</span></a><small>首页设计预览 · 仅用于版式确认</small></div>
+    </aside>
+    <main class="main" id="top">
+      <div class="mobile-header"><button class="mobile-menu-toggle" id="mobile-menu-toggle" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="preview-sidebar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><strong>建筑构造</strong><a href="/#/">返回当前版本 ↗</a></div>
+      <header class="topbar"><span class="crumb">建筑构造 / 学习首页</span><div class="top-actions"><a href="/#/contribute">贡献节点</a><a href="/#/resources">学习资源</a><span class="preview-pill">UI 预览 · 方案 01</span></div></header>
+      <div class="content">
+        <h1 class="sr-only">建筑构造交互式教材</h1>
+        <section class="hero-carousel" aria-label="构造教程亮点" aria-roledescription="轮播">
+          <div class="hero-mobile-hint">左右滑动，浏览 3 项教程亮点</div>
+          <div class="hero-viewport" id="hero-viewport">
+            <div class="hero-track" id="hero-track">
+              <article class="hero hero-slide" role="group" aria-roledescription="幻灯片" aria-label="第 1 项，共 3 项：教材导览">
+                <div class="hero-copy"><div class="eyebrow">建筑构造 · 交互式教材</div><h2 id="hero-title" class="hero-headline">从构件开始，<br><em>读懂一座建筑。</em></h2><p class="lead">沿着构造知识体系逐步探索：从基础、墙体到屋顶，理解构件如何组成完整的建筑，并在具体节点中观察真实做法。</p><div class="hero-actions"><a class="btn btn-primary" href="/#/textbook/wall/wall-design-requirements">阅读墙体示例</a><a class="btn btn-secondary" href="/#/library">探索节点库</a></div></div>
+                <div class="hero-right"><div class="path-card"><div class="path-head"><strong>学习地图</strong><span>COURSE MAP / 01</span></div><p class="path-copy">从建筑认识出发，依次理解构件与构造原理。</p><div class="path-list"><a class="path-item" href="#introduction"><span><small>01 / 认识</small><strong>建筑绪论</strong></span></a><a class="path-item" href="#modules"><span><small>02 / 基础</small><strong>构造基础</strong></span></a><a class="path-item" href="#principles"><span><small>03 / 理解</small><strong>构造原理</strong></span></a><a class="path-item" href="/#/library"><span><small>04 / 观察</small><strong>构造节点</strong></span></a></div><div class="path-note"><i></i> 学习路径示意 · 可按兴趣自由探索</div></div></div>
+              </article>
+              <article class="hero hero-slide" role="group" aria-roledescription="幻灯片" aria-label="第 2 项，共 3 项：墙体设计要求" aria-hidden="true" inert>
+                <div class="hero-copy"><div class="eyebrow">教程亮点 02 · 章节阅读</div><h2 class="hero-headline">从一面墙，<br><em>理解构造逻辑。</em></h2><p class="lead">一篇墙体章节，把结构安全、保温隔热、防水防潮与隔声防火串联起来。先理解设计要求，再判断具体做法。</p><div class="hero-actions"><a class="btn btn-primary" href="/#/textbook/wall/wall-design-requirements">阅读墙体设计要求</a><a class="btn btn-secondary" href="#principles">查看学习路径</a></div></div>
+                <div class="hero-right"><div class="feature-paper"><div class="feature-topline"><span>WALL / 01</span><span>当前可阅读</span></div><h3>墙体设计要求</h3><div class="feature-grid"><div><span>01 / SAFETY</span><strong>结构安全</strong><small>承重与稳定</small></div><div><span>02 / THERMAL</span><strong>保温隔热</strong><small>热工与节能</small></div><div><span>03 / MOISTURE</span><strong>防水防潮</strong><small>墙脚与防潮层</small></div><div><span>04 / COMFORT</span><strong>隔声防火</strong><small>居住与使用安全</small></div></div><div class="feature-foot">从设计要求出发，建立构造判断的依据。</div></div></div>
+              </article>
+              <article class="hero hero-slide" role="group" aria-roledescription="幻灯片" aria-label="第 3 项，共 3 项：构造节点观察" aria-hidden="true" inert>
+                <div class="hero-copy"><div class="eyebrow">教程亮点 03 · 节点观察</div><h2 class="hero-headline">看一张图，<br><em>读懂一个节点。</em></h2><p class="lead">以屋顶有组织排水为例，辨认排水坡度、天沟与落水口的连接关系。进入节点页后，可继续查看对应的交互构造视图。</p><div class="hero-actions"><a class="btn btn-primary" href="/#/node/organized-drainage-01">观察屋顶排水节点</a><a class="btn btn-secondary" href="/#/library">浏览节点库</a></div></div>
+                <div class="hero-right"><div class="drawing-card"><div class="feature-topline"><span>DETAIL / 01</span><span>屋顶 · 有组织排水</span></div><div class="drawing-frame"><img src="/images/roof/organized-drainage-diagram.png" alt="有组织排水屋顶节点图，展示屋面坡度、天沟和落水口的关系" loading="lazy"></div><div class="drawing-caption"><strong>从图纸进入构造节点</strong><span>静态图纸预览</span></div></div></div>
+              </article>
+            </div>
+          </div>
+          <div class="hero-controls"><button id="hero-prev" type="button" aria-label="上一项"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7"/></svg></button><button id="hero-next" type="button" aria-label="下一项"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 5 7 7-7 7"/></svg></button><span class="sr-only" id="hero-announcement" aria-live="polite"></span></div>
+        </section>
+        <section class="section curriculum-section" id="introduction" aria-labelledby="intro-heading">
+          <div class="section-top"><div><span class="mini-label">01 / INTRODUCTION</span><h2 id="intro-heading">建筑绪论</h2></div><p>认识建筑的分类、组成与基本设计原则</p></div>
+          <div class="module-grid">
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">INTRO 01</span><span class="module-status">内容建设中</span></div><strong class="module-title">建筑物的分类</strong><span class="module-desc">按用途、层数与结构类型认识建筑</span></div>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">INTRO 02</span><span class="module-status">内容建设中</span></div><strong class="module-title">建筑物的分级</strong><span class="module-desc">了解使用年限、耐火与抗震等级</span></div>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">INTRO 03</span><span class="module-status">内容建设中</span></div><strong class="module-title">建筑物的构造组成</strong><span class="module-desc">认识组成建筑的六类基本构件</span></div>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">INTRO 04</span><span class="module-status">内容建设中</span></div><strong class="module-title">影响建筑物的因素</strong><span class="module-desc">从气候、地质与使用需求理解构造</span></div>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">INTRO 05</span><span class="module-status">内容建设中</span></div><strong class="module-title">建筑构造的设计原则</strong><span class="module-desc">平衡安全、适用、经济与美观</span></div>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">INTRO 06</span><span class="module-status">内容建设中</span></div><strong class="module-title">制图标准与规范</strong><span class="module-desc">建立阅读建筑图纸的共同语言</span></div>
+          </div>
+        </section>
+        <section class="section curriculum-section" id="modules" aria-labelledby="module-heading">
+          <div class="section-top"><div><span class="mini-label">02 / CONSTRUCTION BASICS</span><h2 id="module-heading">构造基础</h2></div><p>从建筑的六类核心构件进入课程内容</p></div>
+          <div class="module-grid">
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">BASICS 01</span><span class="module-status">内容建设中</span></div><strong class="module-title">基础与地基</strong><span class="module-desc">理解建筑与地面的连接方式</span></div>
+            <a class="module-card" href="/previews/wall-v1.html"><div class="module-meta"><span class="module-index">BASICS 02</span><span class="module-status">查看章节</span></div><strong class="module-title">墙体</strong><span class="module-desc">认识围护、分隔与承重构造</span></a>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">BASICS 03</span><span class="module-status">内容建设中</span></div><strong class="module-title">门窗</strong><span class="module-desc">探索建筑开口的设计与做法</span></div>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">BASICS 04</span><span class="module-status">内容建设中</span></div><strong class="module-title">楼地层</strong><span class="module-desc">了解楼板与地面的构造关系</span></div>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">BASICS 05</span><span class="module-status">内容建设中</span></div><strong class="module-title">楼梯</strong><span class="module-desc">梳理建筑的竖向交通空间</span></div>
+            <a class="module-card" href="/#/textbook/roof"><div class="module-meta"><span class="module-index">BASICS 06</span><span class="module-status">概述可读</span></div><strong class="module-title">屋顶</strong><span class="module-desc">比较平屋面与坡屋面的构造</span></a>
+          </div>
+        </section>
+        <section class="section curriculum-section" id="principles" aria-labelledby="principles-heading">
+          <div class="section-top"><div><span class="mini-label">03 / CONSTRUCTION PRINCIPLES</span><h2 id="principles-heading">构造原理</h2></div><p>围绕建筑物理与安全要求，建立构造判断的依据</p></div>
+          <div class="module-grid">
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">PRINCIPLE 01</span><span class="module-status">内容建设中</span></div><strong class="module-title">建筑保温</strong><span class="module-desc">理解围护结构的保温做法与热工性能</span></div>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">PRINCIPLE 02</span><span class="module-status">内容建设中</span></div><strong class="module-title">建筑防水</strong><span class="module-desc">梳理屋面、墙体与地下空间的防水策略</span></div>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">PRINCIPLE 03</span><span class="module-status">内容建设中</span></div><strong class="module-title">建筑隔热</strong><span class="module-desc">比较遮阳、通风与隔热构造</span></div>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">PRINCIPLE 04</span><span class="module-status">内容建设中</span></div><strong class="module-title">建筑隔声</strong><span class="module-desc">认识空气声与撞击声的控制方式</span></div>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">PRINCIPLE 05</span><span class="module-status">内容建设中</span></div><strong class="module-title">建筑防火</strong><span class="module-desc">理解耐火与防火分隔的构造要求</span></div>
+            <div class="module-card is-unavailable"><div class="module-meta"><span class="module-index">PRINCIPLE 06</span><span class="module-status">内容建设中</span></div><strong class="module-title">建筑防潮</strong><span class="module-desc">关注地面、墙脚与围护层的防潮处理</span></div>
+          </div>
+          <div class="section-note"><span>构造原理专题正在建设，可先从现有墙体章节了解设计要求。</span><a href="/#/textbook/wall/wall-design-requirements">阅读墙体设计要求</a></div>
+        </section>
+        <section class="explore" id="explore"><div><span class="mini-label">04 / MORE WAYS TO LEARN</span><h3>换一种方式学习</h3></div><a href="/#/library"><strong>节点库</strong><span>查看构造节点与交互视图</span></a><a href="/#/curriculum/cases"><strong>案例应用</strong><span>在案例中理解构造选择</span></a><a href="/#/games"><strong>作业训练</strong><span>用练习巩固学习内容</span></a></section>
+      </div>
+    </main>
+  </div>
+  <script>
+    const previewApp = document.querySelector('.app');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    sidebarToggle.addEventListener('click', () => {
+      const collapsed = previewApp.classList.toggle('sidebar-collapsed');
+      sidebarToggle.setAttribute('aria-expanded', String(!collapsed));
+      sidebarToggle.setAttribute('aria-label', collapsed ? '展开侧边导航' : '折叠侧边导航');
+      sidebarToggle.title = collapsed ? '展开侧边导航' : '折叠侧边导航';
+    });
+    const sidebar = document.getElementById('preview-sidebar');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileNavClose = document.getElementById('mobile-nav-close');
+    const mobileBackdrop = document.getElementById('mobile-backdrop');
+    const mobileMedia = window.matchMedia('(max-width: 760px)');
+
+    function setMobileNavOpen(open, returnFocus = false) {
+      previewApp.classList.toggle('mobile-nav-open', open);
+      document.body.classList.toggle('mobile-nav-open', open);
+      mobileMenuToggle.setAttribute('aria-expanded', String(open));
+      mobileMenuToggle.setAttribute('aria-label', open ? '关闭导航' : '打开导航');
+      sidebar.inert = mobileMedia.matches && !open;
+      document.querySelector('.main').inert = mobileMedia.matches && open;
+      if (open) mobileNavClose.focus();
+      else if (returnFocus && mobileMedia.matches) mobileMenuToggle.focus();
+    }
+
+    mobileMenuToggle.addEventListener('click', () => setMobileNavOpen(true));
+    mobileNavClose.addEventListener('click', () => setMobileNavOpen(false, true));
+    mobileBackdrop.addEventListener('click', () => setMobileNavOpen(false, true));
+    document.getElementById('preview-nav').addEventListener('click', event => {
+      if (mobileMedia.matches && event.target.closest('a')) setMobileNavOpen(false);
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && previewApp.classList.contains('mobile-nav-open')) {
+        setMobileNavOpen(false, true);
+      }
+    });
+    mobileMedia.addEventListener('change', () => {
+      setMobileNavOpen(false);
+      if (mobileMedia.matches) {
+        previewApp.classList.remove('sidebar-collapsed');
+        sidebarToggle.setAttribute('aria-expanded', 'true');
+        sidebarToggle.setAttribute('aria-label', '折叠侧边导航');
+        sidebarToggle.title = '折叠侧边导航';
+      }
+    });
+    sidebar.inert = mobileMedia.matches;
+
+    const heroTrack = document.getElementById('hero-track');
+    const heroViewport = document.getElementById('hero-viewport');
+    const heroSlides = [...heroTrack.querySelectorAll('.hero-slide')];
+    const heroPrev = document.getElementById('hero-prev');
+    const heroNext = document.getElementById('hero-next');
+    const heroAnnouncement = document.getElementById('hero-announcement');
+    let heroIndex = 0;
+    let touchStart = null;
+
+    function showHero(index) {
+      heroIndex = (index + heroSlides.length) % heroSlides.length;
+      heroTrack.style.transform = `translate3d(-${heroIndex * 100}%, 0, 0)`;
+      heroAnnouncement.textContent = heroSlides[heroIndex].getAttribute('aria-label');
+      heroSlides.forEach((slide, slideIndex) => {
+        const inactive = slideIndex !== heroIndex;
+        slide.inert = inactive;
+        slide.setAttribute('aria-hidden', String(inactive));
+      });
+    }
+
+    heroPrev.addEventListener('click', () => showHero(heroIndex - 1));
+    heroNext.addEventListener('click', () => showHero(heroIndex + 1));
+    heroViewport.addEventListener('touchstart', event => {
+      const touch = event.changedTouches[0];
+      touchStart = { x: touch.clientX, y: touch.clientY };
+    }, { passive: true });
+    heroViewport.addEventListener('touchend', event => {
+      if (!touchStart) return;
+      const touch = event.changedTouches[0];
+      const deltaX = touch.clientX - touchStart.x;
+      const deltaY = touch.clientY - touchStart.y;
+      if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+        showHero(heroIndex + (deltaX < 0 ? 1 : -1));
+      }
+      touchStart = null;
+    }, { passive: true });
+    showHero(0);
+  </script>
+</body>
+</html>
