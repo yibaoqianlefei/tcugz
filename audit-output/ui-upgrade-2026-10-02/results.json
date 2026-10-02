@@ -1,0 +1,679 @@
+{
+  "routes": [
+    {
+      "width": 1440,
+      "route": "/",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 2682,
+      "viewportHeight": 900,
+      "back": null,
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "route": "/library",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 3577,
+      "viewportHeight": 900,
+      "back": {
+        "x": 1231,
+        "y": 17.5,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "route": "/curriculum/cases",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 976,
+      "viewportHeight": 900,
+      "back": {
+        "x": 1231,
+        "y": 17.5,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "route": "/games",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 976,
+      "viewportHeight": 900,
+      "back": {
+        "x": 1231,
+        "y": 17.5,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "route": "/resources",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 976,
+      "viewportHeight": 900,
+      "back": {
+        "x": 1231,
+        "y": 17.5,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "route": "/ai-extend",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 976,
+      "viewportHeight": 900,
+      "back": {
+        "x": 1231,
+        "y": 17.5,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "route": "/node/organized-drainage-01",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 912,
+      "viewportHeight": 900,
+      "back": {
+        "x": 1245,
+        "y": 17.5,
+        "width": 123,
+        "height": 40
+      },
+      "canvases": 2,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "route": "/node/wall-damp-proof-course",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 912,
+      "viewportHeight": 900,
+      "back": {
+        "x": 1245,
+        "y": 17.5,
+        "width": 123,
+        "height": 40
+      },
+      "canvases": 2,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "route": "/textbook/wall/wall-design-requirements",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 1583,
+      "viewportHeight": 900,
+      "back": {
+        "x": 1231,
+        "y": 17.5,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "route": "/lesson/basics/foundation/index.html",
+      "title": "基础与地基 · 建筑构造",
+      "heading": "基础与地基",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 1039,
+      "viewportHeight": 900,
+      "back": {
+        "x": 1231,
+        "y": 17.5,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 0,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "route": "/lesson/basics/wall/wall-design-requirements.html",
+      "title": "墙体的设计要求 · 建筑构造",
+      "heading": "墙体的设计要求",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 2358,
+      "viewportHeight": 900,
+      "back": {
+        "x": 1231,
+        "y": 17.5,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 0,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 390,
+      "route": "/",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 5158,
+      "viewportHeight": 900,
+      "back": null,
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 390,
+      "route": "/library",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 9143,
+      "viewportHeight": 900,
+      "back": {
+        "x": 233,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 390,
+      "route": "/curriculum/cases",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 1086,
+      "viewportHeight": 900,
+      "back": {
+        "x": 233,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 390,
+      "route": "/games",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 953,
+      "viewportHeight": 900,
+      "back": {
+        "x": 233,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 390,
+      "route": "/resources",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 953,
+      "viewportHeight": 900,
+      "back": {
+        "x": 233,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 390,
+      "route": "/ai-extend",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 953,
+      "viewportHeight": 900,
+      "back": {
+        "x": 233,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 390,
+      "route": "/node/organized-drainage-01",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 900,
+      "viewportHeight": 900,
+      "back": {
+        "x": 247,
+        "y": 6,
+        "width": 123,
+        "height": 40
+      },
+      "canvases": 2,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 390,
+      "route": "/node/wall-damp-proof-course",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 900,
+      "viewportHeight": 900,
+      "back": {
+        "x": 247,
+        "y": 6,
+        "width": 123,
+        "height": 40
+      },
+      "canvases": 2,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 390,
+      "route": "/textbook/wall/wall-design-requirements",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 1694,
+      "viewportHeight": 900,
+      "back": {
+        "x": 233,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 390,
+      "route": "/lesson/basics/foundation/index.html",
+      "title": "基础与地基 · 建筑构造",
+      "heading": "基础与地基",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 1726,
+      "viewportHeight": 900,
+      "back": {
+        "x": 233,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 0,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 390,
+      "route": "/lesson/basics/wall/wall-design-requirements.html",
+      "title": "墙体的设计要求 · 建筑构造",
+      "heading": "墙体的设计要求",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 2761,
+      "viewportHeight": 900,
+      "back": {
+        "x": 233,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 0,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 320,
+      "route": "/",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 5211,
+      "viewportHeight": 900,
+      "back": null,
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 320,
+      "route": "/library",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 9209,
+      "viewportHeight": 900,
+      "back": {
+        "x": 163,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 320,
+      "route": "/curriculum/cases",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 1149,
+      "viewportHeight": 900,
+      "back": {
+        "x": 163,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 320,
+      "route": "/games",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 953,
+      "viewportHeight": 900,
+      "back": {
+        "x": 163,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 320,
+      "route": "/resources",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 953,
+      "viewportHeight": 900,
+      "back": {
+        "x": 163,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 320,
+      "route": "/ai-extend",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 953,
+      "viewportHeight": 900,
+      "back": {
+        "x": 163,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 320,
+      "route": "/node/organized-drainage-01",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 900,
+      "viewportHeight": 900,
+      "back": {
+        "x": 177,
+        "y": 6,
+        "width": 123,
+        "height": 40
+      },
+      "canvases": 2,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 320,
+      "route": "/node/wall-damp-proof-course",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 900,
+      "viewportHeight": 900,
+      "back": {
+        "x": 177,
+        "y": 6,
+        "width": 123,
+        "height": 40
+      },
+      "canvases": 2,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 320,
+      "route": "/textbook/wall/wall-design-requirements",
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 1933,
+      "viewportHeight": 900,
+      "back": {
+        "x": 163,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 1,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 320,
+      "route": "/lesson/basics/foundation/index.html",
+      "title": "基础与地基 · 建筑构造",
+      "heading": "基础与地基",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 1822,
+      "viewportHeight": 900,
+      "back": {
+        "x": 163,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 0,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "width": 320,
+      "route": "/lesson/basics/wall/wall-design-requirements.html",
+      "title": "墙体的设计要求 · 建筑构造",
+      "heading": "墙体的设计要求",
+      "horizontalOverflow": false,
+      "outerHorizontalOverflow": false,
+      "documentHeight": 3034,
+      "viewportHeight": 900,
+      "back": {
+        "x": 163,
+        "y": 6,
+        "width": 137,
+        "height": 40
+      },
+      "canvases": 0,
+      "blank": false,
+      "failures": [],
+      "errors": []
+    }
+  ],
+  "links": [],
+  "flows": {
+    "courseHeight": {
+      "frameHeight": 2358,
+      "contentBottom": 920.859375,
+      "bodyHeight": 2358,
+      "longHeight": 2358
+    },
+    "libraryReturn": {
+      "before": 165,
+      "after": 0
+    },
+    "homeReturn": {
+      "before": 383,
+      "after": 383,
+      "collapsed": true,
+      "canvasSame": true,
+      "focused": "BODY"
+    },
+    "directSection": {
+      "scrollY": 1782,
+      "sectionTop": -445
+    },
+    "missingCourse": {
+      "title": "建筑构造 · 交互式教材",
+      "heading": "建筑构造交互式教材",
+      "hasHomepage": true
+    }
+  },
+  "documentCount": 45
+}

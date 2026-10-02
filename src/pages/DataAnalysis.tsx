@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import SectionPageHeader from "../components/SectionPageHeader";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Compass, Circle, BrainCircuit } from "lucide-react";
@@ -128,27 +129,12 @@ export default function DataAnalysis() {
   }));
 
   return (
-    <div className="min-h-screen bg-canvas flex flex-col">
-      {/* ── Header ── */}
-      <header className="pt-12 pb-8 md:pt-16 md:pb-10 px-6 text-center">
-        <motion.h1
-          className="text-3xl md:text-4xl font-normal font-serif text-ink tracking-tight"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-        >
-          学习数据
-        </motion.h1>
-        <motion.div
-          className="w-12 h-[2px] bg-hairline rounded-full mt-5 mx-auto"
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
-        />
-
+    <div className="site-page flex flex-col">
+      <SectionPageHeader title="学习数据" eyebrow="LEARNING / 学习记录" description="查看构造学习进度与节点交互记录。" />
+      <section className="mx-auto w-full max-w-6xl px-6 py-10 md:px-10">
         {/* ── Overview card ── */}
         <motion.div
-          className="mt-6 max-w-xl mx-auto"
+          className="max-w-xl"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
@@ -185,10 +171,10 @@ export default function DataAnalysis() {
             </div>
           </div>
         </motion.div>
-      </header>
+      </section>
 
       {/* ── Cards ── */}
-      <main className="flex-1 px-6 md:px-10 pb-20 max-w-5xl mx-auto w-full">
+      <main className="flex-1 px-6 md:px-10 pb-20 max-w-6xl mx-auto w-full">
         {visitedNodes.length === 0 && aiQuestions.length === 0 ? (
           /* ── Empty state ── */
           <motion.div

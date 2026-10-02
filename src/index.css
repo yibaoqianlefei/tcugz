@@ -2,36 +2,34 @@
 
 @theme {
   /* ── Surface Colors ── */
-  --color-canvas: #faf9f6;
-  --color-surface-soft: #f4f1eb;
-  --color-surface-card: #eee9e0;
-  --color-surface-cream-strong: #e8e0d2;
-  --color-surface-dark: #181715;
-  --color-surface-dark-elevated: #252320;
-  --color-surface-dark-soft: #1f1e1b;
+  --color-canvas: #f8f8f5;
+  --color-surface-soft: #f2f3f7;
+  --color-surface-card: #e9edf7;
+  --color-surface-cream-strong: #dfe5f2;
+  --color-surface-dark: #1c2544;
+  --color-surface-dark-elevated: #2e3d71;
+  --color-surface-dark-soft: #263456;
 
-  /* ── Primary / Coral ── */
-  --color-primary: #cc785c;
-  --color-primary-active: #a9583e;
-  --color-primary-disabled: #e6dfd8;
+  /* ── Iris blue ── */
+  --color-primary: #5b6dad;
+  --color-primary-active: #43558e;
+  --color-primary-disabled: #dce2f0;
 
   /* ── Text / Ink ── */
-  --color-ink: #141413;
-  --color-body-strong: #252523;
-  --color-body: #3d3d3a;
-  --color-muted: #625f59;
-  /* muted-soft 需在 canvas(#faf9f6) 上达到 4.5:1（WCAG 2.2 SC 1.4.3 正文门槛）。
-     原值 #77736c 实测 4.48:1，差 0.02 未达标；#74706a 为最小改动达标值（4.67:1）。 */
-  --color-muted-soft: #74706a;
+  --color-ink: #1c2544;
+  --color-body-strong: #2d3856;
+  --color-body: #434b63;
+  --color-muted: #58637d;
+  --color-muted-soft: #596785;
 
   /* ── Borders (hairlines) ── */
-  --color-hairline: #ded9d0;
-  --color-hairline-soft: #e9e4dc;
+  --color-hairline: #dce1ed;
+  --color-hairline-soft: #e9edf5;
 
   /* ── On-color tokens ── */
   --color-on-primary: #ffffff;
-  --color-on-dark: #faf9f5;
-  --color-on-dark-soft: #a09d96;
+  --color-on-dark: #f8f8fc;
+  --color-on-dark-soft: #b7c3dd;
 
   /* ── Accent colors ── */
   --color-accent-teal: #5db8a6;
@@ -68,7 +66,7 @@
   body {
     margin: 0;
     background: var(--color-canvas);
-    color: #3d3d3a;
+    color: #434b63;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
@@ -82,33 +80,33 @@
 @layer components {
   .ui-page-heading {
     color: var(--color-ink);
-    font-size: clamp(1.75rem, 2.2vw, 2.25rem);
-    font-weight: 500;
+    font-size: clamp(2.7rem, 5.2vw, 5.5rem);
+    font-weight: 600;
     letter-spacing: -0.03em;
     line-height: 1.2;
   }
   .ui-section-heading {
     color: var(--color-ink);
-    font-size: 1.125rem;
-    font-weight: 500;
+    font-size: 1.75rem;
+    font-weight: 600;
     line-height: 1.4;
   }
   .ui-eyebrow {
     color: var(--color-primary-active);
     font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
+    font-weight: 700;
+    letter-spacing: 0.16em;
   }
   .ui-supporting-text {
     color: var(--color-muted);
-    font-size: 0.875rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.8;
   }
   .ui-resource-card {
     background: #fff;
     border: 1px solid var(--color-hairline);
-    border-radius: 0.875rem;
-    box-shadow: 0 1px 2px rgb(20 20 19 / 0.03);
+    border-radius: 0;
+    box-shadow: none;
   }
   .card-glass {
     background: rgb(255 255 255 / 0.7);
@@ -156,6 +154,36 @@
   from { opacity: 0; transform: translate(-50%, 12px); }
   to   { opacity: 1; transform: translate(-50%, 0); }
 }
+
+/* Editorial page system shared by the existing application routes. */
+:root { --site-topbar-height: 76px; }
+@media (max-width: 760px) { :root { --site-topbar-height: 53px; } }
+.site-page { min-height: calc(100dvh - var(--site-topbar-height)); background: var(--color-canvas); }
+.site-container { width: 100%; max-width: 1500px; margin-inline: auto; padding-inline: clamp(28px, 5vw, 90px); }
+.site-page-header { padding-block: 68px 58px; border-bottom: 1px solid var(--color-hairline); }
+.site-eyebrow { display: inline-flex; align-items: center; gap: 14px; color: var(--color-primary-active); font-size: 12px; font-weight: 700; letter-spacing: .18em; }
+.site-eyebrow::before { content: ""; width: 30px; height: 1px; background: var(--color-primary); }
+.site-page-title { margin: 24px 0 18px; color: var(--color-ink); font-size: clamp(48px, 5.4vw, 82px); font-weight: 600; letter-spacing: -.06em; line-height: 1.2; }
+.site-page-intro { max-width: 700px; margin: 0; color: var(--color-muted); font-size: 16px; line-height: 1.9; }
+.site-section-title { margin: 0; color: var(--color-ink); font-size: clamp(25px, 2.4vw, 32px); font-weight: 600; letter-spacing: -.04em; }
+.site-empty-state { min-height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: clamp(24px, 4vw, 46px); border: 1px solid var(--color-hairline); background: #eef1f8; }
+details.ui-resource-card > summary::-webkit-details-marker { display: none; }
+.site-card { display: flex; flex-direction: column; height: 100%; overflow: hidden; background: #fff; border: 1px solid var(--color-hairline); transition: border-color .2s, box-shadow .2s, transform .2s; }
+.site-card:hover { border-color: #aebcde; box-shadow: 0 12px 30px #2d3f790d; transform: translateY(-3px); }
+.site-card-image { position: relative; display: grid; place-items: center; height: 190px; overflow: hidden; background: #e9edf7; border-bottom: 1px solid var(--color-hairline); }
+.site-card-image img { display: block; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.site-card-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #5b6dad; font-size: 11px; font-weight: 700; letter-spacing: .12em; }
+.site-card-title { margin-top: 18px; color: var(--color-ink); font-size: 22px; font-weight: 600; line-height: 1.35; }
+.site-card-description { margin-top: 8px; color: var(--color-muted); font-size: 13px; line-height: 1.7; }
+.site-card-action { display: inline-flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 22px; color: var(--color-primary-active); font-size: 13px; font-weight: 700; }
+.site-status-chip { padding: 5px 9px; border-radius: 100px; color: #4b5f92; background: #eef1f8; font-size: 11px; font-weight: 700; letter-spacing: 0; white-space: nowrap; }
+.site-subpage-topbar { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; justify-content: space-between; gap: 20px; height: var(--site-topbar-height); padding-inline: clamp(28px, 5vw, 90px); background: var(--color-canvas); border-bottom: 1px solid var(--color-hairline); }
+.site-subpage-brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #68748d; font-size: 12px; letter-spacing: .04em; }
+.site-subpage-brand:hover { color: var(--color-primary-active); }
+.site-back-link { display: inline-flex; align-items: center; flex: none; gap: 8px; width: max-content; padding: 7px 12px 7px 7px; border: 1px solid #bac7e1; border-radius: 7px; background: #edf1fa; color: #273d79; font-size: 14px; font-weight: 700; line-height: 1.2; transition: background .2s, border-color .2s, transform .2s; }
+.site-back-link:hover { background: #e1e9fa; border-color: #8197c8; }
+.site-back-icon { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 5px; background: #334985; color: white; font-size: 18px; line-height: 1; }
+@media (max-width: 760px) { .site-page-header { padding-block: 45px 40px; } .site-page-intro { font-size: 14px; } .site-card-image { height: 175px; } .site-subpage-topbar { min-height: 53px; padding-inline: 20px; } }
 
 /* ── Variant three-column grid layout ── */
 .variant-grid {
@@ -212,10 +240,10 @@
   }
 }
 
-/* Node detail: the application nav occupies 4rem above this view. */
+/* The workbench shares the topbar's actual desktop/mobile height. */
 .node-detail-page {
-  height: calc(100vh - 4rem);
-  height: calc(100dvh - 4rem);
+  height: calc(100vh - var(--site-topbar-height));
+  height: calc(100dvh - var(--site-topbar-height));
   min-height: 0;
 }
 .node-detail-grid {
@@ -329,3 +357,5 @@
   .node-fit-button { top: 10px; right: 10px; }
   .node-fit-button span { display: none; }
 }
+/* Course documents keep their own stylesheet inside the frame. */
+.curriculum-frame { display: block; width: 100%; min-height: 100vh; border: 0; background: #f8f8f5; }

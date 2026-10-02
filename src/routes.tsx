@@ -1,6 +1,6 @@
 import { createHashRouter, Navigate } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
-import HomePage from "./pages/HomePage";
+import CurriculumFramePage from "./pages/CurriculumFramePage";
 import LibraryPage from "./pages/LibraryPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import ResourcesPage from "./pages/ResourcesPage";
@@ -9,7 +9,6 @@ import LegacyCurriculumRedirect from "./components/LegacyCurriculumRedirect";
 import {
   NodeDetail,
   GamesPage,
-  TextbookPage,
   DataAnalysis,
   RouteSuspense,
 } from "./components/RouteSuspense";
@@ -18,13 +17,14 @@ export const router = createHashRouter([
   {
     element: <AppLayout />,
     children: [
-      { path: "/", element: <HomePage /> },
+      { path: "/", element: null },
+      { path: "/lesson/*", element: <CurriculumFramePage /> },
       { path: "/library", element: <LibraryPage /> },
       { path: "/curriculum", element: <Navigate to="/" replace /> },
       { path: "/curriculum/cases", element: <CasesPage /> },
       { path: "/curriculum/:moduleId", element: <LegacyCurriculumRedirect /> },
-      { path: "/textbook/:moduleId/:chapterId", element: <RouteSuspense component={TextbookPage} /> },
-      { path: "/textbook/:sectionId", element: <RouteSuspense component={TextbookPage} /> },
+      { path: "/textbook/:moduleId/:chapterId", element: <LegacyCurriculumRedirect /> },
+      { path: "/textbook/:sectionId", element: <LegacyCurriculumRedirect /> },
       { path: "/node/:nodeId", element: <RouteSuspense component={NodeDetail} /> },
       { path: "/games", element: <RouteSuspense component={GamesPage} /> },
       { path: "/tools", element: <PlaceholderPage title="工具箱" /> },

@@ -1,6 +1,7 @@
-import { Outlet, useLocation, useNavigate, Link } from "react-router-dom";
-import { ChevronLeft } from "lucide-react";
+import { Outlet, useLocation, Link, useNavigationType } from "react-router-dom";
+import { useLayoutEffect, useRef } from "react";
 import { ErrorBoundary } from "./ErrorBoundary";
+import LearningHomePage from "../pages/LearningHomePage";
 
 /**
  * Root-level error fallback — shown when any (eager or lazy) route throws
@@ -42,50 +43,66 @@ function PageErrorFallback({ error, reset }: { error: Error; reset: () => void }
  * Global layout wrapper — sticky nav bar on all non-home pages.
  */
 function AppLayout() {
-  const { pathname } = useLocation();
-  const navigate = useNavigate();
+  const { pathname, search, key } = useLocation();
+  const navigationType = useNavigationType();
+  const scrollPositions = useRef(new Map<string, number>());
+  const lastVisit = useRef<{ key: string; pathname: string } | null>(null);
+  const departing = useRef(false);
   const isHome = pathname === "/";
   const isAuth = pathname === "/auth";
+  const isLesson = pathname.startsWith('/lesson/');
+  const parent = pathname.startsWith('/node/')
+    ? { to: '/library', label: '返回节点库' }
+    : pathname.startsWith('/textbook/')
+      ? { to: pathname.includes('/introduction') ? '/?section=introduction' : '/?section=modules', label: '返回学习首页' }
+      : { to: '/', label: '返回学习首页' };
 
-  // Derived: can go back if browser history has entries before this page
-  const canGoBack = window.history.length > 1;
-
-  function handleBack() {
-    navigate(-1);
-  }
+  useLayoutEffect(() => {
+    const route = pathname + search;
+    if (!isHome && !isLesson && lastVisit.current?.key !== key) {
+      const returningToLibrary = pathname === '/library' && lastVisit.current?.pathname.startsWith('/node/');
+      const top = returningToLibrary || navigationType === 'POP' ? scrollPositions.current.get(route) ?? 0 : 0;
+      window.scrollTo({ top, behavior: 'instant' });
+    }
+    lastVisit.current = { key, pathname };
+    departing.current = false;
+    if (isHome || isLesson) return;
+    const rememberScroll = () => {
+      if (!departing.current) scrollPositions.current.set(route, window.scrollY);
+    };
+    const beforeNavigate = (event: MouseEvent) => {
+      const anchor = (event.target as Element | null)?.closest?.('a[href]') as HTMLAnchorElement | null;
+      if (!anchor || event.button !== 0 || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey || anchor.target === '_blank') return;
+      const url = new URL(anchor.href);
+      if (url.origin !== window.location.origin || !url.hash.startsWith('#/') || url.hash.slice(1) === route) return;
+      // Snapshot before React replaces the tall list with the shorter workbench.
+      scrollPositions.current.set(route, window.scrollY);
+      departing.current = true;
+    };
+    window.addEventListener('scroll', rememberScroll, { passive: true });
+    document.addEventListener('click', beforeNavigate, true);
+    return () => {
+      window.removeEventListener('scroll', rememberScroll);
+      document.removeEventListener('click', beforeNavigate, true);
+    };
+  }, [isHome, isLesson, pathname, search, key, navigationType]);
 
   return (
     <>
-      {!isHome && !isAuth && (
-        <nav className="sticky top-0 z-30 flex items-center justify-between h-16 px-6 md:px-10 bg-canvas border-b border-hairline">
-          <div className="flex items-center gap-2">
-            {canGoBack && (
-              <>
-                <button
-                  onClick={handleBack}
-                  className="flex items-center gap-1.5 cursor-pointer text-muted hover:text-primary transition-colors duration-200 hover:bg-surface-card rounded-lg px-2 py-1 -ml-2"
-                  title="返回上一页"
-                >
-                  <ChevronLeft size={18} strokeWidth={1.5} />
-                  <span className="text-sm font-medium">返回</span>
-                </button>
-                <span className="text-muted-soft select-none">|</span>
-              </>
-            )}
-            <Link
-              to="/"
-              className="text-sm font-medium text-muted tracking-tight hover:text-primary transition-colors"
-            >
-              建筑构造交互系统
-            </Link>
-          </div>
-        </nav>
+      {!isHome && !isAuth && !isLesson && (
+        <header className="site-subpage-topbar">
+          <Link to="/" className="site-subpage-brand">建筑构造 / 学习首页</Link>
+          <Link to={parent.to} className="site-back-link"><span className="site-back-icon" aria-hidden="true">←</span>{parent.label}</Link>
+        </header>
       )}
+      <div style={{ display: isHome ? undefined : 'none' }} aria-hidden={!isHome} inert={!isHome}>
+        <LearningHomePage active={isHome} />
+      </div>
       <ErrorBoundary
         resetKey={pathname}
         fallback={(opts) => <PageErrorFallback error={opts.error} reset={opts.reset} />}
       >
-        <Outlet />
+        {!isHome && <Outlet />}
       </ErrorBoundary>
     </>
   );

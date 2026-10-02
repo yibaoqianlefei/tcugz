@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run build:pages && tsc -b && vite build",
+    "build:pages": "node scripts/build-curriculum-preview.mjs && node scripts/promote-homepage.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "compress-models": "node scripts/compress-models.mjs",
