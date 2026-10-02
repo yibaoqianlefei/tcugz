@@ -45,6 +45,9 @@ try {
       await page.locator('a[href*="lesson/introduction/intro-classification.html"]').first().click();
       await page.frameLocator('.curriculum-frame').locator('.back').click();
       await page.waitForURL(/section=introduction/);
+        // A hash change precedes React's route commit; assert the returned page.
+        await page.locator('.curriculum-frame').waitFor({ state: 'detached' });
+        await page.locator('.app').waitFor({ state: 'visible' });
       assert(Math.abs(await page.evaluate(() => scrollY) - homeY) < 2, 'Return retains homepage scroll position');
       assert(await page.locator('.app').evaluate(e => e.classList.contains('sidebar-collapsed')), 'Return retains collapsed sidebar');
       await canvas.scrollIntoViewIfNeeded();

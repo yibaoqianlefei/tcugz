@@ -91,7 +91,7 @@ export function initHomepageInteractions(root: HTMLElement, options: { spaAnchor
   bind(heroNext, 'click', () => showHero(heroIndex + 1));
   bind(heroViewport, 'touchstart', event => {
     const touchEvent = event as TouchEvent;
-    if ((touchEvent.target as Element).closest('.node-model-root')) {
+    if ((touchEvent.target as Element).closest('.node-model-root, .training-model-stage')) {
       touchStart = null;
       return;
     }
@@ -116,33 +116,6 @@ export function initHomepageInteractions(root: HTMLElement, options: { spaAnchor
     });
     find<HTMLElement>('#case-current').textContent = `节点 ${button.dataset.case} / 03`;
   }));
-
-  const answers = [...root.querySelectorAll<HTMLButtonElement>('[data-answer]')];
-  const feedback = find<HTMLElement>('#quiz-feedback');
-  const quizReset = find<HTMLButtonElement>('#quiz-reset');
-  answers.forEach(button => bind(button, 'click', () => {
-    const correct = button.dataset.answer === 'stair';
-    answers.forEach(option => {
-      option.disabled = true;
-      option.classList.toggle('is-correct', option.dataset.answer === 'stair');
-      option.classList.toggle('is-incorrect', option === button && !correct);
-    });
-    feedback.classList.toggle('is-correct', correct);
-    feedback.classList.toggle('is-incorrect', !correct);
-    find<HTMLElement>('.quiz-feedback-mark').textContent = correct ? '✓' : '↺';
-    find<HTMLElement>('#quiz-feedback-text').textContent = correct ? '答对了。楼梯连接不同楼层，承担竖向交通。' : '再看一眼：连接不同楼层的是楼梯。';
-    quizReset.hidden = false;
-  }));
-  bind(quizReset, 'click', () => {
-    answers.forEach(option => {
-      option.disabled = false;
-      option.classList.remove('is-correct', 'is-incorrect');
-    });
-    feedback.classList.remove('is-correct', 'is-incorrect');
-    find<HTMLElement>('.quiz-feedback-mark').textContent = '·';
-    find<HTMLElement>('#quiz-feedback-text').textContent = '请选择你认为正确的构件';
-    quizReset.hidden = true;
-  });
 
   showHero(0);
   return () => {

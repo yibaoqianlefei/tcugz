@@ -51,7 +51,9 @@ function AppLayout() {
   const isHome = pathname === "/";
   const isAuth = pathname === "/auth";
   const isLesson = pathname.startsWith('/lesson/');
-  const parent = pathname.startsWith('/node/')
+  const parent = pathname.startsWith('/games/')
+    ? { to: '/games', label: '返回训练中心' }
+    : pathname.startsWith('/node/')
     ? { to: '/library', label: '返回节点库' }
     : pathname.startsWith('/textbook/')
       ? { to: pathname.includes('/introduction') ? '/?section=introduction' : '/?section=modules', label: '返回学习首页' }
@@ -61,14 +63,27 @@ function AppLayout() {
     const route = pathname + search;
     if (!isHome && !isLesson && lastVisit.current?.key !== key) {
       const returningToLibrary = pathname === '/library' && lastVisit.current?.pathname.startsWith('/node/');
-      const top = returningToLibrary || navigationType === 'POP' ? scrollPositions.current.get(route) ?? 0 : 0;
+      const returningToTraining = pathname === '/games' && lastVisit.current?.pathname.startsWith('/games/');
+      let savedTrainingScroll = 0;
+      if (pathname === '/games') {
+        try {
+          const stored = Number(sessionStorage.getItem('construction-training-scroll'));
+          savedTrainingScroll = Number.isFinite(stored) ? Math.max(0, stored) : 0;
+        } catch { /* Browser session storage is optional. */ }
+      }
+      const top = returningToLibrary || returningToTraining || navigationType === 'POP' ? scrollPositions.current.get(route) ?? savedTrainingScroll : 0;
       window.scrollTo({ top, behavior: 'instant' });
     }
     lastVisit.current = { key, pathname };
     departing.current = false;
     if (isHome || isLesson) return;
     const rememberScroll = () => {
-      if (!departing.current) scrollPositions.current.set(route, window.scrollY);
+      if (!departing.current) {
+        scrollPositions.current.set(route, window.scrollY);
+        if (pathname === '/games') {
+          try { sessionStorage.setItem('construction-training-scroll', String(window.scrollY)); } catch { /* Keep in-memory restoration available. */ }
+        }
+      }
     };
     const beforeNavigate = (event: MouseEvent) => {
       const anchor = (event.target as Element | null)?.closest?.('a[href]') as HTMLAnchorElement | null;
@@ -77,6 +92,9 @@ function AppLayout() {
       if (url.origin !== window.location.origin || !url.hash.startsWith('#/') || url.hash.slice(1) === route) return;
       // Snapshot before React replaces the tall list with the shorter workbench.
       scrollPositions.current.set(route, window.scrollY);
+      if (pathname === '/games') {
+        try { sessionStorage.setItem('construction-training-scroll', String(window.scrollY)); } catch { /* Keep in-memory restoration available. */ }
+      }
       departing.current = true;
     };
     window.addEventListener('scroll', rememberScroll, { passive: true });

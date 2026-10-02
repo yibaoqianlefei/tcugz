@@ -27,6 +27,7 @@ export const router = createHashRouter([
       { path: "/textbook/:sectionId", element: <LegacyCurriculumRedirect /> },
       { path: "/node/:nodeId", element: <RouteSuspense component={NodeDetail} /> },
       { path: "/games", element: <RouteSuspense component={GamesPage} /> },
+      { path: "/games/:modeId", element: <RouteSuspense component={GamesPage} /> },
       { path: "/tools", element: <PlaceholderPage title="工具箱" /> },
       { path: "/contribute", element: <PlaceholderPage title="贡献节点" /> },
       { path: "/resources", element: <ResourcesPage /> },
