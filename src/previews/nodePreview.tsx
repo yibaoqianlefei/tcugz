@@ -113,23 +113,12 @@ function NodePreview({ visual }: { visual: HTMLElement }) {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [webgl] = useState(supportsWebGL);
   const controls = useRef<OrbitControlsImpl>(null);
-  const resumeTimer = useRef<number | null>(null);
   const markReady = useCallback(() => setReady(true), []);
   const pauseRotation = useCallback(() => {
-    if (resumeTimer.current !== null) window.clearTimeout(resumeTimer.current);
-    resumeTimer.current = null;
     setSpin(false);
   }, []);
   const resumeRotation = useCallback(() => {
-    if (resumeTimer.current !== null) window.clearTimeout(resumeTimer.current);
-    resumeTimer.current = window.setTimeout(() => {
-      resumeTimer.current = null;
-      setSpin(true);
-    }, 2000);
-  }, []);
-
-  useEffect(() => () => {
-    if (resumeTimer.current !== null) window.clearTimeout(resumeTimer.current);
+    setSpin(true);
   }, []);
 
   useEffect(() => {
