@@ -1,1 +1,0 @@
-import{S as e}from"./r3f-eo6XXeCq.js";import{t}from"./main-9ZTo4GNW.js";var n=e();function r(){return(0,n.jsx)(t,{title:`作业训练`,description:`构件组装与构造练习暂未提供内容。`})}export{r as default};
