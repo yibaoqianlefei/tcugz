@@ -51,7 +51,9 @@ function AppLayout() {
   const isHome = pathname === "/";
   const isAuth = pathname === "/auth";
   const isLesson = pathname.startsWith('/lesson/');
-  const parent = pathname.startsWith('/games/')
+  const parent = pathname.startsWith('/curriculum/cases/')
+    ? { to: '/curriculum/cases', label: '返回案例应用' }
+    : pathname.startsWith('/games/')
     ? { to: '/games', label: '返回训练中心' }
     : pathname.startsWith('/node/')
     ? { to: '/library', label: '返回节点库' }
@@ -61,9 +63,11 @@ function AppLayout() {
 
   useLayoutEffect(() => {
     const route = pathname + search;
-    if (!isHome && !isLesson && lastVisit.current?.key !== key) {
+    const changingCaseTopic = pathname.startsWith('/curriculum/cases/') && lastVisit.current?.pathname === pathname;
+    if (!isHome && !isLesson && !changingCaseTopic && lastVisit.current?.key !== key) {
       const returningToLibrary = pathname === '/library' && lastVisit.current?.pathname.startsWith('/node/');
       const returningToTraining = pathname === '/games' && lastVisit.current?.pathname.startsWith('/games/');
+      const returningToCases = pathname === '/curriculum/cases' && lastVisit.current?.pathname.startsWith('/curriculum/cases/');
       let savedTrainingScroll = 0;
       if (pathname === '/games') {
         try {
@@ -71,7 +75,7 @@ function AppLayout() {
           savedTrainingScroll = Number.isFinite(stored) ? Math.max(0, stored) : 0;
         } catch { /* Browser session storage is optional. */ }
       }
-      const top = returningToLibrary || returningToTraining || navigationType === 'POP' ? scrollPositions.current.get(route) ?? savedTrainingScroll : 0;
+      const top = returningToLibrary || returningToTraining || returningToCases || navigationType === 'POP' ? scrollPositions.current.get(route) ?? savedTrainingScroll : 0;
       window.scrollTo({ top, behavior: 'instant' });
     }
     lastVisit.current = { key, pathname };

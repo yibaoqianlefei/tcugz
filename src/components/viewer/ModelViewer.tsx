@@ -2,6 +2,7 @@ import { useRef, useEffect, Suspense, useState, useCallback, useMemo } from "rea
 import { Canvas, useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
+import StudioEnvironment from './StudioEnvironment';
 import { useNodeStore } from "../../store/nodeStore";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { interactiveMeshName, isHitboxName } from "../../utils/nameUtils";
@@ -1592,6 +1593,7 @@ export default function ModelViewer({
         }}
       >
         <RendererSetup showShadows={showShadows} />
+        <StudioEnvironment />
         <color attach="background" args={["#f5f5f7"]} />
         <SceneLights showShadows={showShadows} />
         {showShadows && <ShadowPlane />}

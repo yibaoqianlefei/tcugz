@@ -91,7 +91,7 @@ export function initHomepageInteractions(root: HTMLElement, options: { spaAnchor
   bind(heroNext, 'click', () => showHero(heroIndex + 1));
   bind(heroViewport, 'touchstart', event => {
     const touchEvent = event as TouchEvent;
-    if ((touchEvent.target as Element).closest('.node-model-root, .training-model-stage')) {
+    if ((touchEvent.target as Element).closest('.node-model-root, .training-model-stage, .savoye-model')) {
       touchStart = null;
       return;
     }
@@ -106,16 +106,6 @@ export function initHomepageInteractions(root: HTMLElement, options: { spaAnchor
     if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) showHero(heroIndex + (deltaX < 0 ? 1 : -1));
     touchStart = null;
   }, { passive: true });
-
-  const hotspots = [...root.querySelectorAll<HTMLButtonElement>('.case-hotspot')];
-  hotspots.forEach(button => bind(button, 'click', () => {
-    hotspots.forEach(marker => {
-      const selected = marker === button;
-      marker.classList.toggle('is-selected', selected);
-      marker.setAttribute('aria-pressed', String(selected));
-    });
-    find<HTMLElement>('#case-current').textContent = `节点 ${button.dataset.case} / 03`;
-  }));
 
   showHero(0);
   return () => {

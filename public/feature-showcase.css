@@ -86,75 +86,8 @@
 .node-model-status { position: relative; z-index: 1; pointer-events: none; color: #687a9d; font-size: 12px; }
 .node-model-hint { position: absolute; right: 18px; bottom: 67px; pointer-events: none; color: #53688e; background: #f9faffd9; border: 1px solid #dae2f0; padding: 5px 8px; font-size: 10px; }
 
-/* 02 — a project canvas with selectable node positions. */
-.case-workbench { background: #e6ebf5; }
-.case-heading { display: flex; flex-direction: column; gap: 5px; padding: 21px 23px 17px; }
-.case-heading span { color: #687a9c; font-size: 11px; letter-spacing: .08em; }
-.case-heading strong { color: #1d305a; font-size: 25px; line-height: 1.25; }
-.case-canvas {
-  position: relative;
-  flex: 1;
-  min-height: 260px;
-  margin: 0 22px;
-  border: 1px solid #bdcbe5;
-  background: #dfe7f5;
-  overflow: hidden;
-}
-.case-canvas-label {
-  position: absolute;
-  left: 16px;
-  top: 14px;
-  z-index: 1;
-  color: #7183a7;
-  font-size: 10px;
-  letter-spacing: .13em;
-}
-.case-canvas svg { display: block; width: 100%; height: 100%; }
-.case-hotspot {
-  position: absolute;
-  z-index: 2;
-  width: 36px;
-  height: 36px;
-  transform: translate(-50%, -50%);
-  border: 1px solid #4d66a1;
-  border-radius: 50%;
-  background: #f9fbff;
-  color: #304a84;
-  box-shadow: 0 0 0 5px #fff8;
-  font-size: 11px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background .2s, color .2s, box-shadow .2s;
-}
-.case-hotspot:hover, .case-hotspot.is-selected { background: #2e457e; color: white; box-shadow: 0 0 0 6px #8ba1d277; }
-.case-readout {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-  min-height: 95px;
-  margin: 0 22px;
-  padding: 15px 17px;
-  background: #fdfdfe;
-  border: 1px solid #cbd5e8;
-  border-top: 0;
-}
-.case-readout span:first-child { display: block; color: #5b71a3; font-size: 11px; letter-spacing: .09em; }
-.case-readout strong { display: block; margin: 4px 0; color: #21345d; font-size: 16px; }
-.case-readout small { color: #6f7b93; line-height: 1.5; }
-.case-status { flex: none; padding: 5px 8px; background: #e9edf5; color: #62718e; font-size: 10px; white-space: nowrap; }
-.case-workflow {
-  min-height: 48px;
-  padding: 0 23px;
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  color: #526893;
-  font-size: 11px;
-  font-weight: 650;
-  letter-spacing: .05em;
-}
-.case-workflow i { flex: 1; max-width: 38px; height: 1px; background: #9caed2; }
+/* 02 — live architectural case preview; shared styles in components/cases. */
+.case-workbench { background: #edf0f4; }
 
 /* 03 — a model question shared with the current training bank. */
 .practice-showcase { background: #eef1f8; }
@@ -227,14 +160,6 @@
   .node-model-caption { left: 16px; right: 16px; bottom: 18px; }
   .node-model-caption strong { font-size: 19px; }
   .showcase-top { padding: 0 14px; font-size: 10px; }
-  .case-heading { padding: 17px 16px; }
-  .case-heading strong { font-size: 21px; }
-  .case-canvas { min-height: 240px; margin: 0 15px; }
-  .case-hotspot { width: 32px; height: 32px; }
-  .case-readout { margin: 0 15px; min-height: 103px; padding: 12px; }
-  .case-readout strong { font-size: 14px; }
-  .case-status { font-size: 9px; padding: 4px; }
-  .case-workflow { padding: 0 15px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .showcase-panel * { transition-duration: .01ms !important; }

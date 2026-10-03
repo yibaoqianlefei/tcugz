@@ -16,6 +16,7 @@ export function LazyFallback() {
 
 export const NodeDetail = lazy(() => import("../NodeDetail"));
 export const GamesPage = lazy(() => import("../pages/GamesPage"));
+export const CaseStudyPage = lazy(() => import("../pages/CaseStudyPage"));
 export const TextbookPage = lazy(() => import("../pages/TextbookPage"));
 export const DataAnalysis = lazy(() => import("../pages/DataAnalysis"));
 

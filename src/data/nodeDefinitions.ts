@@ -42,6 +42,8 @@ import { bottomLandingEntranceStraightLayers, getLayerInfo as getBottomLandingEn
 import { hollowBlockFormsLayers, getLayerInfo as getHollowBlockFormsLayer } from "./hollowBlockFormsLayers";
 import { independentFoundationLayers, getLayerInfo as getIndependentFoundationLayer } from "./independentFoundationLayers";
 import { rampHandrailLayers, getLayerInfo as getRampHandrailLayer } from "./rampHandrailLayers";
+import { roofAccessHatchLayers, getLayerInfo as getRoofAccessHatchLayer } from "./roofAccessHatchLayers";
+import { ventPipeLayers, getLayerInfo as getVentPipeLayer } from "./ventPipeLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
@@ -382,6 +384,52 @@ export const nodeDefinitions: NodeDefinition[] = [
       layers: eavesGutterLayers as NodeLayerInfo[],
       getLayerInfo: getEavesGutterLayer as (objectName: string) => NodeLayerInfo | undefined,
     },
+  },
+
+  {
+    id: "roof-access-hatch-01",
+    title: "屋面检修口",
+    description:
+      "观察人孔盖、检修口井壁、压顶、双层防水卷材与屋面各层的连接；可播放分解动画并对照剖面图。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/roof-access-hatch-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/roof-access-hatch/roof-access-hatch.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/roof-access-hatch-diagram.png"),
+      subtitle: "图 6-26 屋面检修口 · 提供的剖面图",
+    },
+    layerConfig: {
+      layers: roofAccessHatchLayers,
+      getLayerInfo: getRoofAccessHatchLayer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-overview" }],
+  },
+
+  {
+    id: "vent-pipe-roof-01",
+    title: "透气管出屋面",
+    description:
+      "观察透气管、球形钢丝罩、抱箍、伞形罩与屋面管根防水构造；可播放分解动画并对照剖面图。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/vent-pipe-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/vent-pipe/vent-pipe.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/vent-pipe-diagram.png"),
+      subtitle: "图 6-32 透气管出屋面 · 单位：mm",
+    },
+    layerConfig: {
+      layers: ventPipeLayers,
+      getLayerInfo: getVentPipeLayer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-overview" }],
   },
 
   /* ── Floor nodes ─────────────────────────────────────────── */

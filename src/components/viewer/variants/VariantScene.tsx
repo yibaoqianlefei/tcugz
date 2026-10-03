@@ -2,6 +2,7 @@ import { useState, useCallback, useRef, useEffect, useLayoutEffect } from "react
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
+import StudioEnvironment from '../StudioEnvironment';
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import type { NodeModelVariant } from "./variantTypes";
 import VariantModel from "./VariantModel";
@@ -132,6 +133,7 @@ function SceneContent({
   return (
     <>
       <RenderSetup />
+      <StudioEnvironment />
       <color attach="background" args={["#f5f5f7"]} />
       <ambientLight intensity={0.8} color="#ffffff" />
       <directionalLight position={[5, 8, 5]} intensity={1.5} color="#fffdf7" castShadow

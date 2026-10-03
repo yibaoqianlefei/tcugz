@@ -2,6 +2,7 @@ import { Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useState } 
 import { Canvas, type ThreeEvent, useThree, useFrame } from '@react-three/fiber';
 import { Html, Line, OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
+import StudioEnvironment from '../viewer/StudioEnvironment';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import type { TrainingPart } from '../../data/training';
 import { createTrainingScene, applyTrainingPresentation } from '../../utils/trainingScene';
@@ -131,6 +132,7 @@ export default function TrainingModel(props: Omit<ModelProps, 'onReady'> & { onS
       <Canvas key={retry} frameloop="demand" camera={{ fov: 35, position: [4, 3, 6] }} dpr={[1, 1.5]} gl={{ antialias: true }}>
         <color attach="background" args={['#eef1f8']} />
         <ambientLight intensity={0.7} />
+        <StudioEnvironment />
         <directionalLight position={[8, 12, 6]} intensity={2.2} color="#fffdf7" />
         <directionalLight position={[-5, 4, -3]} intensity={0.7} color="#d9e4ff" />
         <Suspense fallback={<Html center><span className="training-loading" role="status">模型加载中…</span></Html>}>

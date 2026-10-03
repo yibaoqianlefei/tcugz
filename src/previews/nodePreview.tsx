@@ -2,6 +2,7 @@ import { Component, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, 
 import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
+import StudioEnvironment from '../components/viewer/StudioEnvironment';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import { isHitboxName } from '../utils/nameUtils';
 
@@ -163,6 +164,7 @@ function NodePreview({ visual }: { visual: HTMLElement }) {
             }}
           >
             <ambientLight intensity={0.6} />
+            <StudioEnvironment />
             <directionalLight position={[8, 12, 6]} intensity={2.5} color="#fffdf7" />
             <directionalLight position={[-5, 3, -3]} intensity={0.6} color="#d4e3f0" />
             {/* Keep GLTF suspension inside the scene so Canvas stays mounted while loading. */}

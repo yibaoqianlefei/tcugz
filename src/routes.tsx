@@ -9,6 +9,7 @@ import LegacyCurriculumRedirect from "./components/LegacyCurriculumRedirect";
 import {
   NodeDetail,
   GamesPage,
+  CaseStudyPage,
   DataAnalysis,
   RouteSuspense,
 } from "./components/RouteSuspense";
@@ -22,6 +23,7 @@ export const router = createHashRouter([
       { path: "/library", element: <LibraryPage /> },
       { path: "/curriculum", element: <Navigate to="/" replace /> },
       { path: "/curriculum/cases", element: <CasesPage /> },
+      { path: "/curriculum/cases/:caseId", element: <RouteSuspense component={CaseStudyPage} /> },
       { path: "/curriculum/:moduleId", element: <LegacyCurriculumRedirect /> },
       { path: "/textbook/:moduleId/:chapterId", element: <LegacyCurriculumRedirect /> },
       { path: "/textbook/:sectionId", element: <LegacyCurriculumRedirect /> },
