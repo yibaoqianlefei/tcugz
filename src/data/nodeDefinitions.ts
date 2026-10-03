@@ -44,6 +44,8 @@ import { independentFoundationLayers, getLayerInfo as getIndependentFoundationLa
 import { rampHandrailLayers, getLayerInfo as getRampHandrailLayer } from "./rampHandrailLayers";
 import { roofAccessHatchLayers, getLayerInfo as getRoofAccessHatchLayer } from "./roofAccessHatchLayers";
 import { ventPipeLayers, getLayerInfo as getVentPipeLayer } from "./ventPipeLayers";
+import { rigidRoofTransverseJointLayers, getLayerInfo as getRigidRoofTransverseJointLayer } from "./rigidRoofTransverseJointLayers";
+import { rigidRoofTransverseJointTwoLayers, getLayerInfo as getRigidRoofTransverseJointTwoLayer } from "./rigidRoofTransverseJointTwoLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
@@ -430,6 +432,52 @@ export const nodeDefinitions: NodeDefinition[] = [
       getLayerInfo: getVentPipeLayer,
     },
     textbookLinks: [{ moduleId: "roof", chapterId: "roof-overview" }],
+  },
+
+  {
+    id: "rigid-roof-transverse-joint-01",
+    title: "刚性防水屋面横向分格缝（一）",
+    description:
+      "观察横向分格缝处的空心屋面板、刚性层、缝底填充、油膏嵌缝与二布三油覆盖构造；可播放分解动画并对照剖面图。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/rigid-roof-transverse-joint-01-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/rigid-roof-joint/transverse-joint-01.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/rigid-roof-transverse-joint-01-diagram.png"),
+      subtitle: "刚性防水屋面分格缝做法 · 横向分格缝之一",
+    },
+    layerConfig: {
+      layers: rigidRoofTransverseJointLayers,
+      getLayerInfo: getRigidRoofTransverseJointLayer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
+  },
+
+  {
+    id: "rigid-roof-transverse-joint-02",
+    title: "刚性防水屋面横向分格缝（二）",
+    description:
+      "观察折脊盖瓦、两侧上抬缝边、油膏嵌缝、缝底填充及空心屋面板的连接；可播放分解动画并对照剖面图。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/rigid-roof-transverse-joint-02-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/rigid-roof-joint/transverse-joint-02.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/rigid-roof-transverse-joint-02-diagram.png"),
+      subtitle: "刚性防水屋面分格缝做法 · 横向分格缝之二",
+    },
+    layerConfig: {
+      layers: rigidRoofTransverseJointTwoLayers,
+      getLayerInfo: getRigidRoofTransverseJointTwoLayer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
   },
 
   /* ── Floor nodes ─────────────────────────────────────────── */

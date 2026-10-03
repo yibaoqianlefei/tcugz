@@ -5,13 +5,24 @@ import * as THREE from 'three';
 import StudioEnvironment from '../components/viewer/StudioEnvironment';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import { isHitboxName } from '../utils/nameUtils';
+import { getNodeDefinition } from '../data/nodeDefinitions';
 
-const modelPath = `${import.meta.env.BASE_URL}models/roof/organized-drainage/organized-drainage.glb`;
+const featuredNodes = [
+  { id: 'organized-drainage-01', label: '有组织排水' },
+  { id: 'vent-pipe-roof-01', label: '透气管出屋面' },
+  { id: 'foam-insulation-01', label: '泡沫板外保温' },
+  { id: 'rc-elevated-steps-01', label: '架空台阶' },
+].map(feature => {
+  const node = getNodeDefinition(feature.id);
+  if (!node?.model) throw new Error(`Homepage model missing: ${feature.id}`);
+  return { ...feature, title: node.title, category: node.category, path: node.model.path };
+});
 
-function Model({ path, controls, onReady }: {
+function Model({ path, controls, directions, onReady }: {
   path: string;
   controls: React.RefObject<OrbitControlsImpl | null>;
-  onReady: () => void;
+  directions: React.RefObject<Map<string, THREE.Vector3>>;
+  onReady: (path: string) => void;
 }) {
   const { scene } = useGLTF(path, true);
   const { model, outlines } = useMemo(() => {
@@ -56,22 +67,35 @@ function Model({ path, controls, onReady }: {
     const verticalFov = THREE.MathUtils.degToRad(camera.fov);
     const horizontalFov = 2 * Math.atan(Math.tan(verticalFov / 2) * (size.width / size.height));
     const distance = radius / Math.sin(Math.min(verticalFov, horizontalFov) / 2) * 1.12;
+    const orbit = controls.current;
+    const savedDirections = directions.current;
 
     // Preserve the current orbit direction when the sidebar or viewport resizes.
     const direction = fitted.current
-      ? camera.position.clone().sub(controls.current?.target ?? center)
-      : new THREE.Vector3(1, 0.72, 1.35);
+      ? camera.position.clone().sub(orbit?.target ?? center)
+      : savedDirections.get(path)?.clone() ?? new THREE.Vector3(1, 0.72, 1.35);
     if (direction.lengthSq() < 1e-9) direction.set(1, 0.72, 1.35);
+    if (orbit) {
+      // Clear residual drag inertia before fitting a different model or size.
+      const damping = orbit.enableDamping;
+      orbit.enableDamping = false;
+      orbit.update();
+      orbit.enableDamping = damping;
+    }
     camera.position.copy(center).add(direction.normalize().multiplyScalar(distance));
     camera.near = Math.max(0.01, distance - radius * 2.5);
     camera.far = distance + radius * 4;
     camera.updateProjectionMatrix();
-    controls.current?.target.copy(center);
-    controls.current?.update();
+    orbit?.target.copy(center);
+    orbit?.update();
     fitted.current = true;
     invalidate();
-    onReady();
-  }, [camera, controls, invalidate, model, onReady, size.height, size.width]);
+    onReady(path);
+    return () => {
+      // Retain each model's latest orbit when switching models or resizing.
+      savedDirections.set(path, camera.position.clone().sub(orbit?.target ?? center).normalize());
+    };
+  }, [camera, controls, directions, invalidate, model, onReady, path, size.height, size.width]);
   /* eslint-enable react-hooks/immutability */
 
   return <primitive object={model} dispose={null} />;
@@ -106,21 +130,33 @@ function supportsWebGL() {
 }
 
 function NodePreview({ visual }: { visual: HTMLElement }) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const selected = featuredNodes[selectedIndex];
   const [slideActive, setSlideActive] = useState(true);
   const [inView, setInView] = useState(true);
-  const [ready, setReady] = useState(false);
-  const [failed, setFailed] = useState(false);
+  const [readyPath, setReadyPath] = useState('');
+  const [failedPath, setFailedPath] = useState('');
   const [spin, setSpin] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [webgl] = useState(supportsWebGL);
   const controls = useRef<OrbitControlsImpl>(null);
-  const markReady = useCallback(() => setReady(true), []);
+  const directions = useRef(new Map<string, THREE.Vector3>());
+  const markReady = useCallback((path: string) => setReadyPath(path), []);
+  const registerControls = useCallback((value: OrbitControlsImpl | null) => {
+    controls.current = value;
+    if (import.meta.env.DEV) (window as unknown as Record<string, unknown>).__homepageModelControls = value;
+  }, []);
   const pauseRotation = useCallback(() => {
     setSpin(false);
   }, []);
   const resumeRotation = useCallback(() => {
     setSpin(true);
   }, []);
+
+  useLayoutEffect(() => {
+    const link = visual.closest('.hero-slide')?.querySelector<HTMLAnchorElement>('[data-home-node-link]');
+    if (link) link.href = `${import.meta.env.BASE_URL}#/node/${selected.id}`;
+  }, [selected.id, visual]);
 
   useEffect(() => {
     const onHeroChange = (event: Event) => setSlideActive((event as CustomEvent<number>).detail === 0);
@@ -144,13 +180,14 @@ function NodePreview({ visual }: { visual: HTMLElement }) {
     return () => media.removeEventListener('change', update);
   }, []);
 
-  const available = webgl && !failed;
+  const ready = readyPath === selected.path;
+  const failed = failedPath === selected.path;
   const running = slideActive && inView;
   const rotating = spin && !reducedMotion;
   return (
     <>
-      {available && <div className="node-model-stage">
-        <ModelErrorBoundary onError={() => setFailed(true)}>
+      <div className="showcase-top"><span><i className="showcase-mark" /> NODE LIBRARY</span><span>{selected.category} · 3D</span></div>
+      {webgl && <div className="node-model-stage" data-model-ready={ready && !failed}>
           <Canvas
             camera={{ fov: 35, position: [4, 3, 6] }}
             dpr={[1, 1.5]}
@@ -168,15 +205,25 @@ function NodePreview({ visual }: { visual: HTMLElement }) {
             <directionalLight position={[8, 12, 6]} intensity={2.5} color="#fffdf7" />
             <directionalLight position={[-5, 3, -3]} intensity={0.6} color="#d4e3f0" />
             {/* Keep GLTF suspension inside the scene so Canvas stays mounted while loading. */}
-            <Suspense fallback={null}>
-              <Model path={modelPath} controls={controls} onReady={markReady} />
-            </Suspense>
-            <OrbitControls ref={controls} enablePan={false} enableZoom={false} autoRotate={running && rotating} autoRotateSpeed={0.55} onStart={pauseRotation} onEnd={resumeRotation} />
+            <ModelErrorBoundary key={selected.path} onError={() => setFailedPath(selected.path)}>
+              <Suspense fallback={null}>
+                <Model key={selected.path} path={selected.path} controls={controls} directions={directions} onReady={markReady} />
+              </Suspense>
+            </ModelErrorBoundary>
+            <OrbitControls ref={registerControls} enablePan={false} enableZoom={false} autoRotate={running && rotating} autoRotateSpeed={0.55} onStart={pauseRotation} onEnd={resumeRotation} />
           </Canvas>
-        </ModelErrorBoundary>
       </div>}
-      {(!ready || failed) && <span className="node-model-status" role="status">{failed || !webgl ? '模型暂不可用' : '模型加载中…'}</span>}
-      {running && ready && <span className="node-model-hint">拖动查看模型</span>}
+      {(!ready || failed || !webgl) && <span className="node-model-status" role="status">{failed || !webgl ? '模型暂不可用，可打开节点查看' : '模型加载中…'}</span>}
+      <div className="node-model-footer">
+        <div className="node-model-controls" role="group" aria-label="切换首页模型">
+          <button type="button" aria-label="上一个模型" onClick={() => setSelectedIndex(index => (index + featuredNodes.length - 1) % featuredNodes.length)}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7" /></svg></button>
+          <button type="button" aria-label="下一个模型" onClick={() => setSelectedIndex(index => (index + 1) % featuredNodes.length)}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 5 7 7-7 7" /></svg></button>
+        </div>
+        <div className="node-model-caption">
+          <div aria-live="polite"><span>{selected.category} · 构造节点</span><strong>{selectedIndex === 0 ? selected.label : selected.title}</strong></div>
+          <a href={`${import.meta.env.BASE_URL}#/node/${selected.id}`}>打开节点</a>
+        </div>
+      </div>
     </>
   );
 }

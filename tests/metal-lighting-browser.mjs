@@ -26,7 +26,7 @@ async function inspectScene() {
         });
       }
     });
-    return { environment: scene.environment?.uuid, materials: [...materials.values()] };
+    return { environment: scene.environment?.uuid, environmentIntensity: scene.environmentIntensity, materials: [...materials.values()] };
   });
 }
 
@@ -55,6 +55,30 @@ try {
     return sharp(screenshot).extract({ left: Math.round(box.x + box.width * .3), top: Math.round(box.y + box.height * .2), width: Math.round(box.width * .4), height: Math.round(box.height * .4) }).removeAlpha().raw().toBuffer();
   };
   const silver = await pixels();
+  // Compare the previously excessive environment at the same camera pose.
+  await page.evaluate(async () => {
+    const { getModelScene } = await import('/src/utils/modelSceneRef.ts');
+    let scene = getModelScene();
+    while (scene.parent) scene = scene.parent;
+    window.__balancedIntensity = scene.environmentIntensity;
+    scene.environmentIntensity = 0.8;
+  });
+  await page.waitForTimeout(150);
+  const excessive = await pixels();
+  await page.evaluate(async () => {
+    const { getModelScene } = await import('/src/utils/modelSceneRef.ts');
+    let scene = getModelScene();
+    while (scene.parent) scene = scene.parent;
+    scene.environmentIntensity = window.__balancedIntensity;
+  });
+  await page.waitForTimeout(150);
+  let softened = 0;
+  for (let i = 0; i < excessive.length; i += 3) {
+    const previous = (excessive[i] + excessive[i + 1] + excessive[i + 2]) / 3;
+    const balanced = (silver[i] + silver[i + 1] + silver[i + 2]) / 3;
+    if (previous > 225 && balanced < previous - 10) softened++;
+  }
+  assert(softened > 100, `Pale surfaces regain tonal range (${softened} formerly bright pixels)`);
   // Reproduce the previous missing-reflection scene at the exact same view.
   await page.evaluate(async () => {
     const { getModelScene } = await import('/src/utils/modelSceneRef.ts');
@@ -92,5 +116,5 @@ try {
   await page.waitForTimeout(300);
   assert.deepEqual(await inspectScene(), initial, 'Selection/reset/resize retain lighting and authored materials');
   assert.deepEqual(errors, []);
-  console.log(`PASS authored PBR parameters, real silver reflections (${restored} formerly black pixels), animation/reset/resize preserve environment`);
+  console.log(`PASS preserved PBR, reduced excessive brightness (${softened} pixels), silver reflections (${restored} formerly black pixels), animation/reset/resize preserve environment`);
 } finally { await browser.close(); }

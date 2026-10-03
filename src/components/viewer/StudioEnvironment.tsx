@@ -22,7 +22,9 @@ export default function StudioEnvironment() {
     }
     // Bake once per Canvas, rather than rebuilding on resize, orbit or selection.
     scene.environment = environment.texture;
-    scene.environmentIntensity = 0.8;
+    // RoomEnvironment already contains bright softboxes. Keep its contribution
+    // below the existing direct lights so pale concrete/metal retain contrast.
+    scene.environmentIntensity = 0.3;
     invalidate();
 
     return () => {
