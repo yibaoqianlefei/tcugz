@@ -11,6 +11,17 @@ import './cases.css';
 interface Props { selected: CaseTopicId | null; onSelect: (id: CaseTopicId) => void; }
 interface SceneProps extends Props { fitToken: number; markers: Map<CaseTopicId, HTMLButtonElement>; }
 
+function supportsWebGL2() {
+  try {
+    const context = document.createElement('canvas').getContext('webgl2');
+    if (!context) return false;
+    context.getExtension('WEBGL_lose_context')?.loseContext();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function Building({ selected, onSelect, fitToken, markers }: SceneProps) {
   const model = useMemo(() => createVillaSavoyeScene(), []);
   const { camera, size, invalidate } = useThree();
@@ -59,9 +70,11 @@ function Building({ selected, onSelect, fitToken, markers }: SceneProps) {
 export default function SavoyeModel(props: Props) {
   const [fitToken, setFitToken] = useState(0);
   const [retry, setRetry] = useState(0);
+  const [webGLAvailable, setWebGLAvailable] = useState(supportsWebGL2);
   const [markers] = useState(() => new Map<CaseTopicId, HTMLButtonElement>());
+  const fallback = <div className="case-model-fallback" role="alert"><strong>三维视图暂不可用</strong><p>仍可选择下方构造主题，查看分析内容。</p><button onClick={() => { setWebGLAvailable(supportsWebGL2()); setRetry(value => value + 1); }}>重试三维视图</button></div>;
   return <div className="savoye-model" aria-label="萨伏伊别墅三维教学模型">
-    <ErrorBoundary resetKey={String(retry)} fallback={<div className="case-model-fallback" role="alert"><strong>三维视图暂不可用</strong><p>仍可选择下方构造主题，查看分析内容。</p><button onClick={() => setRetry(value => value + 1)}>重试三维视图</button></div>}>
+    {webGLAvailable ? <ErrorBoundary resetKey={String(retry)} fallback={fallback}>
       <Canvas key={retry} shadows frameloop="demand" dpr={[1, 1.5]} camera={{ fov: 38, position: [15, 12, 18] }} gl={{ antialias: true }}>
         <color attach="background" args={['#edf0f4']} />
         <ambientLight intensity={1.15} />
@@ -72,7 +85,7 @@ export default function SavoyeModel(props: Props) {
       </Canvas>
       <div className="case-model-markers">{savoyeTopics.map(topic => <button key={topic.id} ref={element => { if (element) markers.set(topic.id, element); else markers.delete(topic.id); }} className={props.selected === topic.id ? 'is-selected' : ''} aria-label={`观察${topic.title}`} aria-pressed={props.selected === topic.id} onClick={() => props.onSelect(topic.id)}>{topic.number}</button>)}</div>
       <button className="case-fit-button" onClick={() => setFitToken(value => value + 1)}>适配视图</button>
-    </ErrorBoundary>
-    <span className="case-model-gesture">拖动旋转 · 滚轮缩放</span>
+    </ErrorBoundary> : fallback}
+    {webGLAvailable && <span className="case-model-gesture">拖动旋转 · 滚轮缩放</span>}
   </div>;
 }
