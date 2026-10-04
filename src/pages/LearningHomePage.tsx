@@ -90,6 +90,6 @@ export default function LearningHomePage({ active }: { active: boolean }) {
     <div ref={container} style={{ visibility: stylesReady ? undefined : 'hidden' }} dangerouslySetInnerHTML={markup} />
     {modelTarget && createPortal(<Suspense fallback={<span className="node-model-status" role="status">模型加载中…</span>}><NodePreview visual={modelTarget.visual} /></Suspense>, modelTarget.mount)}
     {trainingTarget && createPortal(<ErrorBoundary fallback={<div className="practice-preview-placeholder" role="alert"><span>互动预览暂不可用</span><a href={`${siteBase}#/games`}>进入训练中心</a></div>}><Suspense fallback={<div className="practice-preview-placeholder" role="status">正在准备互动训练…</div>}><TrainingPreview visual={trainingTarget} /></Suspense></ErrorBoundary>, trainingTarget)}
-    {caseTarget && createPortal(<ErrorBoundary fallback={<div className="case-model-placeholder" role="alert"><a href={`${siteBase}#/curriculum/cases/villa-savoye`}>查看萨伏伊别墅分析</a></div>}><Suspense fallback={<div className="case-model-placeholder" role="status">正在准备建筑案例…</div>}><CaseExperience visual={caseTarget} /></Suspense></ErrorBoundary>, caseTarget)}
+    {caseTarget && createPortal(<ErrorBoundary fallback={<div className="case-model-placeholder" role="alert"><a href={`${siteBase}#/curriculum/cases/farnsworth-house`}>查看法恩斯沃斯住宅分析</a></div>}><Suspense fallback={<div className="case-model-placeholder" role="status">正在准备建筑案例…</div>}><CaseExperience visual={caseTarget} /></Suspense></ErrorBoundary>, caseTarget)}
   </>;
 }

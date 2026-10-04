@@ -58,6 +58,13 @@ try {
       assert((await page.locator('[data-home-node-link]').getAttribute('href')).endsWith(`#/node/${featured[index][0]}`));
       const arrows = await page.locator('.node-model-controls').boundingBox();
       const caption = await page.locator('.node-model-caption').boundingBox();
+      const summary = page.locator('.node-model-summary');
+      const summaryBox = await summary.boundingBox();
+      const modelRoot = await page.locator('#node-model-root').boundingBox();
+      const summaryText = (await summary.innerText()).trim();
+      assert(summaryText.length > 0 && summaryText.length <= 45, 'Each model has a brief introduction');
+      assert(caption.y + caption.height <= summaryBox.y, 'Introduction is below the raised model name');
+      assert(summaryBox.y + summaryBox.height <= modelRoot.y + modelRoot.height, 'Introduction fits inside the model panel');
       assert(arrows.y + arrows.height <= caption.y, 'Model arrows occupy a separate row above the name');
       const leftArrow = await page.getByRole('button', { name: '上一个模型', exact: true }).boundingBox();
       const rightArrow = await page.getByRole('button', { name: '下一个模型', exact: true }).boundingBox();
@@ -71,6 +78,31 @@ try {
     await page.getByRole('button', { name: '下一个模型', exact: true }).click();
     await page.locator('.node-model-caption strong').filter({ hasText: featured[0][1] }).waitFor();
     await page.locator('.node-model-stage[data-model-ready=\"true\"]').waitFor();
+    const readZoom = () => page.evaluate(() => {
+      const control = window.__homepageModelControls;
+      const distance = control.object.position.distanceTo(control.target);
+      return { distance, min: control.minDistance, max: control.maxDistance, ratio: distance / (control.minDistance / .75) };
+    });
+    await canvas.scrollIntoViewIfNeeded();
+    const zoomBox = await canvas.boundingBox();
+    await page.mouse.move(zoomBox.x + zoomBox.width / 2, zoomBox.y + zoomBox.height / 2);
+    const initialZoom = await readZoom();
+    const zoomScrollY = await page.evaluate(() => scrollY);
+    await page.mouse.wheel(0, -100);
+    await page.waitForTimeout(100);
+    assert((await readZoom()).distance < initialZoom.distance, 'Wheel zooms in on homepage model');
+    for (let i = 0; i < 24; i++) await page.mouse.wheel(0, -100);
+    await page.waitForTimeout(100);
+    const nearest = await readZoom();
+    assert(Math.abs(nearest.distance - nearest.min) < .001, 'Zoom-in stops at the fitted model limit');
+    for (let i = 0; i < 40; i++) await page.mouse.wheel(0, 100);
+    await page.waitForTimeout(100);
+    const farthest = await readZoom();
+    assert(Math.abs(farthest.distance - farthest.max) < .001, 'Zoom-out stops at the fitted model limit');
+    assert(Math.abs(await page.evaluate(() => scrollY) - zoomScrollY) < 2, 'Zooming the model does not scroll the page');
+    // Leave the model zoomed in for the existing switch/resize/return regressions.
+    for (let i = 0; i < 8; i++) await page.mouse.wheel(0, -100);
+    await page.waitForTimeout(100);
     if (width === 390) {
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'No mobile horizontal overflow');
     }
@@ -92,6 +124,7 @@ try {
       // rather than the remaining momentum between clicking two buttons.
       await page.waitForTimeout(600);
       const beforeSwitch = await readDirection();
+      const zoomBeforeSwitch = await readZoom();
       await page.getByRole('button', { name: '上一个模型', exact: true }).click();
       await page.locator('.node-model-caption strong').filter({ hasText: featured[3][1] }).waitFor();
       await page.locator('.node-model-stage[data-model-ready=\"true\"]').waitFor();
@@ -101,10 +134,12 @@ try {
       await page.waitForTimeout(150);
       const returned = await readDirection();
       assert(angle(beforeSwitch, returned) < .08, `Returning to a model retains its latest orbit (${angle(beforeSwitch, returned)} rad; ${beforeSwitch} -> ${returned})`);
+      assert(Math.abs((await readZoom()).ratio - zoomBeforeSwitch.ratio) < .001, 'Returning to a model retains zoom');
       const beforeResize = await readDirection();
       await page.locator('#sidebar-toggle').click();
       await page.waitForTimeout(500);
       assert(angle(beforeResize, await readDirection()) < .08, 'Sidebar resizing retains orbit direction');
+      assert(Math.abs((await readZoom()).ratio - zoomBeforeSwitch.ratio) < .001, 'Sidebar resizing retains relative zoom');
       await page.locator('#introduction').scrollIntoViewIfNeeded();
       await page.waitForTimeout(100);
       const homeY = await page.evaluate(() => scrollY);
@@ -120,6 +155,7 @@ try {
       await page.waitForTimeout(1000);
       assert(await canvas.evaluate(c => c === window.__homepageModelCanvas && !c.getContext('webgl2').isContextLost()));
       assert.equal(modelRequests, 1, 'Returning home must retain the existing model');
+      assert(Math.abs((await readZoom()).ratio - zoomBeforeSwitch.ratio) < .001, 'Returning home retains model zoom');
     }
     assert.deepEqual(errors, []);
     console.log(`PASS ${path} at ${width}px: visible model, live WebGL context`);

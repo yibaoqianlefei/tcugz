@@ -8,20 +8,25 @@ import { isHitboxName } from '../utils/nameUtils';
 import { getNodeDefinition } from '../data/nodeDefinitions';
 
 const featuredNodes = [
-  { id: 'organized-drainage-01', label: '有组织排水' },
-  { id: 'vent-pipe-roof-01', label: '透气管出屋面' },
-  { id: 'foam-insulation-01', label: '泡沫板外保温' },
-  { id: 'rc-elevated-steps-01', label: '架空台阶' },
+  { id: 'organized-drainage-01', label: '有组织排水', initialZoomRatio: 0.9, summary: '通过天沟、雨水斗与落水管，将屋面雨水集中排出。' },
+  { id: 'vent-pipe-roof-01', label: '透气管出屋面', summary: '观察透气管穿出屋面时，管根防水与金属罩的连接。' },
+  { id: 'foam-insulation-01', label: '泡沫板外保温', summary: '保温板粘贴并锚固于外墙，外覆增强网与抹面饰层。' },
+  { id: 'rc-elevated-steps-01', label: '架空台阶', summary: '由独立基础支撑踏步与平台，观察台阶下方的架空构造。' },
 ].map(feature => {
   const node = getNodeDefinition(feature.id);
   if (!node?.model) throw new Error(`Homepage model missing: ${feature.id}`);
-  return { ...feature, title: node.title, category: node.category, path: node.model.path };
+  return { ...feature, initialZoomRatio: feature.initialZoomRatio ?? 1, title: node.title, category: node.category, path: node.model.path };
 });
 
-function Model({ path, controls, directions, onReady }: {
+const MIN_ZOOM_DISTANCE_RATIO = 0.75;
+const MAX_ZOOM_DISTANCE_RATIO = 1.3;
+type ModelView = { direction: THREE.Vector3; zoomRatio: number };
+
+function Model({ path, initialZoomRatio, controls, views, onReady }: {
   path: string;
+  initialZoomRatio: number;
   controls: React.RefObject<OrbitControlsImpl | null>;
-  directions: React.RefObject<Map<string, THREE.Vector3>>;
+  views: React.RefObject<Map<string, ModelView>>;
   onReady: (path: string) => void;
 }) {
   const { scene } = useGLTF(path, true);
@@ -46,6 +51,7 @@ function Model({ path, controls, directions, onReady }: {
   }, [scene]);
   const { camera, size, invalidate } = useThree();
   const fitted = useRef(false);
+  const fitDistance = useRef(0);
 
   useEffect(() => () => {
     outlines.forEach(({ geometry, material }) => {
@@ -68,12 +74,18 @@ function Model({ path, controls, directions, onReady }: {
     const horizontalFov = 2 * Math.atan(Math.tan(verticalFov / 2) * (size.width / size.height));
     const distance = radius / Math.sin(Math.min(verticalFov, horizontalFov) / 2) * 1.12;
     const orbit = controls.current;
-    const savedDirections = directions.current;
+    const savedViews = views.current;
+    const savedView = savedViews.get(path);
 
-    // Preserve the current orbit direction when the sidebar or viewport resizes.
+    // Preserve orbit and relative zoom when the sidebar or viewport resizes.
     const direction = fitted.current
       ? camera.position.clone().sub(orbit?.target ?? center)
-      : savedDirections.get(path)?.clone() ?? new THREE.Vector3(1, 0.72, 1.35);
+      : savedView?.direction.clone() ?? new THREE.Vector3(1, 0.72, 1.35);
+    const zoomRatio = THREE.MathUtils.clamp(
+      fitted.current && fitDistance.current > 0 ? direction.length() / fitDistance.current : savedView?.zoomRatio ?? initialZoomRatio,
+      MIN_ZOOM_DISTANCE_RATIO,
+      MAX_ZOOM_DISTANCE_RATIO,
+    );
     if (direction.lengthSq() < 1e-9) direction.set(1, 0.72, 1.35);
     if (orbit) {
       // Clear residual drag inertia before fitting a different model or size.
@@ -81,21 +93,25 @@ function Model({ path, controls, directions, onReady }: {
       orbit.enableDamping = false;
       orbit.update();
       orbit.enableDamping = damping;
+      orbit.minDistance = distance * MIN_ZOOM_DISTANCE_RATIO;
+      orbit.maxDistance = distance * MAX_ZOOM_DISTANCE_RATIO;
     }
-    camera.position.copy(center).add(direction.normalize().multiplyScalar(distance));
-    camera.near = Math.max(0.01, distance - radius * 2.5);
-    camera.far = distance + radius * 4;
+    camera.position.copy(center).add(direction.normalize().multiplyScalar(distance * zoomRatio));
+    camera.near = Math.max(0.01, distance * MIN_ZOOM_DISTANCE_RATIO - radius * 2.5);
+    camera.far = distance * MAX_ZOOM_DISTANCE_RATIO + radius * 4;
     camera.updateProjectionMatrix();
     orbit?.target.copy(center);
     orbit?.update();
     fitted.current = true;
+    fitDistance.current = distance;
     invalidate();
     onReady(path);
     return () => {
-      // Retain each model's latest orbit when switching models or resizing.
-      savedDirections.set(path, camera.position.clone().sub(orbit?.target ?? center).normalize());
+      // Retain each model's latest view when switching models or resizing.
+      const offset = camera.position.clone().sub(orbit?.target ?? center);
+      savedViews.set(path, { direction: offset.clone().normalize(), zoomRatio: offset.length() / distance });
     };
-  }, [camera, controls, directions, invalidate, model, onReady, path, size.height, size.width]);
+  }, [camera, controls, views, initialZoomRatio, invalidate, model, onReady, path, size.height, size.width]);
   /* eslint-enable react-hooks/immutability */
 
   return <primitive object={model} dispose={null} />;
@@ -140,7 +156,7 @@ function NodePreview({ visual }: { visual: HTMLElement }) {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [webgl] = useState(supportsWebGL);
   const controls = useRef<OrbitControlsImpl>(null);
-  const directions = useRef(new Map<string, THREE.Vector3>());
+  const views = useRef(new Map<string, ModelView>());
   const markReady = useCallback((path: string) => setReadyPath(path), []);
   const registerControls = useCallback((value: OrbitControlsImpl | null) => {
     controls.current = value;
@@ -207,22 +223,28 @@ function NodePreview({ visual }: { visual: HTMLElement }) {
             {/* Keep GLTF suspension inside the scene so Canvas stays mounted while loading. */}
             <ModelErrorBoundary key={selected.path} onError={() => setFailedPath(selected.path)}>
               <Suspense fallback={null}>
-                <Model key={selected.path} path={selected.path} controls={controls} directions={directions} onReady={markReady} />
+                <Model key={selected.path} path={selected.path} initialZoomRatio={selected.initialZoomRatio} controls={controls} views={views} onReady={markReady} />
               </Suspense>
             </ModelErrorBoundary>
-            <OrbitControls ref={registerControls} enablePan={false} enableZoom={false} autoRotate={running && rotating} autoRotateSpeed={0.55} onStart={pauseRotation} onEnd={resumeRotation} />
+            <OrbitControls ref={registerControls} enablePan={false} enableZoom={ready && !failed} zoomSpeed={0.6} autoRotate={running && rotating} autoRotateSpeed={0.55} onStart={pauseRotation} onEnd={resumeRotation} />
           </Canvas>
       </div>}
       {(!ready || failed || !webgl) && <span className="node-model-status" role="status">{failed || !webgl ? '模型暂不可用，可打开节点查看' : '模型加载中…'}</span>}
       <div className="node-model-footer">
         <div className="node-model-controls" role="group" aria-label="切换首页模型">
           <button type="button" aria-label="上一个模型" onClick={() => setSelectedIndex(index => (index + featuredNodes.length - 1) % featuredNodes.length)}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7" /></svg></button>
+          <div className="node-model-index" aria-live="polite" aria-label={`第 ${selectedIndex + 1} 个模型，共 ${featuredNodes.length} 个`}>
+            <span className="node-model-index-current">{String(selectedIndex + 1).padStart(2, '0')}</span>
+            <span className="node-model-index-divider" aria-hidden="true" />
+            <span className="node-model-index-total">{String(featuredNodes.length).padStart(2, '0')}</span>
+          </div>
           <button type="button" aria-label="下一个模型" onClick={() => setSelectedIndex(index => (index + 1) % featuredNodes.length)}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 5 7 7-7 7" /></svg></button>
         </div>
         <div className="node-model-caption">
           <div aria-live="polite"><span>{selected.category} · 构造节点</span><strong>{selectedIndex === 0 ? selected.label : selected.title}</strong></div>
           <a href={`${import.meta.env.BASE_URL}#/node/${selected.id}`}>打开节点</a>
         </div>
+        <p className="node-model-summary">{selected.summary}</p>
       </div>
     </>
   );

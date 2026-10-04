@@ -46,6 +46,8 @@ import { roofAccessHatchLayers, getLayerInfo as getRoofAccessHatchLayer } from "
 import { ventPipeLayers, getLayerInfo as getVentPipeLayer } from "./ventPipeLayers";
 import { rigidRoofTransverseJointLayers, getLayerInfo as getRigidRoofTransverseJointLayer } from "./rigidRoofTransverseJointLayers";
 import { rigidRoofTransverseJointTwoLayers, getLayerInfo as getRigidRoofTransverseJointTwoLayer } from "./rigidRoofTransverseJointTwoLayers";
+import { rigidRoofRidgeJointLayers, getLayerInfo as getRigidRoofRidgeJointLayer } from "./rigidRoofRidgeJointLayers";
+import { rigidRoofRidgeJointTwoLayers, getLayerInfo as getRigidRoofRidgeJointTwoLayer } from "./rigidRoofRidgeJointTwoLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
@@ -476,6 +478,52 @@ export const nodeDefinitions: NodeDefinition[] = [
     layerConfig: {
       layers: rigidRoofTransverseJointTwoLayers,
       getLayerInfo: getRigidRoofTransverseJointTwoLayer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
+  },
+
+  {
+    id: "rigid-roof-ridge-joint-01",
+    title: "刚性防水屋面屋脊分格缝（一）",
+    description:
+      "观察屋脊两侧空心屋面板、刚性层、沥青麻丝填充、嵌缝油膏与二布三油覆盖构造；可播放分解动画并对照剖面图。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/rigid-roof-ridge-joint-01-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/rigid-roof-joint/ridge-joint-01.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/rigid-roof-ridge-joint-01-diagram.png"),
+      subtitle: "刚性防水屋面分格缝做法 · 屋脊分格缝之一",
+    },
+    layerConfig: {
+      layers: rigidRoofRidgeJointLayers,
+      getLayerInfo: getRigidRoofRidgeJointLayer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
+  },
+
+  {
+    id: "rigid-roof-ridge-joint-02",
+    title: "刚性防水屋面屋脊分格缝（二）",
+    description:
+      "观察折脊盖瓦、屋脊两侧上抬缝边、嵌缝油膏、沥青麻丝填充及空心屋面板；可播放分解动画并对照剖面图。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/rigid-roof-ridge-joint-02-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/rigid-roof-joint/ridge-joint-02.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/rigid-roof-ridge-joint-02-diagram.png"),
+      subtitle: "刚性防水屋面分格缝做法 · 屋脊分格缝之二",
+    },
+    layerConfig: {
+      layers: rigidRoofRidgeJointTwoLayers,
+      getLayerInfo: getRigidRoofRidgeJointTwoLayer,
     },
     textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
   },

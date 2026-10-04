@@ -70,3 +70,67 @@ export const savoyeTopics: CaseTopic[] = [
 export function getSavoyeTopic(id: string | null | undefined) {
   return savoyeTopics.find(topic => topic.id === id) ?? savoyeTopics[0];
 }
+
+export const farnsworth = {
+  id: 'farnsworth-house', title: '法恩斯沃斯住宅', english: 'FARNSWORTH HOUSE',
+  location: '美国 · 普莱诺', period: '1949–1951', architects: '路德维希·密斯·凡德罗',
+  description: '转动完整建筑，观察外置钢柱、玻璃围护与两级入口平台。',
+  modelNote: '建筑依实测图重建 · 地面与绿植为展示装饰',
+  sources: [
+    { title: '美国国会图书馆：HABS 实测平面', url: 'https://www.loc.gov/pictures/item/il0323.sheet.00003a/' },
+    { title: 'HABS：立面与剖面', url: 'https://www.loc.gov/pictures/item/il0323.sheet.00005a/' },
+    { title: 'HABS：室内核心与构造细节', url: 'https://www.loc.gov/pictures/item/il0323.sheet.00006a/' },
+    { title: 'HABS：台阶、卫浴与衣柜详图', url: 'https://www.loc.gov/pictures/item/il0323.sheet.00007a/' },
+    { title: 'Thornton Tomasetti：结构及梁柱连接报告（2013）', url: 'https://edithfarnsworthhouse.org/wp-content/uploads/National_Trust_Farnsworth_Thorton_Tomasetti.pdf' },
+    { title: '住宅官网：尺寸与材料资料', url: 'https://edithfarnsworthhouse.org/wp-content/uploads/Mies-van-der-Rohe-Farnsworth-house.pdf' },
+  ],
+};
+export const farnsworthTopics: CaseTopic[] = [
+  {
+    id: 'pilotis', number: '01', title: '外置钢柱', subtitle: '钢框架与悬挑',
+    summary: '8 根外置钢柱支撑屋盖和楼板，玻璃围护退入结构内侧。',
+    observation: '查看柱的工字形截面，以及它与楼板、屋盖边缘的关系。转到下方，可观察横向钢梁；柱没有被玻璃包在室内。',
+    principle: '沿长向布置的钢柱承担竖向荷载，楼板和屋盖向端柱外悬挑。观察时应区分承重框架与玻璃围护。模型不用于校核钢梁承载力。',
+    question: '这座住宅的玻璃围护与主体承重框架是什么关系？',
+    choices: ['由钢框架承重，玻璃负责围护', '由玻璃承托屋盖', '由台阶承托屋盖'], answer: 0,
+    explanation: '钢框架承担主要荷载，玻璃围护负责围合空间。二者的位置与作用不同。',
+    course: { to: '/lesson/basics/floor/index.html', title: '楼地层章节目录' },
+    practice: { to: '/games/path?question=path-floor', title: '练习梁板传力路径', note: '通用节点练习，用于比较传力关系；不是该住宅的钢结构节点复原。' },
+  },
+  {
+    id: 'windows', number: '02', title: '玻璃围护', subtitle: '透明围护与开口',
+    summary: '大面积固定玻璃围合室内，入口双门与东端开启窗提供开口。',
+    observation: '绕建筑观察四面玻璃、细钢框、入口双门和东端下部开启窗。打开“观察内部”，查看围护与独立服务核心的位置关系。',
+    principle: '透明围护不能代替承重结构，也需要处理玻璃与框的连接、密封和使用舒适度。视觉上的轻盈应与实际热工、通风条件一起分析。',
+    question: '模型中的大面积玻璃主要承担哪项任务？',
+    choices: ['支承整个楼板', '围合空间并提供采光与视线', '作为楼板基础'], answer: 1,
+    explanation: '玻璃形成透明围护；支承楼板和屋盖的主要构件是钢框架。',
+    course: { to: '/lesson/basics/door-window/index.html', title: '门窗章节目录' },
+    practice: { to: '/games/diagram?question=diagram-column', title: '练习图纸与模型对应', note: '通用图模对应练习，训练空间辨识；不是该住宅的门窗细部。' },
+  },
+  {
+    id: 'roof', number: '03', title: '入口平台', subtitle: '架空平台与台阶',
+    summary: '两级石材平台与开敞台阶连接地面和抬高的室内地坪。',
+    observation: '查看向侧面错开的下层平台、上层门廊和两段无踢面的台阶。平台属于建筑本体；周围地面与绿植为展示装饰，不代表原址测绘。',
+    principle: '抬高的地坪通过钢支承与地面分离，入口以分级平台组织高度变化。架空高度本身不能作为充分的防洪保证，室外平台仍需考虑排水。',
+    question: '从地面进入抬高的室内，模型呈现了怎样的路径？',
+    choices: ['直接跨过玻璃', '沿屋顶进入', '台阶—下层平台—台阶—上层门廊'], answer: 2,
+    explanation: '入口由两级平台和两段台阶连接，不需要借助场地模型也能观察它们的关系。',
+    course: { to: '/lesson/basics/stairs/index.html', title: '楼梯章节目录' },
+    practice: { to: '/games/identify?question=identify-gutter', title: '练习辨识檐沟', note: '通用排水辨识练习，用于比较室外汇水构件；不是该住宅的排水复原。' },
+  },
+];
+
+export interface CaseStudy {
+  id: string; title: string; english: string; location: string; period: string; architects: string;
+  description: string; modelNote: string; sources: { title: string; url: string }[];
+  topics: CaseTopic[]; cover: string;
+}
+export const featuredCase: CaseStudy = { ...farnsworth, topics: farnsworthTopics, cover: 'images/cases/farnsworth-model.png' };
+export const legacySavoyeCase: CaseStudy = { ...savoye, topics: savoyeTopics, cover: 'images/cases/villa-savoye-model.png' };
+export function getCaseStudy(id: string | undefined) {
+  return [featuredCase, legacySavoyeCase].find(item => item.id === id);
+}
+export function getCaseTopic(study: CaseStudy, id: string | null | undefined) {
+  return study.topics.find(topic => topic.id === id) ?? study.topics[0];
+}

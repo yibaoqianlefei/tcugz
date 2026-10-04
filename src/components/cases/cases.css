@@ -9,6 +9,7 @@
 .savoye-model { height:350px; position:relative; overflow:hidden; touch-action:none; }
 .savoye-model > div:first-child { height:100%; }
 .savoye-model canvas { display:block; touch-action:none; }
+.case-farnsworth-model { background:linear-gradient(180deg,#edf0f4 0%,#e3ebf1 48%,#eef0e9 100%); }
 .case-model-placeholder,.case-model-fallback { min-height:350px; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:12px; padding:24px; color:#556483; font-size:13px; }
 .case-model-fallback p { margin:0; }
 .case-model-fallback button { border:1px solid #c4cee4; padding:8px 12px; border-radius:6px; background:white; cursor:pointer; }
@@ -16,6 +17,14 @@
 .case-model-markers button { position:absolute; width:34px; height:34px; transform:translate(-50%,-50%); padding:0; border-radius:50%; border:1px solid #8395bd; background:#f8faff; color:#40578d; font-size:11px; font-weight:700; box-shadow:0 0 0 4px #ffffff88; pointer-events:auto; cursor:pointer; }
 .case-model-markers button:hover,.case-model-markers button.is-selected { background:#43558e; border-color:#43558e; color:white; }
 .case-fit-button { position:absolute; top:14px; right:18px; padding:7px 10px; border:1px solid #d3dced; border-radius:5px; background:#f8faffcc; color:#43558e; font-size:11px; cursor:pointer; }
+.case-view-tools { position:absolute; top:14px; right:18px; display:flex; gap:7px; }
+.case-view-tools button { padding:7px 10px; border:1px solid #d3dced; border-radius:5px; background:#f8faffdd; color:#43558e; font-size:11px; cursor:pointer; }
+.case-view-tools button[aria-pressed=true] { color:white; background:#43558e; }
+.case-drawing-reference { margin-top:20px; color:#43558e; font-size:13px; }
+.case-drawing-reference summary { cursor:pointer; }
+.case-drawing-reference figure { margin:20px 0; }
+.case-drawing-reference img { display:block; width:100%; border:1px solid #d6deec; background:white; }
+.case-drawing-reference figcaption { margin-top:8px; font-size:11px; color:#64718b; }
 .case-model-gesture { position:absolute; bottom:12px; left:22px; pointer-events:none; font-size:10px; color:#61708a; }
 .case-topic-tabs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; padding:0 22px 15px; }
 .case-topic-tabs button { min-width:0; display:flex; align-items:center; justify-content:center; gap:7px; min-height:40px; padding:8px 4px; border:1px solid #d0d9e9; background:#f9faff; color:#3b4b6d; font-weight:650; font-size:12px; border-radius:5px; cursor:pointer; }
@@ -31,6 +40,7 @@
 .case-preview-root > .case-experience { flex:1; }
 .case-preview-root .case-experience-model { display:flex; flex-direction:column; }
 .case-preview-root .savoye-model { height:clamp(330px,32vh,430px); flex:1; min-height:330px; }
+.case-preview-root .case-experience-showcase .savoye-model { height:clamp(440px,52vh,680px); min-height:440px; }
 .case-study-page { max-width:1200px; padding:40px 32px 64px; margin:0 auto; color:#1c2544; }
 .case-study-meta { display:flex; flex-wrap:wrap; gap:12px 24px; font-size:13px; color:#586781; margin:0 0 28px; }
 .case-study-layout { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(300px,1fr); gap:24px; align-items:start; }
