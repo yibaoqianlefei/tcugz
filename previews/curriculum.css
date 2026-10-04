@@ -10,3 +10,7 @@
 .back-icon{display:grid;place-items:center;width:24px;height:24px;border-radius:5px;background:#334985;color:white;font-size:18px;line-height:1}
 .page-head .eyebrow{display:block}
 .page-head h1{margin-bottom:0}
+/* Shared course header branding. */
+.topbar .course-brand{display:inline-flex;align-items:center;gap:9px;min-width:0}
+.course-brand img{display:block;flex:none}
+.course-brand span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
