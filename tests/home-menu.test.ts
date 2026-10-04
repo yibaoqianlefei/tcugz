@@ -5,7 +5,7 @@
  * real sub-section / course-module data it is built from — never a copied
  * array.  Covers the menu restructure contract:
  *
- *   - top-level order: 绪论 构造基础 构造原理 节点库 案例应用 作业训练 AI 拓展
+ *   - top-level order: 绪论 构造基础 构造原理 构造节点 案例应用 作业训练 AI 拓展
  *   - no 数据分析 entry
  *   - 绪论 promoted to a top-level EXPANDABLE menu (own children), first item
  *   - 绪论 sub-sections unchanged (names + order + routes)
@@ -45,7 +45,7 @@ const ids = menuItems.map((m) => m.id);
 
 group("Top-level menu order is exactly the target 7 items");
 {
-  const expected = ["绪论", "构造基础", "构造原理", "节点库", "案例应用", "作业训练", "AI 拓展"];
+  const expected = ["绪论", "构造基础", "构造原理", "构造节点", "案例应用", "作业训练", "AI 拓展"];
   assert(expected.length === labels.length,
     `7 top-level entries (got ${labels.length}: ${labels.join(",")})`);
   assert(expected.every((l, i) => labels[i] === l),

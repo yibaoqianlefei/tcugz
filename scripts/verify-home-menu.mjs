@@ -11,7 +11,7 @@
  *  C. 绪论 sub-chapter → navigates to #/textbook/introduction/{id}.
  *  D. 构造基础 → expands, panel has no 绪论 module, keeps 7 modules.
  *  E. 构造原理 → expands, 6 modules.
- *  F. 节点库 / 案例应用 / 作业训练 / AI 拓展 still navigate.
+ *  F. 构造节点 / 案例应用 / 作业训练 / AI 拓展 still navigate.
  *  G. No console errors, no 404, aria-expanded consistent.
  *
  * Usage: node scripts/verify-home-menu.mjs <baseUrl>
@@ -53,7 +53,7 @@ async function run(viewport, tag) {
   );
   // Interleave: 3 expandable + 4 links = the 7 top-level items.
   const topLabels = [expTexts[0], expTexts[1], expTexts[2], linkTexts[0], linkTexts[1], linkTexts[2], linkTexts[3]];
-  const expectedOrder = ["绪论", "构造基础", "构造原理", "节点库", "案例应用", "作业训练", "AI 拓展"];
+  const expectedOrder = ["绪论", "构造基础", "构造原理", "构造节点", "案例应用", "作业训练", "AI 拓展"];
   ok(expTexts.length === 3, `3 expandable menus (got ${expTexts.length})`);
   ok(linkTexts.length === 4, `4 link menus (got ${linkTexts.length})`);
   ok(expectedOrder.every((l, i) => topLabels[i] === l),
@@ -123,7 +123,7 @@ async function run(viewport, tag) {
   await page.goto(`${baseUrl}/#/`, { waitUntil: "networkidle" });
   await page.waitForTimeout(1000);
   const targets = [
-    { label: "节点库", hash: "#/library" },
+    { label: "构造节点", hash: "#/library" },
     { label: "案例应用", hash: "#/curriculum/cases" },
     { label: "作业训练", hash: "#/games" },
     { label: "AI 拓展", hash: "#/ai-extend" },

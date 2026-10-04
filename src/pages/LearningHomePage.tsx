@@ -14,6 +14,7 @@ if (!previewBody) throw new Error('Homepage preview markup is missing');
 const siteBase = import.meta.env.BASE_URL;
 
 const formalMarkup = previewBody
+  .replaceAll('src="/brand/', `src="${siteBase}brand/`)
   .replaceAll('/previews/curriculum/', `${siteBase}#/lesson/`)
   .replaceAll('/previews/wall-v1.html', `${siteBase}#/lesson/wall/index.html`)
   .replace('class="brand" href="/#/" title="返回当前首页"', 'class="brand" href="#top" title="返回顶部"')

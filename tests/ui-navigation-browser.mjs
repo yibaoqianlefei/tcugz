@@ -54,14 +54,14 @@ try {
   await page.waitForTimeout(100);
   assert(await page.evaluate(() => document.documentElement.scrollHeight <= innerHeight + 1));
   await page.locator('.site-back-link').click();
-  await page.locator('.site-page-title').filter({ hasText: '构造节点库' }).waitFor();
+  await page.locator('.site-page-title').filter({ hasText: '构造节点' }).waitFor();
   await page.waitForTimeout(100);
   const returnedListY = await page.evaluate(() => scrollY);
   assert(Math.abs(returnedListY - listY) < 2, `Explicit library return restores position: ${listY} → ${returnedListY}`);
   await card.click();
   await page.locator('.node-detail-page').waitFor();
   await page.goBack();
-  await page.locator('.site-page-title').filter({ hasText: '构造节点库' }).waitFor();
+  await page.locator('.site-page-title').filter({ hasText: '构造节点' }).waitFor();
   await page.waitForTimeout(100);
   assert(Math.abs(await page.evaluate(() => scrollY) - listY) < 2, 'Browser back restores position');
   console.log(`PASS node list return: ${listY}px retained by button and browser back`);

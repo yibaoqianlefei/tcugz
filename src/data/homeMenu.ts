@@ -9,7 +9,7 @@
  *   1. 绪论     — expandable (own 子章节 as navigable leaf children)
  *   2. 构造基础 — expandable (course modules, 绪论 moved out)
  *   3. 构造原理 — expandable
- *   4. 节点库   — link
+ *   4. 构造节点   — link
  *   5. 案例应用 — link
  *   6. 作业训练 — link
  *   7. AI 拓展  — link
@@ -112,7 +112,7 @@ export const menuItems: MenuItemDef[] = [
       { id: "moisture", label: "建筑防潮", icon: "💨", description: "建筑防潮构造原理与设计" },
     ],
   },
-  { icon: Layers, label: "节点库", id: "library", to: "/library" },
+  { icon: Layers, label: "构造节点", id: "library", to: "/library" },
   { icon: Briefcase, label: "案例应用", id: "cases", to: "/curriculum/cases" },
   { icon: Hammer, label: "作业训练", id: "games", to: "/games" },
   { icon: Sparkles, label: "AI 拓展", id: "ai-extend", to: "/ai-extend" },

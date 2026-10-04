@@ -21,7 +21,9 @@ function formalize(html) {
     .replaceAll('二级目录预览', '章节目录')
     .replaceAll('墙体目录预览 · 仅用于版式确认', '墙体章节')
     .replaceAll('href="/curriculum/', `href="${siteBase}curriculum/`)
-    .replaceAll('href="/#/', `href="${siteBase}#/`);
+    .replaceAll('href="/#/', `href="${siteBase}#/`)
+    .replaceAll('src="/brand/', `src="${siteBase}brand/`)
+    .replaceAll('href="/favicon.svg"', `href="${siteBase}favicon.svg"`);
 }
 
 async function walk(directory) {

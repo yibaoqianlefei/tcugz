@@ -73,8 +73,8 @@ function renderMarkdown(markdown) {
 
 function shell({ title, category, parentUrl, parentLabel, body }) {
   return `<!doctype html>
-<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)} · 建筑构造</title><link rel="stylesheet" href="/previews/curriculum.css"></head>
-<body><div class="layout"><div class="page"><header class="topbar"><a href="${home}">建筑构造 / 学习首页</a><a class="back" href="${parentUrl}"><span class="back-icon" aria-hidden="true">←</span><span>${esc(parentLabel)}</span></a></header><main class="content"><div class="page-head"><span class="eyebrow">${esc(category)}</span><h1>${esc(title)}</h1></div>${body}</main></div></div></body></html>`;
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)} · 建筑构造</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/previews/curriculum.css"></head>
+<body><div class="layout"><div class="page"><header class="topbar"><a class="course-brand" href="${home}"><img src="/brand/logo.svg" width="40" height="40" alt="" aria-hidden="true"><span>建筑构造 / 学习首页</span></a><a class="back" href="${parentUrl}"><span class="back-icon" aria-hidden="true">←</span><span>${esc(parentLabel)}</span></a></header><main class="content"><div class="page-head"><span class="eyebrow">${esc(category)}</span><h1>${esc(title)}</h1></div>${body}</main></div></div></body></html>`;
 }
 function cards(items, url, badge) {
   return `<div class="cards">${items.map((item, index) => `<a class="card" href="${url(item)}"><span class="card-top"><span>${String(index + 1).padStart(2, '0')} / CHAPTER</span><em>${esc(badge(item))}</em></span><strong>${esc(item.title)}</strong><p>${esc(item.description)}</p></a>`).join('')}</div>`;

@@ -200,7 +200,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
     return (
       <div className="node-detail-page flex flex-col bg-canvas overflow-hidden items-center justify-center">
         <p className="text-muted text-lg">节点不存在</p>
-        <Link to="/library" className="text-primary text-sm mt-3 hover:underline">返回节点库</Link>
+        <Link to="/library" className="text-primary text-sm mt-3 hover:underline">返回构造节点</Link>
       </div>
     );
   }
@@ -211,7 +211,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
       <div className="node-detail-page flex flex-col bg-canvas overflow-hidden items-center justify-center">
         <p className="text-muted text-lg">该节点正在开发中</p>
         <p className="text-muted-soft text-sm mt-1">{node.description}</p>
-        <Link to="/library" className="text-primary text-sm mt-3 hover:underline">返回节点库</Link>
+        <Link to="/library" className="text-primary text-sm mt-3 hover:underline">返回构造节点</Link>
       </div>
     );
   }
@@ -225,7 +225,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
       <header className="flex-shrink-0 flex items-center justify-between gap-3 min-h-12 px-4 md:px-5 bg-canvas border-b border-hairline z-20">
         <div className="flex items-center gap-2 text-sm min-w-0">
           <Link to="/library" className="text-muted-soft hover:text-primary transition-colors">
-            节点库
+            构造节点
           </Link>
           <span className="text-muted-soft">›</span>
           <span className="text-muted font-medium truncate">{node.title}</span>
@@ -282,7 +282,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
                           className="px-4 py-2 rounded-lg border border-hairline text-xs text-muted
                             hover:text-primary hover:border-primary/30 transition-colors"
                         >
-                          返回节点库
+                          返回构造节点
                         </Link>
                       </div>
                       {import.meta.env.DEV && (

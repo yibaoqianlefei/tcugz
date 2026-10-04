@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import curriculum from '../data/curriculumDocuments.json';
 import SectionPageHeader from '../components/SectionPageHeader';
+import BrandMark from '../components/BrandMark';
 
 const siteBase = import.meta.env.BASE_URL;
 const documents = new Set(curriculum.documents);
@@ -11,7 +12,7 @@ function CourseProblem({ missing, retry }: { missing: boolean; retry?: () => voi
   useEffect(() => { document.title = `${title} · 建筑构造`; }, [title]);
   return <>
     <header className="site-subpage-topbar">
-      <Link to="/" className="site-subpage-brand">建筑构造 / 学习首页</Link>
+      <Link to="/" className="site-subpage-brand"><BrandMark /><span>建筑构造 / 学习首页</span></Link>
       <Link to="/" className="site-back-link"><span className="site-back-icon" aria-hidden="true">←</span>返回学习首页</Link>
     </header>
     <div className="site-page">

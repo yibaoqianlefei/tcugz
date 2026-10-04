@@ -85,7 +85,7 @@ const libraryY = await page.evaluate(() => scrollY);
 await nodeCard.click();
 await page.locator('.node-detail-page').waitFor();
 await page.locator('.site-back-link').click();
-await page.locator('.site-page-title').filter({ hasText: '构造节点库' }).waitFor();
+await page.locator('.site-page-title').filter({ hasText: '构造节点' }).waitFor();
 await page.waitForTimeout(150);
 result.flows.libraryReturn = { before: libraryY, after: await page.evaluate(() => scrollY) };
 await writeFile(`${out}/results.json`, JSON.stringify(result, null, 2));

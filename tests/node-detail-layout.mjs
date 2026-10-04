@@ -133,7 +133,7 @@ try {
   assert.equal(await page.evaluate(() => localStorage.getItem("node-detail-panel-layout-v1")), null,
     "released drag is not persisted");
 
-  await page.getByRole("link", { name: "节点库" }).click();
+  await page.getByRole("link", { name: "构造节点" }).click();
   await page.locator(".node-detail-grid").waitFor({ state: "detached" });
   await page.goBack();
   await page.waitForFunction(() => Math.round(document.querySelector(".node-knowledge")?.getBoundingClientRect().width) === 380);

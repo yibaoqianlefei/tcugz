@@ -2,6 +2,7 @@ import { Outlet, useLocation, Link, useNavigationType } from "react-router-dom";
 import { useLayoutEffect, useRef } from "react";
 import { ErrorBoundary } from "./ErrorBoundary";
 import LearningHomePage from "../pages/LearningHomePage";
+import BrandMark from "./BrandMark";
 
 /**
  * Root-level error fallback — shown when any (eager or lazy) route throws
@@ -56,7 +57,7 @@ function AppLayout() {
     : pathname.startsWith('/games/')
     ? { to: '/games', label: '返回训练中心' }
     : pathname.startsWith('/node/')
-    ? { to: '/library', label: '返回节点库' }
+    ? { to: '/library', label: '返回构造节点' }
     : pathname.startsWith('/textbook/')
       ? { to: pathname.includes('/introduction') ? '/?section=introduction' : '/?section=modules', label: '返回学习首页' }
       : { to: '/', label: '返回学习首页' };
@@ -113,7 +114,7 @@ function AppLayout() {
     <>
       {!isHome && !isAuth && !isLesson && (
         <header className="site-subpage-topbar">
-          <Link to="/" className="site-subpage-brand">建筑构造 / 学习首页</Link>
+          <Link to="/" className="site-subpage-brand"><BrandMark /><span>建筑构造 / 学习首页</span></Link>
           <Link to={parent.to} className="site-back-link"><span className="site-back-icon" aria-hidden="true">←</span>{parent.label}</Link>
         </header>
       )}

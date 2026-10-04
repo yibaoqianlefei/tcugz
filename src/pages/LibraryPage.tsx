@@ -22,7 +22,7 @@ export default function LibraryPage() {
   return <div className="site-page">
     <header className="site-page-header mx-auto w-full max-w-6xl px-6 md:px-10">
       <span className="site-eyebrow">NODE LIBRARY / 按部位浏览</span>
-      <h1 className="site-page-title">构造节点库</h1>
+      <h1 className="site-page-title">构造节点</h1>
       <p className="site-page-intro">按建筑部位探索 {libraryNodes.length} 个构造节点。打开图纸与三维模型，观察构件之间的空间关系。</p>
     </header>
     <main className="mx-auto w-full max-w-6xl px-6 pb-16 md:px-10">

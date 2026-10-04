@@ -178,7 +178,9 @@ details.ui-resource-card > summary::-webkit-details-marker { display: none; }
 .site-card-action { display: inline-flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 22px; color: var(--color-primary-active); font-size: 13px; font-weight: 700; }
 .site-status-chip { padding: 5px 9px; border-radius: 100px; color: #4b5f92; background: #eef1f8; font-size: 11px; font-weight: 700; letter-spacing: 0; white-space: nowrap; }
 .site-subpage-topbar { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; justify-content: space-between; gap: 20px; height: var(--site-topbar-height); padding-inline: clamp(28px, 5vw, 90px); background: var(--color-canvas); border-bottom: 1px solid var(--color-hairline); }
-.site-subpage-brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #68748d; font-size: 12px; letter-spacing: .04em; }
+.site-subpage-brand { display: inline-flex; align-items: center; gap: 9px; min-width: 0; color: #68748d; font-size: 12px; letter-spacing: .04em; }
+.site-subpage-brand > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.site-brand-mark { display: block; width: 40px; height: 40px; flex: none; }
 .site-subpage-brand:hover { color: var(--color-primary-active); }
 .site-back-link { display: inline-flex; align-items: center; flex: none; gap: 8px; width: max-content; padding: 7px 12px 7px 7px; border: 1px solid #bac7e1; border-radius: 7px; background: #edf1fa; color: #273d79; font-size: 14px; font-weight: 700; line-height: 1.2; transition: background .2s, border-color .2s, transform .2s; }
 .site-back-link:hover { background: #e1e9fa; border-color: #8197c8; }

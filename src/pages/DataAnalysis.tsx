@@ -194,7 +194,7 @@ export default function DataAnalysis() {
               to="/library"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary-active transition-colors"
             >
-              浏览节点库
+              浏览构造节点
             </Link>
           </motion.div>
         ) : (
