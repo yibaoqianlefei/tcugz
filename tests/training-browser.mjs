@@ -139,11 +139,11 @@ try {
   let homeModelRequests = 0;
   const homeErrors = [];
   home.on('pageerror', error => homeErrors.push(error.message));
-  home.on('request', request => { if (request.url().endsWith('/organized-drainage.glb')) homeModelRequests++; });
+  home.on('request', request => { if (request.url().endsWith('/water-storage-eaves-drainage.glb')) homeModelRequests++; });
   await home.goto(`${base}/`);
   const homeCanvas = home.locator('#node-model-root canvas');
   await homeCanvas.scrollIntoViewIfNeeded();
-  await home.locator('.node-model-hint').waitFor();
+  await home.locator('.node-model-stage[data-model-ready="true"]').waitFor();
   await homeCanvas.evaluate(canvas => { window.__retainedHomeCanvas = canvas; });
   await home.locator('#sidebar-toggle').click();
   await home.locator('#introduction').scrollIntoViewIfNeeded();

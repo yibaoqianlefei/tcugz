@@ -48,6 +48,13 @@ import { rigidRoofTransverseJointLayers, getLayerInfo as getRigidRoofTransverseJ
 import { rigidRoofTransverseJointTwoLayers, getLayerInfo as getRigidRoofTransverseJointTwoLayer } from "./rigidRoofTransverseJointTwoLayers";
 import { rigidRoofRidgeJointLayers, getLayerInfo as getRigidRoofRidgeJointLayer } from "./rigidRoofRidgeJointLayers";
 import { rigidRoofRidgeJointTwoLayers, getLayerInfo as getRigidRoofRidgeJointTwoLayer } from "./rigidRoofRidgeJointTwoLayers";
+import { rampFloorLayers, getLayerInfo as getRampFloorLayer } from "./rampFloorLayers";
+import { rampFloorTwoLayers, getLayerInfo as getRampFloorTwoLayer } from "./rampFloorTwoLayers";
+import { balconyRailingWeldLayers, getLayerInfo as getBalconyRailingWeldLayer } from "./balconyRailingWeldLayers";
+import { balconyRailingMortiseLayers, getLayerInfo as getBalconyRailingMortiseLayer } from "./balconyRailingMortiseLayers";
+import { balconyRailingDowelLayers, getLayerInfo as getBalconyRailingDowelLayer } from "./balconyRailingDowelLayers";
+import { waterStorageEavesDrainageLayers, getLayerInfo as getWaterStorageEavesDrainageLayer } from "./waterStorageEavesDrainageLayers";
+import { waterStorageParapetDrainageLayers, getLayerInfo as getWaterStorageParapetDrainageLayer } from "./waterStorageParapetDrainageLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
@@ -216,6 +223,50 @@ const STONE_GROUPS: Record<string, string> = {
 
 export const nodeDefinitions: NodeDefinition[] = [
   /* ── Roof nodes ─────────────────────────────────────────── */
+  {
+    id: "water-storage-parapet-drainage-01",
+    title: "蓄水屋面（女儿墙外排水）",
+    description: "观察蓄水屋面高位溢水孔、低位泄水孔与墙外雨水斗的连接，对照女儿墙防水泛水、墙顶压顶和板端嵌缝。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/water-storage-parapet-drainage-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/water-storage-parapet-drainage/water-storage-parapet-drainage.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/water-storage-parapet-drainage-diagram.png"),
+      subtitle: "蓄水屋面 · 女儿墙外排水",
+    },
+    layerConfig: {
+      layers: waterStorageParapetDrainageLayers,
+      getLayerInfo: getWaterStorageParapetDrainageLayer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
+  },
+
+  {
+    id: "water-storage-eaves-drainage-01",
+    title: "蓄水屋面（檐沟式排水）",
+    description: "蓄水屋面的檐沟式排水构造：观察蓄水层、高位溢水孔、低位泄水孔及檐沟、水落管的连接，并对照防水泛水和板端嵌缝做法。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/water-storage-eaves-drainage-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/water-storage-eaves-drainage/water-storage-eaves-drainage.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/water-storage-eaves-drainage-diagram.png"),
+      subtitle: "蓄水屋面 · 檐沟式排水",
+    },
+    layerConfig: {
+      layers: waterStorageEavesDrainageLayers,
+      getLayerInfo: getWaterStorageEavesDrainageLayer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
+  },
+
   {
     id: "flat-roof-01",
     title: "平屋面构造",
@@ -529,6 +580,72 @@ export const nodeDefinitions: NodeDefinition[] = [
   },
 
   /* ── Floor nodes ─────────────────────────────────────────── */
+  {
+    id: "balcony-railing-weld-01",
+    title: "栏杆与阳台板的连接（预埋件焊接）",
+    description: "阳台板边栏杆的预埋件焊接连接：观察栏杆脚、预埋板、锚脚及Φ16通长联系钢筋的连接关系，可分解模型并对照剖面图。",
+    category: "楼地层",
+    thumbnail: assetPath("images/floor/balcony-railing-weld-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/floor/balcony-railing-weld/balcony-railing-weld.glb"),
+      scale: 4,
+    },
+    diagram: {
+      path: assetPath("images/floor/balcony-railing-weld-diagram.png"),
+      subtitle: "栏杆与阳台板的连接 · 预埋件焊接",
+    },
+    layerConfig: {
+      layers: balconyRailingWeldLayers,
+      getLayerInfo: getBalconyRailingWeldLayer,
+    },
+    textbookLinks: [{ moduleId: "floor", chapterId: "floor-balcony" }],
+  },
+
+  {
+    id: "balcony-railing-mortise-01",
+    title: "栏杆与阳台板的连接（榫接坐浆）",
+    description: "阳台板边栏杆的榫接坐浆连接：观察带榫栏杆脚、挡水带槽口及M10水泥砂浆坐浆的配合关系，可分解模型并对照剖面图。",
+    category: "楼地层",
+    thumbnail: assetPath("images/floor/balcony-railing-mortise-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/floor/balcony-railing-mortise/balcony-railing-mortise.glb"),
+      scale: 4,
+    },
+    diagram: {
+      path: assetPath("images/floor/balcony-railing-mortise-diagram.png"),
+      subtitle: "栏杆与阳台板的连接 · 榫接坐浆",
+    },
+    layerConfig: {
+      layers: balconyRailingMortiseLayers,
+      getLayerInfo: getBalconyRailingMortiseLayer,
+    },
+    textbookLinks: [{ moduleId: "floor", chapterId: "floor-balcony" }],
+  },
+
+  {
+    id: "balcony-railing-dowel-01",
+    title: "栏杆与阳台板的连接（插筋连接）",
+    description: "阳台板边栏杆的插筋连接：观察栏杆脚、槽口侧缝填实与Φ6、长80mm插接钢筋的配合关系，可分解模型并对照剖面图。",
+    category: "楼地层",
+    thumbnail: assetPath("images/floor/balcony-railing-dowel-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/floor/balcony-railing-dowel/balcony-railing-dowel.glb"),
+      scale: 4,
+    },
+    diagram: {
+      path: assetPath("images/floor/balcony-railing-dowel-diagram.png"),
+      subtitle: "栏杆与阳台板的连接 · 插筋连接",
+    },
+    layerConfig: {
+      layers: balconyRailingDowelLayers,
+      getLayerInfo: getBalconyRailingDowelLayer,
+    },
+    textbookLinks: [{ moduleId: "floor", chapterId: "floor-balcony" }],
+  },
+
   {
     id: "cast-ribbed-floor-01",
     title: "现浇肋梁楼板",
@@ -949,6 +1066,50 @@ export const nodeDefinitions: NodeDefinition[] = [
       layers: rampHandrailLayers,
       getLayerInfo: getRampHandrailLayer,
     },
+  },
+
+  {
+    id: "ramp-floor-01",
+    title: "坡道地面构造做法（一）",
+    description: "水泥方砖坡道：50厚方砖面层、25厚1:3干硬性水泥砂浆粘结层、150厚C15混凝土与素土夯实，砖缝扫缝后洒水封缝。可分解模型并对照剖面图。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/ramp-floor-01-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/ramp-floor/ramp-floor-01.glb"),
+      scale: 2,
+    },
+    diagram: {
+      path: assetPath("images/stairs/ramp-floor-01-diagram.png"),
+      subtitle: "坡道地面构造做法一 · 水泥方砖面层",
+    },
+    layerConfig: {
+      layers: rampFloorLayers,
+      getLayerInfo: getRampFloorLayer,
+    },
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-steps-ramps" }],
+  },
+
+  {
+    id: "ramp-floor-02",
+    title: "坡道地面构造做法（二）",
+    description: "水泥砂浆坡道：20厚1:2水泥砂浆面层、内掺建筑胶的纯水泥浆一道、150厚C15混凝土与素土夯实。可分解模型，对照剖面了解面层与防滑条做法。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/ramp-floor-02-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/ramp-floor/ramp-floor-02.glb"),
+      scale: 2,
+    },
+    diagram: {
+      path: assetPath("images/stairs/ramp-floor-02-diagram.png"),
+      subtitle: "坡道地面构造做法二 · 水泥砂浆面层及防滑条要求",
+    },
+    layerConfig: {
+      layers: rampFloorTwoLayers,
+      getLayerInfo: getRampFloorTwoLayer,
+    },
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-steps-ramps" }],
   },
 
   /* ── Multi-variant presentation — Phase 2 ──

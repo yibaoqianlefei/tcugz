@@ -6,6 +6,7 @@ import { mkdir } from 'node:fs/promises';
 const base = process.argv[2] ?? 'http://127.0.0.1:5173';
 const browser = await chromium.launch({ headless: true });
 const featured = [
+  ['water-storage-eaves-drainage-01', '蓄水屋面（檐沟式排水）'],
   ['organized-drainage-01', '有组织排水'],
   ['vent-pipe-roof-01', '透气管出屋面'],
   ['foam-insulation-01', '粘贴泡沫塑料保温板外保温'],
@@ -27,7 +28,7 @@ try {
     let modelRequests = 0;
     page.on('pageerror', error => errors.push(error.message));
     // Exercise a cold asynchronous GLTF load, which used to suspend the Canvas.
-    await page.route('**/organized-drainage.glb', async route => {
+    await page.route('**/water-storage-eaves-drainage.glb', async route => {
       modelRequests++;
       await new Promise(resolve => setTimeout(resolve, 800));
       await route.continue();
@@ -36,6 +37,20 @@ try {
     const canvas = page.locator('#node-model-root canvas');
     await canvas.scrollIntoViewIfNeeded();
     await page.locator('.node-model-stage[data-model-ready=\"true\"]').waitFor();
+    assert.equal(await page.locator('.node-model-caption strong').innerText(), featured[0][1]);
+    assert.equal(await page.locator('.node-model-index-current').innerText(), '01');
+    assert.equal(await page.locator('.node-model-index-total').innerText(), String(featured.length).padStart(2, '0'));
+    assert((await page.locator('.node-model-caption a').getAttribute('href')).endsWith(`#/node/${featured[0][0]}`));
+    const assertFrontView = async () => {
+      const direction = await page.evaluate(() => {
+        const control = window.__homepageModelControls;
+        return control.object.position.clone().sub(control.target).normalize().toArray();
+      });
+      assert(Math.abs(direction[0]) < .08 && Math.abs(direction[1]) < .001 && direction[2] > .99,
+        `Each new model starts from the front (${direction})`);
+    };
+    await assertFrontView();
+    if (path === '/' && width === 1440) await page.locator('#node-model-root').screenshot({ path: `tmp/homepage-models/front-${featured[0][0]}.png` });
     // The cold stylesheet/layout can move the stage after the first scroll.
     await canvas.scrollIntoViewIfNeeded();
     // R3F's delayed teardown loses the context after 500ms in the regression.
@@ -52,6 +67,8 @@ try {
       await page.getByRole('button', { name: '下一个模型', exact: true }).click();
       await page.locator('.node-model-caption strong').filter({ hasText: featured[index][1] }).waitFor();
       await page.locator('.node-model-stage[data-model-ready=\"true\"]').waitFor();
+      await assertFrontView();
+      if (path === '/' && width === 1440) await page.locator('#node-model-root').screenshot({ path: `tmp/homepage-models/front-${featured[index][0]}.png` });
       await page.waitForTimeout(300);
       await assertModelDrawn(canvas, `${path} ${featured[index][1]} at ${width}px`);
       assert((await page.locator('.node-model-caption a').getAttribute('href')).endsWith(`#/node/${featured[index][0]}`));
@@ -120,13 +137,21 @@ try {
       const released = await readDirection();
       await page.waitForTimeout(150);
       assert(angle(released, await readDirection()) > .0005, 'Autorotation resumes immediately after releasing drag');
-      // Let drag damping settle so the comparison measures retained orbit,
-      // rather than the remaining momentum between clicking two buttons.
+      // Autorotation was verified above. Pause it through the controls event
+      // before comparing retained views, so loading time cannot skew angles.
+      await page.evaluate(() => window.__homepageModelControls.dispatchEvent({ type: 'start' }));
+      // Let drag damping settle before recording the retained view.
       await page.waitForTimeout(600);
+      await page.evaluate(() => {
+        const control = window.__homepageModelControls;
+        control.enableDamping = false;
+        control.update();
+        control.enableDamping = true;
+      });
       const beforeSwitch = await readDirection();
       const zoomBeforeSwitch = await readZoom();
       await page.getByRole('button', { name: '上一个模型', exact: true }).click();
-      await page.locator('.node-model-caption strong').filter({ hasText: featured[3][1] }).waitFor();
+      await page.locator('.node-model-caption strong').filter({ hasText: featured.at(-1)[1] }).waitFor();
       await page.locator('.node-model-stage[data-model-ready=\"true\"]').waitFor();
       await page.getByRole('button', { name: '下一个模型', exact: true }).click();
       await page.locator('.node-model-caption strong').filter({ hasText: featured[0][1] }).waitFor();

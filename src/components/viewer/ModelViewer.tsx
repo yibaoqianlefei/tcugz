@@ -296,8 +296,12 @@ function SceneModel({ modelPath, modelScale = 2.5, modelGroups, knowledgeObjectN
         if (import.meta.env.DEV) console.log(`[GLB] clip[${i}] "${clip.name}" loaded, duration=${clip.duration}`);
       });
       mixerRef.current = mixer;
-      actionRef.current = actions[0];
-      clipRef.current = animations.reduce((a, b) => a.duration > b.duration ? a : b);
+      // A fixed base can be exported as the first, single-keyframe clip.
+      // Track the longest action so playback progress reaches the same end
+      // time used by the scrubber and component picking gate.
+      const timelineClip = animations.reduce((a, b) => a.duration >= b.duration ? a : b);
+      clipRef.current = timelineClip;
+      actionRef.current = actions[animations.indexOf(timelineClip)];
       unregister = registerAnimationActions(actions);
 
       actions.forEach((a) => { a.paused = false; });
