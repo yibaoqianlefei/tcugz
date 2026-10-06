@@ -1,7 +1,1 @@
-{
-  "pagesArchive": "archive/original-pages-2026-10-02",
-  "publishedAt": "2026-10-04T10:19:16.6253974+00:00",
-  "base": "/tcugz/",
-  "sourceCommit": "1249aad369f1fd792580bd742c3950a62c538d2d",
-  "sourceArchive": "archive/original-ui-2026-10-02"
-}
+{"sourceCommit":"eb34970f3d4be79a44cd3a63eb89b294d9f24f3c","sourceBranch":"ui-improvements","base":"/tcugz/"}
