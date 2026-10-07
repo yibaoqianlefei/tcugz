@@ -63,6 +63,8 @@ import { stairFlightFlushUnburiedLayers, getLayerInfo as getStairFlightFlushUnbu
 import { stairFlightOffsetMultipleLayers, getLayerInfo as getStairFlightOffsetMultipleLayer } from "./stairFlightOffsetMultipleLayers";
 import { cantileverCanopySlabLayers, getLayerInfo as getCantileverCanopySlabLayer } from "./cantileverCanopySlabLayers";
 import { cantileverCanopyRaisedLayers, getLayerInfo as getCantileverCanopyRaisedLayer } from "./cantileverCanopyRaisedLayers";
+import { freeFallWaterproofEavesLayers, getLayerInfo as getFreeFallWaterproofEavesLayer } from "./freeFallWaterproofEavesLayers";
+import { freeFallRingBeamEavesLayers, getLayerInfo as getFreeFallRingBeamEavesLayer } from "./freeFallRingBeamEavesLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
@@ -233,6 +235,48 @@ const STONE_GROUPS: Record<string, string> = {
 
 export const nodeDefinitions: NodeDefinition[] = [
   /* ── Roof nodes ─────────────────────────────────────────── */
+  {
+    id: "free-fall-ring-beam-eaves-01",
+    title: "自由落水檐口（圈梁带挑檐板）",
+    description: "观察圈梁与挑檐板、屋面层次及双向钢筋网的连接，支持分解动画、构件选择和剖面对照。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/free-fall-ring-beam-eaves-01-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/free-fall-eaves/free-fall-ring-beam-eaves-01-v2.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/free-fall-ring-beam-eaves-01-diagram.png"),
+      subtitle: "自由落水檐口 · 圈梁带挑檐板",
+    },
+    layerConfig: {
+      layers: freeFallRingBeamEavesLayers,
+      getLayerInfo: getFreeFallRingBeamEavesLayer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
+  },
+  {
+    id: "free-fall-waterproof-eaves-01",
+    title: "自由落水檐口（防水层直接悬挑）",
+    description: "观察防水悬挑层、双向钢筋网、墙顶圈梁及空心屋面板的连接，支持分解动画、构件选择和剖面对照。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/free-fall-waterproof-eaves-01-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/free-fall-eaves/free-fall-waterproof-eaves-01.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/free-fall-waterproof-eaves-01-diagram.png"),
+      subtitle: "自由落水檐口 · 防水层直接悬挑",
+    },
+    layerConfig: {
+      layers: freeFallWaterproofEavesLayers,
+      getLayerInfo: getFreeFallWaterproofEavesLayer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
+  },
   {
     id: "water-storage-parapet-drainage-01",
     title: "蓄水屋面（女儿墙外排水）",
