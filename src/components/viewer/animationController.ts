@@ -6,13 +6,29 @@
  * wiping actions that belong to a newly mounted SceneModel.
  */
 
-import type { AnimationAction } from "three";
+import type { AnimationAction, AnimationClip } from "three";
 import { useNodeStore } from "../../store/nodeStore";
 
 /* ── Active registration ─────────────────────────────────────── */
 
 let _actions: AnimationAction[] = [];
 let _token: symbol | null = null;
+
+/** Keep source keyframe times/speeds, but hold every track until the model's
+ * longest clip ends. All actions then share one clock in either direction.
+ * Clone first: useGLTF caches source clips across viewer instances. */
+export function createModelTimelineClips(clips: readonly AnimationClip[]): AnimationClip[] {
+  const duration = Math.max(0, ...clips.map(clip => clip.duration));
+  return clips.map(source => {
+    const clip = source.clone();
+    clip.duration = duration;
+    return clip;
+  });
+}
+
+function getTimelineDuration(): number {
+  return Math.max(0, ..._actions.map(action => action.getClip().duration));
+}
 
 /**
  * Register the current set of animation actions.
@@ -102,11 +118,21 @@ export const animControls = {
   },
 
   setTime(t: number) {
+    const time = Math.max(0, Math.min(getTimelineDuration(), t));
+    const mixers = new Set<ReturnType<AnimationAction["getMixer"]>>();
     _actions.forEach((a) => {
-      a.time = t;
+      a.time = time;
+      a.enabled = true;
       a.paused = true;
-      a.getMixer().update(0);
+      mixers.add(a.getMixer());
     });
+    // Evaluate once after ALL actions are positioned, avoiding mixed poses.
+    mixers.forEach(mixer => mixer.update(0));
+    useNodeStore.getState().setIsPlaying(false);
+  },
+
+  setProgress(progress: number) {
+    animControls.setTime(Math.max(0, Math.min(1, progress)) * getTimelineDuration());
   },
 
   /** Rewind to frame 0 and hold (R reset). Stops any ongoing playback. */

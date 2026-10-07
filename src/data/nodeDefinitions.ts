@@ -55,6 +55,14 @@ import { balconyRailingMortiseLayers, getLayerInfo as getBalconyRailingMortiseLa
 import { balconyRailingDowelLayers, getLayerInfo as getBalconyRailingDowelLayer } from "./balconyRailingDowelLayers";
 import { waterStorageEavesDrainageLayers, getLayerInfo as getWaterStorageEavesDrainageLayer } from "./waterStorageEavesDrainageLayers";
 import { waterStorageParapetDrainageLayers, getLayerInfo as getWaterStorageParapetDrainageLayer } from "./waterStorageParapetDrainageLayers";
+import { highLowRoofJointLayers, getLayerInfo as getHighLowRoofJointLayer } from "./highLowRoofJointLayers";
+import { highLowRoofJointTwoLayers, getLayerInfo as getHighLowRoofJointTwoLayer } from "./highLowRoofJointTwoLayers";
+import { stairFlightFlushBuriedLayers, getLayerInfo as getStairFlightFlushBuriedLayer } from "./stairFlightFlushBuriedLayers";
+import { stairFlightOffsetOneLayers, getLayerInfo as getStairFlightOffsetOneLayer } from "./stairFlightOffsetOneLayers";
+import { stairFlightFlushUnburiedLayers, getLayerInfo as getStairFlightFlushUnburiedLayer } from "./stairFlightFlushUnburiedLayers";
+import { stairFlightOffsetMultipleLayers, getLayerInfo as getStairFlightOffsetMultipleLayer } from "./stairFlightOffsetMultipleLayers";
+import { cantileverCanopySlabLayers, getLayerInfo as getCantileverCanopySlabLayer } from "./cantileverCanopySlabLayers";
+import { cantileverCanopyRaisedLayers, getLayerInfo as getCantileverCanopyRaisedLayer } from "./cantileverCanopyRaisedLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
@@ -96,6 +104,8 @@ export interface NodeModelConfig {
   noAnimation?: boolean;
   /** Canonical names of meshes to exclude from hover/click/highlight. */
   nonInteractive?: string[];
+  /** Dense components whose authored geometry renders without extra edge lines. */
+  outlineExcluded?: string[];
 }
 
 export interface NodeDiagramConfig {
@@ -475,6 +485,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     model: {
       path: assetPath("models/roof/vent-pipe/vent-pipe.glb"),
       scale: 2.5,
+      outlineExcluded: ["球形镀锌钢丝罩"],
     },
     diagram: {
       path: assetPath("images/roof/vent-pipe-diagram.png"),
@@ -579,7 +590,94 @@ export const nodeDefinitions: NodeDefinition[] = [
     textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
   },
 
+  {
+    id: "high-low-roof-joint-01",
+    title: "高低屋面变形缝（一）",
+    description: "高低屋面交接处的变形缝构造：观察跨缝附加卷材、高墙槽口收头、水泥钉及低屋面泛水，可分解构件并对照剖面图。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/high-low-roof-joint-01-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/high-low-roof-joint/high-low-roof-joint-01.glb"),
+      scale: 2.5,
+      groups: { "低屋面找层": "低屋面找平层" },
+    },
+    diagram: {
+      path: assetPath("images/roof/high-low-roof-joint-01-diagram.png"),
+      subtitle: "高低屋面变形缝 · 做法一",
+    },
+    layerConfig: {
+      layers: highLowRoofJointLayers,
+      getLayerInfo: getHighLowRoofJointLayer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
+  },
+
+  {
+    id: "high-low-roof-joint-02",
+    title: "高低屋面变形缝（二）",
+    description: "高低屋面变形缝的盖板做法：观察钢筋混凝土盖板、镀锌薄钢板、沥青麻丝填缝及低屋面泛水，支持构件分解与剖面对照。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/high-low-roof-joint-02-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/high-low-roof-joint/high-low-roof-joint-02.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/high-low-roof-joint-02-diagram.png"),
+      subtitle: "高低屋面变形缝 · 做法二",
+    },
+    layerConfig: {
+      layers: highLowRoofJointTwoLayers,
+      getLayerInfo: getHighLowRoofJointTwoLayer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
+  },
+
   /* ── Floor nodes ─────────────────────────────────────────── */
+  {
+    id: "cantilever-canopy-slab-01",
+    title: "悬挑雨篷构造（悬挑板式）",
+    description: "观察过梁与悬挑板、板面防水砂浆及檐口滴水槽的连接，支持分解动画、构件知识卡片和剖面对照。",
+    category: "楼地层",
+    thumbnail: assetPath("images/floor/cantilever-canopy-slab-01-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/floor/cantilever-canopy/cantilever-canopy-slab-01.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/floor/cantilever-canopy-slab-01-diagram.png"),
+      subtitle: "悬挑雨篷构造 · 悬挑板式",
+    },
+    layerConfig: {
+      layers: cantileverCanopySlabLayers,
+      getLayerInfo: getCantileverCanopySlabLayer,
+    },
+    textbookLinks: [{ moduleId: "floor", chapterId: "floor-balcony" }],
+  },
+  {
+    id: "cantilever-canopy-raised-eaves-01",
+    title: "悬挑雨篷构造（外檐加高）",
+    description: "观察加高外檐、防水砂浆包覆、出水口衬口与水舌的排水连接，支持分解动画、构件知识卡片和剖面对照。",
+    category: "楼地层",
+    thumbnail: assetPath("images/floor/cantilever-canopy-raised-eaves-01-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/floor/cantilever-canopy/cantilever-canopy-raised-eaves-01-v2.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/floor/cantilever-canopy-raised-eaves-01-diagram.png"),
+      subtitle: "悬挑雨篷构造 · 外檐加高 · I—Ⅰ局部剖面",
+    },
+    layerConfig: {
+      layers: cantileverCanopyRaisedLayers,
+      getLayerInfo: getCantileverCanopyRaisedLayer,
+    },
+    textbookLinks: [{ moduleId: "floor", chapterId: "floor-balcony" }],
+  },
   {
     id: "balcony-railing-weld-01",
     title: "栏杆与阳台板的连接（预埋件焊接）",
@@ -894,6 +992,110 @@ export const nodeDefinitions: NodeDefinition[] = [
   },
 
   /* ── Stairs nodes ────────────────────────────────────────── */
+  {
+    id: "stair-flight-offset-multiple-01",
+    title: "梯段与平台梁节点处理（梯段错多步）",
+    description: "观察梯段错多步时，梯段端部、平台板与水平挑边L形梁的接合关系，可旋转模型并对照剖面中的折形构件轮廓。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/stair-flight-offset-multiple-01-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/stair-flight-platform/stair-flight-offset-multiple-01.glb"),
+      scale: 2.5,
+      noAnimation: true,
+      nonInteractive: ["无需标注"],
+    },
+    diagram: {
+      path: assetPath("images/stairs/stair-flight-offset-multiple-01-diagram.png"),
+      subtitle: "梯段与平台梁节点处理 · 梯段错多步",
+    },
+    layerConfig: {
+      layers: stairFlightOffsetMultipleLayers,
+      getLayerInfo: getStairFlightOffsetMultipleLayer,
+    },
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-details" }],
+  },
+
+  {
+    id: "stair-flight-flush-unburied-01",
+    title: "梯段与平台梁节点处理（梯段齐步不埋步）",
+    description: "观察梯段齐步不埋步时，梯段端部与下平台梁平肩凹口、上平台梁及平台板的接合关系，可旋转模型并对照剖面。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/stair-flight-flush-unburied-01-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/stair-flight-platform/stair-flight-flush-unburied-01.glb"),
+      scale: 2.5,
+      noAnimation: true,
+      nonInteractive: ["无需标注"],
+    },
+    diagram: {
+      path: assetPath("images/stairs/stair-flight-flush-unburied-01-diagram.png"),
+      subtitle: "梯段与平台梁节点处理 · 梯段齐步不埋步",
+    },
+    layerConfig: {
+      layers: stairFlightFlushUnburiedLayers,
+      getLayerInfo: getStairFlightFlushUnburiedLayer,
+    },
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-details" }],
+  },
+
+  {
+    id: "stair-flight-offset-one-01",
+    title: "梯段与平台梁节点处理（梯段错一步）",
+    description: "观察梯段错一步时，端部踏步与上下平台边缘、斜肩L形承托的接合关系，可旋转模型并对照剖面。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/stair-flight-offset-one-01-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/stair-flight-platform/stair-flight-offset-one-01-v2.glb"),
+      scale: 2.5,
+      noAnimation: true,
+      nonInteractive: ["无需标注"],
+      groups: {
+        "无需标注001": "无需标注",
+        "无需标注001_1": "无需标注",
+      },
+    },
+    diagram: {
+      path: assetPath("images/stairs/stair-flight-offset-one-01-diagram.png"),
+      subtitle: "梯段与平台梁节点处理 · 梯段错一步",
+    },
+    layerConfig: {
+      layers: stairFlightOffsetOneLayers,
+      getLayerInfo: getStairFlightOffsetOneLayer,
+    },
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-details" }],
+  },
+
+  {
+    id: "stair-flight-flush-buried-01",
+    title: "梯段与平台梁节点处理（梯段齐步并埋步）",
+    description: "观察梯段齐步并埋步时，梯段端部与上下平台梁斜肩L形承托、平台板的接合关系，可旋转模型并对照剖面。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/stair-flight-flush-buried-01-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/stair-flight-platform/stair-flight-flush-buried-01.glb"),
+      scale: 2.5,
+      noAnimation: true,
+      nonInteractive: ["无需标注"],
+      groups: {
+        "无需标注001": "无需标注",
+        "无需标注001_1": "无需标注",
+      },
+    },
+    diagram: {
+      path: assetPath("images/stairs/stair-flight-flush-buried-01-diagram.png"),
+      subtitle: "梯段与平台梁节点处理 · 梯段齐步并埋步",
+    },
+    layerConfig: {
+      layers: stairFlightFlushBuriedLayers,
+      getLayerInfo: getStairFlightFlushBuriedLayer,
+    },
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-details" }],
+  },
+
   {
     id: "rc-elevated-steps-01",
     title: "钢筋混凝土架空台阶",

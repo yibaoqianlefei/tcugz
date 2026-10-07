@@ -6,12 +6,13 @@ import StudioEnvironment from './StudioEnvironment';
 import { useNodeStore } from "../../store/nodeStore";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { interactiveMeshName, isHitboxName } from "../../utils/nameUtils";
-import { registerAnimationActions, getAnimationActions } from "./animationController";
+import { createModelTimelineClips, registerAnimationActions, getAnimationActions } from "./animationController";
 // layoutModels is now inline in MultiModelGroup (edge-gap formula)
 import { writeVariantIdentity, makeScopedKey, parseScopedKey, matchesVariantScope, cloneSceneWithMaterials, disposeClonedMaterials } from "../../utils/variantIdentity";
 import { computeExplodedPosition } from "../../utils/explodeLayout";
 import type { ResolvedVariantExplodeConfig, ResolvedExplodeComponent } from "../../utils/explodeLayout";
 import { isInteractionAllowed } from "../../utils/interactionGates";
+import { collectOutlineSources, createFeatureEdges, separateOpaqueSurfaceDepth } from "../../utils/modelOutlines";
 
 /* ═══════════════════════════════════════════════════════════════
    Material highlight — original-state cache + dual-channel restore
@@ -106,7 +107,7 @@ function RendererSetup({ showShadows }: { showShadows: boolean }) {
 }
 
 /* ── Model component (auto-center + highlight + animation) ──── */
-function SceneModel({ modelPath, modelScale = 2.5, modelGroups, knowledgeObjectNames, noAnimation = false, nonInteractive, noGlobalRef = false, onReady, variantId, variantIndex, variantLabel, variantTitle, skipAutoLayout = false }: { modelPath: string; modelScale?: number; modelGroups?: Record<string, string>; knowledgeObjectNames?: readonly string[]; noAnimation?: boolean; nonInteractive?: string[]; /** If true, skip setting the global model scene ref (parent handles it). */ noGlobalRef?: boolean; /** Called when model is loaded + centered, with the scene group. */ onReady?: (scene: THREE.Group) => void; /** Phase 3: variant identity for multi-model isolation. */ variantId?: string; variantIndex?: number; variantLabel?: string; variantTitle?: string; /** Phase 6: when true, skip auto-size and auto-center. Parent (MultiModelGroup) handles layout via DisplayScale+CenterOffset. */ skipAutoLayout?: boolean }) {
+function SceneModel({ modelPath, modelScale = 2.5, modelGroups, knowledgeObjectNames, noAnimation = false, nonInteractive, outlineExcluded, noGlobalRef = false, onReady, variantId, variantIndex, variantLabel, variantTitle, skipAutoLayout = false }: { modelPath: string; modelScale?: number; modelGroups?: Record<string, string>; knowledgeObjectNames?: readonly string[]; noAnimation?: boolean; nonInteractive?: string[]; outlineExcluded?: string[]; /** If true, skip setting the global model scene ref (parent handles it). */ noGlobalRef?: boolean; /** Called when model is loaded + centered, with the scene group. */ onReady?: (scene: THREE.Group) => void; /** Phase 3: variant identity for multi-model isolation. */ variantId?: string; variantIndex?: number; variantLabel?: string; variantTitle?: string; /** Phase 6: when true, skip auto-size and auto-center. Parent (MultiModelGroup) handles layout via DisplayScale+CenterOffset. */ skipAutoLayout?: boolean }) {
   const { scene: sourceScene, animations } = useGLTF(modelPath, true);
   /** Deep-clone with material isolation — each SceneModel owns independent materials. */
   const scene = useMemo(() => cloneSceneWithMaterials(sourceScene), [sourceScene]);
@@ -213,6 +214,9 @@ function SceneModel({ modelPath, modelScale = 2.5, modelGroups, knowledgeObjectN
         if (child.userData._isProxy) return;
         child.castShadow = true;
         child.receiveShadow = true;
+        if (isFirstInit) {
+          for (const material of [child.material].flat()) separateOpaqueSurfaceDepth(material);
+        }
 
         if (child.name) {
           const isHitbox = isHitboxName(child.name);
@@ -249,17 +253,22 @@ function SceneModel({ modelPath, modelScale = 2.5, modelGroups, knowledgeObjectN
             }
           }
         }
-
-        if (isFirstInit && !isHitboxName(child.name)) {
-          const edges = new THREE.EdgesGeometry(child.geometry, 15);
-          const lineMat = new THREE.LineBasicMaterial({ color: "#1a1a1a", toneMapped: false, transparent: true, opacity: 0.85 });
-          const line = new THREE.LineSegments(edges, lineMat);
-          createdResources.push({ geometry: edges, material: lineMat });
-          line.raycast = () => {};
-          child.add(line);
-        }
       }
     });
+
+    if (isFirstInit) {
+      const animatedObjects = new Set(animations.flatMap(clip => clip.tracks.map(track => THREE.PropertyBinding.parseTrackName(track.name).nodeName)));
+      for (const { owner, meshes } of collectOutlineSources(scene, outlineExcluded, resolveName, animatedObjects)) {
+        const edges = createFeatureEdges(meshes.map(mesh => mesh.geometry));
+        const lineMat = new THREE.LineBasicMaterial({ color: "#383c44", toneMapped: false, depthWrite: false });
+        const line = new THREE.LineSegments(edges, lineMat);
+        line.userData._isOutline = true;
+        line.renderOrder = 1;
+        line.raycast = () => {};
+        owner.add(line);
+        createdResources.push({ geometry: edges, material: lineMat });
+      }
+    }
 
     // ── Save original material state (for highlight restore) ──
     // Material cloning is now done upfront in cloneSceneWithMaterials().
@@ -285,7 +294,8 @@ function SceneModel({ modelPath, modelScale = 2.5, modelGroups, knowledgeObjectN
     if (animations.length > 0 && !noAnimation) {
       const mixer = new THREE.AnimationMixer(scene);
       const actions: THREE.AnimationAction[] = [];
-      animations.forEach((clip, i) => {
+      const timelineClips = createModelTimelineClips(animations);
+      timelineClips.forEach((clip, i) => {
         const action = mixer.clipAction(clip);
         action.reset();
         action.setLoop(THREE.LoopOnce, 1);
@@ -296,12 +306,11 @@ function SceneModel({ modelPath, modelScale = 2.5, modelGroups, knowledgeObjectN
         if (import.meta.env.DEV) console.log(`[GLB] clip[${i}] "${clip.name}" loaded, duration=${clip.duration}`);
       });
       mixerRef.current = mixer;
-      // A fixed base can be exported as the first, single-keyframe clip.
-      // Track the longest action so playback progress reaches the same end
-      // time used by the scrubber and component picking gate.
-      const timelineClip = animations.reduce((a, b) => a.duration >= b.duration ? a : b);
-      clipRef.current = timelineClip;
-      actionRef.current = actions[animations.indexOf(timelineClip)];
+      // Every cloned clip now spans the whole model timeline, including
+      // fixed bases and short motions. Reverse holds short tracks at their
+      // final pose until the shared clock reaches their last keyframe.
+      clipRef.current = timelineClips[0];
+      actionRef.current = actions[0];
       unregister = registerAnimationActions(actions);
 
       actions.forEach((a) => { a.paused = false; });
@@ -343,7 +352,7 @@ function SceneModel({ modelPath, modelScale = 2.5, modelGroups, knowledgeObjectN
     };
     // noGlobalRef and onReady are stable callbacks, intentionally excluded from deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scene, animations, setIsPlaying, modelScale, modelPath, resolveName, noAnimation, setAnimationProgress, nonInteractive]);
+  }, [scene, animations, setIsPlaying, modelScale, modelPath, resolveName, noAnimation, setAnimationProgress, nonInteractive, outlineExcluded]);
 
   // ── Per-frame: mixer update + boundary auto-pause ──
   useFrame((_, delta) => {
@@ -1501,6 +1510,7 @@ export default function ModelViewer({
   modelGroups,
   noAnimation = false,
   nonInteractive,
+  outlineExcluded,
   explodeConfigs,
   knowledgeNamesByVariant,
   nodeId,
@@ -1515,6 +1525,7 @@ export default function ModelViewer({
   modelGroups?: Record<string, string>;
   noAnimation?: boolean;
   nonInteractive?: string[];
+  outlineExcluded?: string[];
   /** Phase 5: per-variant explode configs for multi-model nodes. */
   explodeConfigs?: ExplodeVariantConfig[];
   knowledgeNamesByVariant?: Record<string, string[]>;
@@ -1605,7 +1616,7 @@ export default function ModelViewer({
           {isMulti ? (
             <MultiModelGroup models={modelPaths!} explodeConfigs={explodeConfigs} knowledgeNamesByVariant={knowledgeNamesByVariant} nodeId={nodeId} onAllReady={handleSceneReady} autoRotate={autoRotate} />
           ) : modelPath ? (
-            <SceneModel modelPath={modelPath} modelScale={modelScale} modelGroups={modelGroups} noAnimation={noAnimation} nonInteractive={nonInteractive} onReady={handleSceneReady} />
+            <SceneModel modelPath={modelPath} modelScale={modelScale} modelGroups={modelGroups} noAnimation={noAnimation} nonInteractive={nonInteractive} outlineExcluded={outlineExcluded} onReady={handleSceneReady} />
           ) : null}
         </Suspense>
         <OrbitControls

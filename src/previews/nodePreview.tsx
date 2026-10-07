@@ -5,8 +5,9 @@ import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import StudioEnvironment from '../components/viewer/StudioEnvironment';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
-import { isHitboxName } from '../utils/nameUtils';
+import { canonicalName, isHitboxName } from '../utils/nameUtils';
 import { getNodeDefinition } from '../data/nodeDefinitions';
+import { collectOutlineSources, createFeatureEdges, separateOpaqueSurfaceDepth } from '../utils/modelOutlines';
 
 const featuredNodes = [
   { id: 'water-storage-eaves-drainage-01', label: '蓄水屋面（檐沟式排水）', initialZoomRatio: 0.9, summary: '通过溢水孔与泄水孔，将蓄水屋面的水引入檐沟和水落管。' },
@@ -17,7 +18,7 @@ const featuredNodes = [
 ].map(feature => {
   const node = getNodeDefinition(feature.id);
   if (!node?.model) throw new Error(`Homepage model missing: ${feature.id}`);
-  return { ...feature, initialZoomRatio: feature.initialZoomRatio ?? 1, title: node.title, category: node.category, path: node.model.path };
+  return { ...feature, initialZoomRatio: feature.initialZoomRatio ?? 1, title: node.title, category: node.category, path: node.model.path, outlineExcluded: node.model.outlineExcluded };
 });
 
 const MIN_ZOOM_DISTANCE_RATIO = 0.75;
@@ -41,12 +42,13 @@ function MotionTiming({ controls }: { controls: React.RefObject<OrbitControlsImp
 }
 /* eslint-enable react-hooks/immutability */
 
-function Model({ path, initialZoomRatio, controls, views, onReady }: {
+function Model({ path, initialZoomRatio, controls, views, onReady, outlineExcluded }: {
   path: string;
   initialZoomRatio: number;
   controls: React.RefObject<OrbitControlsImpl | null>;
   views: React.RefObject<Map<string, ModelView>>;
   onReady: (path: string) => void;
+  outlineExcluded?: readonly string[];
 }) {
   const { scene } = useGLTF(path, true);
   const { model, outlines, materials } = useMemo(() => {
@@ -68,20 +70,18 @@ function Model({ path, initialZoomRatio, controls, views, onReady }: {
           owned = source.clone();
           // Separate surface depth from its coplanar outline. Cached GLTF
           // materials remain untouched for the interactive node workbench.
-          if (!owned.transparent) {
-            owned.polygonOffset = true;
-            owned.polygonOffsetFactor = 1;
-            owned.polygonOffsetUnits = 1;
-          }
+          separateOpaqueSurfaceDepth(owned);
           materials.set(source, owned);
         }
         return owned;
       };
       child.material = Array.isArray(child.material) ? child.material.map(prepareMaterial) : prepareMaterial(child.material);
-      const geometry = new THREE.EdgesGeometry(child.geometry, 15);
-      geometry.applyMatrix4(new THREE.Matrix4().multiplyMatrices(toModelSpace, child.matrixWorld));
-      edges.push(geometry);
     });
+    for (const { owner, meshes } of collectOutlineSources(model, outlineExcluded, canonicalName)) {
+      const geometry = createFeatureEdges(meshes.map(mesh => mesh.geometry));
+      geometry.applyMatrix4(new THREE.Matrix4().multiplyMatrices(toModelSpace, owner.matrixWorld));
+      edges.push(geometry);
+    }
     // The homepage model is static; all authored edges can share one draw.
     // Opaque, non-writing lines avoid transparent sorting and depth artifacts.
     if (edges.length) {
@@ -96,7 +96,7 @@ function Model({ path, initialZoomRatio, controls, views, onReady }: {
     }
     edges.forEach(geometry => geometry.dispose());
     return { model, outlines, materials };
-  }, [scene]);
+  }, [scene, outlineExcluded]);
   const { camera, size, invalidate } = useThree();
   const fitted = useRef(false);
   const fitDistance = useRef(0);
@@ -281,7 +281,7 @@ function NodePreview({ visual }: { visual: HTMLElement }) {
             {/* Keep GLTF suspension inside the scene so Canvas stays mounted while loading. */}
             <ModelErrorBoundary key={selected.path} onError={() => setFailedPath(selected.path)}>
               <Suspense fallback={null}>
-                <Model key={selected.path} path={selected.path} initialZoomRatio={selected.initialZoomRatio} controls={controls} views={views} onReady={markReady} />
+                <Model key={selected.path} path={selected.path} initialZoomRatio={selected.initialZoomRatio} controls={controls} views={views} onReady={markReady} outlineExcluded={selected.outlineExcluded} />
               </Suspense>
             </ModelErrorBoundary>
             <MotionTiming controls={controls} />

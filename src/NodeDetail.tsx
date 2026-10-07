@@ -44,7 +44,6 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
   //    on node switch / R. ──
   const autoRotate = useNodeStore((s) => s.autoRotate);
   const setAutoRotate = useNodeStore((s) => s.setAutoRotate);
-  const totalDuration = 4;
   const { setContainer, preset: layoutPreset, isResizing, selectPreset, adjust: adjustPanel, beginDrag } = useNodePanelLayout();
   const [diagramOpen, setDiagramOpen] = useState(false);
   const [mobileTab, setMobileTab] = useState<"diagram" | "model" | "knowledge">("model");
@@ -175,7 +174,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
     if (noAnimation) return;
     animControls.pause();
     setAnimationProgress(value);
-    animControls.setTime(value * totalDuration);
+    animControls.setProgress(value);
   };
 
   /* ── Resolve explode configs (Phase 5: multi-model only) ── */
@@ -303,6 +302,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
                     modelGroups={model?.groups}
                     noAnimation={node.model?.noAnimation}
                     nonInteractive={node.model?.nonInteractive}
+                    outlineExcluded={node.model?.outlineExcluded}
                     explodeConfigs={explodeConfigs}
                     knowledgeNamesByVariant={knowledgeNamesByVariant}
                     nodeId={nodeId}

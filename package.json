@@ -10,11 +10,13 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "compress-models": "node scripts/compress-models.mjs",
+    "test:animation": "node --import tsx tests/animation-timeline.test.ts",
     "test:training": "node --import tsx tests/training.test.ts",
     "test:training:browser": "node tests/training-browser.mjs",
-    "test": "npx tsx tests/resolveNodeModelSources.test.ts && npx tsx tests/explodeLayout.test.ts && npx tsx tests/explodeRuntime.test.ts && npx tsx tests/phase6-multi-model-rotation.test.ts && npx tsx tests/phase6-camera-fit.test.ts && npx tsx tests/home-menu.test.ts && npx tsx tests/home-scene-fit.test.ts && npx tsx tests/nodeDetail-controls.test.ts && npx tsx tests/rotation-toggle.test.ts && npx tsx tests/interaction-fixes.test.ts && npx tsx tests/node-definition-contract.test.ts && npx tsx tests/node-assets.test.ts && npx tsx tests/node-behavior-archetypes.test.ts && npm run test:training",
+    "test": "npx tsx tests/resolveNodeModelSources.test.ts && npx tsx tests/explodeLayout.test.ts && npx tsx tests/explodeRuntime.test.ts && npx tsx tests/phase6-multi-model-rotation.test.ts && npx tsx tests/phase6-camera-fit.test.ts && npx tsx tests/home-menu.test.ts && npx tsx tests/home-scene-fit.test.ts && npx tsx tests/nodeDetail-controls.test.ts && npx tsx tests/rotation-toggle.test.ts && npx tsx tests/interaction-fixes.test.ts && npm run test:animation && npm run test:outlines && npx tsx tests/node-definition-contract.test.ts && npx tsx tests/node-assets.test.ts && npx tsx tests/node-behavior-archetypes.test.ts && npm run test:training",
     "test:homepage-training": "node tests/homepage-training-browser.mjs",
-    "test:cases:browser": "node tests/case-study-browser.mjs"
+    "test:cases:browser": "node tests/case-study-browser.mjs",
+    "test:outlines": "node --import tsx tests/model-outlines.test.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
