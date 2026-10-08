@@ -30,7 +30,7 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
   const [failed, setFailed] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const loaded = useRef(false);
-  const source = `${siteBase}curriculum/${documentPath}`;
+  const source = `${siteBase}lesson/${documentPath}`;
 
   useLayoutEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, []);
   useEffect(() => {
@@ -69,7 +69,7 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
       if (!anchor || anchor.target === '_blank' || event.button !== 0 || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const url = new URL(anchor.href, iframe.contentWindow?.location.href);
       if (url.origin !== window.location.origin) return;
-      const coursePrefix = `${siteBase}curriculum/`;
+      const coursePrefix = `${siteBase}lesson/`;
       if (url.pathname.startsWith(coursePrefix)) {
         event.preventDefault();
         navigate(`/lesson/${url.pathname.slice(coursePrefix.length)}`);

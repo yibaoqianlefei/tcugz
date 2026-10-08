@@ -6,7 +6,9 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  // tmp/ 存放历史构建副本（已在 .gitignore 中），不属于源码，
+  // 否则每次本地构建后 lint 会扫出数百个来自副本的错误。
+  globalIgnores(['dist', 'tmp', 'public/lesson', 'public/curriculum']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
