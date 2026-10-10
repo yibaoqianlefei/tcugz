@@ -7,6 +7,7 @@ import StudioEnvironment from '../components/viewer/StudioEnvironment';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import { canonicalName, isHitboxName } from '../utils/nameUtils';
 import { getNodeDefinition } from '../data/nodeDefinitions';
+import { useCompanionStore } from '../store/companionStore';
 import { collectOutlineSources, createFeatureEdges, separateOpaqueSurfaceDepth } from '../utils/modelOutlines';
 
 const featuredNodes = [
@@ -224,6 +225,7 @@ function NodePreview({ visual }: { visual: HTMLElement }) {
   useLayoutEffect(() => {
     const link = visual.closest('.hero-slide')?.querySelector<HTMLAnchorElement>('[data-home-node-link]');
     if (link) link.href = `${import.meta.env.BASE_URL}#/node/${selected.id}`;
+    useCompanionStore.getState().setHomeNodeId(selected.id);
   }, [selected.id, visual]);
 
   useEffect(() => {

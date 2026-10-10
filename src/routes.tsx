@@ -3,6 +3,7 @@ import AppLayout from "./components/AppLayout";
 import CurriculumFramePage from "./pages/CurriculumFramePage";
 import LibraryPage from "./pages/LibraryPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
+import CompanionPage from "./pages/CompanionPage";
 import ResourcesPage from "./pages/ResourcesPage";
 import CasesPage from "./pages/CasesPage";
 import LegacyCurriculumRedirect from "./components/LegacyCurriculumRedirect";
@@ -33,8 +34,8 @@ export const router = createHashRouter([
       { path: "/tools", element: <PlaceholderPage title="工具箱" /> },
       { path: "/contribute", element: <PlaceholderPage title="贡献节点" /> },
       { path: "/resources", element: <ResourcesPage /> },
-      { path: "/ai", element: <PlaceholderPage title="AI 助教" /> },
-      { path: "/ai-extend", element: <PlaceholderPage title="AI 拓展" /> },
+      { path: "/ai", element: <CompanionPage /> },
+      { path: "/ai-extend", element: <CompanionPage /> },
       { path: "/data", element: <RouteSuspense component={DataAnalysis} /> },
     ],
   },

@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run build:pages && tsc -b && vite build",
-    "build:pages": "node scripts/build-curriculum-preview.mjs && node scripts/promote-homepage.mjs",
+    "build:pages": "node scripts/build-curriculum-preview.mjs && node scripts/promote-homepage.mjs && npm run build:companion",
+    "build:companion": "node --import tsx scripts/build-companion-corpus.ts",
+    "test:companion": "node --import tsx tests/companion.test.ts",
+    "test:companion:browser": "node tests/companion-browser.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "compress-models": "node scripts/compress-models.mjs",

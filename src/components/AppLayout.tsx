@@ -3,6 +3,7 @@ import { useLayoutEffect, useRef } from "react";
 import { ErrorBoundary } from "./ErrorBoundary";
 import LearningHomePage from "../pages/LearningHomePage";
 import BrandMark from "./BrandMark";
+import CompanionWidget from "./companion/CompanionWidget";
 
 /**
  * Root-level error fallback — shown when any (eager or lazy) route throws
@@ -127,6 +128,7 @@ function AppLayout() {
       >
         {!isHome && <Outlet />}
       </ErrorBoundary>
+      <CompanionWidget />
     </>
   );
 }

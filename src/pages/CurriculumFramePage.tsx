@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import curriculum from '../data/curriculumDocuments.json';
 import SectionPageHeader from '../components/SectionPageHeader';
 import BrandMark from '../components/BrandMark';
+import { useCompanionStore } from '../store/companionStore';
 
 const siteBase = import.meta.env.BASE_URL;
 const documents = new Set(curriculum.documents);
@@ -53,6 +54,10 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
     }
     loaded.current = true;
     document.title = doc.title || '建筑构造 · 交互式教材';
+    const courseContext = { kind: 'course' as const, route: `/lesson/${documentPath}`, title: doc.querySelector('h1')?.textContent?.trim() ?? '课程章节', coursePath: documentPath };
+    const selectionChanged = () => useCompanionStore.getState().publishDetail({ ...courseContext, selectedText: doc.getSelection()?.toString().slice(0, 1000) || undefined });
+    useCompanionStore.getState().publishDetail(courseContext);
+    doc.addEventListener('selectionchange', selectionChanged);
     const resize = () => {
       const layout = doc.querySelector<HTMLElement>('.layout, .wall-page');
       if (layout) layout.style.minHeight = `${window.innerHeight}px`;
@@ -83,6 +88,8 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
       observer.disconnect();
       window.removeEventListener('resize', resize);
       doc.removeEventListener('click', followLink);
+      doc.removeEventListener('selectionchange', selectionChanged);
+      if (useCompanionStore.getState().detail?.route === courseContext.route) useCompanionStore.getState().publishDetail(null);
     };
   };
 

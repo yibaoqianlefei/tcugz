@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import previewDocument from '../../previews/homepage-v1.html?raw';
 import { initHomepageInteractions } from '../previews/homepageBehavior';
 import { ErrorBoundary } from '../components/ErrorBoundary';
+import { useCompanionStore } from '../store/companionStore';
 
 const NodePreview = lazy(() => import('../previews/nodePreview').then(module => ({ default: module.NodePreview })));
 const TrainingPreview = lazy(() => import('../previews/TrainingPreview'));
@@ -60,6 +61,17 @@ export default function LearningHomePage({ active }: { active: boolean }) {
     const caseMount = container.current?.querySelector<HTMLElement>('#case-preview-root');
     if (caseMount) setCaseTarget(current => current ?? caseMount);
   }, [active]);
+
+  useLayoutEffect(() => {
+    if (!active || !stylesReady || !container.current) return;
+    const sections = [...container.current.querySelectorAll<HTMLElement>('.hero-carousel, #introduction, #modules, #principles, #explore')];
+    const observer = new IntersectionObserver(entries => {
+      const section = entries.find(entry => entry.isIntersecting)?.target;
+      if (section) useCompanionStore.getState().setHomeSection(section.id || 'features');
+    }, { rootMargin: '-20% 0px -65% 0px' });
+    sections.forEach(section => observer.observe(section));
+    return () => observer.disconnect();
+  }, [active, stylesReady]);
 
   useLayoutEffect(() => {
     if (!active) {

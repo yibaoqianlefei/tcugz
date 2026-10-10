@@ -79,6 +79,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
   // ── Escape handler (single page-level listener) ──
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.defaultPrevented) return;
       if (e.key !== "Escape") return;
       if (diagramOpen) { setDiagramOpen(false); return; }
       // Clear selection
@@ -148,6 +149,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
   //    the initial state. ──
   useEffect(() => {
     const handleR = (e: KeyboardEvent) => {
+      if (e.defaultPrevented) return;
       if (e.key !== "r" && e.key !== "R") return;
       const target = e.target as HTMLElement | null;
       if (!target || target.isContentEditable) return;

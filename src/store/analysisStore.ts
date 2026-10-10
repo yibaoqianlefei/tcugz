@@ -5,15 +5,17 @@ import { persist } from "zustand/middleware";
 export interface AIQuestionEntry {
   category: string;
   date: string;
+  source?: 'site' | 'model';
 }
 
 interface AnalysisState {
   visitedNodes: string[];
   aiQuestions: AIQuestionEntry[];
   totalInteractions: number;
+  visitCounts: Record<string, number>;
 
   addVisitedNode: (nodeId: string) => void;
-  addAIQuestion: (category: string) => void;
+  addAIQuestion: (category: string, source?: 'site' | 'model') => void;
   clearAllData: () => void;
 }
 
@@ -24,25 +26,27 @@ export const useAnalysisStore = create<AnalysisState>()(
       visitedNodes: [],
       aiQuestions: [],
       totalInteractions: 0,
+      visitCounts: {},
 
       addVisitedNode: (nodeId: string) => {
         set((s) => {
           if (s.visitedNodes.includes(nodeId)) {
             // Already visited — increment interactions but don't duplicate
-            return { totalInteractions: s.totalInteractions + 1 };
+            return { totalInteractions: s.totalInteractions + 1, visitCounts: { ...s.visitCounts, [nodeId]: (s.visitCounts[nodeId] ?? 0) + 1 } };
           }
           return {
             visitedNodes: [...s.visitedNodes, nodeId],
             totalInteractions: s.totalInteractions + 1,
+            visitCounts: { ...s.visitCounts, [nodeId]: (s.visitCounts[nodeId] ?? 0) + 1 },
           };
         });
       },
 
-      addAIQuestion: (category: string) => {
+      addAIQuestion: (category: string, source = 'site') => {
         set((s) => ({
           aiQuestions: [
             ...s.aiQuestions,
-            { category, date: new Date().toISOString().slice(0, 10) },
+            { category, date: new Date().toISOString().slice(0, 10), source },
           ],
           totalInteractions: s.totalInteractions + 1,
         }));
@@ -53,6 +57,7 @@ export const useAnalysisStore = create<AnalysisState>()(
           visitedNodes: [],
           aiQuestions: [],
           totalInteractions: 0,
+          visitCounts: {},
         });
       },
     }),

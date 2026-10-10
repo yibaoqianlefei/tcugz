@@ -43,7 +43,17 @@ for (const source of sources) {
   await writeFile(destination, formalize(await readFile(source, 'utf8')), 'utf8');
 }
 await mkdir(join(formalRoot, 'wall'), { recursive: true });
-await writeFile(join(formalRoot, 'wall', 'index.html'), formalize(await readFile(join(project, 'public', 'previews', 'wall-v1.html'), 'utf8')), 'utf8');
+// One wall-directory template feeds preview, formal page and lesson iframe.
+// Keep the cover and stylesheet relative so a Pages subpath also works.
+const wallTemplate = await readFile(join(project, 'scripts', 'templates', 'wall-directory.html'), 'utf8');
+await writeFile(join(project, 'public', 'previews', 'wall-v1.html'), wallTemplate, 'utf8');
+const wallSource = formalize(wallTemplate).replaceAll('../images/wall/', '../../images/wall/');
+await writeFile(join(formalRoot, 'wall', 'index.html'), wallSource.replace('../lesson/wall-directory.css', '../../lesson/wall-directory.css'), 'utf8');
+const lessonWall = join(project, 'public', 'lesson', 'wall');
+await mkdir(lessonWall, { recursive:true });
+await writeFile(join(lessonWall, 'index.html'), wallSource
+  .replaceAll(`href="${siteBase}curriculum/`, `href="${siteBase}lesson/`)
+  .replace('../lesson/wall-directory.css', '../wall-directory.css'), 'utf8');
 await copyFile(join(project, 'public', 'previews', 'curriculum.css'), join(formalRoot, 'curriculum.css'));
 await copyFile(join(project, 'public', 'previews', 'wall-v1.css'), join(formalRoot, 'wall.css'));
 const documents = [...sources.map(source => relative(previewRoot, source).replaceAll('\\', '/')), 'wall/index.html'].sort();

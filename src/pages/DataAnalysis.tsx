@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import SectionPageHeader from "../components/SectionPageHeader";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -26,24 +25,14 @@ const TOTAL_NODES = nodesIndex.length;
 /* 图表色需与 index.css 的 @theme token 保持同步（Recharts 接收具体色值，
    无法直接使用 CSS 变量）。改动 token 时请同步此处。 */
 const CHART_COLORS = {
-  primary: "#cc785c",   // --color-primary
-  hairline: "#ded9d0",  // --color-hairline
-  ink: "#141413",       // --color-ink
-  muted: "#625f59",     // --color-muted
+  primary: "#5b6dad",
+  hairline: "#dce1ed",
+  ink: "#1c2544",
+  muted: "#58637d",
 };
 
 const AI_CATEGORIES = ["构造做法", "材料特性", "空间逻辑", "其他"] as const;
 
-function categorizeQuestion(text: string): string {
-  const lower = text.toLowerCase();
-  if (/防水|卷材|涂料|密封|渗透|水/.test(lower)) return "构造做法";
-  if (/排水|雨水|天沟|落水管|雨水口|排水坡度/.test(lower)) return "构造做法";
-  if (/保温|隔热|热桥|冷桥|节能|温度/.test(lower)) return "材料特性";
-  if (/结构|承重|荷载|钢筋|混凝土|强度/.test(lower)) return "材料特性";
-  if (/空间|层次|顺序|上下|前后|组合|三维/.test(lower)) return "空间逻辑";
-  if (/做法|施工|步骤|流程|工艺/.test(lower)) return "构造做法";
-  return "其他";
-}
 const CATEGORY_COLORS: Record<string, string> = {
   "构造做法": CHART_COLORS.primary,
   "材料特性": CHART_COLORS.hairline,
@@ -73,54 +62,28 @@ export default function DataAnalysis() {
   const visitedNodes = useAnalysisStore((s) => s.visitedNodes);
   const aiQuestions = useAnalysisStore((s) => s.aiQuestions);
   const totalInteractions = useAnalysisStore((s) => s.totalInteractions);
+  const visitCounts = useAnalysisStore((s) => s.visitCounts);
+  const recordedQuestions = aiQuestions.filter(question => question.source === 'site' || question.source === 'model');
 
   const progress = visitedNodes.length;
   const progressPct = Math.round((progress / TOTAL_NODES) * 100);
 
-  // ── Seed demo data on first visit (dev only) ──
-  const addVisitedNode = useAnalysisStore((s) => s.addVisitedNode);
-  const addAIQuestion = useAnalysisStore((s) => s.addAIQuestion);
-
-  useEffect(() => {
-    if (visitedNodes.length > 0 || aiQuestions.length > 0) return;
-
-    // Simulate a semester of learning
-    const seedNodes = [
-      "roof-drainage-01", "flat-roof-01", "organized-drainage-01",
-    ];
-    const seedQuestions: string[] = [
-      "防水层如何避免渗漏", "保温材料怎么选", "屋面排水坡度设计",
-      "卷材搭接有什么要求", "结构层受力分析", "保护层厚度规范",
-      "找平层施工工艺", "防水卷材种类对比", "雨水斗的工作原理",
-      "天沟和檐沟的区别", "什么是热桥效应", "屋顶空间层次讲解",
-      "变形缝如何处理", "混凝土强度等级选择", "涂料防水和卷材防水的优劣",
-    ];
-
-    seedNodes.forEach((id) => addVisitedNode(id));
-    addVisitedNode("roof-drainage-01");
-    addVisitedNode("roof-drainage-01");
-
-    seedQuestions.forEach((q) => {
-      const cat = categorizeQuestion(q);
-      addAIQuestion(cat);
-    });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
   // ── Radial bar data ──
   const radialData = [{ name: "进度", value: progressPct, fill: CHART_COLORS.primary }];
 
-  // ── Bar chart data (node visit frequency with mock counts) ──
-  const barData = visitedNodes
+  // Old versions never recorded frequency; preserve history without inventing counts.
+  const barData = Object.keys(visitCounts)
+    .sort((a, b) => visitCounts[b] - visitCounts[a])
     .slice(0, 5)
-    .map((id, i) => ({
+    .map((id) => ({
       name: getNodeTitle(id),
-      count: Math.max(10, 90 - i * 15), // mock frequency (real counts in store's future version)
+      count: visitCounts[id],
     }))
     .reverse();
 
   // ── Pie data (AI question categories) ──
   const categoryCounts: Record<string, number> = {};
-  aiQuestions.forEach((q) => {
+  recordedQuestions.forEach((q) => {
     categoryCounts[q.category] = (categoryCounts[q.category] || 0) + 1;
   });
   const pieData = AI_CATEGORIES.map((cat) => ({
@@ -132,6 +95,7 @@ export default function DataAnalysis() {
     <div className="site-page flex flex-col">
       <SectionPageHeader title="学习数据" eyebrow="LEARNING / 学习记录" description="查看构造学习进度与节点交互记录。" />
       <section className="mx-auto w-full max-w-6xl px-6 py-10 md:px-10">
+        {aiQuestions.some(question => !question.source) && <p className="text-xs text-muted mb-4">历史问答记录已保留；因旧版含模拟数据，未计入新版伙伴问答统计。</p>}
         {/* ── Overview card ── */}
         <motion.div
           className="max-w-xl"
@@ -145,7 +109,7 @@ export default function DataAnalysis() {
               <span className="text-2xl text-primary font-semibold tabular-nums">
                 {totalInteractions}
               </span>
-              <span className="text-xs text-muted mt-0.5">总交互次数</span>
+              <span className="text-xs text-muted mt-0.5">累计交互（含历史记录）</span>
             </div>
 
             {/* Divider */}
@@ -154,9 +118,9 @@ export default function DataAnalysis() {
             {/* 累计学习时长 */}
             <div className="flex flex-col items-center">
               <span className="text-2xl text-primary font-semibold tabular-nums">
-                ~{Math.max(1, Math.round(totalInteractions * 1.8))}
+                {visitedNodes.length}
               </span>
-              <span className="text-xs text-muted mt-0.5">累计学习（分钟）</span>
+              <span className="text-xs text-muted mt-0.5">已访问节点</span>
             </div>
 
             {/* Divider */}
@@ -165,9 +129,9 @@ export default function DataAnalysis() {
             {/* 本周活跃 */}
             <div className="flex flex-col items-center">
               <span className="text-2xl text-primary font-semibold tabular-nums">
-                {Math.min(7, Math.max(0, Math.round(totalInteractions / 10)))}
+                {recordedQuestions.length}
               </span>
-              <span className="text-xs text-muted mt-0.5">本周活跃（天）</span>
+              <span className="text-xs text-muted mt-0.5">新版伙伴问答</span>
             </div>
           </div>
         </motion.div>
@@ -260,7 +224,7 @@ export default function DataAnalysis() {
           >
             <div className="flex items-center gap-2 mb-2">
               <span className="w-1 h-4 bg-primary rounded-full inline-block flex-shrink-0" />
-              <span className="text-sm font-medium text-muted">构件热力</span>
+              <span className="text-sm font-medium text-muted">节点访问（新版记录）</span>
             </div>
             <div className="flex-1 w-full">
               {barData.length > 0 ? (
@@ -294,8 +258,6 @@ export default function DataAnalysis() {
                         const ny = Number(y) || 0;
                         const nw = Number(width) || 0;
                         const nv = typeof value === "number" ? value : 0;
-                        const high = nv > 50;
-                        const color = high ? CHART_COLORS.primary : CHART_COLORS.hairline;
                         // We use SVG foreignObject-free approach: render label text + Unicode arrow
                         // For now: show value with ↑/↓ prefix as SVG text
                         return (
@@ -308,15 +270,6 @@ export default function DataAnalysis() {
                               textAnchor="start"
                             >
                               {nv}
-                            </text>
-                            {/* Trend arrow rendered as text */}
-                            <text
-                              x={nx + nw + 6 + String(nv).length * 7 + 4}
-                              y={ny + 14}
-                              fill={color}
-                              fontSize={12}
-                            >
-                              {high ? "↑" : "↓"}
                             </text>
                           </g>
                         );
@@ -339,7 +292,7 @@ export default function DataAnalysis() {
           >
             <div className="flex items-center gap-2 mb-2">
               <span className="w-1 h-4 bg-primary rounded-full inline-block flex-shrink-0" />
-              <span className="text-sm font-medium text-muted">AI 问答画像</span>
+              <span className="text-sm font-medium text-muted">伙伴问答（新版记录）</span>
             </div>
             <div className="flex-1 w-full flex items-center">
               {pieData.some((d) => d.value > 0) ? (
