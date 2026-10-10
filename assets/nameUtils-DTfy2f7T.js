@@ -1,1 +1,0 @@
-function e(e,t){return t&&t[e]?t[e]:e.replace(/_hitbox$/,``).replace(/[_.]\d+$/,``).replace(/\s/g,`_`).replace(/\./g,``).replace(/[_.]\d+$/,``)}function t(t,n,r){return n?.has(t)?t:e(t,r)}function n(e){return/_hitbox$/.test(e)}export{t as n,n as r,e as t};
