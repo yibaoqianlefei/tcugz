@@ -15,6 +15,10 @@ function TrainingCatalog() {
   return <div className="site-page training-page">
     <SectionPageHeader title="作业训练" eyebrow="PRACTICE / 从观察到应用" description="转动模型、识别构件、理解层次，再尝试方案判断与装配。每次练习都可以暂停，稍后继续。" />
     <main className="training-catalog">
+      <section className="textbook-practice-entry" aria-labelledby="textbook-practice-title">
+        <div><span className="site-eyebrow">TEXTBOOK / 图纸与方案实践</span><h2 id="textbook-practice-title">教材实践作业</h2><p>构造说明、楼面布置、楼梯绘图、屋顶排水、外檐节点、综合设计与构造调研。每项任务提供步骤、提交物和自评依据。</p></div>
+        <Link to="/lesson/practice/index.html">查看 7 项任务 →</Link>
+      </section>
       <div className="training-summary"><div><strong>{records.filter(record => record.solved).length}<small> / {trainingQuestions.length}</small></strong><span>已答对题目</span></div><div><strong>{records.filter(record => record.firstCorrect).length}</strong><span>首次独立答对</span></div><div><strong>{mistakes.length}</strong><span>错题记录</span></div><p>{storageAvailable ? '进度保存在当前浏览器，无需登录即可练习。' : '当前浏览器无法保存进度，离开或刷新后可能丢失作答。'}</p></div>
       <div className="training-section-heading"><h2>选择一种训练方式</h2><span>8 种模式 · 自主练习</span></div>
       <div className="training-mode-grid">

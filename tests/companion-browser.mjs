@@ -4,7 +4,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 const base = process.env.COMPANION_TEST_URL ?? 'http://127.0.0.1:5173/';
 const out = 'tmp/companion-browser';
 await mkdir(out, { recursive: true });
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({ headless: true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE } : {}) });
 const errors = [];
 try {
   const context = await browser.newContext({ viewport: { width:1440,height:1000 } });
@@ -51,7 +51,8 @@ try {
   await page.getByRole('button', {name:'打开构造伙伴',exact:true}).click();
   await page.getByRole('button', {name:'讲解当前内容',exact:true}).click();
   await page.waitForFunction(() => document.querySelectorAll('.companion-message.is-assistant').length === 3);
-  assert((await page.locator('.companion-message.is-assistant').last().innerText()).includes('正文尚未提供'));
+  const courseReply = await page.locator('.companion-message.is-assistant').last().innerText();
+  assert(courseReply.includes('保温') && !courseReply.includes('正文尚未提供'));
   await page.goto(`${base}#/curriculum/cases/farnsworth-house?topic=windows`);
   await page.getByRole('button', {name:'讲解当前内容',exact:true}).click();
   await page.waitForFunction(() => document.querySelectorAll('.companion-message.is-assistant').length === 4);

@@ -1,0 +1,56 @@
+{
+  "source": "D:\\构造相关内容\\建筑构造上册讲义-李峰.doc",
+  "sha256": "94b82def87058e630a616aab7b65b5d5703194c64227fcc122a1e385764ffecb",
+  "size": 732672,
+  "fib_version": 193,
+  "main_text_cp_count": 123334,
+  "extracted_characters": 123334,
+  "paragraphs": 4321,
+  "pieces": 30,
+  "table": "1Table",
+  "streams": [
+    {
+      "name": "Root Entry",
+      "type": 5,
+      "start": 1429,
+      "size": 128
+    },
+    {
+      "name": "Data",
+      "type": 2,
+      "start": 905,
+      "size": 139080
+    },
+    {
+      "name": "1Table",
+      "type": 2,
+      "start": 1177,
+      "size": 111724
+    },
+    {
+      "name": "WordDocument",
+      "type": 2,
+      "start": 0,
+      "size": 462904
+    },
+    {
+      "name": "\u0005SummaryInformation",
+      "type": 2,
+      "start": 1396,
+      "size": 4096
+    },
+    {
+      "name": "\u0005DocumentSummaryInformation",
+      "type": 2,
+      "start": 1404,
+      "size": 5096
+    },
+    {
+      "name": "\u0001CompObj",
+      "type": 2,
+      "start": 0,
+      "size": 101
+    }
+  ],
+  "replacement_characters": 0
+}

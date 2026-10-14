@@ -1,0 +1,51 @@
+/** Chapter introductions paired with abstract editorial compositions. */
+export const moduleDirectoryDesigns = {
+  foundation: {
+    english: 'FOUNDATIONS & GROUND',
+    lead: '把建筑的力量，传向大地。',
+    description: '从墙柱下的基础到支承它的岩土，认识基础类型、埋置条件与沉降，理解建筑如何与地面连接。',
+    themes: ['承载', '埋深', '沉降'],
+    geometry: 'orbit',
+    sectionNote: '从传力路径出发，联系地层、地下空间与变形控制。',
+  },
+  'door-window': {
+    english: 'DOORS & WINDOWS',
+    lead: '让光线进入，让空间相连。',
+    description: '从框与扇到开启和密封，认识门窗的组成、分类与设计要求，理解建筑开口如何兼顾通行与围护。',
+    themes: ['采光', '通风', '通行'],
+    geometry: 'offset',
+    sectionNote: '把开启方式、使用性能与框扇连接一起理解。',
+  },
+  floor: {
+    english: 'FLOORS & SLABS',
+    lead: '水平分层，承载日常。',
+    description: '从楼板的传力到地面与顶棚的层次，认识楼地层的结构、使用表面与细部连接，理解水平空间如何承重与分隔。',
+    themes: ['承重', '分隔', '层次'],
+    geometry: 'arc',
+    sectionNote: '沿结构与功能层次，读懂楼板、地面和顶棚。',
+  },
+  stairs: {
+    english: 'STAIRS & CIRCULATION',
+    lead: '连接高差，也组织行走。',
+    description: '从踏步与平台到栏杆和扶手，认识楼梯的组成、结构与细部，联系台阶、坡道和电梯理解竖向交通。',
+    themes: ['通行', '支承', '防护'],
+    geometry: 'balance',
+    sectionNote: '结合平面与剖面，理解通行尺度、支承和细部连接。',
+  },
+  roof: {
+    english: 'ROOF SYSTEMS',
+    lead: '覆盖建筑，也回应风雨。',
+    description: '从平屋面到坡屋面，认识屋顶的支承、排水与构造层次，沿水流和接口理解防水与保温的连续。',
+    themes: ['排水', '防水', '保温'],
+    geometry: 'sweep',
+    sectionNote: '先辨水路和支承，再检查层次与接口的连续。',
+  },
+  'deformation-joint': {
+    english: 'MOVEMENT JOINTS',
+    lead: '为变化留缝，让连接有余地。',
+    description: '认识伸缩缝、沉降缝与抗震缝，沿墙体、楼板和屋面理解设缝原则与接口构造，协调建筑的相对变形。',
+    themes: ['温度', '沉降', '抗震'],
+    geometry: 'crossing',
+    sectionNote: '区分设缝目的，再检查断开范围、位移空间与围护连接。',
+  },
+};

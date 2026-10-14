@@ -9,6 +9,8 @@
     "build:pages": "node scripts/build-curriculum-preview.mjs && node scripts/promote-homepage.mjs && npm run build:companion",
     "build:companion": "node --import tsx scripts/build-companion-corpus.ts",
     "test:companion": "node --import tsx tests/companion.test.ts",
+    "test:textbook": "node --import tsx tests/textbook-content.test.mjs",
+    "test:textbook:browser": "node tests/textbook-content-browser.mjs",
     "test:companion:browser": "node tests/companion-browser.mjs",
     "lint": "eslint .",
     "preview": "vite preview",

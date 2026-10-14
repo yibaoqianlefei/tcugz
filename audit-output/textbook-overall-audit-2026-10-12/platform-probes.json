@@ -1,0 +1,100 @@
+{
+  "imageProbe": {
+    "fixture": "# 识图测试\n\n## 墙脚示意\n\n![墙脚防潮与散水](/images/wall/apron-flashing-diagram.png)\n\n图后解释。",
+    "rendered": "<nav class=\"article-toc\" aria-label=\"本节内容\"><strong>本节内容</strong><a href=\"#section-1\">墙脚示意</a></nav><article class=\"article\"><h2 id=\"section-1\">墙脚示意</h2>\n<p></p>\n<p>图后解释。</p></article>",
+    "imageRendered": false,
+    "alternateTextRendered": false
+  },
+  "contrastSamples": [
+    {
+      "selector": ".course-brand span",
+      "text": "建筑构造 / 学习首页",
+      "color": "rgb(120, 132, 156)",
+      "fontSize": 12,
+      "fontWeight": "400",
+      "background": "rgb(248, 248, 245)",
+      "contrastRatio": 3.54
+    },
+    {
+      "selector": ".page-head .eyebrow",
+      "text": "构造原理 / 01",
+      "color": "rgb(80, 100, 157)",
+      "fontSize": 12,
+      "fontWeight": "700",
+      "background": "rgb(248, 248, 245)",
+      "contrastRatio": 5.41
+    },
+    {
+      "selector": ".intro",
+      "text": "理解围护结构的保温做法与热工性能。",
+      "color": "rgb(88, 99, 125)",
+      "fontSize": 17,
+      "fontWeight": "400",
+      "background": "rgb(248, 248, 245)",
+      "contrastRatio": 5.65
+    },
+    {
+      "selector": ".article p",
+      "text": "保温通过控制围护结构的传热和空气渗透，减少室内外温差造成的热量交换。外墙、屋面、",
+      "color": "rgb(57, 69, 95)",
+      "fontSize": 16,
+      "fontWeight": "400",
+      "background": "rgb(255, 255, 255)",
+      "contrastRatio": 9.59
+    },
+    {
+      "selector": ".article-toc a",
+      "text": "学习目标与基本概念",
+      "color": "rgb(28, 37, 68)",
+      "fontSize": 14,
+      "fontWeight": "400",
+      "background": "rgb(248, 248, 245)",
+      "contrastRatio": 14.12
+    },
+    {
+      "selector": ".chapter-nav a",
+      "text": "建筑保温",
+      "color": "rgb(67, 93, 160)",
+      "fontSize": 13,
+      "fontWeight": "700",
+      "background": "rgb(248, 248, 245)",
+      "contrastRatio": 5.96
+    }
+  ],
+  "tocProbe": {
+    "beforeScroll": 0,
+    "afterScroll": 512,
+    "bookmarkUrl": "http://127.0.0.1:5177/#/lesson/principles/thermal.html",
+    "afterReload": 0
+  },
+  "literalAnswerMarkers": [
+    "basics/deformation-joint/roof-deformation-concept.html",
+    "basics/deformation-joint/roof-deformation-construction.html",
+    "basics/deformation-joint/roof-deformation-location.html",
+    "basics/door-window/window-door-design.html",
+    "basics/door-window/window-door-overview.html",
+    "basics/floor/finish-overview.html",
+    "basics/floor/floor-balcony.html",
+    "basics/floor/floor-ceiling.html",
+    "basics/floor/floor-ground-composition.html",
+    "basics/floor/floor-ground-layer.html",
+    "basics/floor/floor-overview.html",
+    "basics/floor/floor-rc-slab.html",
+    "basics/roof/roof-flat.html",
+    "basics/roof/roof-overview.html",
+    "basics/roof/roof-slope.html",
+    "basics/stairs/stairs-details.html",
+    "basics/stairs/stairs-elevator.html",
+    "basics/stairs/stairs-overview.html",
+    "basics/stairs/stairs-rc-structure.html",
+    "basics/stairs/stairs-steps-ramps.html",
+    "basics/wall/index.html",
+    "basics/wall/wall-design-requirements.html",
+    "basics/wall/wall-details.html",
+    "basics/wall/wall-finishes.html",
+    "basics/wall/wall-masonry.html",
+    "basics/wall/wall-partition.html",
+    "basics/wall/wall-role.html",
+    "basics/wall/wall-types.html"
+  ]
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" aria-hidden="true" focusable="false">
+  <rect data-primitive="horizontal-rectangle" x="64" y="153" width="486" height="60" fill="var(--art-tertiary, #e3b84b)" fill-opacity="0.38" />
+  <rect data-primitive="vertical-rectangle" x="104" y="213" width="136" height="205" fill="var(--art-primary, #244be8)" />
+  <path data-primitive="open-fold-line" d="M44 400V114H562V426H296" fill="none" stroke="var(--art-line, #43558e)" stroke-width="1.2" />
+</svg>

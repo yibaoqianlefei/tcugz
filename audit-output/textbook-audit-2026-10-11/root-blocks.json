@@ -1,0 +1,657 @@
+[
+  {
+    "block_id": "R001",
+    "source_start": 1,
+    "source_end": 59,
+    "source_title": "旧目录和域代码",
+    "destination_module": "archive",
+    "destination_section": "archive:toc",
+    "destination_title": "原资料归档",
+    "content_points": [
+      "目录仅作历史索引，网站目录按实际内容重新生成"
+    ],
+    "action": "归档不入正文",
+    "cross_references": [],
+    "review_flags": [
+      "原目录未列第九讲变形缝"
+    ]
+  },
+  {
+    "block_id": "R002",
+    "source_start": 60,
+    "source_end": 60,
+    "source_title": "讲义标题",
+    "destination_module": "introduction",
+    "destination_section": "proposed:intro-course-guide",
+    "destination_title": "课程导读",
+    "content_points": [
+      "保留课程名称，取消手动分页标记"
+    ],
+    "action": "整理改写后并入",
+    "cross_references": [],
+    "review_flags": []
+  },
+  {
+    "block_id": "R003",
+    "source_start": 3945,
+    "source_end": 3985,
+    "source_title": "变形作用与变形缝总概念",
+    "destination_module": "deformation-joint",
+    "destination_section": "roof-deformation-concept",
+    "destination_title": "建筑变形缝的概念",
+    "content_points": [
+      "温度、沉降、地震引起的变形",
+      "分成独立结构单元的原理",
+      "伸缩缝、沉降缝、抗震缝三类",
+      "设缝后围护和使用连续性问题"
+    ],
+    "action": "整理改写后并入",
+    "cross_references": [
+      "roof-deformation-location",
+      "roof-deformation-construction"
+    ],
+    "review_flags": [
+      "合并两遍设置场景",
+      "P3946等错字和残句须改写"
+    ]
+  },
+  {
+    "block_id": "R004",
+    "source_start": 3986,
+    "source_end": 3989,
+    "source_title": "伸缩缝定义",
+    "destination_module": "deformation-joint",
+    "destination_section": "roof-deformation-concept",
+    "destination_title": "建筑变形缝的概念",
+    "content_points": [
+      "伸缩缝的原因与作用"
+    ],
+    "action": "整理改写后并入",
+    "cross_references": [
+      "roof-deformation-location"
+    ],
+    "review_flags": []
+  },
+  {
+    "block_id": "R005",
+    "source_start": 3990,
+    "source_end": 3999,
+    "source_title": "伸缩缝设置影响因素",
+    "destination_module": "deformation-joint",
+    "destination_section": "roof-deformation-location",
+    "destination_title": "变形缝的设置",
+    "content_points": [
+      "结构材料、结构整体性、屋顶保温隔热与环境温差",
+      "用条件说明设置间距的差异"
+    ],
+    "action": "整理改写后并入",
+    "cross_references": [],
+    "review_flags": [
+      "不能将伸缩率与抗拉强度等同",
+      "不能笼统将装配式结构等同于整体性差"
+    ]
+  },
+  {
+    "block_id": "R006",
+    "source_start": 4000,
+    "source_end": 4008,
+    "source_title": "伸缩缝断开范围和间距表",
+    "destination_module": "deformation-joint",
+    "destination_section": "roof-deformation-construction",
+    "destination_title": "变形缝的构造",
+    "content_points": [
+      "伸缩缝断开范围",
+      "缝内弹性填充和立面可变形处理"
+    ],
+    "action": "整理改写后并入",
+    "cross_references": [
+      "roof-deformation-location"
+    ],
+    "review_flags": [
+      "P4001缝宽20-30mm为待核历史数值",
+      "P4002-4007旧间距表重建并核对出处",
+      "石棉水泥瓦只作为历史材料说明"
+    ]
+  },
+  {
+    "block_id": "R007",
+    "source_start": 4009,
+    "source_end": 4012,
+    "source_title": "沉降缝定义",
+    "destination_module": "deformation-joint",
+    "destination_section": "roof-deformation-concept",
+    "destination_title": "建筑变形缝的概念",
+    "content_points": [
+      "不均匀沉降、独立沉降单元"
+    ],
+    "action": "整理改写后并入",
+    "cross_references": [
+      "foundation-settlement"
+    ],
+    "review_flags": []
+  },
+  {
+    "block_id": "R008",
+    "source_start": 4013,
+    "source_end": 4017,
+    "source_title": "沉降缝设置场景",
+    "destination_module": "deformation-joint",
+    "destination_section": "roof-deformation-location",
+    "destination_title": "变形缝的设置",
+    "content_points": [
+      "土质差异、高差与荷载差异、结构变化、新旧建筑交界"
+    ],
+    "action": "整理改写后并入",
+    "cross_references": [
+      "foundation-settlement"
+    ],
+    "review_flags": []
+  },
+  {
+    "block_id": "R009",
+    "source_start": 4018,
+    "source_end": 4031,
+    "source_title": "沉降缝断开范围和缝宽表",
+    "destination_module": "deformation-joint",
+    "destination_section": "roof-deformation-construction",
+    "destination_title": "变形缝的构造",
+    "content_points": [
+      "自基础至屋顶断开",
+      "缝宽与高度、沉降和倾斜有关"
+    ],
+    "action": "整理改写后并入",
+    "cross_references": [
+      "foundation-settlement"
+    ],
+    "review_flags": [
+      "P4021-4031表格须重新对齐，不能按抽取文本自动生成表",
+      "P4022首档写成＞5m，疑似符号错误，须回查原表",
+      "缝宽表来源和适用条件待核"
+    ]
+  },
+  {
+    "block_id": "R010",
+    "source_start": 4032,
+    "source_end": 4034,
+    "source_title": "抗震缝定义",
+    "destination_module": "deformation-joint",
+    "destination_section": "roof-deformation-concept",
+    "destination_title": "建筑变形缝的概念",
+    "content_points": [
+      "地震中相邻单元相对位移与碰撞风险"
+    ],
+    "action": "整理改写后并入",
+    "cross_references": [],
+    "review_flags": [
+      "仅设防烈度7-9度的范围表述待核"
+    ]
+  },
+  {
+    "block_id": "R011",
+    "source_start": 4035,
+    "source_end": 4039,
+    "source_title": "抗震缝设置场景",
+    "destination_module": "deformation-joint",
+    "destination_section": "roof-deformation-location",
+    "destination_title": "变形缝的设置",
+    "content_points": [
+      "复杂平面、刚度差异、高差、错层和不同体系",
+      "结合其他变形缝考虑"
+    ],
+    "action": "整理改写后并入",
+    "cross_references": [],
+    "review_flags": [
+      "高差6m等判据不得脱离结构体系直接发布"
+    ]
+  },
+  {
+    "block_id": "R012",
+    "source_start": 4040,
+    "source_end": 4049,
+    "source_title": "抗震缝断开范围和缝宽",
+    "destination_module": "deformation-joint",
+    "destination_section": "roof-deformation-construction",
+    "destination_title": "变形缝的构造",
+    "content_points": [
+      "缝宽需满足结构位移需求",
+      "结合伸缩缝与沉降缝的原则"
+    ],
+    "action": "整理改写后并入",
+    "cross_references": [],
+    "review_flags": [
+      "旧宽度公式和所有数值须核验",
+      "基础可不断不能只用振动小解释",
+      "按不同结构体系区分规则"
+    ]
+  },
+  {
+    "block_id": "R013",
+    "source_start": 4050,
+    "source_end": 4080,
+    "source_title": "各部位变形缝节点",
+    "destination_module": "deformation-joint",
+    "destination_section": "roof-deformation-construction",
+    "destination_title": "变形缝的构造",
+    "content_points": [
+      "双墙、双柱、悬挑、连接廊等结构布置",
+      "墙面平缝、转角缝的覆盖和填缝",
+      "屋顶等高与高低跨盖缝",
+      "内墙和楼地面盖缝"
+    ],
+    "action": "整理改写后并入",
+    "cross_references": [
+      "wall-masonry",
+      "roof-flat",
+      "floor-ground-layer"
+    ],
+    "review_flags": [
+      "P4079楼地面盖缝只有题头，需补正文",
+      "P4067见第六章与现有章节编号不匹配",
+      "补防火封堵及盖缝构件变形能力，避免刚性跨接"
+    ]
+  },
+  {
+    "block_id": "R014",
+    "source_start": 4081,
+    "source_end": 4090,
+    "source_title": "设缝以外的措施",
+    "destination_module": "deformation-joint",
+    "destination_section": "roof-deformation-location",
+    "destination_title": "变形缝的设置",
+    "content_points": [
+      "设缝与其他措施的比较",
+      "温度应力验算、施工顺序、后浇带、地基处理、形体优化"
+    ],
+    "action": "整理改写后并入",
+    "cross_references": [
+      "foundation-settlement"
+    ],
+    "review_flags": [
+      "P4085封顶约两周后浇筑不能作为通用施工要求",
+      "后浇带不能直接等同沉降缝",
+      "个案措施需结构专业设计依据"
+    ]
+  },
+  {
+    "block_id": "R015",
+    "source_start": 4091,
+    "source_end": 4101,
+    "source_title": "住宅楼梯考试与补考题",
+    "destination_module": "training",
+    "destination_section": "proposed:training-stair-drawing",
+    "destination_title": "楼梯绘图训练",
+    "content_points": [
+      "六层住宅双跑楼梯平剖面",
+      "底层入口处理",
+      "栏杆扶手和踏步节点详图"
+    ],
+    "action": "合并主考题与补考题，保留题目变式",
+    "cross_references": [
+      "stairs-overview",
+      "stairs-details"
+    ],
+    "review_flags": [
+      "题目需补附图",
+      "尺寸须在新规范下重算"
+    ]
+  },
+  {
+    "block_id": "R016",
+    "source_start": 4102,
+    "source_end": 4118,
+    "source_title": "青少年活动中心设计说明书",
+    "destination_module": "training",
+    "destination_section": "proposed:training-construction-brief",
+    "destination_title": "构造方案说明训练",
+    "content_points": [
+      "建筑概况、分类、结构体系",
+      "防火依据、建筑模数",
+      "围护与分隔构造方案"
+    ],
+    "action": "改写为可复用任务书",
+    "cross_references": [
+      "proposed:intro-course-guide",
+      "intro-classification",
+      "intro-drawing-standards"
+    ],
+    "review_flags": [
+      "去除收作业及下次上课等时限",
+      "增加评价标准"
+    ]
+  },
+  {
+    "block_id": "R017",
+    "source_start": 4119,
+    "source_end": 4132,
+    "source_title": "幼儿园楼面结构布置练习",
+    "destination_module": "training",
+    "destination_section": "proposed:training-floor-layout",
+    "destination_title": "楼面构造布置训练",
+    "content_points": [
+      "结构布置、轴线、标高、构件编号与尺寸"
+    ],
+    "action": "并入任务库，作为幼儿园题目变式",
+    "cross_references": [
+      "floor-rc-slab",
+      "intro-drawing-standards"
+    ],
+    "review_flags": [
+      "统一一层楼面与首层顶板的层次定义",
+      "构件编号与结构专业表达需核对"
+    ]
+  },
+  {
+    "block_id": "R018",
+    "source_start": 4133,
+    "source_end": 4139,
+    "source_title": "幼儿园楼梯练习",
+    "destination_module": "training",
+    "destination_section": "proposed:training-stair-drawing",
+    "destination_title": "楼梯绘图训练",
+    "content_points": [
+      "幼儿园主要楼梯平剖面和节点"
+    ],
+    "action": "并入楼梯训练，保留建筑用途变式",
+    "cross_references": [
+      "stairs-overview",
+      "stairs-details"
+    ],
+    "review_flags": [
+      "不能沿用住宅楼梯参数"
+    ]
+  },
+  {
+    "block_id": "R019",
+    "source_start": 4140,
+    "source_end": 4145,
+    "source_title": "幼儿园屋顶平面练习",
+    "destination_module": "training",
+    "destination_section": "proposed:training-roof-plan",
+    "destination_title": "屋顶排水设计训练",
+    "content_points": [
+      "屋顶轴线、分水线、排水分区、雨水管、坡度"
+    ],
+    "action": "并入屋顶训练，保留幼儿园题目变式",
+    "cross_references": [
+      "roof-flat"
+    ],
+    "review_flags": []
+  },
+  {
+    "block_id": "R020",
+    "source_start": 4146,
+    "source_end": 4152,
+    "source_title": "幼儿园外檐详图练习",
+    "destination_module": "training",
+    "destination_section": "proposed:training-envelope-detail",
+    "destination_title": "外檐节点综合训练",
+    "content_points": [
+      "主入口和自选部位外檐详图",
+      "索引、材料图例、各层做法"
+    ],
+    "action": "并入外檐训练",
+    "cross_references": [
+      "wall-masonry",
+      "roof-flat",
+      "floor-ground-layer"
+    ],
+    "review_flags": []
+  },
+  {
+    "block_id": "R021",
+    "source_start": 4153,
+    "source_end": 4192,
+    "source_title": "幼儿园期末综合构造方案",
+    "destination_module": "training",
+    "destination_section": "proposed:training-integrated-design",
+    "destination_title": "综合课程设计",
+    "content_points": [
+      "楼面布置、楼梯、屋顶平面、两张外檐详图",
+      "设计草图到正式图的流程",
+      "构造合理和图纸表达的评价"
+    ],
+    "action": "作为上册综合任务，链接四类专项任务",
+    "cross_references": [
+      "proposed:training-floor-layout",
+      "proposed:training-stair-drawing",
+      "proposed:training-roof-plan",
+      "proposed:training-envelope-detail"
+    ],
+    "review_flags": [
+      "不重复复制专项要求",
+      "去除旧周次与辅导时段",
+      "补评价量规",
+      "统一楼面命名"
+    ]
+  },
+  {
+    "block_id": "R022",
+    "source_start": 4193,
+    "source_end": 4202,
+    "source_title": "分组建筑构造调研",
+    "destination_module": "training",
+    "destination_section": "proposed:training-construction-survey",
+    "destination_title": "构造调研训练",
+    "content_points": [
+      "观察建筑或施工现场",
+      "照片、手绘节点与文字解释",
+      "比较材料层次、连接与构造原理"
+    ],
+    "action": "并入调研任务库，设分组模式",
+    "cross_references": [
+      "proposed:training-integrated-design"
+    ],
+    "review_flags": [
+      "去除旧周次与学院网站下载指令"
+    ]
+  },
+  {
+    "block_id": "R023",
+    "source_start": 4203,
+    "source_end": 4213,
+    "source_title": "园林专业住宅楼梯练习",
+    "destination_module": "training",
+    "destination_section": "proposed:training-stair-drawing",
+    "destination_title": "楼梯绘图训练",
+    "content_points": [
+      "五层住宅双跑楼梯",
+      "墙厚、门洞、墙垛等更完整题目条件"
+    ],
+    "action": "与六层住宅题组成变式组",
+    "cross_references": [
+      "stairs-overview",
+      "stairs-details"
+    ],
+    "review_flags": [
+      "新规范下检查给定空间可行性",
+      "补附图和答案"
+    ]
+  },
+  {
+    "block_id": "R024",
+    "source_start": 4214,
+    "source_end": 4234,
+    "source_title": "园林专业构造调研",
+    "destination_module": "training",
+    "destination_section": "proposed:training-construction-survey",
+    "destination_title": "构造调研训练",
+    "content_points": [
+      "砌体与框架体系比较",
+      "墙身节点、楼梯调研",
+      "结合小建筑方案反思构造设计"
+    ],
+    "action": "并入调研任务库，设个人比较模式",
+    "cross_references": [
+      "wall-masonry",
+      "stairs-rc-structure"
+    ],
+    "review_flags": [
+      "分组与独立完成不能混成同一要求",
+      "去除交图周次及复印装订指令"
+    ]
+  },
+  {
+    "block_id": "R025",
+    "source_start": 4235,
+    "source_end": 4243,
+    "source_title": "小建筑屋顶平面练习",
+    "destination_module": "training",
+    "destination_section": "proposed:training-roof-plan",
+    "destination_title": "屋顶排水设计训练",
+    "content_points": [
+      "排水分区、雨水管、轴线与坡度"
+    ],
+    "action": "作为小建筑题目变式",
+    "cross_references": [
+      "roof-flat"
+    ],
+    "review_flags": []
+  },
+  {
+    "block_id": "R026",
+    "source_start": 4244,
+    "source_end": 4257,
+    "source_title": "小建筑外檐详图练习",
+    "destination_module": "training",
+    "destination_section": "proposed:training-envelope-detail",
+    "destination_title": "外檐节点综合训练",
+    "content_points": [
+      "主入口及另一处外檐详图",
+      "索引与层次说明"
+    ],
+    "action": "作为小建筑题目变式",
+    "cross_references": [
+      "wall-masonry",
+      "roof-flat"
+    ],
+    "review_flags": [
+      "原作业编号跳过练习三，重编号",
+      "去除过时提交要求"
+    ]
+  },
+  {
+    "block_id": "R027",
+    "source_start": 4258,
+    "source_end": 4271,
+    "source_title": "课程衔接补遗",
+    "destination_module": "introduction",
+    "destination_section": "proposed:intro-course-guide",
+    "destination_title": "课程导读",
+    "content_points": [
+      "构造与建筑设计的关系",
+      "方案可实施性、综合能力与施工图表达"
+    ],
+    "action": "并入课程导读，院系教学安排原资料归档",
+    "cross_references": [],
+    "review_flags": [
+      "P4270与P4271完全重复",
+      "P4262与绪论P0104重复",
+      "去除训诫和院系培养方案旧安排"
+    ]
+  },
+  {
+    "block_id": "R028",
+    "source_start": 4272,
+    "source_end": 4296,
+    "source_title": "建筑性能与构件体系补遗",
+    "destination_module": "introduction",
+    "destination_section": "intro-composition",
+    "destination_title": "建筑物的构造组成",
+    "content_points": [
+      "承载、围护、交通设备三个观察维度",
+      "基本性能、维护加工与资源条件",
+      "构造技术与艺术表达"
+    ],
+    "action": "整理为绪论拓展阅读",
+    "cross_references": [
+      "intro-factors",
+      "intro-design-principles"
+    ],
+    "review_flags": [
+      "补齐编号缺项",
+      "校正扫描式错字",
+      "说明分类维度，避免与六类基本构件互相否定"
+    ]
+  },
+  {
+    "block_id": "R029",
+    "source_start": 4297,
+    "source_end": 4308,
+    "source_title": "建筑构造手段与体系补遗",
+    "destination_module": "introduction",
+    "destination_section": "intro-design-principles",
+    "destination_title": "建筑构造的设计原则",
+    "content_points": [
+      "环境、设备、材料与构造四种手段",
+      "材料、设计、施工共同影响质量"
+    ],
+    "action": "整理为拓展阅读",
+    "cross_references": [
+      "intro-factors"
+    ],
+    "review_flags": [
+      "P4299把空调混入被动方式，分类需重写",
+      "P4298风水择地不宜作为工程依据",
+      "残缺文字不能凭猜测修复"
+    ]
+  },
+  {
+    "block_id": "R030",
+    "source_start": 4309,
+    "source_end": 4312,
+    "source_title": "构造层次补遗",
+    "destination_module": "introduction",
+    "destination_section": "intro-composition",
+    "destination_title": "建筑物的构造组成",
+    "content_points": [
+      "饰面层、连接层、性能设备层、结构层"
+    ],
+    "action": "整理为跨章节读图方法",
+    "cross_references": [
+      "wall-design-requirements",
+      "floor-ground-composition",
+      "roof-flat"
+    ],
+    "review_flags": [
+      "四层为分析框架，不是所有构造必须四层齐备"
+    ]
+  },
+  {
+    "block_id": "R031",
+    "source_start": 4313,
+    "source_end": 4319,
+    "source_title": "材料构法节点学习路径",
+    "destination_module": "introduction",
+    "destination_section": "proposed:intro-course-guide",
+    "destination_title": "课程导读",
+    "content_points": [
+      "材料、构法、节点三个学习入口",
+      "材料与连接、复合方式的关系"
+    ],
+    "action": "整理为学习方法说明",
+    "cross_references": [
+      "intro-composition"
+    ],
+    "review_flags": [
+      "校正占代、空问、铝朔板等错字",
+      "材料年代分类改为历史示例"
+    ]
+  },
+  {
+    "block_id": "R032",
+    "source_start": 4320,
+    "source_end": 4321,
+    "source_title": "尾部页码与嵌入对象",
+    "destination_module": "archive",
+    "destination_section": "archive:tail",
+    "destination_title": "原资料归档",
+    "content_points": [
+      "游离页码18及对象占位"
+    ],
+    "action": "归档不入正文",
+    "cross_references": [],
+    "review_flags": [
+      "对象未做图像或OCR审计"
+    ]
+  }
+]

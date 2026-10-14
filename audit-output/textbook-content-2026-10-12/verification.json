@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-12",
+  "articles": 54,
+  "core_articles": 41,
+  "principle_articles": 6,
+  "practice_tasks": 7,
+  "routes": 64,
+  "chinese_characters": 62524,
+  "original_source_unchanged": true,
+  "source_blocks": 234,
+  "archived_blocks": 2,
+  "checks": {
+    "production_build": "passed",
+    "textbook_rendered_text_links_routes_and_subpaths": "passed",
+    "companion_corpus": "484 sources / 17 hints",
+    "companion_unit_and_browser": "passed",
+    "existing_training_contracts_scoring_persistence": "8 modes / 17 questions passed",
+    "textbook_browser": "64 HTTP readers and navigation passed",
+    "reader_lifecycle_and_observer": "same-document observer, asynchronous writes, disposal guards and every-frame window error checks passed",
+    "desktop_visual_review": "1440x960 passed",
+    "mobile_visual_review": "390px and 320px passed",
+    "editorial_review": "54 articles reviewed; parapet drainage direction corrected"
+  },
+  "known_limits": [
+    "原 DOC 图片和嵌入对象尚未完整重建",
+    "具体工程参数与原规范表须结合有效版本和适用条件进一步复核",
+    "既有模型参数另行专业审校"
+  ],
+  "environment": "受限 Windows 中 tsx 的 uv_os_get_passwd 初始化失败，构建及 TS 测试经本机执行通过；浏览器验证使用已安装 Chrome。",
+  "screenshots": [
+    "wall-directory-desktop.png",
+    "roof-article-desktop.png",
+    "roof-article-mobile-390.png",
+    "roof-article-mobile-320.png"
+  ]
+}

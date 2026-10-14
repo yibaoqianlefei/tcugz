@@ -1,0 +1,159 @@
+{
+  "audit_date": "2026-10-12",
+  "scope": "楼地层7篇、楼梯5篇、屋顶3篇、建筑变形缝3篇、实践任务7篇，共25篇",
+  "method": "逐页通读Markdown和对应公开HTML，阅读paragraphs.json中相应源段、second-half-plan.md、root-plan.md及正文添加记录；对少量规范相关判断查阅出版机构/官方资料。未修改正文或执行生成。",
+  "verdict": "正文分类、机理和已给演算基本准确，主要源矛盾已消除；当前适合作为入门概览，仍缺支撑独立构造设计与绘图的图例、完整案例、题目资料及应用评价。没有确认P1错误。",
+  "counts": { "P1": 0, "P2": 7, "P3": 2 },
+  "confirmed_accuracy": [
+    "楼板与土上地坪、施工分类与受力分类、吊顶上人使用条件区分正确。",
+    "楼梯2800/175=16、每跑8个踢面与7个独立踏面、1820mm投影、4370mm净尺寸链及2250-300=1950mm演算自洽；未声称为统一合规值。",
+    "坡道0.30/6.00=5%，矩形屋面4m×2%=80mm，坡度角tanθ=i的关系正确。",
+    "正置/倒置层位、防水与保温区分、坡屋顶45°交线的等坡等高直角条件以及三类结构缝与后浇带区分合理。",
+    "58道正文自测参考答案与各页已经陈述的概念未发现直接矛盾；问题在应用层级不足。",
+    "7项实践的权重均合计100%；旧课堂交图时间和收作业安排没有成为网站执行要求。",
+    "源讲义的旧屋面四级表、底坑1400m、单/双向板经济性相反结论、后浇带封顶两周等未作为现行通用规则继续发布。"
+  ],
+  "findings": [
+    {
+      "id": "SH-01", "priority": "P2", "status": "confirmed", "kind": "教学算例不闭环",
+      "title": "平台下入口算例停在1950mm，缺明确失败判定和调整后的全链复核",
+      "file": "src/data/textbook/stairs/stairs-overview.md", "line": 35,
+      "related_locations": [{ "file": "src/data/textbook/practice/stairs-drawing.md", "line": 18 }],
+      "source_ranges": ["P2698-P2709", "P2767-P2790"],
+      "evidence": "第35行算出1950mm后仅要求按用途核对；第37行提及增加首跑级数或降低入口，但没有算出修改后的第二跑、平台标高、尺寸链和最低梁底净空。源P2783-P2788包含不够2000并继续调整11级的过程，整理计划也要求纠错后的综合练习。",
+      "impact": "学生能够重复一个减法，却不能完成发现问题—调整参数—验证通过的设计闭环；进入楼梯绘图任务仍缺可逐项照着核查的解法。1950mm没有被错误宣称合格，因此这是教学缺口，不是已确认违规设计。",
+      "recommendation": "采用明确用途与尺寸基准的新教学题，补完整平剖面、初选失败结果、两种调整比较和最终几何校核表；明确平台与梯段两种净空控制，并用适用规范的条号解释判定。若采用公共楼梯场景，可引用GB55031-2022第5.3.7条，并另协调疏散通道等要求；不得把单一2.00m条件套到全部通道。",
+      "references": [{ "title": "中国建筑科学研究院建筑防火研究所：GB55031-2022第5.3节", "url": "https://gf.cabr-fire.com/article-41805.htm", "supports": "第5.3.7条分别规定公共楼梯平台上下过道和梯段净高；条文说明解释从装饰完成面量到突出物装饰面下缘。" }]
+    },
+    {
+      "id": "SH-02", "priority": "P3", "status": "confirmed", "kind": "公式说明缺项",
+      "title": "已提到步距经验关系，却未给关系式及一次舒适性比较",
+      "file": "src/data/textbook/stairs/stairs-overview.md", "line": 15,
+      "source_ranges": ["P2626-P2638"],
+      "evidence": "正文仅称“步距经验关系可以帮助比较舒适程度”，没有给出关系式；原P2633-P2634明确给出b+2h的经验关系。第29行给h=175、b=260，却没有利用它解释为何选这一组演算值。",
+      "impact": "一句未展开的公式提示无法教会学生在同一层高下比较踏高、踏宽和行走感受，选步尺寸仍依赖外部讲解。",
+      "recommendation": "补b+2h作为经验指标的由来、单位和使用限制；用两组纯教学假设计算并比较，再说明舒适性经验与使用者/法规边界需同时满足。不要把旧经验区间写成所有建筑的强制标准。",
+      "references": []
+    },
+    {
+      "id": "SH-03", "priority": "P2", "status": "confirmed", "kind": "方案判断技能不足",
+      "title": "楼板类型讲解完整，但缺把平面支承条件转为布板/梁格的示范",
+      "file": "src/data/textbook/floor/floor-rc-slab.md", "line": 17,
+      "related_locations": [{ "file": "src/data/textbook/practice/floor-layout.md", "line": 16 }],
+      "source_ranges": ["P1837-P1869", "P1871-P1979", "P4119-P4132"],
+      "evidence": "正文说明长短边比、支承刚度等会影响传力，第23-29行提供五种楼盖的传力表，第39行要求布板核对洞口与隔墙；但没有一个给定轴网/支承/洞口的布置推导。实践第16行立即要求选择体系并解释荷载路径。",
+      "impact": "学生能背诵体系名称和箭头，却难以在房间平面上判断哪里需要梁、板的主要传力方向及洞口与隔墙如何改变方案。删去旧阈值是合理处理，但重要的布置能力没有得到替代教学。",
+      "recommendation": "补两个有明确边界条件的小平面：相对两边支承和四边支承；再给一组同轴网的主次梁/板柱等候选方案，逐项比较传力、结构高度、洞口及管线。配一个只考方案逻辑的布置题与解答，不要求学生凭旧经验表给正式配筋。",
+      "references": []
+    },
+    {
+      "id": "SH-04", "priority": "P2", "status": "confirmed", "kind": "源技能压缩遗失",
+      "title": "坡屋面的脊谷几何只留结果，未保留可操作的四坡屋面组织步骤",
+      "file": "src/data/textbook/roof/roof-slope.md", "line": 15,
+      "related_locations": [{ "file": "src/data/textbook/practice/roof-drainage.md", "line": 11 }],
+      "source_ranges": ["P3019-P3022", "P3560-P3599", "P3646-P3674"],
+      "evidence": "第15-17行给凸/凹交线和45°适用条件，但未区分正脊的水平性质，也未展开源P3594-P3599的矩形分解、转角交线、正脊和整理闭合步骤。全文没有硬山/悬山等识读术语。屋顶实践的唯一已给尺寸练习是矩形缓坡排水，没有对应坡顶组织题。",
+      "impact": "学生可以判断45°并非万能，却不能从矩形或L形建筑轮廓构造一个闭合、可排水的坡屋顶，也较难识读原讲义及常见坡屋面图名。",
+      "recommendation": "补矩形等坡等高四坡顶的分步作图，并给一个L形变式展示凸脊、凹谷、正脊和支承关系；补正脊/斜脊及硬山/悬山的简短术语对照。保留严格几何前提，不恢复旧跨度或出挑尺寸通用表。",
+      "references": []
+    },
+    {
+      "id": "SH-05", "priority": "P2", "status": "confirmed", "kind": "完整系统案例不足",
+      "title": "平屋面覆盖很多主题，却缺一套能从选型读到节点的完整构造案例",
+      "file": "src/data/textbook/roof/roof-flat.md", "line": 17,
+      "related_locations": [{ "file": "src/data/textbook/roof/roof-flat.md", "line": 33 }, { "file": "src/data/textbook/roof/roof-flat.md", "line": 51 }],
+      "source_ranges": ["P3165-P3350", "P3365-P3510", "P3751-P3855"],
+      "evidence": "卷材、涂膜各以一两段介绍，刚性防水压缩为第33行一段；正置/倒置表仅给防水与保温的相对位置。没有带使用条件、材料体系、完整层序、接缝与落口/泛水的统一样例。源中的材料体系、分格、隔离和层序内容多被压缩为需另查的项目。",
+      "impact": "学生知道每层的名字及不能机械套用，却尚不会形成一份自洽做法表，或者比较两套系统的选型理由。传统刚性分格、隔离层降低变形传递等重要机制也仅剩术语，不能通过一次案例加以认识。",
+      "recommendation": "补一套有明确气候、屋面用途与材料条件的教学案例，按底至顶列功能层、基层和连接，并贯通到女儿墙或落口；配一套倒置方案作对照。各厚度/性能注明出处和适用条件，待核项明确列出；另以历史识读卡解释传统刚性层分格、隔离与密封的职责，不恢复危险的旧配方。",
+      "references": []
+    },
+    {
+      "id": "SH-06", "priority": "P2", "status": "confirmed", "kind": "图解与图文衔接不足",
+      "title": "构造图缺失应集中补关键图，现有节点资产未充分接入正文",
+      "file": "src/data/textbook/stairs/stairs-details.md", "line": 14,
+      "related_locations": [{ "file": "src/data/textbook/deformation-joint/roof-deformation-concept.md", "line": 13 }, { "file": "src/data/textbook/roof/roof-flat.md", "line": 51 }, { "file": "src/data/textbook/floor/floor-ceiling.md", "line": 13 }],
+      "source_ranges": ["P1745-P2176", "P2476-P2504", "P2727-P2758", "P2831-P2841", "P3211-P3350", "P3583-P3599", "P3785-P3855", "P3945-P4080"],
+      "evidence": "25篇Markdown均无嵌入构造图；若干篇有模型链接，但楼梯细部第14行仍引用“讲义的传统图例”且没有对应图或模型入口。nodeDefinitions.ts已登记齐步不埋步、齐步并埋步、错一步、错多步四个可用模型及剖面图，正文均未直链。",
+      "impact": "净宽/净空量法、楼梯端部、层次连续及三类结构缝断开范围是空间问题，仅靠段落和抽象表格会产生理解门槛。旧DOC图未恢复是已知限制，本项只合并报告一次，并指出可以马上复用的资产。",
+      "recommendation": "按priority_figures依次补图或接入经过核对的现有示例，每图带观察任务、标注与适用条件。首先把楼梯细部四个真实节点按它们实际名称接到比较表，不要误称完整2×2标准节点矩阵。",
+      "priority_figures": [
+        "楼梯首/标准/顶层平面与同题剖面，显示上行折断线和净空测量控制点。",
+        "齐步/错步与埋步/不埋步的同条件对照剖面；现有四个节点可作为示例入口。",
+        "单向/双向及主次梁楼盖的支承和传力图，关联楼面布置练习。",
+        "正置/倒置两套完整屋面层次，以及泛水/落口防水连续图。",
+        "三类结构缝基础断开范围及墙/地面/屋面盖缝的可动连接对照。",
+        "湿区地面—墙根—地漏—门口的完成面与防水连续剖面。",
+        "四坡/L形坡屋顶脊谷线分步图，以及吊顶从面板至主体的连接图。"
+      ],
+      "references": []
+    },
+    {
+      "id": "SH-07", "priority": "P2", "status": "confirmed", "kind": "实践起步条件不完整",
+      "title": "实践任务仍缺可以下载或直接采用的完整题目资料包",
+      "file": "src/data/textbook/practice/stairs-drawing.md", "line": 9,
+      "related_locations": [{ "file": "src/data/textbook/practice/floor-layout.md", "line": 9 }, { "file": "src/data/textbook/practice/envelope-detail.md", "line": 9 }, { "file": "src/data/textbook/practice/integrated-design.md", "line": 9 }, { "file": "src/data/textbook/practice/construction-brief.md", "line": 9 }],
+      "source_ranges": ["P4091-P4101", "P4102-P4187", "P4203-P4213", "P4235-P4257"],
+      "evidence": "多数任务要求已有个人方案；无方案分支仅让学生自拟条件，没有统一底图/轴网/门洞/层高/环境包。楼梯页保留2400×5400与层高/室内外高差，但要求补齐门洞；原P4205已经记录墙厚240、入户门1000、门后墙垛120及入口门1500，这些数据并未成为可复核题包。原题尺寸基准和现行适用性仍待澄清，不能照抄宣称合格。",
+      "impact": "有建筑方案课程基础的学生能开展开放作业；首次在网站自学的学生仍需教师提供题图和约定，否则作品难度及假设不同，无法同题比较。它不是所有任务都不能启动：屋顶有12×8m几何小练习，构造调研可自主选建筑。",
+      "recommendation": "为无方案学习者提供一个统一小建筑起步包，含各层平面/剖面、尺寸基准、结构选型、使用/环境条件及需要另查的资料。楼梯分别保留住宅和幼儿园变式，重绘且校核题图；给清晰的概念练习版和综合课程版入口。已有源数据可进入历史变式条件记录，待核项须与已知项分开。",
+      "references": []
+    },
+    {
+      "id": "SH-08", "priority": "P3", "status": "confirmed", "kind": "评价量规不够具体",
+      "title": "七项任务有权重但缺表现级别和示例，尚不能稳定自评",
+      "file": "src/data/textbook/practice/floor-layout.md", "line": 25,
+      "related_locations": [{ "file": "src/data/textbook/practice/construction-brief.md", "line": 25 }, { "file": "src/data/textbook/practice/construction-survey.md", "line": 26 }, { "file": "src/data/textbook/practice/roof-drainage.md", "line": 29 }],
+      "source_ranges": ["P4189-P4192", "P4197-P4202", "P4217-P4233", "P4254-P4257"],
+      "evidence": "表格给出20%-35%等权重和“路径清楚/图文对应”检查依据，但没有同一指标达到/基本达到/未达到的区别，也没有一份标注过的示例作品。权重相加正确，但不能仅凭权重推出分数。",
+      "impact": "学生能用表提醒漏项，仍难判断自己是完成了最低成果还是达到了较好的构造分析深度；教师间和学生间的评分口径难一致。",
+      "recommendation": "为每项量规增加三档可观察表现，并区分必须修正的致命遗漏与可改进项；给一份完整示例和一份典型错误图，展示如何逐项核查。开放题允许多种合理方案，评分以条件一致和推理证据为主。",
+      "references": []
+    },
+    {
+      "id": "SH-09", "priority": "P2", "status": "confirmed", "kind": "自测与学习目标不对齐",
+      "title": "正文58道自测以概念判断为主，缺核心计算与读图应用题",
+      "file": "src/data/textbook/stairs/stairs-overview.md", "line": 47,
+      "related_locations": [{ "file": "src/data/textbook/floor/floor-rc-slab.md", "line": 53 }, { "file": "src/data/textbook/roof/roof-flat.md", "line": 72 }, { "file": "src/data/textbook/roof/roof-slope.md", "line": 51 }, { "file": "src/data/textbook/deformation-joint/roof-deformation-construction.md", "line": 41 }],
+      "source_ranges": ["P1837-P1869", "P2681-P2789", "P3121-P3147", "P3594-P3599", "P4050-P4080", "P4091-P4257"],
+      "evidence": "18篇正文共58道编号自测。已给坡度、投影及标高算法，但题目主要问能否/为什么；楼梯仅问示例为什么有7个踏面，没有给新层高要求独立推导；屋面只问倒置能否替代防水等，没有给标高或逆坡图；变形缝只问盖板固定等原则，没有让学生标出可动/刚接位置。",
+      "impact": "概念答案正确不等于掌握构造设计方法，自测通过后直接进入绘图实践的难度跳跃大。现有概念题应保留，但不能承担独立计算、诊断与设计能力验证。",
+      "recommendation": "在楼板、楼梯、屋顶、变形缝各补至少一个应用题，逐级采用计算—读图找错—说明修改；提供演算过程或图上解析，允许合理多解。用明确教学假设或已核验参数，避免以未核旧数值作为唯一答案。",
+      "references": []
+    }
+  ],
+  "chapter_summary": [
+    { "chapter": "楼地层（7篇）", "present": "楼板/地坪、五种楼盖传力路线、施工阶段、地基与垫层、木/弹性面材、湿区、阳台连接、饰面总论、吊顶荷载/检修。", "missing": "可跟随的梁格和支承布置示范；完整湿区、饰面与吊顶连接图；有材料及层序依据的教学做法表。传统材料的旧定值无需恢复。" },
+    { "chapter": "楼梯（5篇）", "present": "组成与分类维度、16/8/7计数、投影和净空量法、现浇/预制连接、齐错及埋步概念、面层标高、防护抓握、完整可达路线、设备接口。", "missing": "舒适性关系式、用途明确的尺度校核表、完整入口调整算例、首/标准/顶层平剖图、节点比较图及可启动住宅/幼儿园题包。明步/暗步与悬挂等源分类可作拓展识图补充。" },
+    { "chapter": "屋顶（3篇）", "present": "导堵协同、坡度表达、找坡/排水分区、材料工艺适配、主要节点、正置倒置热湿、现代金属板和种植屋面基本机制。", "missing": "完整材料体系案例和层序图；正置/倒置同条件比较；四坡与L形脊谷作图；传统刚性分格/隔离与蓄水一壁三孔的限条件识图。" },
+    { "chapter": "变形缝（3篇）", "present": "三类缝主作用/断开范围、设缝场景、位移条件、后浇带区别、可动盖缝、墙地屋顶地下防水和防火。", "missing": "三类缝的断开范围图、活动构件示例和位移模拟读图题。没有发现应恢复旧宽度递增表的理由。" },
+    { "chapter": "实践（7篇）", "present": "每项已有目标、前置阅读、步骤、提交物、建议自评及自查；两种调研模式清楚，五张综合图可互相复用。", "missing": "无个人方案学习者的统一题包、图纸/计算表模板、完整参考成果、量规表现档次与作业进阶安排。调研任务开放性合理，不必给唯一技术答案。" }
+  ],
+  "page_reviews": [
+    { "file": "src/data/textbook/floor/floor-overview.md", "result": "楼板/地坪及基本层次准确；传统木/砖拱定位合理；读图能力依赖补剖面示例。" },
+    { "file": "src/data/textbook/floor/floor-rc-slab.md", "result": "分类、传力与施工阶段准确；单/双向经济性矛盾已消除；缺布置推导案例及应用自测。" },
+    { "file": "src/data/textbook/floor/floor-ground-composition.md", "result": "土基层、垫层与功能层区分清楚；防潮/地下水压说明合理；应配层序/标高示例。" },
+    { "file": "src/data/textbook/floor/floor-ground-layer.md", "result": "面层类型、木材湿胀、湿区连续防水与架空分类合理；源空白类别已补写；应配湿区交接图。" },
+    { "file": "src/data/textbook/floor/floor-balcony.md", "result": "位置分类与支承分类区分清楚；悬臂根部、门口、防护连接和雨棚水路准确；应配连接和排水节点。" },
+    { "file": "src/data/textbook/floor/finish-overview.md", "result": "功能、基层、工艺和设计/施工顺序清楚；共性主归位合理；缺实际做法编号/收头对照实例。" },
+    { "file": "src/data/textbook/floor/floor-ceiling.md", "result": "吊挂传力、上人条件、设备独立支承和检修准确；源射钉等旧工艺未作通用指令；应配吊点与面板连接图。" },
+    { "file": "src/data/textbook/stairs/stairs-overview.md", "result": "计数、投影和净空减法准确；旧错误已纠正；完整设计算例、舒适关系和应用题不足。" },
+    { "file": "src/data/textbook/stairs/stairs-rc-structure.md", "result": "板/梁式传力、预制阶段与活动连接准确；传统体系只作识读；可补明/暗步和悬挂拓展。" },
+    { "file": "src/data/textbook/stairs/stairs-details.md", "result": "齐错/埋步两个维度准确；防滑、完成面和锚固机理合理；引用未展示的传统图，四个现有节点未接入。" },
+    { "file": "src/data/textbook/stairs/stairs-steps-ramps.md", "result": "5%坡度演算准确；无障碍连续性与平台/门扇协调合理；公告不能替代具体条件的教学核查表。" },
+    { "file": "src/data/textbook/stairs/stairs-elevator.md", "result": "井道、底坑、顶层、机房和接口准确；1400m错误未延续；可补厂家接口图例的读图演练。" },
+    { "file": "src/data/textbook/roof/index.md", "result": "分类维度、排水/防水、坡度与层次逻辑准确；源固定坡度和唯一层序已改正；屋顶形式图谱可补。" },
+    { "file": "src/data/textbook/roof/roof-flat.md", "result": "六个单元的主要概念准确，现代补写方向合理；材料和层次/节点实例被压缩过多，尚不能独立形成方案。" },
+    { "file": "src/data/textbook/roof/roof-slope.md", "result": "有檩/无檩、瓦下水路、45°前提、金属热变形和阁楼边界合理；源脊谷作图技能及图名体系不足。" },
+    { "file": "src/data/textbook/deformation-joint/roof-deformation-concept.md", "result": "三类缝、独立单元、分格/施工缝及后浇带概念准确；需断开范围对照图。" },
+    { "file": "src/data/textbook/deformation-joint/roof-deformation-location.md", "result": "影响因素与多策略选择合理，旧宽度/后浇带期限未发布；需具体分析情境和选择依据示例。" },
+    { "file": "src/data/textbook/deformation-joint/roof-deformation-construction.md", "result": "可活动盖缝、通行承载、地下及防火系统补写合理；缺可动/刚接位置图和应用题。" },
+    { "file": "src/data/textbook/practice/construction-brief.md", "result": "有条件/假设区分、比较与来源要求；依赖已有方案或学生自建情境，无公共起步资料包和成果样本。" },
+    { "file": "src/data/textbook/practice/floor-layout.md", "result": "首层顶板/二层楼面表达一致，成果要求合理；支承布置案例和统一条件不足。" },
+    { "file": "src/data/textbook/practice/stairs-drawing.md", "result": "16/8/7参考计数准确，住宅/幼儿园用途分开；原完整住宅变式未重建题图，缺完成后的核查参考。" },
+    { "file": "src/data/textbook/practice/roof-drainage.md", "result": "12×8m和80mm教学高差准确；可独立做几何子题；完整水力/出口数量与控制标高练习仍依赖外部条件。" },
+    { "file": "src/data/textbook/practice/envelope-detail.md", "result": "两节点、四路线、施工顺序和索引成果合理；缺起步剖面、做法表与典型成品/错误例。" },
+    { "file": "src/data/textbook/practice/integrated-design.md", "result": "五张图和跨图一致性要求清楚；依赖前置方案合理但无统一资料包，评分档次和完整示例不足。" },
+    { "file": "src/data/textbook/practice/construction-survey.md", "result": "两模式、证据边界、调研路线与观察/推测区分清楚，可自行选对象启动；宜增现场记录模板和样例报告。" }
+  ]
+}

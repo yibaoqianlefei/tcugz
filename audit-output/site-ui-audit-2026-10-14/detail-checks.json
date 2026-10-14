@@ -1,0 +1,82 @@
+[
+  {
+    "id": "construction-column-01",
+    "width": 1440,
+    "meshes": 20
+  },
+  {
+    "id": "independent-foundation-01",
+    "width": 1440,
+    "meshes": 12
+  },
+  {
+    "id": "construction-column-01",
+    "width": 390,
+    "meshes": 20
+  },
+  {
+    "id": "independent-foundation-01",
+    "width": 390,
+    "meshes": 12
+  },
+  {
+    "width": 701,
+    "path": "wall/index.html",
+    "art": {
+      "w": 313.015625,
+      "h": 239.96875
+    },
+    "firstTitleY": 726.765625,
+    "overflow": false
+  },
+  {
+    "width": 701,
+    "path": "basics/floor/index.html",
+    "art": {
+      "w": 313.015625,
+      "h": 239.96875
+    },
+    "firstTitleY": 720.296875,
+    "overflow": false
+  },
+  {
+    "width": 700,
+    "path": "wall/index.html",
+    "art": {
+      "w": 550,
+      "h": 421.65625
+    },
+    "firstTitleY": 1096.328125,
+    "overflow": false
+  },
+  {
+    "width": 700,
+    "path": "basics/floor/index.html",
+    "art": {
+      "w": 322,
+      "h": 246.859375
+    },
+    "firstTitleY": 905.765625,
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "path": "wall/index.html",
+    "art": {
+      "w": 288,
+      "h": 220.796875
+    },
+    "firstTitleY": 920.703125,
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "path": "basics/floor/index.html",
+    "art": {
+      "w": 288,
+      "h": 220.796875
+    },
+    "firstTitleY": 936.03125,
+    "overflow": false
+  }
+]

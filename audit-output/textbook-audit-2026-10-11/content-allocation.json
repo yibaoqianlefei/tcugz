@@ -1,0 +1,5913 @@
+{
+  "source_sha256": "94b82def87058e630a616aab7b65b5d5703194c64227fcc122a1e385764ffecb",
+  "paragraph_count": 4321,
+  "scope": "内容规划，未执行网站导入",
+  "blocks": [
+    {
+      "block_id": "R001",
+      "source_start": 1,
+      "source_end": 59,
+      "source_title": "旧目录和域代码",
+      "destination_module": "archive",
+      "destination_section": "archive:toc",
+      "destination_title": "原资料归档",
+      "content_points": [
+        "目录仅作历史索引，网站目录按实际内容重新生成"
+      ],
+      "action": "归档不入正文",
+      "cross_references": [],
+      "review_flags": [
+        "原目录未列第九讲变形缝"
+      ],
+      "allocation_id": "B001",
+      "target_public_path": null
+    },
+    {
+      "block_id": "R002",
+      "source_start": 60,
+      "source_end": 60,
+      "source_title": "讲义标题",
+      "destination_module": "introduction",
+      "destination_section": "proposed:intro-course-guide",
+      "destination_title": "课程导读",
+      "content_points": [
+        "保留课程名称，取消手动分页标记"
+      ],
+      "action": "整理改写后并入",
+      "cross_references": [],
+      "review_flags": [],
+      "allocation_id": "B002",
+      "target_public_path": null
+    },
+    {
+      "block_id": "FH-001",
+      "source_start": 61,
+      "source_end": 77,
+      "source_title": "课程内容及建筑构造学科定位",
+      "destination_module": "introduction",
+      "destination_section": "proposed:intro-course-guide",
+      "destination_title": "课程导学（建议放绪论入口）",
+      "content_points": [
+        "建筑构造的研究对象、综合性与方案可实施性",
+        "构造原理、构造做法与详图表达的关系"
+      ],
+      "action": "精简成课程导学；移除逐条讲课提示",
+      "cross_references": [
+        "intro-composition",
+        "intro-drawing-standards"
+      ],
+      "review_flags": [
+        "P0068定义明显截断，需补全",
+        "P0069—0075为口语讲课稿，需整理完整句"
+      ],
+      "allocation_id": "B003",
+      "target_public_path": null
+    },
+    {
+      "block_id": "FH-002",
+      "source_start": 78,
+      "source_end": 105,
+      "source_title": "课程任务、设计阶段、建筑基本功能",
+      "destination_module": "introduction",
+      "destination_section": "proposed:intro-course-guide",
+      "destination_title": "课程导学（建议放绪论入口）",
+      "content_points": [
+        "方案、初步设计、施工图中的构造设计任务",
+        "建筑承载和围护基本功能与使用功能的区别",
+        "多专业协同与建筑整体性"
+      ],
+      "action": "合并重复后形成导学主线",
+      "cross_references": [
+        "intro-design-principles",
+        "intro-composition"
+      ],
+      "review_flags": [
+        "P0091/P0103重复",
+        "P0090、P0102占位句删除",
+        "P0104个人教学警示改为客观学习目标"
+      ],
+      "allocation_id": "B004",
+      "target_public_path": null
+    },
+    {
+      "block_id": "FH-003",
+      "source_start": 106,
+      "source_end": 118,
+      "source_title": "课程特点和学习方法",
+      "destination_module": "introduction",
+      "destination_section": "proposed:intro-course-guide",
+      "destination_title": "课程导学（建议放绪论入口）",
+      "content_points": [
+        "实践性、综合性",
+        "材料、结构、物理、施工、设备、经济之间的联系",
+        "观察实物、分析原理、课程设计训练"
+      ],
+      "action": "合并概述和展开段；改成学习方法卡",
+      "cross_references": [
+        "intro-drawing-standards"
+      ],
+      "review_flags": [
+        "P0114重复词“作业作业”",
+        "“无逻辑推理”不宜作学科的绝对描述"
+      ],
+      "allocation_id": "B005",
+      "target_public_path": null
+    },
+    {
+      "block_id": "FH-004",
+      "source_start": 119,
+      "source_end": 149,
+      "source_title": "学习目的、重点难点和建筑目标",
+      "destination_module": "introduction",
+      "destination_section": "proposed:intro-course-guide",
+      "destination_title": "课程导学（建议放绪论入口）",
+      "content_points": [
+        "理解为何这样做、会选择做法、会表达详图",
+        "掌握原理与设计方法、综合应用能力",
+        "安全、适用、经济、美观的综合要求"
+      ],
+      "action": "合并学习目标；将原则内容交叉引用到设计原则",
+      "cross_references": [
+        "intro-design-principles",
+        "intro-drawing-standards"
+      ],
+      "review_flags": [
+        "P0120—0122/P0124—0135重复",
+        "P0136—0139/P0148—0149重复",
+        "P0146历史建筑方针出处和表述待核"
+      ],
+      "allocation_id": "B006",
+      "target_public_path": null
+    },
+    {
+      "block_id": "FH-005",
+      "source_start": 150,
+      "source_end": 166,
+      "source_title": "学习要求、参考书与教学安排",
+      "destination_module": "introduction",
+      "destination_section": "proposed:intro-course-guide",
+      "destination_title": "课程导学（建议放绪论入口）",
+      "content_points": [
+        "理论联系实际的学习要求",
+        "可保留原教材参考书作为历史资料来源"
+      ],
+      "action": "学生操作提示转为自主学习建议；学时、考核、旧书目单列元数据",
+      "cross_references": [],
+      "review_flags": [
+        "P0151—0154/P0156—0159重复",
+        "参考书年份2000/2004，需补新书目",
+        "48学时和考核方式属于教师课程配置，不能自动当网站默认规则"
+      ],
+      "allocation_id": "B007",
+      "target_public_path": null
+    },
+    {
+      "block_id": "FH-006",
+      "source_start": 167,
+      "source_end": 208,
+      "source_title": "承重结构体系与荷载传递",
+      "destination_module": "introduction",
+      "destination_section": "intro-composition",
+      "destination_title": "建筑物的构造组成",
+      "content_points": [
+        "墙承重与框架体系特点及适用空间",
+        "板/梁→墙或柱→基础→地基荷载路径",
+        "竖向、水平承重构件的工作特点",
+        "承载构件与围护构件的关系"
+      ],
+      "action": "压缩重复定义，增加对比图与传力路径练习",
+      "cross_references": [
+        "wall-role",
+        "wall-masonry"
+      ],
+      "review_flags": [
+        "P0199/P0200、P0203/P0204重复",
+        "P0187荷载分类表述与现代术语待核",
+        "P0196残缺错字",
+        "本段只介绍两个示例体系，不能暗示全部结构体系只有两种"
+      ],
+      "allocation_id": "B008",
+      "target_public_path": "public/lesson/introduction/intro-composition.html"
+    },
+    {
+      "block_id": "FH-007",
+      "source_start": 209,
+      "source_end": 245,
+      "source_title": "建筑物各组成部分及作用",
+      "destination_module": "introduction",
+      "destination_section": "intro-composition",
+      "destination_title": "建筑物的构造组成",
+      "content_points": [
+        "基础、墙柱、楼地层、饰面、楼梯电梯、屋盖、门窗及附属部分",
+        "各部分的承载、围护、交通和装修功能",
+        "把六大基本构件与装修、电梯、附属构件区分层次"
+      ],
+      "action": "按六大基本构件重组；补附属构件栏目",
+      "cross_references": [
+        "foundation-overview",
+        "wall-role",
+        "window-door-overview"
+      ],
+      "review_flags": [
+        "P0218“将荷载传给基础”应为传给地基",
+        "P0222“气体”应为“砌体”",
+        "P0244/P0245构件与配件的传统划分需标明教学语境"
+      ],
+      "allocation_id": "B009",
+      "target_public_path": "public/lesson/introduction/intro-composition.html"
+    },
+    {
+      "block_id": "FH-008",
+      "source_start": 246,
+      "source_end": 269,
+      "source_title": "按使用功能分类",
+      "destination_module": "introduction",
+      "destination_section": "intro-classification",
+      "destination_title": "建筑物的分类",
+      "content_points": [
+        "民用、工业、农业建筑",
+        "民用建筑下分居住、公共建筑",
+        "不同使用需求影响构造选择"
+      ],
+      "action": "改成两级分类树，保留典型例子",
+      "cross_references": [],
+      "review_flags": [
+        "P0255后(3)(4)工业/农业被排在民用标题之下，层级需修正",
+        "“非生产性建筑”只作传统分类说明，避免绝对判断"
+      ],
+      "allocation_id": "B010",
+      "target_public_path": "public/lesson/introduction/intro-classification.html"
+    },
+    {
+      "block_id": "FH-009",
+      "source_start": 270,
+      "source_end": 281,
+      "source_title": "按修建量和规模分类",
+      "destination_module": "introduction",
+      "destination_section": "intro-classification",
+      "destination_title": "建筑物的分类",
+      "content_points": [
+        "大量性建筑与大型性建筑",
+        "规模、数量、复杂程度与构造标准的关系"
+      ],
+      "action": "合并概述和实例，形成比较表",
+      "cross_references": [],
+      "review_flags": [
+        "P0271—0273/P0274—0281重复",
+        "P0280“耗资达”错字"
+      ],
+      "allocation_id": "B011",
+      "target_public_path": "public/lesson/introduction/intro-classification.html"
+    },
+    {
+      "block_id": "FH-010",
+      "source_start": 282,
+      "source_end": 311,
+      "source_title": "按层数高度分类及高度计算",
+      "destination_module": "introduction",
+      "destination_section": "intro-classification",
+      "destination_title": "建筑物的分类",
+      "content_points": [
+        "区分居住与公共建筑原讲义的分类方式",
+        "建筑高度和层数计算必须先明确所用规范场景",
+        "用建筑示例练习分类和高度识读"
+      ],
+      "action": "保留概念框架；原阈值转待核表，核验后重写",
+      "cross_references": [
+        "intro-grading"
+      ],
+      "review_flags": [
+        "P0284“底层”应为“低层”",
+        "住宅层数分类、24m消防解释和高度计算均为旧规范语境，待核",
+        "P0306附属用房豁免缺适用条件",
+        "P0308/P0309“是外”应为“室外”",
+        "P0301消防扑救极限的绝对说法需删除或作为有来源的历史叙述"
+      ],
+      "allocation_id": "B012",
+      "target_public_path": "public/lesson/introduction/intro-classification.html"
+    },
+    {
+      "block_id": "FH-011",
+      "source_start": 312,
+      "source_end": 343,
+      "source_title": "耐火等级、燃烧性能和耐火极限",
+      "destination_module": "introduction",
+      "destination_section": "intro-grading",
+      "destination_title": "建筑物的分级",
+      "content_points": [
+        "耐火等级取决于构件燃烧性能及耐火极限",
+        "燃烧性能与耐火极限是不同概念",
+        "耐火试验判定维度、建筑等级与构件性能的联系"
+      ],
+      "action": "合并两组定义，以现行有出处的表替换缺失原表",
+      "cross_references": [
+        "wall-design-requirements",
+        "window-door-design"
+      ],
+      "review_flags": [
+        "P0316标准号“GBJ-”残缺",
+        "P0331与P0333混用耐火极限/耐火等级",
+        "P0333单一背火温度判据待核",
+        "P0335—0343各构件要求和旧高层规范适用关系待核"
+      ],
+      "allocation_id": "B013",
+      "target_public_path": "public/lesson/introduction/intro-grading.html"
+    },
+    {
+      "block_id": "FH-012",
+      "source_start": 344,
+      "source_end": 355,
+      "source_title": "防火间距、防火分区、防火墙和安全疏散",
+      "destination_module": "introduction",
+      "destination_section": "intro-grading",
+      "destination_title": "建筑物的分级",
+      "content_points": [
+        "建筑防火体系中的间距、分区、分隔和疏散",
+        "安全疏散连续通路的三个基本示例"
+      ],
+      "action": "作为分级页“等级如何影响构造”短节；专项正文用跨引用",
+      "cross_references": [
+        "wall-design-requirements",
+        "window-door-design"
+      ],
+      "review_flags": [
+        "防火墙支承、屋顶交接的笼统规则待核",
+        "疏散路线只是示例，不能代替专项设计要求"
+      ],
+      "allocation_id": "B014",
+      "target_public_path": "public/lesson/introduction/intro-grading.html"
+    },
+    {
+      "block_id": "FH-013",
+      "source_start": 356,
+      "source_end": 366,
+      "source_title": "设计使用年限及分类分级与构造的关系",
+      "destination_module": "introduction",
+      "destination_section": "intro-grading",
+      "destination_title": "建筑物的分级",
+      "content_points": [
+        "设计使用年限与使用性质、重要性、结构材料和防护措施的关系",
+        "分类、分级直接影响构造选择"
+      ],
+      "action": "保留概念和设计逻辑；补齐可靠的年限表",
+      "cross_references": [
+        "intro-design-principles"
+      ],
+      "review_flags": [
+        "P0356编号与前“四”重复",
+        "《民用建筑设计通则》名称版本待核",
+        "“耐久年限/耐久等级/设计使用年限”需统一但不可混为同一术语"
+      ],
+      "allocation_id": "B015",
+      "target_public_path": "public/lesson/introduction/intro-grading.html"
+    },
+    {
+      "block_id": "FH-014",
+      "source_start": 367,
+      "source_end": 389,
+      "source_title": "环境、荷载、气候与人为影响",
+      "destination_module": "introduction",
+      "destination_section": "intro-factors",
+      "destination_title": "影响建筑物的因素",
+      "content_points": [
+        "外界作用力影响结构和节点",
+        "地域气候、水文地质影响构造做法",
+        "火灾、噪声、振动、腐蚀、用水等使用因素"
+      ],
+      "action": "把重复提纲合成“因素→风险→措施”关系表",
+      "cross_references": [
+        "wall-design-requirements",
+        "foundation-depth"
+      ],
+      "review_flags": [
+        "P0373“三几个”错字",
+        "P0387“水文地址”应为“水文地质”",
+        "P0378荷载分类术语待核"
+      ],
+      "allocation_id": "B016",
+      "target_public_path": "public/lesson/introduction/intro-factors.html"
+    },
+    {
+      "block_id": "FH-015",
+      "source_start": 390,
+      "source_end": 405,
+      "source_title": "使用者、技术条件与经济因素",
+      "destination_module": "introduction",
+      "destination_section": "intro-factors",
+      "destination_title": "影响建筑物的因素",
+      "content_points": [
+        "安全、舒适、无障碍等使用者需求",
+        "材料、结构、设备与施工技术条件",
+        "投资、建筑标准、全寿命维护对材料和做法的影响"
+      ],
+      "action": "前面环境提纲只保留一处；补全成本分析的末句",
+      "cross_references": [
+        "intro-design-principles"
+      ],
+      "review_flags": [
+        "P0400“使用使用者”重复",
+        "P0405语法不完整且有“书P5”教师提示"
+      ],
+      "allocation_id": "B017",
+      "target_public_path": "public/lesson/introduction/intro-factors.html"
+    },
+    {
+      "block_id": "FH-016",
+      "source_start": 406,
+      "source_end": 418,
+      "source_title": "建筑构造设计原则",
+      "destination_module": "introduction",
+      "destination_section": "intro-design-principles",
+      "destination_title": "建筑构造的设计原则",
+      "content_points": [
+        "坚固耐久、安全可靠",
+        "功能合理、实用方便",
+        "技术先进、施工方便",
+        "合理选材、造价经济",
+        "造型美观与遵守法规规范"
+      ],
+      "action": "改成五项原则与同一节点的选择案例",
+      "cross_references": [
+        "intro-factors",
+        "intro-drawing-standards"
+      ],
+      "review_flags": [
+        "P0407“以下以下”重复",
+        "P0413“适应当地的施工技术相适应”语病",
+        "原则不是独立核对清单，需要展示相互约束"
+      ],
+      "allocation_id": "B018",
+      "target_public_path": "public/lesson/introduction/intro-design-principles.html"
+    },
+    {
+      "block_id": "FH-017",
+      "source_start": 419,
+      "source_end": 433,
+      "source_title": "建筑工业化与模数协调的意义",
+      "destination_module": "introduction",
+      "destination_section": "intro-drawing-standards",
+      "destination_title": "专题：制图标准与规范",
+      "content_points": [
+        "标准化、通用化与构配件互换",
+        "专用体系和通用体系",
+        "模数协调服务定位、连接与工业化生产"
+      ],
+      "action": "在制图页增设“模数协调”一级页内子节",
+      "cross_references": [
+        "wall-masonry",
+        "window-door-design"
+      ],
+      "review_flags": [
+        "P0431《建筑模数协调统一标准》GBJ2-86为明确旧版引用，待核替换",
+        "原文工业化四特征只作基础概括，需补现代装配与协同表达"
+      ],
+      "allocation_id": "B019",
+      "target_public_path": "public/lesson/introduction/intro-drawing-standards.html"
+    },
+    {
+      "block_id": "FH-018",
+      "source_start": 434,
+      "source_end": 459,
+      "source_title": "基本模数、导出模数、数列和协调",
+      "destination_module": "introduction",
+      "destination_section": "intro-drawing-standards",
+      "destination_title": "专题：制图标准与规范",
+      "content_points": [
+        "模数与基本模数M",
+        "扩大模数、分模数及数列",
+        "模数协调的目的与不同尺寸适用场景"
+      ],
+      "action": "合并两处基本模数；列表并配尺寸组合练习",
+      "cross_references": [],
+      "review_flags": [
+        "P0438/P0439重复且“世界统一规定”来源待核",
+        "P0454“300M”与前文M=100mm及扩大模数表矛盾，不能直接照搬",
+        "P0455竖向扩大模数只有标题；数列适用范围待核"
+      ],
+      "allocation_id": "B020",
+      "target_public_path": "public/lesson/introduction/intro-drawing-standards.html"
+    },
+    {
+      "block_id": "FH-019",
+      "source_start": 460,
+      "source_end": 476,
+      "source_title": "空间网络、轴线和三种尺寸",
+      "destination_module": "introduction",
+      "destination_section": "intro-drawing-standards",
+      "destination_title": "专题：制图标准与规范",
+      "content_points": [
+        "构配件、模数化空间网络",
+        "定位轴线与定位线",
+        "标志尺寸、构造尺寸、实际尺寸",
+        "缝隙与允许偏差的区别"
+      ],
+      "action": "改写成带图例的术语定义与计算示例",
+      "cross_references": [
+        "wall-masonry",
+        "window-door-design"
+      ],
+      "review_flags": [
+        "P0460“又规定”应为“有规定”",
+        "P0461“构建”应为“构件”",
+        "P0476引用“建筑《》”空缺",
+        "“标志尺寸减缝隙等于构造尺寸”应保留适用语境，不能概括所有节点"
+      ],
+      "allocation_id": "B021",
+      "target_public_path": "public/lesson/introduction/intro-drawing-standards.html"
+    },
+    {
+      "block_id": "FH-020",
+      "source_start": 477,
+      "source_end": 492,
+      "source_title": "开间、进深、标高及图纸单位",
+      "destination_module": "introduction",
+      "destination_section": "intro-drawing-standards",
+      "destination_title": "专题：制图标准与规范",
+      "content_points": [
+        "开间、进深、层高、净高",
+        "绝对高程与相对标高",
+        "平面尺寸、标高表达与单位"
+      ],
+      "action": "整理术语表和读图练习；补规范示例",
+      "cross_references": [],
+      "review_flags": [
+        "P0483高程基准说明及P0484天津大沽高程常数待核",
+        "P0485“±0、000m”小数点格式不规范",
+        "P0488—0492制图精度和单位规则待核适用图种"
+      ],
+      "allocation_id": "B022",
+      "target_public_path": "public/lesson/introduction/intro-drawing-standards.html"
+    },
+    {
+      "block_id": "FH-021",
+      "source_start": 493,
+      "source_end": 494,
+      "source_title": "绪论复习知识点",
+      "destination_module": "introduction",
+      "destination_section": "intro-drawing-standards",
+      "destination_title": "专题：制图标准与规范",
+      "content_points": [
+        "构件作用、分类分级、因素原则、模数尺寸的综合复习"
+      ],
+      "action": "拆成对应页面的自测题；本节保留详图与尺寸综合练习",
+      "cross_references": [
+        "intro-classification",
+        "intro-grading",
+        "intro-composition",
+        "intro-factors",
+        "intro-design-principles"
+      ],
+      "review_flags": [
+        "复",
+        "习",
+        "中",
+        "的",
+        "“",
+        "构",
+        "件",
+        "的",
+        "耐",
+        "火",
+        "等",
+        "级",
+        "”",
+        "需",
+        "与",
+        "构",
+        "件",
+        "耐",
+        "火",
+        "极",
+        "限",
+        "区",
+        "别"
+      ],
+      "allocation_id": "B023",
+      "target_public_path": "public/lesson/introduction/intro-drawing-standards.html"
+    },
+    {
+      "block_id": "FH-022",
+      "source_start": 495,
+      "source_end": 497,
+      "source_title": "墙体课程入口及功能概述",
+      "destination_module": "wall",
+      "destination_section": "wall-role",
+      "destination_title": "墙体在建筑中的作用",
+      "content_points": [
+        "承重、围护、分隔三项功能",
+        "同一墙体随位置与结构体系承担不同作用"
+      ],
+      "action": "保留功能主线，章节标题作为目录元数据",
+      "cross_references": [
+        "intro-composition",
+        "wall-types"
+      ],
+      "review_flags": [],
+      "allocation_id": "B024",
+      "target_public_path": "public/lesson/basics/wall/wall-role.html"
+    },
+    {
+      "block_id": "FH-023",
+      "source_start": 498,
+      "source_end": 522,
+      "source_title": "墙体的分类",
+      "destination_module": "wall",
+      "destination_section": "wall-types",
+      "destination_title": "墙体的类型",
+      "content_points": [
+        "内外墙、窗间墙、窗下墙、纵横墙",
+        "承重与非承重墙",
+        "材料、实体/空体/组合构造",
+        "块材、现浇、预制板材施工分类"
+      ],
+      "action": "形成四维分类矩阵；补缺失的组合墙及板材墙示例",
+      "cross_references": [
+        "wall-masonry",
+        "wall-partition"
+      ],
+      "review_flags": [
+        "P0506“不承受外来荷载”过度绝对化，风及地震作用等仍需核对",
+        "P0512/P0522描述缺内容",
+        "P0517/P0520经济、抗震性能需附具体体系和条件"
+      ],
+      "allocation_id": "B025",
+      "target_public_path": "public/lesson/basics/wall/wall-types.html"
+    },
+    {
+      "block_id": "FH-024",
+      "source_start": 523,
+      "source_end": 586,
+      "source_title": "墙承重结构布置方案",
+      "destination_module": "wall",
+      "destination_section": "wall-masonry",
+      "destination_title": "砌体结构",
+      "content_points": [
+        "横墙承重、纵墙承重、纵横混合承重",
+        "框架、底部框架、内框架的比较",
+        "墙体连续对齐、布局均匀对称的整体性原则"
+      ],
+      "action": "独立成砌体页“受力与结构布置”；设计要求页仅摘要",
+      "cross_references": [
+        "wall-role",
+        "wall-design-requirements",
+        "intro-composition"
+      ],
+      "review_flags": [
+        "与P0178—0208墙/框架体系重复，复用一个解释",
+        "底部框架、内框架适用与层数限制均待核",
+        "“楼板是预制构件”为原案例条件，不能通称所有楼板"
+      ],
+      "allocation_id": "B026",
+      "target_public_path": "public/lesson/basics/wall/wall-masonry.html"
+    },
+    {
+      "block_id": "FH-025",
+      "source_start": 587,
+      "source_end": 612,
+      "source_title": "墙体承载力和稳定性",
+      "destination_module": "wall",
+      "destination_section": "wall-design-requirements",
+      "destination_title": "墙体的设计要求",
+      "content_points": [
+        "承载能力与材料、厚度、截面有关",
+        "稳定性与高厚比、支撑和墙体长度高度有关",
+        "增厚、壁柱、圈梁等措施的机理"
+      ],
+      "action": "定义留正文，数表核验后重建；节点仅说明局部措施",
+      "cross_references": [
+        "wall-masonry"
+      ],
+      "review_flags": [
+        "P0600“高厚比1/20”与H/h定义和越大越不稳定的叙述存在表达矛盾，需核对原件和定义",
+        "P0594把240厚当通用结论待核",
+        "P0606—0612表格拆散且数据属旧适用条件"
+      ],
+      "allocation_id": "B027",
+      "target_public_path": "public/lesson/basics/wall/wall-design-requirements.html"
+    },
+    {
+      "block_id": "FH-026",
+      "source_start": 613,
+      "source_end": 652,
+      "source_title": "保温隔热、凝结、渗透与热桥",
+      "destination_module": "wall",
+      "destination_section": "wall-design-requirements",
+      "destination_title": "墙体的设计要求",
+      "content_points": [
+        "气候分区决定热工策略",
+        "传导、空气渗透与水汽凝结",
+        "合理选材、复合墙、缝隙处理、隔汽策略",
+        "热桥与局部内表面温度降低"
+      ],
+      "action": "原理留本页；共用原理详解跨引用；补保温层连续示意",
+      "cross_references": [
+        "intro-factors",
+        "window-door-design",
+        "principles:thermal",
+        "principles:insulation",
+        "principles:moisture"
+      ],
+      "review_flags": [
+        "P0617—0625“不考虑”冷热设计的绝对陈述待核",
+        "P0638保温材料定义阈值、单位、容重为旧口径待核",
+        "P0643隔汽层“一律高温侧”缺气候和工况条件",
+        "P0642“外强”应为“外墙”"
+      ],
+      "allocation_id": "B028",
+      "target_public_path": "public/lesson/basics/wall/wall-design-requirements.html"
+    },
+    {
+      "block_id": "FH-027",
+      "source_start": 653,
+      "source_end": 671,
+      "source_title": "节能发展阶段及建筑指标",
+      "destination_module": "wall",
+      "destination_section": "wall-design-requirements",
+      "destination_title": "墙体的设计要求",
+      "content_points": [
+        "体形系数、传热系数、窗墙比、朝向与气密性",
+        "墙体热工性能与整栋建筑能耗的联系"
+      ],
+      "action": "发展阶段作为有日期的历史侧栏；设计指标核验后重写",
+      "cross_references": [
+        "window-door-design",
+        "principles:thermal"
+      ],
+      "review_flags": [
+        "1996/2000/2005/2010节能目标明确历史化",
+        "P0668体形系数阈值与P0670窗墙比算法适用条件待核",
+        "P0667把节能等同减少散失过窄，需补夏季热得失与系统效率"
+      ],
+      "allocation_id": "B029",
+      "target_public_path": "public/lesson/basics/wall/wall-design-requirements.html"
+    },
+    {
+      "block_id": "FH-028",
+      "source_start": 672,
+      "source_end": 698,
+      "source_title": "墙体隔声机理与措施",
+      "destination_module": "wall",
+      "destination_section": "wall-design-requirements",
+      "destination_title": "墙体的设计要求",
+      "content_points": [
+        "空气传声与结构传声",
+        "墙体/门窗/楼地层不同隔声任务",
+        "缝隙封闭、质量、复合构造、布局的作用"
+      ],
+      "action": "合并重复句，保留建筑传声路径与对策",
+      "cross_references": [
+        "window-door-design",
+        "wall-partition",
+        "principles:acoustic"
+      ],
+      "review_flags": [
+        "P0689/P0692重复",
+        "P0680“噪声损坏建筑物”需要区分普通噪声与振动，来源待核",
+        "墙体和楼板不是只存在一种传声途径"
+      ],
+      "allocation_id": "B030",
+      "target_public_path": "public/lesson/basics/wall/wall-design-requirements.html"
+    },
+    {
+      "block_id": "FH-029",
+      "source_start": 699,
+      "source_end": 716,
+      "source_title": "防火、防水防潮、工业化及墙体要求小结",
+      "destination_module": "wall",
+      "destination_section": "wall-design-requirements",
+      "destination_title": "墙体的设计要求",
+      "content_points": [
+        "燃烧性能、耐火性能、防火分隔",
+        "雨雪、地下水、室内用水",
+        "工业化与材料经济性",
+        "结构、热工、声学、防护综合要求"
+      ],
+      "action": "并入对应要求子节；总结转自测题",
+      "cross_references": [
+        "wall-masonry",
+        "principles:fire",
+        "principles:waterproof",
+        "principles:moisture"
+      ],
+      "review_flags": [
+        "P0704防火墙4.00h与网站3.0h不能直接择一，均需按规范及建筑用途核验",
+        "P0710—0711重量造价百分比缺年代和样本",
+        "P0709“谁”应为“水”"
+      ],
+      "allocation_id": "B031",
+      "target_public_path": "public/lesson/basics/wall/wall-design-requirements.html"
+    },
+    {
+      "block_id": "FH-030",
+      "source_start": 717,
+      "source_end": 742,
+      "source_title": "砖墙特点及砖材",
+      "destination_module": "wall",
+      "destination_section": "wall-masonry",
+      "destination_title": "砌体结构",
+      "content_points": [
+        "传统砖墙优缺点、墙材改革背景",
+        "按原料、形状和工艺分砖",
+        "标准砖尺寸、材料强度等级符号与单位"
+      ],
+      "action": "材料概念入正文；烧结工艺、旧标号入历史资料卡",
+      "cross_references": [],
+      "review_flags": [
+        "砖、砌块产品标准与强度等级需按材料类别核验",
+        "P0731青砖氧化物及强度概括待核",
+        "P0738 Mpa格式应为MPa",
+        "P0742旧单位换算缺方向，勿照录常数"
+      ],
+      "allocation_id": "B032",
+      "target_public_path": "public/lesson/basics/wall/wall-masonry.html"
+    },
+    {
+      "block_id": "FH-031",
+      "source_start": 743,
+      "source_end": 756,
+      "source_title": "砌块种类、强度和模数",
+      "destination_module": "wall",
+      "destination_section": "wall-masonry",
+      "destination_title": "砌体结构",
+      "content_points": [
+        "承重与非承重砌块不能只靠外形判断",
+        "小型砌块规格与灰缝的模数协调",
+        "材料类别、密度与强度等级的区别"
+      ],
+      "action": "补现代材料类别；规格以注明产品的示例呈现",
+      "cross_references": [
+        "intro-drawing-standards",
+        "wall-types"
+      ],
+      "review_flags": [
+        "P0745“标准转”应为“标准砖”",
+        "P0748—0751等级清单、产品归类待核",
+        "P0745“应用不是很多”是原年代观察，不能作现状断言"
+      ],
+      "allocation_id": "B033",
+      "target_public_path": "public/lesson/basics/wall/wall-masonry.html"
+    },
+    {
+      "block_id": "FH-032",
+      "source_start": 757,
+      "source_end": 781,
+      "source_title": "砂浆与砌体强度",
+      "destination_module": "wall",
+      "destination_section": "wall-masonry",
+      "destination_title": "砌体结构",
+      "content_points": [
+        "砂浆粘结、找平、填实三作用",
+        "水泥、混合、石灰砂浆的基础区别",
+        "砌体性能由块材、砂浆、砌筑共同决定"
+      ],
+      "action": "合并概念，用性能与用途比较表替代无条件配方推荐",
+      "cross_references": [],
+      "review_flags": [
+        "P0770试块数量、P0774等级等试验要求待核",
+        "P0777混合砂浆一定提高砌体强度的判断缺条件",
+        "P0780单位N/mm缺平方",
+        "P0781强度表拆散且无来源和适用材料，需重建而非抄填"
+      ],
+      "allocation_id": "B034",
+      "target_public_path": "public/lesson/basics/wall/wall-masonry.html"
+    },
+    {
+      "block_id": "FH-033",
+      "source_start": 782,
+      "source_end": 801,
+      "source_title": "砖的组砌与灰缝",
+      "destination_module": "wall",
+      "destination_section": "wall-masonry",
+      "destination_title": "砌体结构",
+      "content_points": [
+        "错缝搭接、避免通缝、砂浆饱满",
+        "丁、顺、灰缝、平砌/斗砌/立砌",
+        "全顺、一顺一丁、梅花丁、三顺一丁"
+      ],
+      "action": "配砌筑动画和找通缝练习；数值待核",
+      "cross_references": [],
+      "review_flags": [
+        "P0790灰缝和P0800搭接规则需明确材料工艺",
+        "P0801“压三露一”出挑规则不宜作无条件施工要求"
+      ],
+      "allocation_id": "B035",
+      "target_public_path": "public/lesson/basics/wall/wall-masonry.html"
+    },
+    {
+      "block_id": "FH-034",
+      "source_start": 802,
+      "source_end": 823,
+      "source_title": "砌块排布、墙厚与洞口模数",
+      "destination_module": "wall",
+      "destination_section": "wall-masonry",
+      "destination_title": "砌体结构",
+      "content_points": [
+        "砌块排块图、洞口及交接部位协调",
+        "墙厚习惯称谓和材料实际尺寸",
+        "洞口标志尺寸与灰缝的关系"
+      ],
+      "action": "重建墙厚表；用排块图展示条件而非笼统数值",
+      "cross_references": [
+        "intro-drawing-standards",
+        "window-door-design"
+      ],
+      "review_flags": [
+        "P0806“通峰/通风”疑为“通缝”，应核对原件；通缝补强规则待核",
+        "P0817—0820表格裂行",
+        "P0822/P0823洞口尺寸以1000为界的规则待核"
+      ],
+      "allocation_id": "B036",
+      "target_public_path": "public/lesson/basics/wall/wall-masonry.html"
+    },
+    {
+      "block_id": "FH-035",
+      "source_start": 824,
+      "source_end": 864,
+      "source_title": "墙脚和水平/垂直防潮层",
+      "destination_module": "wall",
+      "destination_section": "wall-masonry",
+      "destination_title": "砌体结构",
+      "content_points": [
+        "水分沿砌体毛细上升的路径",
+        "水平防潮层与地坪垫层关系",
+        "高差墙体水平与垂直防潮层闭合",
+        "砂浆、细石混凝土、传统油毡做法及局限"
+      ],
+      "action": "新增页内“墙身细部—墙脚防潮”子节；原理页只交叉引用",
+      "cross_references": [
+        "wall-design-requirements",
+        "foundation-underground",
+        "principles:moisture"
+      ],
+      "review_flags": [
+        "P0826“墙角”应为“墙脚”",
+        "P0843—0847标高及距离是案例参数，不能直接全站默认",
+        "P0849—0857配方/厚度/配筋/搭接需核验",
+        "油毡、冷底油、热沥青做法保留为传统案例"
+      ],
+      "allocation_id": "B037",
+      "target_public_path": "public/lesson/basics/wall/wall-masonry.html"
+    },
+    {
+      "block_id": "FH-036",
+      "source_start": 865,
+      "source_end": 880,
+      "source_title": "勒脚构造",
+      "destination_module": "wall",
+      "destination_section": "wall-masonry",
+      "destination_title": "砌体结构",
+      "content_points": [
+        "勒脚位置与水、碰撞、冻融风险",
+        "加固、防水、抹灰、贴面的选择",
+        "构造高度与立面整体关系"
+      ],
+      "action": "正文讲风险和做法比较；节点说明具体层次、收口与保护作用",
+      "cross_references": [
+        "wall-design-requirements"
+      ],
+      "review_flags": [
+        "P0877“低坪”应为“地坪”",
+        "原砂浆比例厚度不直接作现行推荐",
+        "需与网站抹灰/贴面/石材勒脚节点核对一图一做法"
+      ],
+      "allocation_id": "B038",
+      "target_public_path": "public/lesson/basics/wall/wall-masonry.html"
+    },
+    {
+      "block_id": "FH-037",
+      "source_start": 881,
+      "source_end": 903,
+      "source_title": "散水明沟及节点设计思想",
+      "destination_module": "wall",
+      "destination_section": "wall-masonry",
+      "destination_title": "砌体结构",
+      "content_points": [
+        "散水坡向、排水目的",
+        "散水与勒脚分离缝、分格缝、柔性密封",
+        "明沟有组织排水与外部排水系统",
+        "节点是不同材料方向构件的连接部位"
+      ],
+      "action": "新增页内“墙身细部—室外排水”；节点通用概念交叉引用",
+      "cross_references": [
+        "intro-drawing-standards",
+        "wall-design-requirements",
+        "foundation-depth"
+      ],
+      "review_flags": [
+        "P0886—0893宽度坡度缝宽等数值待核",
+        "P0899“地表给水”应核对为地表水",
+        "节点设计不仅结合部，P0903不可当排他定义"
+      ],
+      "allocation_id": "B039",
+      "target_public_path": "public/lesson/basics/wall/wall-masonry.html"
+    },
+    {
+      "block_id": "FH-038",
+      "source_start": 904,
+      "source_end": 922,
+      "source_title": "门窗过梁及洞口上口",
+      "destination_module": "wall",
+      "destination_section": "wall-masonry",
+      "destination_title": "砌体结构",
+      "content_points": [
+        "过梁支承洞口上方墙体并传力至两侧",
+        "钢筋混凝土过梁与传统砖拱过梁",
+        "框墙密封、滴水阻断雨水"
+      ],
+      "action": "正文比较传力和连接；门窗页跨引用缝隙处理",
+      "cross_references": [
+        "window-door-design",
+        "wall-design-requirements"
+      ],
+      "review_flags": [
+        "P0909三角形传力范围缺跨度、墙高、荷载和拱作用条件",
+        "P0912—0918尺寸/支承/适用条件待核",
+        "平拱砖过梁作传统工艺说明并核验适用范围"
+      ],
+      "allocation_id": "B040",
+      "target_public_path": "public/lesson/basics/wall/wall-masonry.html"
+    },
+    {
+      "block_id": "FH-039",
+      "source_start": 923,
+      "source_end": 935,
+      "source_title": "室内外窗台",
+      "destination_module": "wall",
+      "destination_section": "wall-masonry",
+      "destination_title": "砌体结构",
+      "content_points": [
+        "室外窗台向外排水、下口滴水和框下口防水",
+        "室内窗台满足清洁使用与美观"
+      ],
+      "action": "页内“墙身细部—窗台”子节；和门窗安装只保留一套缝隙解释",
+      "cross_references": [
+        "window-door-design"
+      ],
+      "review_flags": [
+        "P0924“一隔分”疑为“一般分”，需核对原件",
+        "P0930/P0934出挑高度为原案例参数，待核"
+      ],
+      "allocation_id": "B041",
+      "target_public_path": "public/lesson/basics/wall/wall-masonry.html"
+    },
+    {
+      "block_id": "FH-040",
+      "source_start": 936,
+      "source_end": 950,
+      "source_title": "门垛、壁柱及扶壁",
+      "destination_module": "wall",
+      "destination_section": "wall-masonry",
+      "destination_title": "砌体结构",
+      "content_points": [
+        "门垛位置与安装、稳定需要",
+        "壁柱对集中荷载和墙身稳定的作用",
+        "扶壁侧向支撑与壁柱区别"
+      ],
+      "action": "结构机理入正文；具体尺寸列示例并说明设计条件",
+      "cross_references": [
+        "wall-design-requirements",
+        "window-door-design"
+      ],
+      "review_flags": [
+        "P0942/P0947各尺寸需说明墙体材质与设计条件",
+        "P0941“方便门框”句残缺"
+      ],
+      "allocation_id": "B042",
+      "target_public_path": "public/lesson/basics/wall/wall-masonry.html"
+    },
+    {
+      "block_id": "FH-041",
+      "source_start": 951,
+      "source_end": 993,
+      "source_title": "震级、烈度、设防及建筑类别",
+      "destination_module": "wall",
+      "destination_section": "wall-design-requirements",
+      "destination_title": "墙体的设计要求",
+      "content_points": [
+        "震级与烈度不是同一指标",
+        "设防、建筑类别与抗震构造措施的关系",
+        "历史地震与地区参数只能带日期使用"
+      ],
+      "action": "基础定义放正文；地区数值和经验公式转待核资料，不作为计算教程",
+      "cross_references": [
+        "intro-grading",
+        "intro-factors"
+      ],
+      "review_flags": [
+        "P0954—0957震级与人感/破坏的绝对对应待核",
+        "P0976基本烈度定义及旧区划图待核",
+        "P0977“裂度”错字",
+        "P0980—0984烈度震级换算及地区参数不能直接作设防依据",
+        "P0988—0993建筑类别调高/调低一度的概括待核"
+      ],
+      "allocation_id": "B043",
+      "target_public_path": "public/lesson/basics/wall/wall-design-requirements.html"
+    },
+    {
+      "block_id": "FH-042",
+      "source_start": 994,
+      "source_end": 1021,
+      "source_title": "地震作用、震害特点和抗震目标",
+      "destination_module": "wall",
+      "destination_section": "wall-design-requirements",
+      "destination_title": "墙体的设计要求",
+      "content_points": [
+        "竖向/水平地震作用与典型损伤",
+        "规则性、整体性、屋盖自重、场地影响",
+        "多遇、设防、罕遇三个水准的性能目标"
+      ],
+      "action": "保留机理，删除无条件优劣论断；以识别薄弱部位案例教学",
+      "cross_references": [
+        "wall-masonry",
+        "foundation-settlement"
+      ],
+      "review_flags": [
+        "P1017“不到”应为“不倒”",
+        "口号不完整，优先完整三个水准且需核验标准表述",
+        "P1008—1014震害规律须说明结构体系和案例背景"
+      ],
+      "allocation_id": "B044",
+      "target_public_path": "public/lesson/basics/wall/wall-design-requirements.html"
+    },
+    {
+      "block_id": "FH-043",
+      "source_start": 1022,
+      "source_end": 1042,
+      "source_title": "多层砖房布置与尺寸限值",
+      "destination_module": "wall",
+      "destination_section": "wall-design-requirements",
+      "destination_title": "墙体的设计要求",
+      "content_points": [
+        "墙体均匀对齐、洞口相对齐",
+        "高度层数、高宽比、横墙间距、局部墙段尺寸的控制逻辑"
+      ],
+      "action": "保留控制维度，表格全部核验版本和材料后重建",
+      "cross_references": [
+        "wall-masonry"
+      ],
+      "review_flags": [
+        "P1024—1042高度层数、间距、局部尺寸均属旧表，不能上线直接当规范",
+        "P1031“横嫱”应为“横墙”"
+      ],
+      "allocation_id": "B045",
+      "target_public_path": "public/lesson/basics/wall/wall-design-requirements.html"
+    },
+    {
+      "block_id": "FH-044",
+      "source_start": 1043,
+      "source_end": 1077,
+      "source_title": "圈梁作用与构造",
+      "destination_module": "wall",
+      "destination_section": "wall-masonry",
+      "destination_title": "砌体结构",
+      "content_points": [
+        "圈梁提升整体性并联系墙体",
+        "封闭交圈、与洞口过梁协调及附加圈梁",
+        "位置、材料、配筋需要结合建筑条件"
+      ],
+      "action": "机理正文；圈梁节点配一图说明；设计要求页只概括功能",
+      "cross_references": [
+        "wall-design-requirements",
+        "foundation-settlement"
+      ],
+      "review_flags": [
+        "P1046“配筋不需结构计算”过度绝对化，待核",
+        "P1053“并不受弯”不宜无条件表达",
+        "P1058—1077尺寸、材料、配筋和搭接规则待核",
+        "P1069—1077表格结构破损"
+      ],
+      "allocation_id": "B046",
+      "target_public_path": "public/lesson/basics/wall/wall-masonry.html"
+    },
+    {
+      "block_id": "FH-045",
+      "source_start": 1078,
+      "source_end": 1105,
+      "source_title": "构造柱、拉结和空心砌块芯柱",
+      "destination_module": "wall",
+      "destination_section": "wall-masonry",
+      "destination_title": "砌体结构",
+      "content_points": [
+        "构造柱与圈梁共同加强砌体整体性",
+        "薄弱部位设置、马牙槎、拉结、施工顺序",
+        "芯柱与构造柱不同构造机理"
+      ],
+      "action": "统一到构造柱模型教学；正文定义设置逻辑，节点讲施工与层次",
+      "cross_references": [
+        "wall-design-requirements"
+      ],
+      "review_flags": [
+        "P1084—1090截面、钢筋、间距、加密、基础连接尺寸待核",
+        "P1088“马牙搓”应为“马牙槎”",
+        "P1089五进五出、300/500参数需查原件并明材料",
+        "P1092—1102设柱表破损，不直接抄填"
+      ],
+      "allocation_id": "B047",
+      "target_public_path": "public/lesson/basics/wall/wall-masonry.html"
+    },
+    {
+      "block_id": "FH-046",
+      "source_start": 1106,
+      "source_end": 1109,
+      "source_title": "隔震案例及后续变形缝提示",
+      "destination_module": "wall",
+      "destination_section": "wall-design-requirements",
+      "destination_title": "墙体的设计要求",
+      "content_points": [
+        "隔震通过改变结构与基础之间的动力传递",
+        "变形缝内容转后章引用"
+      ],
+      "action": "案例保留为补充阅读，先核源；教师口头提示改为课程链接",
+      "cross_references": [
+        "foundation-types",
+        "deformation-joints"
+      ],
+      "review_flags": [
+        "P1106“芝加哥大地震”无年份及出处，疑似案例名称问题待核",
+        "P1108造价太高、内加刚结构的概括待核"
+      ],
+      "allocation_id": "B048",
+      "target_public_path": "public/lesson/basics/wall/wall-design-requirements.html"
+    },
+    {
+      "block_id": "FH-047",
+      "source_start": 1110,
+      "source_end": 1133,
+      "source_title": "隔墙要求、分类与半砖隔墙",
+      "destination_module": "wall",
+      "destination_section": "wall-partition",
+      "destination_title": "隔墙",
+      "content_points": [
+        "非承重内隔墙自重轻、可分隔、兼顾声火湿",
+        "块材、轻骨架、条板三种主要体系",
+        "半砖隔墙与周边主体连接及自身稳定"
+      ],
+      "action": "先定义非承重仍需承担自重和侧向作用；半砖隔墙作传统构造比较",
+      "cross_references": [
+        "wall-types",
+        "wall-design-requirements"
+      ],
+      "review_flags": [
+        "P1116称三大类但列第四“悬挂类”，层级改为三类+补充",
+        "P1130挤紧与“留有空隙确保不承重”表述互相冲突，连接做法须核验",
+        "P1124/P1130/P1131砂浆等级和拉结尺寸待核"
+      ],
+      "allocation_id": "B049",
+      "target_public_path": "public/lesson/basics/wall/wall-partition.html"
+    },
+    {
+      "block_id": "FH-048",
+      "source_start": 1134,
+      "source_end": 1142,
+      "source_title": "空心砖、砌块隔墙及框架填充墙",
+      "destination_module": "wall",
+      "destination_section": "wall-partition",
+      "destination_title": "隔墙",
+      "content_points": [
+        "砌块隔墙的防潮、稳定、洞口和周边连接",
+        "框架填充墙与隔墙的用途区别",
+        "按产品规格选择墙厚"
+      ],
+      "action": "与砌体页材料简介合并引用，隔墙页主讲轻质与连接问题",
+      "cross_references": [
+        "wall-masonry",
+        "wall-types"
+      ],
+      "review_flags": [
+        "P1141天津通用厚度须标地区年代，不作普适规则",
+        "P1136/P1142整砖混砌和墙根实心砖做法待核",
+        "框架填充墙既可能外墙也可能内墙，不能全部定义为内隔墙"
+      ],
+      "allocation_id": "B050",
+      "target_public_path": "public/lesson/basics/wall/wall-partition.html"
+    },
+    {
+      "block_id": "FH-049",
+      "source_start": 1143,
+      "source_end": 1158,
+      "source_title": "木骨架板条抹灰隔墙",
+      "destination_module": "wall",
+      "destination_section": "wall-partition",
+      "destination_title": "隔墙",
+      "content_points": [
+        "骨架—面层的构造逻辑",
+        "木骨架上下槛、墙筋、斜撑、板条抹灰",
+        "传统做法与当代材料取代的背景"
+      ],
+      "action": "压缩为传统构造对照，不作为现代主做法",
+      "cross_references": [],
+      "review_flags": [
+        "尺寸、钢丝网、防火防潮性能待核",
+        "P1155“钢丝办网”错字",
+        "原有浮动对象不能自动当图，需回源找图"
+      ],
+      "allocation_id": "B051",
+      "target_public_path": "public/lesson/basics/wall/wall-partition.html"
+    },
+    {
+      "block_id": "FH-050",
+      "source_start": 1159,
+      "source_end": 1167,
+      "source_title": "轻钢骨架隔墙",
+      "destination_module": "wall",
+      "destination_section": "wall-partition",
+      "destination_title": "隔墙",
+      "content_points": [
+        "沿顶沿地龙骨、竖龙骨与面层",
+        "面板规格与骨架排布协调",
+        "板材与骨架固定方式、轻质装配特点"
+      ],
+      "action": "现代主讲；补龙骨开口、接缝、管线、声桥和潮湿区处理",
+      "cross_references": [
+        "wall-design-requirements",
+        "principles:acoustic"
+      ],
+      "review_flags": [
+        "P1160钢材型式和0.8—1mm仅原案例，按实际系统产品核验",
+        "现有网站厚度和≥45dB都需注明材料组合与适用要求"
+      ],
+      "allocation_id": "B052",
+      "target_public_path": "public/lesson/basics/wall/wall-partition.html"
+    },
+    {
+      "block_id": "FH-051",
+      "source_start": 1168,
+      "source_end": 1184,
+      "source_title": "条板、增强石膏板及复合板隔墙",
+      "destination_module": "wall",
+      "destination_section": "wall-partition",
+      "destination_title": "隔墙",
+      "content_points": [
+        "不用骨架的条板安装逻辑",
+        "板—板、板—主体连接",
+        "加气条板、GRC、石膏空心板、复合板的区别"
+      ],
+      "action": "以现代常用系统为主、传统材料为历史资料；补缺失正文",
+      "cross_references": [
+        "wall-design-requirements"
+      ],
+      "review_flags": [
+        "P1172/P1178规格须标产品适用条件",
+        "P1179木楔、水玻璃连接不能直接用于全部条板",
+        "P1180“贴强纸”应为“贴墙纸”",
+        "P1181—1184大多仅标题，需补写；泰柏板需说明历史产品性质"
+      ],
+      "allocation_id": "B053",
+      "target_public_path": "public/lesson/basics/wall/wall-partition.html"
+    },
+    {
+      "block_id": "FH-052",
+      "source_start": 1185,
+      "source_end": 1193,
+      "source_title": "门窗作用及外围护意义",
+      "destination_module": "door-window",
+      "destination_section": "window-door-overview",
+      "destination_title": "门窗的作用与分类",
+      "content_points": [
+        "窗的采光、通风、观景；门的交通、疏散",
+        "按位置区分围护与内部分隔",
+        "门窗参与立面造型"
+      ],
+      "action": "保留基础功能和位置分类，节能数字只作待核背景",
+      "cross_references": [
+        "intro-composition",
+        "wall-role",
+        "window-door-design"
+      ],
+      "review_flags": [
+        "P1189“关景”应为“观景”",
+        "P1191热量损失25%左右缺地区年代与统计边界"
+      ],
+      "allocation_id": "B054",
+      "target_public_path": "public/lesson/basics/door-window/window-door-overview.html"
+    },
+    {
+      "block_id": "FH-053",
+      "source_start": 1194,
+      "source_end": 1212,
+      "source_title": "性能要求、材料和构造研究路径",
+      "destination_module": "door-window",
+      "destination_section": "window-door-design",
+      "destination_title": "门窗的设计要求",
+      "content_points": [
+        "耐久、开启、密闭、维修、清洁与工业化",
+        "门窗荷载由洞口周边支承，门窗自身也受作用",
+        "缝隙是雨水、空气、声、烟火的薄弱部位"
+      ],
+      "action": "合并1195/1212；材料清单跨引用概述页",
+      "cross_references": [
+        "window-door-overview",
+        "wall-masonry"
+      ],
+      "review_flags": [
+        "P1200—1201只有铝合金/塑钢标题，补写",
+        "P1203句式残缺且“不是承重构件”须说明不承担主体结构荷载",
+        "P1198钢门窗材料并不天然等于达到防火门窗产品要求"
+      ],
+      "allocation_id": "B055",
+      "target_public_path": "public/lesson/basics/door-window/window-door-design.html"
+    },
+    {
+      "block_id": "FH-054",
+      "source_start": 1213,
+      "source_end": 1240,
+      "source_title": "门的开启分类",
+      "destination_module": "door-window",
+      "destination_section": "window-door-overview",
+      "destination_title": "门窗的作用与分类",
+      "content_points": [
+        "平开、弹簧、推拉、折叠、旋转及其他门",
+        "开启轨迹、占空间、自动关闭和防碰撞",
+        "旋转门与疏散通行的设计区别"
+      ],
+      "action": "类型卡配平立面动态图；安全结论在设计页解释",
+      "cross_references": [
+        "window-door-design",
+        "intro-drawing-standards"
+      ],
+      "review_flags": [
+        "P1222“该为”应为“改为”",
+        "P1226托幼弹簧门/P1239转门疏散要求待核，勿作为无出处施工条文"
+      ],
+      "allocation_id": "B056",
+      "target_public_path": "public/lesson/basics/door-window/window-door-overview.html"
+    },
+    {
+      "block_id": "FH-055",
+      "source_start": 1241,
+      "source_end": 1247,
+      "source_title": "门洞口尺度",
+      "destination_module": "door-window",
+      "destination_section": "window-door-design",
+      "destination_title": "门窗的设计要求",
+      "content_points": [
+        "门宽高与人流、搬运、家具、疏散、无障碍关联",
+        "洞口尺寸与净通行宽度不是同一值"
+      ],
+      "action": "删除无适用条件最低净宽建议；数值核验后表述",
+      "cross_references": [
+        "intro-drawing-standards"
+      ],
+      "review_flags": [
+        "P",
+        "1",
+        "2",
+        "4",
+        "4",
+        "净",
+        "宽",
+        "6",
+        "0",
+        "0",
+        "与",
+        "P",
+        "1",
+        "2",
+        "4",
+        "5",
+        "—",
+        "1",
+        "2",
+        "4",
+        "7",
+        "通",
+        "用",
+        "尺",
+        "度",
+        "须",
+        "按",
+        "用",
+        "途",
+        "核",
+        "验",
+        "，",
+        "不",
+        "能",
+        "作",
+        "现",
+        "行",
+        "安",
+        "全",
+        "最",
+        "低",
+        "值"
+      ],
+      "allocation_id": "B057",
+      "target_public_path": "public/lesson/basics/door-window/window-door-design.html"
+    },
+    {
+      "block_id": "FH-056",
+      "source_start": 1248,
+      "source_end": 1273,
+      "source_title": "窗的开启分类",
+      "destination_module": "door-window",
+      "destination_section": "window-door-overview",
+      "destination_title": "门窗的作用与分类",
+      "content_points": [
+        "平开、固定、上悬下悬中悬、推拉提拉",
+        "内外开、纱扇、玻璃扇、百叶扇",
+        "可开启面积、雨水、维护清洁、碰撞和坠落风险的差异"
+      ],
+      "action": "用开启动画比较；避免把类型名称等同性能等级",
+      "cross_references": [
+        "window-door-design",
+        "intro-drawing-standards"
+      ],
+      "review_flags": [
+        "P1269“北风”应为“被风”",
+        "P1272“百页”应为“百叶”",
+        "外开、内开窗防雨和高层适用性不是无条件优劣，待核"
+      ],
+      "allocation_id": "B058",
+      "target_public_path": "public/lesson/basics/door-window/window-door-overview.html"
+    },
+    {
+      "block_id": "FH-057",
+      "source_start": 1274,
+      "source_end": 1287,
+      "source_title": "窗面积、尺度与分格",
+      "destination_module": "door-window",
+      "destination_section": "window-door-design",
+      "destination_title": "门窗的设计要求",
+      "content_points": [
+        "采光通风、窗地比、玻地比、窗墙比的区别",
+        "模数协调、立面分格、单扇尺寸与刚度",
+        "采光与能耗的协调"
+      ],
+      "action": "保留指标含义；案例计算使用有来源的现行条件",
+      "cross_references": [
+        "intro-drawing-standards",
+        "wall-design-requirements"
+      ],
+      "review_flags": [
+        "P1280教室/办公室/居室窗地比及P1282各朝向窗墙比为旧数值待核",
+        "P1284“复合”应为“符合”",
+        "P1287窗扇600×1500上限缺材料和抗风条件"
+      ],
+      "allocation_id": "B059",
+      "target_public_path": "public/lesson/basics/door-window/window-door-design.html"
+    },
+    {
+      "block_id": "FH-058",
+      "source_start": 1288,
+      "source_end": 1300,
+      "source_title": "门窗平立剖面图纸表达",
+      "destination_module": "door-window",
+      "destination_section": "window-door-design",
+      "destination_title": "门窗的设计要求",
+      "content_points": [
+        "洞口、定位尺寸、编号与不同绘图比例",
+        "门的平面开启轨迹及立面开启线",
+        "门窗表和详图之间的索引关系"
+      ],
+      "action": "作为设计页“识图表达”子节，制图总页引用",
+      "cross_references": [
+        "intro-drawing-standards",
+        "window-door-overview"
+      ],
+      "review_flags": [
+        "P1292所有窗都画双细线的绝对表述待核",
+        "P1299开启线实虚线和外视方向规则需对照制图标准",
+        "原文图例缺失，须补规范示例而非自行猜图"
+      ],
+      "allocation_id": "B060",
+      "target_public_path": "public/lesson/basics/door-window/window-door-design.html"
+    },
+    {
+      "block_id": "FH-059",
+      "source_start": 1301,
+      "source_end": 1314,
+      "source_title": "门窗组成及框料术语",
+      "destination_module": "door-window",
+      "destination_section": "window-door-overview",
+      "destination_title": "门窗的作用与分类",
+      "content_points": [
+        "框、扇、亮窗、五金配件",
+        "上/中/下槛、边框、中竖框的名称",
+        "传统木门窗命名可用于构造识读"
+      ],
+      "action": "新增概述页“组成与术语”子节",
+      "cross_references": [
+        "window-door-design"
+      ],
+      "review_flags": [
+        "先",
+        "说",
+        "明",
+        "传",
+        "统",
+        "木",
+        "门",
+        "窗",
+        "术",
+        "语",
+        "与",
+        "现",
+        "代",
+        "型",
+        "材",
+        "系",
+        "统",
+        "的",
+        "对",
+        "应",
+        "，",
+        "不",
+        "混",
+        "用"
+      ],
+      "allocation_id": "B061",
+      "target_public_path": "public/lesson/basics/door-window/window-door-overview.html"
+    },
+    {
+      "block_id": "FH-060",
+      "source_start": 1315,
+      "source_end": 1340,
+      "source_title": "木门窗框截面和防水防变形",
+      "destination_module": "door-window",
+      "destination_section": "window-door-design",
+      "destination_title": "门窗的设计要求",
+      "content_points": [
+        "框料刚度、接榫、安装和密闭需要",
+        "裁口、铲灰口、背槽、披水和滴水的作用",
+        "不同框料截面满足不同层数和尺寸"
+      ],
+      "action": "新增设计页“传统木门窗构造”子节；案例图解功能",
+      "cross_references": [
+        "wall-masonry"
+      ],
+      "review_flags": [
+        "P1325—1329框料尺寸为经验案例，非通用取值",
+        "P1339背槽木材机理句残缺，需回原件和专业资料核对"
+      ],
+      "allocation_id": "B062",
+      "target_public_path": "public/lesson/basics/door-window/window-door-design.html"
+    },
+    {
+      "block_id": "FH-061",
+      "source_start": 1341,
+      "source_end": 1359,
+      "source_title": "木门窗立口、塞口及缝隙处理",
+      "destination_module": "door-window",
+      "destination_section": "window-door-design",
+      "destination_title": "门窗的设计要求",
+      "content_points": [
+        "先立框后砌墙与后装框的流程比较",
+        "框墙固定、安装预留缝、防腐和密封",
+        "框在墙厚中的位置与收口"
+      ],
+      "action": "主讲安装逻辑；历史木砖、麻丝做法标传统系统",
+      "cross_references": [
+        "wall-masonry"
+      ],
+      "review_flags": [
+        "P1349“现以”应为“现已”",
+        "P1352每边10—20与P1356总缝20—30有表达不统一，核对原件",
+        "固定间距、木砖、膨胀螺栓做法需按门窗材料与基材核验"
+      ],
+      "allocation_id": "B063",
+      "target_public_path": "public/lesson/basics/door-window/window-door-design.html"
+    },
+    {
+      "block_id": "FH-062",
+      "source_start": 1360,
+      "source_end": 1396,
+      "source_title": "门窗扇组成和玻璃镶嵌",
+      "destination_module": "door-window",
+      "destination_section": "window-door-design",
+      "destination_title": "门窗的设计要求",
+      "content_points": [
+        "边挺、冒头、窗芯、芯板与玻璃",
+        "披水板、裁口、玻璃压条的作用",
+        "外露骨架与夹板门的构成区别"
+      ],
+      "action": "木门窗扇构造图例；重复框料尺寸合并前文",
+      "cross_references": [
+        "window-door-overview"
+      ],
+      "review_flags": [
+        "P1379—1383与P1327—1329框料重复",
+        "P1381“转纱扇”疑为“装纱扇”，需核对原件",
+        "P1390油灰和小钉为传统镶玻璃案例，现代系统另补"
+      ],
+      "allocation_id": "B064",
+      "target_public_path": "public/lesson/basics/door-window/window-door-design.html"
+    },
+    {
+      "block_id": "FH-063",
+      "source_start": 1397,
+      "source_end": 1418,
+      "source_title": "平开门、镶板门及夹板门",
+      "destination_module": "door-window",
+      "destination_section": "window-door-design",
+      "destination_title": "门窗的设计要求",
+      "content_points": [
+        "木门框扇组成",
+        "门芯板、玻璃和骨架接合",
+        "夹板门封边、五金固定补强与通气"
+      ],
+      "action": "与组成和木扇概念去重；只保留门扇构造差异",
+      "cross_references": [
+        "window-door-overview"
+      ],
+      "review_flags": [
+        "P1401—1402仅标题，内容应从前文合并",
+        "P1407“框内力侧”错字",
+        "骨架尺寸、通气孔直径为传统案例需注明条件"
+      ],
+      "allocation_id": "B065",
+      "target_public_path": "public/lesson/basics/door-window/window-door-design.html"
+    },
+    {
+      "block_id": "FH-064",
+      "source_start": 1419,
+      "source_end": 1430,
+      "source_title": "门窗保温的基本途径",
+      "destination_module": "door-window",
+      "destination_section": "window-door-design",
+      "destination_title": "门窗的设计要求",
+      "content_points": [
+        "传热与冷风渗透两条损失路径",
+        "框、玻璃、开启缝的共同作用",
+        "开启面积应兼顾自然通风"
+      ],
+      "action": "与1454—1479合并一份节能构造原理，不保留重复讲述",
+      "cross_references": [
+        "wall-design-requirements",
+        "principles:thermal"
+      ],
+      "review_flags": [
+        "P1421热损失45%—48%与P1191的25%统计边界不同，缺来源不可直接并列比较",
+        "P1430减少开启面积需要通风等约束"
+      ],
+      "allocation_id": "B066",
+      "target_public_path": "public/lesson/basics/door-window/window-door-design.html"
+    },
+    {
+      "block_id": "FH-065",
+      "source_start": 1431,
+      "source_end": 1444,
+      "source_title": "铝合金、断桥、塑钢与中空玻璃",
+      "destination_module": "door-window",
+      "destination_section": "window-door-overview",
+      "destination_title": "门窗的作用与分类",
+      "content_points": [
+        "金属型材热桥、断桥的构造机理",
+        "塑料型材与钢增强的组合",
+        "中空玻璃密封、间隔条、干燥剂与气体层"
+      ],
+      "action": "新增现代门窗材料/系统比较；性能原理转设计页引用",
+      "cross_references": [
+        "window-door-design",
+        "principles:insulation"
+      ],
+      "review_flags": [
+        "P1432木窗已不能满足高性能需求的绝对说法待核",
+        "P1442玻璃3/5mm不是通用安全取值",
+        "P1444传热系数、保温优劣与造价一半的笼统比较待核",
+        "P1438杂入字母l需核对原件"
+      ],
+      "allocation_id": "B067",
+      "target_public_path": "public/lesson/basics/door-window/window-door-overview.html"
+    },
+    {
+      "block_id": "FH-066",
+      "source_start": 1445,
+      "source_end": 1453,
+      "source_title": "型材门窗安装、密封及防腐",
+      "destination_module": "door-window",
+      "destination_section": "window-door-design",
+      "destination_title": "门窗的设计要求",
+      "content_points": [
+        "框墙固定与安装间隙分工",
+        "周边缝保温填充、外侧耐候防水、框材保护",
+        "固定连接需要按基材与门窗受力设计"
+      ],
+      "action": "补现代安装三层缝隙示意和实际节点；不泛化一套固定间距",
+      "cross_references": [
+        "wall-masonry"
+      ],
+      "review_flags": [
+        "P1447“弹性连接”与膨胀螺栓/射钉的关系需解释并核验",
+        "P1448固定点及风压参数待核",
+        "P1451“放水”应为“防水”",
+        "发泡材料不能单独替代外侧耐候防水密封"
+      ],
+      "allocation_id": "B068",
+      "target_public_path": "public/lesson/basics/door-window/window-door-design.html"
+    },
+    {
+      "block_id": "FH-067",
+      "source_start": 1454,
+      "source_end": 1479,
+      "source_title": "门窗节能措施和各类密封缝",
+      "destination_module": "door-window",
+      "destination_section": "window-door-design",
+      "destination_title": "门窗的设计要求",
+      "content_points": [
+        "框玻璃传热与空气渗透",
+        "框墙、框扇、扇扇、玻璃镶嵌四类缝",
+        "断桥、中空玻璃、密封、合理开启面积和窗口面积协调"
+      ],
+      "action": "并入1419—1430节能原理；四类缝保留图解和故障练习",
+      "cross_references": [
+        "wall-design-requirements",
+        "principles:thermal",
+        "principles:moisture"
+      ],
+      "review_flags": [
+        "P1462—1466与P1437—1442重复",
+        "P1467“结露、结霜的问题没有了”是无条件结论需改写并核验",
+        "P1469“开启山”应为“开启扇”",
+        "P1477“已达到”应为“以达到”"
+      ],
+      "allocation_id": "B069",
+      "target_public_path": "public/lesson/basics/door-window/window-door-design.html"
+    },
+    {
+      "block_id": "FH-068",
+      "source_start": 1480,
+      "source_end": 1490,
+      "source_title": "遮阳种类与构件形式",
+      "destination_module": "door-window",
+      "destination_section": "window-door-design",
+      "destination_title": "门窗的设计要求",
+      "content_points": [
+        "绿化、可活动遮阳和建筑遮阳构件",
+        "水平、垂直、综合与挡板形式",
+        "朝向、太阳高度角、采光通风之间的关系"
+      ],
+      "action": "作为设计页“遮阳”子节；补缺少的构造安装与设计条件",
+      "cross_references": [
+        "intro-factors",
+        "principles:thermal"
+      ],
+      "review_flags": [
+        "本段几乎只有标题，P1490构造处理未展开",
+        "需补地域与朝向适用分析，避免只背四种形式"
+      ],
+      "allocation_id": "B070",
+      "target_public_path": "public/lesson/basics/door-window/window-door-design.html"
+    },
+    {
+      "block_id": "FH-069",
+      "source_start": 1491,
+      "source_end": 1513,
+      "source_title": "基础地基概念与面积荷载关系",
+      "destination_module": "foundation",
+      "destination_section": "foundation-overview",
+      "destination_title": "概述",
+      "content_points": [
+        "基础是建筑构件，地基是支承基础的地层",
+        "上部结构→基础→地基的传力关系",
+        "面积、作用、地基承载的概念联系"
+      ],
+      "action": "合并重复定义，用示意说明；简单关系只用于概念理解",
+      "cross_references": [
+        "intro-composition",
+        "foundation-design"
+      ],
+      "review_flags": [
+        "P1492“地基于基础”应为“地基与基础”",
+        "P1495/P1498/P1509变量P/R混乱",
+        "P1503前一个“地基”明显应为“基础”",
+        "“地耐力”术语和公式不是完整工程设计校核，待核与重写"
+      ],
+      "allocation_id": "B071",
+      "target_public_path": "public/lesson/basics/foundation/foundation-overview.html"
+    },
+    {
+      "block_id": "FH-070",
+      "source_start": 1514,
+      "source_end": 1532,
+      "source_title": "承载稳定沉降耐久经济设计条件",
+      "destination_module": "foundation",
+      "destination_section": "foundation-design",
+      "destination_title": "基础与地基的设计要求",
+      "content_points": [
+        "强度、稳定性、沉降控制、耐久与经济性",
+        "荷载、基础面积、地基条件之间的选型关系",
+        "地下水腐蚀与冻融对材料的影响"
+      ],
+      "action": "合并两组基本要求，替换“均匀沉降”绝对目标为明确变形控制概念",
+      "cross_references": [
+        "foundation-settlement",
+        "foundation-depth"
+      ],
+      "review_flags": [
+        "P1514—1519/P1527—1530重复",
+        "P1529“冰融”应为“冻融”",
+        "造价10%—20%乃至40%缺样本年代，不能作为通用估价"
+      ],
+      "allocation_id": "B072",
+      "target_public_path": "public/lesson/basics/foundation/foundation-design.html"
+    },
+    {
+      "block_id": "FH-071",
+      "source_start": 1533,
+      "source_end": 1551,
+      "source_title": "天然人工地基与土的分类组成",
+      "destination_module": "foundation",
+      "destination_section": "foundation-overview",
+      "destination_title": "概述",
+      "content_points": [
+        "天然与人工地基的区别",
+        "土与岩的类型、固体颗粒/水/空气组成",
+        "不同土层状态影响承载与变形"
+      ],
+      "action": "合并地基定义和土三相说明；配勘察剖面读图",
+      "cross_references": [
+        "foundation-design",
+        "foundation-depth"
+      ],
+      "review_flags": [
+        "P1540“五大类（六大类）”与后列六类内部不一致",
+        "P1547—1548/P1549—1551重复",
+        "地基土分类需核对采用标准，不能按口述数量建词条"
+      ],
+      "allocation_id": "B073",
+      "target_public_path": "public/lesson/basics/foundation/foundation-overview.html"
+    },
+    {
+      "block_id": "FH-072",
+      "source_start": 1552,
+      "source_end": 1556,
+      "source_title": "土压缩沉降与抗剪滑动",
+      "destination_module": "foundation",
+      "destination_section": "foundation-settlement",
+      "destination_title": "不均匀沉降",
+      "content_points": [
+        "土压缩引起基础沉降",
+        "沉降量与差异沉降均需控制",
+        "土抗剪能力与滑动稳定的关系"
+      ],
+      "action": "作为沉降页基础机理；抗剪稳定在设计页引用",
+      "cross_references": [
+        "foundation-design"
+      ],
+      "review_flags": [
+        "P1553“空隙间小/成为”应核对为“间隙减小/称为”",
+        "P1554“是建筑物/不会生”语病",
+        "P1556“测向”应为“侧向”",
+        "“滑坡”不宜等同所有地基水平剪切变形，专业表述待核"
+      ],
+      "allocation_id": "B074",
+      "target_public_path": "public/lesson/basics/foundation/foundation-settlement.html"
+    },
+    {
+      "block_id": "FH-073",
+      "source_start": 1557,
+      "source_end": 1574,
+      "source_title": "土中水、地形与工程勘察资料",
+      "destination_module": "foundation",
+      "destination_section": "foundation-design",
+      "destination_title": "基础与地基的设计要求",
+      "content_points": [
+        "地形地貌、周边地下设施和建筑现状",
+        "钻孔、地质剖面、土层参数、地下水和腐蚀性",
+        "勘察报告对基础类型和埋深的建议"
+      ],
+      "action": "新增设计页“设计资料”；从报告读到基础方案，补土中水未展开内容",
+      "cross_references": [
+        "foundation-depth",
+        "foundation-overview"
+      ],
+      "review_flags": [
+        "P1557只有水影响标题",
+        "P1558—1560/P1561—1565及P1564/P1565重复",
+        "原报告清单不能代替现行勘察完整要求"
+      ],
+      "allocation_id": "B075",
+      "target_public_path": "public/lesson/basics/foundation/foundation-design.html"
+    },
+    {
+      "block_id": "FH-074",
+      "source_start": 1575,
+      "source_end": 1604,
+      "source_title": "人工地基及压实换土",
+      "destination_module": "foundation",
+      "destination_section": "foundation-design",
+      "destination_title": "基础与地基的设计要求",
+      "content_points": [
+        "人工处理改善地基承载与变形",
+        "压实、夯实、碾压、振动的机理",
+        "换填用于软弱土层，范围和材料需设计"
+      ],
+      "action": "保留方法和用途，旧施工参数与设备案例历史化",
+      "cross_references": [
+        "foundation-overview",
+        "foundation-settlement"
+      ],
+      "review_flags": [
+        "P1575—1581定义重复",
+        "P1578/P1581把桩基直接作为人工地基方法需区分桩基础与地基处理桩",
+        "P1586—1598有效深度、吨/平方米等经验参数待核",
+        "P1604“提高基础强度”混淆地基与基础"
+      ],
+      "allocation_id": "B076",
+      "target_public_path": "public/lesson/basics/foundation/foundation-design.html"
+    },
+    {
+      "block_id": "FH-075",
+      "source_start": 1605,
+      "source_end": 1621,
+      "source_title": "桩基础类型及承台联系",
+      "destination_module": "foundation",
+      "destination_section": "foundation-types",
+      "destination_title": "基础的分类",
+      "content_points": [
+        "桩端和桩侧传力、摩擦/端承的概念",
+        "按材料和施工方法分类",
+        "桩与承台共同传递荷载"
+      ],
+      "action": "桩基础独立子节，地基处理桩用跨引用区分；补现代常用成桩方式",
+      "cross_references": [
+        "foundation-design",
+        "foundation-underground"
+      ],
+      "review_flags": [
+        "P1606/P1608所有桩支承坚硬岩层与后述摩擦桩相矛盾",
+        "P1612/P1613摩擦桩和挤实桩分类维度混用",
+        "P1614—1616土砂碎石桩应先区分地基处理与结构承载用途",
+        "P1618爆扩桩只作历史工艺，不作现代默认方案",
+        "P1621嵌入/钢筋最低参数待核"
+      ],
+      "allocation_id": "B077",
+      "target_public_path": "public/lesson/basics/foundation/foundation-types.html"
+    },
+    {
+      "block_id": "FH-076",
+      "source_start": 1622,
+      "source_end": 1635,
+      "source_title": "基础埋深定义及地层影响",
+      "destination_module": "foundation",
+      "destination_section": "foundation-depth",
+      "destination_title": "基础的埋置深度与影响因素",
+      "content_points": [
+        "室外地面到基础底面的距离",
+        "土层分布、持力层、软弱下卧层与埋深选择",
+        "工程开挖与经济性的联系"
+      ],
+      "action": "概念及剖面决策逻辑入正文，旧深浅分界和通用最小值待核",
+      "cross_references": [
+        "foundation-types",
+        "foundation-design"
+      ],
+      "review_flags": [
+        "P1624—1626深浅5m和最小0.5m不能直接作为无条件现行设计规则",
+        "P1632“上弱＜2～5米”区间写法矛盾，需核对原件",
+        "不能仅凭弱土厚度给出最终基础方案"
+      ],
+      "allocation_id": "B078",
+      "target_public_path": "public/lesson/basics/foundation/foundation-depth.html"
+    },
+    {
+      "block_id": "FH-077",
+      "source_start": 1636,
+      "source_end": 1644,
+      "source_title": "地下水与埋深材料",
+      "destination_module": "foundation",
+      "destination_section": "foundation-depth",
+      "destination_title": "基础的埋置深度与影响因素",
+      "content_points": [
+        "地下水位季节变化影响土和基础",
+        "地下水腐蚀、施工降水、浮力与耐水材料",
+        "结合水文地质条件选择埋深"
+      ],
+      "action": "合并水位两组段落，以影响机制代替固定上下200规则",
+      "cross_references": [
+        "foundation-design",
+        "foundation-underground",
+        "foundation-settlement"
+      ],
+      "review_flags": [
+        "P1637“底”应为“低”",
+        "P1638/P1640最高/最低地下水位上下200mm规则为旧经验，待核",
+        "P1643土体变化描述需按土类与应力条件核验"
+      ],
+      "allocation_id": "B079",
+      "target_public_path": "public/lesson/basics/foundation/foundation-depth.html"
+    },
+    {
+      "block_id": "FH-078",
+      "source_start": 1645,
+      "source_end": 1654,
+      "source_title": "冻深冻胀影响",
+      "destination_module": "foundation",
+      "destination_section": "foundation-depth",
+      "destination_title": "基础的埋置深度与影响因素",
+      "content_points": [
+        "冻结线、冻胀性、含水量和地下水影响",
+        "地域资料与计算决定防冻胀措施",
+        "埋深只是抗冻胀的一种手段"
+      ],
+      "action": "合并重复定义，配不同气候和土类剖面练习",
+      "cross_references": [
+        "intro-factors",
+        "foundation-design"
+      ],
+      "review_flags": [
+        "P1647各城市冻深数字无年代和地点，待核",
+        "P1648/P1652“细纱”应为“细砂”",
+        "P1652“冻涨”应为“冻胀”",
+        "P1653需计算与P1654一律冻结线下200mm表述不统一，待核"
+      ],
+      "allocation_id": "B080",
+      "target_public_path": "public/lesson/basics/foundation/foundation-depth.html"
+    },
+    {
+      "block_id": "FH-079",
+      "source_start": 1655,
+      "source_end": 1661,
+      "source_title": "相邻建筑荷载功能影响",
+      "destination_module": "foundation",
+      "destination_section": "foundation-depth",
+      "destination_title": "基础的埋置深度与影响因素",
+      "content_points": [
+        "相邻基础高差、基坑开挖与原建筑稳定",
+        "上部竖向荷载与水平作用",
+        "地下室、设备层和地下设施对基础选择的影响"
+      ],
+      "action": "保留风险和设计输入，净距经验式只作待核资料",
+      "cross_references": [
+        "foundation-design",
+        "foundation-underground",
+        "foundation-settlement"
+      ],
+      "review_flags": [
+        "P1656 L=(1—2)H缺土质荷载施工条件，不可作独立安全算法",
+        "P1658高层基础借周边土抵抗水平作用的绝对表述待核"
+      ],
+      "allocation_id": "B081",
+      "target_public_path": "public/lesson/basics/foundation/foundation-depth.html"
+    },
+    {
+      "block_id": "FH-080",
+      "source_start": 1662,
+      "source_end": 1676,
+      "source_title": "条形及独立基础",
+      "destination_module": "foundation",
+      "destination_section": "foundation-types",
+      "destination_title": "基础的分类",
+      "content_points": [
+        "按构造形式、材料、传力分类的不同维度",
+        "墙下与柱下条形基础",
+        "台阶、锥形、杯形独立基础及上部结构联系"
+      ],
+      "action": "用分类矩阵归位；连系和变形控制在设计页跨引用",
+      "cross_references": [
+        "foundation-design",
+        "foundation-settlement"
+      ],
+      "review_flags": [
+        "P1667“独立是”应为“独立式”",
+        "P1676独立基础全无连接、仅适于均匀土质的绝对结论待核"
+      ],
+      "allocation_id": "B082",
+      "target_public_path": "public/lesson/basics/foundation/foundation-types.html"
+    },
+    {
+      "block_id": "FH-081",
+      "source_start": 1677,
+      "source_end": 1686,
+      "source_title": "联合柱下条形与筏形基础",
+      "destination_module": "foundation",
+      "destination_section": "foundation-types",
+      "destination_title": "基础的分类",
+      "content_points": [
+        "柱下联合、条形和交叉条形基础",
+        "筏形板式/梁板式与基础面积连续化",
+        "低承载地基、荷载与整体刚度选型联系"
+      ],
+      "action": "保留结构类型及传力概念，避免以单一土条件决定类型",
+      "cross_references": [
+        "foundation-underground",
+        "foundation-settlement"
+      ],
+      "review_flags": [
+        "P1680“肚里基础”应为“独立基础”",
+        "P1686“底板厚度不易小于200mm”语病且通用厚度待核"
+      ],
+      "allocation_id": "B083",
+      "target_public_path": "public/lesson/basics/foundation/foundation-types.html"
+    },
+    {
+      "block_id": "FH-082",
+      "source_start": 1687,
+      "source_end": 1690,
+      "source_title": "箱形基础与地下室",
+      "destination_module": "foundation",
+      "destination_section": "foundation-underground",
+      "destination_title": "基础与地下结构的类型",
+      "content_points": [
+        "箱形基础底板、顶板和内外墙形成空间体系",
+        "地下空间可以具备使用功能",
+        "地下结构防水、防潮和受力要求需分别处理"
+      ],
+      "action": "作为地下结构页原文核心；大段防水系统必须另补，不可假称原文已有",
+      "cross_references": [
+        "foundation-types",
+        "foundation-design",
+        "principles:waterproof"
+      ],
+      "review_flags": [
+        "P1690“底、顶板…250”随后“顶板…150”同段矛盾",
+        "箱形基础不能泛指所有地下室",
+        "本段没有地下防水系统、抗浮、连接和节点的完整内容"
+      ],
+      "allocation_id": "B084",
+      "target_public_path": "public/lesson/basics/foundation/foundation-underground.html"
+    },
+    {
+      "block_id": "FH-083",
+      "source_start": 1691,
+      "source_end": 1693,
+      "source_title": "基础上部结构地基关系小结",
+      "destination_module": "foundation",
+      "destination_section": "foundation-types",
+      "destination_title": "基础的分类",
+      "content_points": [
+        "基础形式与墙柱受力体系相联系",
+        "地基条件与扩大/连续基础的联系"
+      ],
+      "action": "合并类型页开头选型关系图；作为综合选型练习材料",
+      "cross_references": [
+        "foundation-overview",
+        "foundation-settlement"
+      ],
+      "review_flags": [
+        "避",
+        "免",
+        "把",
+        "所",
+        "有",
+        "基",
+        "础",
+        "都",
+        "解",
+        "释",
+        "为",
+        "墙",
+        "柱",
+        "向",
+        "外",
+        "放",
+        "脚",
+        "，",
+        "桩",
+        "基",
+        "等",
+        "需",
+        "单",
+        "独",
+        "说",
+        "明"
+      ],
+      "allocation_id": "B085",
+      "target_public_path": "public/lesson/basics/foundation/foundation-types.html"
+    },
+    {
+      "block_id": "FH-084",
+      "source_start": 1694,
+      "source_end": 1717,
+      "source_title": "材料、无筋扩展与钢筋混凝土扩展基础",
+      "destination_module": "foundation",
+      "destination_section": "foundation-types",
+      "destination_title": "基础的分类",
+      "content_points": [
+        "按材料与是否配筋分类",
+        "扩展宽高比、材料抗拉能力与截面关系",
+        "传统刚性/柔性称呼与原文已提示的术语更新"
+      ],
+      "action": "统一主要教学术语，传统称呼作括注；公式概念与前文去重",
+      "cross_references": [
+        "foundation-design"
+      ],
+      "review_flags": [
+        "P1703/P1711角度定义需配同一明确图示，待核",
+        "P1713提到新规范但未注明标准与版次",
+        "P1708“基础地面”应为“基础底面”",
+        "P1709“控置”应为“控制”"
+      ],
+      "allocation_id": "B086",
+      "target_public_path": "public/lesson/basics/foundation/foundation-types.html"
+    },
+    {
+      "block_id": "FH-085",
+      "source_start": 1718,
+      "source_end": 1723,
+      "source_title": "砖基础大放脚",
+      "destination_module": "foundation",
+      "destination_section": "foundation-types",
+      "destination_title": "基础的分类",
+      "content_points": [
+        "传统砖基础阶梯放脚",
+        "两皮一收、二一间收与宽高比、材料用量"
+      ],
+      "action": "作为传统无筋扩展基础案例；现代主要节点不直接用旧尺寸",
+      "cross_references": [
+        "intro-drawing-standards",
+        "foundation-design"
+      ],
+      "review_flags": [
+        "宽高比、砂浆材料和适用范围需核验",
+        "P1723提问移成练习而非正文残句"
+      ],
+      "allocation_id": "B087",
+      "target_public_path": "public/lesson/basics/foundation/foundation-types.html"
+    },
+    {
+      "block_id": "FH-086",
+      "source_start": 1724,
+      "source_end": 1732,
+      "source_title": "石基础构造",
+      "destination_module": "foundation",
+      "destination_section": "foundation-types",
+      "destination_title": "基础的分类",
+      "content_points": [
+        "毛石、料石基础与台阶砌筑",
+        "材料强度和基底宽度影响构造"
+      ],
+      "action": "传统案例，保留机理，数值列待核清单",
+      "cross_references": [
+        "foundation-design"
+      ],
+      "review_flags": [
+        "P1725毛石/料石强度MU2.5疑有误，需核对原件及标准",
+        "P1726—1732规格/台阶/适用层数不能作为普适施工条文"
+      ],
+      "allocation_id": "B088",
+      "target_public_path": "public/lesson/basics/foundation/foundation-types.html"
+    },
+    {
+      "block_id": "FH-087",
+      "source_start": 1733,
+      "source_end": 1743,
+      "source_title": "混凝土毛石混凝土基础",
+      "destination_module": "foundation",
+      "destination_section": "foundation-types",
+      "destination_title": "基础的分类",
+      "content_points": [
+        "材料可塑性与截面形式选择",
+        "矩形、阶梯、梯形截面和工程量关系",
+        "毛石混凝土与普通混凝土的区别"
+      ],
+      "action": "传统案例，构造形式入正文，材料强度/尺寸重新核验",
+      "cross_references": [
+        "foundation-design"
+      ],
+      "review_flags": [
+        "P1734耐腐蚀不能无条件概括",
+        "P1736 C7.5—C15属于旧材料等级语境，待核",
+        "P1738—1741高度分段漏1000—2000范围，不能猜补",
+        "P1743“体积多大”应核对为“体积过大”"
+      ],
+      "allocation_id": "B089",
+      "target_public_path": "public/lesson/basics/foundation/foundation-types.html"
+    },
+    {
+      "block_id": "FH-088",
+      "source_start": 1744,
+      "source_end": 1744,
+      "source_title": "基础沉降缝后续讲述占位",
+      "destination_module": "foundation",
+      "destination_section": "foundation-settlement",
+      "destination_title": "不均匀沉降",
+      "content_points": [
+        "沉降缝与不均匀沉降预防的联系"
+      ],
+      "action": "改为变形缝章链接；本页需新增机理与适用条件正文",
+      "cross_references": [
+        "deformation-joints"
+      ],
+      "review_flags": [
+        "原",
+        "文",
+        "只",
+        "有",
+        "“",
+        "以",
+        "后",
+        "讲",
+        "”",
+        "标",
+        "题",
+        "，",
+        "没",
+        "有",
+        "基",
+        "础",
+        "沉",
+        "降",
+        "缝",
+        "构",
+        "造",
+        "正",
+        "文"
+      ],
+      "allocation_id": "B090",
+      "target_public_path": "public/lesson/basics/foundation/foundation-settlement.html"
+    },
+    {
+      "block_id": "S001",
+      "source_start": 1745,
+      "source_end": 1752,
+      "source_title": "第五讲标题、楼板与地坪概念、支承关系",
+      "destination_module": "floor",
+      "destination_section": "floor-overview",
+      "destination_title": "概述",
+      "content_points": [
+        "楼板是分隔上下层空间的承重构件；与直接接触土壤的地坪对照",
+        "用荷载由楼板到梁、墙柱的路线说明水平与竖向构件协同",
+        "上下层承重构件对位作为结构布置意识"
+      ],
+      "action": "保留核心概念，改写课堂提问与省略句；章名作为来源元数据",
+      "cross_references": [
+        "floor-ground-composition",
+        "intro-composition"
+      ],
+      "review_flags": [
+        "P1751将除墙柱外其余构件都归入水平承载分系统，范围过宽，待重写限定"
+      ],
+      "allocation_id": "B091",
+      "target_public_path": "public/lesson/basics/floor/floor-overview.html"
+    },
+    {
+      "block_id": "S002",
+      "source_start": 1753,
+      "source_end": 1767,
+      "source_title": "楼板层的基本组成",
+      "destination_module": "floor",
+      "destination_section": "floor-overview",
+      "destination_title": "概述",
+      "content_points": [
+        "面层、结构层、顶棚层的作用",
+        "附加层根据防水、保温、隔声、管线等需要增设",
+        "使用者看到的表面与内部构造层次的区别"
+      ],
+      "action": "合并P1761—1766与P1767的重复；总览只解释功能，做法转到各专节",
+      "cross_references": [
+        "floor-ground-layer",
+        "proposed:floor-ceiling"
+      ],
+      "review_flags": [],
+      "allocation_id": "B092",
+      "target_public_path": "public/lesson/basics/floor/floor-overview.html"
+    },
+    {
+      "block_id": "S003",
+      "source_start": 1768,
+      "source_end": 1777,
+      "source_title": "楼板层设计要求",
+      "destination_module": "floor",
+      "destination_section": "floor-overview",
+      "destination_title": "概述",
+      "content_points": [
+        "强度、刚度、耐久与防火等性能",
+        "弹性面层、浮筑层、吊顶的隔声思路",
+        "结构、材料、施工与经济性的综合选择"
+      ],
+      "action": "保留要求框架；P1773的防水尺寸迁入湿区做法审查后引用，不在概述重复",
+      "cross_references": [
+        "floor-ground-layer",
+        "acoustic",
+        "fire"
+      ],
+      "review_flags": [
+        "P1773防水上翻150mm、门口铺出300等数值待核",
+        "P1772—1774句子断裂，防水和隔声说明需补完整"
+      ],
+      "allocation_id": "B093",
+      "target_public_path": "public/lesson/basics/floor/floor-overview.html"
+    },
+    {
+      "block_id": "S004",
+      "source_start": 1778,
+      "source_end": 1793,
+      "source_title": "楼板材料类型与选择",
+      "destination_module": "floor",
+      "destination_section": "floor-overview",
+      "destination_title": "概述",
+      "content_points": [
+        "木楼板、砖拱楼板、钢筋混凝土楼板、压型钢板组合楼板的分类",
+        "材料类型与受力方式、施工方式分开比较",
+        "木楼板、砖拱楼板保留为传统技术识读"
+      ],
+      "action": "整合成比较表；改写当时用量、造价比例等时间性描述；压型钢板组合楼板按具体构造解释协同受力",
+      "cross_references": [
+        "floor-rc-slab"
+      ],
+      "review_flags": [
+        "P1790目前广泛采用、P1793占造价20～30%没有年代与统计来源",
+        "P1792压型钢板代替底筋属于条件性说明，适用前提待核"
+      ],
+      "allocation_id": "B094",
+      "target_public_path": "public/lesson/basics/floor/floor-overview.html"
+    },
+    {
+      "block_id": "S005",
+      "source_start": 1794,
+      "source_end": 1816,
+      "source_title": "钢筋混凝土楼板施工分类与预应力",
+      "destination_module": "floor",
+      "destination_section": "floor-rc-slab",
+      "destination_title": "钢筋混凝土楼板",
+      "content_points": [
+        "现浇、预制装配、装配整体的区别",
+        "钢筋与混凝土协同工作及预应力改善抗裂的概念",
+        "先张、后张的施力与传递路径"
+      ],
+      "action": "施工比较前置，预应力作拓展卡；删除口语残句；旧钢号及节材比例存档并核验",
+      "cross_references": [
+        "floor-overview"
+      ],
+      "review_flags": [
+        "P1809旧钢号及2400/3400等数值单位缺失",
+        "P1814—1815统一75%放张/张拉强度不能直接作为施工要求",
+        "P1798、P1800把预制/现浇抗震优劣作无条件断言，需限定体系与连接"
+      ],
+      "allocation_id": "B095",
+      "target_public_path": "public/lesson/basics/floor/floor-rc-slab.html"
+    },
+    {
+      "block_id": "S006",
+      "source_start": 1817,
+      "source_end": 1836,
+      "source_title": "预制平板、槽形板、空心板",
+      "destination_module": "floor",
+      "destination_section": "floor-rc-slab",
+      "destination_title": "钢筋混凝土楼板",
+      "content_points": [
+        "三类板的截面、受力与顶底面形态",
+        "预应力与非预应力板的区别",
+        "地方构件规格作为历史图册示例"
+      ],
+      "action": "保留识图与构造原理；尺寸表集中为传统构件案例，不能当统一选型标准",
+      "cross_references": [],
+      "review_flags": [
+        "P1819跨度＜2、4M、P1834的（3M）标点/符号需复核",
+        "P1835天津构件地方规格没有图集版本",
+        "P1831把空心板简单定义为槽形板加底板需澄清"
+      ],
+      "allocation_id": "B096",
+      "target_public_path": "public/lesson/basics/floor/floor-rc-slab.html"
+    },
+    {
+      "block_id": "S007",
+      "source_start": 1837,
+      "source_end": 1844,
+      "source_title": "预制板布置与梁截面",
+      "destination_module": "floor",
+      "destination_section": "floor-rc-slab",
+      "destination_title": "钢筋混凝土楼板",
+      "content_points": [
+        "板跨度方向与承重墙、梁的位置关系",
+        "荷载、隔墙、孔洞和阳台影响布板",
+        "矩形、T形、十字形、花篮梁识读"
+      ],
+      "action": "改成结构布置步骤及梁截面对净高的影响，补一张传力平面图",
+      "cross_references": [
+        "floor-balcony"
+      ],
+      "review_flags": [],
+      "allocation_id": "B097",
+      "target_public_path": "public/lesson/basics/floor/floor-rc-slab.html"
+    },
+    {
+      "block_id": "S008",
+      "source_start": 1845,
+      "source_end": 1870,
+      "source_title": "预制板板缝、隔墙、搁置、锚固",
+      "destination_module": "floor",
+      "destination_section": "floor-rc-slab",
+      "destination_title": "钢筋混凝土楼板",
+      "content_points": [
+        "板缝灌注与非标准板带的处理目的",
+        "隔墙荷载须有明确支承路径",
+        "支座、端孔、坐浆和整体拉结的作用"
+      ],
+      "action": "保留传统节点识读；合并连接做法，不直接发布旧支承长度、配筋和挑砖表；补现代预制板连接对照",
+      "cross_references": [
+        "wall-partition"
+      ],
+      "review_flags": [
+        "P1850—1852＜50与＜120范围重叠，条件不完整",
+        "P1858的100（90）/80（60）两个版本未说明",
+        "P1864—1869配筋、后浇层尺寸待核",
+        "P1870现已限制使用未给地区、范围和依据"
+      ],
+      "allocation_id": "B098",
+      "target_public_path": "public/lesson/basics/floor/floor-rc-slab.html"
+    },
+    {
+      "block_id": "S009",
+      "source_start": 1871,
+      "source_end": 1902,
+      "source_title": "现浇楼板、单向板与双向板、墙承板",
+      "destination_module": "floor",
+      "destination_section": "floor-rc-slab",
+      "destination_title": "钢筋混凝土楼板",
+      "content_points": [
+        "现浇梁板整体性及支承状况",
+        "单向、双向主要传力方向和配筋方向",
+        "墙承板适用平面与传力示意"
+      ],
+      "action": "合并P1873—1882与P1888—1902；概念讲解用边界条件明确的示意，跨度/厚度估算只作待核例子",
+      "cross_references": [
+        "cast-ribbed-floor-01"
+      ],
+      "review_flags": [
+        "P1881说双向板更经济，P1899结论相反，内部矛盾",
+        "P1877—1878≤2与P1899＜2边界不一致",
+        "P1875约88%没有适用条件和来源",
+        "P1895—1901高跨比、跨度值不能代替结构计算"
+      ],
+      "allocation_id": "B099",
+      "target_public_path": "public/lesson/basics/floor/floor-rc-slab.html"
+    },
+    {
+      "block_id": "S010",
+      "source_start": 1903,
+      "source_end": 1912,
+      "source_title": "无梁楼板",
+      "destination_module": "floor",
+      "destination_section": "floor-rc-slab",
+      "destination_title": "钢筋混凝土楼板",
+      "content_points": [
+        "板柱直接传力与柱帽、托板作用",
+        "冲切问题与结构高度、顶棚平整的关系",
+        "适用空间与构造选择"
+      ],
+      "action": "保留板柱关系，补冲切示意；统一板柱、无梁楼盖称谓；经济荷载与厚度列为待核",
+      "cross_references": [],
+      "review_flags": [
+        "P1909—1910固定荷载/跨度经济性与板厚没有条件说明"
+      ],
+      "allocation_id": "B100",
+      "target_public_path": "public/lesson/basics/floor/floor-rc-slab.html"
+    },
+    {
+      "block_id": "S011",
+      "source_start": 1913,
+      "source_end": 1941,
+      "source_title": "单向梁板、主次梁楼板、梁高表",
+      "destination_module": "floor",
+      "destination_section": "floor-rc-slab",
+      "destination_title": "钢筋混凝土楼板",
+      "content_points": [
+        "板→次梁→主梁→柱/墙的主要传力路线",
+        "梁格与房间平面、净高、施工的关系",
+        "梁截面估算与结构计算的区别"
+      ],
+      "action": "整合为一组主次梁图例，正文讲传力；梁高表与经济跨度历史资料保留待核，不作为直接设计规则",
+      "cross_references": [
+        "cast-ribbed-floor-01",
+        "path-floor"
+      ],
+      "review_flags": [
+        "P1914多向交叉不止疑为布置",
+        "P1935句序混乱，板/梁跨度及预应力参数待核",
+        "P1941表格单元格混在段落内，需还原"
+      ],
+      "allocation_id": "B101",
+      "target_public_path": "public/lesson/basics/floor/floor-rc-slab.html"
+    },
+    {
+      "block_id": "S012",
+      "source_start": 1942,
+      "source_end": 1957,
+      "source_title": "井格式楼板",
+      "destination_module": "floor",
+      "destination_section": "floor-rc-slab",
+      "destination_title": "钢筋混凝土楼板",
+      "content_points": [
+        "两个方向等高交叉梁与双向协同",
+        "正交、斜交布置和方形/近方形平面",
+        "井格楼板的下表面与空间效果"
+      ],
+      "action": "合并构造要求两次列举，补井格与主次梁比较，不保留无依据的通用经济结论",
+      "cross_references": [],
+      "review_flags": [
+        "P1953—1954一般不超过20M与（30～40M）冲突",
+        "P1956用料较多造价较高缺少比较对象"
+      ],
+      "allocation_id": "B102",
+      "target_public_path": "public/lesson/basics/floor/floor-rc-slab.html"
+    },
+    {
+      "block_id": "S013",
+      "source_start": 1958,
+      "source_end": 1979,
+      "source_title": "密肋楼板重复段",
+      "destination_module": "floor",
+      "destination_section": "floor-rc-slab",
+      "destination_title": "钢筋混凝土楼板",
+      "content_points": [
+        "密肋、小跨度薄板与模壳模板",
+        "单向、双向等高、双向不等高的区别",
+        "板→密肋梁→边梁的传力路径"
+      ],
+      "action": "P1958—1970与P1971—1979合为一节；原有两组肋宽不统一，暂不发布为统一尺寸",
+      "cross_references": [],
+      "review_flags": [
+        "P1965跨度410m疑漏连接符，须看原版图文",
+        "P1966长/短≤1、5M比值带长度单位错误",
+        "P1969与P1974肋宽范围不同"
+      ],
+      "allocation_id": "B103",
+      "target_public_path": "public/lesson/basics/floor/floor-rc-slab.html"
+    },
+    {
+      "block_id": "S014",
+      "source_start": 1980,
+      "source_end": 1997,
+      "source_title": "装配整体、填充块与叠合楼板",
+      "destination_module": "floor",
+      "destination_section": "floor-rc-slab",
+      "destination_title": "钢筋混凝土楼板",
+      "content_points": [
+        "预制部分和现浇部分形成整体的思路",
+        "填充块的模板/填充作用与承重构件区分",
+        "叠合板施工阶段与成型后协同"
+      ],
+      "action": "重点更新为现代叠合楼板知识；填充块保留传统案例；补连接、施工临时支承与管线协调，待权威核验",
+      "cross_references": [],
+      "review_flags": [
+        "P1981目前工程中应用不多是时间性结论",
+        "P1985—1989、P1994—1995厚度及支承尺寸待核"
+      ],
+      "allocation_id": "B104",
+      "target_public_path": "public/lesson/basics/floor/floor-rc-slab.html"
+    },
+    {
+      "block_id": "S015",
+      "source_start": 1998,
+      "source_end": 2017,
+      "source_title": "地坪层定义、实铺地坪层次",
+      "destination_module": "floor",
+      "destination_section": "floor-ground-composition",
+      "destination_title": "地面的构造组成",
+      "content_points": [
+        "首层直接接触土壤的地面及传力",
+        "实铺地坪面层、垫层、基层",
+        "结合、找平、防水、保温等附加层按需要设置"
+      ],
+      "action": "合并P1999/P2001定义、P2003—2005解释及附加层重复；与floor-overview形成楼板/地坪双图",
+      "cross_references": [
+        "floor-overview",
+        "floor-ground-layer"
+      ],
+      "review_flags": [],
+      "allocation_id": "B105",
+      "target_public_path": "public/lesson/basics/floor/floor-ground-composition.html"
+    },
+    {
+      "block_id": "S016",
+      "source_start": 2018,
+      "source_end": 2034,
+      "source_title": "地基土、刚性/非刚性/复式垫层",
+      "destination_module": "floor",
+      "destination_section": "floor-ground-composition",
+      "destination_title": "地面的构造组成",
+      "content_points": [
+        "基层稳定与分层夯实",
+        "垫层承载、找平和均匀传力作用",
+        "刚性、非刚性、复式垫层识别"
+      ],
+      "action": "保留材料与作用；具体配比厚度形成有项目条件的案例，新增基层质量控制说明",
+      "cross_references": [
+        "foundation-overview"
+      ],
+      "review_flags": [
+        "P2021地耐力10～15KN/㎡及300压成200没有试验/条件说明，待核",
+        "P2026—2032强度与厚度待核"
+      ],
+      "allocation_id": "B106",
+      "target_public_path": "public/lesson/basics/floor/floor-ground-composition.html"
+    },
+    {
+      "block_id": "S017",
+      "source_start": 2035,
+      "source_end": 2044,
+      "source_title": "地坪各层功能重复与防潮保温",
+      "destination_module": "floor",
+      "destination_section": "floor-ground-composition",
+      "destination_title": "地面的构造组成",
+      "content_points": [
+        "面层接触使用、垫层传力、基层承载",
+        "土壤条件与荷载影响基层处理",
+        "附加层解决防水、保温、管线问题"
+      ],
+      "action": "把重复功能合入P1998—2034；P2042—2043仅为标题，防潮/保温做法须补写，跨链ground-layer",
+      "cross_references": [
+        "floor-ground-layer"
+      ],
+      "review_flags": [
+        "P2038厚德、P2039起上的明显错字"
+      ],
+      "allocation_id": "B107",
+      "target_public_path": "public/lesson/basics/floor/floor-ground-composition.html"
+    },
+    {
+      "block_id": "S018",
+      "source_start": 2045,
+      "source_end": 2055,
+      "source_title": "架空式地坪、木地板、活动地板",
+      "destination_module": "floor",
+      "destination_section": "floor-ground-layer",
+      "destination_title": "地面层",
+      "content_points": [
+        "地坪架空、通风防潮与特殊使用需求",
+        "架空木地板与活动地板的支承方式",
+        "高差、土方、荷载等方案选择因素"
+      ],
+      "action": "保留架空地面功能与案例；明确结构架空地坪与饰面架空活动地板层级不同；补节点图",
+      "cross_references": [
+        "floor-ground-composition",
+        "proposed:floor-ceiling"
+      ],
+      "review_flags": [
+        "P2052空铺地层易与后文卷材空铺混淆，需统一术语"
+      ],
+      "allocation_id": "B108",
+      "target_public_path": "public/lesson/basics/floor/floor-ground-layer.html"
+    },
+    {
+      "block_id": "S019",
+      "source_start": 2056,
+      "source_end": 2073,
+      "source_title": "阳台作用与分类",
+      "destination_module": "floor",
+      "destination_section": "floor-balcony",
+      "destination_title": "阳台及雨棚",
+      "content_points": [
+        "生活/服务功能、凸/凹/角阳台与外廊",
+        "采光通风、私密与立面因素",
+        "阳台平面位置与结构支承的区别"
+      ],
+      "action": "合并P2057/P2061重复；删口语及无条件抗震优劣；原宽度仅作历史示例",
+      "cross_references": [],
+      "review_flags": [
+        "P2071凹阳台割断外墙抗震不利需具体结构分析，不能一般化"
+      ],
+      "allocation_id": "B109",
+      "target_public_path": "public/lesson/basics/floor/floor-balcony.html"
+    },
+    {
+      "block_id": "S020",
+      "source_start": 2074,
+      "source_end": 2102,
+      "source_title": "阳台设计要求与承重结构",
+      "destination_module": "floor",
+      "destination_section": "floor-balcony",
+      "destination_title": "阳台及雨棚",
+      "content_points": [
+        "抗倾覆、支承与临空防护",
+        "搁板式、挑板式、挑梁式传力",
+        "现浇与传统预制布置及边梁净高/采光关系"
+      ],
+      "action": "按支承方式整合；正文解释荷载与力矩，节点旁说明实际支承构件；历史出挑尺度待核",
+      "cross_references": [
+        "cantilever-slab-01",
+        "floor-rc-slab"
+      ],
+      "review_flags": [
+        "P2088现浇悬壁板/主体主体/支座出错字",
+        "P2097板厚约1/16缺少跨度基准和单位",
+        "P2099平衡挑梁靠墙重量不能作为无条件安全规则"
+      ],
+      "allocation_id": "B110",
+      "target_public_path": "public/lesson/basics/floor/floor-balcony.html"
+    },
+    {
+      "block_id": "S021",
+      "source_start": 2103,
+      "source_end": 2110,
+      "source_title": "阳台排水",
+      "destination_module": "floor",
+      "destination_section": "floor-balcony",
+      "destination_title": "阳台及雨棚",
+      "content_points": [
+        "室内外标高、找坡、防倒灌",
+        "地漏接排水系统与泄水管的区别",
+        "挡水边、穿板管周边防水连续"
+      ],
+      "action": "合并P2108/P2110重复；补防水层、门槛与地漏收口；排水系统连接方式核验后写",
+      "cross_references": [
+        "floor-ground-layer",
+        "waterproof"
+      ],
+      "review_flags": [
+        "P2106—2110标高、φ50/外露80等值待核",
+        "P2109排入雨水管须核使用污水与雨水排放要求"
+      ],
+      "allocation_id": "B111",
+      "target_public_path": "public/lesson/basics/floor/floor-balcony.html"
+    },
+    {
+      "block_id": "S022",
+      "source_start": 2111,
+      "source_end": 2123,
+      "source_title": "阳台栏杆高度、形式与防攀爬",
+      "destination_module": "floor",
+      "destination_section": "floor-balcony",
+      "destination_title": "阳台及雨棚",
+      "content_points": [
+        "栏杆/栏板的防护和立面作用",
+        "测量起点、临空高度、可踏面等安全概念",
+        "防儿童攀爬与竖杆间距"
+      ],
+      "action": "保留安全设计维度；旧高度分档整段标待核，重新依据现行适用规范制作参数卡；合并P2118/P2120",
+      "cross_references": [
+        "stairs-overview",
+        "stairs-details"
+      ],
+      "review_flags": [
+        "P2115—2118栏杆高度与分档待核",
+        "P2119中高层高层及寒冷地区应实心栏板为无条件结论，待核"
+      ],
+      "allocation_id": "B112",
+      "target_public_path": "public/lesson/basics/floor/floor-balcony.html"
+    },
+    {
+      "block_id": "S023",
+      "source_start": 2124,
+      "source_end": 2148,
+      "source_title": "栏杆/栏板连接细部",
+      "destination_module": "floor",
+      "destination_section": "floor-balcony",
+      "destination_title": "阳台及雨棚",
+      "content_points": [
+        "强度、可靠锚固、防腐与接缝",
+        "焊接、榫接坐浆、插筋三种传统连接",
+        "扶手压顶、栏板拼接、与墙体交接"
+      ],
+      "action": "正文只讲连接目的与选型，三个已有节点各放对应步骤与失效风险；删P2135三次重复，补现代金属/玻璃防护连接概览",
+      "cross_references": [
+        "balcony-railing-weld-01",
+        "balcony-railing-mortise-01",
+        "balcony-railing-dowel-01",
+        "stairs-details"
+      ],
+      "review_flags": [
+        "P2135档水/又组织，P2144拚接发错字",
+        "预埋件、φ16及现浇做法须与节点原图和结构设计核对"
+      ],
+      "allocation_id": "B113",
+      "target_public_path": "public/lesson/basics/floor/floor-balcony.html"
+    },
+    {
+      "block_id": "S024",
+      "source_start": 2149,
+      "source_end": 2176,
+      "source_title": "雨棚作用、分类、结构与防排水",
+      "destination_module": "floor",
+      "destination_section": "floor-balcony",
+      "destination_title": "阳台及雨棚",
+      "content_points": [
+        "入口过渡、遮雨和立面作用",
+        "小型悬挑/悬挂与大型柱墙支承",
+        "墙根泛水、檐口滴水、排水与主体连接"
+      ],
+      "action": "统一雨篷/雨棚/雨蓬用词；分结构与防水两组图；大型钢雨篷只有提纲须补写",
+      "cross_references": [
+        "cantilever-canopy-slab-01",
+        "cantilever-canopy-raised-eaves-01",
+        "roof-flat"
+      ],
+      "review_flags": [
+        "P2168泛水翻高≥200待核",
+        "P2170有拄错字",
+        "P2154防高空落物砸伤不应写成普通雨篷必备防护能力"
+      ],
+      "allocation_id": "B114",
+      "target_public_path": "public/lesson/basics/floor/floor-balcony.html"
+    },
+    {
+      "block_id": "S025",
+      "source_start": 2177,
+      "source_end": 2192,
+      "source_title": "第六讲标题、饰面作用",
+      "destination_module": "shared",
+      "destination_section": "proposed:finish-overview",
+      "destination_title": "饰面装修总论（拟新增）",
+      "content_points": [
+        "保护构件、改善使用性能与环境形象",
+        "饰面、基层和主体结构的关系",
+        "内外装修面对的环境差异"
+      ],
+      "action": "新增共享总论；合并P2181—2183保护作用、P2190—2192美观重复；不要把所有饰面自动等同节能/隔声系统",
+      "cross_references": [
+        "proposed:wall-finishes",
+        "floor-ground-layer",
+        "proposed:floor-ceiling"
+      ],
+      "review_flags": [
+        "P2178设计使用年限4类来源版本待核",
+        "P2185内外饰面提高热工性能需按具体构造限定"
+      ],
+      "allocation_id": "B115",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S026",
+      "source_start": 2193,
+      "source_end": 2207,
+      "source_title": "饰面设计要求",
+      "destination_module": "shared",
+      "destination_section": "proposed:finish-overview",
+      "destination_title": "饰面装修总论（拟新增）",
+      "content_points": [
+        "使用功能、材料性能、施工可行性与经济性",
+        "材料供应、技术条件和费用",
+        "设计要求转化为材料与构造选择"
+      ],
+      "action": "合并装修等级/材料重复；将行政等级与一概禁用高档材料改为有适用范围的项目要求，陈旧市场评述仅存档",
+      "cross_references": [
+        "intro-design-principles"
+      ],
+      "review_flags": [
+        "P2195/P2200不得超过等级标准任意选用高档材料缺少政策范围与依据"
+      ],
+      "allocation_id": "B116",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S027",
+      "source_start": 2208,
+      "source_end": 2219,
+      "source_title": "装修基层类型与基本要求",
+      "destination_module": "shared",
+      "destination_section": "proposed:finish-overview",
+      "destination_title": "饰面装修总论（拟新增）",
+      "content_points": [
+        "实体基层与骨架基层",
+        "承载、变形、平整度及附着牢固",
+        "基层缺陷导致开裂空鼓脱落的链条"
+      ],
+      "action": "重排编号；稳定性改为基层和支承系统稳定，基础沉降仅作影响来源之一；各部位引用而不复制",
+      "cross_references": [
+        "proposed:wall-finishes",
+        "proposed:floor-ceiling"
+      ],
+      "review_flags": [
+        "P2215把基层稳定性仅解释为地基基础避免沉降，层级不清"
+      ],
+      "allocation_id": "B117",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S028",
+      "source_start": 2220,
+      "source_end": 2240,
+      "source_title": "装修分类",
+      "destination_module": "shared",
+      "destination_section": "proposed:finish-overview",
+      "destination_title": "饰面装修总论（拟新增）",
+      "content_points": [
+        "按部位、材料、表面命名和构造工艺分类",
+        "抹灰、涂料、粘贴、钉挂的连接差别",
+        "室内墙面、地面、顶棚与室外墙面范围"
+      ],
+      "action": "合并目录式提纲与正文；制作部位×工艺矩阵；块材/卷材/面板和钉挂/干挂不能混为一个分类层级",
+      "cross_references": [
+        "proposed:wall-finishes",
+        "floor-ground-layer",
+        "proposed:floor-ceiling"
+      ],
+      "review_flags": [
+        "P2226—2227装修得部位、P2238以次明显错字"
+      ],
+      "allocation_id": "B118",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S029",
+      "source_start": 2241,
+      "source_end": 2262,
+      "source_title": "外墙抹灰与水泥石渣做法",
+      "destination_module": "wall",
+      "destination_section": "proposed:wall-finishes",
+      "destination_title": "墙体饰面构造（拟新增）",
+      "content_points": [
+        "外墙抹灰保护目的",
+        "水泥砂浆、水刷石、斩假石传统做法",
+        "底层、结合、面层的层次识读"
+      ],
+      "action": "具体传统工艺做案例卡；与P2375—2407的内外抹灰统一材料库；配比厚度与养护天数保留为原讲义历史值待核",
+      "cross_references": [
+        "plaster-plinth-01",
+        "proposed:finish-overview"
+      ],
+      "review_flags": [
+        "P2244现场时作业应为湿作业",
+        "P2256/P2262干燥百分比、按季节固定天数缺条件"
+      ],
+      "allocation_id": "B119",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S030",
+      "source_start": 2263,
+      "source_end": 2279,
+      "source_title": "分层抹灰、质量标准与基层处理",
+      "destination_module": "wall",
+      "destination_section": "proposed:wall-finishes",
+      "destination_title": "墙体饰面构造（拟新增）",
+      "content_points": [
+        "分层施工的找平、粘结和抗裂目的",
+        "砖墙、加气混凝土、混凝土等基层处理差异",
+        "灰饼、冲筋与基层清理"
+      ],
+      "action": "合并分层目的重复；普通/中级/高级旧分类作历史说明，不能混成现行验收分类；重写基层处理为材料系统适配原则",
+      "cross_references": [
+        "wall-masonry",
+        "proposed:finish-overview"
+      ],
+      "review_flags": [
+        "P2277的107胶与钢丝网方案需材料/工艺核验后决定是否保留",
+        "P2278托模油应为脱模油",
+        "P2268—2272旧质量等级和厚度待核"
+      ],
+      "allocation_id": "B120",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S031",
+      "source_start": 2280,
+      "source_end": 2298,
+      "source_title": "中灰面灰、分格与常见质量问题",
+      "destination_module": "wall",
+      "destination_section": "proposed:wall-finishes",
+      "destination_title": "墙体饰面构造（拟新增）",
+      "content_points": [
+        "中层找平、面层表面性能",
+        "分格与温度、接茬、材料胀缩",
+        "裂缝、空鼓、表面析白/色差的识别"
+      ],
+      "action": "P2291—2294并入P2268—2272；病例改为多因素分析，清水砖勾缝并入P2419—2422",
+      "cross_references": [
+        "wall-masonry"
+      ],
+      "review_flags": [
+        "P2288空鼓只归因面层中层粘结，范围过窄",
+        "P2290花脸统一解释为氢氧化钙析出有过度归因，待核",
+        "P2284防水涂料左勾缝错字"
+      ],
+      "allocation_id": "B121",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S032",
+      "source_start": 2299,
+      "source_end": 2306,
+      "source_title": "外墙涂料",
+      "destination_module": "wall",
+      "destination_section": "proposed:wall-finishes",
+      "destination_title": "墙体饰面构造（拟新增）",
+      "content_points": [
+        "成膜保护与装饰",
+        "基层找平、分层施工",
+        "有机/无机分类"
+      ],
+      "action": "合并P2410—2412；补基层含水、相容性、耐候与维护条件；删较有前途、寿命短等一概而论",
+      "cross_references": [
+        "proposed:finish-overview"
+      ],
+      "review_flags": [
+        "P2306安其成膜物应为按"
+      ],
+      "allocation_id": "B122",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S033",
+      "source_start": 2307,
+      "source_end": 2330,
+      "source_title": "贴面、湿挂和干挂",
+      "destination_module": "wall",
+      "destination_section": "proposed:wall-finishes",
+      "destination_title": "墙体饰面构造（拟新增）",
+      "content_points": [
+        "面砖、石材等材料与重量尺寸影响连接",
+        "直接粘贴、加强连接、湿挂、干挂的区别",
+        "龙骨/连接件承担重力与防水接缝的职责"
+      ],
+      "action": "P2330与P2317合并；把粘贴和机械固定分开；传统湿挂做历史识读，补石材幕墙系统边界及可靠锚固、防腐、变形能力",
+      "cross_references": [
+        "faced-plinth-01",
+        "wall-design-requirements"
+      ],
+      "review_flags": [
+        "P2318节能不行、P2327还有保温节能为无条件结论",
+        "P2326干挂法石材（玻璃幕）术语混杂",
+        "P2319栓挂雨水泥明显错字",
+        "P2320—2324连接件间距、材料尺寸待核"
+      ],
+      "allocation_id": "B123",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S034",
+      "source_start": 2331,
+      "source_end": 2344,
+      "source_title": "室内饰面与墙面特殊部位提纲",
+      "destination_module": "wall",
+      "destination_section": "proposed:wall-finishes",
+      "destination_title": "墙体饰面构造（拟新增）",
+      "content_points": [
+        "内墙面抹灰、涂料、粘贴、钉挂分类",
+        "护角、墙裙、踢脚与顶棚交接",
+        "室内外环境区别"
+      ],
+      "action": "只有提纲，主并入P2372—2429；地面/顶棚仅作跨链，避免把室内装修全部堆墙体",
+      "cross_references": [
+        "floor-ground-layer",
+        "proposed:floor-ceiling"
+      ],
+      "review_flags": [],
+      "allocation_id": "B124",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S035",
+      "source_start": 2345,
+      "source_end": 2350,
+      "source_title": "吊顶骨架与主体连接",
+      "destination_module": "floor",
+      "destination_section": "proposed:floor-ceiling",
+      "destination_title": "顶棚与吊顶构造（拟新增）",
+      "content_points": [
+        "吊杆、预埋件与主体承重连接",
+        "吊顶属于骨架基层装饰系统",
+        "连接选择与实际支承条件"
+      ],
+      "action": "并入P2481—2504的吊顶；膨胀螺栓/射钉不作无条件通用做法，补明确可用锚固及荷载设计条件",
+      "cross_references": [
+        "proposed:finish-overview"
+      ],
+      "review_flags": [
+        "P2348射钉连接适用条件待核"
+      ],
+      "allocation_id": "B125",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S036",
+      "source_start": 2351,
+      "source_end": 2371,
+      "source_title": "饰面设计方法、收头与标注",
+      "destination_module": "shared",
+      "destination_section": "proposed:finish-overview",
+      "destination_title": "饰面装修总论（拟新增）",
+      "content_points": [
+        "设计从表面使用要求推导内部构造",
+        "图纸按层次表达材料、厚度、配比、做法",
+        "交接处强调差异、找平或第三材料过渡"
+      ],
+      "action": "合并P2353/P2354/P2369以及P2356/P2358/P2371；区分设计推导顺序、实际施工顺序、图纸书写约定，不写成唯一统一规定",
+      "cross_references": [
+        "intro-drawing-standards",
+        "proposed:wall-finishes",
+        "floor-ground-layer",
+        "proposed:floor-ceiling"
+      ],
+      "review_flags": [
+        "P2356有里向外、P2357有有错字"
+      ],
+      "allocation_id": "B126",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S037",
+      "source_start": 2372,
+      "source_end": 2409,
+      "source_title": "墙面抹灰组成、材料和重复做法",
+      "destination_module": "wall",
+      "destination_section": "proposed:wall-finishes",
+      "destination_title": "墙体饰面构造（拟新增）",
+      "content_points": [
+        "内外墙抹灰各层职责及材料匹配",
+        "纸筋灰、混合灰、水泥砂浆与传统石渣饰面",
+        "命名和构造层次标注"
+      ],
+      "action": "P2377—2387并入P2263—2281；P2397—2407与P2250—2262只留一组，内墙独有纸筋/混合灰作传统案例；标注原则转共享总论",
+      "cross_references": [
+        "proposed:finish-overview"
+      ],
+      "review_flags": [
+        "P2395/P2396面层12厚底层5厚原顺序及配比须复核",
+        "P2408颜料分类仅标题，若保留需补材料性能说明"
+      ],
+      "allocation_id": "B127",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S038",
+      "source_start": 2410,
+      "source_end": 2418,
+      "source_title": "墙面刷浆、涂料与粘贴构造",
+      "destination_module": "wall",
+      "destination_section": "proposed:wall-finishes",
+      "destination_title": "墙体饰面构造（拟新增）",
+      "content_points": [
+        "垂直面饰面与水平地面结合层的差异",
+        "薄块材专用粘合与较重面材机械连接",
+        "面材、基层、粘结材料相容性"
+      ],
+      "action": "涂料并入P2299—2306，粘贴并入P2307—2330；P2418水平面做法交叉引用地面层，不重复全文",
+      "cross_references": [
+        "floor-ground-layer",
+        "proposed:finish-overview"
+      ],
+      "review_flags": [
+        "P2415塑料底板应为地板",
+        "P2418的20厚（≮30）同一结合层厚度矛盾"
+      ],
+      "allocation_id": "B128",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S039",
+      "source_start": 2419,
+      "source_end": 2429,
+      "source_title": "清水砖勾缝与墙面交接细部",
+      "destination_module": "wall",
+      "destination_section": "proposed:wall-finishes",
+      "destination_title": "墙体饰面构造（拟新增）",
+      "content_points": [
+        "勾缝严密与外观",
+        "阳角护角、墙地踢脚、墙顶交接",
+        "不同材料交接与外墙抹灰分格"
+      ],
+      "action": "P2297—2298清水砖并入；P2337—2341提纲与此处合并；讲解收头机制，节点旁只写本节点构件与施工相接关系",
+      "cross_references": [
+        "wall-masonry",
+        "floor-ground-layer",
+        "proposed:floor-ceiling"
+      ],
+      "review_flags": [
+        "P2424护角高度、P2426踢脚120—150、P2427厕所低20待核",
+        "P2429在抹应为再抹"
+      ],
+      "allocation_id": "B129",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S040",
+      "source_start": 2430,
+      "source_end": 2438,
+      "source_title": "楼地面装修总览",
+      "destination_module": "floor",
+      "destination_section": "floor-ground-layer",
+      "destination_title": "地面层",
+      "content_points": [
+        "整体、块料、塑料、木地面分类",
+        "楼地面按面层材料/做法命名",
+        "使用性能与完成面标高协调"
+      ],
+      "action": "地面层页扩充为楼地面面层与功能构造；与组成页严格区分：此页讲材料选择和节点，组成页讲传力与层次",
+      "cross_references": [
+        "floor-ground-composition",
+        "proposed:finish-overview"
+      ],
+      "review_flags": [
+        "P2431面层一般包括面层和找平层自指，层级需改",
+        "P2438厨房卫生间低20为条件性做法待核",
+        "木地面有名称无完整做法，需补写"
+      ],
+      "allocation_id": "B130",
+      "target_public_path": "public/lesson/basics/floor/floor-ground-layer.html"
+    },
+    {
+      "block_id": "S041",
+      "source_start": 2439,
+      "source_end": 2456,
+      "source_title": "水泥砂浆与水磨石整体地面",
+      "destination_module": "floor",
+      "destination_section": "floor-ground-layer",
+      "destination_title": "地面层",
+      "content_points": [
+        "整体地面单层/双层工艺概念",
+        "水磨石找平、分格、罩面与磨光",
+        "材料使用性能及维护"
+      ],
+      "action": "保留两种典型地面与工序逻辑；固定配比、厚度、养护日期转案例待核；补防滑、耐磨、基层含水和施工缺陷",
+      "cross_references": [
+        "proposed:finish-overview"
+      ],
+      "review_flags": [
+        "P2445造价底、P2454打腊错字",
+        "P2451—2454旧时间/处理工艺须核验后决定"
+      ],
+      "allocation_id": "B131",
+      "target_public_path": "public/lesson/basics/floor/floor-ground-layer.html"
+    },
+    {
+      "block_id": "S042",
+      "source_start": 2457,
+      "source_end": 2466,
+      "source_title": "块料、塑料和涂料地面",
+      "destination_module": "floor",
+      "destination_section": "floor-ground-layer",
+      "destination_title": "地面层",
+      "content_points": [
+        "块料与结合层、填缝的关系",
+        "室内外使用环境影响铺装",
+        "塑料卷材/块材及涂布地面类型"
+      ],
+      "action": "块料做法保留但按面材体系重写；塑料和涂料原文只有提纲，补基层、接缝、环保/燃烧性能及防滑选择原则",
+      "cross_references": [
+        "proposed:finish-overview"
+      ],
+      "review_flags": [
+        "P2462细沙和灰卧面料语意不清，须复核原图/文字"
+      ],
+      "allocation_id": "B132",
+      "target_public_path": "public/lesson/basics/floor/floor-ground-layer.html"
+    },
+    {
+      "block_id": "S043",
+      "source_start": 2467,
+      "source_end": 2470,
+      "source_title": "地面变形缝",
+      "destination_module": "deformation-joint",
+      "destination_section": "roof-deformation-construction",
+      "destination_title": "变形缝的构造",
+      "content_points": [
+        "基层/饰面需与结构缝协调",
+        "密封与盖缝兼顾活动能力和通行",
+        "跨缝饰面不得约束变形"
+      ],
+      "action": "主知识并入既有变形缝构造页的楼地面小节，地面层页给局部图与链接；补仅有提纲的构造说明",
+      "cross_references": [
+        "floor-ground-layer"
+      ],
+      "review_flags": [
+        "roof-deformation-construction实际标题与承载范围以公共HTML为准；不能因id含roof就局限屋面"
+      ],
+      "allocation_id": "B133",
+      "target_public_path": "public/lesson/basics/deformation-joint/roof-deformation-construction.html"
+    },
+    {
+      "block_id": "S044",
+      "source_start": 2471,
+      "source_end": 2475,
+      "source_title": "防水楼地面",
+      "destination_module": "floor",
+      "destination_section": "floor-ground-layer",
+      "destination_title": "地面层",
+      "content_points": [
+        "湿区找平、防水、保护、找坡与面层",
+        "墙根上翻、地漏、门口、穿板管防水连续",
+        "施工层次与排水路径"
+      ],
+      "action": "吸收P1773湿区做法；补完整防水系统和细部，不直接采用单一150上翻/60厚找坡固定配方",
+      "cross_references": [
+        "waterproof",
+        "floor-balcony"
+      ],
+      "review_flags": [
+        "P2473相地漏应为向；150/60/最薄30待核"
+      ],
+      "allocation_id": "B134",
+      "target_public_path": "public/lesson/basics/floor/floor-ground-layer.html"
+    },
+    {
+      "block_id": "S045",
+      "source_start": 2476,
+      "source_end": 2480,
+      "source_title": "直接顶棚",
+      "destination_module": "floor",
+      "destination_section": "proposed:floor-ceiling",
+      "destination_title": "顶棚与吊顶构造（拟新增）",
+      "content_points": [
+        "直接喷涂、抹灰、粘贴三种基本形式",
+        "板底基层与饰面的关系",
+        "装修层次对净高的影响"
+      ],
+      "action": "新增独立顶棚板块，避免混入地面层；补基层处理、粘结安全、检修与室内使用环境",
+      "cross_references": [
+        "floor-overview",
+        "proposed:wall-finishes"
+      ],
+      "review_flags": [
+        "P2479抹灰12—15厚待核"
+      ],
+      "allocation_id": "B135",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S046",
+      "source_start": 2481,
+      "source_end": 2504,
+      "source_title": "吊顶组成、材料、木龙骨、金属骨架",
+      "destination_module": "floor",
+      "destination_section": "proposed:floor-ceiling",
+      "destination_title": "顶棚与吊顶构造（拟新增）",
+      "content_points": [
+        "吊杆、主次龙骨、饰面板的受力关系",
+        "隐藏管线与净高控制",
+        "木/金属骨架、板面形式、节点连接与检修"
+      ],
+      "action": "合并P2345—2350连接方式；按非上人/上人设计条件重新组织；传统板条抹灰仅历史案例，补设备独立支承、防火、抗震与检修协调待核",
+      "cross_references": [
+        "floor-overview",
+        "stairs-overview",
+        "fire"
+      ],
+      "review_flags": [
+        "P2484—2489/P2496—2503龙骨间距截面吊杆规格不能通用",
+        "P2485园木、P2496浮动对象需回原图",
+        "P2504括号和句子未完成"
+      ],
+      "allocation_id": "B136",
+      "target_public_path": null
+    },
+    {
+      "block_id": "S047",
+      "source_start": 2505,
+      "source_end": 2547,
+      "source_title": "第七讲概述、交通与疏散、楼梯间分类",
+      "destination_module": "stairs",
+      "destination_section": "stairs-overview",
+      "destination_title": "楼梯的基本概念及设计要求",
+      "content_points": [
+        "垂直交通与紧急疏散的区别和联系",
+        "数量、位置、宽度、贯通及防火防烟",
+        "开敞、封闭、防烟楼梯间的空间关系"
+      ],
+      "action": "合并P2513/P2515及P2545结论；正文解释疏散系统，所有规范阈值建立核验清单后更新；P2508坡道跨链到专节",
+      "cross_references": [
+        "stairs-steps-ramps",
+        "fire"
+      ],
+      "review_flags": [
+        "P2513每防火分区不少于两个无适用条件",
+        "P2535乙级防火门0.9h及双向弹簧门、P2541适用范围、P2542—2543面积待核"
+      ],
+      "allocation_id": "B137",
+      "target_public_path": "public/lesson/basics/stairs/stairs-overview.html"
+    },
+    {
+      "block_id": "S048",
+      "source_start": 2548,
+      "source_end": 2576,
+      "source_title": "楼梯组成、形式和平面构成",
+      "destination_module": "stairs",
+      "destination_section": "stairs-overview",
+      "destination_title": "楼梯的基本概念及设计要求",
+      "content_points": [
+        "梯段、楼层平台、中间平台、栏杆与扶手",
+        "梯段数量和相连方式两种分类轴",
+        "直跑、折返、折角、剪刀、螺旋、弧形识图"
+      ],
+      "action": "合并P2559/P2560定义；用分类图代替散乱字母列表；适用范围与安全限制核验后补",
+      "cross_references": [
+        "stair-composition-01",
+        "match-stairs",
+        "identify-landing"
+      ],
+      "review_flags": [
+        "P2552—2557踏步数与扶手设置阈值待核",
+        "P2571不宜学校托幼、P2574不能主要交通疏散需核適用条件"
+      ],
+      "allocation_id": "B138",
+      "target_public_path": "public/lesson/basics/stairs/stairs-overview.html"
+    },
+    {
+      "block_id": "S049",
+      "source_start": 2577,
+      "source_end": 2585,
+      "source_title": "梯段板式/梁式与支承形式",
+      "destination_module": "stairs",
+      "destination_section": "stairs-rc-structure",
+      "destination_title": "钢筋混凝土楼梯构造",
+      "content_points": [
+        "施工方法、梯段构成、支承方式分三个维度",
+        "板式与梁式的受力层次",
+        "简支、悬挑、悬挂支承"
+      ],
+      "action": "从概述移入结构页；与P2590—2623统一分类避免混用；修正文内编号3/2与错字",
+      "cross_references": [
+        "stairs-overview"
+      ],
+      "review_flags": [
+        "P2577现浇3/预制2与两种句式冲突",
+        "P2580一测应为一侧"
+      ],
+      "allocation_id": "B139",
+      "target_public_path": "public/lesson/basics/stairs/stairs-rc-structure.html"
+    },
+    {
+      "block_id": "S050",
+      "source_start": 2586,
+      "source_end": 2623,
+      "source_title": "现浇钢筋混凝土楼梯及支座布置",
+      "destination_module": "stairs",
+      "destination_section": "stairs-rc-structure",
+      "destination_title": "钢筋混凝土楼梯构造",
+      "content_points": [
+        "现浇梯段、平台板、平台梁的整体关系",
+        "板式、梁板式、明步暗步、悬臂与扭板",
+        "荷载到支座及与主体结构、楼梯洞口的关系"
+      ],
+      "action": "P2593—2594与P2587—2588合并；P2615—2623与P2582—2585合并；正文讲受力，对复杂构造补图；梁板分类不能直接等于支承分类",
+      "cross_references": [
+        "floor-rc-slab"
+      ],
+      "review_flags": [
+        "P2598踏步三角形不能其结构作用有缺字且过度结论",
+        "P2612楼梯井必为刚度薄弱环节需按体系限定"
+      ],
+      "allocation_id": "B140",
+      "target_public_path": "public/lesson/basics/stairs/stairs-rc-structure.html"
+    },
+    {
+      "block_id": "S051",
+      "source_start": 2624,
+      "source_end": 2638,
+      "source_title": "踏步尺度、坡度和经验公式",
+      "destination_module": "stairs",
+      "destination_section": "stairs-overview",
+      "destination_title": "楼梯的基本概念及设计要求",
+      "content_points": [
+        "踏面b、踏高h与坡度的几何关系",
+        "步距经验式与使用者行走舒适",
+        "建筑使用类型影响尺度选择"
+      ],
+      "action": "并回概述页尺度单元；明确经验式不是强制条文；原表数据先核验适用规范后更新",
+      "cross_references": [
+        "stairs-details",
+        "stairs-steps-ramps"
+      ],
+      "review_flags": [
+        "P2628把宽和高比作坡度，几何方向需校正为h/b",
+        "P2634大写B与后文小写b不一致",
+        "P2635—2638阈值/表格待核"
+      ],
+      "allocation_id": "B141",
+      "target_public_path": "public/lesson/basics/stairs/stairs-overview.html"
+    },
+    {
+      "block_id": "S052",
+      "source_start": 2639,
+      "source_end": 2656,
+      "source_title": "梯段宽度与疏散宽度",
+      "destination_module": "stairs",
+      "destination_section": "stairs-overview",
+      "destination_title": "楼梯的基本概念及设计要求",
+      "content_points": [
+        "净宽测量与人流空间",
+        "舒适宽度、最小要求与疏散计算宽度区别",
+        "层人数及疏散路线影响设计"
+      ],
+      "action": "合并P2640/P2642标题、P2644/P2647与P2655提纲；补正确净宽测量示意及按建筑条件取值过程",
+      "cross_references": [
+        "fire"
+      ],
+      "review_flags": [
+        "P2641墙到扶手中心线净宽测法待核",
+        "P2646六层住宅1000、P2653百人指标/P2654大厅楼梯不计等待核"
+      ],
+      "allocation_id": "B142",
+      "target_public_path": "public/lesson/basics/stairs/stairs-overview.html"
+    },
+    {
+      "block_id": "S053",
+      "source_start": 2657,
+      "source_end": 2686,
+      "source_title": "梯段长度、平台、梯井与尺寸计算",
+      "destination_module": "stairs",
+      "destination_section": "stairs-overview",
+      "destination_title": "楼梯的基本概念及设计要求",
+      "content_points": [
+        "层高、级数、踏面数与水平投影长度",
+        "平台转向、开门和家具通行",
+        "梯井与楼梯间开间/进深的协调"
+      ],
+      "action": "保留L=b(N−1)但明确定义N是该梯段级数，另设全层总级数变量；计算步骤并入P2716—2725；补平台和梯井平面图",
+      "cross_references": [
+        "stairs-rc-structure"
+      ],
+      "review_flags": [
+        "P2670中间平台≥2b+h带作者问号，待核",
+        "P2680一般60—200与规范不宜＜150未解释条件，待核",
+        "P2668/P2673尺寸阈值待核"
+      ],
+      "allocation_id": "B143",
+      "target_public_path": "public/lesson/basics/stairs/stairs-overview.html"
+    },
+    {
+      "block_id": "S054",
+      "source_start": 2687,
+      "source_end": 2697,
+      "source_title": "栏杆扶手尺度",
+      "destination_module": "stairs",
+      "destination_section": "stairs-overview",
+      "destination_title": "楼梯的基本概念及设计要求",
+      "content_points": [
+        "临空侧防护与靠墙扶手",
+        "高度测量起点、水平段和使用者差异",
+        "防攀爬、抓握和可达性"
+      ],
+      "action": "尺寸与设计要求保留概述页，连接细部在stairs-details；与阳台防护共用测量示意但按场景取值",
+      "cross_references": [
+        "stairs-details",
+        "floor-balcony"
+      ],
+      "review_flags": [
+        "P2692人流股数宽度扶手位置、P2695高度及水平段长度待核"
+      ],
+      "allocation_id": "B144",
+      "target_public_path": "public/lesson/basics/stairs/stairs-overview.html"
+    },
+    {
+      "block_id": "S055",
+      "source_start": 2698,
+      "source_end": 2712,
+      "source_title": "净空高度与首层入口调整",
+      "destination_module": "stairs",
+      "destination_section": "stairs-overview",
+      "destination_title": "楼梯的基本概念及设计要求",
+      "content_points": [
+        "平台/梯段下通行净高与突出物",
+        "长短跑、局部降地面、组合调整",
+        "调整后再核平面、剖面与入口排水"
+      ],
+      "action": "正文讲净空检查方法，已有四种底层入口节点放各自适用条件和测量；P2712空间利用需按功能/消防核验",
+      "cross_references": [
+        "bottom-landing-entrance-01",
+        "bottom-landing-entrance-02",
+        "bottom-landing-entrance-03",
+        "bottom-landing-entrance-04"
+      ],
+      "review_flags": [
+        "P2701—2702净高、P2707入口高于室外100、P2712不低于1.9m待核"
+      ],
+      "allocation_id": "B145",
+      "target_public_path": "public/lesson/basics/stairs/stairs-overview.html"
+    },
+    {
+      "block_id": "S056",
+      "source_start": 2713,
+      "source_end": 2765,
+      "source_title": "楼梯设计步骤、平剖面表达与图纸深度",
+      "destination_module": "stairs",
+      "destination_section": "stairs-overview",
+      "destination_title": "楼梯的基本概念及设计要求",
+      "content_points": [
+        "从形式与踏步到平面、净空、调整的闭环",
+        "底层/中间层/顶层上下行箭头与标高",
+        "方案、初设、施工图表达目的"
+      ],
+      "action": "合并P2681—2686步骤；主讲解保留本页，图纸表达规则跨链制图标准；补规范来源与完整图例",
+      "cross_references": [
+        "intro-drawing-standards"
+      ],
+      "review_flags": [
+        "P2745不标尺寸及P2754/P2760固定1:50不宜写成所有项目绝对要求"
+      ],
+      "allocation_id": "B146",
+      "target_public_path": "public/lesson/basics/stairs/stairs-overview.html"
+    },
+    {
+      "block_id": "S057",
+      "source_start": 2766,
+      "source_end": 2790,
+      "source_title": "住宅楼梯设计实例",
+      "destination_module": "stairs",
+      "destination_section": "stairs-overview",
+      "destination_title": "楼梯的基本概念及设计要求",
+      "content_points": [
+        "层高总级数与每跑分配",
+        "开间、梯井、平台、进深协调",
+        "首层入口净高复核与调整"
+      ],
+      "action": "移为本页练习和逐步解析；先纠正题设/计算冲突，全部规范限值核验后换成明确有效条件；不用此旧例直接指导实际设计",
+      "cross_references": [
+        "bottom-landing-entrance-03"
+      ],
+      "review_flags": [
+        "P2767进深5400与P2768/P2790的5100矛盾",
+        "P2776 N=16写为每一梯段，后文却每跑8级",
+        "P2775踏高用n后又指级数需统一符号",
+        "P2772/P2775/P2778旧住宅阈值待核"
+      ],
+      "allocation_id": "B147",
+      "target_public_path": "public/lesson/basics/stairs/stairs-overview.html"
+    },
+    {
+      "block_id": "S058",
+      "source_start": 2791,
+      "source_end": 2830,
+      "source_title": "预制装配楼梯构件与布置",
+      "destination_module": "stairs",
+      "destination_section": "stairs-rc-structure",
+      "destination_title": "钢筋混凝土楼梯构造",
+      "content_points": [
+        "大中型梯段与小型踏步构件装配区别",
+        "梯段、平台梁、平台板组成",
+        "梁板与板式梯段的支承和净空关系"
+      ],
+      "action": "P2791标题改预制装配式；重排P2797—2807混插的大/小型；传统小型案例保留，补现代预制梯段连接和施工安装条件",
+      "cross_references": [
+        "floor-rc-slab"
+      ],
+      "review_flags": [
+        "P2793踢段、P2791装配是错字",
+        "P2817 L\\12符号不规范，P2825高度估算待核"
+      ],
+      "allocation_id": "B148",
+      "target_public_path": "public/lesson/basics/stairs/stairs-rc-structure.html"
+    },
+    {
+      "block_id": "S059",
+      "source_start": 2831,
+      "source_end": 2841,
+      "source_title": "梯段齐步/错步、埋步/不埋步节点",
+      "destination_module": "stairs",
+      "destination_section": "stairs-details",
+      "destination_title": "楼梯的细部构造",
+      "content_points": [
+        "齐步与错步是上下梯段关系",
+        "埋步与不埋步是梯段与平台梁关系",
+        "支承位置、平台完整性、净空与进深的取舍"
+      ],
+      "action": "主归细部页，与现有四节点textbookLinks一致；结构页仅前置概念链接；用二维对照表解释两个独立维度",
+      "cross_references": [
+        "stairs-rc-structure",
+        "stair-flight-flush-unburied-01",
+        "stair-flight-flush-buried-01",
+        "stair-flight-offset-one-01",
+        "stair-flight-offset-multiple-01"
+      ],
+      "review_flags": [
+        "P2839—2841平台梁标高/跨度优劣需以原图具体比较，避免脱离同等条件"
+      ],
+      "allocation_id": "B149",
+      "target_public_path": "public/lesson/basics/stairs/stairs-details.html"
+    },
+    {
+      "block_id": "S060",
+      "source_start": 2842,
+      "source_end": 2859,
+      "source_title": "预制构件连接、墙承与墙悬臂",
+      "destination_module": "stairs",
+      "destination_section": "stairs-rc-structure",
+      "destination_title": "钢筋混凝土楼梯构造",
+      "content_points": [
+        "踏步与斜梁、梯段与平台梁、底端与梯基连接",
+        "坐浆、插筋、预埋件的功能",
+        "墙承与墙悬臂传统构造的支承区别"
+      ],
+      "action": "分常见预制梯段连接与传统小构件拓展；补连接抗震与安装容差概念并待规范核验；传统砌入墙内不可当普遍做法",
+      "cross_references": [
+        "stairs-details"
+      ],
+      "review_flags": [
+        "P2859一段/另一段应是端、楼体间应为楼梯间",
+        "P2844—2849连接做法适用性待核"
+      ],
+      "allocation_id": "B150",
+      "target_public_path": "public/lesson/basics/stairs/stairs-rc-structure.html"
+    },
+    {
+      "block_id": "S061",
+      "source_start": 2860,
+      "source_end": 2876,
+      "source_title": "踏步面层和防滑",
+      "destination_module": "stairs",
+      "destination_section": "stairs-details",
+      "destination_title": "楼梯的细部构造",
+      "content_points": [
+        "平整、耐磨、防滑、耐冲击与易清洁",
+        "局部凹槽、防滑条、防滑包口",
+        "保护踏口与通行安全"
+      ],
+      "action": "面层材料通用做法链接地面页，本页只讲梯口、防滑及上下踏步完成面一致；突出2mm等具体旧值先核",
+      "cross_references": [
+        "floor-ground-layer"
+      ],
+      "review_flags": [
+        "P2871防滑条突出2mm的适用及绊倒风险待核",
+        "P2876滑到应为滑倒"
+      ],
+      "allocation_id": "B151",
+      "target_public_path": "public/lesson/basics/stairs/stairs-details.html"
+    },
+    {
+      "block_id": "S062",
+      "source_start": 2877,
+      "source_end": 2904,
+      "source_title": "栏杆栏板形式与连接",
+      "destination_module": "stairs",
+      "destination_section": "stairs-details",
+      "destination_title": "楼梯的细部构造",
+      "content_points": [
+        "透空、实心、混合形式及防儿童风险",
+        "立杆抗侧力与梯段/平台可靠锚固",
+        "材料与结构支承、装饰板面的区别"
+      ],
+      "action": "合并P2887/P2897；安全尺度跨链概述，正文讲连接，节点说明只介绍图内零件及固定；玻璃/木/金属适用条件补写待核",
+      "cross_references": [
+        "stairs-overview",
+        "floor-balcony"
+      ],
+      "review_flags": [
+        "P2894钢化玻璃材料不能单独等同合格防护系统",
+        "P2902拴接术语需统一为栓接/螺栓连接"
+      ],
+      "allocation_id": "B152",
+      "target_public_path": "public/lesson/basics/stairs/stairs-details.html"
+    },
+    {
+      "block_id": "S063",
+      "source_start": 2905,
+      "source_end": 2918,
+      "source_title": "扶手材料、连接与转折",
+      "destination_module": "stairs",
+      "destination_section": "stairs-details",
+      "destination_title": "楼梯的细部构造",
+      "content_points": [
+        "扶手抓握与截面",
+        "扶手和栏杆连接",
+        "齐步/错步对平台转折及连续性的影响"
+      ],
+      "action": "按直段、平台转弯、终端收头组织，删除仅见图无图说明；补连续抓握和可达性条件",
+      "cross_references": [
+        "stairs-overview",
+        "stair-flight-flush-buried-01",
+        "stair-flight-offset-one-01"
+      ],
+      "review_flags": [
+        "P2911通常扁铁疑为通长扁铁",
+        "P2916断接方案需先核扶手连续要求"
+      ],
+      "allocation_id": "B153",
+      "target_public_path": "public/lesson/basics/stairs/stairs-details.html"
+    },
+    {
+      "block_id": "S064",
+      "source_start": 2919,
+      "source_end": 2933,
+      "source_title": "台阶坡道作用、形式与台阶尺度",
+      "destination_module": "stairs",
+      "destination_section": "stairs-steps-ramps",
+      "destination_title": "台阶与坡道",
+      "content_points": [
+        "入口内外高差的过渡",
+        "台阶踏步与平台、单/双/三面形式",
+        "入口平台排水与门开启/通行"
+      ],
+      "action": "合并P2928/P2930；规范阈值核验后重写；区分普通台阶、无障碍路线和车行坡道",
+      "cross_references": [
+        "floor-ground-layer",
+        "stairs-overview"
+      ],
+      "review_flags": [
+        "P2922—2923室内2级阈值、扶手0.70m、P2931—2933宽高/平台/3%坡度待核"
+      ],
+      "allocation_id": "B154",
+      "target_public_path": "public/lesson/basics/stairs/stairs-steps-ramps.html"
+    },
+    {
+      "block_id": "S065",
+      "source_start": 2934,
+      "source_end": 2951,
+      "source_title": "台阶构造、实铺架空与防裂",
+      "destination_module": "stairs",
+      "destination_section": "stairs-steps-ramps",
+      "destination_title": "台阶与坡道",
+      "content_points": [
+        "面层、结构/垫层、基层",
+        "抗冻耐磨防滑与地基稳定",
+        "台阶与主体沉降差的协调"
+      ],
+      "action": "地面共性跨链组成页；混凝土/条石/架空分案例；防裂两种策略须解释条件，不能直接并列当通用选项",
+      "cross_references": [
+        "floor-ground-composition",
+        "concrete-steps-01",
+        "rc-elevated-steps-01",
+        "foundation-settlement"
+      ],
+      "review_flags": [
+        "P2942冻胀土换填深度及P2950—2951基础分离/整体策略待条件核验"
+      ],
+      "allocation_id": "B155",
+      "target_public_path": "public/lesson/basics/stairs/stairs-steps-ramps.html"
+    },
+    {
+      "block_id": "S066",
+      "source_start": 2952,
+      "source_end": 2957,
+      "source_title": "坡道尺度、扶手与构造提纲",
+      "destination_module": "stairs",
+      "destination_section": "stairs-steps-ramps",
+      "destination_title": "台阶与坡道",
+      "content_points": [
+        "坡段、休息平台、面层防滑",
+        "使用类型、上升高度与坡度的关系",
+        "扶手、挡轮边和入口净空协调"
+      ],
+      "action": "原文不足，结合P2508补框架；新增无障碍坡道完整讲解和练习；已有扶手/面层节点作局部说明，阈值必须核验",
+      "cross_references": [
+        "ramp-handrail-01",
+        "ramp-floor-01",
+        "ramp-floor-02"
+      ],
+      "review_flags": [
+        "P2953一般1/6～1/12不可直接套用轮椅坡道",
+        "P2508室内/室外/轮椅统一坡度无条件分档待核"
+      ],
+      "allocation_id": "B156",
+      "target_public_path": "public/lesson/basics/stairs/stairs-steps-ramps.html"
+    },
+    {
+      "block_id": "S067",
+      "source_start": 2958,
+      "source_end": 2978,
+      "source_title": "电梯类型、井道底坑机房与防火隔声",
+      "destination_module": "stairs",
+      "destination_section": "stairs-elevator",
+      "destination_title": "电梯及自动扶梯",
+      "content_points": [
+        "设备、建筑井道、底坑、顶层和机房接口",
+        "型号、载重、速度影响预留空间",
+        "防水、防火、隔声与检修"
+      ],
+      "action": "按设备供应资料协调写，保留概念；补无机房、电梯井安全检修接口及消防电梯与普通客梯区别，待权威核验；固定尺寸旧值不直接上线",
+      "cross_references": [
+        "fire",
+        "acoustic"
+      ],
+      "review_flags": [
+        "P2972底坑不小于1400m明显单位错误，拟为mm仍须核原图",
+        "P2974机房一定在顶且通常不计总高为无条件断言",
+        "P2970顶层/P2978隔声层高度数值定义不清"
+      ],
+      "allocation_id": "B157",
+      "target_public_path": "public/lesson/basics/stairs/stairs-elevator.html"
+    },
+    {
+      "block_id": "S068",
+      "source_start": 2979,
+      "source_end": 2982,
+      "source_title": "自动扶梯",
+      "destination_module": "stairs",
+      "destination_section": "stairs-elevator",
+      "destination_title": "电梯及自动扶梯",
+      "content_points": [
+        "出入口等候缓冲与设备支承",
+        "预留空间、装饰外壳及底坑",
+        "跨层开口与防火分区协调"
+      ],
+      "action": "原文仅短提纲须扩写；用厂商设备边界说明支承和检修，补自动人行道对照；消防内容链接系统专节",
+      "cross_references": [
+        "fire"
+      ],
+      "review_flags": [
+        "P2980两平行扶梯水平距400缺单位/测点且待核",
+        "P2981应左底坑应为做底坑"
+      ],
+      "allocation_id": "B158",
+      "target_public_path": "public/lesson/basics/stairs/stairs-elevator.html"
+    },
+    {
+      "block_id": "S069",
+      "source_start": 2983,
+      "source_end": 2993,
+      "source_title": "第八讲标题、屋顶作用与核心任务",
+      "destination_module": "roof",
+      "destination_section": "roof-overview",
+      "destination_title": "概述",
+      "content_points": [
+        "承重、围护、造型与使用",
+        "防排水、热工和荷载三组要求",
+        "导水与堵水、结构与围护层协同"
+      ],
+      "action": "与现有概述短文合并扩展；删口語和重复，补水汽扩散与结露的准确解释",
+      "cross_references": [
+        "waterproof",
+        "thermal",
+        "insulation"
+      ],
+      "review_flags": [
+        "P2984自种应为自重",
+        "P2992热压差对水汽渗透机理描述需复核重写"
+      ],
+      "allocation_id": "B159",
+      "target_public_path": "public/lesson/basics/roof/roof-overview.html"
+    },
+    {
+      "block_id": "S070",
+      "source_start": 2994,
+      "source_end": 3027,
+      "source_title": "屋顶材料、外形分类、平坡屋顶概念",
+      "destination_module": "roof",
+      "destination_section": "roof-overview",
+      "destination_title": "概述",
+      "content_points": [
+        "材料与形态两个分类轴",
+        "平屋顶、坡屋顶、其它空间形式",
+        "坡屋顶下空间与造型关系"
+      ],
+      "action": "形成比较表；平坡分界与阁楼净高先核验来源，不能照搬旧数值；构造层序只给示例链接roof-flat",
+      "cross_references": [
+        "roof-flat",
+        "roof-slope"
+      ],
+      "review_flags": [
+        "P3001小于10%与P3016大于1:10未覆盖等号",
+        "P3025半积、底与明显错字，阁楼净高值待核",
+        "现有HTML平屋面层序不适用于全部屋面，应标为方案示例"
+      ],
+      "allocation_id": "B160",
+      "target_public_path": "public/lesson/basics/roof/roof-overview.html"
+    },
+    {
+      "block_id": "S071",
+      "source_start": 3028,
+      "source_end": 3039,
+      "source_title": "屋顶设计要求",
+      "destination_module": "roof",
+      "destination_section": "roof-overview",
+      "destination_title": "概述",
+      "content_points": [
+        "强度刚度、耐久、防排水、热工、使用和经济",
+        "防水和排水互相配合",
+        "使用功能影响承载和保护层"
+      ],
+      "action": "合并P3031/P3032、P3035重复、P3033/P3039与P3041；不把任一层序作为标准唯一方案",
+      "cross_references": [
+        "roof-flat",
+        "roof-slope"
+      ],
+      "review_flags": [],
+      "allocation_id": "B161",
+      "target_public_path": "public/lesson/basics/roof/roof-overview.html"
+    },
+    {
+      "block_id": "S072",
+      "source_start": 3040,
+      "source_end": 3055,
+      "source_title": "屋面排水原理与坡度表示",
+      "destination_module": "roof",
+      "destination_section": "roof-overview",
+      "destination_title": "概述",
+      "content_points": [
+        "各类屋顶都需要有效排水坡度",
+        "角度、比值、百分率互换",
+        "材料、气候、构造、造型共同影响坡度"
+      ],
+      "action": "概述保留通用坡度工具，平/坡页只给各自方案；P3043堵为主改为综合系统说明",
+      "cross_references": [
+        "roof-flat",
+        "roof-slope",
+        "organized-drainage-01"
+      ],
+      "review_flags": [
+        "P3052H=1不必固定，按Δh/水平距离表达以免误解"
+      ],
+      "allocation_id": "B162",
+      "target_public_path": "public/lesson/basics/roof/roof-overview.html"
+    },
+    {
+      "block_id": "S073",
+      "source_start": 3056,
+      "source_end": 3082,
+      "source_title": "材料最小坡度旧表与气候因素",
+      "destination_module": "roof",
+      "destination_section": "roof-overview",
+      "destination_title": "概述",
+      "content_points": [
+        "面材尺寸、接缝与排水坡度关系",
+        "气候影响设计",
+        "坡度选择需要对应材料系统"
+      ],
+      "action": "两套表合并仅保留材料影响原理；历史石棉瓦等另作传统材料识读；重新建立经核验且标版本的方案表",
+      "cross_references": [
+        "roof-flat",
+        "roof-slope"
+      ],
+      "review_flags": [
+        "P3060—3064/P3066—3076两套坡度值及材料分类待核",
+        "P3066—3076表格顺序被打散，先复核原表",
+        "P3061/P3069石棉水泥瓦材料需适用性核验"
+      ],
+      "allocation_id": "B163",
+      "target_public_path": "public/lesson/basics/roof/roof-overview.html"
+    },
+    {
+      "block_id": "S074",
+      "source_start": 3083,
+      "source_end": 3094,
+      "source_title": "材料找坡与结构找坡",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "水平结构上材料找坡",
+        "结构标高形成坡度",
+        "荷载、室内顶棚与施工的取舍"
+      ],
+      "action": "保留双方案对照；结构找坡也跨链坡屋面；焦渣旧配方、≥3%选择规则核验后处理",
+      "cross_references": [
+        "roof-slope",
+        "flat-roof-01"
+      ],
+      "review_flags": [
+        "P3088焦渣配比/厚度和P3091≥3%待核",
+        "P3092视觉不好是场景判断，应改为是否符合空间要求"
+      ],
+      "allocation_id": "B164",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S075",
+      "source_start": 3095,
+      "source_end": 3113,
+      "source_title": "无组织/有组织、内外排水",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "自由落水与有组织排水路径",
+        "内排水与外排水的不同管位",
+        "气候、建筑高度、维护对选择的影响"
+      ],
+      "action": "与P3131—3147方案联动；概念只写一处，坡屋顶跨引用；旧自由落水适用阈值替换前先核验",
+      "cross_references": [
+        "roof-slope",
+        "roof-drainage-01",
+        "organized-drainage-01",
+        "eaves-gutter-01"
+      ],
+      "review_flags": [
+        "P3099贱湿应为溅湿",
+        "P3100层数/高度/年降雨量固定边界待核",
+        "内排水复杂造价高需限定系统"
+      ],
+      "allocation_id": "B165",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S076",
+      "source_start": 3114,
+      "source_end": 3130,
+      "source_title": "排水组织设计步骤与雨水管",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "汇水区域、分水线、坡向、沟、口、管",
+        "短捷流路与均匀汇水",
+        "高低屋面、沟内找坡与设备协调"
+      ],
+      "action": "合并P3104—3107/P3114—3120重复；训练追踪雨水路径；补雨量计算、溢流和堵塞工况核验，旧经验面积不作为选管依据",
+      "cross_references": [
+        "organized-drainage-01",
+        "high-low-roof-joint-01"
+      ],
+      "review_flags": [
+        "P3107两坡面相交线不一定分水线，凹线为集水，需澄清",
+        "P3123每口150—200㎡/管距、P3125—3127面积阈值与沟尺寸待核"
+      ],
+      "allocation_id": "B166",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S077",
+      "source_start": 3131,
+      "source_end": 3147,
+      "source_title": "檐沟、女儿墙和内排水方案",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "挑檐外排、女儿墙外排、内天沟",
+        "挑檐承重与抗倾覆",
+        "沟、口与防水收头关系"
+      ],
+      "action": "与P3095—3130整合图示；女儿墙高低应按使用防护和系统要求，不能统一500mm；空白其它方案按需要补写",
+      "cross_references": [
+        "eaves-gutter-01",
+        "floor-balcony"
+      ],
+      "review_flags": [
+        "P3144女儿墙一般不大于500mm不适用于所有屋面",
+        "P3146坡度反方语意不清"
+      ],
+      "allocation_id": "B167",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S078",
+      "source_start": 3148,
+      "source_end": 3164,
+      "source_title": "屋面防水系统与旧四等级表",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "防水选型依据功能、环境、耐久与可靠性",
+        "坡面构造防水和材料防水可协同",
+        "多层/复合防水的材料相容性"
+      ],
+      "action": "保留选型思路，整套Ⅰ—Ⅳ级/25、15、10、5年表移入历史存档；正式教材须按现行有效规范重建，不从旧表抽换单个数值",
+      "cross_references": [
+        "roof-slope",
+        "waterproof"
+      ],
+      "review_flags": [
+        "P3152—3164规范没有编号年代，整表待版本核验",
+        "P3160涂料一道≤2.0/≤3.0与下文最小厚度表矛盾",
+        "P3163建议车间疑为简易车间"
+      ],
+      "allocation_id": "B168",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S079",
+      "source_start": 3165,
+      "source_end": 3198,
+      "source_title": "卷材防水概念、沥青/改性沥青/高分子材料",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "连续柔性防水层适应一定变形",
+        "胎体、涂盖层和表面材料",
+        "沥青、SBS/APP、橡胶/树脂类卷材区别"
+      ],
+      "action": "分类保留但按材料化学体系重排；纸胎油毡历史案例，补现代材料参数与选型依据待核",
+      "cross_references": [
+        "waterproof"
+      ],
+      "review_flags": [
+        "P3184把PVC列入高聚物改性沥青类，分类错误疑点待材料标准核验",
+        "P3174Ⅰ—Ⅳ级适用沿用旧表，不能保留为现行规则"
+      ],
+      "allocation_id": "B169",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S080",
+      "source_start": 3199,
+      "source_end": 3210,
+      "source_title": "卷材基层处理剂和胶粘剂",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "基层处理与粘结职责区分",
+        "卷材与基层、搭接缝的相容性",
+        "专用材料应按体系和产品文件"
+      ],
+      "action": "保留功能；热沥青、汽油等现场配制配方收为历史工艺，不进入可操作教学步骤；补成套产品适配",
+      "cross_references": [],
+      "review_flags": [
+        "P3203/P3208现场加溶剂工艺须核验材料与施工安全要求",
+        "P3205云母分错字"
+      ],
+      "allocation_id": "B170",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S081",
+      "source_start": 3211,
+      "source_end": 3233,
+      "source_title": "卷材屋面基本/辅助层次、结构、找平、结合",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "基础层次按功能讲解而非固定全部必设",
+        "找平、找坡、保温、隔汽各不同",
+        "防水基层平整坚实与开裂控制"
+      ],
+      "action": "与概述层次简图、现有flat-roof节点整合；找平层材料和分缝数据先核验，补正置/倒置不同层序对照",
+      "cross_references": [
+        "flat-roof-01",
+        "roof-overview"
+      ],
+      "review_flags": [
+        "P3227—3232厚度、分缝、干燥8小时不是通用值"
+      ],
+      "allocation_id": "B171",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S082",
+      "source_start": 3234,
+      "source_end": 3266,
+      "source_title": "防水层施工、叠毡工艺及粘结方式",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "不同卷材相适配的冷粘、自粘、热熔、热风焊接",
+        "材料、接缝与基层要求影响工艺",
+        "多道设防与单层材料不是简单数量对应"
+      ],
+      "action": "P3235—3251油毡叠层与玛蹄脂表作传统工艺；现行正文按产品系统解释，不写改性沥青普遍单层；删除操作口令式细节",
+      "cross_references": [],
+      "review_flags": [
+        "P3252/P3262一般单层不能替代设防要求",
+        "P3253写两种但列三种，计数错误",
+        "P3257—3259自粘搭接需加热的条件待核"
+      ],
+      "allocation_id": "B172",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S083",
+      "source_start": 3267,
+      "source_end": 3293,
+      "source_title": "满粘/空铺/条粘/点粘、方向与搭接",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "基层粘结方式与搭接密封分别考虑",
+        "水流、风和坡度影响搭接组织",
+        "错缝、沟内接缝与连续防水"
+      ],
+      "action": "保留原理并补风揭、粘结适配；旧面积/搭接宽度表整组待核，不能推广到所有产品",
+      "cross_references": [],
+      "review_flags": [
+        "P3278坡度表3%—5%后直接15%—25%，区间5%—15%缺失",
+        "P3270—3271粘结条/点值、P3280—3288搭接表待核",
+        "P3278表格错位须回原件"
+      ],
+      "allocation_id": "B173",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S084",
+      "source_start": 3294,
+      "source_end": 3309,
+      "source_title": "防水保护层、上人与不上人",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "防水层耐候/机械损伤保护",
+        "上人屋面兼作使用面层",
+        "刚性保护与柔性防水间隔离、分格"
+      ],
+      "action": "合并P3295—3299三次目的；按外露材料及使用功能判断保护层，旧绿豆砂热作工艺历史示例；跨链地面材料",
+      "cross_references": [
+        "floor-ground-layer",
+        "flat-roof-01"
+      ],
+      "review_flags": [
+        "P3297柔性层必须设保护层为无条件结论，待核外露型材料适用",
+        "P3303热作业温度/层厚值待核"
+      ],
+      "allocation_id": "B174",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S085",
+      "source_start": 3310,
+      "source_end": 3324,
+      "source_title": "泛水与女儿墙收头",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "平立面转折防水连续",
+        "基层转角与附加增强",
+        "收头固定、密封、保护及压顶排水"
+      ],
+      "action": "用一张平立交接图解释机制；尺寸随材料系统核验；同类管道、检修口跨引用，不把所有处所都套同一高度",
+      "cross_references": [
+        "vent-pipe-roof-01",
+        "roof-access-hatch-01",
+        "waterproof"
+      ],
+      "review_flags": [
+        "P3316泛水250、P3317附加各250、P3319圆弧半径表待核",
+        "P3321通常凹槽应为通长凹槽"
+      ],
+      "allocation_id": "B175",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S086",
+      "source_start": 3325,
+      "source_end": 3333,
+      "source_title": "檐口与檐沟卷材收头",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "自由落水檐口收头与滴水",
+        "檐沟/天沟转角、附加层及收头",
+        "连续防水与可变形连接"
+      ],
+      "action": "整合排水方案与节点；已有自由落水和檐沟模型只放本节点层次、流水和失效处，通用原理链接本页",
+      "cross_references": [
+        "free-fall-ring-beam-eaves-01",
+        "free-fall-waterproof-eaves-01",
+        "eaves-gutter-01"
+      ],
+      "review_flags": [
+        "P3327凹槽范围及P3333空铺200mm待核",
+        "P3331抹处应为抹成"
+      ],
+      "allocation_id": "B176",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S087",
+      "source_start": 3334,
+      "source_end": 3350,
+      "source_title": "水落口直管/弯管与密封",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "沟/面雨水接入口和雨水管",
+        "最低标高、周边找坡与防堵",
+        "防水层伸入、接口密封与固定"
+      ],
+      "action": "按垂直排口和侧墙排口两种图对照；所有尺寸暂待核；补检修清理及溢流路径",
+      "cross_references": [
+        "organized-drainage-01",
+        "eaves-gutter-01"
+      ],
+      "review_flags": [
+        "P3342局部坡度5%/直径500、P3343—3349卷材宽/入管深度值待核"
+      ],
+      "allocation_id": "B177",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S088",
+      "source_start": 3351,
+      "source_end": 3359,
+      "source_title": "屋面等高/高低变形缝",
+      "destination_module": "deformation-joint",
+      "destination_section": "roof-deformation-construction",
+      "destination_title": "变形缝的构造",
+      "content_points": [
+        "两侧独立泛水、柔性跨缝与保护盖板",
+        "等高与高低屋面关系",
+        "缝的变形能力与防水连续"
+      ],
+      "action": "主解释并入变形缝构造页，roof-flat放屋面例图链接；现有高低节点保留材料/连接局部说明",
+      "cross_references": [
+        "roof-flat",
+        "high-low-roof-joint-01",
+        "high-low-roof-joint-02"
+      ],
+      "review_flags": [
+        "P3353墙厚120/高度250、P3355沥青麻丝材料及构造待核"
+      ],
+      "allocation_id": "B178",
+      "target_public_path": "public/lesson/basics/deformation-joint/roof-deformation-construction.html"
+    },
+    {
+      "block_id": "S089",
+      "source_start": 3360,
+      "source_end": 3364,
+      "source_title": "检修孔与屋面出入口",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "垂直检修孔与水平出入口区别",
+        "洞口上翻、泛水、压盖和门槛防水",
+        "上屋面通行与维护"
+      ],
+      "action": "主文本放flat，现有节点roof-access-hatch-01当前链接overview可保留概述入口并增flat主引用；补无障碍通行和门槛防水协调待核",
+      "cross_references": [
+        "roof-access-hatch-01",
+        "roof-overview",
+        "stairs-steps-ramps"
+      ],
+      "review_flags": [
+        "P3362/P3364统一250高度及砖挡墙套用待核",
+        "P3364档墙应为挡墙"
+      ],
+      "allocation_id": "B179",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S090",
+      "source_start": 3365,
+      "source_end": 3387,
+      "source_title": "刚性防水概念、范围与构造层",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "细石混凝土刚性层与变形开裂",
+        "结构、找平、隔离、防水的职责",
+        "气候、结构、保温与施工条件影响选择"
+      ],
+      "action": "保留传统刚性屋面机制作为案例；区分刚性防水、结构防水、刚性保护层；旧等级适用与结构找坡绝对规则须重建核验",
+      "cross_references": [
+        "rigid-roof-transverse-joint-01",
+        "waterproof"
+      ],
+      "review_flags": [
+        "P3379厚度不小于20与P3389总厚40—60表述不一致",
+        "P3372南方/日温差范围、P3373等级适用、P3386结构找坡须条件核验"
+      ],
+      "allocation_id": "B180",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S091",
+      "source_start": 3388,
+      "source_end": 3406,
+      "source_title": "刚性防水混凝土、外加剂、隔离、找平",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "抗裂钢筋、分缝、养护和材料配合",
+        "隔离层降低层间变形传递",
+        "不同位置隔离层材料功能"
+      ],
+      "action": "表格复原；外加剂只讲目的与试配原则，不提供通用配方；隔离≠隔汽，勿把倒置隔离层纤维植物误写作材料",
+      "cross_references": [
+        "flat-roof-01"
+      ],
+      "review_flags": [
+        "P3399把减水剂解释为加快凝结速度需复核",
+        "P3403纤维植物疑为纤维织物",
+        "P3389—3390厚度钢筋及位置待核"
+      ],
+      "allocation_id": "B181",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S092",
+      "source_start": 3407,
+      "source_end": 3431,
+      "source_title": "刚性屋面分格缝",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "温度/结构变形释放",
+        "支座、板缝、转折、屋脊等敏感部位",
+        "止水密封与缝内钢筋关系"
+      ],
+      "action": "合并P3409—3414措施与前文；正文比较缝的位置与水流，四个现有节点描述具体图，不把缝形尺寸作为统一标准",
+      "cross_references": [
+        "rigid-roof-transverse-joint-01",
+        "rigid-roof-transverse-joint-02",
+        "rigid-roof-ridge-joint-01",
+        "rigid-roof-ridge-joint-02"
+      ],
+      "review_flags": [
+        "P3422—3427间距6m/屋脊10m/缝宽20/封缝材料尺寸待核",
+        "P3429平行水流标横向、P3431垂直标纵向需核图中方向基准"
+      ],
+      "allocation_id": "B182",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S093",
+      "source_start": 3432,
+      "source_end": 3452,
+      "source_title": "刚性屋面泛水、檐口、落口",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "刚柔交接、防裂与密封",
+        "自由落水、檐沟、女儿墙排水",
+        "水落口周边增强与接缝"
+      ],
+      "action": "与卷材细部共同解释防水连续，但分别展示刚性层的变形处理；书上两种/见图需补原图信息；新规范推荐需补具体版本才可用",
+      "cross_references": [
+        "free-fall-waterproof-eaves-01",
+        "eaves-gutter-01",
+        "vent-pipe-roof-01"
+      ],
+      "review_flags": [
+        "P3435泛水一次浇筑/250、P3442伸60、P3444新规范推荐10×10、P3445伸80待核",
+        "P3450造平应为找平"
+      ],
+      "allocation_id": "B183",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S094",
+      "source_start": 3453,
+      "source_end": 3493,
+      "source_title": "涂膜材料、厚度旧表与胎体",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "涂料成膜、胎体增强与连续防水",
+        "按基料及施工方法分类",
+        "材料厚度、用量和成膜质量的关系"
+      ],
+      "action": "表格复原后标历史；整套等级与厚度联动待现行核验；分类按材料体系重写，勿混用溶剂/稀释剂/施工温度轴",
+      "cross_references": [],
+      "review_flags": [
+        "P3454—3485旧四等级与厚度表整组待核",
+        "P3490热溶应为热熔或原意另核"
+      ],
+      "allocation_id": "B184",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S095",
+      "source_start": 3494,
+      "source_end": 3510,
+      "source_title": "涂膜屋面构造、氯丁/焦油聚氨酯旧材料",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "基层、底涂、增强层、面涂和保护的连续关系",
+        "干/湿铺增强胎体工艺差别",
+        "材料相容、固化和层间施工条件"
+      ],
+      "action": "保留涂膜机制；焦油聚氨酯、塑料油膏等作待核历史材料，新增现代体系案例；不直接发布旧配方与固定遍数",
+      "cross_references": [],
+      "review_flags": [
+        "P3508焦油聚氨酯材料现行适用性待核",
+        "P3507最后一边/细纱错字",
+        "P3497厚度及圆角50待核"
+      ],
+      "allocation_id": "B185",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S096",
+      "source_start": 3511,
+      "source_end": 3526,
+      "source_title": "瓦屋面原理、结构体系概念",
+      "destination_module": "roof",
+      "destination_section": "roof-slope",
+      "destination_title": "坡屋面构造",
+      "content_points": [
+        "瓦搭接导水与辅助防水体系",
+        "屋面与支承结构的层级",
+        "有檩/无檩及传统材料更新"
+      ],
+      "action": "保留传统瓦屋面入门；P3512未发生重大变化重写为本例传统系统，补现代下覆防水/通风等体系；与概述分类避免重复",
+      "cross_references": [
+        "sloped-roof-01",
+        "roof-overview"
+      ],
+      "review_flags": [
+        "P3520桁(heng)架读音错误，桁架háng；宜用术语解释避免误读",
+        "P3515—3516平坡结构完全相同/无本质不同过度概括"
+      ],
+      "allocation_id": "B186",
+      "target_public_path": "public/lesson/basics/roof/roof-slope.html"
+    },
+    {
+      "block_id": "S097",
+      "source_start": 3527,
+      "source_end": 3559,
+      "source_title": "山墙承檩、檩条与屋架承檩",
+      "destination_module": "roof",
+      "destination_section": "roof-slope",
+      "destination_title": "坡屋面构造",
+      "content_points": [
+        "檩条支承屋面板、山墙/屋架支承檩条",
+        "木、混凝土、钢檩及支承防腐连接",
+        "屋架弦杆腹杆、纵横支撑与空间稳定"
+      ],
+      "action": "正文讲传力与空间稳定，传统跨度/搁置长度仅原图案例待核；补钢檩条原文空白及现代支承图",
+      "cross_references": [],
+      "review_flags": [
+        "P3529檩挑应为檩条",
+        "P3542搁置70/出挑400、P3551—3556跨度与屋架距待核",
+        "P3548上弦受压下弦受拉须限定荷载与结构工况"
+      ],
+      "allocation_id": "B187",
+      "target_public_path": "public/lesson/basics/roof/roof-slope.html"
+    },
+    {
+      "block_id": "S098",
+      "source_start": 3560,
+      "source_end": 3582,
+      "source_title": "双坡、四坡、歇山、转角屋顶结构布置",
+      "destination_module": "roof",
+      "destination_section": "roof-slope",
+      "destination_title": "坡屋面构造",
+      "content_points": [
+        "屋顶平面与结构支承协调",
+        "半屋架、斜梁与转角交汇传力",
+        "丁字交接的檩条支承路径"
+      ],
+      "action": "合并P3564—3570与P3579—3581丁字交接重复；复杂传统体系作图例拓展，补支座和稳定说明",
+      "cross_references": [],
+      "review_flags": [
+        "P3563两两个错字",
+        "P3576露出上花、P3578板屋架疑为山花/半屋架，须回原图核对"
+      ],
+      "allocation_id": "B188",
+      "target_public_path": "public/lesson/basics/roof/roof-slope.html"
+    },
+    {
+      "block_id": "S099",
+      "source_start": 3583,
+      "source_end": 3599,
+      "source_title": "正脊、斜脊、斜天沟与四坡组织",
+      "destination_module": "roof",
+      "destination_section": "roof-slope",
+      "destination_title": "坡屋面构造",
+      "content_points": [
+        "凸线分水、凹线集水",
+        "等坡等高檐口的45°平面几何",
+        "从建筑平面分解到屋顶脊谷线"
+      ],
+      "action": "合并P3583—3586/P3587—3592；保留四坡作图步骤转练习；45°仅明确等坡等高条件，不推广全部屋顶",
+      "cross_references": [
+        "roof-overview",
+        "organized-drainage-01"
+      ],
+      "review_flags": [],
+      "allocation_id": "B189",
+      "target_public_path": "public/lesson/basics/roof/roof-slope.html"
+    },
+    {
+      "block_id": "S100",
+      "source_start": 3600,
+      "source_end": 3645,
+      "source_title": "平瓦、冷摊瓦、木望板、挂瓦板、混凝土基层",
+      "destination_module": "roof",
+      "destination_section": "roof-slope",
+      "destination_title": "坡屋面构造",
+      "content_points": [
+        "瓦、挂瓦条、顺水条、基层各职责",
+        "不同支承/基层/辅助防水做法",
+        "传统冷摊瓦与现代有防水层体系对照"
+      ],
+      "action": "按木挂瓦、钢挂瓦、砂浆卧瓦三现有节点组织现代候选；旧冷摊/预制挂瓦板作历史识读；缺少金属面屋面需另补",
+      "cross_references": [
+        "wood-batten-tile-roof-01",
+        "steel-batten-tile-roof-01",
+        "mortar-bed-tile-roof-01"
+      ],
+      "review_flags": [
+        "P3617/P3626/P3630/P3633/P3639旧等级适用待核",
+        "P3636/P3642水泥钉固定瓦条作为通用规则待核",
+        "P3606—3608瓦尺寸重量非所有产品通用"
+      ],
+      "allocation_id": "B190",
+      "target_public_path": "public/lesson/basics/roof/roof-slope.html"
+    },
+    {
+      "block_id": "S101",
+      "source_start": 3646,
+      "source_end": 3674,
+      "source_title": "坡屋顶纵墙/山墙檐口",
+      "destination_module": "roof",
+      "destination_section": "roof-slope",
+      "destination_title": "坡屋面构造",
+      "content_points": [
+        "挑檐、女儿墙包檐、硬山和悬山",
+        "结构出挑、瓦头、封檐与泛水",
+        "传统木/砖/混凝土出檐做法"
+      ],
+      "action": "保留类型与防水逻辑，具体悬挑尺度只作为原图条件；传统做法精简成对照图库，不逐皮尺寸背诵",
+      "cross_references": [
+        "eaves-gutter-01",
+        "wood-batten-tile-roof-01"
+      ],
+      "review_flags": [
+        "P3651—3659各出挑长度与压入比、P3669泛水180待核",
+        "P3654椽子调出、P3657下弦出错字"
+      ],
+      "allocation_id": "B191",
+      "target_public_path": "public/lesson/basics/roof/roof-slope.html"
+    },
+    {
+      "block_id": "S102",
+      "source_start": 3675,
+      "source_end": 3699,
+      "source_title": "坡屋顶排水沟、屋脊、烟囱",
+      "destination_module": "roof",
+      "destination_section": "roof-slope",
+      "destination_title": "坡屋面构造",
+      "content_points": [
+        "檐沟、天沟、斜天沟、屋脊位置",
+        "金属沟与瓦/辅助防水搭接",
+        "穿屋面烟囱的防火和防水分别处理"
+      ],
+      "action": "通用排水链接roof-flat；此处只讲瓦面交汇、脊谷、檐沟及烟囱节点；补穿屋面管道/天窗现代案例",
+      "cross_references": [
+        "roof-flat",
+        "vent-pipe-roof-01",
+        "eaves-gutter-01",
+        "fire"
+      ],
+      "review_flags": [
+        "P3681金属号数/挂钩间距、P3685沟尺寸、P3690伸瓦下150、P3698烟囱370待核",
+        "P3694两坡面相角成斜凸角其浇现错字"
+      ],
+      "allocation_id": "B192",
+      "target_public_path": "public/lesson/basics/roof/roof-slope.html"
+    },
+    {
+      "block_id": "S103",
+      "source_start": 3700,
+      "source_end": 3720,
+      "source_title": "小青瓦、筒板瓦与传统细部",
+      "destination_module": "roof",
+      "destination_section": "roof-slope",
+      "destination_title": "坡屋面构造",
+      "content_points": [
+        "底瓦/盖瓦、仰铺/覆铺与搭接",
+        "传统基层、冷摊和灰泥卧瓦",
+        "传统檐口、脊、沟的材料逻辑"
+      ],
+      "action": "保留为传统构造拓展及识图，尺寸和搭接在原图条件下说明；不代替现代瓦屋面设计主线",
+      "cross_references": [
+        "mortar-bed-tile-roof-01"
+      ],
+      "review_flags": [
+        "P3709/P3712荆岜疑为荆笆，需原图复核",
+        "P3711压七露三/六四和瓦长比例待核条件"
+      ],
+      "allocation_id": "B193",
+      "target_public_path": "public/lesson/basics/roof/roof-slope.html"
+    },
+    {
+      "block_id": "S104",
+      "source_start": 3721,
+      "source_end": 3726,
+      "source_title": "坡屋面的保温",
+      "destination_module": "roof",
+      "destination_section": "roof-slope",
+      "destination_title": "坡屋面构造",
+      "content_points": [
+        "保温置于坡面支承间或顶棚界面",
+        "热工边界随利用空间改变",
+        "屋面保温与顶棚的交接"
+      ],
+      "action": "传统稻草泥保留历史案例；正文补屋面板上/下、阁楼保温边界、隔汽通风及防火等现代方案待核",
+      "cross_references": [
+        "roof-flat",
+        "proposed:floor-ceiling",
+        "thermal",
+        "insulation"
+      ],
+      "review_flags": [
+        "P3723稻草泥的适用与燃烧性能须核"
+      ],
+      "allocation_id": "B194",
+      "target_public_path": "public/lesson/basics/roof/roof-slope.html"
+    },
+    {
+      "block_id": "S105",
+      "source_start": 3727,
+      "source_end": 3750,
+      "source_title": "屋顶热工概述、分区表",
+      "destination_module": "roof",
+      "destination_section": "roof-overview",
+      "destination_title": "概述",
+      "content_points": [
+        "保温隔热与室内环境、节能",
+        "气候与使用工况影响热工方案",
+        "屋顶热工需结合建筑整体"
+      ],
+      "action": "通用机理主知识交原则页thermal/insulation，本章只给应用入口；原分区表复原后待核有效版本，删扇扇子的课堂玩笑",
+      "cross_references": [
+        "thermal",
+        "insulation",
+        "roof-flat",
+        "roof-slope"
+      ],
+      "review_flags": [
+        "P3736—3738连续两列夏热冬冷，分类标签重复",
+        "P3740第三列最冷月0～-10及表格列位待核",
+        "P3733热量传导/对流解释过度概括"
+      ],
+      "allocation_id": "B195",
+      "target_public_path": "public/lesson/basics/roof/roof-overview.html"
+    },
+    {
+      "block_id": "S106",
+      "source_start": 3751,
+      "source_end": 3784,
+      "source_title": "屋顶保温材料及铺设",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "热阻与保温层",
+        "松散、整体混合料、板状施工形式",
+        "含水、强度、材料厚度与施工保护"
+      ],
+      "action": "保留材料和水分影响原理；扩展现代保温材料与防火/热工参数选取依据待核；旧散料/炉渣工艺缩为历史案例",
+      "cross_references": [
+        "thermal",
+        "insulation",
+        "roof-slope"
+      ],
+      "review_flags": [
+        "P3753三类只列两类，补板状",
+        "P3755导热0.25/P3756重度10等不能当材料通用门槛",
+        "P3780不破布裂错字"
+      ],
+      "allocation_id": "B196",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S107",
+      "source_start": 3785,
+      "source_end": 3822,
+      "source_title": "正置保温、隔汽与湿气",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "保温层在防水层下的层序",
+        "室内水汽、施工水分与结露/起鼓",
+        "隔汽位置和连续性应依据气候、室内工况与计算"
+      ],
+      "action": "与现有flat-roof示例联动；统一隔汽术语；不保留纬度/湿度单一触发规则，通用原理链接原则页，层序在案例中说明",
+      "cross_references": [
+        "flat-roof-01",
+        "thermal",
+        "moisture"
+      ],
+      "review_flags": [
+        "P3806—3807纬度40、湿度75/80规则待核",
+        "P3796固定60/70挤塑板厚与P3810上翻150待核",
+        "P3808恒要求缺恒湿；P3786保温曾错字"
+      ],
+      "allocation_id": "B197",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S108",
+      "source_start": 3823,
+      "source_end": 3837,
+      "source_title": "排汽屋面",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "基层施工水分与防水层起鼓",
+        "排汽道/排汽孔连通及防雨",
+        "排汽口根部防水与维护"
+      ],
+      "action": "补排汽与室内通风/屋面防水透气不同系统的区别；原道距和孔数仅作历史经验待核；可与出屋面管节点对照但不能互替",
+      "cross_references": [
+        "vent-pipe-roof-01",
+        "moisture"
+      ],
+      "review_flags": [
+        "P3824以有效避免卷材句子未完成",
+        "P3828道距6m/P3834每36㎡一孔须核构造条件"
+      ],
+      "allocation_id": "B198",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S109",
+      "source_start": 3838,
+      "source_end": 3855,
+      "source_title": "倒置式保温",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "防水在保温下，保护防水的温度和机械作用",
+        "保温吸水、上覆稳定与排水",
+        "与正置屋面的层序比较"
+      ],
+      "action": "合并两次标题；补滤水/隔离、雨水影响热工和材料适配待核；删除任何气候均不结冰及固定温差的无来源断言",
+      "cross_references": [
+        "flat-roof-01",
+        "insulation"
+      ],
+      "review_flags": [
+        "P3848/P3854挤塑板自防水不能等同防水层",
+        "P3852全年温差85/十几/20及严寒不结冰没有测量条件",
+        "P3855今后重点时间性结论"
+      ],
+      "allocation_id": "B199",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S110",
+      "source_start": 3856,
+      "source_end": 3865,
+      "source_title": "隔热机理、室内热源与综合策略",
+      "destination_module": "roof",
+      "destination_section": "roof-overview",
+      "destination_title": "概述",
+      "content_points": [
+        "太阳辐射、室外气温与室内热源",
+        "遮阳、通风、围护热工和绿化协同",
+        "屋顶是整体热环境策略的一部分"
+      ],
+      "action": "合并P3733/P3864重复残句，移原则详解至thermal/insulation，概述仅给屋顶方案选择概览",
+      "cross_references": [
+        "thermal",
+        "insulation",
+        "roof-flat",
+        "roof-slope"
+      ],
+      "review_flags": [
+        "P3864在夏季空气对流温度更快提高属无条件断言，与P3863/P3865通风改善矛盾"
+      ],
+      "allocation_id": "B200",
+      "target_public_path": "public/lesson/basics/roof/roof-overview.html"
+    },
+    {
+      "block_id": "S111",
+      "source_start": 3866,
+      "source_end": 3888,
+      "source_title": "架空板与顶棚通风隔热",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "遮挡太阳辐射并组织通风带热",
+        "结构上/下通风空气间层",
+        "进出风、防雨、防堵与维护"
+      ],
+      "action": "合并P3876/P3877条件重复；顶棚隔热与floor-ceiling跨链，屋顶页讲热工、顶棚页讲吊顶支承；用真实方案限定通风效果",
+      "cross_references": [
+        "proposed:floor-ceiling",
+        "thermal",
+        "roof-slope"
+      ],
+      "review_flags": [
+        "P3874高度100—300、P3876宽10m通风桥/P3886净高500待核",
+        "P3885顶鹏/P3887百页窗错字"
+      ],
+      "allocation_id": "B201",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S112",
+      "source_start": 3889,
+      "source_end": 3916,
+      "source_title": "蓄水隔热屋面及一壁三孔",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "水蒸发带热与蓄水荷载",
+        "分仓、过水、溢水、泄水和给水维护",
+        "独立变形区与防水连续"
+      ],
+      "action": "作为特定历史/实验案例而非普遍推荐；两个已存模型显示孔位与水路，正文补适用、结构、卫生、维护工况待核；不能依据模型存在推定做法现行有效",
+      "cross_references": [
+        "water-storage-parapet-drainage-01",
+        "water-storage-eaves-drainage-01"
+      ],
+      "review_flags": [
+        "P3894冬季保温、P3895不宜地震区等需条件核验",
+        "P3898水深150—200/坡0.5、P3900深600—700、P3903旧Ⅲ级设防、P3906分区尺寸待核",
+        "P3911泄水孔中距≥15m方向疑误，须原图核验"
+      ],
+      "allocation_id": "B202",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S113",
+      "source_start": 3917,
+      "source_end": 3942,
+      "source_title": "种植隔热、基质、排灌、防水、防护",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "植被遮荫和栽培介质热工影响",
+        "新增荷载、过滤排水与根系对防水影响",
+        "给水、维护、上人防护与花池边界"
+      ],
+      "action": "保留系统思考，重建现代种植屋面层次：耐根穿刺、防护、排蓄水、过滤、基质等须经规范核验后补写；旧一布四油处理不直接上线；蓄水种植仅题目须补或删空标题",
+      "cross_references": [
+        "roof-overview",
+        "floor-balcony",
+        "waterproof",
+        "insulation"
+      ],
+      "review_flags": [
+        "P3930统一300基质、P3935坡3%、P3938旧Ⅱ级/两道防水材料组合待核",
+        "P3941种植屋面一律上人需按实际可达使用定义",
+        "P3928家一些、P3932易采用、P3938裂缝出错字"
+      ],
+      "allocation_id": "B203",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "S114",
+      "source_start": 3943,
+      "source_end": 3944,
+      "source_title": "反射降温标题与教学顺序备注",
+      "destination_module": "roof",
+      "destination_section": "roof-flat",
+      "destination_title": "平屋面构造",
+      "content_points": [
+        "反射降温只存在标题，没有可直接归位正文",
+        "与屋面颜色/表面辐射吸收的关系需补写"
+      ],
+      "action": "反射降温拟补为隔热方案的短节；P3944是教师授课次序备注，只存档，不作为网站操作指令",
+      "cross_references": [
+        "thermal",
+        "insulation"
+      ],
+      "review_flags": [
+        "内容缺失；不能凭标题声称教材已覆盖"
+      ],
+      "allocation_id": "B204",
+      "target_public_path": "public/lesson/basics/roof/roof-flat.html"
+    },
+    {
+      "block_id": "R003",
+      "source_start": 3945,
+      "source_end": 3985,
+      "source_title": "变形作用与变形缝总概念",
+      "destination_module": "deformation-joint",
+      "destination_section": "roof-deformation-concept",
+      "destination_title": "建筑变形缝的概念",
+      "content_points": [
+        "温度、沉降、地震引起的变形",
+        "分成独立结构单元的原理",
+        "伸缩缝、沉降缝、抗震缝三类",
+        "设缝后围护和使用连续性问题"
+      ],
+      "action": "整理改写后并入",
+      "cross_references": [
+        "roof-deformation-location",
+        "roof-deformation-construction"
+      ],
+      "review_flags": [
+        "合并两遍设置场景",
+        "P3946等错字和残句须改写"
+      ],
+      "allocation_id": "B205",
+      "target_public_path": "public/lesson/basics/deformation-joint/roof-deformation-concept.html"
+    },
+    {
+      "block_id": "R004",
+      "source_start": 3986,
+      "source_end": 3989,
+      "source_title": "伸缩缝定义",
+      "destination_module": "deformation-joint",
+      "destination_section": "roof-deformation-concept",
+      "destination_title": "建筑变形缝的概念",
+      "content_points": [
+        "伸缩缝的原因与作用"
+      ],
+      "action": "整理改写后并入",
+      "cross_references": [
+        "roof-deformation-location"
+      ],
+      "review_flags": [],
+      "allocation_id": "B206",
+      "target_public_path": "public/lesson/basics/deformation-joint/roof-deformation-concept.html"
+    },
+    {
+      "block_id": "R005",
+      "source_start": 3990,
+      "source_end": 3999,
+      "source_title": "伸缩缝设置影响因素",
+      "destination_module": "deformation-joint",
+      "destination_section": "roof-deformation-location",
+      "destination_title": "变形缝的设置",
+      "content_points": [
+        "结构材料、结构整体性、屋顶保温隔热与环境温差",
+        "用条件说明设置间距的差异"
+      ],
+      "action": "整理改写后并入",
+      "cross_references": [],
+      "review_flags": [
+        "不能将伸缩率与抗拉强度等同",
+        "不能笼统将装配式结构等同于整体性差"
+      ],
+      "allocation_id": "B207",
+      "target_public_path": "public/lesson/basics/deformation-joint/roof-deformation-location.html"
+    },
+    {
+      "block_id": "R006",
+      "source_start": 4000,
+      "source_end": 4008,
+      "source_title": "伸缩缝断开范围和间距表",
+      "destination_module": "deformation-joint",
+      "destination_section": "roof-deformation-construction",
+      "destination_title": "变形缝的构造",
+      "content_points": [
+        "伸缩缝断开范围",
+        "缝内弹性填充和立面可变形处理"
+      ],
+      "action": "整理改写后并入",
+      "cross_references": [
+        "roof-deformation-location"
+      ],
+      "review_flags": [
+        "P4001缝宽20-30mm为待核历史数值",
+        "P4002-4007旧间距表重建并核对出处",
+        "石棉水泥瓦只作为历史材料说明"
+      ],
+      "allocation_id": "B208",
+      "target_public_path": "public/lesson/basics/deformation-joint/roof-deformation-construction.html"
+    },
+    {
+      "block_id": "R007",
+      "source_start": 4009,
+      "source_end": 4012,
+      "source_title": "沉降缝定义",
+      "destination_module": "deformation-joint",
+      "destination_section": "roof-deformation-concept",
+      "destination_title": "建筑变形缝的概念",
+      "content_points": [
+        "不均匀沉降、独立沉降单元"
+      ],
+      "action": "整理改写后并入",
+      "cross_references": [
+        "foundation-settlement"
+      ],
+      "review_flags": [],
+      "allocation_id": "B209",
+      "target_public_path": "public/lesson/basics/deformation-joint/roof-deformation-concept.html"
+    },
+    {
+      "block_id": "R008",
+      "source_start": 4013,
+      "source_end": 4017,
+      "source_title": "沉降缝设置场景",
+      "destination_module": "deformation-joint",
+      "destination_section": "roof-deformation-location",
+      "destination_title": "变形缝的设置",
+      "content_points": [
+        "土质差异、高差与荷载差异、结构变化、新旧建筑交界"
+      ],
+      "action": "整理改写后并入",
+      "cross_references": [
+        "foundation-settlement"
+      ],
+      "review_flags": [],
+      "allocation_id": "B210",
+      "target_public_path": "public/lesson/basics/deformation-joint/roof-deformation-location.html"
+    },
+    {
+      "block_id": "R009",
+      "source_start": 4018,
+      "source_end": 4031,
+      "source_title": "沉降缝断开范围和缝宽表",
+      "destination_module": "deformation-joint",
+      "destination_section": "roof-deformation-construction",
+      "destination_title": "变形缝的构造",
+      "content_points": [
+        "自基础至屋顶断开",
+        "缝宽与高度、沉降和倾斜有关"
+      ],
+      "action": "整理改写后并入",
+      "cross_references": [
+        "foundation-settlement"
+      ],
+      "review_flags": [
+        "P4021-4031表格须重新对齐，不能按抽取文本自动生成表",
+        "P4022首档写成＞5m，疑似符号错误，须回查原表",
+        "缝宽表来源和适用条件待核"
+      ],
+      "allocation_id": "B211",
+      "target_public_path": "public/lesson/basics/deformation-joint/roof-deformation-construction.html"
+    },
+    {
+      "block_id": "R010",
+      "source_start": 4032,
+      "source_end": 4034,
+      "source_title": "抗震缝定义",
+      "destination_module": "deformation-joint",
+      "destination_section": "roof-deformation-concept",
+      "destination_title": "建筑变形缝的概念",
+      "content_points": [
+        "地震中相邻单元相对位移与碰撞风险"
+      ],
+      "action": "整理改写后并入",
+      "cross_references": [],
+      "review_flags": [
+        "仅设防烈度7-9度的范围表述待核"
+      ],
+      "allocation_id": "B212",
+      "target_public_path": "public/lesson/basics/deformation-joint/roof-deformation-concept.html"
+    },
+    {
+      "block_id": "R011",
+      "source_start": 4035,
+      "source_end": 4039,
+      "source_title": "抗震缝设置场景",
+      "destination_module": "deformation-joint",
+      "destination_section": "roof-deformation-location",
+      "destination_title": "变形缝的设置",
+      "content_points": [
+        "复杂平面、刚度差异、高差、错层和不同体系",
+        "结合其他变形缝考虑"
+      ],
+      "action": "整理改写后并入",
+      "cross_references": [],
+      "review_flags": [
+        "高差6m等判据不得脱离结构体系直接发布"
+      ],
+      "allocation_id": "B213",
+      "target_public_path": "public/lesson/basics/deformation-joint/roof-deformation-location.html"
+    },
+    {
+      "block_id": "R012",
+      "source_start": 4040,
+      "source_end": 4049,
+      "source_title": "抗震缝断开范围和缝宽",
+      "destination_module": "deformation-joint",
+      "destination_section": "roof-deformation-construction",
+      "destination_title": "变形缝的构造",
+      "content_points": [
+        "缝宽需满足结构位移需求",
+        "结合伸缩缝与沉降缝的原则"
+      ],
+      "action": "整理改写后并入",
+      "cross_references": [],
+      "review_flags": [
+        "旧宽度公式和所有数值须核验",
+        "基础可不断不能只用振动小解释",
+        "按不同结构体系区分规则"
+      ],
+      "allocation_id": "B214",
+      "target_public_path": "public/lesson/basics/deformation-joint/roof-deformation-construction.html"
+    },
+    {
+      "block_id": "R013",
+      "source_start": 4050,
+      "source_end": 4080,
+      "source_title": "各部位变形缝节点",
+      "destination_module": "deformation-joint",
+      "destination_section": "roof-deformation-construction",
+      "destination_title": "变形缝的构造",
+      "content_points": [
+        "双墙、双柱、悬挑、连接廊等结构布置",
+        "墙面平缝、转角缝的覆盖和填缝",
+        "屋顶等高与高低跨盖缝",
+        "内墙和楼地面盖缝"
+      ],
+      "action": "整理改写后并入",
+      "cross_references": [
+        "wall-masonry",
+        "roof-flat",
+        "floor-ground-layer"
+      ],
+      "review_flags": [
+        "P4079楼地面盖缝只有题头，需补正文",
+        "P4067见第六章与现有章节编号不匹配",
+        "补防火封堵及盖缝构件变形能力，避免刚性跨接"
+      ],
+      "allocation_id": "B215",
+      "target_public_path": "public/lesson/basics/deformation-joint/roof-deformation-construction.html"
+    },
+    {
+      "block_id": "R014",
+      "source_start": 4081,
+      "source_end": 4090,
+      "source_title": "设缝以外的措施",
+      "destination_module": "deformation-joint",
+      "destination_section": "roof-deformation-location",
+      "destination_title": "变形缝的设置",
+      "content_points": [
+        "设缝与其他措施的比较",
+        "温度应力验算、施工顺序、后浇带、地基处理、形体优化"
+      ],
+      "action": "整理改写后并入",
+      "cross_references": [
+        "foundation-settlement"
+      ],
+      "review_flags": [
+        "P4085封顶约两周后浇筑不能作为通用施工要求",
+        "后浇带不能直接等同沉降缝",
+        "个案措施需结构专业设计依据"
+      ],
+      "allocation_id": "B216",
+      "target_public_path": "public/lesson/basics/deformation-joint/roof-deformation-location.html"
+    },
+    {
+      "block_id": "R015",
+      "source_start": 4091,
+      "source_end": 4101,
+      "source_title": "住宅楼梯考试与补考题",
+      "destination_module": "training",
+      "destination_section": "proposed:training-stair-drawing",
+      "destination_title": "楼梯绘图训练",
+      "content_points": [
+        "六层住宅双跑楼梯平剖面",
+        "底层入口处理",
+        "栏杆扶手和踏步节点详图"
+      ],
+      "action": "合并主考题与补考题，保留题目变式",
+      "cross_references": [
+        "stairs-overview",
+        "stairs-details"
+      ],
+      "review_flags": [
+        "题目需补附图",
+        "尺寸须在新规范下重算"
+      ],
+      "allocation_id": "B217",
+      "target_public_path": null
+    },
+    {
+      "block_id": "R016",
+      "source_start": 4102,
+      "source_end": 4118,
+      "source_title": "青少年活动中心设计说明书",
+      "destination_module": "training",
+      "destination_section": "proposed:training-construction-brief",
+      "destination_title": "构造方案说明训练",
+      "content_points": [
+        "建筑概况、分类、结构体系",
+        "防火依据、建筑模数",
+        "围护与分隔构造方案"
+      ],
+      "action": "改写为可复用任务书",
+      "cross_references": [
+        "proposed:intro-course-guide",
+        "intro-classification",
+        "intro-drawing-standards"
+      ],
+      "review_flags": [
+        "去除收作业及下次上课等时限",
+        "增加评价标准"
+      ],
+      "allocation_id": "B218",
+      "target_public_path": null
+    },
+    {
+      "block_id": "R017",
+      "source_start": 4119,
+      "source_end": 4132,
+      "source_title": "幼儿园楼面结构布置练习",
+      "destination_module": "training",
+      "destination_section": "proposed:training-floor-layout",
+      "destination_title": "楼面构造布置训练",
+      "content_points": [
+        "结构布置、轴线、标高、构件编号与尺寸"
+      ],
+      "action": "并入任务库，作为幼儿园题目变式",
+      "cross_references": [
+        "floor-rc-slab",
+        "intro-drawing-standards"
+      ],
+      "review_flags": [
+        "统一一层楼面与首层顶板的层次定义",
+        "构件编号与结构专业表达需核对"
+      ],
+      "allocation_id": "B219",
+      "target_public_path": null
+    },
+    {
+      "block_id": "R018",
+      "source_start": 4133,
+      "source_end": 4139,
+      "source_title": "幼儿园楼梯练习",
+      "destination_module": "training",
+      "destination_section": "proposed:training-stair-drawing",
+      "destination_title": "楼梯绘图训练",
+      "content_points": [
+        "幼儿园主要楼梯平剖面和节点"
+      ],
+      "action": "并入楼梯训练，保留建筑用途变式",
+      "cross_references": [
+        "stairs-overview",
+        "stairs-details"
+      ],
+      "review_flags": [
+        "不能沿用住宅楼梯参数"
+      ],
+      "allocation_id": "B220",
+      "target_public_path": null
+    },
+    {
+      "block_id": "R019",
+      "source_start": 4140,
+      "source_end": 4145,
+      "source_title": "幼儿园屋顶平面练习",
+      "destination_module": "training",
+      "destination_section": "proposed:training-roof-plan",
+      "destination_title": "屋顶排水设计训练",
+      "content_points": [
+        "屋顶轴线、分水线、排水分区、雨水管、坡度"
+      ],
+      "action": "并入屋顶训练，保留幼儿园题目变式",
+      "cross_references": [
+        "roof-flat"
+      ],
+      "review_flags": [],
+      "allocation_id": "B221",
+      "target_public_path": null
+    },
+    {
+      "block_id": "R020",
+      "source_start": 4146,
+      "source_end": 4152,
+      "source_title": "幼儿园外檐详图练习",
+      "destination_module": "training",
+      "destination_section": "proposed:training-envelope-detail",
+      "destination_title": "外檐节点综合训练",
+      "content_points": [
+        "主入口和自选部位外檐详图",
+        "索引、材料图例、各层做法"
+      ],
+      "action": "并入外檐训练",
+      "cross_references": [
+        "wall-masonry",
+        "roof-flat",
+        "floor-ground-layer"
+      ],
+      "review_flags": [],
+      "allocation_id": "B222",
+      "target_public_path": null
+    },
+    {
+      "block_id": "R021",
+      "source_start": 4153,
+      "source_end": 4192,
+      "source_title": "幼儿园期末综合构造方案",
+      "destination_module": "training",
+      "destination_section": "proposed:training-integrated-design",
+      "destination_title": "综合课程设计",
+      "content_points": [
+        "楼面布置、楼梯、屋顶平面、两张外檐详图",
+        "设计草图到正式图的流程",
+        "构造合理和图纸表达的评价"
+      ],
+      "action": "作为上册综合任务，链接四类专项任务",
+      "cross_references": [
+        "proposed:training-floor-layout",
+        "proposed:training-stair-drawing",
+        "proposed:training-roof-plan",
+        "proposed:training-envelope-detail"
+      ],
+      "review_flags": [
+        "不重复复制专项要求",
+        "去除旧周次与辅导时段",
+        "补评价量规",
+        "统一楼面命名"
+      ],
+      "allocation_id": "B223",
+      "target_public_path": null
+    },
+    {
+      "block_id": "R022",
+      "source_start": 4193,
+      "source_end": 4202,
+      "source_title": "分组建筑构造调研",
+      "destination_module": "training",
+      "destination_section": "proposed:training-construction-survey",
+      "destination_title": "构造调研训练",
+      "content_points": [
+        "观察建筑或施工现场",
+        "照片、手绘节点与文字解释",
+        "比较材料层次、连接与构造原理"
+      ],
+      "action": "并入调研任务库，设分组模式",
+      "cross_references": [
+        "proposed:training-integrated-design"
+      ],
+      "review_flags": [
+        "去除旧周次与学院网站下载指令"
+      ],
+      "allocation_id": "B224",
+      "target_public_path": null
+    },
+    {
+      "block_id": "R023",
+      "source_start": 4203,
+      "source_end": 4213,
+      "source_title": "园林专业住宅楼梯练习",
+      "destination_module": "training",
+      "destination_section": "proposed:training-stair-drawing",
+      "destination_title": "楼梯绘图训练",
+      "content_points": [
+        "五层住宅双跑楼梯",
+        "墙厚、门洞、墙垛等更完整题目条件"
+      ],
+      "action": "与六层住宅题组成变式组",
+      "cross_references": [
+        "stairs-overview",
+        "stairs-details"
+      ],
+      "review_flags": [
+        "新规范下检查给定空间可行性",
+        "补附图和答案"
+      ],
+      "allocation_id": "B225",
+      "target_public_path": null
+    },
+    {
+      "block_id": "R024",
+      "source_start": 4214,
+      "source_end": 4234,
+      "source_title": "园林专业构造调研",
+      "destination_module": "training",
+      "destination_section": "proposed:training-construction-survey",
+      "destination_title": "构造调研训练",
+      "content_points": [
+        "砌体与框架体系比较",
+        "墙身节点、楼梯调研",
+        "结合小建筑方案反思构造设计"
+      ],
+      "action": "并入调研任务库，设个人比较模式",
+      "cross_references": [
+        "wall-masonry",
+        "stairs-rc-structure"
+      ],
+      "review_flags": [
+        "分组与独立完成不能混成同一要求",
+        "去除交图周次及复印装订指令"
+      ],
+      "allocation_id": "B226",
+      "target_public_path": null
+    },
+    {
+      "block_id": "R025",
+      "source_start": 4235,
+      "source_end": 4243,
+      "source_title": "小建筑屋顶平面练习",
+      "destination_module": "training",
+      "destination_section": "proposed:training-roof-plan",
+      "destination_title": "屋顶排水设计训练",
+      "content_points": [
+        "排水分区、雨水管、轴线与坡度"
+      ],
+      "action": "作为小建筑题目变式",
+      "cross_references": [
+        "roof-flat"
+      ],
+      "review_flags": [],
+      "allocation_id": "B227",
+      "target_public_path": null
+    },
+    {
+      "block_id": "R026",
+      "source_start": 4244,
+      "source_end": 4257,
+      "source_title": "小建筑外檐详图练习",
+      "destination_module": "training",
+      "destination_section": "proposed:training-envelope-detail",
+      "destination_title": "外檐节点综合训练",
+      "content_points": [
+        "主入口及另一处外檐详图",
+        "索引与层次说明"
+      ],
+      "action": "作为小建筑题目变式",
+      "cross_references": [
+        "wall-masonry",
+        "roof-flat"
+      ],
+      "review_flags": [
+        "原作业编号跳过练习三，重编号",
+        "去除过时提交要求"
+      ],
+      "allocation_id": "B228",
+      "target_public_path": null
+    },
+    {
+      "block_id": "R027",
+      "source_start": 4258,
+      "source_end": 4271,
+      "source_title": "课程衔接补遗",
+      "destination_module": "introduction",
+      "destination_section": "proposed:intro-course-guide",
+      "destination_title": "课程导读",
+      "content_points": [
+        "构造与建筑设计的关系",
+        "方案可实施性、综合能力与施工图表达"
+      ],
+      "action": "并入课程导读，院系教学安排原资料归档",
+      "cross_references": [],
+      "review_flags": [
+        "P4270与P4271完全重复",
+        "P4262与绪论P0104重复",
+        "去除训诫和院系培养方案旧安排"
+      ],
+      "allocation_id": "B229",
+      "target_public_path": null
+    },
+    {
+      "block_id": "R028",
+      "source_start": 4272,
+      "source_end": 4296,
+      "source_title": "建筑性能与构件体系补遗",
+      "destination_module": "introduction",
+      "destination_section": "intro-composition",
+      "destination_title": "建筑物的构造组成",
+      "content_points": [
+        "承载、围护、交通设备三个观察维度",
+        "基本性能、维护加工与资源条件",
+        "构造技术与艺术表达"
+      ],
+      "action": "整理为绪论拓展阅读",
+      "cross_references": [
+        "intro-factors",
+        "intro-design-principles"
+      ],
+      "review_flags": [
+        "补齐编号缺项",
+        "校正扫描式错字",
+        "说明分类维度，避免与六类基本构件互相否定"
+      ],
+      "allocation_id": "B230",
+      "target_public_path": "public/lesson/introduction/intro-composition.html"
+    },
+    {
+      "block_id": "R029",
+      "source_start": 4297,
+      "source_end": 4308,
+      "source_title": "建筑构造手段与体系补遗",
+      "destination_module": "introduction",
+      "destination_section": "intro-design-principles",
+      "destination_title": "建筑构造的设计原则",
+      "content_points": [
+        "环境、设备、材料与构造四种手段",
+        "材料、设计、施工共同影响质量"
+      ],
+      "action": "整理为拓展阅读",
+      "cross_references": [
+        "intro-factors"
+      ],
+      "review_flags": [
+        "P4299把空调混入被动方式，分类需重写",
+        "P4298风水择地不宜作为工程依据",
+        "残缺文字不能凭猜测修复"
+      ],
+      "allocation_id": "B231",
+      "target_public_path": "public/lesson/introduction/intro-design-principles.html"
+    },
+    {
+      "block_id": "R030",
+      "source_start": 4309,
+      "source_end": 4312,
+      "source_title": "构造层次补遗",
+      "destination_module": "introduction",
+      "destination_section": "intro-composition",
+      "destination_title": "建筑物的构造组成",
+      "content_points": [
+        "饰面层、连接层、性能设备层、结构层"
+      ],
+      "action": "整理为跨章节读图方法",
+      "cross_references": [
+        "wall-design-requirements",
+        "floor-ground-composition",
+        "roof-flat"
+      ],
+      "review_flags": [
+        "四层为分析框架，不是所有构造必须四层齐备"
+      ],
+      "allocation_id": "B232",
+      "target_public_path": "public/lesson/introduction/intro-composition.html"
+    },
+    {
+      "block_id": "R031",
+      "source_start": 4313,
+      "source_end": 4319,
+      "source_title": "材料构法节点学习路径",
+      "destination_module": "introduction",
+      "destination_section": "proposed:intro-course-guide",
+      "destination_title": "课程导读",
+      "content_points": [
+        "材料、构法、节点三个学习入口",
+        "材料与连接、复合方式的关系"
+      ],
+      "action": "整理为学习方法说明",
+      "cross_references": [
+        "intro-composition"
+      ],
+      "review_flags": [
+        "校正占代、空问、铝朔板等错字",
+        "材料年代分类改为历史示例"
+      ],
+      "allocation_id": "B233",
+      "target_public_path": null
+    },
+    {
+      "block_id": "R032",
+      "source_start": 4320,
+      "source_end": 4321,
+      "source_title": "尾部页码与嵌入对象",
+      "destination_module": "archive",
+      "destination_section": "archive:tail",
+      "destination_title": "原资料归档",
+      "content_points": [
+        "游离页码18及对象占位"
+      ],
+      "action": "归档不入正文",
+      "cross_references": [],
+      "review_flags": [
+        "对象未做图像或OCR审计"
+      ],
+      "allocation_id": "B234",
+      "target_public_path": null
+    }
+  ]
+}

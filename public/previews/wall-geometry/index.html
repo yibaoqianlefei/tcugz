@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f8f5">
+  <title>墙体 · 设计预览 | 建筑构造交互教材</title>
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./shared.css">
+  <style>
+    .compare-main{max-width:1320px;margin:auto;padding:34px 30px 40px}
+    .compare-intro{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:28px}
+    .compare-eyebrow{color:var(--accent);font-size:10px;letter-spacing:.2em}
+    .compare-intro h1{margin:10px 0;font-size:32px;letter-spacing:-.03em}
+    .compare-intro p{margin:0;color:var(--body);font-size:13px;line-height:1.8}
+    .compare-links{display:flex;gap:20px;white-space:nowrap;font-size:12px;color:var(--accent)}
+    .compare-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:18px}
+    .design-tab{display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:center;padding:17px 20px;text-align:left;border:1px solid var(--line);color:var(--ink);background:transparent}
+    .design-tab .letter{font-size:24px;color:var(--muted)}
+    .design-tab strong{display:block;font-size:15px;font-weight:600}
+    .design-tab small{display:block;margin-top:6px;color:var(--muted);font-size:10px;letter-spacing:.07em}
+    .design-tab[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:white}
+    .design-tab[aria-pressed="true"] .letter,.design-tab[aria-pressed="true"] small{color:#d5dcef}
+    .compare-frame{display:block;width:100%;height:1050px;border:1px solid var(--line);background:var(--paper)}
+    .compare-status{font-size:13px;padding:16px;color:var(--accent);border:1px solid var(--line)}
+    @media(max-width:700px){.compare-main{padding:25px 12px 30px}.compare-intro{align-items:start;flex-direction:column;margin-inline:8px;gap:16px}.compare-intro h1{font-size:27px}.compare-tabs{gap:6px}.design-tab{display:block;padding:12px 9px}.design-tab .letter{font-size:16px}.design-tab strong{font-size:12px;margin-top:7px}.design-tab small{font-size:9px;line-height:1.7;letter-spacing:0}.compare-intro p{font-size:12px}.compare-links{font-size:11px}}
+  </style>
+</head>
+<body>
+  <header class="preview-topbar"><a class="preview-brand" href="../../#/" aria-label="返回学习首页"><img src="../../brand/logo.svg" width="42" height="42" alt="建筑构造标志"><span>建筑构造 <small>/ 构造基础 / 墙体</small></span></a><a class="preview-return" href="../../#/lesson/wall/index.html">← 原版对照</a></header>
+  <main class="compare-main">
+    <div class="compare-intro"><div><span class="compare-eyebrow">WALL / DESIGN STUDIES</span><h1>墙体 · 设计预览</h1><p>同一章节，三种构造表达。切换方案，比较主视觉与阅读布局。</p></div><div class="compare-links"><a id="standalone-link" href="./modules.html">单独查看 ↗</a></div></div>
+    <div class="compare-tabs" aria-label="选择设计方案">
+      <button class="design-tab" data-design="modules" type="button" aria-pressed="true" aria-controls="preview-frame"><span class="letter">A</span><span><strong>构造模块</strong><small>体块 · 模数 · 拼接</small></span></button>
+      <button class="design-tab" data-design="slices" type="button" aria-pressed="false" aria-controls="preview-frame"><span class="letter">B</span><span><strong>建筑切片</strong><small>模型 · 裁切 · 叠层</small></span></button>
+      <button class="design-tab" data-design="lines" type="button" aria-pressed="false" aria-controls="preview-frame"><span class="letter">C</span><span><strong>线与接缝</strong><small>轮廓 · 连接 · 留白</small></span></button>
+    </div>
+    <p id="compare-status" class="compare-status" role="status" hidden>预览加载失败，请使用“单独查看”打开方案。</p>
+    <iframe id="preview-frame" class="compare-frame" src="./modules.html?embedded=1" title="A 构造模块 · 墙体章节预览"></iframe>
+  </main>
+  <script type="module">
+    const designs = { modules: 'A 构造模块', slices: 'B 建筑切片', lines: 'C 线与接缝' };
+    const frame = document.querySelector('#preview-frame');
+    const status = document.querySelector('#compare-status');
+    let observer;
+    function choose(key) {
+      if (!designs[key]) return;
+      observer?.disconnect();
+      document.querySelectorAll('[data-design]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.design === key)));
+      frame.title = `${designs[key]} · 墙体章节预览`;
+      frame.src = `./${key}.html?embedded=1`;
+      document.querySelector('#standalone-link').href = `./${key}.html`;
+      status.hidden = true;
+      history.replaceState(null, '', `#${key}`);
+    }
+    frame.addEventListener('load', () => {
+      observer?.disconnect();
+      const doc = frame.contentDocument;
+      if (!doc?.querySelector('.wall-intro h1')) { status.hidden = false; return; }
+      const resize = () => {
+        const height = Math.ceil(doc.body.getBoundingClientRect().height) + 2;
+        if (Math.abs(frame.getBoundingClientRect().height - height) > 1) frame.style.height = `${height}px`;
+      };
+      observer = new ResizeObserver(resize);
+      observer.observe(doc.body);
+      resize();
+    });
+    document.querySelectorAll('[data-design]').forEach(button => button.addEventListener('click', () => choose(button.dataset.design)));
+    const initial = location.hash.slice(1);
+    if (designs[initial] && initial !== 'modules') choose(initial);
+  </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "executed_date": "2026-10-12",
+  "completed_audit_date": "2026-10-13",
+  "note": "结果来自本次整体审计实际工具执行。续接后内容指纹与审计开始时一致，未为保存日志重复运行已通过检查。",
+  "checks": [
+    {"command":"node --import tsx tests/textbook-content.test.mjs","exit_code":0,"result":"54篇完整正文、64路由、全文渲染、链接、任务要求和部署子路径检查通过"},
+    {"command":"node --import tsx tests/companion.test.ts","exit_code":0,"result":"来源身份、范围、引用、训练提示和历史统计检查通过；无浏览器存储的Node环境给出预期的zustand提示"},
+    {"command":"node --import tsx tests/training.test.ts","exit_code":0,"result":"8模式、17题、场景隔离、评分和持久化契约通过"},
+    {"command":"node node_modules/typescript/bin/tsc -b --pretty false; node node_modules/vite/bin/vite.js build","exit_code":0,"result":"TypeScript与生产构建通过；保留大于500kB包体提示，未做远程网络性能测评"},
+    {"command":"node audit-output/textbook-overall-audit-2026-10-12/browser-audit.mjs","exit_code":0,"result":"64个阅读地址在1440/390/320px宽度共192次访问，无空白、溢出、高度差异或运行错误"},
+    {"command":"node audit-output/textbook-overall-audit-2026-10-12/platform-probes.mjs","exit_code":0,"result":"图片渲染缺陷、字面强调标记、导航对比度和刷新回顶行为有独立复现证据"},
+    {"command":"node audit-output/textbook-overall-audit-2026-10-12/node-interaction-probes.mjs","exit_code":0,"executed_date":"2026-10-13","result":"墙身防潮A构件匹配正常；首层出入口01模型命中整体长题名且右侧语义构件卡未展开。反向手动卡步骤不作为已确认结论"}
+  ],
+  "environment":"tsx受限Windows用户信息初始化失败，三项TS测试经本机执行通过。浏览器使用已安装Chrome。审计未重新生成教材或知识库；构建仅更新dist。"
+}

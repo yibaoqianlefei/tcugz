@@ -1,0 +1,3875 @@
+{
+  "date": "2026-10-12",
+  "sourceSha256": "94b82def87058e630a616aab7b65b5d5703194c64227fcc122a1e385764ffecb",
+  "originalMatchesAdoption": true,
+  "articles": [
+    {
+      "id": "intro-course-guide",
+      "title": "课程导读",
+      "description": "从材料、构法到节点，建立建筑构造的学习路径。",
+      "nodeIds": [],
+      "available": true,
+      "group": "introduction",
+      "path": "introduction/intro-course-guide.html",
+      "source": "src/data/textbook/introduction/intro-course-guide.md",
+      "chineseCharacters": 1174,
+      "sourceHash": "4fbae55a63e0204e97bd162201d363e3b2c931b1b55aadeea4b7a4ab63c197cc",
+      "renderedHash": "8887653f8fc29086dd255d293f057b29aea1fb272c69ea63f77db835be89aa28",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "课程导读"
+        },
+        {
+          "depth": 2,
+          "title": "学习建筑构造，要解决什么问题"
+        },
+        {
+          "depth": 2,
+          "title": "构造设计贯穿设计过程"
+        },
+        {
+          "depth": 2,
+          "title": "建立“材料—构法—节点”的学习路径"
+        },
+        {
+          "depth": 2,
+          "title": "每次学习形成一份小成果"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        },
+        {
+          "depth": 2,
+          "title": "教材说明"
+        }
+      ],
+      "paragraphs": 14,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/basics/foundation/index.html",
+        "/lesson/principles/index.html"
+      ],
+      "chapterLinks": [
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/basics/foundation/index.html",
+        "/lesson/principles/index.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B002",
+        "B003",
+        "B004",
+        "B005",
+        "B006",
+        "B007",
+        "B229",
+        "B233"
+      ]
+    },
+    {
+      "id": "intro-classification",
+      "title": "建筑物的分类",
+      "description": "按使用性质、层数、结构类型等方式对建筑物进行分类。",
+      "nodeIds": [],
+      "available": true,
+      "group": "introduction",
+      "path": "introduction/intro-classification.html",
+      "source": "src/data/textbook/introduction/intro-classification.md",
+      "chineseCharacters": 1142,
+      "sourceHash": "db897488814574fa19fedcc865592a99d9bc8c55bedd4d091e20253cadd7d28e",
+      "renderedHash": "42c4e03b31565bc06b33aedd57d5fe1fdee80f285bfae1815ca670000cf4bbe4",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "建筑物的分类"
+        },
+        {
+          "depth": 2,
+          "title": "分类的作用"
+        },
+        {
+          "depth": 2,
+          "title": "按使用功能分类"
+        },
+        {
+          "depth": 2,
+          "title": "按规模与建造数量认识"
+        },
+        {
+          "depth": 2,
+          "title": "按层数和高度认识"
+        },
+        {
+          "depth": 2,
+          "title": "按结构和建造方式分类"
+        },
+        {
+          "depth": 2,
+          "title": "分类练习与参考答案"
+        }
+      ],
+      "paragraphs": 14,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/introduction/intro-grading.html",
+        "/lesson/introduction/intro-composition.html"
+      ],
+      "chapterLinks": [
+        "/lesson/introduction/intro-grading.html",
+        "/lesson/introduction/intro-composition.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B010",
+        "B011",
+        "B012"
+      ]
+    },
+    {
+      "id": "intro-grading",
+      "title": "建筑物的分级",
+      "description": "区分设计工作年限、耐火等级与抗震设防相关概念。",
+      "nodeIds": [],
+      "available": true,
+      "group": "introduction",
+      "path": "introduction/intro-grading.html",
+      "source": "src/data/textbook/introduction/intro-grading.md",
+      "chineseCharacters": 1135,
+      "sourceHash": "4645ba92e64887a01c348c68ecd8efaa70c9aa083606fe07d4b49eafe0a5e5ae",
+      "renderedHash": "71fe134c1bc8d61f41a17cb7b9c67f7e0ae598d52e63dfb37a265ebb736c4884",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "建筑物的分级"
+        },
+        {
+          "depth": 2,
+          "title": "先明确“给什么分级”"
+        },
+        {
+          "depth": 2,
+          "title": "燃烧性能、耐火极限与耐火等级"
+        },
+        {
+          "depth": 2,
+          "title": "等级如何落实为防火构造"
+        },
+        {
+          "depth": 2,
+          "title": "设计工作年限与耐久"
+        },
+        {
+          "depth": 2,
+          "title": "抗震相关术语要分开"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        }
+      ],
+      "paragraphs": 15,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/wall/wall-design-requirements.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/wall/wall-design-requirements.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B013",
+        "B014",
+        "B015"
+      ]
+    },
+    {
+      "id": "intro-composition",
+      "title": "建筑物的构造组成",
+      "description": "建筑物由基础、墙体、楼地层、屋顶、楼梯、门窗六大基本构件组成。",
+      "nodeIds": [],
+      "available": true,
+      "group": "introduction",
+      "path": "introduction/intro-composition.html",
+      "source": "src/data/textbook/introduction/intro-composition.md",
+      "chineseCharacters": 1126,
+      "sourceHash": "fba5f842b24ffb8e478b6858aefc0e546f3aa435c008f6ae77a2292698ed0b8a",
+      "renderedHash": "6833e0a58205a6e093f91b32d486a4672d089e37b55046666bdef16eed8d181b",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "建筑物的构造组成"
+        },
+        {
+          "depth": 2,
+          "title": "从整体看建筑"
+        },
+        {
+          "depth": 2,
+          "title": "两条典型传力路径"
+        },
+        {
+          "depth": 2,
+          "title": "六类基本构件"
+        },
+        {
+          "depth": 2,
+          "title": "三种体系与四种层次"
+        },
+        {
+          "depth": 2,
+          "title": "读一个剖面的顺序"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        }
+      ],
+      "paragraphs": 13,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/foundation/foundation-overview.html",
+        "/lesson/basics/wall/wall-role.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/foundation/foundation-overview.html",
+        "/lesson/basics/wall/wall-role.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B008",
+        "B009",
+        "B230",
+        "B232"
+      ]
+    },
+    {
+      "id": "intro-factors",
+      "title": "影响建筑物的因素",
+      "description": "自然因素（气候、地质）和人为因素（使用功能、技术水平）对建筑构造的影响。",
+      "nodeIds": [],
+      "available": true,
+      "group": "introduction",
+      "path": "introduction/intro-factors.html",
+      "source": "src/data/textbook/introduction/intro-factors.md",
+      "chineseCharacters": 1139,
+      "sourceHash": "40ad800982c00152eca85edf43b7858bfa13fadbfd555407e6d0ff09e70b9b66",
+      "renderedHash": "62aeb8ed52e75fabed3c265c1cdc2b9627eb71acba8f6d58a1568d71c194ae7b",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "影响建筑构造的因素"
+        },
+        {
+          "depth": 2,
+          "title": "把条件转化为构造任务"
+        },
+        {
+          "depth": 2,
+          "title": "外界作用与受力条件"
+        },
+        {
+          "depth": 2,
+          "title": "气候与水文地质条件"
+        },
+        {
+          "depth": 2,
+          "title": "使用活动与使用者"
+        },
+        {
+          "depth": 2,
+          "title": "技术与经济条件"
+        },
+        {
+          "depth": 2,
+          "title": "一个入口节点的分析示例"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        }
+      ],
+      "paragraphs": 15,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/introduction/intro-design-principles.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/introduction/intro-design-principles.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B016",
+        "B017"
+      ]
+    },
+    {
+      "id": "intro-design-principles",
+      "title": "建筑构造的设计原则",
+      "description": "安全适用、技术先进、经济合理、美观大方等基本原则。",
+      "nodeIds": [],
+      "available": true,
+      "group": "introduction",
+      "path": "introduction/intro-design-principles.html",
+      "source": "src/data/textbook/introduction/intro-design-principles.md",
+      "chineseCharacters": 1219,
+      "sourceHash": "96b2fc9711ca7096ed1f03d9455c52c8c0da42b118fd94d068a2c7efd3105b45",
+      "renderedHash": "2af0e0832a6e60f4e235e538e6e8a4c4ac8eacd44549bda4c1f8c313beed6525",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "建筑构造的设计原则"
+        },
+        {
+          "depth": 2,
+          "title": "原则要落实到同一方案"
+        },
+        {
+          "depth": 2,
+          "title": "安全与耐久"
+        },
+        {
+          "depth": 2,
+          "title": "功能与使用"
+        },
+        {
+          "depth": 2,
+          "title": "技术适用与施工便利"
+        },
+        {
+          "depth": 2,
+          "title": "选材与经济"
+        },
+        {
+          "depth": 2,
+          "title": "造型与构造协调"
+        },
+        {
+          "depth": 2,
+          "title": "组合环境、设备、材料与构造手段"
+        },
+        {
+          "depth": 2,
+          "title": "方案比较步骤"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        }
+      ],
+      "paragraphs": 17,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/introduction/intro-drawing-standards.html"
+      ],
+      "chapterLinks": [
+        "/lesson/introduction/intro-drawing-standards.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B018",
+        "B231"
+      ]
+    },
+    {
+      "id": "intro-drawing-standards",
+      "title": "专题：制图标准与规范",
+      "description": "建筑制图标准（GB/T 50104）与建筑构造设计规范的解读与应用。",
+      "nodeIds": [],
+      "available": true,
+      "group": "introduction",
+      "path": "introduction/intro-drawing-standards.html",
+      "source": "src/data/textbook/introduction/intro-drawing-standards.md",
+      "chineseCharacters": 1301,
+      "sourceHash": "b913555c08e72f32213ff101fce4354ed1a81c867b3337d3cc1745d6ebb34795",
+      "renderedHash": "6e0db89a6c10ca74ca3369a4bc68bc6c1f7f15c30cb66de9548f03ce69275ad9",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "制图、模数与规范的应用"
+        },
+        {
+          "depth": 2,
+          "title": "图纸是构造信息的共同语言"
+        },
+        {
+          "depth": 2,
+          "title": "模数协调与工业化"
+        },
+        {
+          "depth": 2,
+          "title": "定位轴线与三种尺寸"
+        },
+        {
+          "depth": 2,
+          "title": "标高与完成面"
+        },
+        {
+          "depth": 2,
+          "title": "读图与表达步骤"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        }
+      ],
+      "paragraphs": 17,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web3162/site/attach/0/e79463f35b7a4ce0bebe8deda791d367.pdf",
+        "/lesson/basics/door-window/window-door-design.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/door-window/window-door-design.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [
+        "https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web3162/site/attach/0/e79463f35b7a4ce0bebe8deda791d367.pdf"
+      ],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B019",
+        "B020",
+        "B021",
+        "B022",
+        "B023"
+      ]
+    },
+    {
+      "id": "thermal",
+      "title": "建筑保温",
+      "description": "理解围护结构的保温做法与热工性能。",
+      "group": "principles",
+      "path": "principles/thermal.html",
+      "source": "src/data/textbook/principles/thermal.md",
+      "chineseCharacters": 975,
+      "sourceHash": "67f4bc29a7ea790c61d4b004bbdb1d5c65ef13db1693f54f8975a803d3d269d2",
+      "renderedHash": "f4abe76ac3a658ec2157a707cb49e0fe0a241c3128bef92c280d70bd07cd9e22",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "建筑保温"
+        },
+        {
+          "depth": 2,
+          "title": "学习目标与基本概念"
+        },
+        {
+          "depth": 2,
+          "title": "连续保温与热桥"
+        },
+        {
+          "depth": 2,
+          "title": "保温与湿度、防火的协调"
+        },
+        {
+          "depth": 2,
+          "title": "读图与方案判断"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        }
+      ],
+      "paragraphs": 12,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/principles/moisture.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/roof/roof-flat.html",
+        "https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/202204/t20220412_2674315.html"
+      ],
+      "chapterLinks": [
+        "/lesson/principles/moisture.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/roof/roof-flat.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [
+        "https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/202204/t20220412_2674315.html"
+      ],
+      "explicitObjectivesHeading": true,
+      "selfCheckHeading": true,
+      "sourceBlocks": []
+    },
+    {
+      "id": "waterproof",
+      "title": "建筑防水",
+      "description": "梳理屋面、墙体与地下空间的防水策略。",
+      "group": "principles",
+      "path": "principles/waterproof.html",
+      "source": "src/data/textbook/principles/waterproof.md",
+      "chineseCharacters": 928,
+      "sourceHash": "550840a8781fb86620d92f8b74b6eda9b3007a781e8160573d7741175b437ad9",
+      "renderedHash": "9fa33cd8de424cfd2f8af769b36a0bf7e5572f3e9207a93bbc9d6debc663242c",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "建筑防水"
+        },
+        {
+          "depth": 2,
+          "title": "学习目标与水的路径"
+        },
+        {
+          "depth": 2,
+          "title": "排水与防水的配合"
+        },
+        {
+          "depth": 2,
+          "title": "节点决定连续性"
+        },
+        {
+          "depth": 2,
+          "title": "设计与读图步骤"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        }
+      ],
+      "paragraphs": 12,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "https://gf.cabr-fire.com/m/article-10361.htm",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html",
+        "https://www.gsjn.gov.cn/zfxxgk/zfbmxxgk/zjj/fdzdgknr/lzyj/art/2022/art_0f0b3ad7fa304c0b961a009b0d8319ca.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [
+        "https://gf.cabr-fire.com/m/article-10361.htm",
+        "https://www.gsjn.gov.cn/zfxxgk/zfbmxxgk/zjj/fdzdgknr/lzyj/art/2022/art_0f0b3ad7fa304c0b961a009b0d8319ca.html"
+      ],
+      "explicitObjectivesHeading": true,
+      "selfCheckHeading": true,
+      "sourceBlocks": []
+    },
+    {
+      "id": "insulation",
+      "title": "建筑隔热",
+      "description": "比较遮阳、通风与隔热构造。",
+      "group": "principles",
+      "path": "principles/insulation.html",
+      "source": "src/data/textbook/principles/insulation.md",
+      "chineseCharacters": 908,
+      "sourceHash": "be11b8f6d4868a7b871aff74d768eb1367ac7ac07f303b90f36c0de17c814f0a",
+      "renderedHash": "277ac5b67870038189a98a7815e74d410db808c993bbce1248d96909d39f58d5",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "建筑隔热"
+        },
+        {
+          "depth": 2,
+          "title": "学习目标与夏季热作用"
+        },
+        {
+          "depth": 2,
+          "title": "四类常见措施"
+        },
+        {
+          "depth": 2,
+          "title": "室内通风与构造协调"
+        },
+        {
+          "depth": 2,
+          "title": "读图与方案判断"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        }
+      ],
+      "paragraphs": 13,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/door-window/window-door-design.html",
+        "/lesson/basics/roof/roof-slope.html",
+        "https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/202204/t20220412_2674315.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/door-window/window-door-design.html",
+        "/lesson/basics/roof/roof-slope.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [
+        "https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/202204/t20220412_2674315.html"
+      ],
+      "explicitObjectivesHeading": true,
+      "selfCheckHeading": true,
+      "sourceBlocks": []
+    },
+    {
+      "id": "acoustic",
+      "title": "建筑隔声",
+      "description": "认识空气声与撞击声的控制方式。",
+      "group": "principles",
+      "path": "principles/acoustic.html",
+      "source": "src/data/textbook/principles/acoustic.md",
+      "chineseCharacters": 857,
+      "sourceHash": "a42ef8b78ce420d06380f67cca212d9d2bc40605642258e20bb0e268dd06d857",
+      "renderedHash": "f5b35ebd6216a35f0eb81c5a713aeee735b2d52a424a32e1355b5ffcf3cb9809",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "建筑隔声"
+        },
+        {
+          "depth": 2,
+          "title": "学习目标与声音路径"
+        },
+        {
+          "depth": 2,
+          "title": "墙与门窗的隔声"
+        },
+        {
+          "depth": 2,
+          "title": "楼板撞击声与侧向传声"
+        },
+        {
+          "depth": 2,
+          "title": "读图与检查"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        }
+      ],
+      "paragraphs": 13,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-ceiling.html",
+        "https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/202204/t20220412_2674315.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-ceiling.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [
+        "https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/202204/t20220412_2674315.html"
+      ],
+      "explicitObjectivesHeading": true,
+      "selfCheckHeading": true,
+      "sourceBlocks": []
+    },
+    {
+      "id": "fire",
+      "title": "建筑防火",
+      "description": "理解耐火与防火分隔的构造要求。",
+      "group": "principles",
+      "path": "principles/fire.html",
+      "source": "src/data/textbook/principles/fire.md",
+      "chineseCharacters": 924,
+      "sourceHash": "7d8929dcfc80d0f017ca74384ac7c84958ba0aa264b9c3b18fe0b5c09ddde991",
+      "renderedHash": "4fd346fa211f3ea0d66249e90eb973571d9f3413b9dc8f3ea6e10e590c01eec3",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "建筑防火"
+        },
+        {
+          "depth": 2,
+          "title": "学习目标与构造任务"
+        },
+        {
+          "depth": 2,
+          "title": "构件与防火分隔"
+        },
+        {
+          "depth": 2,
+          "title": "疏散与竖向交通"
+        },
+        {
+          "depth": 2,
+          "title": "读图与检查"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        }
+      ],
+      "paragraphs": 13,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-finishes.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/basics/stairs/stairs-steps-ramps.html",
+        "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_770016.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-finishes.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/basics/stairs/stairs-steps-ramps.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [
+        "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_770016.html"
+      ],
+      "explicitObjectivesHeading": true,
+      "selfCheckHeading": true,
+      "sourceBlocks": []
+    },
+    {
+      "id": "moisture",
+      "title": "建筑防潮",
+      "description": "关注地面、墙脚与围护层的防潮处理。",
+      "group": "principles",
+      "path": "principles/moisture.html",
+      "source": "src/data/textbook/principles/moisture.md",
+      "chineseCharacters": 891,
+      "sourceHash": "c94121f4195e91693b7795d22a6a8d073b1914b039ca2c71ed2e425d23ac5ce4",
+      "renderedHash": "cf51ff68494a09cc8f434b23670549529209773d931dc938fe2dfa1c6107a6d7",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "建筑防潮"
+        },
+        {
+          "depth": 2,
+          "title": "学习目标与潮湿来源"
+        },
+        {
+          "depth": 2,
+          "title": "墙脚与地面的防潮"
+        },
+        {
+          "depth": 2,
+          "title": "结露与干燥路径"
+        },
+        {
+          "depth": 2,
+          "title": "读图与问题排查"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        }
+      ],
+      "paragraphs": 13,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/principles/thermal.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/principles/thermal.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": true,
+      "selfCheckHeading": true,
+      "sourceBlocks": []
+    },
+    {
+      "id": "construction-brief",
+      "title": "构造方案说明",
+      "description": "从建筑条件建立结构、围护与材料方案。",
+      "group": "practice",
+      "path": "practice/construction-brief.html",
+      "source": "src/data/textbook/practice/construction-brief.md",
+      "chineseCharacters": 875,
+      "sourceHash": "77091bd9167a45663bf5f5f899d4446647fcdac4799e42858a14cac2e69df9e3",
+      "renderedHash": "b17d64cfd7b3c3f553dc98081372b11b6d52fd5cce929912af7ba002116909de",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "构造方案说明"
+        },
+        {
+          "depth": 2,
+          "title": "任务目标与前置知识"
+        },
+        {
+          "depth": 2,
+          "title": "给定条件与准备材料"
+        },
+        {
+          "depth": 2,
+          "title": "工作步骤"
+        },
+        {
+          "depth": 2,
+          "title": "提交物"
+        },
+        {
+          "depth": 2,
+          "title": "建议自评量规"
+        },
+        {
+          "depth": 2,
+          "title": "参考思路与自查"
+        }
+      ],
+      "paragraphs": 11,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/introduction/intro-course-guide.html",
+        "/lesson/introduction/intro-classification.html",
+        "/lesson/introduction/intro-design-principles.html",
+        "/lesson/practice/envelope-detail.html"
+      ],
+      "chapterLinks": [
+        "/lesson/introduction/intro-course-guide.html",
+        "/lesson/introduction/intro-classification.html",
+        "/lesson/introduction/intro-design-principles.html",
+        "/lesson/practice/envelope-detail.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": true,
+      "selfCheckHeading": false,
+      "sourceBlocks": [
+        "B218"
+      ]
+    },
+    {
+      "id": "floor-layout",
+      "title": "楼面构造布置",
+      "description": "协调轴网、受力、标高与房间面层。",
+      "group": "practice",
+      "path": "practice/floor-layout.html",
+      "source": "src/data/textbook/practice/floor-layout.md",
+      "chineseCharacters": 776,
+      "sourceHash": "e871474d27a0ae098840eb1aecfc872f6f56d6a1e91ba399b22010ddeab00076",
+      "renderedHash": "8b096b2d2c18b9a5c8fe4841247c88f90dae8a867740e455ab216a1506f48752",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "楼面构造布置"
+        },
+        {
+          "depth": 2,
+          "title": "任务目标与前置知识"
+        },
+        {
+          "depth": 2,
+          "title": "给定条件"
+        },
+        {
+          "depth": 2,
+          "title": "工作步骤"
+        },
+        {
+          "depth": 2,
+          "title": "提交物"
+        },
+        {
+          "depth": 2,
+          "title": "建议自评量规"
+        },
+        {
+          "depth": 2,
+          "title": "参考思路与自查"
+        }
+      ],
+      "paragraphs": 11,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/floor/floor-overview.html",
+        "/lesson/basics/floor/floor-rc-slab.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/basics/floor/finish-overview.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/floor/floor-overview.html",
+        "/lesson/basics/floor/floor-rc-slab.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/basics/floor/finish-overview.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": true,
+      "selfCheckHeading": false,
+      "sourceBlocks": [
+        "B219"
+      ]
+    },
+    {
+      "id": "stairs-drawing",
+      "title": "楼梯绘图",
+      "description": "从层高和空间条件推导楼梯平剖面。",
+      "group": "practice",
+      "path": "practice/stairs-drawing.html",
+      "source": "src/data/textbook/practice/stairs-drawing.md",
+      "chineseCharacters": 716,
+      "sourceHash": "b3fff58a689280fe685f3c5bac5d0b7306dfeaeea5df72fe242e1c125a196d7e",
+      "renderedHash": "da8fc77185b3a19c6114ae8a99230c041c242e1934001e2def346a8f07538c42",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "楼梯绘图"
+        },
+        {
+          "depth": 2,
+          "title": "任务目标与前置知识"
+        },
+        {
+          "depth": 2,
+          "title": "条件与题目变式"
+        },
+        {
+          "depth": 2,
+          "title": "工作步骤"
+        },
+        {
+          "depth": 2,
+          "title": "几何参考例"
+        },
+        {
+          "depth": 2,
+          "title": "提交物与建议自评"
+        }
+      ],
+      "paragraphs": 11,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/stairs/stairs-overview.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/introduction/intro-drawing-standards.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/stairs/stairs-overview.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/introduction/intro-drawing-standards.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": true,
+      "selfCheckHeading": false,
+      "sourceBlocks": [
+        "B217",
+        "B220",
+        "B225"
+      ]
+    },
+    {
+      "id": "roof-drainage",
+      "title": "屋顶排水设计",
+      "description": "形成排水分区、分水线与落水口方案。",
+      "group": "practice",
+      "path": "practice/roof-drainage.html",
+      "source": "src/data/textbook/practice/roof-drainage.md",
+      "chineseCharacters": 696,
+      "sourceHash": "515492e7dc04f2c356e5acd34da9995fcb8651aa888a6d522dbba5bc2d3bc8be",
+      "renderedHash": "8886dbf7412b7c1065224e55a9bf41647f542ca60a7461c8e1566020255261fd",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "屋顶排水设计"
+        },
+        {
+          "depth": 2,
+          "title": "任务目标与前置知识"
+        },
+        {
+          "depth": 2,
+          "title": "给定条件"
+        },
+        {
+          "depth": 2,
+          "title": "工作步骤"
+        },
+        {
+          "depth": 2,
+          "title": "几何参考例"
+        },
+        {
+          "depth": 2,
+          "title": "提交物"
+        },
+        {
+          "depth": 2,
+          "title": "建议自评量规与自查"
+        }
+      ],
+      "paragraphs": 11,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/basics/roof/roof-slope.html",
+        "/lesson/principles/waterproof.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/basics/roof/roof-slope.html",
+        "/lesson/principles/waterproof.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": true,
+      "selfCheckHeading": false,
+      "sourceBlocks": [
+        "B221",
+        "B227"
+      ]
+    },
+    {
+      "id": "envelope-detail",
+      "title": "外檐节点综合",
+      "description": "在墙、窗和屋面交接处落实连续性能层。",
+      "group": "practice",
+      "path": "practice/envelope-detail.html",
+      "source": "src/data/textbook/practice/envelope-detail.md",
+      "chineseCharacters": 704,
+      "sourceHash": "caa4c2f1551d0c6e9b3203746788faa7d18f12982ba1b3eb69203145562f93a8",
+      "renderedHash": "c4eeebc2675329ee94fd71aca4cfdf018f30def0e09d2904fe0864f42d14bb61",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "外檐节点综合"
+        },
+        {
+          "depth": 2,
+          "title": "任务目标与前置知识"
+        },
+        {
+          "depth": 2,
+          "title": "给定条件"
+        },
+        {
+          "depth": 2,
+          "title": "工作步骤"
+        },
+        {
+          "depth": 2,
+          "title": "提交物"
+        },
+        {
+          "depth": 2,
+          "title": "建议自评量规"
+        },
+        {
+          "depth": 2,
+          "title": "参考思路与自查"
+        }
+      ],
+      "paragraphs": 10,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/door-window/window-door-design.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/practice/integrated-design.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/door-window/window-door-design.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/practice/integrated-design.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": true,
+      "selfCheckHeading": false,
+      "sourceBlocks": [
+        "B222",
+        "B228"
+      ]
+    },
+    {
+      "id": "integrated-design",
+      "title": "综合课程设计",
+      "description": "通过幼儿园教学场景串联专项构造任务。",
+      "group": "practice",
+      "path": "practice/integrated-design.html",
+      "source": "src/data/textbook/practice/integrated-design.md",
+      "chineseCharacters": 791,
+      "sourceHash": "62fc242822cb2c5bdceeeb1676e6fcfc35376b32835ebd800fc48c44bdb453cc",
+      "renderedHash": "40b38457ebc5d9097a34f281575da246116e92bb45c6430961f50f807e90f9fa",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "综合课程设计"
+        },
+        {
+          "depth": 2,
+          "title": "任务目标与前置知识"
+        },
+        {
+          "depth": 2,
+          "title": "给定条件与准备材料"
+        },
+        {
+          "depth": 2,
+          "title": "工作步骤"
+        },
+        {
+          "depth": 2,
+          "title": "提交物"
+        },
+        {
+          "depth": 2,
+          "title": "建议自评量规"
+        },
+        {
+          "depth": 2,
+          "title": "参考校核与自查"
+        }
+      ],
+      "paragraphs": 12,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/practice/construction-brief.html",
+        "/lesson/practice/floor-layout.html",
+        "/lesson/practice/stairs-drawing.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/practice/envelope-detail.html"
+      ],
+      "chapterLinks": [
+        "/lesson/practice/construction-brief.html",
+        "/lesson/practice/floor-layout.html",
+        "/lesson/practice/stairs-drawing.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/practice/envelope-detail.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": true,
+      "selfCheckHeading": false,
+      "sourceBlocks": [
+        "B223"
+      ]
+    },
+    {
+      "id": "construction-survey",
+      "title": "构造调研",
+      "description": "用可核实的记录比较两类构造系统。",
+      "group": "practice",
+      "path": "practice/construction-survey.html",
+      "source": "src/data/textbook/practice/construction-survey.md",
+      "chineseCharacters": 809,
+      "sourceHash": "1f6c8cf38d39f5ef91c63b8256bbde5774f7a53e1c6f2d30656bbf986ede00f3",
+      "renderedHash": "2567f29f386126d75009b66b06f9388a48c6cb53a28cbd5a35842979b0cb0ad1",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "构造调研"
+        },
+        {
+          "depth": 2,
+          "title": "任务目标与前置知识"
+        },
+        {
+          "depth": 2,
+          "title": "调研模式与条件"
+        },
+        {
+          "depth": 2,
+          "title": "工作步骤"
+        },
+        {
+          "depth": 2,
+          "title": "提交物"
+        },
+        {
+          "depth": 2,
+          "title": "建议自评量规"
+        },
+        {
+          "depth": 2,
+          "title": "参考思路与自查"
+        }
+      ],
+      "paragraphs": 11,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/stairs/stairs-details.html"
+      ],
+      "chapterLinks": [
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/stairs/stairs-details.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": true,
+      "selfCheckHeading": false,
+      "sourceBlocks": [
+        "B224",
+        "B226"
+      ]
+    },
+    {
+      "id": "foundation-overview",
+      "title": "基础与地基概述",
+      "description": "基础与地基的概念、相互作用关系及在建筑构造体系中的地位。",
+      "nodeIds": [],
+      "available": true,
+      "group": "foundation",
+      "path": "basics/foundation/foundation-overview.html",
+      "source": "src/data/textbook/foundation/foundation-overview.md",
+      "chineseCharacters": 1096,
+      "sourceHash": "6fb4ca24eacbf4d1b5116b7f884e203f06f8185c5bcbd94053c3cb89f1dd1a6c",
+      "renderedHash": "a1e7694886f81081c8370e2ba2c07001fa82ffd6ca713e9210e4a0dea60b11d1",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "基础与地基概述"
+        },
+        {
+          "depth": 2,
+          "title": "基础和地基是什么"
+        },
+        {
+          "depth": 2,
+          "title": "为什么基础经常需要扩大"
+        },
+        {
+          "depth": 2,
+          "title": "天然地基与人工处理地基"
+        },
+        {
+          "depth": 2,
+          "title": "认识岩土体的状态"
+        },
+        {
+          "depth": 2,
+          "title": "读基础剖面的基本顺序"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        }
+      ],
+      "paragraphs": 15,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/basics/foundation/foundation-depth.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/basics/foundation/foundation-depth.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B071",
+        "B073"
+      ]
+    },
+    {
+      "id": "foundation-design",
+      "title": "基础与地基的设计要求",
+      "description": "承载能力、沉降控制、稳定性与耐久性等基本设计要求。",
+      "nodeIds": [],
+      "available": true,
+      "group": "foundation",
+      "path": "basics/foundation/foundation-design.html",
+      "source": "src/data/textbook/foundation/foundation-design.md",
+      "chineseCharacters": 1262,
+      "sourceHash": "9ff61ecd86ffdc5113a9fa71a913fe8661aa5c453c3150dcefc47012437ee3b7",
+      "renderedHash": "f412683257278b68cffe63556039d1126668affe43bec5ce493d9fb2f8f723d7",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "基础与地基的设计要求"
+        },
+        {
+          "depth": 2,
+          "title": "设计检查要覆盖两个对象"
+        },
+        {
+          "depth": 2,
+          "title": "承载与构件受力"
+        },
+        {
+          "depth": 2,
+          "title": "变形与稳定"
+        },
+        {
+          "depth": 2,
+          "title": "耐久与经济"
+        },
+        {
+          "depth": 2,
+          "title": "从勘察资料形成设计条件"
+        },
+        {
+          "depth": 2,
+          "title": "地基处理的任务与边界"
+        },
+        {
+          "depth": 2,
+          "title": "方案协调与图纸核对"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        }
+      ],
+      "paragraphs": 16,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/foundation/foundation-types.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/foundation/foundation-types.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B072",
+        "B075",
+        "B076"
+      ]
+    },
+    {
+      "id": "foundation-types",
+      "title": "基础的分类",
+      "description": "浅基础（独立基础、条形基础、筏形基础）与深基础（桩基础、沉井基础）的类型与适用条件。",
+      "nodeIds": [],
+      "available": true,
+      "group": "foundation",
+      "path": "basics/foundation/foundation-types.html",
+      "source": "src/data/textbook/foundation/foundation-types.md",
+      "chineseCharacters": 1249,
+      "sourceHash": "8f9e2c445f0b33eab55c0e0868cc0baf942cf9409373810a7aafa9a835ef87fd",
+      "renderedHash": "0bfbaa98f898d6425f02f72ef9ec8d725af75f51f856ac9d4f3a85f60096bd10",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "基础的分类"
+        },
+        {
+          "depth": 2,
+          "title": "分类维度不要混用"
+        },
+        {
+          "depth": 2,
+          "title": "常见浅基础形式"
+        },
+        {
+          "depth": 2,
+          "title": "桩基础与承台"
+        },
+        {
+          "depth": 2,
+          "title": "材料与扩展构造"
+        },
+        {
+          "depth": 2,
+          "title": "箱形与沉井等形式"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        }
+      ],
+      "paragraphs": 14,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/foundation/foundation-underground.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/foundation/foundation-underground.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B077",
+        "B082",
+        "B083",
+        "B085",
+        "B086",
+        "B087",
+        "B088",
+        "B089"
+      ]
+    },
+    {
+      "id": "foundation-underground",
+      "title": "基础与地下结构的类型",
+      "description": "地下室的结构类型、防水防潮构造做法及与基础的连接方式。",
+      "nodeIds": [],
+      "available": true,
+      "group": "foundation",
+      "path": "basics/foundation/foundation-underground.html",
+      "source": "src/data/textbook/foundation/foundation-underground.md",
+      "chineseCharacters": 1195,
+      "sourceHash": "4581e9404d1ba89c519f9b1380dfd5d69f66684f0d08cf467be4d9c68753f19d",
+      "renderedHash": "a718007cb98dae1b40e01b9c1b1a9747e69c429abd507490e99f3e8e0ece9953",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "基础与地下结构"
+        },
+        {
+          "depth": 2,
+          "title": "地下室与箱形基础的区别"
+        },
+        {
+          "depth": 2,
+          "title": "防潮、防水与抗浮是不同任务"
+        },
+        {
+          "depth": 2,
+          "title": "追踪连续的防水线"
+        },
+        {
+          "depth": 2,
+          "title": "施工缝、变形缝与穿墙管"
+        },
+        {
+          "depth": 2,
+          "title": "排水、保护与室内环境"
+        },
+        {
+          "depth": 2,
+          "title": "抗浮与施工阶段"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 16,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/foundation/foundation-types.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/foundation/foundation-types.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B084"
+      ]
+    },
+    {
+      "id": "foundation-depth",
+      "title": "基础的埋置深度与影响因素",
+      "description": "冰冻线、地下水位、地质条件、相邻建筑等对基础埋深的影响。",
+      "nodeIds": [],
+      "available": true,
+      "group": "foundation",
+      "path": "basics/foundation/foundation-depth.html",
+      "source": "src/data/textbook/foundation/foundation-depth.md",
+      "chineseCharacters": 1112,
+      "sourceHash": "791b08b94f8455fc9a608ccd73202f9d9481332b2561bb97d609181e126fe707",
+      "renderedHash": "cf2b91b71ea07647f2db2a8643339fbf3cf01efe2abd57c8efdba33d2685657a",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "基础埋深与影响因素"
+        },
+        {
+          "depth": 2,
+          "title": "先明确埋深的起终点"
+        },
+        {
+          "depth": 2,
+          "title": "持力层和软弱下卧层"
+        },
+        {
+          "depth": 2,
+          "title": "地下水影响"
+        },
+        {
+          "depth": 2,
+          "title": "冻结与冻胀"
+        },
+        {
+          "depth": 2,
+          "title": "相邻建筑与开挖"
+        },
+        {
+          "depth": 2,
+          "title": "荷载与地下使用需求"
+        },
+        {
+          "depth": 2,
+          "title": "读图练习与参考答案"
+        }
+      ],
+      "paragraphs": 15,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/foundation/foundation-underground.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/foundation/foundation-underground.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B078",
+        "B079",
+        "B080",
+        "B081"
+      ]
+    },
+    {
+      "id": "foundation-settlement",
+      "title": "不均匀沉降",
+      "description": "沉降的类型、原因、危害及预防措施，包括沉降缝的设置原则。",
+      "nodeIds": [],
+      "available": true,
+      "group": "foundation",
+      "path": "basics/foundation/foundation-settlement.html",
+      "source": "src/data/textbook/foundation/foundation-settlement.md",
+      "chineseCharacters": 1197,
+      "sourceHash": "35853a66250f0461abbc0bc4c46e3381a63470507cd7e1ac0bc03d04f3dc24c0",
+      "renderedHash": "cdce7e695396cd854cc51e41a250712aa58d2252bf922d8fe22e0314498506eb",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "不均匀沉降"
+        },
+        {
+          "depth": 2,
+          "title": "区分几种变形"
+        },
+        {
+          "depth": 2,
+          "title": "沉降怎样发展"
+        },
+        {
+          "depth": 2,
+          "title": "对建筑的影响"
+        },
+        {
+          "depth": 2,
+          "title": "从地基、结构与荷载共同控制"
+        },
+        {
+          "depth": 2,
+          "title": "沉降缝、后浇带与连接"
+        },
+        {
+          "depth": 2,
+          "title": "监测与读图"
+        },
+        {
+          "depth": 2,
+          "title": "自测与参考答案"
+        }
+      ],
+      "paragraphs": 16,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/deformation-joint/roof-deformation-concept.html",
+        "/lesson/basics/foundation/foundation-design.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/deformation-joint/roof-deformation-concept.html",
+        "/lesson/basics/foundation/foundation-design.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B074",
+        "B090"
+      ]
+    },
+    {
+      "id": "index",
+      "title": "墙体概述",
+      "description": "建立对墙体功能与基本构造的整体认识。",
+      "group": "wall",
+      "path": "basics/wall/index.html",
+      "source": "src/data/textbook/walls/index.md",
+      "chineseCharacters": 813,
+      "sourceHash": "488da4e5886bb6716cc2523b069bae48684ab2e5ecd702168626140e091cd069",
+      "renderedHash": "8f7437a8a824d71522de85e5822596b8df81a528f4bc63975c7c8be0b33b8eee",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "墙体"
+        },
+        {
+          "depth": 2,
+          "title": "本章学习目标"
+        },
+        {
+          "depth": 2,
+          "title": "建议阅读顺序"
+        },
+        {
+          "depth": 2,
+          "title": "用一张剖面组织知识"
+        },
+        {
+          "depth": 2,
+          "title": "观察与自测"
+        }
+      ],
+      "paragraphs": 17,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/wall/wall-role.html",
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-finishes.html",
+        "/lesson/wall/index.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/wall/wall-role.html",
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-finishes.html",
+        "/lesson/wall/index.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": true,
+      "selfCheckHeading": true,
+      "sourceBlocks": []
+    },
+    {
+      "id": "wall-role",
+      "title": "墙体在建筑中的作用",
+      "description": "承重、围护、分隔——墙体作为建筑竖向构件的三大基本功能。",
+      "nodeIds": [],
+      "available": true,
+      "group": "wall",
+      "path": "basics/wall/wall-role.html",
+      "source": "src/data/textbook/walls/wall-role.md",
+      "chineseCharacters": 1059,
+      "sourceHash": "b00e78ddc66548c2723421e2453975ba5913f4085a28087eb8f338879435f522",
+      "renderedHash": "d33f4d4892b3a129f8978b349f8412741dc1a645b2eac982663e371d3817b5e8",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "墙体在建筑中的作用"
+        },
+        {
+          "depth": 2,
+          "title": "承重：沿传力路径判断"
+        },
+        {
+          "depth": 2,
+          "title": "围护：建立室内外边界"
+        },
+        {
+          "depth": 2,
+          "title": "分隔：建立房间之间的边界"
+        },
+        {
+          "depth": 2,
+          "title": "三种典型墙的比较"
+        },
+        {
+          "depth": 2,
+          "title": "读图方法与常见错误"
+        },
+        {
+          "depth": 2,
+          "title": "自测"
+        }
+      ],
+      "paragraphs": 14,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/wall/index.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/wall/index.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B024"
+      ]
+    },
+    {
+      "id": "wall-types",
+      "title": "墙体的类型",
+      "description": "按受力情况（承重墙/非承重墙）、按位置（外墙/内墙）、按材料（砖墙/砌块墙/混凝土墙）分类。",
+      "nodeIds": [],
+      "available": true,
+      "group": "wall",
+      "path": "basics/wall/wall-types.html",
+      "source": "src/data/textbook/walls/wall-types.md",
+      "chineseCharacters": 1091,
+      "sourceHash": "1d59868756e429fd74e1bea45f25de8cdbcd296b92a40192fb779a531799162d",
+      "renderedHash": "3ac34fff764c505efe83ef252945c6e5213069998b62abb79a54c48bc8a5ebc6",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "墙体的类型"
+        },
+        {
+          "depth": 2,
+          "title": "按位置与方向分类"
+        },
+        {
+          "depth": 2,
+          "title": "按结构角色分类"
+        },
+        {
+          "depth": 2,
+          "title": "按材料与构造分类"
+        },
+        {
+          "depth": 2,
+          "title": "按施工方法分类"
+        },
+        {
+          "depth": 2,
+          "title": "分类练习与常见错误"
+        },
+        {
+          "depth": 2,
+          "title": "自测"
+        }
+      ],
+      "paragraphs": 14,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/wall/index.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/wall/index.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B025"
+      ]
+    },
+    {
+      "id": "wall-masonry",
+      "title": "砌体结构",
+      "description": "砖砌体与砌块砌体的构造要求，包括砌筑方式、墙厚模数、构造柱与圈梁。",
+      "nodeIds": [],
+      "available": true,
+      "group": "wall",
+      "path": "basics/wall/wall-masonry.html",
+      "source": "src/data/textbook/walls/wall-masonry.md",
+      "chineseCharacters": 1480,
+      "sourceHash": "d095763416bde5d775f483ea6e4985d3ced6fc995c296c0498e048048b360bda",
+      "renderedHash": "fbb715f9c9e0f17b106e7b2f029504ae6e7f36018d8b0df72b5e13516d2ac44b",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "砌体结构"
+        },
+        {
+          "depth": 2,
+          "title": "墙承重体系与结构布置"
+        },
+        {
+          "depth": 2,
+          "title": "块材、砂浆与性能"
+        },
+        {
+          "depth": 2,
+          "title": "组砌：让墙体共同工作"
+        },
+        {
+          "depth": 2,
+          "title": "排块与尺度协调"
+        },
+        {
+          "depth": 2,
+          "title": "砌筑与读图检查顺序"
+        },
+        {
+          "depth": 2,
+          "title": "常见错误与自测"
+        }
+      ],
+      "paragraphs": 23,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/wall/wall-details.html",
+        "/#/node/hollow-block-forms-01",
+        "https://ebook.chinabuilding.com.cn/zbooklib/bookpdf/probation?SiteID=1&bookID=141609",
+        "/lesson/wall/index.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/wall/index.html"
+      ],
+      "modelLinks": [
+        "/#/node/hollow-block-forms-01"
+      ],
+      "externalLinks": [
+        "https://ebook.chinabuilding.com.cn/zbooklib/bookpdf/probation?SiteID=1&bookID=141609"
+      ],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B026",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036",
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042",
+        "B046",
+        "B047"
+      ]
+    },
+    {
+      "id": "wall-partition",
+      "title": "隔墙",
+      "description": "非承重内隔墙的类型与构造做法，包括轻钢龙骨隔墙、轻质条板隔墙等。",
+      "nodeIds": [],
+      "available": true,
+      "group": "wall",
+      "path": "basics/wall/wall-partition.html",
+      "source": "src/data/textbook/walls/partitions.md",
+      "chineseCharacters": 1272,
+      "sourceHash": "fe43fa0d5b4eb55bbf1a2ff07ed8bbac99dcae206897eba715d177684c947beb",
+      "renderedHash": "29b802a7241225b6c3e1d4f0bc19dda7fa888be1dcd66841d97166e348bd67f9",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "隔墙"
+        },
+        {
+          "depth": 2,
+          "title": "三类常见体系"
+        },
+        {
+          "depth": 2,
+          "title": "块材隔墙：稳定与变形协调"
+        },
+        {
+          "depth": 2,
+          "title": "轻骨架隔墙：骨架、面板与腔体"
+        },
+        {
+          "depth": 2,
+          "title": "条板隔墙：连接并非只有粘结"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 16,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/principles/acoustic.html",
+        "/lesson/wall/index.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/principles/acoustic.html",
+        "/lesson/wall/index.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B049",
+        "B050",
+        "B051",
+        "B052",
+        "B053"
+      ]
+    },
+    {
+      "id": "wall-design-requirements",
+      "title": "墙体的设计要求",
+      "description": "结构安全、保温隔热、隔声、防火、防水防潮等墙体设计的技术要求。",
+      "nodeIds": [
+        "construction-column-01"
+      ],
+      "available": true,
+      "group": "wall",
+      "path": "basics/wall/wall-design-requirements.html",
+      "source": "src/data/textbook/walls/wall-design-requirements.md",
+      "chineseCharacters": 1364,
+      "sourceHash": "7cbe59b0fab66760201bc93920ced0495aef5c4a9aa746a54cbce69407a9cc6d",
+      "renderedHash": "5348a9bcc6b246ccddbf6478ab13028a605e5b26b5f5ea6250e7708e9bd0c6a6",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "墙体的设计要求"
+        },
+        {
+          "depth": 2,
+          "title": "承载能力与稳定"
+        },
+        {
+          "depth": 2,
+          "title": "整体性与抗震"
+        },
+        {
+          "depth": 2,
+          "title": "热工、节能与结露"
+        },
+        {
+          "depth": 2,
+          "title": "水、声与火的连续边界"
+        },
+        {
+          "depth": 2,
+          "title": "综合检查与自测"
+        }
+      ],
+      "paragraphs": 19,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/#/node/construction-column-01",
+        "/lesson/basics/wall/wall-details.html",
+        "https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/202204/t20220412_2674410.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/insulation.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/principles/fire.html",
+        "/lesson/wall/index.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/insulation.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/principles/fire.html",
+        "/lesson/wall/index.html"
+      ],
+      "modelLinks": [
+        "/#/node/construction-column-01"
+      ],
+      "externalLinks": [
+        "https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/202204/t20220412_2674410.html"
+      ],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B027",
+        "B028",
+        "B029",
+        "B030",
+        "B031",
+        "B043",
+        "B044",
+        "B045",
+        "B048"
+      ]
+    },
+    {
+      "id": "wall-details",
+      "title": "墙体细部构造",
+      "description": "沿墙脚、洞口与墙顶理解防潮、排水和结构连接。",
+      "nodeIds": [
+        "wall-damp-proof-course",
+        "construction-column-01"
+      ],
+      "available": true,
+      "group": "wall",
+      "path": "basics/wall/wall-details.html",
+      "source": "src/data/textbook/walls/wall-details.md",
+      "chineseCharacters": 1694,
+      "sourceHash": "4cda1387474183f26074edc9a104c6756e6daac920a14397184b8fc78c3d72c6",
+      "renderedHash": "d1de07d9ff75c8d4539a7fff3d5cf096534850c6e536e1fa28f13e8648b733f7",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "墙身细部构造"
+        },
+        {
+          "depth": 2,
+          "title": "墙脚与防潮层"
+        },
+        {
+          "depth": 2,
+          "title": "勒脚、散水与排水沟"
+        },
+        {
+          "depth": 2,
+          "title": "过梁、窗台与洞口侧边"
+        },
+        {
+          "depth": 2,
+          "title": "圈梁、构造柱与芯柱"
+        },
+        {
+          "depth": 2,
+          "title": "读图检查与自测"
+        }
+      ],
+      "paragraphs": 22,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/wall/wall-masonry.html",
+        "/#/node/wall-damp-proof-course",
+        "/lesson/basics/door-window/window-door-design.html",
+        "/#/node/construction-column-01",
+        "/#/node/block-wall-core-column-01",
+        "/lesson/basics/wall/wall-finishes.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/wall/index.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/door-window/window-door-design.html",
+        "/lesson/basics/wall/wall-finishes.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/wall/index.html"
+      ],
+      "modelLinks": [
+        "/#/node/wall-damp-proof-course",
+        "/#/node/construction-column-01",
+        "/#/node/block-wall-core-column-01"
+      ],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": []
+    },
+    {
+      "id": "wall-finishes",
+      "title": "墙面装修",
+      "description": "比较抹灰、贴面、涂饰与装配饰面的基层和连接。",
+      "nodeIds": [],
+      "available": true,
+      "group": "wall",
+      "path": "basics/wall/wall-finishes.html",
+      "source": "src/data/textbook/walls/wall-finishes.md",
+      "chineseCharacters": 1492,
+      "sourceHash": "7996e5f64b77fea9d77403be5a467c4cb44dd4cb77ee5d6a49594010f287eeca",
+      "renderedHash": "2da0feafdafc21f7ea55e4e150ef0a2326f9ff478ed18969bd486a374b529409",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "墙体饰面构造"
+        },
+        {
+          "depth": 2,
+          "title": "室内外环境与构造选择"
+        },
+        {
+          "depth": 2,
+          "title": "抹灰：分层的职责"
+        },
+        {
+          "depth": 2,
+          "title": "涂料、裱糊与清水墙"
+        },
+        {
+          "depth": 2,
+          "title": "粘贴与机械连接饰面"
+        },
+        {
+          "depth": 2,
+          "title": "收口：护角、墙裙、踢脚与分格"
+        },
+        {
+          "depth": 2,
+          "title": "缺陷观察与自测"
+        }
+      ],
+      "paragraphs": 19,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/floor/finish-overview.html",
+        "/lesson/basics/floor/floor-ceiling.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/wall/index.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/floor/finish-overview.html",
+        "/lesson/basics/floor/floor-ceiling.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/wall/index.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B119",
+        "B120",
+        "B121",
+        "B122",
+        "B123",
+        "B124",
+        "B127",
+        "B128",
+        "B129"
+      ]
+    },
+    {
+      "id": "window-door-overview",
+      "title": "门窗的作用与分类",
+      "description": "门窗作为建筑外围护与交通构件的作用，按开启方式、材料、用途等进行分类。",
+      "nodeIds": [],
+      "available": true,
+      "group": "door-window",
+      "path": "basics/door-window/window-door-overview.html",
+      "source": "src/data/textbook/door-window/window-door-overview.md",
+      "chineseCharacters": 1388,
+      "sourceHash": "cc401775a12b9a4f129d5c6c2a19347451236abb3c3eb401b2e68abd60d8b74f",
+      "renderedHash": "f58a8562b4cf6090d0e4ec05661533e3d7d835124c221ec3344a5eade08ac8e6",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "门窗的作用与分类"
+        },
+        {
+          "depth": 2,
+          "title": "组成：框、扇、填充与五金"
+        },
+        {
+          "depth": 2,
+          "title": "门的开启方式"
+        },
+        {
+          "depth": 2,
+          "title": "窗的开启方式"
+        },
+        {
+          "depth": 2,
+          "title": "框材与玻璃配置"
+        },
+        {
+          "depth": 2,
+          "title": "观察与自测"
+        }
+      ],
+      "paragraphs": 16,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/door-window/window-door-design.html",
+        "/lesson/basics/door-window/index.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/door-window/window-door-design.html",
+        "/lesson/basics/door-window/index.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B054",
+        "B056",
+        "B058",
+        "B061",
+        "B067"
+      ]
+    },
+    {
+      "id": "window-door-design",
+      "title": "门窗的设计要求",
+      "description": "采光通风、保温隔热、隔声、防火、安全等方面的设计规范与构造要点。",
+      "nodeIds": [],
+      "available": true,
+      "group": "door-window",
+      "path": "basics/door-window/window-door-design.html",
+      "source": "src/data/textbook/door-window/window-door-design.md",
+      "chineseCharacters": 2143,
+      "sourceHash": "ca41740c4df069f18f203fe2350801783be6d41b85e6fb33c43a63814ea87ebc",
+      "renderedHash": "1c23d23a73179f9caa24ef4134ff7b394313087dd7983a794c36474b530933a7",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "门窗的设计要求"
+        },
+        {
+          "depth": 2,
+          "title": "功能与尺度：分清四种尺寸"
+        },
+        {
+          "depth": 2,
+          "title": "用性能说明整樘系统"
+        },
+        {
+          "depth": 2,
+          "title": "框墙连接：传力与填缝分工"
+        },
+        {
+          "depth": 2,
+          "title": "四类缝隙逐一检查"
+        },
+        {
+          "depth": 2,
+          "title": "传统木门窗作为构造案例"
+        },
+        {
+          "depth": 2,
+          "title": "节能与遮阳的协调"
+        },
+        {
+          "depth": 2,
+          "title": "安全、维护与读图"
+        },
+        {
+          "depth": 2,
+          "title": "自测"
+        }
+      ],
+      "paragraphs": 27,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/wall/wall-details.html",
+        "https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/202204/t20220412_2674410.html",
+        "/lesson/basics/door-window/window-door-overview.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/basics/door-window/index.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/door-window/window-door-overview.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/basics/door-window/index.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [
+        "https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/202204/t20220412_2674410.html"
+      ],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B055",
+        "B057",
+        "B059",
+        "B060",
+        "B062",
+        "B063",
+        "B064",
+        "B065",
+        "B066",
+        "B068",
+        "B069",
+        "B070"
+      ]
+    },
+    {
+      "id": "floor-overview",
+      "title": "楼地层概述",
+      "description": "楼地层作为建筑水平承重与分隔构件的基本概念与功能要求。",
+      "nodeIds": [],
+      "available": true,
+      "group": "floor",
+      "path": "basics/floor/floor-overview.html",
+      "source": "src/data/textbook/floor/floor-overview.md",
+      "chineseCharacters": 1120,
+      "sourceHash": "bf6ae79f4522d8bf2bc1a001096e6f76cc5d25904b94b59605160f1d597ed464",
+      "renderedHash": "138e1c15937f622409cdf60e3b6a3df7989c81dc2abb7a735c26fca499623301",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "楼地层概述"
+        },
+        {
+          "depth": 2,
+          "title": "楼板与地坪的区别"
+        },
+        {
+          "depth": 2,
+          "title": "从使用表面读到结构内部"
+        },
+        {
+          "depth": 2,
+          "title": "设计要求怎样转化为构造"
+        },
+        {
+          "depth": 2,
+          "title": "材料类型与施工方式"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 14,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/principles/acoustic.html",
+        "/lesson/basics/floor/floor-ground-layer.html"
+      ],
+      "chapterLinks": [
+        "/lesson/principles/acoustic.html",
+        "/lesson/basics/floor/floor-ground-layer.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B091",
+        "B092",
+        "B093",
+        "B094"
+      ]
+    },
+    {
+      "id": "floor-rc-slab",
+      "title": "钢筋混凝土楼板",
+      "description": "现浇与预制钢筋混凝土楼板的类型、配筋及构造做法。",
+      "nodeIds": [],
+      "available": true,
+      "group": "floor",
+      "path": "basics/floor/floor-rc-slab.html",
+      "source": "src/data/textbook/floor/floor-rc-slab.md",
+      "chineseCharacters": 1719,
+      "sourceHash": "e552547e00661aeca2615859c80bdb5bc7159441efd9bc4a741e60b82c2fa581",
+      "renderedHash": "b3392e8191a6bc12212af21d47f6017d054406a2de9cf8f03410353af52e2f97",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "钢筋混凝土楼板"
+        },
+        {
+          "depth": 2,
+          "title": "现浇、预制与叠合"
+        },
+        {
+          "depth": 2,
+          "title": "单向与双向传力"
+        },
+        {
+          "depth": 2,
+          "title": "主要楼盖形式"
+        },
+        {
+          "depth": 2,
+          "title": "预制板的布置与连接"
+        },
+        {
+          "depth": 2,
+          "title": "预应力的基本认识"
+        },
+        {
+          "depth": 2,
+          "title": "结构平面怎样读"
+        },
+        {
+          "depth": 2,
+          "title": "自测"
+        }
+      ],
+      "paragraphs": 20,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/#/node/cast-ribbed-floor-01"
+      ],
+      "chapterLinks": [],
+      "modelLinks": [
+        "/#/node/cast-ribbed-floor-01"
+      ],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B095",
+        "B096",
+        "B097",
+        "B098",
+        "B099",
+        "B100",
+        "B101",
+        "B102",
+        "B103",
+        "B104"
+      ]
+    },
+    {
+      "id": "floor-ground-composition",
+      "title": "地面的构造组成",
+      "description": "面层、垫层、基层各层的功能与材料选择。",
+      "nodeIds": [],
+      "available": true,
+      "group": "floor",
+      "path": "basics/floor/floor-ground-composition.html",
+      "source": "src/data/textbook/floor/floor-ground-composition.md",
+      "chineseCharacters": 1024,
+      "sourceHash": "55ab6b5daa98bda46cb7966e17cc4bdb33ab389b3134f015a6d1830792a6ada0",
+      "renderedHash": "0cf73b2b553ccb22c478db35e910c7d6363574e743a647a9b47f54e22ff972df",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "地面的构造组成"
+        },
+        {
+          "depth": 2,
+          "title": "三个基本层次"
+        },
+        {
+          "depth": 2,
+          "title": "地基土与回填"
+        },
+        {
+          "depth": 2,
+          "title": "垫层如何选择"
+        },
+        {
+          "depth": 2,
+          "title": "附加层的职责"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 15,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/floor/floor-overview.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/floor/floor-ground-layer.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/floor/floor-overview.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/floor/floor-ground-layer.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B105",
+        "B106",
+        "B107"
+      ]
+    },
+    {
+      "id": "floor-ground-layer",
+      "title": "地面层",
+      "description": "室内外地面层的构造做法，包括防潮、防水、保温处理。",
+      "nodeIds": [],
+      "available": true,
+      "group": "floor",
+      "path": "basics/floor/floor-ground-layer.html",
+      "source": "src/data/textbook/floor/floor-ground-layer.md",
+      "chineseCharacters": 1212,
+      "sourceHash": "b06c6cb055a04418aa48fb7339fb1e0f0d28d4863c6616c5dbfcfcc9383b9d21",
+      "renderedHash": "20ce7a69933221901f35cb41f5616fac568bd47c6260ef2dda674aeed0583b6e",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "地面层与功能构造"
+        },
+        {
+          "depth": 2,
+          "title": "常见面层"
+        },
+        {
+          "depth": 2,
+          "title": "面层与基层共同工作"
+        },
+        {
+          "depth": 2,
+          "title": "湿区的连续防水"
+        },
+        {
+          "depth": 2,
+          "title": "架空地面不是单一系统"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 15,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html",
+        "/lesson/basics/floor/finish-overview.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html",
+        "/lesson/basics/floor/finish-overview.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B108",
+        "B130",
+        "B131",
+        "B132",
+        "B134"
+      ]
+    },
+    {
+      "id": "floor-balcony",
+      "title": "阳台及雨棚",
+      "description": "悬挑阳台的结构与防水构造，雨棚的类型与排水设计。",
+      "nodeIds": [],
+      "available": true,
+      "group": "floor",
+      "path": "basics/floor/floor-balcony.html",
+      "source": "src/data/textbook/floor/floor-balcony.md",
+      "chineseCharacters": 1089,
+      "sourceHash": "4ab5e5eb88bb517943c3e4575d4f6b07868f892741e7feaa8ca9aa90320bf477",
+      "renderedHash": "5297ab729ee6a00ebaf57ba4d27b7e8c67d8eeae28e03a41f3eb236b4b631a0c",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "阳台及雨棚"
+        },
+        {
+          "depth": 2,
+          "title": "分类与支承"
+        },
+        {
+          "depth": 2,
+          "title": "排水与门口"
+        },
+        {
+          "depth": 2,
+          "title": "临空防护及连接"
+        },
+        {
+          "depth": 2,
+          "title": "雨棚的承重与防水"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 16,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/#/node/cantilever-slab-01",
+        "/lesson/principles/waterproof.html"
+      ],
+      "chapterLinks": [
+        "/lesson/principles/waterproof.html"
+      ],
+      "modelLinks": [
+        "/#/node/cantilever-slab-01"
+      ],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B109",
+        "B110",
+        "B111",
+        "B112",
+        "B113",
+        "B114"
+      ]
+    },
+    {
+      "id": "finish-overview",
+      "title": "建筑装修概论",
+      "description": "按基层、连接与面层组织装修，协调性能和施工顺序。",
+      "nodeIds": [],
+      "available": true,
+      "group": "floor",
+      "path": "basics/floor/finish-overview.html",
+      "source": "src/data/textbook/floor/finish-overview.md",
+      "chineseCharacters": 1107,
+      "sourceHash": "908f9b02bde1b14db727f03f6322d12904ad7806e24448d798fe1326c8bb910c",
+      "renderedHash": "855612c2aa40c7589a92743701a8c418646433ec694d233e017a3a2e23fc6d0c",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "建筑装修概论"
+        },
+        {
+          "depth": 2,
+          "title": "装修的功能"
+        },
+        {
+          "depth": 2,
+          "title": "实体基层与骨架基层"
+        },
+        {
+          "depth": 2,
+          "title": "分类维度要分清"
+        },
+        {
+          "depth": 2,
+          "title": "设计、施工与标注"
+        },
+        {
+          "depth": 2,
+          "title": "三个部位的阅读入口"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 16,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/wall/wall-finishes.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-ceiling.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/wall/wall-finishes.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-ceiling.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B115",
+        "B116",
+        "B117",
+        "B118",
+        "B126"
+      ]
+    },
+    {
+      "id": "floor-ceiling",
+      "title": "顶棚构造",
+      "description": "理解直接式与吊顶式顶棚的受力、连接和设备协调。",
+      "nodeIds": [],
+      "available": true,
+      "group": "floor",
+      "path": "basics/floor/floor-ceiling.html",
+      "source": "src/data/textbook/floor/floor-ceiling.md",
+      "chineseCharacters": 1086,
+      "sourceHash": "9c7a1a013848b30511f51126f9ece039b35276db245e1a8a95f1de8fc9cc86b7",
+      "renderedHash": "ea2fa908bcfee9ffe066d5548b813c98a4ff7af30b74fe21b277e92e28a2403e",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "顶棚与吊顶构造"
+        },
+        {
+          "depth": 2,
+          "title": "直接式顶棚"
+        },
+        {
+          "depth": 2,
+          "title": "吊顶的组成与传力"
+        },
+        {
+          "depth": 2,
+          "title": "设备与吊顶各自支承"
+        },
+        {
+          "depth": 2,
+          "title": "防火、隔声与潮湿"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 16,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/roof/roof-flat.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/roof/roof-flat.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B125",
+        "B135",
+        "B136"
+      ]
+    },
+    {
+      "id": "stairs-overview",
+      "title": "楼梯的基本概念及设计要求",
+      "description": "楼梯的功能组成（梯段、平台、栏杆）、分类方式与主要设计参数（坡度、宽度、净高）。",
+      "nodeIds": [],
+      "available": true,
+      "group": "stairs",
+      "path": "basics/stairs/stairs-overview.html",
+      "source": "src/data/textbook/stairs/stairs-overview.md",
+      "chineseCharacters": 1537,
+      "sourceHash": "e81f51c037b2f7c27e9d14a0cc2b16adc2e81d25140ce8eea7261b624bd4edd8",
+      "renderedHash": "dead76f429102b7ed6e08b457b7471b3b91c6f082b5d6642e89782bcc4942d8b",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "楼梯的基本概念及设计要求"
+        },
+        {
+          "depth": 2,
+          "title": "组成与分类"
+        },
+        {
+          "depth": 2,
+          "title": "五组设计参数"
+        },
+        {
+          "depth": 2,
+          "title": "级数与投影长度"
+        },
+        {
+          "depth": 2,
+          "title": "首层入口与净空复核"
+        },
+        {
+          "depth": 2,
+          "title": "从方案到图纸"
+        },
+        {
+          "depth": 2,
+          "title": "自测"
+        }
+      ],
+      "paragraphs": 22,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/#/node/stair-composition-01",
+        "/lesson/principles/fire.html",
+        "/#/node/bottom-landing-entrance-01",
+        "/lesson/basics/stairs/stairs-rc-structure.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/basics/stairs/stairs-steps-ramps.html"
+      ],
+      "chapterLinks": [
+        "/lesson/principles/fire.html",
+        "/lesson/basics/stairs/stairs-rc-structure.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/basics/stairs/stairs-steps-ramps.html"
+      ],
+      "modelLinks": [
+        "/#/node/stair-composition-01",
+        "/#/node/bottom-landing-entrance-01"
+      ],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B137",
+        "B138",
+        "B141",
+        "B142",
+        "B143",
+        "B144",
+        "B145",
+        "B146",
+        "B147"
+      ]
+    },
+    {
+      "id": "stairs-rc-structure",
+      "title": "钢筋混凝土楼梯构造",
+      "description": "板式楼梯与梁式楼梯的结构形式与构造做法，现浇与预制楼梯的特点。",
+      "nodeIds": [],
+      "available": true,
+      "group": "stairs",
+      "path": "basics/stairs/stairs-rc-structure.html",
+      "source": "src/data/textbook/stairs/stairs-rc-structure.md",
+      "chineseCharacters": 1063,
+      "sourceHash": "507f28e9c43ebcf6b336bf263a03a0144d64c10c11b1f5b078580bb44dde1058",
+      "renderedHash": "74f8e2a7422a4df001fc9032f758c32f7406425e56e1c9cf02317ef5559ea29f",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "钢筋混凝土楼梯构造"
+        },
+        {
+          "depth": 2,
+          "title": "三个分类维度"
+        },
+        {
+          "depth": 2,
+          "title": "板式与梁式"
+        },
+        {
+          "depth": 2,
+          "title": "预制梯段的安装与连接"
+        },
+        {
+          "depth": 2,
+          "title": "与主体协同"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 15,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/stairs/stairs-details.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/stairs/stairs-details.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B139",
+        "B140",
+        "B148",
+        "B150"
+      ]
+    },
+    {
+      "id": "stairs-details",
+      "title": "楼梯的细部构造",
+      "description": "踏步防滑处理、栏杆扶手连接、楼梯装饰面层等细部构造。",
+      "nodeIds": [],
+      "available": true,
+      "group": "stairs",
+      "path": "basics/stairs/stairs-details.html",
+      "source": "src/data/textbook/stairs/stairs-details.md",
+      "chineseCharacters": 1100,
+      "sourceHash": "26d5ae96e5ed58fc247b002ee445833e325e9da82d5b6595ebe95bc4062fb8be",
+      "renderedHash": "57a129b4f6a29ea9f206add75ce02d3131b1880e432ea16a34eca75af4351bec",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "楼梯的细部构造"
+        },
+        {
+          "depth": 2,
+          "title": "齐步、错步与埋步"
+        },
+        {
+          "depth": 2,
+          "title": "踏步面层与防滑"
+        },
+        {
+          "depth": 2,
+          "title": "栏杆与栏板的连接"
+        },
+        {
+          "depth": 2,
+          "title": "扶手连续与转折"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 15,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/stairs/stairs-overview.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/stairs/stairs-overview.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B149",
+        "B151",
+        "B152",
+        "B153"
+      ]
+    },
+    {
+      "id": "stairs-steps-ramps",
+      "title": "台阶与坡道",
+      "description": "室外台阶、室内高差处理、无障碍坡道的设计参数与构造做法。",
+      "nodeIds": [],
+      "available": true,
+      "group": "stairs",
+      "path": "basics/stairs/stairs-steps-ramps.html",
+      "source": "src/data/textbook/stairs/stairs-steps-ramps.md",
+      "chineseCharacters": 1019,
+      "sourceHash": "97fdb9dc9469570cfa200cee7687fd999a4868fda8fdeb5321bbd4ac210ebd49",
+      "renderedHash": "497ef36fa184890aa9550bdc0c1da39ac35306a52c2d6c262ab0e8370996e429",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "台阶与坡道"
+        },
+        {
+          "depth": 2,
+          "title": "入口应先组织完整路线"
+        },
+        {
+          "depth": 2,
+          "title": "台阶的支承与沉降"
+        },
+        {
+          "depth": 2,
+          "title": "坡度、坡长与平台"
+        },
+        {
+          "depth": 2,
+          "title": "构造与使用环境"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 15,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/#/node/concrete-steps-01",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/202204/t20220412_2674451.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/floor/floor-ground-composition.html"
+      ],
+      "modelLinks": [
+        "/#/node/concrete-steps-01"
+      ],
+      "externalLinks": [
+        "https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/202204/t20220412_2674451.html"
+      ],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B154",
+        "B155",
+        "B156"
+      ]
+    },
+    {
+      "id": "stairs-elevator",
+      "title": "电梯及自动扶梯",
+      "description": "电梯的井道、机房、底坑构造要求，自动扶梯的安装与构造。",
+      "nodeIds": [],
+      "available": true,
+      "group": "stairs",
+      "path": "basics/stairs/stairs-elevator.html",
+      "source": "src/data/textbook/stairs/stairs-elevator.md",
+      "chineseCharacters": 1094,
+      "sourceHash": "e5b73ba8cf04396b5c7fe6c2aefc226258b7d6313416d24b2e4333516d12069b",
+      "renderedHash": "4cd3020888c928d2786d114a4d2673a59e6871c0d643d8e0309409bc48f518f7",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "电梯及自动扶梯"
+        },
+        {
+          "depth": 2,
+          "title": "电梯的空间组成"
+        },
+        {
+          "depth": 2,
+          "title": "结构与设备连接"
+        },
+        {
+          "depth": 2,
+          "title": "防水、防火与隔声"
+        },
+        {
+          "depth": 2,
+          "title": "自动扶梯与自动人行道"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 15,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/principles/fire.html"
+      ],
+      "chapterLinks": [
+        "/lesson/principles/fire.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B157",
+        "B158"
+      ]
+    },
+    {
+      "id": "roof-overview",
+      "title": "屋顶概述",
+      "description": "屋顶的功能（防水、保温、隔热）与分类（平屋面、坡屋面、曲面屋顶）。",
+      "nodeIds": [],
+      "available": true,
+      "group": "roof",
+      "path": "basics/roof/roof-overview.html",
+      "source": "src/data/textbook/roof/index.md",
+      "chineseCharacters": 1145,
+      "sourceHash": "c6c65426171502ccc0f88992ad69d7355e5f7602e59c4729e53c16101d48f235",
+      "renderedHash": "3bf66199f0820afc537f90a874f74eb6ad4c00b0168d7772efa4cb61672c7e25",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "屋顶概述"
+        },
+        {
+          "depth": 2,
+          "title": "分类的不同维度"
+        },
+        {
+          "depth": 2,
+          "title": "导水与防水协同"
+        },
+        {
+          "depth": 2,
+          "title": "坡度表示与找坡"
+        },
+        {
+          "depth": 2,
+          "title": "层次按性能组织"
+        },
+        {
+          "depth": 2,
+          "title": "使用、结构与维护"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 17,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/insulation.html",
+        "/lesson/basics/roof/roof-slope.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/insulation.html",
+        "/lesson/basics/roof/roof-slope.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B159",
+        "B160",
+        "B161",
+        "B162",
+        "B163",
+        "B195",
+        "B200"
+      ]
+    },
+    {
+      "id": "roof-flat",
+      "title": "平屋面构造",
+      "description": "平屋面的坡度设计、防水层、保温层、找坡层、保护层等构造层次。",
+      "nodeIds": [],
+      "available": true,
+      "group": "roof",
+      "path": "basics/roof/roof-flat.html",
+      "source": "src/data/textbook/roof/roof-flat.md",
+      "chineseCharacters": 2415,
+      "sourceHash": "d379701bdaf0f9d1f712b0f727f84be3bc1dd2a34f8638de88c459c68fe8da8f",
+      "renderedHash": "1520c996f6d8419d7d4594c2419150b7399fd9b307c813dddc8945c9df7316fb",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "平屋面构造"
+        },
+        {
+          "depth": 2,
+          "title": "一、排水组织"
+        },
+        {
+          "depth": 2,
+          "title": "二、防水材料与连接"
+        },
+        {
+          "depth": 2,
+          "title": "三、层次与保护"
+        },
+        {
+          "depth": 2,
+          "title": "四、重点节点"
+        },
+        {
+          "depth": 2,
+          "title": "五、正置、倒置与水汽"
+        },
+        {
+          "depth": 2,
+          "title": "六、隔热与特殊使用"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 30,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "https://www.gsjn.gov.cn/zfxxgk/zfbmxxgk/zjj/fdzdgknr/lzyj/art/2022/art_0f0b3ad7fa304c0b961a009b0d8319ca.html",
+        "/#/node/roof-access-hatch-01",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html",
+        "/#/node/flat-roof-01",
+        "https://std.samr.gov.cn/gb/search/gbDetailed?id=6dAkVJ6zy9g%3D&mode=p"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html"
+      ],
+      "modelLinks": [
+        "/#/node/roof-access-hatch-01",
+        "/#/node/flat-roof-01"
+      ],
+      "externalLinks": [
+        "https://www.gsjn.gov.cn/zfxxgk/zfbmxxgk/zjj/fdzdgknr/lzyj/art/2022/art_0f0b3ad7fa304c0b961a009b0d8319ca.html",
+        "https://std.samr.gov.cn/gb/search/gbDetailed?id=6dAkVJ6zy9g%3D&mode=p"
+      ],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B164",
+        "B165",
+        "B166",
+        "B167",
+        "B168",
+        "B169",
+        "B170",
+        "B171",
+        "B172",
+        "B173",
+        "B174",
+        "B175",
+        "B176",
+        "B177",
+        "B179",
+        "B180",
+        "B181",
+        "B182",
+        "B183",
+        "B184",
+        "B185",
+        "B196",
+        "B197",
+        "B198",
+        "B199",
+        "B201",
+        "B202",
+        "B203",
+        "B204"
+      ]
+    },
+    {
+      "id": "roof-slope",
+      "title": "坡屋面构造",
+      "description": "瓦屋面、金属屋面等坡屋面的构造做法与排水设计。",
+      "nodeIds": [],
+      "available": true,
+      "group": "roof",
+      "path": "basics/roof/roof-slope.html",
+      "source": "src/data/textbook/roof/roof-slope.md",
+      "chineseCharacters": 1567,
+      "sourceHash": "a5badacb511afd33c5df8deac48b5c288ab6da4b756ed3c20f03f3692ef562f2",
+      "renderedHash": "5b4116d494857661303560c933eef51226e47ee2842ef024f4a7cc224eaacb8b",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "坡屋面构造"
+        },
+        {
+          "depth": 2,
+          "title": "支承体系与空间稳定"
+        },
+        {
+          "depth": 2,
+          "title": "脊谷与排水几何"
+        },
+        {
+          "depth": 2,
+          "title": "瓦屋面层次"
+        },
+        {
+          "depth": 2,
+          "title": "金属板屋面"
+        },
+        {
+          "depth": 2,
+          "title": "檐口、沟与穿屋面部位"
+        },
+        {
+          "depth": 2,
+          "title": "保温边界与阁楼"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 22,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/roof/roof-flat.html",
+        "/#/node/wood-batten-tile-roof-01",
+        "/#/node/steel-batten-tile-roof-01",
+        "/#/node/mortar-bed-tile-roof-01"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/roof/roof-flat.html"
+      ],
+      "modelLinks": [
+        "/#/node/wood-batten-tile-roof-01",
+        "/#/node/steel-batten-tile-roof-01",
+        "/#/node/mortar-bed-tile-roof-01"
+      ],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B186",
+        "B187",
+        "B188",
+        "B189",
+        "B190",
+        "B191",
+        "B192",
+        "B193",
+        "B194"
+      ]
+    },
+    {
+      "id": "roof-deformation-concept",
+      "title": "建筑变形缝的概念",
+      "description": "伸缩缝、沉降缝、抗震缝的定义、功能与设置原则。",
+      "nodeIds": [],
+      "available": true,
+      "group": "deformation-joint",
+      "path": "basics/deformation-joint/roof-deformation-concept.html",
+      "source": "src/data/textbook/deformation-joint/roof-deformation-concept.md",
+      "chineseCharacters": 998,
+      "sourceHash": "2498b3867af101ecec0719e633e3b458cf98adca499c79b9e888a7c5a0af2f05",
+      "renderedHash": "4a677962c012ec137912b5147f06b26dd2ac62dc838e4431d95a27c2b681ab1d",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "建筑变形缝的概念"
+        },
+        {
+          "depth": 2,
+          "title": "允许变形与保持连续"
+        },
+        {
+          "depth": 2,
+          "title": "三类缝的主要区别"
+        },
+        {
+          "depth": 2,
+          "title": "变形与材料性能"
+        },
+        {
+          "depth": 2,
+          "title": "与分格缝、施工缝和后浇带的区别"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 13,
+      "tables": 1,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/deformation-joint/roof-deformation-location.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/deformation-joint/roof-deformation-location.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B205",
+        "B206",
+        "B209",
+        "B212"
+      ]
+    },
+    {
+      "id": "roof-deformation-location",
+      "title": "变形缝的设置",
+      "description": "变形缝在不同建筑部位（墙体、楼板、屋面）的设置间距与位置要求。",
+      "nodeIds": [],
+      "available": true,
+      "group": "deformation-joint",
+      "path": "basics/deformation-joint/roof-deformation-location.html",
+      "source": "src/data/textbook/deformation-joint/roof-deformation-location.md",
+      "chineseCharacters": 1052,
+      "sourceHash": "8908ecdb96b9f707734b06c94abec830f42887869eb4b14657241e58ebf963d8",
+      "renderedHash": "f5582250b5b9e360adb741154b0baac4eb62834d1108e122e31ec514a65c848d",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "变形缝的设置"
+        },
+        {
+          "depth": 2,
+          "title": "识别需要关注的场景"
+        },
+        {
+          "depth": 2,
+          "title": "位置、间距与宽度"
+        },
+        {
+          "depth": 2,
+          "title": "与平面和系统协调"
+        },
+        {
+          "depth": 2,
+          "title": "设缝之外的措施"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 16,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/lesson/basics/deformation-joint/roof-deformation-concept.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/deformation-joint/roof-deformation-concept.html"
+      ],
+      "modelLinks": [],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B207",
+        "B210",
+        "B213",
+        "B216"
+      ]
+    },
+    {
+      "id": "roof-deformation-construction",
+      "title": "变形缝的构造",
+      "description": "变形缝处盖缝板、密封材料、防水处理等构造做法。",
+      "nodeIds": [],
+      "available": true,
+      "group": "deformation-joint",
+      "path": "basics/deformation-joint/roof-deformation-construction.html",
+      "source": "src/data/textbook/deformation-joint/roof-deformation-construction.md",
+      "chineseCharacters": 1184,
+      "sourceHash": "5353443787089956b652706828d865033a374d36b8e83f80e2bc25e263afe4df",
+      "renderedHash": "0d0a498b1a51b44bcead2e10d0030c9cfa6fe8ac712dffe0da7c5d91872f1054",
+      "formalEqualsLesson": true,
+      "headings": [
+        {
+          "depth": 1,
+          "title": "变形缝的构造"
+        },
+        {
+          "depth": 2,
+          "title": "结构与盖缝系统"
+        },
+        {
+          "depth": 2,
+          "title": "墙面变形缝"
+        },
+        {
+          "depth": 2,
+          "title": "楼地面盖缝"
+        },
+        {
+          "depth": 2,
+          "title": "等高与高低屋面缝"
+        },
+        {
+          "depth": 2,
+          "title": "地下与设备接口"
+        },
+        {
+          "depth": 2,
+          "title": "读图与自测"
+        }
+      ],
+      "paragraphs": 17,
+      "tables": 0,
+      "images": 0,
+      "inlineCode": 0,
+      "code": 0,
+      "links": [
+        "/#/node/high-low-roof-joint-01",
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/basics/deformation-joint/roof-deformation-concept.html"
+      ],
+      "chapterLinks": [
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/basics/deformation-joint/roof-deformation-concept.html"
+      ],
+      "modelLinks": [
+        "/#/node/high-low-roof-joint-01"
+      ],
+      "externalLinks": [],
+      "explicitObjectivesHeading": false,
+      "selfCheckHeading": true,
+      "sourceBlocks": [
+        "B133",
+        "B178",
+        "B208",
+        "B211",
+        "B214",
+        "B215"
+      ]
+    }
+  ],
+  "groups": {
+    "introduction": {
+      "articles": 7,
+      "chineseCharacters": 8236,
+      "tables": 2,
+      "images": 0,
+      "pagesWithModelLinks": 0,
+      "pagesWithExternalSources": 1
+    },
+    "principles": {
+      "articles": 6,
+      "chineseCharacters": 5483,
+      "tables": 0,
+      "images": 0,
+      "pagesWithModelLinks": 0,
+      "pagesWithExternalSources": 5
+    },
+    "practice": {
+      "articles": 7,
+      "chineseCharacters": 5367,
+      "tables": 5,
+      "images": 0,
+      "pagesWithModelLinks": 0,
+      "pagesWithExternalSources": 0
+    },
+    "foundation": {
+      "articles": 6,
+      "chineseCharacters": 7111,
+      "tables": 1,
+      "images": 0,
+      "pagesWithModelLinks": 0,
+      "pagesWithExternalSources": 0
+    },
+    "wall": {
+      "articles": 8,
+      "chineseCharacters": 10265,
+      "tables": 3,
+      "images": 0,
+      "pagesWithModelLinks": 3,
+      "pagesWithExternalSources": 2
+    },
+    "door-window": {
+      "articles": 2,
+      "chineseCharacters": 3531,
+      "tables": 2,
+      "images": 0,
+      "pagesWithModelLinks": 0,
+      "pagesWithExternalSources": 1
+    },
+    "floor": {
+      "articles": 7,
+      "chineseCharacters": 8357,
+      "tables": 3,
+      "images": 0,
+      "pagesWithModelLinks": 2,
+      "pagesWithExternalSources": 0
+    },
+    "stairs": {
+      "articles": 5,
+      "chineseCharacters": 5813,
+      "tables": 1,
+      "images": 0,
+      "pagesWithModelLinks": 2,
+      "pagesWithExternalSources": 1
+    },
+    "roof": {
+      "articles": 3,
+      "chineseCharacters": 5127,
+      "tables": 1,
+      "images": 0,
+      "pagesWithModelLinks": 2,
+      "pagesWithExternalSources": 1
+    },
+    "deformation-joint": {
+      "articles": 3,
+      "chineseCharacters": 3234,
+      "tables": 1,
+      "images": 0,
+      "pagesWithModelLinks": 1,
+      "pagesWithExternalSources": 0
+    }
+  },
+  "documents": [
+    "basics/deformation-joint/index.html",
+    "basics/deformation-joint/roof-deformation-concept.html",
+    "basics/deformation-joint/roof-deformation-construction.html",
+    "basics/deformation-joint/roof-deformation-location.html",
+    "basics/door-window/index.html",
+    "basics/door-window/window-door-design.html",
+    "basics/door-window/window-door-overview.html",
+    "basics/floor/finish-overview.html",
+    "basics/floor/floor-balcony.html",
+    "basics/floor/floor-ceiling.html",
+    "basics/floor/floor-ground-composition.html",
+    "basics/floor/floor-ground-layer.html",
+    "basics/floor/floor-overview.html",
+    "basics/floor/floor-rc-slab.html",
+    "basics/floor/index.html",
+    "basics/foundation/foundation-depth.html",
+    "basics/foundation/foundation-design.html",
+    "basics/foundation/foundation-overview.html",
+    "basics/foundation/foundation-settlement.html",
+    "basics/foundation/foundation-types.html",
+    "basics/foundation/foundation-underground.html",
+    "basics/foundation/index.html",
+    "basics/roof/index.html",
+    "basics/roof/roof-flat.html",
+    "basics/roof/roof-overview.html",
+    "basics/roof/roof-slope.html",
+    "basics/stairs/index.html",
+    "basics/stairs/stairs-details.html",
+    "basics/stairs/stairs-elevator.html",
+    "basics/stairs/stairs-overview.html",
+    "basics/stairs/stairs-rc-structure.html",
+    "basics/stairs/stairs-steps-ramps.html",
+    "basics/wall/index.html",
+    "basics/wall/wall-design-requirements.html",
+    "basics/wall/wall-details.html",
+    "basics/wall/wall-finishes.html",
+    "basics/wall/wall-masonry.html",
+    "basics/wall/wall-partition.html",
+    "basics/wall/wall-role.html",
+    "basics/wall/wall-types.html",
+    "introduction/index.html",
+    "introduction/intro-classification.html",
+    "introduction/intro-composition.html",
+    "introduction/intro-course-guide.html",
+    "introduction/intro-design-principles.html",
+    "introduction/intro-drawing-standards.html",
+    "introduction/intro-factors.html",
+    "introduction/intro-grading.html",
+    "practice/construction-brief.html",
+    "practice/construction-survey.html",
+    "practice/envelope-detail.html",
+    "practice/floor-layout.html",
+    "practice/index.html",
+    "practice/integrated-design.html",
+    "practice/roof-drainage.html",
+    "practice/stairs-drawing.html",
+    "principles/acoustic.html",
+    "principles/fire.html",
+    "principles/index.html",
+    "principles/insulation.html",
+    "principles/moisture.html",
+    "principles/thermal.html",
+    "principles/waterproof.html",
+    "wall/index.html"
+  ],
+  "totals": {
+    "articles": 54,
+    "routes": 64,
+    "chineseCharacters": 62524,
+    "images": 0,
+    "tables": 19,
+    "pagesWithModelLinks": 10,
+    "uniqueLinkedModels": 15,
+    "pagesWithExternalSources": 11,
+    "explicitObjectivesHeadings": 14,
+    "selfCheckHeadings": 47,
+    "formalEqualsLesson": true
+  }
+}

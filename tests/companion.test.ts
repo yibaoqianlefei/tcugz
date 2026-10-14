@@ -18,7 +18,13 @@ assert(answerFromSite(corpus, '讲解当前内容', node).text.includes(selected
 assert.equal(answerFromSite(corpus, '如何煮意大利面', node).sources.length, 0, 'no unrelated fallback');
 const numeric = retrieveSources(corpus, '厚度是多少', node);
 assert(numeric.every(source => source.nodeId === node.nodeId), 'numeric information never borrowed from another node');
-const blank = answerFromSite(corpus, '讲解当前内容', { kind: 'course', route: '/lesson/principles/thermal.html', title: '建筑保温', coursePath: 'principles/thermal.html' });
+const thermalContext: CompanionContext = { kind: 'course', route: '/lesson/principles/thermal.html', title: '建筑保温', coursePath: 'principles/thermal.html' };
+const thermal = answerFromSite(corpus, '讲解当前内容', thermalContext);
+assert(thermal.text.includes('热桥'), 'new textbook body is available to course help');
+assert(thermal.sources.length > 0);
+assert.equal(thermal.sources[0].route, thermalContext.route, 'selected textbook article ranks first');
+const blankCorpus: CompanionCorpus = { ...corpus, sources: corpus.sources.map(source => source.route === thermalContext.route ? { ...source, empty: true, text: '该章节正文尚未提供。' } : source) };
+const blank = answerFromSite(blankCorpus, '讲解当前内容', thermalContext);
 assert(blank.text.includes('正文尚未提供'));
 assert.equal(blank.sources.length, 1);
 const variantSource = corpus.sources.find(source => source.variantId)!;

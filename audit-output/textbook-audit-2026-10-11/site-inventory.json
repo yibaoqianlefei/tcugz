@@ -1,0 +1,380 @@
+[
+  {
+    "module": "introduction",
+    "section_id": "intro-classification",
+    "title": "建筑物的分类",
+    "public_path": "public/lesson/introduction/intro-classification.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/introduction/intro-classification.html",
+    "body_source": null
+  },
+  {
+    "module": "introduction",
+    "section_id": "intro-grading",
+    "title": "建筑物的分级",
+    "public_path": "public/lesson/introduction/intro-grading.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/introduction/intro-grading.html",
+    "body_source": null
+  },
+  {
+    "module": "introduction",
+    "section_id": "intro-composition",
+    "title": "建筑物的构造组成",
+    "public_path": "public/lesson/introduction/intro-composition.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/introduction/intro-composition.html",
+    "body_source": null
+  },
+  {
+    "module": "introduction",
+    "section_id": "intro-factors",
+    "title": "影响建筑物的因素",
+    "public_path": "public/lesson/introduction/intro-factors.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/introduction/intro-factors.html",
+    "body_source": null
+  },
+  {
+    "module": "introduction",
+    "section_id": "intro-design-principles",
+    "title": "建筑构造的设计原则",
+    "public_path": "public/lesson/introduction/intro-design-principles.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/introduction/intro-design-principles.html",
+    "body_source": null
+  },
+  {
+    "module": "introduction",
+    "section_id": "intro-drawing-standards",
+    "title": "专题：制图标准与规范",
+    "public_path": "public/lesson/introduction/intro-drawing-standards.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/introduction/intro-drawing-standards.html",
+    "body_source": null
+  },
+  {
+    "module": "wall",
+    "section_id": "wall-role",
+    "title": "墙体在建筑中的作用",
+    "public_path": "public/lesson/basics/wall/wall-role.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/wall/wall-role.html",
+    "body_source": null
+  },
+  {
+    "module": "wall",
+    "section_id": "wall-types",
+    "title": "墙体的类型",
+    "public_path": "public/lesson/basics/wall/wall-types.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/wall/wall-types.html",
+    "body_source": null
+  },
+  {
+    "module": "wall",
+    "section_id": "wall-masonry",
+    "title": "砌体结构",
+    "public_path": "public/lesson/basics/wall/wall-masonry.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/wall/wall-masonry.html",
+    "body_source": null
+  },
+  {
+    "module": "wall",
+    "section_id": "wall-partition",
+    "title": "隔墙",
+    "public_path": "public/lesson/basics/wall/wall-partition.html",
+    "has_body": true,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/wall/wall-partition.html",
+    "body_source": "src/data/textbook/walls/partitions.md"
+  },
+  {
+    "module": "wall",
+    "section_id": "wall-design-requirements",
+    "title": "墙体的设计要求",
+    "public_path": "public/lesson/basics/wall/wall-design-requirements.html",
+    "has_body": true,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/wall/wall-design-requirements.html",
+    "body_source": "src/data/textbook/walls/wall-design-requirements.md"
+  },
+  {
+    "module": "door-window",
+    "section_id": "window-door-overview",
+    "title": "门窗的作用与分类",
+    "public_path": "public/lesson/basics/door-window/window-door-overview.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/door-window/window-door-overview.html",
+    "body_source": null
+  },
+  {
+    "module": "door-window",
+    "section_id": "window-door-design",
+    "title": "门窗的设计要求",
+    "public_path": "public/lesson/basics/door-window/window-door-design.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/door-window/window-door-design.html",
+    "body_source": null
+  },
+  {
+    "module": "foundation",
+    "section_id": "foundation-overview",
+    "title": "概述",
+    "public_path": "public/lesson/basics/foundation/foundation-overview.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/foundation/foundation-overview.html",
+    "body_source": null
+  },
+  {
+    "module": "foundation",
+    "section_id": "foundation-design",
+    "title": "基础与地基的设计要求",
+    "public_path": "public/lesson/basics/foundation/foundation-design.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/foundation/foundation-design.html",
+    "body_source": null
+  },
+  {
+    "module": "foundation",
+    "section_id": "foundation-types",
+    "title": "基础的分类",
+    "public_path": "public/lesson/basics/foundation/foundation-types.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/foundation/foundation-types.html",
+    "body_source": null
+  },
+  {
+    "module": "foundation",
+    "section_id": "foundation-underground",
+    "title": "基础与地下结构的类型",
+    "public_path": "public/lesson/basics/foundation/foundation-underground.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/foundation/foundation-underground.html",
+    "body_source": null
+  },
+  {
+    "module": "foundation",
+    "section_id": "foundation-depth",
+    "title": "基础的埋置深度与影响因素",
+    "public_path": "public/lesson/basics/foundation/foundation-depth.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/foundation/foundation-depth.html",
+    "body_source": null
+  },
+  {
+    "module": "foundation",
+    "section_id": "foundation-settlement",
+    "title": "不均匀沉降",
+    "public_path": "public/lesson/basics/foundation/foundation-settlement.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/foundation/foundation-settlement.html",
+    "body_source": null
+  },
+  {
+    "module": "floor",
+    "section_id": "floor-overview",
+    "title": "概述",
+    "public_path": "public/lesson/basics/floor/floor-overview.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/floor/floor-overview.html",
+    "body_source": null
+  },
+  {
+    "module": "floor",
+    "section_id": "floor-rc-slab",
+    "title": "钢筋混凝土楼板",
+    "public_path": "public/lesson/basics/floor/floor-rc-slab.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/floor/floor-rc-slab.html",
+    "body_source": null
+  },
+  {
+    "module": "floor",
+    "section_id": "floor-ground-composition",
+    "title": "地面的构造组成",
+    "public_path": "public/lesson/basics/floor/floor-ground-composition.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/floor/floor-ground-composition.html",
+    "body_source": null
+  },
+  {
+    "module": "floor",
+    "section_id": "floor-ground-layer",
+    "title": "地面层",
+    "public_path": "public/lesson/basics/floor/floor-ground-layer.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/floor/floor-ground-layer.html",
+    "body_source": null
+  },
+  {
+    "module": "floor",
+    "section_id": "floor-balcony",
+    "title": "阳台及雨棚",
+    "public_path": "public/lesson/basics/floor/floor-balcony.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/floor/floor-balcony.html",
+    "body_source": null
+  },
+  {
+    "module": "stairs",
+    "section_id": "stairs-overview",
+    "title": "楼梯的基本概念及设计要求",
+    "public_path": "public/lesson/basics/stairs/stairs-overview.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/stairs/stairs-overview.html",
+    "body_source": null
+  },
+  {
+    "module": "stairs",
+    "section_id": "stairs-rc-structure",
+    "title": "钢筋混凝土楼梯构造",
+    "public_path": "public/lesson/basics/stairs/stairs-rc-structure.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/stairs/stairs-rc-structure.html",
+    "body_source": null
+  },
+  {
+    "module": "stairs",
+    "section_id": "stairs-details",
+    "title": "楼梯的细部构造",
+    "public_path": "public/lesson/basics/stairs/stairs-details.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/stairs/stairs-details.html",
+    "body_source": null
+  },
+  {
+    "module": "stairs",
+    "section_id": "stairs-steps-ramps",
+    "title": "台阶与坡道",
+    "public_path": "public/lesson/basics/stairs/stairs-steps-ramps.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/stairs/stairs-steps-ramps.html",
+    "body_source": null
+  },
+  {
+    "module": "stairs",
+    "section_id": "stairs-elevator",
+    "title": "电梯及自动扶梯",
+    "public_path": "public/lesson/basics/stairs/stairs-elevator.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/stairs/stairs-elevator.html",
+    "body_source": null
+  },
+  {
+    "module": "roof",
+    "section_id": "roof-overview",
+    "title": "概述",
+    "public_path": "public/lesson/basics/roof/roof-overview.html",
+    "has_body": true,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/roof/roof-overview.html",
+    "body_source": "src/data/textbook/roof/index.md"
+  },
+  {
+    "module": "roof",
+    "section_id": "roof-flat",
+    "title": "平屋面构造",
+    "public_path": "public/lesson/basics/roof/roof-flat.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/roof/roof-flat.html",
+    "body_source": null
+  },
+  {
+    "module": "roof",
+    "section_id": "roof-slope",
+    "title": "坡屋面构造",
+    "public_path": "public/lesson/basics/roof/roof-slope.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/roof/roof-slope.html",
+    "body_source": null
+  },
+  {
+    "module": "deformation-joint",
+    "section_id": "roof-deformation-concept",
+    "title": "建筑变形缝的概念",
+    "public_path": "public/lesson/basics/deformation-joint/roof-deformation-concept.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/deformation-joint/roof-deformation-concept.html",
+    "body_source": null
+  },
+  {
+    "module": "deformation-joint",
+    "section_id": "roof-deformation-location",
+    "title": "变形缝的设置",
+    "public_path": "public/lesson/basics/deformation-joint/roof-deformation-location.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/deformation-joint/roof-deformation-location.html",
+    "body_source": null
+  },
+  {
+    "module": "deformation-joint",
+    "section_id": "roof-deformation-construction",
+    "title": "变形缝的构造",
+    "public_path": "public/lesson/basics/deformation-joint/roof-deformation-construction.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/deformation-joint/roof-deformation-construction.html",
+    "body_source": null
+  },
+  {
+    "module": "wall",
+    "section_id": "index",
+    "title": "墙体概述",
+    "public_path": "public/lesson/basics/wall/index.html",
+    "has_body": true,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/basics/wall/index.html",
+    "body_source": "src/data/textbook/walls/index.md"
+  },
+  {
+    "module": "principles",
+    "section_id": "thermal",
+    "title": "建筑保温",
+    "public_path": "public/lesson/principles/thermal.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/principles/thermal.html",
+    "body_source": null
+  },
+  {
+    "module": "principles",
+    "section_id": "waterproof",
+    "title": "建筑防水",
+    "public_path": "public/lesson/principles/waterproof.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/principles/waterproof.html",
+    "body_source": null
+  },
+  {
+    "module": "principles",
+    "section_id": "insulation",
+    "title": "建筑隔热",
+    "public_path": "public/lesson/principles/insulation.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/principles/insulation.html",
+    "body_source": null
+  },
+  {
+    "module": "principles",
+    "section_id": "acoustic",
+    "title": "建筑隔声",
+    "public_path": "public/lesson/principles/acoustic.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/principles/acoustic.html",
+    "body_source": null
+  },
+  {
+    "module": "principles",
+    "section_id": "fire",
+    "title": "建筑防火",
+    "public_path": "public/lesson/principles/fire.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/principles/fire.html",
+    "body_source": null
+  },
+  {
+    "module": "principles",
+    "section_id": "moisture",
+    "title": "建筑防潮",
+    "public_path": "public/lesson/principles/moisture.html",
+    "has_body": false,
+    "source": "D:/vscode project/建筑构造交互教材/public/lesson/principles/moisture.html",
+    "body_source": null
+  }
+]

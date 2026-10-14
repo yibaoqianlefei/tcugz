@@ -36,7 +36,13 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
   useLayoutEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, []);
   useEffect(() => {
     loaded.current = false;
-    const timeout = window.setTimeout(() => { if (!loaded.current) setFailed(true); }, 15000);
+    const timeout = window.setTimeout(() => {
+      if (!loaded.current) {
+        cleanup.current?.();
+        cleanup.current = null;
+        setFailed(true);
+      }
+    }, 15000);
     return () => {
       window.clearTimeout(timeout);
       cleanup.current?.();
@@ -45,6 +51,7 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
 
   const onLoad = () => {
     cleanup.current?.();
+    cleanup.current = null;
     const iframe = frame.current;
     const doc = iframe?.contentDocument;
     // Static hosts can return the SPA homepage with HTTP 200 for missing files.
@@ -58,15 +65,30 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
     const selectionChanged = () => useCompanionStore.getState().publishDetail({ ...courseContext, selectedText: doc.getSelection()?.toString().slice(0, 1000) || undefined });
     useCompanionStore.getState().publishDetail(courseContext);
     doc.addEventListener('selectionchange', selectionChanged);
+    let disposed = false;
     const resize = () => {
+      if (disposed || !iframe.isConnected || iframe.contentDocument !== doc) return;
       const layout = doc.querySelector<HTMLElement>('.layout, .wall-page');
       if (layout) layout.style.minHeight = `${window.innerHeight}px`;
       const height = Math.ceil(doc.body.getBoundingClientRect().height);
       if (height > 0 && iframe.style.height !== `${height}px`) iframe.style.height = `${height}px`;
     };
-    const observer = new ResizeObserver(resize);
+    // Queue cross-document writes outside the observer's rendering cycle.
+    // A parent requestAnimationFrame can still run before the child delivery.
+    let resizeTimer = 0;
+    const scheduleResize = () => {
+      if (disposed || resizeTimer) return;
+      resizeTimer = window.setTimeout(() => {
+        resizeTimer = 0;
+        resize();
+      }, 0);
+    };
+    // Observing in the document's own window avoided skipped notifications
+    // during the browser checks that repeatedly replace the iframe.
+    const childWindow = iframe.contentWindow as Window & typeof globalThis;
+    const observer = new childWindow.ResizeObserver(scheduleResize);
     observer.observe(doc.body);
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', scheduleResize);
     resize();
 
     const followLink = (event: MouseEvent) => {
@@ -75,6 +97,14 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
       const url = new URL(anchor.href, iframe.contentWindow?.location.href);
       if (url.origin !== window.location.origin) return;
       const coursePrefix = `${siteBase}lesson/`;
+      if (url.pathname === iframe.contentWindow?.location.pathname && url.hash && !url.hash.startsWith('#/')) {
+        const target = doc.getElementById(decodeURIComponent(url.hash.slice(1)));
+        if (target) {
+          event.preventDefault();
+          window.scrollTo({ top: window.scrollY + iframe.getBoundingClientRect().top + target.getBoundingClientRect().top - 24, behavior: 'smooth' });
+          return;
+        }
+      }
       if (url.pathname.startsWith(coursePrefix)) {
         event.preventDefault();
         navigate(`/lesson/${url.pathname.slice(coursePrefix.length)}`);
@@ -85,8 +115,10 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
     };
     doc.addEventListener('click', followLink);
     cleanup.current = () => {
+      disposed = true;
       observer.disconnect();
-      window.removeEventListener('resize', resize);
+      window.clearTimeout(resizeTimer);
+      window.removeEventListener('resize', scheduleResize);
       doc.removeEventListener('click', followLink);
       doc.removeEventListener('selectionchange', selectionChanged);
       if (useCompanionStore.getState().detail?.route === courseContext.route) useCompanionStore.getState().publishDetail(null);
@@ -94,7 +126,7 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
   };
 
   if (failed) return <CourseProblem missing={false} retry={() => { setFailed(false); setAttempt(value => value + 1); }} />;
-  return <iframe key={attempt} ref={frame} src={source} title="课程章节" onLoad={onLoad} onError={() => setFailed(true)} className="curriculum-frame" />;
+  return <iframe key={attempt} ref={frame} src={source} title="课程章节" onLoad={onLoad} onError={() => { cleanup.current?.(); cleanup.current = null; setFailed(true); }} className="curriculum-frame" />;
 }
 
 export default function CurriculumFramePage() {

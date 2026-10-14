@@ -1,0 +1,68 @@
+[
+  {
+    "node": "wall-damp-proof-course",
+    "canvas": {
+      "x": 374,
+      "y": 124,
+      "width": 735,
+      "height": 836
+    },
+    "knowledgeButtons": [
+      "查看知识：密实垫层主体",
+      "查看知识：水平防潮层"
+    ],
+    "attempt": [
+      {
+        "x": 0.26,
+        "y": 0.47,
+        "selectedObject": "dense-base::地面垫层为密实材料001",
+        "selectedVariantId": "dense-base",
+        "selected": null,
+        "unknownKnowledge": false
+      }
+    ],
+    "manual": {
+      "clicked": "查看知识：密实垫层主体",
+      "unknownKnowledge": false,
+      "selected": null,
+      "pressed": null
+    }
+  },
+  {
+    "node": "bottom-landing-entrance-01",
+    "canvas": {
+      "x": 374,
+      "y": 124,
+      "width": 735,
+      "height": 836
+    },
+    "knowledgeButtons": [],
+    "attempt": [
+      {
+        "x": 0.26,
+        "y": 0.47,
+        "selectedObject": null,
+        "selectedVariantId": null,
+        "selected": null,
+        "unknownKnowledge": false
+      },
+      {
+        "x": 0.31,
+        "y": 0.54,
+        "selectedObject": "底层中间平台下作出入口的处理方式-底层长短",
+        "selectedVariantId": null,
+        "selected": null,
+        "unknownKnowledge": false
+      }
+    ],
+    "manual": {
+      "clicked": "长跑梯段",
+      "selectedObject": null,
+      "selectedVariantId": null,
+      "detailBefore": 0,
+      "detailAfter": 0,
+      "status": "inconclusive",
+      "note": "仅模型点击与构件卡不展开已核验；手动卡片步骤遇到短暂加载视图，不据此判定反向联动。"
+    }
+  }
+]

@@ -1,0 +1,70 @@
+{
+  "audit_started": "2026-10-12",
+  "audit_completed": "2026-10-13",
+  "findings": [
+    {
+      "id": "PT-01",
+      "severity": "P2",
+      "title": "正文生成器会静默丢弃 Markdown 图片和替代文字",
+      "file": "D:/vscode project/建筑构造交互教材/scripts/build-curriculum-preview.mjs",
+      "line": 20,
+      "status": "已通过独立夹具复现；没有修改实际教材。",
+      "evidence": "inline 渲染分支处理 text、strong、emphasis、inlineCode、break、link，没有 image。用正常 `![墙脚防潮与散水](/images/wall/apron-flashing-diagram.png)` 经过当前 renderMarkdown，输出 `<p></p>`，图与 alt 均消失。证据：platform-probes.json 的 imageProbe。",
+      "impact": "后续仅向 Markdown 添加教学图不能进入阅读页，会产生正文已补图但发布页无图的静默缺失；当前全文比对测试也未验证图片和 alt。",
+      "recommendation": "补 image/figure、替代文字、图注和移动布局的渲染与校验，再复用站内二维节点图；新增图片来源、可读性与页面实际显示检查。"
+    },
+    {
+      "id": "PT-02",
+      "severity": "P3",
+      "title": "28 篇正式正文把参考答案的 Markdown 粗体符号直接显示为文字",
+      "file": "D:/vscode project/建筑构造交互教材/src/data/textbook/stairs/stairs-overview.md",
+      "line": 54,
+      "status": "已确认源语法和正式 HTML；完整地址清单见 platform-probes.json。",
+      "evidence": "正文末尾使用 `**参考答案：**1.`，闭合分隔符之后紧接数字导致 GFM 不识别此处强调，正式 article 中保留字面 `**参考答案：**`。扫描64地址，其中28篇正文有此现象。",
+      "impact": "参考答案的层次与阅读整洁度下降；现有只比较中文字符的渲染检查会通过，不能验证格式。",
+      "recommendation": "统一为独立参考答案段或在闭合分隔符之后添加适当空白，并检查正式 HTML 中未解析标记。"
+    },
+    {
+      "id": "PT-03",
+      "severity": "P3",
+      "title": "课程页的小字号首页导航文字对比度不足",
+      "file": "D:/vscode project/建筑构造交互教材/public/previews/curriculum.css",
+      "line": 1,
+      "status": "已作样本计算；未声称完成 WCAG 全面合规审查。",
+      "evidence": ".course-brand span 显示“建筑构造 / 学习首页”，12px、普通字重，前景 rgb(120,132,156)，背景 rgb(248,248,245)，对比度约3.54:1。正文样本约9.59:1，问题集中在此导航文字。",
+      "impact": "“学习首页”承担导航含义，低视力用户较难辨认。品牌标志的例外不自动豁免旁边的功能文字。",
+      "recommendation": "加深导航文字颜色或调整字号/字重；按 WCAG 2.2 1.4.3 检查普通功能文字，并补键盘、缩放和焦点专项测试。",
+      "primary_source_urls": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
+      ]
+    },
+    {
+      "id": "PT-04",
+      "severity": "P3",
+      "title": "页内导航和长文阅读位置无法作为链接保存或恢复",
+      "file": "D:/vscode project/建筑构造交互教材/src/pages/CurriculumFramePage.tsx",
+      "line": 33,
+      "status": "已复现现有行为；作为自学体验改善项。",
+      "evidence": "点击保温页第三个目录项后父窗口滚动超过500px，但地址仍只有课程路径，没有小节定位；刷新后回到0。组件挂载固定 scrollTo top=0，页内点击只滚动。",
+      "impact": "学生中途阅读后不能稳定续读，教师无法分享直接定位到具体小节的教材链接；通用章节地址仍正常可用。",
+      "recommendation": "为小节提供稳定 URL 定位并与 iframe 滚动对应；保留各章的轻量阅读位置，同时保留明确的从头阅读入口。"
+    },
+    {
+      "id": "PT-05",
+      "severity": "P2",
+      "title": "墙体和楼梯图纸面板默认显示屋面专用的层次副标题",
+      "file": "D:/vscode project/建筑构造交互教材/src/components/viewer/NodeDiagramPanel.tsx",
+      "line": 18,
+      "related_locations": [
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/NodeDetail.tsx",
+          "line": 257
+        }
+      ],
+      "status": "墙身防潮和首层楼梯两个节点浏览器已确认；其余默认标题影响范围按配置判断。",
+      "evidence": "未提供 diagram.subtitle 时统一输出“由上至下：保护层 → 结构层”。wall-damp-proof-course 和 bottom-landing-entrance-01 均显示这一句；楼梯实际剖面并不是该屋面层序。证据：node-wall-initial.png、bottom-landing-entrance-01-clicked.png。",
+      "impact": "图纸主认知区给出与当前构造对象不符的说明，尤其容易让初学者误读墙身和楼梯图。",
+      "recommendation": "缺副标题时使用中性说明或省略；逐节点按真实观察方向和学习任务配置标题，避免所有对象共用屋面层序。"
+    }
+  ]
+}

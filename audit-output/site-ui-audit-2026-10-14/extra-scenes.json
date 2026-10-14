@@ -1,0 +1,1238 @@
+[
+  {
+    "status": "fulfilled",
+    "value": {
+      "width": 1440,
+      "results": [
+        {
+          "mode": "identify",
+          "width": 1440,
+          "text": "本题任务\n\n转动檐沟外排水模型，选中承接屋面雨水的水平沟槽。可直接点选模型，也可选择模型上的字母标记。\n\nA\nB\nC\nD\n给我一点提示\n提交答案\n\n完成本题全部选择后即可提交。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "A",
+              "h": 46,
+              "w": 223.078125,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "B",
+              "h": 46,
+              "w": 223.078125,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "C",
+              "h": 46,
+              "w": 223.078125,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "D",
+              "h": 46,
+              "w": 223.078125,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 454.15625,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        },
+        {
+          "mode": "match",
+          "width": 1440,
+          "text": "本题任务\n\n为四个构件分别选择最符合其作用的描述。点选名称可观察对应部位。\n\n屋面顶\n选择功能\n将屋面雨水引向檐沟\n在檐口承接并汇流雨水\n使沟内雨水分向排水位置\n将檐沟内的雨水导出\n檐沟\n选择功能\n将屋面雨水引向檐沟\n在檐口承接并汇流雨水\n使沟内雨水分向排水位置\n将檐沟内的雨水导出\n檐沟分水\n选择功能\n将屋面雨水引向檐沟\n在檐口承接并汇流雨水\n使沟内雨水分向排水位置\n将檐沟内的雨水导出\n排水口\n选择功能\n将屋面雨水引向檐沟\n在檐口承接并汇流雨水\n使沟内雨水分向排水位置\n将檐沟内的雨水导出\n给我一点提示\n提交答案\n\n完成本题全部选择后即可提交。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "观察屋面顶",
+              "h": 19.5,
+              "w": 85,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "屋面顶的作用",
+              "h": 41,
+              "w": 339.15625,
+              "size": "12px",
+              "radius": "6px"
+            },
+            {
+              "label": "观察檐沟",
+              "h": 19.5,
+              "w": 85,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "檐沟的作用",
+              "h": 41,
+              "w": 339.15625,
+              "size": "12px",
+              "radius": "6px"
+            },
+            {
+              "label": "观察檐沟分水",
+              "h": 19.5,
+              "w": 85,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "檐沟分水的作用",
+              "h": 41,
+              "w": 339.15625,
+              "size": "12px",
+              "radius": "6px"
+            },
+            {
+              "label": "观察排水口",
+              "h": 19.5,
+              "w": 85,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "排水口的作用",
+              "h": 41,
+              "w": 339.15625,
+              "size": "12px",
+              "radius": "6px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 454.15625,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        },
+        {
+          "mode": "order",
+          "width": 1440,
+          "text": "本题任务\n\n按当前钢挂瓦条屋面节点，从结构层向最外侧面层排列七个构造层次。这是空间层次排序，不是施工工序排序。\n\n从内向外排列\n1\n细石混凝土找平层\n2\n水泥砂浆找平层\n3\n防水层\n4\n顺水条\n5\n挂瓦条\n6\n块瓦面层\n7\n结构层\n可拖动行排序，也可使用上下移动按钮。\n给我一点提示\n提交答案\n\n提交后查看对应关系和解析。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "细石混凝土找平层",
+              "h": 19.5,
+              "w": 104,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "上移细石混凝土找平层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "下移细石混凝土找平层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "水泥砂浆找平层",
+              "h": 19.5,
+              "w": 91,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "上移水泥砂浆找平层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "下移水泥砂浆找平层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "防水层",
+              "h": 19.5,
+              "w": 39,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "上移防水层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "下移防水层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "顺水条",
+              "h": 19.5,
+              "w": 39,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "上移顺水条",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "下移顺水条",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "挂瓦条",
+              "h": 19.5,
+              "w": 39,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "上移挂瓦条",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "下移挂瓦条",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "块瓦面层",
+              "h": 19.5,
+              "w": 52,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "上移块瓦面层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "下移块瓦面层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "结构层",
+              "h": 19.5,
+              "w": 39,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "上移结构层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "下移结构层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 454.15625,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        },
+        {
+          "mode": "diagram",
+          "width": 1440,
+          "text": "本题任务\n\n观察图纸圈示的竖向排水开口，在三维模型中选出对应构件。图纸与模型为示意对应，不比较尺寸比例。\n\nA\nB\nC\nD\n给我一点提示\n提交答案\n\n完成本题全部选择后即可提交。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "A",
+              "h": 46,
+              "w": 223.078125,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "B",
+              "h": 46,
+              "w": 223.078125,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "C",
+              "h": 46,
+              "w": 223.078125,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "D",
+              "h": 46,
+              "w": 223.078125,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 454.15625,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        },
+        {
+          "mode": "path",
+          "width": 1440,
+          "text": "本题任务\n\n从屋面汇水到离开檐沟，依次点选雨水经过的三个构件。本题只表示模型内的连接关系，不进行水流计算。\n\nA\n屋面顶\nB\n檐沟\nC\n排水口\n你的路径\n撤回一步\n\n依次点选模型构件，建立路径。\n\n可拖动行排序，也可使用上下移动按钮。\n给我一点提示\n提交答案\n\n完成本题全部选择后即可提交。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "A\n屋面顶",
+              "h": 42,
+              "w": 223.078125,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "B\n檐沟",
+              "h": 42,
+              "w": 223.078125,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "C\n排水口",
+              "h": 42,
+              "w": 223.078125,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "撤回一步",
+              "h": 19.5,
+              "w": 48,
+              "size": "12px",
+              "radius": "0px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 454.15625,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        },
+        {
+          "mode": "scenario",
+          "width": 1440,
+          "text": "本题任务\n\n任务条件：预制钢筋混凝土柱需要插入基础顶部预留的杯口，再完成灌实连接。比较模型，选择符合这个连接特征的方案与理由。\n\n选择并观察方案\n杯形基础\n阶梯形基础\n锥形基础\n选择判断理由\n顶部设杯口，能容纳插入的预制柱柱脚\n外侧按台阶逐级收分\n台身以斜边连续收分\n给我一点提示\n提交答案\n\n完成本题全部选择后即可提交。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "selection-scenario-cup",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "selection-scenario-cup",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "selection-scenario-cup",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "reason-scenario-cup",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "reason-scenario-cup",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "reason-scenario-cup",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 454.15625,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        },
+        {
+          "mode": "diagnose",
+          "width": 1440,
+          "text": "本题任务\n\n这个训练模型移除了一个排水构件。转动模型，判断缺少哪个构件，并选择其缺失造成的问题。提交后会显示完整模型。\n\n判断缺失构件\n屋面顶\n檐沟\n檐沟分水\n排水口\n选择判断理由\n檐沟中的雨水缺少对应出口\n缺少屋面顶构件\n檐口缺少承接雨水的沟槽\n给我一点提示\n提交答案\n\n完成本题全部选择后即可提交。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "selection-diagnose-outlet",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "selection-diagnose-outlet",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "selection-diagnose-outlet",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "selection-diagnose-outlet",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "reason-diagnose-outlet",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "reason-diagnose-outlet",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "reason-diagnose-outlet",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 454.15625,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        },
+        {
+          "mode": "assemble",
+          "width": 1440,
+          "text": "本题任务\n\n先选择待装配构件，再点击模型上的位置字母或右侧位置按钮。构件会按预设方向放入该位置；可替换、移除和重试。提交后检查全部对应。\n\n1. 选择待装配构件\n屋面顶\n檐沟\n檐沟分水\n排水口\n2. 选择模型上的位置\nA\n屋面位置\n等待放入构件\nB\n檐口沟槽位置\n等待放入构件\nC\n沟内分水位置\n等待放入构件\nD\n沟底出口位置\n等待放入构件\n给我一点提示\n提交答案\n\n完成本题全部选择后即可提交。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "inventory-assemble-drainage",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "inventory-assemble-drainage",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "inventory-assemble-drainage",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "inventory-assemble-drainage",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "A\n屋面位置\n等待放入构件",
+              "h": 67,
+              "w": 454.15625,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "B\n檐口沟槽位置\n等待放入构件",
+              "h": 67,
+              "w": 454.15625,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "C\n沟内分水位置\n等待放入构件",
+              "h": 67,
+              "w": 454.15625,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "D\n沟底出口位置\n等待放入构件",
+              "h": 67,
+              "w": 454.15625,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 454.15625,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "width": 390,
+      "results": [
+        {
+          "mode": "identify",
+          "width": 390,
+          "text": "本题任务\n\n转动檐沟外排水模型，选中承接屋面雨水的水平沟槽。可直接点选模型，也可选择模型上的字母标记。\n\nA\nB\nC\nD\n给我一点提示\n提交答案\n\n完成本题全部选择后即可提交。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "A",
+              "h": 46,
+              "w": 158,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "B",
+              "h": 46,
+              "w": 158,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "C",
+              "h": 46,
+              "w": 158,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "D",
+              "h": 46,
+              "w": 158,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 324,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        },
+        {
+          "mode": "match",
+          "width": 390,
+          "text": "本题任务\n\n为四个构件分别选择最符合其作用的描述。点选名称可观察对应部位。\n\n屋面顶\n选择功能\n将屋面雨水引向檐沟\n在檐口承接并汇流雨水\n使沟内雨水分向排水位置\n将檐沟内的雨水导出\n檐沟\n选择功能\n将屋面雨水引向檐沟\n在檐口承接并汇流雨水\n使沟内雨水分向排水位置\n将檐沟内的雨水导出\n檐沟分水\n选择功能\n将屋面雨水引向檐沟\n在檐口承接并汇流雨水\n使沟内雨水分向排水位置\n将檐沟内的雨水导出\n排水口\n选择功能\n将屋面雨水引向檐沟\n在檐口承接并汇流雨水\n使沟内雨水分向排水位置\n将檐沟内的雨水导出\n给我一点提示\n提交答案\n\n完成本题全部选择后即可提交。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "观察屋面顶",
+              "h": 19.5,
+              "w": 72,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "屋面顶的作用",
+              "h": 41,
+              "w": 230,
+              "size": "12px",
+              "radius": "6px"
+            },
+            {
+              "label": "观察檐沟",
+              "h": 19.5,
+              "w": 72,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "檐沟的作用",
+              "h": 41,
+              "w": 230,
+              "size": "12px",
+              "radius": "6px"
+            },
+            {
+              "label": "观察檐沟分水",
+              "h": 19.5,
+              "w": 72,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "檐沟分水的作用",
+              "h": 41,
+              "w": 230,
+              "size": "12px",
+              "radius": "6px"
+            },
+            {
+              "label": "观察排水口",
+              "h": 19.5,
+              "w": 72,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "排水口的作用",
+              "h": 41,
+              "w": 230,
+              "size": "12px",
+              "radius": "6px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 324,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        },
+        {
+          "mode": "order",
+          "width": 390,
+          "text": "本题任务\n\n按当前钢挂瓦条屋面节点，从结构层向最外侧面层排列七个构造层次。这是空间层次排序，不是施工工序排序。\n\n从内向外排列\n1\n细石混凝土找平层\n2\n水泥砂浆找平层\n3\n防水层\n4\n顺水条\n5\n挂瓦条\n6\n块瓦面层\n7\n结构层\n可拖动行排序，也可使用上下移动按钮。\n给我一点提示\n提交答案\n\n提交后查看对应关系和解析。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "细石混凝土找平层",
+              "h": 19.5,
+              "w": 104,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "上移细石混凝土找平层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "下移细石混凝土找平层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "水泥砂浆找平层",
+              "h": 19.5,
+              "w": 91,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "上移水泥砂浆找平层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "下移水泥砂浆找平层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "防水层",
+              "h": 19.5,
+              "w": 39,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "上移防水层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "下移防水层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "顺水条",
+              "h": 19.5,
+              "w": 39,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "上移顺水条",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "下移顺水条",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "挂瓦条",
+              "h": 19.5,
+              "w": 39,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "上移挂瓦条",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "下移挂瓦条",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "块瓦面层",
+              "h": 19.5,
+              "w": 52,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "上移块瓦面层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "下移块瓦面层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "结构层",
+              "h": 19.5,
+              "w": 39,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "上移结构层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "下移结构层",
+              "h": 26,
+              "w": 26,
+              "size": "16px",
+              "radius": "4px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 324,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        },
+        {
+          "mode": "diagram",
+          "width": 390,
+          "text": "本题任务\n\n观察图纸圈示的竖向排水开口，在三维模型中选出对应构件。图纸与模型为示意对应，不比较尺寸比例。\n\nA\nB\nC\nD\n给我一点提示\n提交答案\n\n完成本题全部选择后即可提交。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "A",
+              "h": 46,
+              "w": 158,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "B",
+              "h": 46,
+              "w": 158,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "C",
+              "h": 46,
+              "w": 158,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "D",
+              "h": 46,
+              "w": 158,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 324,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        },
+        {
+          "mode": "path",
+          "width": 390,
+          "text": "本题任务\n\n从屋面汇水到离开檐沟，依次点选雨水经过的三个构件。本题只表示模型内的连接关系，不进行水流计算。\n\nA\n屋面顶\nB\n檐沟\nC\n排水口\n你的路径\n撤回一步\n\n依次点选模型构件，建立路径。\n\n可拖动行排序，也可使用上下移动按钮。\n给我一点提示\n提交答案\n\n完成本题全部选择后即可提交。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "A\n屋面顶",
+              "h": 42,
+              "w": 158,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "B\n檐沟",
+              "h": 42,
+              "w": 158,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "C\n排水口",
+              "h": 42,
+              "w": 158,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "撤回一步",
+              "h": 19.5,
+              "w": 48,
+              "size": "12px",
+              "radius": "0px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 324,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        },
+        {
+          "mode": "scenario",
+          "width": 390,
+          "text": "本题任务\n\n任务条件：预制钢筋混凝土柱需要插入基础顶部预留的杯口，再完成灌实连接。比较模型，选择符合这个连接特征的方案与理由。\n\n选择并观察方案\n杯形基础\n阶梯形基础\n锥形基础\n选择判断理由\n顶部设杯口，能容纳插入的预制柱柱脚\n外侧按台阶逐级收分\n台身以斜边连续收分\n给我一点提示\n提交答案\n\n完成本题全部选择后即可提交。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "selection-scenario-cup",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "selection-scenario-cup",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "selection-scenario-cup",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "reason-scenario-cup",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "reason-scenario-cup",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "reason-scenario-cup",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 324,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        },
+        {
+          "mode": "diagnose",
+          "width": 390,
+          "text": "本题任务\n\n这个训练模型移除了一个排水构件。转动模型，判断缺少哪个构件，并选择其缺失造成的问题。提交后会显示完整模型。\n\n判断缺失构件\n屋面顶\n檐沟\n檐沟分水\n排水口\n选择判断理由\n檐沟中的雨水缺少对应出口\n缺少屋面顶构件\n檐口缺少承接雨水的沟槽\n给我一点提示\n提交答案\n\n完成本题全部选择后即可提交。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "selection-diagnose-outlet",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "selection-diagnose-outlet",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "selection-diagnose-outlet",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "selection-diagnose-outlet",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "reason-diagnose-outlet",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "reason-diagnose-outlet",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "reason-diagnose-outlet",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 324,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        },
+        {
+          "mode": "assemble",
+          "width": 390,
+          "text": "本题任务\n\n先选择待装配构件，再点击模型上的位置字母或右侧位置按钮。构件会按预设方向放入该位置；可替换、移除和重试。提交后检查全部对应。\n\n1. 选择待装配构件\n屋面顶\n檐沟\n檐沟分水\n排水口\n2. 选择模型上的位置\nA\n屋面位置\n等待放入构件\nB\n檐口沟槽位置\n等待放入构件\nC\n沟内分水位置\n等待放入构件\nD\n沟底出口位置\n等待放入构件\n给我一点提示\n提交答案\n\n完成本题全部选择后即可提交。\n\n复习对应构造节点（新窗口）\n\n作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。",
+          "overflow": false,
+          "controls": [
+            {
+              "label": "inventory-assemble-drainage",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "inventory-assemble-drainage",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "inventory-assemble-drainage",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "inventory-assemble-drainage",
+              "h": 13,
+              "w": 13,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "A\n屋面位置\n等待放入构件",
+              "h": 67,
+              "w": 324,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "B\n檐口沟槽位置\n等待放入构件",
+              "h": 67,
+              "w": 324,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "C\n沟内分水位置\n等待放入构件",
+              "h": 67,
+              "w": 324,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "D\n沟底出口位置\n等待放入构件",
+              "h": 67,
+              "w": 324,
+              "size": "13px",
+              "radius": "7px"
+            },
+            {
+              "label": "给我一点提示",
+              "h": 19.5,
+              "w": 101,
+              "size": "13px",
+              "radius": "0px"
+            },
+            {
+              "label": "提交答案",
+              "h": 41.5,
+              "w": 324,
+              "size": "13px",
+              "radius": "7px"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

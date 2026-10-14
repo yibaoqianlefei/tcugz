@@ -1,29 +1,16 @@
 import { copyFile, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { join, relative } from 'node:path';
+import { formalizeCourse } from './lib/course-paths.mjs';
 
 const project = process.cwd();
 const previewRoot = join(project, 'public', 'previews', 'curriculum');
 const formalRoot = join(project, 'public', 'curriculum');
+const lessonRoot = join(project, 'public', 'lesson');
 const siteBase = process.env.VITE_BASE_URL ?? '/';
 if (!siteBase.startsWith('/') || !siteBase.endsWith('/')) throw new Error('VITE_BASE_URL must start and end with /');
 
 function formalize(html) {
-  return html
-    .replaceAll('/previews/curriculum/', '/curriculum/')
-    .replaceAll('/previews/wall-v1.html', '/curriculum/wall/index.html')
-    .replaceAll('/previews/homepage-v1.html#introduction', '/#/?section=introduction')
-    .replaceAll('/previews/homepage-v1.html#modules', '/#/?section=modules')
-    .replaceAll('/previews/homepage-v1.html#principles', '/#/?section=principles')
-    .replaceAll('/previews/homepage-v1.html#top', '/#/')
-    .replaceAll('/previews/curriculum.css', '/curriculum/curriculum.css')
-    .replaceAll('/previews/wall-v1.css', '/curriculum/wall.css')
-    .replaceAll('UI 预览 · 墙体目录', '墙体章节')
-    .replaceAll('二级目录预览', '章节目录')
-    .replaceAll('墙体目录预览 · 仅用于版式确认', '墙体章节')
-    .replaceAll('href="/curriculum/', `href="${siteBase}curriculum/`)
-    .replaceAll('href="/#/', `href="${siteBase}#/`)
-    .replaceAll('src="/brand/', `src="${siteBase}brand/`)
-    .replaceAll('href="/favicon.svg"', `href="${siteBase}favicon.svg"`);
+  return formalizeCourse(html, siteBase);
 }
 
 async function walk(directory) {
@@ -38,9 +25,12 @@ async function walk(directory) {
 
 const sources = await walk(previewRoot);
 for (const source of sources) {
-  const destination = join(formalRoot, relative(previewRoot, source));
-  await mkdir(join(destination, '..'), { recursive: true });
-  await writeFile(destination, formalize(await readFile(source, 'utf8')), 'utf8');
+  const html = formalize(await readFile(source, 'utf8'));
+  for (const targetRoot of [formalRoot, lessonRoot]) {
+    const destination = join(targetRoot, relative(previewRoot, source));
+    await mkdir(join(destination, '..'), { recursive: true });
+    await writeFile(destination, html, 'utf8');
+  }
 }
 await mkdir(join(formalRoot, 'wall'), { recursive: true });
 // One wall-directory template feeds preview, formal page and lesson iframe.
@@ -52,10 +42,11 @@ await writeFile(join(formalRoot, 'wall', 'index.html'), wallSource.replace('../l
 const lessonWall = join(project, 'public', 'lesson', 'wall');
 await mkdir(lessonWall, { recursive:true });
 await writeFile(join(lessonWall, 'index.html'), wallSource
-  .replaceAll(`href="${siteBase}curriculum/`, `href="${siteBase}lesson/`)
   .replace('../lesson/wall-directory.css', '../wall-directory.css'), 'utf8');
 await copyFile(join(project, 'public', 'previews', 'curriculum.css'), join(formalRoot, 'curriculum.css'));
+await copyFile(join(project, 'public', 'previews', 'curriculum.css'), join(lessonRoot, 'curriculum.css'));
 await copyFile(join(project, 'public', 'previews', 'wall-v1.css'), join(formalRoot, 'wall.css'));
+await copyFile(join(project, 'public', 'previews', 'wall-v1.css'), join(lessonRoot, 'wall.css'));
 const documents = [...sources.map(source => relative(previewRoot, source).replaceAll('\\', '/')), 'wall/index.html'].sort();
 const legacyRoutes = { '/textbook/introduction': '/?section=introduction' };
 for (const path of documents) {

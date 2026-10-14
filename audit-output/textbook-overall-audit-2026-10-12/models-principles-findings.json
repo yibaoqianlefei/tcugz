@@ -1,0 +1,422 @@
+{
+  "audit_date": "2026-10-13",
+  "audit_started": "2026-10-12",
+  "audit_completed": "2026-10-13",
+  "scope": "六篇构造原理、53 个可用节点的注册与相关 GLB、模型知识卡、训练、案例及伙伴检索的交叉审计；复核上一子报告。",
+  "read_only": true,
+  "report_only_changes": true,
+  "summary": {
+    "P1": 2,
+    "P2": 5,
+    "P3": 1,
+    "conclusion": "新原理正文概念区分总体有效，但旧模型卡存在独立错误并传播至伙伴：先处理平屋面功能与层序、檐沟通用坡度，再解决其他模型卡与检索定位问题。模型资产存在不等于所有语义绑定有效；原墙身防潮命名失配判断已撤回。"
+  },
+  "coverage": {
+    "available_nodes": 53,
+    "available_nodes_by_category": {
+      "屋顶": 20,
+      "墙体": 11,
+      "楼地层": 7,
+      "楼梯": 14,
+      "基础": 1
+    },
+    "available_glb_paths": 59,
+    "all_59_paths_exist": true,
+    "all_glb_semantics_certified": false,
+    "corpus_source_count": 484,
+    "corpus_sources_by_kind": {
+      "node": 53,
+      "component": 361,
+      "case": 6,
+      "course": 64
+    },
+    "training_help_count": 17,
+    "training_question_count": 17,
+    "training_nodes_count": 6,
+    "training_question_counts_by_node": {
+      "eaves-gutter-01": 8,
+      "construction-column-01": 2,
+      "stair-composition-01": 2,
+      "steel-batten-tile-roof-01": 2,
+      "cast-ribbed-floor-01": 1,
+      "independent-foundation-01": 2
+    },
+    "principles_articles": 6,
+    "direct_node_links_in_principles_articles": 0
+  },
+  "limitations": [
+    "本子任务只修改审计 MD/JSON，没有修改正文、代码、public 资产，也没有运行生成。",
+    "GB 55030-2022 的所涉排水条款及 GB 18242 的标准状态按公开一手来源核对；没有对全文作工程规范认证。",
+    "特定历史图模的给定尺寸不因小于某通用数值便自动判错，必须先区分系统、用途、找坡方式、产品分类及适用版本。",
+    "首层出入口 01 已引用主任务浏览器证据，其余 02–04 仅静态核验；墙身防潮的 node/mesh 名称差异不能单独证明失配。",
+    "部分官方 PDF 复访抓取失败，不能外推为用户浏览器链接失效。"
+  ],
+  "findings": [
+    {
+      "id": "MP-01",
+      "severity": "P1",
+      "title": "平屋面卡片把上部处理层讲成保温层下隔汽层",
+      "file": "D:/vscode project/建筑构造交互教材/src/data/flatRoofLayers.ts",
+      "line": 49,
+      "related_locations": [
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/flatRoofLayers.ts",
+          "line": 54
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/flatRoofLayers.ts",
+          "line": 65
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/flatRoofLayers.ts",
+          "line": 69
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/nodeDefinitions.ts",
+          "line": 328
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/textbook/roof/roof-flat.md",
+          "line": 27
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/textbook/roof/roof-flat.md",
+          "line": 56
+        }
+      ],
+      "evidence": "只读解析 `public/models/roof/flat-roof/flat-roof.glb` 的 accessor 范围并应用节点变换后，世界 Y 范围为：保温层 0.100–0.160、找平层 0.190–0.210、冷底子油 0.210–0.212、SBS 0.212–0.216、干铺卷材 0.216–0.219、保护层 0.219–0.259。两层均实际位于保温层上方。干铺卷材还位于防水与保护之间。",
+      "impact": "教材核心层次/功能与模型直接冲突。伙伴构件来源完整继承错误名称和说明，选中这些层时会重复错误，削弱正文关于热湿边界的讲解。",
+      "recommendation": "先按模型与原图核对层序，将冷底子油按基层处理剂审定名称；将上部干铺卷材按实际隔离/保护任务审定名称，删除“保温层之下”的错误说明。若确需隔汽层，须单独说明系统位置与性能依据，并同步总说明和伙伴 JSON。不要直接改几何来迎合错误文本。",
+      "status": "已确认数据与实际几何矛盾；功能命名应按原图/系统依据修订。",
+      "primary_source_urls": [],
+      "geometry_evidence": {
+        "asset": "D:/vscode project/建筑构造交互教材/public/models/roof/flat-roof/flat-roof.glb",
+        "method": "只读 GLB JSON；POSITION accessor min/max 包围盒经节点 TRS/矩阵变换求世界 Y；证明相对层序，不认证工程尺寸。",
+        "world_y_ranges": {
+          "保温层": [
+            0.09999992698431015,
+            0.16000114753842354
+          ],
+          "找平层": [
+            0.18999993801116943,
+            0.21002069115638733
+          ],
+          "冷底子油": [
+            0.2099999338388443,
+            0.21201421692967415
+          ],
+          "SBS防水层": [
+            0.21199993789196014,
+            0.21602850407361984
+          ],
+          "干铺卷材": [
+            0.21599993109703064,
+            0.21899091079831123
+          ],
+          "保护层": [
+            0.2189999371767044,
+            0.2589804045855999
+          ]
+        }
+      },
+      "external_reference_urls": [
+        "https://zjj.sz.gov.cn/attachment/1/1322/1322421/10720418.pdf"
+      ],
+      "source_verification_note": "该外部参考 PDF 在 2026-10-13 复访工具超时；本次功能/层序冲突以站内 GLB 和卡片自身矛盾为证据。",
+      "confirmed_corpus_source_ids": [
+        "component:flat-roof-01:涂沥青冷底子油一道",
+        "component:flat-roof-01:干铺350号沥青卷材一层"
+      ]
+    },
+    {
+      "id": "MP-02",
+      "severity": "P1",
+      "title": "檐沟卡片混用结构找坡与不同沟材的最低坡度",
+      "file": "D:/vscode project/建筑构造交互教材/src/data/eavesGutterLayers.ts",
+      "line": 20,
+      "related_locations": [
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/eavesGutterLayers.ts",
+          "line": 26
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/eavesGutterLayers.ts",
+          "line": 28
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/flatRoofLayers.ts",
+          "line": 37
+        }
+      ],
+      "evidence": "C25 钢筋混凝土“屋面结构层”说明直接写“做 ≥2% 找坡”；檐沟材料同时写“镀锌钢板/C20 混凝土”，随后统一写纵坡 ≥0.5%。当前节点附图 `public/images/roof/eaves-gutter-diagram.png` 只有局部宽、高、分水线等信息，没有支持这两条坡度数字。平屋面卡片在 `src/data/flatRoofLayers.ts:37` 又写沟纵坡不小于 1%。\n\nGB 55030-2022 4.4.3 区分结构找坡与混凝土沟：结构找坡不得低于 3%，混凝土檐沟/天沟纵坡不得低于 1%。本卡没有注明是历史做法，也没有把金属沟、混凝土沟分开，因此学生可能把 2% 用于结构找坡、把 0.5% 用于混凝土沟。8 道训练使用该檐沟节点，虽然题目本身不考坡度，其节点知识卡仍是学习入口。",
+      "impact": "学生可能把 2% 用于结构找坡、把 0.5% 用于混凝土沟，直接混淆适用对象与现行要求。8 道训练使用该檐沟节点，虽不考坡度，节点知识卡仍是学习入口；相关错误陈述也进入伙伴构件来源。",
+      "recommendation": "把附图确实表达的示例尺寸与通用要求分开；说明找坡方式，按沟材拆分适用规则。需要给出现行限值时，附标准号、版本、条款与核对日期；不能仅替换一个数字而保留混合材料陈述。同步伙伴构件记录。",
+      "status": "已确认通用陈述与现行框架不一致；不是把模型特定尺寸判为错误。",
+      "primary_source_urls": [
+        "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/zcwj/qtwj/202412/P020241225565818834800.pdf",
+        "https://szwb.sz.gov.cn/gwszwfw/zsk/hybz/content/post_10187002.html"
+      ],
+      "source_verification_note": "2026-10-13 已读取北京市官方审查资料 PDF 第 10 页对 GB 55030-2022 4.4.3 的引文及深圳工务署公告；没有把金属沟的要求从混凝土沟要求外推。",
+      "confirmed_corpus_source_ids": [
+        "component:eaves-gutter-01:屋面顶",
+        "component:eaves-gutter-01:檐沟"
+      ]
+    },
+    {
+      "id": "MP-03",
+      "severity": "P2",
+      "title": "SBS 参数表继续使用已被替代的无年份标准",
+      "file": "D:/vscode project/建筑构造交互教材/src/data/nodeDefinitions.ts",
+      "line": 1498,
+      "related_locations": [
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/nodeDefinitions.ts",
+          "line": 1501
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/nodeDefinitions.ts",
+          "line": 1502
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/nodeDefinitions.ts",
+          "line": 1503
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/nodeDefinitions.ts",
+          "line": 1504
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/scripts/build-companion-corpus.ts",
+          "line": 21
+        }
+      ],
+      "evidence": "表格用“GB 18242”支撑可溶物含量、耐热度、低温柔度、不透水性四项指标，但不写年份、厚度、胎基、产品类型与级别。国家标准平台确认 GB 18242-2008 于 2026-05-01 废止，GB/T 18242-2025 同日实施并全部代替 GB 18242-2008 和 GB 18243-2008。初次核查于2026-10-12，复核完成于2026-10-13。",
+      "impact": "原理及正文要求核对适用版本，但模型参数表看起来是可直接采用的标准摘要。不能靠正文中的概括提醒消除表格的版本歧义。",
+      "recommendation": "先下架或明确标注历史产品示例；按 GB/T 18242-2025 的产品分类及试验条件重新逐项审定，不要把标准号机械更名后原样保留所有指标。",
+      "status": "已确认标准状态过时；参数数值是否适合某一产品类型需另核，不能一概断言全部数值错误。",
+      "primary_source_urls": [
+        "https://std.samr.gov.cn/gb/search/gbDetailed?id=71F772D75A79D3A7E05397BE0A0AB82A",
+        "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=7EA6F5078E8E89A1421BF3DC30906953"
+      ],
+      "source_verification_note": "2026-10-13 已读取国家标准平台：GB 18242-2008 废止日为 2026-05-01；GB/T 18242-2025 同日实施且当前为现行。未逐项认证新标准指标。",
+      "propagation_note": "四行 tables 仅在知识卡 UI；build-companion-corpus.ts 的 variant card 只序列化 material、construction、description。当前 corpus 不含 GB 18242 或 2100g/m²，不能声称此旧参数表直接传播给伙伴。"
+    },
+    {
+      "id": "MP-04",
+      "severity": "P2",
+      "title": "钢筋混凝土阶梯基础混入无筋基础的刚性角控制",
+      "file": "D:/vscode project/建筑构造交互教材/src/data/nodeDefinitions.ts",
+      "line": 1786,
+      "related_locations": [
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/nodeDefinitions.ts",
+          "line": 1783
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/textbook/foundation/foundation-types.md",
+          "line": 31
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/textbook/foundation/foundation-types.md",
+          "line": 33
+        }
+      ],
+      "evidence": "卡片材料和构造明确为钢筋混凝土、柱纵筋锚入底板，但说明台阶高度与宽度“由刚性角控制或按计算配筋确定”，把两种受力体系讲成同一钢筋混凝土基础的可替代办法。正文 `src/data/textbook/foundation/foundation-types.md:31`、`:33` 已分别说明无筋扩展基础与钢筋混凝土扩展基础。",
+      "impact": "学生可能只按刚性角决定 RC 基础截面，跳过弯剪、冲切、配筋等对应分析。伙伴 variant 构件记录继承此句。",
+      "recommendation": "当前 RC 示例按对应计算与配筋体系说明；刚性角放回无筋基础的独立比较条目，避免“或”连接两个体系。",
+      "status": "已确认。",
+      "primary_source_urls": [
+        "https://jncc.jinan.gov.cn/cms_files/jcms1/web19/site/attach/0/1b8819be8bca4dc6ad61a99c5874f43f.pdf?fileName=1b8819be8bca4dc6ad61a99c5874f43f.pdf"
+      ],
+      "source_verification_note": "保留 2026-10-12 前次条文说明核对记录；2026-10-13 复访该官方托管 PDF 未能抓取。该失败不是用户普通浏览器访问失败的证据。",
+      "confirmed_corpus_source_ids": [
+        "component:independent-foundation-01:stepped-base:阶梯形基础"
+      ]
+    },
+    {
+      "id": "MP-05",
+      "severity": "P2",
+      "title": "防潮示例卡片重新把材料名、固定位置与通用做法绑定",
+      "file": "D:/vscode project/建筑构造交互教材/src/data/nodeDefinitions.ts",
+      "line": 1419,
+      "related_locations": [
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/nodeDefinitions.ts",
+          "line": 1430
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/nodeDefinitions.ts",
+          "line": 1432
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/nodeDefinitions.ts",
+          "line": 1485
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/nodeDefinitions.ts",
+          "line": 1495
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/textbook/walls/wall-details.md",
+          "line": 9
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/textbook/walls/wall-details.md",
+          "line": 13
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/textbook/principles/moisture.md",
+          "line": 17
+        }
+      ],
+      "evidence": "A 方案以低水灰比 C15、通常不小于 80mm 解释“能有效阻止地下水汽上升”；材料明写防水砂浆却要求“搭接宽度 ≥100mm”，表格给统一 5% 防水剂用量；B 方案直接把“必须抬高至毛细水影响范围之上”与 SBS 热熔法绑定，未交代产品、结构联系、墙/地接口和实际水路径。正文 `src/data/textbook/walls/wall-details.md:9`、`:13` 已提醒不能仅凭密实垫层名称认定防潮边界，且采用卷材要考虑砌体受力联系；原理 `principles/moisture.md:17` 至 `:21` 分开处理水汽、气密和干燥。",
+      "impact": "正文中新建立的“分析来源与路径—确定系统”的学习方法，在模型卡中又退回未经证实的材料口诀。砂浆与卷材接缝语义混用尤其容易直接抄入作业详图。",
+      "recommendation": "以图示能确认的构件关系为正文；把固定用量、养护、搭接等移到有产品/工艺依据的示例参数区。区分毛细阻断、水汽扩散与有压地下水，不把密实混凝土自动视为隔汽材料，也不把 SBS 热熔处理强制用于所有透水垫层场景。",
+      "status": "已确认教学陈述缺少必要条件；工程参数逐项待核。",
+      "primary_source_urls": [],
+      "verification_boundary": "站内交叉审计；未核验具体产品、完整原图和全部施工参数，不认定列出的所有示例参数均违规。",
+      "confirmed_corpus_source_ids": [
+        "component:wall-damp-proof-course:permeable-base:地面垫层为透水材料001_1",
+        "component:wall-damp-proof-course:dense-base:地面垫层为密实材料001_1"
+      ]
+    },
+    {
+      "id": "MP-06",
+      "severity": "P2",
+      "title": "首层出入口楼梯模型的整体命名与语义卡片不一致",
+      "file": "D:/vscode project/建筑构造交互教材/src/data/bottomLandingEntranceLayers.ts",
+      "line": 17,
+      "related_locations": [
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/bottomLandingEntranceLoweredLayers.ts",
+          "line": 17
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/bottomLandingEntranceCombinedLayers.ts",
+          "line": 17
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/bottomLandingEntranceStraightLayers.ts",
+          "line": 17
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/components/viewer/ConstructionKnowledgePanel.tsx",
+          "line": 27
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/utils/nameUtils.ts",
+          "line": 20
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/components/viewer/ModelViewer.tsx",
+          "line": 122
+        }
+      ],
+      "evidence": "四个 bottom-landing-entrance GLB 各只有一个整体 node/mesh（01/02/03/04 分别含 3/3/2/3 个材料 primitive），node 与 mesh 都使用长题名，例如 01 为“底层中间平台下作出入口的处理方式-底层长短”，不是卡片“长跑梯段”“中间平台”等，卡片没有 aliases。普通节点面板对名称作标点归一化和末尾数字剥离，不提供把整个楼梯长题名转换成各语义构件的映射。材料 primitive 数量不能直接当作具有独立教学身份的构件数量。\n\n复核更正：墙身防潮 A/B/C 的 node 与 mesh 定义名确实不同，但不能仅凭 node.name 判失配。GLTFLoader 会先为各 primitive 用 mesh.name 生成名称，清除点号，随后给外层 group 设置 node.name；因此 A 的“地面垫层为密实材料.001”可对应卡片的“地面垫层为密实材料001”。主任务已实测 A 主体匹配正常；B/C 未据本次证据完成实点确认，本报告撤回此前的墙身防潮命名失配判断，不据此推定 C 有缺陷。各 primitive 与具体水平防潮层的几何语义仍需独立核对；本报告没有把它列为已确认问题。",
+      "impact": "首层出入口整体模型可以显示，但当前身份不足以支撑各梯段、平台、地坪的构件点击—知识卡—高亮学习链路；手动知识按钮能显示文本不等于模型语义绑定有效。正文已链接首层长短跑模型，因此不是不可达的闲置数据。01 已被实测确认，其余三项尚待实点。",
+      "recommendation": "优先拆分有教学意义的构件并赋予稳定语义名，或建立经几何核验的明确别名/分组。不得把整个楼梯长题名随意映射为单一梯段来掩盖缺失拆分。增加“真实资产—可交互构件—卡片”的测试，而不只验证文件存在。",
+      "status": "01 的构件联动失效经主任务浏览器证据确认；02–04 仅有同型静态证据，尚未实点。墙身防潮失配判断已撤回。",
+      "primary_source_urls": [],
+      "browser_verification": "引用主任务运行证据；本子任务没有亲自操作浏览器。主任务在 bottom-landing-entrance-01 的真实 3D 画布相对位置 (0.31, 0.54) 点击后，选中整个长题名，右侧六个语义卡片均未展开；单模型路径不显示未配置提示。02–04 尚未实点。墙身防潮 A 实点能显示密实垫层主体完整卡，原静态失配判断已撤回。",
+      "withdrawn_claim": "不能从 wall-damp-proof A/B/C 的 node.name 没有 001 推断知识卡失配：mesh.name 的 .001 经 GLTFLoader 去点后可生成旧卡片的 001 名称。",
+      "browser_evidence_files": [
+        "D:/vscode project/建筑构造交互教材/audit-output/textbook-overall-audit-2026-10-12/node-interaction-evidence.json",
+        "D:/vscode project/建筑构造交互教材/audit-output/textbook-overall-audit-2026-10-12/bottom-landing-entrance-01-clicked.png",
+        "D:/vscode project/建筑构造交互教材/audit-output/textbook-overall-audit-2026-10-12/bottom-landing-entrance-01-clicked.txt"
+      ],
+      "browser_reproduction": {
+        "confirmed_node": "bottom-landing-entrance-01",
+        "canvas_relative_click": [
+          0.31,
+          0.54
+        ],
+        "selected_object": "底层中间平台下作出入口的处理方式-底层长短",
+        "expanded_semantic_cards": 0,
+        "total_semantic_cards": 6,
+        "unknown_knowledge_hint": false,
+        "unprobed_same_type_nodes": [
+          "bottom-landing-entrance-02",
+          "bottom-landing-entrance-03",
+          "bottom-landing-entrance-04"
+        ]
+      }
+    },
+    {
+      "id": "MP-07",
+      "severity": "P2",
+      "title": "伙伴引用整篇文章，无法稳定讲解选中的具体段落",
+      "file": "D:/vscode project/建筑构造交互教材/scripts/build-companion-corpus.ts",
+      "line": 34,
+      "related_locations": [
+        {
+          "file": "D:/vscode project/建筑构造交互教材/scripts/build-companion-corpus.ts",
+          "line": 40
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/companion/knowledge.ts",
+          "line": 13
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/companion/knowledge.ts",
+          "line": 23
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/companion/knowledge.ts",
+          "line": 66
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/pages/CurriculumFramePage.tsx",
+          "line": 65
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/textbook/principles/acoustic.md",
+          "line": 25
+        }
+      ],
+      "evidence": "每篇正文生成一个 course source，扁平化后最多 12000 字符；检索只对整个来源评分；回答固定截 `source.text.slice(0,700)`。页面已经传入 selectedText，但该文字不决定摘要取段，引用 route 也没有段落锚点。\n\n复现：在 `principles/acoustic.html` 选中原文第 25 行末的“评价指标需按用途和适用标准选择，还应区分实验室构件性能与现场系统表现。”，问“解释选中这句话”。2026-10-13 将当前源码只在内存中转译并调用 `answerFromSite`，以该页 route/coursePath 和该句 selectedText 为上下文；返回的三条 source id 为 `course:principles/acoustic.html`、`course:basics/wall/wall-design-requirements.html`、`course:basics/stairs/stairs-overview.html`，回答不包含选中句。隔声页排第一，但返回开头概念与前半篇，并混入其他页摘录；引用 route 不带片段锚点。本项是函数级复现，未冒称完成浏览器选文操作。",
+      "impact": "目录级测试证明“新教材进入知识库”，不能证明当前正文每一段均获得有效随文帮助。文章越长，后半部分越容易被回答截断。",
+      "recommendation": "按带稳定 heading id 的小节/段落建来源，保留原文定位与版本；选文先匹配当前页的对应片段，再取相邻上下文。引用打开到片段。补充前、中、后段、选文与跨章同名概念的回归，不仅检查第一条来源 route。",
+      "status": "已复现。",
+      "primary_source_urls": [],
+      "reproduction": {
+        "method": "当前 knowledge.ts 只在内存转译后调用 answerFromSite；未写程序源文件，也未生成 corpus。",
+        "question": "解释选中这句话",
+        "context": {
+          "kind": "course",
+          "route": "/lesson/principles/acoustic.html",
+          "coursePath": "principles/acoustic.html",
+          "selectedText": "评价指标需按用途和适用标准选择，还应区分实验室构件性能与现场系统表现。"
+        },
+        "returned_source_ids": [
+          "course:principles/acoustic.html",
+          "course:basics/wall/wall-design-requirements.html",
+          "course:basics/stairs/stairs-overview.html"
+        ],
+        "selected_text_in_reply": false,
+        "browser_reproduced_by_this_subtask": false
+      }
+    },
+    {
+      "id": "MP-08",
+      "severity": "P3",
+      "title": "原理页仍主要停留在定性阅读，缺少可操作的对比证据",
+      "file": "D:/vscode project/建筑构造交互教材/src/data/textbook/principles/thermal.md",
+      "line": 25,
+      "related_locations": [
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/textbook/principles/acoustic.md",
+          "line": 25
+        },
+        {
+          "file": "D:/vscode project/建筑构造交互教材/src/data/textbook/principles/waterproof.md",
+          "line": 25
+        }
+      ],
+      "evidence": "六页有读图方法与三道概念自测，但没有原理图、带条件的算例/对比记录，且没有直接节点链接。保温没有完整墙体/热桥对比算例；隔声没有空气声与撞击声、实验室/现场指标对比记录；防水没有让学生追踪堵塞前后水位的图例；防火没有完整分隔与贯穿封堵的示例系统证据。",
+      "impact": "读者能完成概念辨析，仍缺少在明确条件下比较方案、追踪路径或检查系统表现的实证练习；本项是教学能力完善项，不是已发现的规范违规。",
+      "recommendation": "每个专题先补一幅带条件的路径图与一个比较任务，优先复用已有保温、防潮、屋面和排水模型。尚无模型的隔声/防火可用可审定的剖面和系统案例完成第一步，不必把模型数量当教材质量目标。保留假设与适用条件，避免为了定量化又添未经核验的通用阈值。",
+      "status": "已确认教学能力边界。",
+      "primary_source_urls": []
+    }
+  ]
+}
