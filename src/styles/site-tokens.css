@@ -1,0 +1,47 @@
+/* Single source for the application, homepage and generated course documents.
+   build:pages copies this file to public/styles/site-tokens.css. */
+:root {
+  --ui-canvas: #f8f8f5;
+  --ui-surface: #ffffff;
+  --ui-soft: #eef1f8;
+  --ui-ink: #1c2544;
+  --ui-text: #434b63;
+  --ui-muted: #63708a;
+  --ui-blue: #43558e;
+  --ui-blue-hover: #2e3d71;
+  --ui-red: #e34b36;
+  --ui-line: #dce1e9;
+  --ui-line-strong: #a5b1ca;
+  --ui-disabled: #dce2f0;
+  --ui-success: #2d7254;
+  --ui-success-soft: #edf6f0;
+  --ui-warning: #855b15;
+  --ui-warning-soft: #faf3e5;
+  --ui-danger: #b93830;
+  --ui-danger-soft: #fbeeea;
+  --ui-font: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+  --ui-page-max: 1500px;
+  --ui-reading-max: 760px;
+  --ui-gutter: clamp(24px, 4.7vw, 84px);
+  --ui-topbar-height: 76px;
+  --ui-control-height: 44px;
+  --ui-radius-control: 8px;
+  --ui-radius-panel: 14px;
+  --ui-shadow-panel: 0 12px 36px rgb(28 37 68 / 10%);
+  --ui-motion: 180ms;
+  --ui-space-1: 4px;
+  --ui-space-2: 8px;
+  --ui-space-3: 12px;
+  --ui-space-4: 16px;
+  --ui-space-6: 24px;
+  --ui-space-8: 32px;
+  --ui-space-12: 48px;
+  --ui-space-16: 64px;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --ui-gutter: 20px;
+    --ui-topbar-height: 64px;
+  }
+}

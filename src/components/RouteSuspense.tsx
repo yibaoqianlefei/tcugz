@@ -6,8 +6,8 @@ import { ErrorBoundary } from "./ErrorBoundary";
 
 export function LazyFallback() {
   return (
-    <div className="min-h-screen bg-canvas flex items-center justify-center">
-      <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+    <div className="site-loading-state" role="status">
+      <span className="site-loading-indicator" aria-hidden="true" /><span>正在加载内容…</span>
     </div>
   );
 }
@@ -24,7 +24,7 @@ export const DataAnalysis = lazy(() => import("../pages/DataAnalysis"));
 
 function RouteErrorFallback({ error }: { error: Error }) {
   return (
-    <div className="min-h-screen bg-canvas flex flex-col items-center justify-center px-6 text-center">
+    <div className="site-error-state">
       <h2 className="text-xl font-medium text-ink mb-3">页面加载失败</h2>
       <p className="text-sm text-muted mb-2 max-w-md">
         页面资源加载失败，请检查网络后重试
@@ -37,15 +37,13 @@ function RouteErrorFallback({ error }: { error: Error }) {
       <div className="flex gap-4 mt-4">
         <button
           onClick={() => window.location.reload()}
-          className="px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-medium
-            hover:bg-primary-active transition-colors"
+          className="site-button"
         >
           重试
         </button>
         <Link
           to="/"
-          className="px-5 py-2.5 rounded-lg border border-hairline text-sm text-muted
-            hover:text-primary hover:border-primary/30 transition-colors"
+          className="site-button site-button--secondary"
         >
           返回首页
         </Link>

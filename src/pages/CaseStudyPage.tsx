@@ -19,7 +19,7 @@ function BuildingStudy({ study }: { study: CaseStudy }) {
   const selectTopic = (id: CaseTopicId) => setSearchParams({ topic: id }, { replace: true, preventScrollReset: true });
   return <div className="site-page">
     <SectionPageHeader title={study.title} eyebrow="CASE STUDY / 从整体到构造" description={study.description} />
-    <main className="case-study-page">
+    <main className="site-container case-study-page">
       <div className="case-study-meta"><span>{study.location}</span><span>{study.period}</span><span>{study.architects}</span></div>
       <div className="case-study-layout">
         <div className="case-study-viewer"><CaseExperience study={study} selectedTopic={topic.id} onTopicChange={selectTopic} /></div>
@@ -34,6 +34,6 @@ function BuildingStudy({ study }: { study: CaseStudy }) {
 export default function CaseStudyPage() {
   const { caseId } = useParams();
   const study = getCaseStudy(caseId);
-  if (!study) return <main className="case-study-page"><h1>未找到该建筑案例</h1><p>请从案例目录选择已有项目。</p><Link className="site-back-link" to="/curriculum/cases">返回案例应用</Link></main>;
+  if (!study) return <div className="site-page"><SectionPageHeader title="未找到该建筑案例" eyebrow="CASE STUDIES / 案例应用" description="请从案例目录选择已有项目。" /><main className="site-container case-study-page"><Link className="site-button site-button--secondary" to="/curriculum/cases">返回案例应用</Link></main></div>;
   return <BuildingStudy key={study.id} study={study} />;
 }

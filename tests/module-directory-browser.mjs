@@ -98,25 +98,26 @@ try {
     let frame = await navigate(path);
     const browse = frame.locator('a[href="#chapters"]');
     assert.equal(await browse.count(), 1, `visible chapter anchor: ${id}`);
-    const anchorScroll = await page.evaluate(() => {
+    await browse.click();
+    await page.waitForFunction(() => {
       const iframe = document.querySelector('.curriculum-frame');
       const target = iframe.contentDocument.getElementById('chapters');
-      const destination = scrollY + iframe.getBoundingClientRect().top + target.getBoundingClientRect().top - 24;
-      return Math.min(Math.max(destination, 0), Math.max(document.documentElement.scrollHeight - innerHeight, 0));
+      const top = iframe.getBoundingClientRect().top + target.getBoundingClientRect().top;
+      const headerBottom = document.querySelector('.site-subpage-topbar').getBoundingClientRect().bottom;
+      const maxScroll = Math.max(document.documentElement.scrollHeight - innerHeight, 0);
+      return Math.abs(top - headerBottom - 24) < 12 || Math.abs(scrollY - maxScroll) < 2;
     });
-    await browse.click();
-    await page.waitForFunction(expected => Math.abs(scrollY - expected) < 12, anchorScroll);
     for (const topic of [module.topics[0], module.topics.at(-1)]) {
       frame = await navigate(path);
       await frame.locator(`.chapter-card[href$="/${topic.id}.html"]`).click();
       const article = await ready(`basics/${id}/${topic.id}.html`);
       assert.equal(await article.locator('h1').innerText(), topic.title, `chapter opens article: ${id}/${topic.id}`);
-      await article.locator('.back').click();
+      await page.locator('.site-back-link').click();
       frame = await ready(path);
       assert.equal(await frame.locator('h1').innerText(), module.title, `article returns to designed directory: ${id}`);
     }
     frame = await navigate(path);
-    await frame.locator('.wall-back').click();
+    await page.locator('.site-back-link').click();
     await page.waitForURL(/#\/\?section=modules/);
     await page.locator(`.module-card[href$="/basics/${id}/index.html"]`).click();
     await ready(path);

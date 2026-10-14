@@ -223,24 +223,24 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
   return (
     <div className="node-detail-page flex flex-col bg-canvas overflow-hidden">
       {/* ── Header ── */}
-      <header className="flex-shrink-0 flex items-center justify-between gap-3 min-h-12 px-4 md:px-5 bg-canvas border-b border-hairline z-20">
+      <header className="node-detail-header flex-shrink-0 flex items-center justify-between gap-3 min-h-12 px-4 md:px-5 bg-canvas border-b border-hairline z-20">
         <div className="flex items-center gap-2 text-sm min-w-0">
           <Link to="/library" className="text-muted-soft hover:text-primary transition-colors">
             构造节点
           </Link>
           <span className="text-muted-soft">›</span>
-          <span className="text-muted font-medium truncate">{node.title}</span>
+          <h1 className="node-detail-heading text-ink font-medium truncate">{node.title}</h1>
         </div>
         <div className="flex items-center gap-2 shrink-0">
-          <button type="button" onClick={() => setDiagramOpen(true)} className="node-tablet-diagram-button items-center gap-1.5 rounded-lg border border-hairline px-2.5 py-1.5 text-xs text-muted hover:text-primary" aria-label="查看构造剖面图">
+          <button type="button" onClick={() => setDiagramOpen(true)} className="site-tool-button node-tablet-diagram-button items-center gap-1.5" aria-label="查看构造剖面图">
             <Images size={15} /> 图纸
           </button>
           <div className="node-layout-presets items-center gap-1 rounded-lg border border-hairline bg-surface-soft/50 p-0.5" role="group" aria-label="三栏布局预设">
             {([ ["balanced", "均衡"], ["model", "专注模型"], ["diagram", "专注图纸"] ] as const).map(([value, label]) => (
-              <button key={value} type="button" onClick={() => selectPreset(value)} aria-pressed={layoutPreset === value} className={`rounded-md px-2 py-1 text-[11px] whitespace-nowrap transition-colors ${layoutPreset === value ? "bg-canvas text-primary shadow-sm" : "text-muted-soft hover:text-muted"}`}>{label}</button>
+              <button key={value} type="button" onClick={() => selectPreset(value)} aria-pressed={layoutPreset === value} className="site-tool-button node-layout-preset-button whitespace-nowrap">{label}</button>
             ))}
           </div>
-          {node.category && <span className="hidden sm:inline text-[10px] font-medium text-muted-soft uppercase tracking-wider bg-surface-card px-2 py-0.5 rounded-full">{node.category}</span>}
+          {node.category && <span className="hidden sm:inline text-[13px] font-medium text-muted uppercase tracking-wider bg-surface-soft px-2 py-1 rounded-md">{node.category}</span>}
         </div>
       </header>
 
@@ -262,7 +262,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
 
         {/* Center: 3D viewport + floating timeline */}
         <div className="node-viewport flex min-w-0 min-h-0 relative">
-              <button type="button" className="node-fit-button absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-lg border border-hairline bg-canvas/90 px-2.5 py-1.5 text-xs text-muted hover:text-primary shadow-sm" onClick={() => useNodeStore.getState().requestCameraRefit()} title="重新适配模型视图" aria-label="适配模型视图"><Maximize2 size={14} /> <span>适配视图</span></button>
+              <button type="button" className="site-tool-button node-fit-button absolute top-3 right-3 z-10 flex items-center gap-1.5" onClick={() => useNodeStore.getState().requestCameraRefit()} title="重新适配模型视图" aria-label="适配模型视图"><Maximize2 size={16} /> <span>适配视图</span></button>
               {hasModel && layerConfig ? (
                 <ErrorBoundary
                   resetKey={`${nodeId}:${isMultiModel ? "multi" : modelSources[0].src}`}
@@ -273,15 +273,13 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
                       <div className="flex gap-3 mt-2">
                         <button
                           onClick={() => window.location.reload()}
-                          className="px-4 py-2 rounded-lg bg-primary text-white text-xs font-medium
-                            hover:bg-primary-active transition-colors"
+                          className="site-button"
                         >
                           刷新页面
                         </button>
                         <Link
                           to="/library"
-                          className="px-4 py-2 rounded-lg border border-hairline text-xs text-muted
-                            hover:text-primary hover:border-primary/30 transition-colors"
+                          className="site-button site-button--secondary"
                         >
                           返回构造节点
                         </Link>

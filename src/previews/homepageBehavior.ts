@@ -62,7 +62,8 @@ export function initHomepageInteractions(root: HTMLElement, options: { spaAnchor
       const target = root.querySelector<HTMLElement>(anchor.getAttribute('href')!);
       if (!target) return;
       event.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
+      const top = target.getBoundingClientRect().top + window.scrollY - (parseFloat(getComputedStyle(target).scrollMarginTop) || 0);
+      window.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
     });
   }
 

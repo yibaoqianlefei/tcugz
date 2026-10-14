@@ -32,7 +32,7 @@ try {
   assert(await canvas.evaluate(canvas => canvas === window.__trainingCanvas), 'Answer/retry retains model canvas');
   await page.reload();
   await passed();
-  await page.getByRole('link', { name: '返回训练中心', exact: true }).first().click();
+  await page.getByRole('link', { name: '返回作业训练', exact: true }).first().click();
   await page.locator('.training-mode-grid').waitFor();
   assert(Math.abs(await page.evaluate(() => scrollY) - actualListY) < 2, 'Explicit training return restores catalog position');
   assert(await page.locator('.training-mistake-list').getByText('找到檐沟').count());

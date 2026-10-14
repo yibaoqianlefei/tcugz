@@ -39,7 +39,7 @@ export default function TrainingPreview({ visual }: { visual: HTMLElement }) {
       {question.parts.map((part, index) => <button key={part.id} disabled={!ready || submitted} aria-pressed={selection === part.id} className={selection === part.id ? result ? result.correct ? 'is-correct' : 'is-incorrect' : 'is-selected' : ''} onClick={() => choose(part.id)}><b>{String.fromCharCode(65 + index)}</b></button>)}
     </div>
     <div className={`practice-preview-feedback${result ? result.correct ? ' is-correct' : ' is-incorrect' : ''}`} role="status" aria-live="polite">
-      <span>{result ? result.correct ? `答对了。${question.explanation}` : `再观察一下：${question.hint}` : status === 'error' ? '模型暂不可用，可重试或进入训练中心。' : ready ? hinted ? question.hint : selection ? '已选择构件，提交后查看解析。' : '点击模型或字母选择构件。' : '模型准备中…'}</span>
+      <span>{result ? result.correct ? `答对了。${question.explanation}` : `再观察一下：${question.hint}` : status === 'error' ? '模型暂不可用，可重试或进入作业训练。' : ready ? hinted ? question.hint : selection ? '已选择构件，提交后查看解析。' : '点击模型或字母选择构件。' : '模型准备中…'}</span>
       {submitted ? <button onClick={() => { setSelection(undefined); setSubmitted(false); setHinted(false); }}>再试一次</button> : <div className="practice-preview-answer-actions"><button disabled={!ready || hinted} onClick={() => setHinted(true)}>提示</button><button className="practice-preview-submit" disabled={!ready || !selection} onClick={() => setSubmitted(true)}>提交答案</button></div>}
     </div>
     <div className="practice-preview-footer"><a className="practice-preview-continue" href={trainingLink}>继续这项训练</a><div><span>也可尝试</span>{moreModes.map(mode => <a key={mode.id} href={`${base}#/games/${mode.id}`}>{mode.title}</a>)}</div></div>

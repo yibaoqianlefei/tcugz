@@ -17,5 +17,7 @@ export function formalizeCourse(html, siteBase = '/') {
     .replaceAll('href="/#/', `href="${siteBase}#/`)
     .replaceAll('src="/brand/', `src="${siteBase}brand/`)
     .replaceAll('src="/images/', `src="${siteBase}images/`)
+    .replaceAll('src="/styles/', `src="${siteBase}styles/`)
+    .replaceAll('href="/styles/', `href="${siteBase}styles/`)
     .replaceAll('href="/favicon.svg"', `href="${siteBase}favicon.svg"`);
 }

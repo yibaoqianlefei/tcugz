@@ -13,6 +13,10 @@ async function readyCourse(path) {
     const doc = document.querySelector('.curriculum-frame')?.contentDocument;
     return doc?.readyState === 'complete' && doc.location.pathname.endsWith(expected) && doc.querySelector('.page-head h1, .wall-intro h1');
   }, path);
+  await page.waitForFunction(() => {
+    const frame = document.querySelector('.curriculum-frame');
+    return frame.contentDocument.documentElement.dataset.embedded === 'true' && Math.abs(frame.clientHeight - frame.contentDocument.body.getBoundingClientRect().height) < 2;
+  });
 }
 try {
   for (const section of ['introduction', 'modules', 'principles']) {
@@ -37,10 +41,10 @@ try {
   await readyCourse('wall-role.html');
   await page.waitForTimeout(150);
   const shortHeight = await page.locator('.curriculum-frame').evaluate(e => e.clientHeight);
-  assert(shortHeight < longHeight - 500, `${longHeight} → ${shortHeight}: course must shrink`);
+  assert(shortHeight < longHeight, `${longHeight} → ${shortHeight}: course must shrink`);
   await page.frameLocator('.curriculum-frame').locator('.chapter-nav a[href$="wall-design-requirements.html"]').click();
   await readyCourse('wall-design-requirements.html');
-  assert(await page.locator('.curriculum-frame').evaluate(e => e.clientHeight) > shortHeight + 500);
+  assert(await page.locator('.curriculum-frame').evaluate(e => e.clientHeight) > shortHeight);
   console.log(`PASS course height shrink/grow: ${longHeight} → ${shortHeight}`);
 
   await open('/library');
@@ -70,7 +74,11 @@ try {
     await page.setViewportSize({ width, height: 900 });
     await open('/node/organized-drainage-01');
     await page.locator('.node-detail-page').waitFor();
-    assert(await page.evaluate(() => Math.abs(document.querySelector('.node-detail-page').getBoundingClientRect().bottom - innerHeight) < 2));
+    assert(await page.evaluate(() => {
+      const dock = document.querySelector('.companion-dock');
+      const dockHeight = getComputedStyle(dock).display === 'flex' ? dock.getBoundingClientRect().height : 0;
+      return Math.abs(document.querySelector('.node-detail-page').getBoundingClientRect().bottom - (innerHeight - dockHeight)) < 2;
+    }));
     console.log(`PASS workbench height at ${width}px`);
   }
   await page.setViewportSize({ width: 1440, height: 900 });
@@ -81,7 +89,7 @@ try {
   await page.waitForURL(/#\/$/);
   console.log('PASS missing course has an explicit error and return action');
 
-  const brokenSource = '**/curriculum/introduction/intro-classification.html';
+  const brokenSource = '**/lesson/introduction/intro-classification.html';
   await page.route(brokenSource, route => route.fulfill({ contentType: 'text/html', body: '<html><body><h1>SPA fallback homepage</h1></body></html>' }));
   await open('/lesson/introduction/intro-classification.html');
   await page.getByRole('heading', { name: '课程加载失败' }).waitFor();

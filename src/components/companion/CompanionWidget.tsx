@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState, type PointerEvent } from 'react';
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from 'react';
 import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import { useCompanionStore } from '../../store/companionStore';
@@ -20,6 +20,11 @@ export default function CompanionWidget() {
   const launcher = useRef<HTMLButtonElement>(null);
   const drag = useRef<{ x: number; y: number; left: number; top: number; moved: boolean } | null>(null);
   const suppressClick = useRef(false);
+  useLayoutEffect(() => {
+    document.documentElement.toggleAttribute('data-companion-dock', !hidden && !occluded);
+    if (!hidden && !occluded) document.documentElement.dataset.companionDock = 'true';
+    return () => { delete document.documentElement.dataset.companionDock; };
+  }, [hidden, occluded]);
   useEffect(() => {
     const observer = new MutationObserver(() => setOccluded(document.body.classList.contains('mobile-nav-open') || Boolean(document.querySelector('.node-detail-grid[data-diagram-open="true"], [aria-modal="true"]:not(.companion-panel)'))));
     observer.observe(document.body, { attributes: true, attributeFilter: ['class', 'data-diagram-open', 'aria-modal'], childList: true, subtree: true });
@@ -31,7 +36,7 @@ export default function CompanionWidget() {
     return () => window.removeEventListener('resize', clampPosition);
   }, []);
   const pointerDown = (event: PointerEvent<HTMLButtonElement>) => {
-    if (event.button !== 0) return;
+    if (event.button !== 0 || matchMedia('(max-width: 760px)').matches) return;
     const rect = event.currentTarget.getBoundingClientRect();
     drag.current = { x: event.clientX, y: event.clientY, left: rect.left, top: rect.top, moved: false };
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -56,11 +61,11 @@ export default function CompanionWidget() {
       {openedOnce && <ErrorBoundary fallback={<div className="companion-fallback"><p>伙伴面板暂不可用。</p><button onClick={() => useCompanionStore.getState().setOpen(false)}>收起</button></div>}>
         <Suspense fallback={open ? <div className="companion-fallback" role="status">正在准备构造伙伴…</div> : null}><CompanionPanel onResetPosition={() => setPosition(null)} launcher={launcher} /></Suspense>
       </ErrorBoundary>}
-      <button ref={launcher} type="button" className="companion-launcher" aria-label={open ? '收起构造伙伴' : '打开构造伙伴'} aria-expanded={open} aria-controls="construction-companion-panel" title="构造伙伴 · 点击提问，拖动停靠" style={position && !open ? { left: position.left, top: position.top, right: 'auto', bottom: 'auto' } : undefined}
+      <div className="companion-dock"><button ref={launcher} type="button" className="companion-launcher" aria-label={open ? '收起构造伙伴' : '打开构造伙伴'} aria-expanded={open} aria-controls="construction-companion-panel" title="打开构造伙伴，桌面可拖动停靠" style={position && !open ? { left: position.left, top: position.top, right: 'auto', bottom: 'auto' } : undefined}
         onPointerDown={pointerDown} onPointerMove={pointerMove} onPointerUp={pointerUp} onPointerCancel={() => { drag.current = null; }}
         onClick={() => { if (suppressClick.current) { suppressClick.current = false; return; } useCompanionStore.getState().setOpen(!open); }}>
         <CompanionPet thinking={busy} /><span className="companion-launcher-label">构造伙伴</span>
-      </button>
+      </button></div>
     </div>, document.body,
   )}</>;
 }

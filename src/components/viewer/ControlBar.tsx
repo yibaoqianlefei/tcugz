@@ -39,12 +39,11 @@ export interface ControlBarProps {
 }
 
 const BTN =
-  "w-8 h-8 lg:w-9 lg:h-9 rounded-lg flex items-center justify-center " +
-  "transition-all duration-200 relative shrink-0 " +
-  "text-muted-soft hover:text-primary hover:bg-hairline " +
+  "site-tool-button node-control-button flex items-center justify-center " +
+  "transition-colors duration-200 relative shrink-0 " +
   "disabled:opacity-30 disabled:cursor-not-allowed";
 
-const ACTIVE = "bg-primary/10 text-primary border border-primary/30";
+const ACTIVE = "is-active";
 
 function Divider() {
   return <div className="w-px h-6 lg:h-7 bg-hairline shrink-0" aria-hidden="true" />;
@@ -177,7 +176,7 @@ export default function ControlBar(props: ControlBarProps) {
       className="node-control-bar absolute bottom-5 left-1/2 -translate-x-1/2 z-10
         flex items-center gap-1.5 sm:gap-2 lg:gap-3
         px-3 sm:px-4 lg:px-5 py-2.5 lg:py-3
-        bg-canvas border border-hairline rounded-2xl shadow-sm"
+        bg-canvas border border-hairline rounded-[var(--ui-radius-panel)] shadow-sm"
       onPointerDown={(e) => e.stopPropagation()}
     >
       {groups.map((group, i) => (

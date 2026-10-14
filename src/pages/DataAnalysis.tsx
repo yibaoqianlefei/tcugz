@@ -1,7 +1,7 @@
 import SectionPageHeader from "../components/SectionPageHeader";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Compass, Circle, BrainCircuit } from "lucide-react";
+import ContentEmptyState from "../components/ContentEmptyState";
+import { motion, useReducedMotion } from "framer-motion";
+import { Circle, BrainCircuit } from "lucide-react";
 import {
   RadialBarChart,
   RadialBar,
@@ -22,23 +22,21 @@ import { nodesIndex } from "../data/nodesIndex";
 /* 进度分母必须来自真实节点数。原为写死的 3，导致仅访问 3 个节点
    即显示「学习进度 100%」（真实节点数见 nodesIndex）。 */
 const TOTAL_NODES = nodesIndex.length;
-/* 图表色需与 index.css 的 @theme token 保持同步（Recharts 接收具体色值，
-   无法直接使用 CSS 变量）。改动 token 时请同步此处。 */
+/* SVG charts resolve the same CSS tokens as the rest of the interface. */
 const CHART_COLORS = {
-  primary: "#5b6dad",
-  hairline: "#dce1ed",
-  ink: "#1c2544",
-  muted: "#58637d",
+  primary: "var(--ui-blue)",
+  hairline: "var(--ui-line)",
+  ink: "var(--ui-ink)",
+  muted: "var(--ui-muted)",
 };
 
 const AI_CATEGORIES = ["构造做法", "材料特性", "空间逻辑", "其他"] as const;
 
 const CATEGORY_COLORS: Record<string, string> = {
   "构造做法": CHART_COLORS.primary,
-  "材料特性": CHART_COLORS.hairline,
-  // 原为 #6c6a64（--color-muted 的旧值），已同步为当前 token
+  "材料特性": "var(--ui-blue-hover)",
   "空间逻辑": CHART_COLORS.muted,
-  "其他": "#d4cfc7",
+  "其他": "var(--ui-line-strong)",
 };
 
 /* ── Node name lookup ───────────────────────────────────────── */
@@ -59,6 +57,7 @@ const cardVariants = {
 
 /* ── DataAnalysis ───────────────────────────────────────────── */
 export default function DataAnalysis() {
+  const reducedMotion = useReducedMotion();
   const visitedNodes = useAnalysisStore((s) => s.visitedNodes);
   const aiQuestions = useAnalysisStore((s) => s.aiQuestions);
   const totalInteractions = useAnalysisStore((s) => s.totalInteractions);
@@ -94,84 +93,30 @@ export default function DataAnalysis() {
   return (
     <div className="site-page flex flex-col">
       <SectionPageHeader title="学习数据" eyebrow="LEARNING / 学习记录" description="查看构造学习进度与节点交互记录。" />
-      <section className="mx-auto w-full max-w-6xl px-6 py-10 md:px-10">
-        {aiQuestions.some(question => !question.source) && <p className="text-xs text-muted mb-4">历史问答记录已保留；因旧版含模拟数据，未计入新版伙伴问答统计。</p>}
-        {/* ── Overview card ── */}
-        <motion.div
-          className="max-w-xl"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
-        >
-          <div className="bg-surface-card border border-hairline rounded-xl px-6 py-4 flex justify-around items-center">
-            {/* 总交互次数 */}
-            <div className="flex flex-col items-center">
-              <span className="text-2xl text-primary font-semibold tabular-nums">
-                {totalInteractions}
-              </span>
-              <span className="text-xs text-muted mt-0.5">累计交互（含历史记录）</span>
-            </div>
-
-            {/* Divider */}
-            <div className="w-px h-10 bg-hairline" />
-
-            {/* 累计学习时长 */}
-            <div className="flex flex-col items-center">
-              <span className="text-2xl text-primary font-semibold tabular-nums">
-                {visitedNodes.length}
-              </span>
-              <span className="text-xs text-muted mt-0.5">已访问节点</span>
-            </div>
-
-            {/* Divider */}
-            <div className="w-px h-10 bg-hairline" />
-
-            {/* 本周活跃 */}
-            <div className="flex flex-col items-center">
-              <span className="text-2xl text-primary font-semibold tabular-nums">
-                {recordedQuestions.length}
-              </span>
-              <span className="text-xs text-muted mt-0.5">新版伙伴问答</span>
-            </div>
-          </div>
-        </motion.div>
+      <section className="site-container site-data-summary" aria-label="学习记录概览">
+        {aiQuestions.some(question => !question.source) && <p className="text-sm text-muted mb-4">历史问答记录已保留；因旧版含模拟数据，未计入新版伙伴问答统计。</p>}
+        <div className="site-data-metrics">
+          <div><strong>{totalInteractions}</strong><span>累计交互（含历史记录）</span></div>
+          <div><strong>{visitedNodes.length}</strong><span>已访问节点</span></div>
+          <div><strong>{recordedQuestions.length}</strong><span>新版伙伴问答</span></div>
+        </div>
       </section>
 
       {/* ── Cards ── */}
-      <main className="flex-1 px-6 md:px-10 pb-20 max-w-6xl mx-auto w-full">
+      <main className="site-container flex-1 pb-16">
         {visitedNodes.length === 0 && aiQuestions.length === 0 ? (
-          /* ── Empty state ── */
-          <motion.div
-            className="flex flex-col items-center justify-center py-20 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <div className="w-20 h-20 rounded-full bg-surface-card border border-hairline flex items-center justify-center mb-6">
-              <Compass size={32} strokeWidth={1} className="text-muted-soft" />
-            </div>
-            <h2 className="text-lg font-medium text-ink mb-2">快去探索节点吧</h2>
-            <p className="text-sm text-muted max-w-sm leading-relaxed mb-6">
-              你还没有任何学习记录。访问构造节点、与 AI 助教对话后，这里会展示你的学习数据。
-            </p>
-            <Link
-              to="/library"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary-active transition-colors"
-            >
-              浏览构造节点
-            </Link>
-          </motion.div>
+          <ContentEmptyState title="从一个节点开始" description="访问构造节点、与构造伙伴交流后，这里会展示你的学习进度与交互记录。" />
         ) : (
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
           variants={containerVariants}
-          initial="hidden"
+          initial={reducedMotion ? false : 'hidden'}
           animate="show"
         >
           {/* Card 1: 学习进度 — RadialBar */}
           <motion.div
             variants={cardVariants}
-            className="bg-white border border-hairline rounded-lg p-6 flex flex-col min-h-[280px] shadow-sm"
+            className="site-data-card p-6 flex flex-col min-h-[280px]"
           >
             <div className="flex items-center gap-2 mb-2">
               <span className="w-1 h-4 bg-primary rounded-full inline-block flex-shrink-0" />
@@ -220,7 +165,7 @@ export default function DataAnalysis() {
           {/* Card 2: 构件热力 — Horizontal BarChart */}
           <motion.div
             variants={cardVariants}
-            className="bg-white border border-hairline rounded-lg p-6 flex flex-col min-h-[280px] shadow-sm"
+            className="site-data-card p-6 flex flex-col min-h-[280px]"
           >
             <div className="flex items-center gap-2 mb-2">
               <span className="w-1 h-4 bg-primary rounded-full inline-block flex-shrink-0" />
@@ -288,7 +233,7 @@ export default function DataAnalysis() {
           {/* Card 3: AI 问答画像 — PieChart */}
           <motion.div
             variants={cardVariants}
-            className="bg-white border border-hairline rounded-lg p-6 flex flex-col min-h-[280px] shadow-sm"
+            className="site-data-card p-6 flex flex-col min-h-[280px]"
           >
             <div className="flex items-center gap-2 mb-2">
               <span className="w-1 h-4 bg-primary rounded-full inline-block flex-shrink-0" />
@@ -325,7 +270,7 @@ export default function DataAnalysis() {
                           className="w-2.5 h-2.5 rounded-full flex-shrink-0"
                           style={{ backgroundColor: CATEGORY_COLORS[cat] }}
                         />
-                        <span className="text-[11px] text-muted">{cat}</span>
+                        <span className="text-[13px] text-muted">{cat}</span>
                       </div>
                     ))}
                   </div>
@@ -342,7 +287,7 @@ export default function DataAnalysis() {
                     探索你的学习画像
                   </h3>
                   <p className="text-xs text-muted mt-1.5 text-center relative z-10 max-w-[200px]">
-                    去 AI 问答提问，开始构建你的数据图谱
+                    打开构造伙伴提问，逐步形成学习记录
                   </p>
                 </div>
               )}

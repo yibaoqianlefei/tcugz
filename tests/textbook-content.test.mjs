@@ -13,6 +13,7 @@ const nodes = new Set(nodeDefinitions.map(node => node.id));
 assert.equal(documents.size, manifest.documents.length, 'no duplicate course paths');
 assert.equal(new Set(articles.map(article => article.path)).size, articles.length);
 const cjk = text => [...text.matchAll(/[\u3400-\u9fff]/g)].map(match => match[0]).join('');
+const countClass = (html, name) => [...html.matchAll(/class="([^"]+)"/g)].filter(match => match[1].split(/\s+/).includes(name)).length;
 const walk = (node, visit) => { visit(node); for (const child of node.children ?? []) walk(child, visit); };
 
 for (const article of articles) {
@@ -57,13 +58,13 @@ for (const group of [...Object.values(groups), ...Object.values(modules)]) for (
   if ('available' in topic) assert.equal(topic.available, true, `content metadata enabled: ${topic.id}`);
 }
 const wall = await readFile('public/lesson/wall/index.html', 'utf8');
-assert.equal((wall.match(/class="chapter-card"/g) ?? []).length, modules.wall.topics.length, 'custom wall directory includes every topic');
+assert.equal(countClass(wall, 'chapter-card'), modules.wall.topics.length, 'custom wall directory includes every topic');
 for (const [id, module] of Object.entries(modules)) {
   if (id === 'wall') continue;
   const path = `basics/${id}/index.html`;
   const html = await readFile(`public/lesson/${path}`, 'utf8');
   assert.equal(html, await readFile(`public/curriculum/${path}`, 'utf8'), `chapter directory outputs stay synchronized: ${id}`);
-  assert.equal((html.match(/class="chapter-card"/g) ?? []).length, module.topics.length, `all chapter entries remain available: ${id}`);
+  assert.equal(countClass(html, 'chapter-card'), module.topics.length, `all chapter entries remain available: ${id}`);
   for (const topic of module.topics) assert(html.includes(`href="/lesson/basics/${id}/${topic.id}.html"`), `directory opens real article: ${id}/${topic.id}`);
   assert(html.includes(`>${module.title}</h1>`), `chapter title preserved: ${id}`);
   assert(!html.includes('chapter-sketch'), `chapter directory has no decorative card icons: ${id}`);
@@ -78,8 +79,10 @@ const fixture = '<a href="/previews/curriculum/introduction/intro-course-guide.h
 const subpath = formalizeCourse(fixture, '/textbook/');
 for (const href of ['/textbook/lesson/introduction/intro-course-guide.html', '/textbook/lesson/principles/thermal.html', '/textbook/#/node/construction-column-01', '/textbook/#/?section=modules', '/textbook/lesson/curriculum.css']) assert(subpath.includes(`href="${href}"`));
 assert(subpath.includes('src="/textbook/brand/logo.svg"'));
-const directoryAssets = formalizeCourse('<link href="/lesson/module-directory.css?v=20261013"><img src="/images/chapters/foundation.webp">', '/textbook/');
+const directoryAssets = formalizeCourse('<link href="/lesson/module-directory.css?v=20261013"><img src="/images/chapters/foundation.webp"><link href="/styles/directory-cards.css"><script type="module" src="/styles/directory-motion-entry.js"></script>', '/textbook/');
 assert(directoryAssets.includes('href="/textbook/lesson/module-directory.css?v=20261013"'));
 assert(directoryAssets.includes('src="/textbook/images/chapters/foundation.webp"'));
+assert(directoryAssets.includes('href="/textbook/styles/directory-cards.css"'));
+assert(directoryAssets.includes('src="/textbook/styles/directory-motion-entry.js"'));
 assert.throws(() => formalizeCourse(fixture, 'textbook/'));
 console.log(`Textbook checks passed: ${articles.length} full articles, ${documents.size} routes, complete rendered text, links, task requirements and hosted subpaths.`);

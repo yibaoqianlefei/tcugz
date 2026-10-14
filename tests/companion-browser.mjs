@@ -117,7 +117,7 @@ try {
   const emptyContext = await browser.newContext();
   const dataPage = await emptyContext.newPage();
   await dataPage.goto(`${base}#/data`);
-  await dataPage.getByRole('heading',{name:'快去探索节点吧'}).waitFor();
+  await dataPage.getByRole('heading',{name:'从一个节点开始'}).waitFor();
   assert.equal(await dataPage.evaluate(() => localStorage.getItem('construction-analysis')), null, 'statistics page creates no fake activity');
   await emptyContext.close();
   assert.deepEqual(errors, []);

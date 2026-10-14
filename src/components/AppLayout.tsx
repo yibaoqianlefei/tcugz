@@ -2,7 +2,7 @@ import { Outlet, useLocation, Link, useNavigationType } from "react-router-dom";
 import { useLayoutEffect, useRef } from "react";
 import { ErrorBoundary } from "./ErrorBoundary";
 import LearningHomePage from "../pages/LearningHomePage";
-import BrandMark from "./BrandMark";
+import SiteHeader from "./SiteHeader";
 import CompanionWidget from "./companion/CompanionWidget";
 
 /**
@@ -11,7 +11,7 @@ import CompanionWidget from "./companion/CompanionWidget";
  */
 function PageErrorFallback({ error, reset }: { error: Error; reset: () => void }) {
   return (
-    <div className="min-h-screen bg-canvas flex flex-col items-center justify-center px-6 text-center">
+    <div className="site-error-state">
       <h2 className="text-xl font-medium text-ink mb-3">页面出错了</h2>
       <p className="text-sm text-muted mb-2 max-w-md">
         页面渲染时出现问题，请重试或返回首页
@@ -24,15 +24,13 @@ function PageErrorFallback({ error, reset }: { error: Error; reset: () => void }
       <div className="flex gap-4 mt-4">
         <button
           onClick={reset}
-          className="px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-medium
-            hover:bg-primary-active transition-colors"
+          className="site-button"
         >
           重试
         </button>
         <Link
           to="/"
-          className="px-5 py-2.5 rounded-lg border border-hairline text-sm text-muted
-            hover:text-primary hover:border-primary/30 transition-colors"
+          className="site-button site-button--secondary"
         >
           返回首页
         </Link>
@@ -56,7 +54,7 @@ function AppLayout() {
   const parent = pathname.startsWith('/curriculum/cases/')
     ? { to: '/curriculum/cases', label: '返回案例应用' }
     : pathname.startsWith('/games/')
-    ? { to: '/games', label: '返回训练中心' }
+    ? { to: '/games', label: '返回作业训练' }
     : pathname.startsWith('/node/')
     ? { to: '/library', label: '返回构造节点' }
     : pathname.startsWith('/textbook/')
@@ -112,12 +110,9 @@ function AppLayout() {
   }, [isHome, isLesson, pathname, search, key, navigationType]);
 
   return (
-    <>
+    <div className={`site-app${isHome ? ' site-app--home' : ''}${pathname.startsWith('/node/') ? ' site-app--node' : ''}`}>
       {!isHome && !isAuth && !isLesson && (
-        <header className="site-subpage-topbar">
-          <Link to="/" className="site-subpage-brand"><BrandMark /><span>建筑构造 / 学习首页</span></Link>
-          <Link to={parent.to} className="site-back-link"><span className="site-back-icon" aria-hidden="true">←</span>{parent.label}</Link>
-        </header>
+        <SiteHeader to={parent.to} label={parent.label} />
       )}
       <div style={{ display: isHome ? undefined : 'none' }} aria-hidden={!isHome} inert={!isHome}>
         <LearningHomePage active={isHome} />
@@ -129,7 +124,7 @@ function AppLayout() {
         {!isHome && <Outlet />}
       </ErrorBoundary>
       <CompanionWidget />
-    </>
+    </div>
   );
 }
 

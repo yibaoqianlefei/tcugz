@@ -14,10 +14,10 @@ function TrainingCatalog() {
   const mistakes = trainingQuestions.filter(question => progress.records[question.id]?.hadMistake);
   return <div className="site-page training-page">
     <SectionPageHeader title="作业训练" eyebrow="PRACTICE / 从观察到应用" description="转动模型、识别构件、理解层次，再尝试方案判断与装配。每次练习都可以暂停，稍后继续。" />
-    <main className="training-catalog">
+    <main className="site-container training-catalog">
       <section className="textbook-practice-entry" aria-labelledby="textbook-practice-title">
         <div><span className="site-eyebrow">TEXTBOOK / 图纸与方案实践</span><h2 id="textbook-practice-title">教材实践作业</h2><p>构造说明、楼面布置、楼梯绘图、屋顶排水、外檐节点、综合设计与构造调研。每项任务提供步骤、提交物和自评依据。</p></div>
-        <Link to="/lesson/practice/index.html">查看 7 项任务 →</Link>
+        <Link className="site-button site-button--secondary" to="/lesson/practice/index.html">查看 7 项任务 →</Link>
       </section>
       <div className="training-summary"><div><strong>{records.filter(record => record.solved).length}<small> / {trainingQuestions.length}</small></strong><span>已答对题目</span></div><div><strong>{records.filter(record => record.firstCorrect).length}</strong><span>首次独立答对</span></div><div><strong>{mistakes.length}</strong><span>错题记录</span></div><p>{storageAvailable ? '进度保存在当前浏览器，无需登录即可练习。' : '当前浏览器无法保存进度，离开或刷新后可能丢失作答。'}</p></div>
       <div className="training-section-heading"><h2>选择一种训练方式</h2><span>8 种模式 · 自主练习</span></div>
@@ -93,7 +93,7 @@ function TrainingWorkbench({ mode }: { mode: TrainingModeInfo }) {
   const result = draft.result;
   const placements = question.mode === 'assemble' ? answer.placements : undefined;
   const hidden = question.mode === 'diagnose' && !draft.submitted ? question.hiddenParts ?? [] : [];
-  return <div className="site-page training-page training-workbench">
+  return <div className="site-page site-container training-page training-workbench">
     <header className="training-workbench-heading"><div><span className="site-eyebrow">{mode.level} / {mode.title}</span><h1>{question.title}</h1></div><div className="training-question-progress"><span>第 {index + 1} / {questions.length} 题</span><progress value={index + 1} max={questions.length} aria-label="当前题目进度" /></div></header>
     <div className="training-workbench-grid">
       <section className={`training-visual${question.figure ? ' has-diagram' : ''}`} aria-label="模型观察区">
@@ -125,7 +125,7 @@ function TrainingWorkbench({ mode }: { mode: TrainingModeInfo }) {
 
         <div className="training-hint"><button disabled={draft.hinted || draft.submitted} onClick={() => showHint(question)}><Lightbulb size={16} />{draft.hinted ? '已查看提示' : '给我一点提示'}</button>{draft.hinted && <p>{question.hint}</p>}</div>
         {!draft.submitted && <><button className="training-button primary training-submit" disabled={!complete || !ready} onClick={() => submit(question)}>提交答案</button><p className="training-submit-help">{!complete ? '完成本题全部选择后即可提交。' : '提交后查看对应关系和解析。'}</p></>}
-        {draft.submitted && result && <div className={`training-feedback ${result.correct ? 'correct' : 'incorrect'}`} role="status" aria-live="polite"><h2>{result.correct ? '答对了' : '再看一看对应关系'}</h2><span>{result.matched} / {result.total} 项对应正确{draft.hinted ? ' · 本次使用了提示' : ''}</span><p>{question.explanation}</p>{question.mode === 'path' && <button className="training-button" onClick={() => setCorrectPath(value => !value)}>{correctPath ? '查看我的路径' : '查看正确路径'}</button>}<div className="training-feedback-actions"><button className="training-button" onClick={retryQuestion}><RotateCcw size={15} />重新作答</button>{index < questions.length - 1 ? <button className="training-button primary" onClick={() => goTo(questions[index + 1])}>下一题</button> : <Link className="training-button primary" to="/games">返回训练中心</Link>}</div></div>}
+        {draft.submitted && result && <div className={`training-feedback ${result.correct ? 'correct' : 'incorrect'}`} role="status" aria-live="polite"><h2>{result.correct ? '答对了' : '再看一看对应关系'}</h2><span>{result.matched} / {result.total} 项对应正确{draft.hinted ? ' · 本次使用了提示' : ''}</span><p>{question.explanation}</p>{question.mode === 'path' && <button className="training-button" onClick={() => setCorrectPath(value => !value)}>{correctPath ? '查看我的路径' : '查看正确路径'}</button>}<div className="training-feedback-actions"><button className="training-button" onClick={retryQuestion}><RotateCcw size={15} />重新作答</button>{index < questions.length - 1 ? <button className="training-button primary" onClick={() => goTo(questions[index + 1])}>下一题</button> : <Link className="training-button primary" to="/games">返回作业训练</Link>}</div></div>}
         <Link to={`/node/${question.nodeId}`} className="training-reference" target="_blank" rel="noopener noreferrer">复习对应构造节点（新窗口）</Link>
         <p className="training-storage-note">{storageAvailable ? '作答自动保存在当前浏览器。首次独立答对记录不会因重试增加。' : '当前无法保存进度，刷新或离开后可能丢失作答。'}</p>
       </section>
@@ -138,6 +138,6 @@ export default function GamesPage() {
   const { modeId } = useParams();
   if (!modeId) return <TrainingCatalog />;
   const mode = trainingModes.find(mode => mode.id === modeId);
-  if (!mode) return <div className="site-page training-page"><SectionPageHeader title="未找到这项训练" eyebrow="PRACTICE / 作业训练" description="请通过右上角按钮返回训练中心，选择可用的训练模式。" /></div>;
+  if (!mode) return <div className="site-page training-page"><SectionPageHeader title="未找到这项训练" eyebrow="PRACTICE / 作业训练" description="请通过右上角按钮返回作业训练，选择可用的训练模式。" /></div>;
   return <TrainingWorkbench key={modeId} mode={mode} />;
 }

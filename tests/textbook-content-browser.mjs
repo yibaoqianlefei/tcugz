@@ -55,7 +55,8 @@ try {
     const iframe = document.querySelector('.curriculum-frame');
     const target = iframe.contentDocument.querySelector(id);
     const top = iframe.getBoundingClientRect().top + target.getBoundingClientRect().top;
-    return Math.abs(top - 24) < 12;
+    const headerBottom = document.querySelector(".site-subpage-topbar").getBoundingClientRect().bottom;
+    return Math.abs(top - headerBottom - 24) < 12;
   }, tocTarget);
   assert(page.url().endsWith('#/lesson/introduction/intro-course-guide.html'), 'index scroll stays on same route');
   await frame.locator('.chapter-nav a[href$="intro-classification.html"]').click();
@@ -79,7 +80,7 @@ try {
   await frame.locator('.card[href$="stairs-drawing.html"]').click();
   frame = await ready('practice/stairs-drawing.html');
   assert((await frame.locator('.article').innerText()).includes('1820'));
-  await frame.locator('.back').click();
+  await page.locator('.site-back-link').click();
   await ready('practice/index.html');
 
   frame = await navigate('basics/roof/roof-flat.html');
@@ -97,7 +98,7 @@ try {
     assert.equal(await page.locator('.module-card[href$="deformation-joint/index.html"]').count(), 1);
     await page.locator('.module-card[href$="deformation-joint/index.html"]').click();
     frame = await ready('basics/deformation-joint/index.html');
-    assert.equal(await frame.locator('.card').count(), 3);
+    assert.equal(await frame.locator('.chapter-card').count(), 3);
   }
   assert.deepEqual(errors, [], 'no browser runtime errors during reading');
   console.log(`Textbook browser checks passed: ${documents.length} readers return content, homepage/chapter/model/practice links, in-page index, desktop and 390/320px mobile layouts.`);

@@ -5,6 +5,7 @@ import previewDocument from '../../previews/homepage-v1.html?raw';
 import { initHomepageInteractions } from '../previews/homepageBehavior';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import { useCompanionStore } from '../store/companionStore';
+import { initDirectoryMotion } from '../ui/directoryMotion.js';
 
 const NodePreview = lazy(() => import('../previews/nodePreview').then(module => ({ default: module.NodePreview })));
 const TrainingPreview = lazy(() => import('../previews/TrainingPreview'));
@@ -52,6 +53,11 @@ export default function LearningHomePage({ active }: { active: boolean }) {
   }, []);
 
   useLayoutEffect(() => {
+    if (!active || !stylesReady || !container.current) return;
+    return initDirectoryMotion(container.current);
+  }, [active, stylesReady]);
+
+  useLayoutEffect(() => {
     if (!active) return;
     const mount = container.current?.querySelector<HTMLElement>('#node-model-root');
     const visual = mount?.closest<HTMLElement>('.node-focus-visual');
@@ -86,7 +92,7 @@ export default function LearningHomePage({ active }: { active: boolean }) {
       : null;
     const top = hasLeftHome.current
       ? lastScrollY.current
-      : target ? target.getBoundingClientRect().top + window.scrollY : lastScrollY.current;
+      : target ? target.getBoundingClientRect().top + window.scrollY - (parseFloat(getComputedStyle(target).scrollMarginTop) || 0) : lastScrollY.current;
     window.scrollTo({ top, behavior: 'instant' });
     hasLeftHome.current = false;
     hasVisitedHome.current = true;
@@ -102,7 +108,7 @@ export default function LearningHomePage({ active }: { active: boolean }) {
     <link rel="stylesheet" href={`${siteBase}feature-showcase.css`} media={active ? 'all' : 'not all'} onLoad={() => markStylesheetReady('features')} onError={() => markStylesheetReady('features')} />
     <div ref={container} style={{ visibility: stylesReady ? undefined : 'hidden' }} dangerouslySetInnerHTML={markup} />
     {modelTarget && createPortal(<Suspense fallback={<span className="node-model-status" role="status">模型加载中…</span>}><NodePreview visual={modelTarget.visual} /></Suspense>, modelTarget.mount)}
-    {trainingTarget && createPortal(<ErrorBoundary fallback={<div className="practice-preview-placeholder" role="alert"><span>互动预览暂不可用</span><a href={`${siteBase}#/games`}>进入训练中心</a></div>}><Suspense fallback={<div className="practice-preview-placeholder" role="status">正在准备互动训练…</div>}><TrainingPreview visual={trainingTarget} /></Suspense></ErrorBoundary>, trainingTarget)}
+    {trainingTarget && createPortal(<ErrorBoundary fallback={<div className="practice-preview-placeholder" role="alert"><span>互动预览暂不可用</span><a href={`${siteBase}#/games`}>进入作业训练</a></div>}><Suspense fallback={<div className="practice-preview-placeholder" role="status">正在准备互动训练…</div>}><TrainingPreview visual={trainingTarget} /></Suspense></ErrorBoundary>, trainingTarget)}
     {caseTarget && createPortal(<ErrorBoundary fallback={<div className="case-model-placeholder" role="alert"><a href={`${siteBase}#/curriculum/cases/farnsworth-house`}>查看法恩斯沃斯住宅分析</a></div>}><Suspense fallback={<div className="case-model-placeholder" role="status">正在准备建筑案例…</div>}><CaseExperience visual={caseTarget} /></Suspense></ErrorBoundary>, caseTarget)}
   </>;
 }

@@ -39,9 +39,12 @@ export function renderModuleDirectory({ id, module, design }) {
   const count = module.topics.length;
   const themes = (design.themes ?? []).map(theme => `<li>${escapeHtml(theme)}</li>`).join('');
   const stage = `<div class="wall-art-stage module-art-stage">${renderGeometry(design.geometry ?? defaultCompositions[id])}</div>`;
-  const cards = module.topics.map((topic, index) => `<a class="chapter-card" href="/previews/curriculum/basics/${escapeHtml(id)}/${escapeHtml(topic.id)}.html">
-              <div class="chapter-card-top"><span class="chapter-number">${String(index + 1).padStart(2, '0')}</span></div>
-              <div class="chapter-copy"><h3>${escapeHtml(topic.title)}</h3><p>${escapeHtml(topic.description)}</p></div>
+  const cards = module.topics.map((topic, index) => `<a class="chapter-card directory-card" href="/previews/curriculum/basics/${escapeHtml(id)}/${escapeHtml(topic.id)}.html">
+              <div class="chapter-card-top directory-card-top"><span class="chapter-number directory-card-number">${String(index + 1).padStart(2, '0')}</span><span class="directory-card-kicker">学习小节</span></div>
+              <h3 class="directory-card-title">${escapeHtml(topic.title)}</h3>
+              <p class="directory-card-description">${escapeHtml(topic.learningDescription ?? topic.description)}</p>
+              <div class="directory-card-tags">${(topic.learningTags ?? [module.title, topic.title]).map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}</div>
+              <span class="directory-card-footer"><span>开始阅读</span><span class="directory-card-arrow" aria-hidden="true">→</span></span>
             </a>`).join('\n            ');
   const note = design.sectionNote ?? `${count} 节正文，沿构造原理逐步理解连接与做法。`;
   return `<!doctype html>
@@ -51,9 +54,9 @@ export function renderModuleDirectory({ id, module, design }) {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${title} · 建筑构造</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="stylesheet" href="/lesson/module-directory.css?v=20261013-closed" />
+  <link rel="stylesheet" href="/lesson/module-directory.css?v=20261014-directory-v2" />
 </head>
-<body>
+<body class="course-page course-page--cover">
   <div class="wall-page module-directory module-directory--${escapeHtml(id)}">
     <main class="main" id="top">
       <header class="topbar">
@@ -75,8 +78,8 @@ export function renderModuleDirectory({ id, module, design }) {
           </figure>
         </section>
         <section class="wall-section" id="chapters" aria-labelledby="chapters-heading">
-          <div class="section-top"><div><span class="mini-label">READ &amp; EXPLORE / ${String(count).padStart(2, '0')}</span><h2 id="chapters-heading">${title}章节</h2></div><p>从整体认识，走向构造细节</p></div>
-          <div class="chapter-grid${count === 2 ? ' chapter-grid--pair' : ''}">
+          <div class="section-top"><div><span class="mini-label">READ &amp; EXPLORE</span><div class="directory-section-title"><h2 id="chapters-heading">${title}章节</h2><span class="directory-section-count">${String(count).padStart(2, '0')}<span>节</span></span></div></div><p>从整体认识，走向构造细节</p></div>
+          <div class="chapter-grid directory-grid${count === 2 ? ' chapter-grid--pair' : ''}">
             ${cards}
           </div>
           <div class="section-note"><span>${escapeHtml(note)}</span><span>由构造概念，走向细部做法</span></div>
@@ -84,6 +87,7 @@ export function renderModuleDirectory({ id, module, design }) {
       </div>
     </main>
   </div>
+  <script type="module" src="/styles/directory-motion-entry.js"></script>
 </body>
 </html>
 `;
