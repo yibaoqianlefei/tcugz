@@ -2,6 +2,10 @@
 export function formalizeCourse(html, siteBase = '/') {
   if (!siteBase.startsWith('/') || !siteBase.endsWith('/')) throw new Error('VITE_BASE_URL must start and end with /');
   return html
+    .replaceAll('/previews/curriculum/introduction/index.html', '/previews/homepage-v1.html#introduction')
+    .replaceAll('/lesson/introduction/index.html', '/#/?section=introduction')
+    .replaceAll('/previews/curriculum/principles/index.html', '/previews/homepage-v1.html#principles')
+    .replaceAll('/lesson/principles/index.html', '/#/?section=principles')
     .replaceAll('/previews/curriculum/', '/lesson/')
     .replaceAll('/previews/wall-v1.html', '/lesson/wall/index.html')
     .replaceAll('/previews/homepage-v1.html#introduction', '/#/?section=introduction')

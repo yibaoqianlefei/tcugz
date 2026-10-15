@@ -1,0 +1,850 @@
+[
+  {
+    "id": "course-01",
+    "label": "变形缝",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-01-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/deformation-joint/index.html"
+  },
+  {
+    "id": "course-05",
+    "label": "门窗",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-05-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/door-window/index.html"
+  },
+  {
+    "id": "course-09",
+    "label": "阳台及雨棚",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-09-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/floor/floor-balcony.html"
+  },
+  {
+    "id": "course-15",
+    "label": "楼地层",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-15-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/floor/index.html"
+  },
+  {
+    "id": "course-20",
+    "label": "基础的分类",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-20-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/foundation/foundation-types.html"
+  },
+  {
+    "id": "course-22",
+    "label": "基础与地基",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-22-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/foundation/index.html"
+  },
+  {
+    "id": "course-23",
+    "label": "屋顶",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-23-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/roof/index.html"
+  },
+  {
+    "id": "course-24",
+    "label": "平屋面构造",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-24-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/roof/roof-flat.html"
+  },
+  {
+    "id": "course-27",
+    "label": "楼梯",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-27-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/stairs/index.html"
+  },
+  {
+    "id": "course-28",
+    "label": "楼梯的细部构造",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-28-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/stairs/stairs-details.html"
+  },
+  {
+    "id": "course-34",
+    "label": "墙体的设计要求",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-34-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/wall/wall-design-requirements.html"
+  },
+  {
+    "id": "course-41",
+    "label": "建筑绪论",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-41-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/introduction/index.html"
+  },
+  {
+    "id": "course-44",
+    "label": "课程导读",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-44-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/introduction/intro-course-guide.html"
+  },
+  {
+    "id": "course-49",
+    "label": "构造方案说明",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-49-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/practice/construction-brief.html"
+  },
+  {
+    "id": "course-53",
+    "label": "教材实践作业",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-53-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/practice/index.html"
+  },
+  {
+    "id": "course-57",
+    "label": "建筑隔声",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-57-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/principles/acoustic.html"
+  },
+  {
+    "id": "course-59",
+    "label": "构造原理",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-59-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/principles/index.html"
+  },
+  {
+    "id": "course-64",
+    "label": "墙体",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/course-64-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/wall/index.html"
+  },
+  {
+    "id": "course-01",
+    "label": "变形缝",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-01-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/deformation-joint/index.html"
+  },
+  {
+    "id": "course-05",
+    "label": "门窗",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-05-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/door-window/index.html"
+  },
+  {
+    "id": "course-09",
+    "label": "阳台及雨棚",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-09-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/floor/floor-balcony.html"
+  },
+  {
+    "id": "course-15",
+    "label": "楼地层",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-15-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/floor/index.html"
+  },
+  {
+    "id": "course-20",
+    "label": "基础的分类",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-20-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/foundation/foundation-types.html"
+  },
+  {
+    "id": "course-22",
+    "label": "基础与地基",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-22-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/foundation/index.html"
+  },
+  {
+    "id": "course-23",
+    "label": "屋顶",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-23-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/roof/index.html"
+  },
+  {
+    "id": "course-24",
+    "label": "平屋面构造",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-24-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/roof/roof-flat.html"
+  },
+  {
+    "id": "course-27",
+    "label": "楼梯",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-27-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/stairs/index.html"
+  },
+  {
+    "id": "course-28",
+    "label": "楼梯的细部构造",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-28-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/stairs/stairs-details.html"
+  },
+  {
+    "id": "course-34",
+    "label": "墙体的设计要求",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-34-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/basics/wall/wall-design-requirements.html"
+  },
+  {
+    "id": "course-41",
+    "label": "建筑绪论",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-41-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/introduction/index.html"
+  },
+  {
+    "id": "course-44",
+    "label": "课程导读",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-44-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/introduction/intro-course-guide.html"
+  },
+  {
+    "id": "course-49",
+    "label": "构造方案说明",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-49-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/practice/construction-brief.html"
+  },
+  {
+    "id": "course-53",
+    "label": "教材实践作业",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-53-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/practice/index.html"
+  },
+  {
+    "id": "course-57",
+    "label": "建筑隔声",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-57-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/principles/acoustic.html"
+  },
+  {
+    "id": "course-59",
+    "label": "构造原理",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-59-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/principles/index.html"
+  },
+  {
+    "id": "course-64",
+    "label": "墙体",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/course-64-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/wall/index.html"
+  },
+  {
+    "id": "library",
+    "label": "构造节点库",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/library-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/library"
+  },
+  {
+    "id": "cases",
+    "label": "案例目录",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/cases-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/curriculum/cases"
+  },
+  {
+    "id": "resources",
+    "label": "学习资源",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/resources-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/resources"
+  },
+  {
+    "id": "resources-open",
+    "label": "学习资源展开",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/resources-open-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/resources"
+  },
+  {
+    "id": "companion",
+    "label": "构造伙伴介绍",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/companion-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/ai-extend"
+  },
+  {
+    "id": "data",
+    "label": "学习数据",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/data-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/data"
+  },
+  {
+    "id": "tools",
+    "label": "工具箱空状态",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/tools-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/tools"
+  },
+  {
+    "id": "contribute",
+    "label": "贡献节点空状态",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/contribute-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/contribute"
+  },
+  {
+    "id": "training-catalog",
+    "label": "作业训练目录",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/training-catalog-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/games"
+  },
+  {
+    "id": "node-column",
+    "label": "构造柱节点工作台",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/node-column-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/node/construction-column-01"
+  },
+  {
+    "id": "case-savoye",
+    "label": "萨伏伊别墅旧案例",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/case-savoye-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/curriculum/cases/villa-savoye"
+  },
+  {
+    "id": "training-feedback",
+    "label": "训练作答反馈",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/training-feedback-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/games/identify"
+  },
+  {
+    "id": "training-correct",
+    "label": "训练正确反馈",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/training-correct-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/games/identify"
+  },
+  {
+    "id": "training-assemble",
+    "label": "三维装配补全",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/training-assemble-390.jpg",
+    "url": "http://127.0.0.1:5174/#/games/assemble"
+  },
+  {
+    "id": "training-identify",
+    "label": "训练模式 identify",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/training-identify-390.jpg",
+    "url": "http://127.0.0.1:5174/#/games/identify"
+  },
+  {
+    "id": "training-match",
+    "label": "训练模式 match",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/training-match-390.jpg",
+    "url": "http://127.0.0.1:5174/#/games/match"
+  },
+  {
+    "id": "training-order",
+    "label": "训练模式 order",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/training-order-390.jpg",
+    "url": "http://127.0.0.1:5174/#/games/order"
+  },
+  {
+    "id": "training-diagram",
+    "label": "训练模式 diagram",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/training-diagram-390.jpg",
+    "url": "http://127.0.0.1:5174/#/games/diagram"
+  },
+  {
+    "id": "training-path",
+    "label": "训练模式 path",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/training-path-390.jpg",
+    "url": "http://127.0.0.1:5174/#/games/path"
+  },
+  {
+    "id": "training-scenario",
+    "label": "训练模式 scenario",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/training-scenario-390.jpg",
+    "url": "http://127.0.0.1:5174/#/games/scenario"
+  },
+  {
+    "id": "training-diagnose",
+    "label": "训练模式 diagnose",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/training-diagnose-390.jpg",
+    "url": "http://127.0.0.1:5174/#/games/diagnose"
+  },
+  {
+    "id": "training-catalog",
+    "label": "作业训练目录",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/training-catalog-390.jpg",
+    "url": "http://127.0.0.1:5174/#/games"
+  },
+  {
+    "id": "library",
+    "label": "构造节点库",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/library-390.jpg",
+    "url": "http://127.0.0.1:5174/#/library"
+  },
+  {
+    "id": "cases",
+    "label": "案例目录",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/cases-390.jpg",
+    "url": "http://127.0.0.1:5174/#/curriculum/cases"
+  },
+  {
+    "id": "companion",
+    "label": "构造伙伴介绍",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/companion-390.jpg",
+    "url": "http://127.0.0.1:5174/#/ai-extend"
+  },
+  {
+    "id": "data",
+    "label": "学习数据",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/data-390.jpg",
+    "url": "http://127.0.0.1:5174/#/data"
+  },
+  {
+    "id": "tools",
+    "label": "工具箱空状态",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/tools-390.jpg",
+    "url": "http://127.0.0.1:5174/#/tools"
+  },
+  {
+    "id": "contribute",
+    "label": "贡献节点空状态",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/contribute-390.jpg",
+    "url": "http://127.0.0.1:5174/#/contribute"
+  },
+  {
+    "id": "case-farnsworth",
+    "label": "法恩斯沃斯住宅案例",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/case-farnsworth-390.jpg",
+    "url": "http://127.0.0.1:5174/#/curriculum/cases/farnsworth-house"
+  },
+  {
+    "id": "case-savoye",
+    "label": "萨伏伊别墅旧案例",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/case-savoye-390.jpg",
+    "url": "http://127.0.0.1:5174/#/curriculum/cases/villa-savoye"
+  },
+  {
+    "id": "node-water",
+    "label": "蓄水屋面节点工作台",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/node-water-390.jpg",
+    "url": "http://127.0.0.1:5174/#/node/water-storage-eaves-drainage-01"
+  },
+  {
+    "id": "node-knowledge",
+    "label": "节点构件知识页签",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/node-knowledge-390.jpg",
+    "url": "http://127.0.0.1:5174/#/node/water-storage-eaves-drainage-01"
+  },
+  {
+    "id": "node-diagram",
+    "label": "节点图纸页签",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/node-diagram-390.jpg",
+    "url": "http://127.0.0.1:5174/#/node/water-storage-eaves-drainage-01"
+  },
+  {
+    "id": "node-column",
+    "label": "构造柱节点工作台",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/node-column-390.jpg",
+    "url": "http://127.0.0.1:5174/#/node/construction-column-01"
+  },
+  {
+    "id": "node-foundation",
+    "label": "独立基础多方案工作台",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/node-foundation-390.jpg",
+    "url": "http://127.0.0.1:5174/#/node/independent-foundation-01"
+  },
+  {
+    "id": "missing-course",
+    "label": "课程不存在状态",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/missing-course-390.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/audit-missing.html"
+  },
+  {
+    "id": "missing-node",
+    "label": "节点不存在状态",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/missing-node-390.jpg",
+    "url": "http://127.0.0.1:5174/#/node/audit-missing-node"
+  },
+  {
+    "id": "missing-route",
+    "label": "未注册地址的状态",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/missing-route-390.jpg",
+    "url": "http://127.0.0.1:5174/#/audit-missing-page"
+  },
+  {
+    "id": "home",
+    "label": "学习首页",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/home-390.jpg",
+    "url": "http://127.0.0.1:5174/#/"
+  },
+  {
+    "id": "home-navigation",
+    "label": "主菜单展开",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/home-navigation-390.jpg",
+    "url": "http://127.0.0.1:5174/#/"
+  },
+  {
+    "id": "home",
+    "label": "学习首页",
+    "width": 320,
+    "height": 844,
+    "file": "evidence/home-320.jpg",
+    "url": "http://127.0.0.1:5174/#/"
+  },
+  {
+    "id": "node-water",
+    "label": "蓄水屋面节点工作台",
+    "width": 320,
+    "height": 844,
+    "file": "evidence/node-water-320.jpg",
+    "url": "http://127.0.0.1:5174/#/node/water-storage-eaves-drainage-01"
+  },
+  {
+    "id": "training-order",
+    "label": "构造层次排序",
+    "width": 320,
+    "height": 844,
+    "file": "evidence/training-order-320.jpg",
+    "url": "http://127.0.0.1:5174/#/games/order"
+  },
+  {
+    "id": "resources",
+    "label": "学习资源",
+    "width": 320,
+    "height": 844,
+    "file": "evidence/resources-320.jpg",
+    "url": "http://127.0.0.1:5174/#/resources"
+  },
+  {
+    "id": "case-farnsworth",
+    "label": "法恩斯沃斯住宅案例",
+    "width": 320,
+    "height": 844,
+    "file": "evidence/case-farnsworth-320.jpg",
+    "url": "http://127.0.0.1:5174/#/curriculum/cases/farnsworth-house"
+  },
+  {
+    "id": "node-water",
+    "label": "蓄水屋面节点工作台",
+    "width": 768,
+    "height": 900,
+    "file": "evidence/node-water-768.jpg",
+    "url": "http://127.0.0.1:5174/#/node/water-storage-eaves-drainage-01"
+  },
+  {
+    "id": "node-water",
+    "label": "蓄水屋面节点工作台",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/node-water-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/node/water-storage-eaves-drainage-01"
+  },
+  {
+    "id": "companion-panel",
+    "label": "构造伙伴问答面板",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/companion-panel-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/node/independent-foundation-01"
+  },
+  {
+    "id": "companion-panel",
+    "label": "构造伙伴问答面板",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/companion-panel-390.jpg",
+    "url": "http://127.0.0.1:5174/#/node/independent-foundation-01"
+  },
+  {
+    "id": "resources",
+    "label": "学习资源",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/resources-390.jpg",
+    "url": "http://127.0.0.1:5174/#/resources"
+  },
+  {
+    "id": "resources-open",
+    "label": "学习资源展开",
+    "width": 390,
+    "height": 844,
+    "file": "evidence/resources-open-390.jpg",
+    "url": "http://127.0.0.1:5174/#/resources"
+  },
+  {
+    "id": "case-farnsworth",
+    "label": "法恩斯沃斯住宅案例",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/case-farnsworth-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/curriculum/cases/farnsworth-house"
+  },
+  {
+    "id": "case-feedback",
+    "label": "案例理解自测反馈",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/case-feedback-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/curriculum/cases/farnsworth-house"
+  },
+  {
+    "id": "case-topic",
+    "label": "案例构造主题切换",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/case-topic-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/curriculum/cases/farnsworth-house?topic=windows"
+  },
+  {
+    "id": "training-identify",
+    "label": "训练 identify",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/training-identify-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/games/identify"
+  },
+  {
+    "id": "training-match",
+    "label": "训练 match",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/training-match-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/games/match"
+  },
+  {
+    "id": "training-order",
+    "label": "训练 order",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/training-order-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/games/order"
+  },
+  {
+    "id": "training-diagram",
+    "label": "训练 diagram",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/training-diagram-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/games/diagram"
+  },
+  {
+    "id": "training-path",
+    "label": "训练 path",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/training-path-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/games/path"
+  },
+  {
+    "id": "training-scenario",
+    "label": "训练 scenario",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/training-scenario-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/games/scenario"
+  },
+  {
+    "id": "training-diagnose",
+    "label": "训练 diagnose",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/training-diagnose-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/games/diagnose"
+  },
+  {
+    "id": "training-assemble",
+    "label": "训练 assemble",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/training-assemble-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/games/assemble"
+  },
+  {
+    "id": "node-foundation",
+    "label": "独立基础多方案工作台",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/node-foundation-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/node/independent-foundation-01"
+  },
+  {
+    "id": "data-visited",
+    "label": "学习数据访问后状态",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/data-visited-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/data"
+  },
+  {
+    "id": "missing-route",
+    "label": "未注册地址的状态",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/missing-route-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/audit-missing-page"
+  },
+  {
+    "id": "missing-course",
+    "label": "课程不存在状态",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/missing-course-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/lesson/audit-missing.html"
+  },
+  {
+    "id": "home",
+    "label": "学习首页",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/home-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/"
+  },
+  {
+    "id": "home-navigation-collapsed",
+    "label": "桌面图标导航",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/home-navigation-collapsed-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/"
+  },
+  {
+    "id": "home-case-preview",
+    "label": "首页案例功能预览",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/home-case-preview-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/"
+  },
+  {
+    "id": "home-training-preview",
+    "label": "首页训练功能预览",
+    "width": 1440,
+    "height": 1000,
+    "file": "evidence/home-training-preview-1440.jpg",
+    "url": "http://127.0.0.1:5174/#/"
+  }
+]

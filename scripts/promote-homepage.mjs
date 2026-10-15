@@ -47,8 +47,15 @@ await copyFile(join(project, 'public', 'previews', 'curriculum.css'), join(forma
 await copyFile(join(project, 'public', 'previews', 'curriculum.css'), join(lessonRoot, 'curriculum.css'));
 await copyFile(join(project, 'public', 'previews', 'wall-v1.css'), join(formalRoot, 'wall.css'));
 await copyFile(join(project, 'public', 'previews', 'wall-v1.css'), join(lessonRoot, 'wall.css'));
-const documents = [...sources.map(source => relative(previewRoot, source).replaceAll('\\', '/')), 'wall/index.html'].sort();
-const legacyRoutes = { '/textbook/introduction': '/?section=introduction' };
+// Former home-section indexes only redirect; they are no longer course documents.
+const documents = [...sources.map(source => relative(previewRoot, source).replaceAll('\\', '/')).filter(path => !['introduction/index.html', 'principles/index.html'].includes(path)), 'wall/index.html'].sort();
+const legacyRoutes = {
+  '/textbook/introduction': '/?section=introduction',
+  '/textbook/introduction/index': '/?section=introduction',
+  '/textbook/index': '/?section=introduction',
+  '/textbook/principles': '/?section=principles',
+  '/textbook/principles/index': '/?section=principles',
+};
 for (const path of documents) {
   const parts = path.split('/');
   if (parts[0] === 'basics') {

@@ -1,0 +1,83 @@
+[
+  {
+    "id": "P1-01", "priority": "P1", "title": "手机模型工具栏被左侧边界裁切", "scope": "节点工作台 · 320 / 390px",
+    "fact": "390px 视口下工具栏宽 272px，实际位于 x=-77～195px；320px 下位于 x=-112～160px。收起爆炸按钮完全在屏幕外，暂停旋转按钮部分被截断。最终计算样式仍为 translate: -50%，虽然移动布局已改为相对定位。页面 scrollWidth 没有超标，因此整页溢出检查未覆盖这个问题。",
+    "impact": "关键模型操作无法直接触达，是本轮最优先的界面缺陷。",
+    "recommendation": "移动布局统一由正常文档流居中，消除桌面居中位移的残留；将工具栏与模型视口、底部伙伴停靠区一起校核。",
+    "acceptance": "在 320、390、760px 下检查每个按钮和滑块的实际矩形均在可见区域内；触控与键盘都能完成展开、收起和旋转操作。",
+    "evidence": ["node-water-390.jpg", "node-water-320.jpg"],
+    "sources": ["src/components/viewer/ControlBar.tsx:176", "src/index.css:344"]
+  },
+  {
+    "id": "P1-02", "priority": "P1", "title": "未注册地址显示默认英文错误页", "scope": "全站异常状态",
+    "fact": "访问 /#/audit-missing-page，出现 Unexpected Application Error / 404 Not Found 和开发提示，没有品牌页头、中文解释或返回入口。无效课程地址已有统一状态页，二者体验明显断开。",
+    "impact": "输入错误或旧链接失效时，用户无法从页面内恢复学习路径。",
+    "recommendation": "补齐路由未找到页及路由错误入口，共用现有页头、状态说明和返回学习首页 / 课程目录的操作层级。",
+    "acceptance": "无效普通地址、无效课程和无效节点都显示可理解的中文状态，并提供有效下一步；不向用户展示开发提示。",
+    "evidence": ["missing-route-390.jpg", "missing-route-1440.jpg", "missing-course-390.jpg"],
+    "sources": ["src/routes.tsx:20", "src/pages/CurriculumFramePage.tsx:13", "src/pages/PlaceholderPage.tsx:4"]
+  },
+  {
+    "id": "P1-03", "priority": "P1", "title": "53 个节点缺少快速定位入口", "scope": "构造节点目录",
+    "fact": "390px 下目录总高约 22137px，屋顶 20 个节点排在最前；基础分类从 y≈21540px 才开始。页面有五个部位分组，但没有分类跳转或搜索。",
+    "impact": "想查找非屋顶节点时，需要连续滚动多屏；统一的大页头和卡片样式尚未转化为高效导航。",
+    "recommendation": "在说明下设置简洁的部位快捷入口：屋顶、楼地层、墙体、楼梯、基础。长列表保留当前位置反馈；关键词检索可作为第二步。",
+    "acceptance": "手机首屏能够直接选择五个部位，切换后目标标题可见；返回节点库时仍保留原分类与滚动位置。",
+    "evidence": ["library-390.jpg", "library-1440.jpg"],
+    "sources": ["src/pages/LibraryPage.tsx:23", "src/styles/site-components.css:53"]
+  },
+  {
+    "id": "P1-04", "priority": "P1", "title": "练习入口和观察任务到达过晚", "scope": "训练目录、手机训练与案例",
+    "fact": "390×844 下，训练目录第一张练习卡从 y≈861px 开始，卡片标题在 y≈1046px；首屏被介绍、教材作业入口和统计占满。诊断训练的任务区从 y≈691px 开始，提交按钮在 y≈1409px，模型与主要作答区分处不同滚动位置。案例页也先重复项目名称和元数据，主题与阅读提示位于模型之后。",
+    "impact": "用户先看到模型，却较晚知道具体观察目标；来回滚动增加图模对照和作答负担。",
+    "recommendation": "训练目录优先呈现训练方式，将统计与教材作业入口收为紧凑区。手机工作台把一句任务摘要与主题入口放在模型前，并用固定任务入口或观察 / 作答切换保持上下文。案例合并重复项目标题。",
+    "acceptance": "手机首屏能看到至少一个完整练习入口；进入训练后先知道本题任务，作答时能方便回到同一模型视角。",
+    "evidence": ["training-catalog-390.jpg", "training-diagnose-390.jpg", "training-assemble-390.jpg", "case-farnsworth-390.jpg"],
+    "sources": ["src/pages/GamesPage.tsx:14", "src/pages/training.css:1", "src/pages/CaseStudyPage.tsx:20", "src/components/cases/cases.css:44"]
+  },
+  {
+    "id": "P2-01", "priority": "P2", "title": "页面名称与导航位置反馈不完整", "scope": "React 子页面的浏览器标题与页头",
+    "fact": "从墙体课程进入节点库、资源、训练等页面，标签页标题继续显示“墙体 · 章节目录”；重新加载首页后进入子页则继续显示“建筑构造 · 交互式教材”。多数子页页头左侧固定写“建筑构造 / 学习首页”，右侧返回目标正确，但当前位置不明确。",
+    "impact": "多标签页浏览、回看历史以及确认当前学习位置时容易混淆。",
+    "recommendation": "建立路由名称与页面标题的统一映射；页头显示当前栏目或节点名称，保留现有明确的返回目标。",
+    "acceptance": "直接进入、站内跳转和浏览器返回时，标签页标题、页内标题与栏目名称一致。",
+    "evidence": ["library-1440.jpg", "node-water-1440.jpg"],
+    "sources": ["src/components/SiteHeader.tsx:12", "src/components/AppLayout.tsx:120", "src/pages/LearningHomePage.tsx:42"]
+  },
+  {
+    "id": "P2-02", "priority": "P2", "title": "阅读模板已统一，构造知识仍缺少就地看图", "scope": "54 篇课程正文",
+    "fact": "正文统一为桌面 760px 阅读栏和 16px / 1.9 行高；54 篇正文合计有 19 张表格、16 个节点链接，但未内嵌教学图片、SVG 或 Canvas。这里不计页头 Logo 和章节封面图。",
+    "impact": "材料层次、传力、排水与连接关系主要靠连续文字描述，阅读页与三维节点之间的视觉联系仍偏弱。",
+    "recommendation": "优先为典型构造关系增加有图题的剖面、路径小图和关联节点预览，形成“图示—解释—继续观察”的稳定顺序。沿用现有阅读栏，图表按需要设置宽区。",
+    "acceptance": "选取墙体设计、平屋面与楼板三篇试点，关键知识旁有可对照的图示或明确节点入口；手机图例文字可读。",
+    "evidence": ["course-34-1440.jpg", "course-24-390.jpg", "course-57-1440.jpg"],
+    "sources": ["public/lesson/curriculum.css:60", "scripts/build-curriculum-preview.mjs", "audit-output/site-ui-audit-2026-10-15/inventory.json"]
+  },
+  {
+    "id": "P2-03", "priority": "P2", "title": "桌面伙伴入口仍覆盖知识列表", "scope": "桌面节点工作台",
+    "fact": "1440×1000 下，伙伴入口矩形约为 x=1340～1416、y=818～918，落在右侧知识栏内部，截图中覆盖了列表文字。手机已采用 64px 停靠区，明显改善了上一版的覆盖问题；桌面默认位置仍依赖用户拖动避让。",
+    "impact": "学习者浏览构件知识时，部分信息与浮动入口竞争同一空间。",
+    "recommendation": "为桌面工作台定义稳定的停靠安全区，或将伙伴收为工具区的小入口；打开后的浮层保持明确关闭和恢复路径。",
+    "acceptance": "默认位置、展开面板和缩放窗口三种状态下，入口不覆盖知识卡正文或关键操作。",
+    "evidence": ["node-water-1440.jpg", "companion-panel-1440.jpg"],
+    "sources": ["src/components/companion/CompanionWidget.tsx:66", "src/components/companion/companion.css:1"]
+  },
+  {
+    "id": "P2-04", "priority": "P2", "title": "入口组件尚未共享同一套动效层级", "scope": "课程目录、节点库、训练目录、主菜单",
+    "fact": "课程卡片与新版主菜单采用 360ms 蓝色展开与文字轻移；节点卡片主要为 180ms 边框 / 底色变化，训练卡片约 180ms。信息角色相近的入口在交互时仍有明显风格差异。减少动画偏好已有源码支持。",
+    "impact": "静态配色接近，但从首页进入节点与训练目录后，交互质感明显变弱。",
+    "recommendation": "把已接受的缓动、填充方向、文字位移和焦点反馈提炼为入口组件规则，再给图片型卡片设置适合自身结构的操作区。以共同反馈连接页面。",
+    "acceptance": "课程、节点、训练和导航四类入口使用共同的时长与缓动；键盘焦点清楚，减少动画模式保留反馈。",
+    "evidence": ["home-navigation-390.jpg", "course-41-1440.jpg", "library-1440.jpg", "training-catalog-1440.jpg"],
+    "sources": ["public/styles/directory-cards.css:9", "public/homepage.css:35", "src/styles/site-components.css:54", "src/pages/training.css:14"]
+  },
+  {
+    "id": "P3-01", "priority": "P3", "title": "轻量支持页可采用更紧凑的页头与状态说明", "scope": "学习资源、工具箱、贡献节点",
+    "fact": "资源、工具箱与主要目录共用约 78px 的桌面大标题和较高页头。资源共四条记录，其中“建筑盒子”没有链接；空间设计仍显示“2 个链接”。资源展开、缺失内容与节点不存在状态的表达细节尚不一致。",
+    "impact": "少量内容占用较多首屏空间，链接数量与实际可用操作存在小幅偏差。",
+    "recommendation": "增加支持页的紧凑页头变体；少量资源可直接展开，数量按可用链接计算。空状态共用标题、说明与一个主要下一步。",
+    "acceptance": "资源可用数量与实际链接一致；支持页首次进入即可看到主要操作，空状态文案和按钮层级统一。",
+    "evidence": ["resources-1440.jpg", "resources-open-390.jpg", "tools-1440.jpg", "missing-node-390.jpg"],
+    "sources": ["src/pages/ResourcesPage.tsx:5", "src/pages/PlaceholderPage.tsx:4", "src/styles/site-components.css:7"]
+  }
+]

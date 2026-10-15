@@ -28,6 +28,7 @@ export default function NodeDetail() {
 
 function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
   const node = getNodeDefinition(nodeId);
+  useEffect(() => { document.title = `${node?.title ?? '未找到该节点'} · 建筑构造`; }, [node]);
   const animationProgress = useNodeStore((s) => s.animationProgress);
   const setAnimationProgress = useNodeStore((s) => s.setAnimationProgress);
   const explodeProgress = useNodeStore((s) => s.explodeProgress);

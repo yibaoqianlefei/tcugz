@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-15",
+  "commit": "f5689e3",
+  "measurements": 198,
+  "screenshots": 106,
+  "courseChecks": 128,
+  "viewportCounts": {
+    "320": 5,
+    "390": 94,
+    "768": 1,
+    "1440": 98
+  },
+  "horizontalOverflow": 0,
+  "findings": {
+    "P1": 4,
+    "P2": 4,
+    "P3": 1
+  },
+  "auditedOrigin": "http://127.0.0.1:5174"
+}

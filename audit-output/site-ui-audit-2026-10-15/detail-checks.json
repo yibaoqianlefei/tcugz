@@ -1,0 +1,317 @@
+[
+  {
+    "id": "mobile-training-task-position",
+    "data": {
+      "dock": {
+        "bottom": 844,
+        "height": 64,
+        "left": 0,
+        "right": 375,
+        "top": 780,
+        "width": 375,
+        "x": 0,
+        "y": 780
+      },
+      "model": {
+        "bottom": 675.1875,
+        "height": 456.796875,
+        "left": 20,
+        "right": 355,
+        "top": 218.390625,
+        "width": 335,
+        "x": 20,
+        "y": 218.390625
+      },
+      "submit": {
+        "bottom": 1453.34375,
+        "height": 44,
+        "left": 37,
+        "right": 338,
+        "top": 1409.34375,
+        "width": 301,
+        "x": 37,
+        "y": 1409.34375
+      },
+      "task": {
+        "bottom": 1618.625,
+        "height": 927.4375,
+        "left": 20,
+        "right": 355,
+        "top": 691.1875,
+        "width": 335,
+        "x": 20,
+        "y": 691.1875
+      },
+      "viewport": 844
+    }
+  },
+  {
+    "id": "mobile-training-catalog-density",
+    "data": {
+      "firstCard": {
+        "bottom": 1168.78125,
+        "height": 308.25,
+        "left": 20,
+        "right": 355,
+        "top": 860.53125,
+        "width": 335,
+        "x": 20,
+        "y": 860.53125
+      },
+      "firstTitle": {
+        "bottom": 1072.53125,
+        "height": 27,
+        "left": 45,
+        "right": 330,
+        "top": 1045.53125,
+        "width": 285,
+        "x": 45,
+        "y": 1045.53125
+      },
+      "height": 3794
+    }
+  },
+  {
+    "id": "mobile-library-density",
+    "data": {
+      "cards": 53,
+      "categories": [
+        {
+          "text": "01 / CATEGORY屋顶20 个节点",
+          "top": 361.34375
+        },
+        {
+          "text": "02 / CATEGORY楼地层7 个节点",
+          "top": 8360.046875
+        },
+        {
+          "text": "03 / CATEGORY墙体11 个节点",
+          "top": 11236.75
+        },
+        {
+          "text": "04 / CATEGORY楼梯14 个节点",
+          "top": 15689.453125
+        },
+        {
+          "text": "05 / CATEGORY基础1 个节点",
+          "top": 21540.15625
+        }
+      ],
+      "height": 22137,
+      "search": 0
+    }
+  },
+  {
+    "id": "mobile-node-controls-clipping",
+    "data": {
+      "bar": {
+        "bottom": 768,
+        "height": 112,
+        "left": -77,
+        "right": 195,
+        "top": 656,
+        "width": 272,
+        "x": -77,
+        "y": 656
+      },
+      "buttons": [
+        {
+          "label": "收起爆炸",
+          "rect": {
+            "bottom": 709,
+            "height": 44,
+            "left": -53,
+            "right": -9,
+            "top": 665,
+            "width": 44,
+            "x": -53,
+            "y": 665
+          }
+        },
+        {
+          "label": "爆炸程度",
+          "rect": {
+            "bottom": 703,
+            "height": 32,
+            "left": -5,
+            "right": 123,
+            "top": 671,
+            "width": 128,
+            "x": -5,
+            "y": 671
+          }
+        },
+        {
+          "label": "播放爆炸",
+          "rect": {
+            "bottom": 709,
+            "height": 44,
+            "left": 127,
+            "right": 171,
+            "top": 665,
+            "width": 44,
+            "x": 127,
+            "y": 665
+          }
+        },
+        {
+          "label": "暂停旋转",
+          "rect": {
+            "bottom": 759,
+            "height": 44,
+            "left": -26,
+            "right": 18,
+            "top": 715,
+            "width": 44,
+            "x": -26,
+            "y": 715
+          }
+        },
+        {
+          "label": "联动已开启：点击关闭",
+          "rect": {
+            "bottom": 759,
+            "height": 44,
+            "left": 37,
+            "right": 81,
+            "top": 715,
+            "width": 44,
+            "x": 37,
+            "y": 715
+          }
+        },
+        {
+          "label": "开启阴影",
+          "rect": {
+            "bottom": 759,
+            "height": 44,
+            "left": 100,
+            "right": 144,
+            "top": 715,
+            "width": 44,
+            "x": 100,
+            "y": 715
+          }
+        }
+      ],
+      "left": "0px",
+      "parent": {
+        "bottom": 780,
+        "height": 624,
+        "left": 0,
+        "right": 390,
+        "top": 156,
+        "width": 390,
+        "x": 0,
+        "y": 156
+      },
+      "position": "relative",
+      "style": null,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "translate": "-50%",
+      "viewport": 390
+    }
+  },
+  {
+    "id": "mobile-navigation-selection",
+    "data": {
+      "current": "学习首页",
+      "focused": "mobile-menu-toggle",
+      "open": false,
+      "scrollY": 3,
+      "phase": "手机菜单关闭后的滚动开始时刻",
+      "settledDesktop": {
+        "current": "构造基础",
+        "scrollY": 2332,
+        "targetTop": -306.15625
+      }
+    }
+  },
+  {
+    "id": "node-controls-320",
+    "data": {
+      "bar": {
+        "bottom": 768,
+        "height": 112,
+        "left": -112,
+        "right": 160,
+        "top": 656,
+        "width": 272,
+        "x": -112,
+        "y": 656
+      },
+      "translate": "-50%",
+      "width": 320
+    }
+  },
+  {
+    "id": "node-controls-768",
+    "data": {
+      "bar": {
+        "bottom": 880,
+        "height": 58,
+        "left": 67.1015625,
+        "right": 420.8984375,
+        "top": 822,
+        "width": 353.796875,
+        "x": 67.1015625,
+        "y": 822
+      },
+      "dock": {
+        "bottom": 0,
+        "height": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "page": {
+        "bottom": 900,
+        "height": 824,
+        "left": 0,
+        "right": 768,
+        "top": 76,
+        "width": 768,
+        "x": 0,
+        "y": 76
+      },
+      "width": 768
+    }
+  },
+  {
+    "id": "desktop-node-overlap",
+    "data": {
+      "controls": [],
+      "knowledge": {
+        "bottom": 1000,
+        "height": 876,
+        "left": 1109,
+        "right": 1440,
+        "top": 124,
+        "width": 331,
+        "x": 1109,
+        "y": 124
+      },
+      "launcher": {
+        "bottom": 918,
+        "height": 100.046875,
+        "left": 1340,
+        "right": 1416,
+        "top": 817.953125,
+        "width": 76,
+        "x": 1340,
+        "y": 817.953125
+      },
+      "overlap": true
+    }
+  },
+  {
+    "id": "case-topic-feedback",
+    "data": {
+      "selected": "玻璃围护",
+      "title": "玻璃围护"
+    }
+  }
+]

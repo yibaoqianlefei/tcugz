@@ -1,0 +1,2389 @@
+{
+  "date": "2026-10-15",
+  "commit": "f5689e3",
+  "origin": "http://127.0.0.1:5174",
+  "developmentOrigin": "http://127.0.0.1:5173",
+  "documents": [
+    {
+      "path": "basics/deformation-joint/index.html",
+      "route": "/lesson/basics/deformation-joint/index.html",
+      "title": "变形缝",
+      "type": "cover",
+      "stylesheets": [
+        "/lesson/module-directory.css?v=20261014-directory-v2"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 1,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/deformation-joint/roof-deformation-concept.html",
+        "/lesson/basics/deformation-joint/roof-deformation-location.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html"
+      ]
+    },
+    {
+      "path": "basics/deformation-joint/roof-deformation-concept.html",
+      "route": "/lesson/basics/deformation-joint/roof-deformation-concept.html",
+      "title": "建筑变形缝的概念",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/deformation-joint/index.html",
+        "/lesson/basics/deformation-joint/roof-deformation-location.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html",
+        "/lesson/basics/deformation-joint/roof-deformation-location.html",
+        "/lesson/basics/deformation-joint/roof-deformation-concept.html",
+        "/lesson/basics/deformation-joint/roof-deformation-location.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html"
+      ]
+    },
+    {
+      "path": "basics/deformation-joint/roof-deformation-construction.html",
+      "route": "/lesson/basics/deformation-joint/roof-deformation-construction.html",
+      "title": "变形缝的构造",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 1,
+      "localLinks": [
+        "/lesson/basics/deformation-joint/index.html",
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/basics/deformation-joint/roof-deformation-concept.html",
+        "/lesson/basics/deformation-joint/roof-deformation-location.html",
+        "/lesson/basics/deformation-joint/roof-deformation-concept.html",
+        "/lesson/basics/deformation-joint/roof-deformation-location.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html"
+      ]
+    },
+    {
+      "path": "basics/deformation-joint/roof-deformation-location.html",
+      "route": "/lesson/basics/deformation-joint/roof-deformation-location.html",
+      "title": "变形缝的设置",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/deformation-joint/index.html",
+        "/lesson/basics/deformation-joint/roof-deformation-concept.html",
+        "/lesson/basics/deformation-joint/roof-deformation-concept.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html",
+        "/lesson/basics/deformation-joint/roof-deformation-concept.html",
+        "/lesson/basics/deformation-joint/roof-deformation-location.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html"
+      ]
+    },
+    {
+      "path": "basics/door-window/index.html",
+      "route": "/lesson/basics/door-window/index.html",
+      "title": "门窗",
+      "type": "cover",
+      "stylesheets": [
+        "/lesson/module-directory.css?v=20261014-directory-v2"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 1,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/door-window/window-door-overview.html",
+        "/lesson/basics/door-window/window-door-design.html"
+      ]
+    },
+    {
+      "path": "basics/door-window/window-door-design.html",
+      "route": "/lesson/basics/door-window/window-door-design.html",
+      "title": "门窗的设计要求",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 8,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/door-window/index.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/door-window/window-door-overview.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/basics/door-window/index.html",
+        "/lesson/basics/door-window/window-door-overview.html",
+        "/lesson/basics/door-window/window-door-overview.html",
+        "/lesson/basics/door-window/window-door-design.html"
+      ]
+    },
+    {
+      "path": "basics/door-window/window-door-overview.html",
+      "route": "/lesson/basics/door-window/window-door-overview.html",
+      "title": "门窗的作用与分类",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/door-window/index.html",
+        "/lesson/basics/door-window/window-door-design.html",
+        "/lesson/basics/door-window/index.html",
+        "/lesson/basics/door-window/window-door-design.html",
+        "/lesson/basics/door-window/window-door-overview.html",
+        "/lesson/basics/door-window/window-door-design.html"
+      ]
+    },
+    {
+      "path": "basics/floor/finish-overview.html",
+      "route": "/lesson/basics/floor/finish-overview.html",
+      "title": "建筑装修概论",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/floor/index.html",
+        "/lesson/basics/wall/wall-finishes.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-ceiling.html",
+        "/lesson/basics/floor/floor-balcony.html",
+        "/lesson/basics/floor/floor-ceiling.html",
+        "/lesson/basics/floor/floor-overview.html",
+        "/lesson/basics/floor/floor-rc-slab.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-balcony.html",
+        "/lesson/basics/floor/finish-overview.html",
+        "/lesson/basics/floor/floor-ceiling.html"
+      ]
+    },
+    {
+      "path": "basics/floor/floor-balcony.html",
+      "route": "/lesson/basics/floor/floor-balcony.html",
+      "title": "阳台及雨棚",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 1,
+      "localLinks": [
+        "/lesson/basics/floor/index.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/finish-overview.html",
+        "/lesson/basics/floor/floor-overview.html",
+        "/lesson/basics/floor/floor-rc-slab.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-balcony.html",
+        "/lesson/basics/floor/finish-overview.html",
+        "/lesson/basics/floor/floor-ceiling.html"
+      ]
+    },
+    {
+      "path": "basics/floor/floor-ceiling.html",
+      "route": "/lesson/basics/floor/floor-ceiling.html",
+      "title": "顶棚构造",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/floor/index.html",
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/basics/floor/finish-overview.html",
+        "/lesson/basics/floor/floor-overview.html",
+        "/lesson/basics/floor/floor-rc-slab.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-balcony.html",
+        "/lesson/basics/floor/finish-overview.html",
+        "/lesson/basics/floor/floor-ceiling.html"
+      ]
+    },
+    {
+      "path": "basics/floor/floor-ground-composition.html",
+      "route": "/lesson/basics/floor/floor-ground-composition.html",
+      "title": "地面的构造组成",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/floor/index.html",
+        "/lesson/basics/floor/floor-overview.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-rc-slab.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-overview.html",
+        "/lesson/basics/floor/floor-rc-slab.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-balcony.html",
+        "/lesson/basics/floor/finish-overview.html",
+        "/lesson/basics/floor/floor-ceiling.html"
+      ]
+    },
+    {
+      "path": "basics/floor/floor-ground-layer.html",
+      "route": "/lesson/basics/floor/floor-ground-layer.html",
+      "title": "地面层",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/floor/index.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html",
+        "/lesson/basics/floor/finish-overview.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/basics/floor/floor-balcony.html",
+        "/lesson/basics/floor/floor-overview.html",
+        "/lesson/basics/floor/floor-rc-slab.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-balcony.html",
+        "/lesson/basics/floor/finish-overview.html",
+        "/lesson/basics/floor/floor-ceiling.html"
+      ]
+    },
+    {
+      "path": "basics/floor/floor-overview.html",
+      "route": "/lesson/basics/floor/floor-overview.html",
+      "title": "楼地层概述",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/floor/index.html",
+        "/lesson/principles/acoustic.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-rc-slab.html",
+        "/lesson/basics/floor/floor-overview.html",
+        "/lesson/basics/floor/floor-rc-slab.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-balcony.html",
+        "/lesson/basics/floor/finish-overview.html",
+        "/lesson/basics/floor/floor-ceiling.html"
+      ]
+    },
+    {
+      "path": "basics/floor/floor-rc-slab.html",
+      "route": "/lesson/basics/floor/floor-rc-slab.html",
+      "title": "钢筋混凝土楼板",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 7,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 1,
+      "localLinks": [
+        "/lesson/basics/floor/index.html",
+        "/lesson/basics/floor/floor-overview.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/basics/floor/floor-overview.html",
+        "/lesson/basics/floor/floor-rc-slab.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-balcony.html",
+        "/lesson/basics/floor/finish-overview.html",
+        "/lesson/basics/floor/floor-ceiling.html"
+      ]
+    },
+    {
+      "path": "basics/floor/index.html",
+      "route": "/lesson/basics/floor/index.html",
+      "title": "楼地层",
+      "type": "cover",
+      "stylesheets": [
+        "/lesson/module-directory.css?v=20261014-directory-v2"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 1,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/floor/floor-overview.html",
+        "/lesson/basics/floor/floor-rc-slab.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-balcony.html",
+        "/lesson/basics/floor/finish-overview.html",
+        "/lesson/basics/floor/floor-ceiling.html"
+      ]
+    },
+    {
+      "path": "basics/foundation/foundation-depth.html",
+      "route": "/lesson/basics/foundation/foundation-depth.html",
+      "title": "基础的埋置深度与影响因素",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 7,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/foundation/index.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/foundation/foundation-settlement.html",
+        "/lesson/basics/foundation/foundation-overview.html",
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/basics/foundation/foundation-types.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/foundation/foundation-depth.html",
+        "/lesson/basics/foundation/foundation-settlement.html"
+      ]
+    },
+    {
+      "path": "basics/foundation/foundation-design.html",
+      "route": "/lesson/basics/foundation/foundation-design.html",
+      "title": "基础与地基的设计要求",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 8,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/foundation/index.html",
+        "/lesson/basics/foundation/foundation-types.html",
+        "/lesson/basics/foundation/foundation-overview.html",
+        "/lesson/basics/foundation/foundation-types.html",
+        "/lesson/basics/foundation/foundation-overview.html",
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/basics/foundation/foundation-types.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/foundation/foundation-depth.html",
+        "/lesson/basics/foundation/foundation-settlement.html"
+      ]
+    },
+    {
+      "path": "basics/foundation/foundation-overview.html",
+      "route": "/lesson/basics/foundation/foundation-overview.html",
+      "title": "基础与地基概述",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/foundation/index.html",
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/basics/foundation/foundation-depth.html",
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/basics/foundation/foundation-overview.html",
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/basics/foundation/foundation-types.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/foundation/foundation-depth.html",
+        "/lesson/basics/foundation/foundation-settlement.html"
+      ]
+    },
+    {
+      "path": "basics/foundation/foundation-settlement.html",
+      "route": "/lesson/basics/foundation/foundation-settlement.html",
+      "title": "不均匀沉降",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 7,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/foundation/index.html",
+        "/lesson/basics/deformation-joint/roof-deformation-concept.html",
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/basics/foundation/foundation-depth.html",
+        "/lesson/basics/foundation/foundation-overview.html",
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/basics/foundation/foundation-types.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/foundation/foundation-depth.html",
+        "/lesson/basics/foundation/foundation-settlement.html"
+      ]
+    },
+    {
+      "path": "basics/foundation/foundation-types.html",
+      "route": "/lesson/basics/foundation/foundation-types.html",
+      "title": "基础的分类",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/foundation/index.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/foundation/foundation-overview.html",
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/basics/foundation/foundation-types.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/foundation/foundation-depth.html",
+        "/lesson/basics/foundation/foundation-settlement.html"
+      ]
+    },
+    {
+      "path": "basics/foundation/foundation-underground.html",
+      "route": "/lesson/basics/foundation/foundation-underground.html",
+      "title": "基础与地下结构的类型",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 7,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/foundation/index.html",
+        "/lesson/basics/foundation/foundation-types.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html",
+        "/lesson/basics/foundation/foundation-types.html",
+        "/lesson/basics/foundation/foundation-depth.html",
+        "/lesson/basics/foundation/foundation-overview.html",
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/basics/foundation/foundation-types.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/foundation/foundation-depth.html",
+        "/lesson/basics/foundation/foundation-settlement.html"
+      ]
+    },
+    {
+      "path": "basics/foundation/index.html",
+      "route": "/lesson/basics/foundation/index.html",
+      "title": "基础与地基",
+      "type": "cover",
+      "stylesheets": [
+        "/lesson/module-directory.css?v=20261014-directory-v2"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 1,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/foundation/foundation-overview.html",
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/basics/foundation/foundation-types.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/foundation/foundation-depth.html",
+        "/lesson/basics/foundation/foundation-settlement.html"
+      ]
+    },
+    {
+      "path": "basics/roof/index.html",
+      "route": "/lesson/basics/roof/index.html",
+      "title": "屋顶",
+      "type": "cover",
+      "stylesheets": [
+        "/lesson/module-directory.css?v=20261014-directory-v2"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 1,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/roof/roof-overview.html",
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/basics/roof/roof-slope.html"
+      ]
+    },
+    {
+      "path": "basics/roof/roof-flat.html",
+      "route": "/lesson/basics/roof/roof-flat.html",
+      "title": "平屋面构造",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 7,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 2,
+      "localLinks": [
+        "/lesson/basics/roof/index.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html",
+        "/lesson/basics/roof/roof-overview.html",
+        "/lesson/basics/roof/roof-slope.html",
+        "/lesson/basics/roof/roof-overview.html",
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/basics/roof/roof-slope.html"
+      ]
+    },
+    {
+      "path": "basics/roof/roof-overview.html",
+      "route": "/lesson/basics/roof/roof-overview.html",
+      "title": "屋顶概述",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/roof/index.html",
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/insulation.html",
+        "/lesson/basics/roof/roof-slope.html",
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/basics/roof/roof-overview.html",
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/basics/roof/roof-slope.html"
+      ]
+    },
+    {
+      "path": "basics/roof/roof-slope.html",
+      "route": "/lesson/basics/roof/roof-slope.html",
+      "title": "坡屋面构造",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 7,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 3,
+      "localLinks": [
+        "/lesson/basics/roof/index.html",
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/basics/roof/roof-overview.html",
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/basics/roof/roof-slope.html"
+      ]
+    },
+    {
+      "path": "basics/stairs/index.html",
+      "route": "/lesson/basics/stairs/index.html",
+      "title": "楼梯",
+      "type": "cover",
+      "stylesheets": [
+        "/lesson/module-directory.css?v=20261014-directory-v2"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 1,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/stairs/stairs-overview.html",
+        "/lesson/basics/stairs/stairs-rc-structure.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/basics/stairs/stairs-steps-ramps.html",
+        "/lesson/basics/stairs/stairs-elevator.html"
+      ]
+    },
+    {
+      "path": "basics/stairs/stairs-details.html",
+      "route": "/lesson/basics/stairs/stairs-details.html",
+      "title": "楼梯的细部构造",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/stairs/index.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/stairs/stairs-overview.html",
+        "/lesson/basics/stairs/stairs-rc-structure.html",
+        "/lesson/basics/stairs/stairs-steps-ramps.html",
+        "/lesson/basics/stairs/stairs-overview.html",
+        "/lesson/basics/stairs/stairs-rc-structure.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/basics/stairs/stairs-steps-ramps.html",
+        "/lesson/basics/stairs/stairs-elevator.html"
+      ]
+    },
+    {
+      "path": "basics/stairs/stairs-elevator.html",
+      "route": "/lesson/basics/stairs/stairs-elevator.html",
+      "title": "电梯及自动扶梯",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/stairs/index.html",
+        "/lesson/principles/fire.html",
+        "/lesson/basics/stairs/stairs-steps-ramps.html",
+        "/lesson/basics/stairs/stairs-overview.html",
+        "/lesson/basics/stairs/stairs-rc-structure.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/basics/stairs/stairs-steps-ramps.html",
+        "/lesson/basics/stairs/stairs-elevator.html"
+      ]
+    },
+    {
+      "path": "basics/stairs/stairs-overview.html",
+      "route": "/lesson/basics/stairs/stairs-overview.html",
+      "title": "楼梯的基本概念及设计要求",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 2,
+      "localLinks": [
+        "/lesson/basics/stairs/index.html",
+        "/lesson/principles/fire.html",
+        "/lesson/basics/stairs/stairs-rc-structure.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/basics/stairs/stairs-steps-ramps.html",
+        "/lesson/basics/stairs/stairs-rc-structure.html",
+        "/lesson/basics/stairs/stairs-overview.html",
+        "/lesson/basics/stairs/stairs-rc-structure.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/basics/stairs/stairs-steps-ramps.html",
+        "/lesson/basics/stairs/stairs-elevator.html"
+      ]
+    },
+    {
+      "path": "basics/stairs/stairs-rc-structure.html",
+      "route": "/lesson/basics/stairs/stairs-rc-structure.html",
+      "title": "钢筋混凝土楼梯构造",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/stairs/index.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/basics/stairs/stairs-overview.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/basics/stairs/stairs-overview.html",
+        "/lesson/basics/stairs/stairs-rc-structure.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/basics/stairs/stairs-steps-ramps.html",
+        "/lesson/basics/stairs/stairs-elevator.html"
+      ]
+    },
+    {
+      "path": "basics/stairs/stairs-steps-ramps.html",
+      "route": "/lesson/basics/stairs/stairs-steps-ramps.html",
+      "title": "台阶与坡道",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 1,
+      "localLinks": [
+        "/lesson/basics/stairs/index.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/basics/stairs/stairs-elevator.html",
+        "/lesson/basics/stairs/stairs-overview.html",
+        "/lesson/basics/stairs/stairs-rc-structure.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/basics/stairs/stairs-steps-ramps.html",
+        "/lesson/basics/stairs/stairs-elevator.html"
+      ]
+    },
+    {
+      "path": "basics/wall/index.html",
+      "route": "/lesson/basics/wall/index.html",
+      "title": "墙体概述",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 4,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/wall/index.html",
+        "/lesson/basics/wall/wall-role.html",
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-finishes.html",
+        "/lesson/wall/index.html",
+        "/lesson/basics/wall/wall-role.html",
+        "/lesson/basics/wall/index.html",
+        "/lesson/basics/wall/wall-role.html",
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/wall/wall-finishes.html"
+      ]
+    },
+    {
+      "path": "basics/wall/wall-design-requirements.html",
+      "route": "/lesson/basics/wall/wall-design-requirements.html",
+      "title": "墙体的设计要求",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 1,
+      "localLinks": [
+        "/lesson/wall/index.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/insulation.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/principles/fire.html",
+        "/lesson/wall/index.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/wall/index.html",
+        "/lesson/basics/wall/wall-role.html",
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/wall/wall-finishes.html"
+      ]
+    },
+    {
+      "path": "basics/wall/wall-details.html",
+      "route": "/lesson/basics/wall/wall-details.html",
+      "title": "墙体细部构造",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 3,
+      "localLinks": [
+        "/lesson/wall/index.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/door-window/window-door-design.html",
+        "/lesson/basics/wall/wall-finishes.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/wall/index.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-finishes.html",
+        "/lesson/basics/wall/index.html",
+        "/lesson/basics/wall/wall-role.html",
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/wall/wall-finishes.html"
+      ]
+    },
+    {
+      "path": "basics/wall/wall-finishes.html",
+      "route": "/lesson/basics/wall/wall-finishes.html",
+      "title": "墙面装修",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/wall/index.html",
+        "/lesson/basics/floor/finish-overview.html",
+        "/lesson/basics/floor/floor-ceiling.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/wall/index.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/wall/index.html",
+        "/lesson/basics/wall/wall-role.html",
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/wall/wall-finishes.html"
+      ]
+    },
+    {
+      "path": "basics/wall/wall-masonry.html",
+      "route": "/lesson/basics/wall/wall-masonry.html",
+      "title": "砌体结构",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 1,
+      "localLinks": [
+        "/lesson/wall/index.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/wall/index.html",
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/wall/index.html",
+        "/lesson/basics/wall/wall-role.html",
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/wall/wall-finishes.html"
+      ]
+    },
+    {
+      "path": "basics/wall/wall-partition.html",
+      "route": "/lesson/basics/wall/wall-partition.html",
+      "title": "隔墙",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/wall/index.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/principles/acoustic.html",
+        "/lesson/wall/index.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/index.html",
+        "/lesson/basics/wall/wall-role.html",
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/wall/wall-finishes.html"
+      ]
+    },
+    {
+      "path": "basics/wall/wall-role.html",
+      "route": "/lesson/basics/wall/wall-role.html",
+      "title": "墙体在建筑中的作用",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/wall/index.html",
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/wall/index.html",
+        "/lesson/basics/wall/index.html",
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/basics/wall/index.html",
+        "/lesson/basics/wall/wall-role.html",
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/wall/wall-finishes.html"
+      ]
+    },
+    {
+      "path": "basics/wall/wall-types.html",
+      "route": "/lesson/basics/wall/wall-types.html",
+      "title": "墙体的类型",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/wall/index.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/wall/index.html",
+        "/lesson/basics/wall/wall-role.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/index.html",
+        "/lesson/basics/wall/wall-role.html",
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/wall/wall-finishes.html"
+      ]
+    },
+    {
+      "path": "introduction/index.html",
+      "route": "/lesson/introduction/index.html",
+      "title": "建筑绪论",
+      "type": "directory",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 1,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/introduction/intro-course-guide.html",
+        "/lesson/introduction/intro-classification.html",
+        "/lesson/introduction/intro-grading.html",
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/introduction/intro-factors.html",
+        "/lesson/introduction/intro-design-principles.html",
+        "/lesson/introduction/intro-drawing-standards.html"
+      ]
+    },
+    {
+      "path": "introduction/intro-classification.html",
+      "route": "/lesson/introduction/intro-classification.html",
+      "title": "建筑物的分类",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/introduction/index.html",
+        "/lesson/introduction/intro-grading.html",
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/introduction/intro-course-guide.html",
+        "/lesson/introduction/intro-grading.html",
+        "/lesson/introduction/intro-course-guide.html",
+        "/lesson/introduction/intro-classification.html",
+        "/lesson/introduction/intro-grading.html",
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/introduction/intro-factors.html",
+        "/lesson/introduction/intro-design-principles.html",
+        "/lesson/introduction/intro-drawing-standards.html"
+      ]
+    },
+    {
+      "path": "introduction/intro-composition.html",
+      "route": "/lesson/introduction/intro-composition.html",
+      "title": "建筑物的构造组成",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/introduction/index.html",
+        "/lesson/basics/foundation/foundation-overview.html",
+        "/lesson/basics/wall/wall-role.html",
+        "/lesson/introduction/intro-grading.html",
+        "/lesson/introduction/intro-factors.html",
+        "/lesson/introduction/intro-course-guide.html",
+        "/lesson/introduction/intro-classification.html",
+        "/lesson/introduction/intro-grading.html",
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/introduction/intro-factors.html",
+        "/lesson/introduction/intro-design-principles.html",
+        "/lesson/introduction/intro-drawing-standards.html"
+      ]
+    },
+    {
+      "path": "introduction/intro-course-guide.html",
+      "route": "/lesson/introduction/intro-course-guide.html",
+      "title": "课程导读",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/introduction/index.html",
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/basics/foundation/index.html",
+        "/lesson/principles/index.html",
+        "/lesson/introduction/intro-classification.html",
+        "/lesson/introduction/intro-course-guide.html",
+        "/lesson/introduction/intro-classification.html",
+        "/lesson/introduction/intro-grading.html",
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/introduction/intro-factors.html",
+        "/lesson/introduction/intro-design-principles.html",
+        "/lesson/introduction/intro-drawing-standards.html"
+      ]
+    },
+    {
+      "path": "introduction/intro-design-principles.html",
+      "route": "/lesson/introduction/intro-design-principles.html",
+      "title": "建筑构造的设计原则",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 9,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/introduction/index.html",
+        "/lesson/introduction/intro-drawing-standards.html",
+        "/lesson/introduction/intro-factors.html",
+        "/lesson/introduction/intro-drawing-standards.html",
+        "/lesson/introduction/intro-course-guide.html",
+        "/lesson/introduction/intro-classification.html",
+        "/lesson/introduction/intro-grading.html",
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/introduction/intro-factors.html",
+        "/lesson/introduction/intro-design-principles.html",
+        "/lesson/introduction/intro-drawing-standards.html"
+      ]
+    },
+    {
+      "path": "introduction/intro-drawing-standards.html",
+      "route": "/lesson/introduction/intro-drawing-standards.html",
+      "title": "专题：制图标准与规范",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/introduction/index.html",
+        "/lesson/basics/door-window/window-door-design.html",
+        "/lesson/introduction/intro-design-principles.html",
+        "/lesson/introduction/intro-course-guide.html",
+        "/lesson/introduction/intro-classification.html",
+        "/lesson/introduction/intro-grading.html",
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/introduction/intro-factors.html",
+        "/lesson/introduction/intro-design-principles.html",
+        "/lesson/introduction/intro-drawing-standards.html"
+      ]
+    },
+    {
+      "path": "introduction/intro-factors.html",
+      "route": "/lesson/introduction/intro-factors.html",
+      "title": "影响建筑物的因素",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 7,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/introduction/index.html",
+        "/lesson/basics/foundation/foundation-design.html",
+        "/lesson/introduction/intro-design-principles.html",
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/introduction/intro-design-principles.html",
+        "/lesson/introduction/intro-course-guide.html",
+        "/lesson/introduction/intro-classification.html",
+        "/lesson/introduction/intro-grading.html",
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/introduction/intro-factors.html",
+        "/lesson/introduction/intro-design-principles.html",
+        "/lesson/introduction/intro-drawing-standards.html"
+      ]
+    },
+    {
+      "path": "introduction/intro-grading.html",
+      "route": "/lesson/introduction/intro-grading.html",
+      "title": "建筑物的分级",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/introduction/index.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/introduction/intro-classification.html",
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/introduction/intro-course-guide.html",
+        "/lesson/introduction/intro-classification.html",
+        "/lesson/introduction/intro-grading.html",
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/introduction/intro-factors.html",
+        "/lesson/introduction/intro-design-principles.html",
+        "/lesson/introduction/intro-drawing-standards.html"
+      ]
+    },
+    {
+      "path": "practice/construction-brief.html",
+      "route": "/lesson/practice/construction-brief.html",
+      "title": "构造方案说明",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/practice/index.html",
+        "/lesson/introduction/intro-course-guide.html",
+        "/lesson/introduction/intro-classification.html",
+        "/lesson/introduction/intro-design-principles.html",
+        "/lesson/practice/envelope-detail.html",
+        "/lesson/practice/floor-layout.html",
+        "/lesson/practice/construction-brief.html",
+        "/lesson/practice/floor-layout.html",
+        "/lesson/practice/stairs-drawing.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/practice/envelope-detail.html",
+        "/lesson/practice/integrated-design.html",
+        "/lesson/practice/construction-survey.html"
+      ]
+    },
+    {
+      "path": "practice/construction-survey.html",
+      "route": "/lesson/practice/construction-survey.html",
+      "title": "构造调研",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/practice/index.html",
+        "/lesson/introduction/intro-composition.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/practice/integrated-design.html",
+        "/lesson/practice/construction-brief.html",
+        "/lesson/practice/floor-layout.html",
+        "/lesson/practice/stairs-drawing.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/practice/envelope-detail.html",
+        "/lesson/practice/integrated-design.html",
+        "/lesson/practice/construction-survey.html"
+      ]
+    },
+    {
+      "path": "practice/envelope-detail.html",
+      "route": "/lesson/practice/envelope-detail.html",
+      "title": "外檐节点综合",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/practice/index.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/door-window/window-door-design.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/practice/integrated-design.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/practice/integrated-design.html",
+        "/lesson/practice/construction-brief.html",
+        "/lesson/practice/floor-layout.html",
+        "/lesson/practice/stairs-drawing.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/practice/envelope-detail.html",
+        "/lesson/practice/integrated-design.html",
+        "/lesson/practice/construction-survey.html"
+      ]
+    },
+    {
+      "path": "practice/floor-layout.html",
+      "route": "/lesson/practice/floor-layout.html",
+      "title": "楼面构造布置",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/practice/index.html",
+        "/lesson/basics/floor/floor-overview.html",
+        "/lesson/basics/floor/floor-rc-slab.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/basics/floor/finish-overview.html",
+        "/lesson/practice/construction-brief.html",
+        "/lesson/practice/stairs-drawing.html",
+        "/lesson/practice/construction-brief.html",
+        "/lesson/practice/floor-layout.html",
+        "/lesson/practice/stairs-drawing.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/practice/envelope-detail.html",
+        "/lesson/practice/integrated-design.html",
+        "/lesson/practice/construction-survey.html"
+      ]
+    },
+    {
+      "path": "practice/index.html",
+      "route": "/lesson/practice/index.html",
+      "title": "教材实践作业",
+      "type": "directory",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 1,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/practice/construction-brief.html",
+        "/lesson/practice/floor-layout.html",
+        "/lesson/practice/stairs-drawing.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/practice/envelope-detail.html",
+        "/lesson/practice/integrated-design.html",
+        "/lesson/practice/construction-survey.html"
+      ]
+    },
+    {
+      "path": "practice/integrated-design.html",
+      "route": "/lesson/practice/integrated-design.html",
+      "title": "综合课程设计",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 1,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/practice/index.html",
+        "/lesson/practice/construction-brief.html",
+        "/lesson/practice/floor-layout.html",
+        "/lesson/practice/stairs-drawing.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/practice/envelope-detail.html",
+        "/lesson/practice/envelope-detail.html",
+        "/lesson/practice/construction-survey.html",
+        "/lesson/practice/construction-brief.html",
+        "/lesson/practice/floor-layout.html",
+        "/lesson/practice/stairs-drawing.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/practice/envelope-detail.html",
+        "/lesson/practice/integrated-design.html",
+        "/lesson/practice/construction-survey.html"
+      ]
+    },
+    {
+      "path": "practice/roof-drainage.html",
+      "route": "/lesson/practice/roof-drainage.html",
+      "title": "屋顶排水设计",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 6,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/practice/index.html",
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/basics/roof/roof-slope.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/practice/stairs-drawing.html",
+        "/lesson/practice/envelope-detail.html",
+        "/lesson/practice/construction-brief.html",
+        "/lesson/practice/floor-layout.html",
+        "/lesson/practice/stairs-drawing.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/practice/envelope-detail.html",
+        "/lesson/practice/integrated-design.html",
+        "/lesson/practice/construction-survey.html"
+      ]
+    },
+    {
+      "path": "practice/stairs-drawing.html",
+      "route": "/lesson/practice/stairs-drawing.html",
+      "title": "楼梯绘图",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/practice/index.html",
+        "/lesson/basics/stairs/stairs-overview.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/introduction/intro-drawing-standards.html",
+        "/lesson/practice/floor-layout.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/practice/construction-brief.html",
+        "/lesson/practice/floor-layout.html",
+        "/lesson/practice/stairs-drawing.html",
+        "/lesson/practice/roof-drainage.html",
+        "/lesson/practice/envelope-detail.html",
+        "/lesson/practice/integrated-design.html",
+        "/lesson/practice/construction-survey.html"
+      ]
+    },
+    {
+      "path": "principles/acoustic.html",
+      "route": "/lesson/principles/acoustic.html",
+      "title": "建筑隔声",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/principles/index.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/floor/floor-ceiling.html",
+        "/lesson/principles/insulation.html",
+        "/lesson/principles/fire.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/principles/insulation.html",
+        "/lesson/principles/acoustic.html",
+        "/lesson/principles/fire.html",
+        "/lesson/principles/moisture.html"
+      ]
+    },
+    {
+      "path": "principles/fire.html",
+      "route": "/lesson/principles/fire.html",
+      "title": "建筑防火",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/principles/index.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-finishes.html",
+        "/lesson/basics/stairs/stairs-details.html",
+        "/lesson/basics/stairs/stairs-steps-ramps.html",
+        "/lesson/principles/acoustic.html",
+        "/lesson/principles/moisture.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/principles/insulation.html",
+        "/lesson/principles/acoustic.html",
+        "/lesson/principles/fire.html",
+        "/lesson/principles/moisture.html"
+      ]
+    },
+    {
+      "path": "principles/index.html",
+      "route": "/lesson/principles/index.html",
+      "title": "构造原理",
+      "type": "directory",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 1,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/principles/insulation.html",
+        "/lesson/principles/acoustic.html",
+        "/lesson/principles/fire.html",
+        "/lesson/principles/moisture.html"
+      ]
+    },
+    {
+      "path": "principles/insulation.html",
+      "route": "/lesson/principles/insulation.html",
+      "title": "建筑隔热",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/principles/index.html",
+        "/lesson/basics/door-window/window-door-design.html",
+        "/lesson/basics/roof/roof-slope.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/principles/acoustic.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/principles/insulation.html",
+        "/lesson/principles/acoustic.html",
+        "/lesson/principles/fire.html",
+        "/lesson/principles/moisture.html"
+      ]
+    },
+    {
+      "path": "principles/moisture.html",
+      "route": "/lesson/principles/moisture.html",
+      "title": "建筑防潮",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/principles/index.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/floor/floor-ground-composition.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/fire.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/principles/insulation.html",
+        "/lesson/principles/acoustic.html",
+        "/lesson/principles/fire.html",
+        "/lesson/principles/moisture.html"
+      ]
+    },
+    {
+      "path": "principles/thermal.html",
+      "route": "/lesson/principles/thermal.html",
+      "title": "建筑保温",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/principles/index.html",
+        "/lesson/principles/moisture.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/roof/roof-flat.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/principles/insulation.html",
+        "/lesson/principles/acoustic.html",
+        "/lesson/principles/fire.html",
+        "/lesson/principles/moisture.html"
+      ]
+    },
+    {
+      "path": "principles/waterproof.html",
+      "route": "/lesson/principles/waterproof.html",
+      "title": "建筑防水",
+      "type": "article",
+      "stylesheets": [
+        "/lesson/curriculum.css"
+      ],
+      "images": [
+        "/brand/logo.svg"
+      ],
+      "h1Count": 1,
+      "h2Count": 5,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/principles/index.html",
+        "/lesson/basics/floor/floor-ground-layer.html",
+        "/lesson/basics/foundation/foundation-underground.html",
+        "/lesson/basics/deformation-joint/roof-deformation-construction.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/insulation.html",
+        "/lesson/principles/thermal.html",
+        "/lesson/principles/waterproof.html",
+        "/lesson/principles/insulation.html",
+        "/lesson/principles/acoustic.html",
+        "/lesson/principles/fire.html",
+        "/lesson/principles/moisture.html"
+      ]
+    },
+    {
+      "path": "wall/index.html",
+      "route": "/lesson/wall/index.html",
+      "title": "墙体",
+      "type": "cover",
+      "stylesheets": [
+        "../wall-directory.css?v=20261014-directory-v2"
+      ],
+      "images": [
+        "/brand/logo.svg",
+        "../../images/wall/chapter-cover-outlined.webp"
+      ],
+      "h1Count": 1,
+      "h2Count": 1,
+      "teachingVisuals": 0,
+      "tables": 0,
+      "nodeLinks": 0,
+      "localLinks": [
+        "/lesson/basics/wall/index.html",
+        "/lesson/basics/wall/wall-role.html",
+        "/lesson/basics/wall/wall-types.html",
+        "/lesson/basics/wall/wall-masonry.html",
+        "/lesson/basics/wall/wall-partition.html",
+        "/lesson/basics/wall/wall-design-requirements.html",
+        "/lesson/basics/wall/wall-details.html",
+        "/lesson/basics/wall/wall-finishes.html"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "free-fall-ring-beam-eaves-01",
+      "title": "自由落水檐口（圈梁带挑檐板）",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "free-fall-waterproof-eaves-01",
+      "title": "自由落水檐口（防水层直接悬挑）",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "water-storage-parapet-drainage-01",
+      "title": "蓄水屋面（女儿墙外排水）",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "water-storage-eaves-drainage-01",
+      "title": "蓄水屋面（檐沟式排水）",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "flat-roof-01",
+      "title": "平屋面构造",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": false
+    },
+    {
+      "id": "sloped-roof-01",
+      "title": "坡屋顶构造",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": false
+    },
+    {
+      "id": "steel-batten-tile-roof-01",
+      "title": "钢挂瓦条块瓦屋面构造",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "mortar-bed-tile-roof-01",
+      "title": "砂浆卧瓦块瓦屋面构造",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "wood-batten-tile-roof-01",
+      "title": "木挂瓦条块瓦屋面构造",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "roof-drainage-01",
+      "title": "无组织排水屋顶",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "organized-drainage-01",
+      "title": "有组织排水屋顶",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "eaves-gutter-01",
+      "title": "檐沟外排水",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "roof-access-hatch-01",
+      "title": "屋面检修口",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "vent-pipe-roof-01",
+      "title": "透气管出屋面",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "rigid-roof-transverse-joint-01",
+      "title": "刚性防水屋面横向分格缝（一）",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "rigid-roof-transverse-joint-02",
+      "title": "刚性防水屋面横向分格缝（二）",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "rigid-roof-ridge-joint-01",
+      "title": "刚性防水屋面屋脊分格缝（一）",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "rigid-roof-ridge-joint-02",
+      "title": "刚性防水屋面屋脊分格缝（二）",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "high-low-roof-joint-01",
+      "title": "高低屋面变形缝（一）",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "high-low-roof-joint-02",
+      "title": "高低屋面变形缝（二）",
+      "category": "屋顶",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "cantilever-canopy-slab-01",
+      "title": "悬挑雨篷构造（悬挑板式）",
+      "category": "楼地层",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "cantilever-canopy-raised-eaves-01",
+      "title": "悬挑雨篷构造（外檐加高）",
+      "category": "楼地层",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "balcony-railing-weld-01",
+      "title": "栏杆与阳台板的连接（预埋件焊接）",
+      "category": "楼地层",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "balcony-railing-mortise-01",
+      "title": "栏杆与阳台板的连接（榫接坐浆）",
+      "category": "楼地层",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "balcony-railing-dowel-01",
+      "title": "栏杆与阳台板的连接（插筋连接）",
+      "category": "楼地层",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "cast-ribbed-floor-01",
+      "title": "现浇肋梁楼板",
+      "category": "楼地层",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "construction-column-01",
+      "title": "构造柱",
+      "category": "墙体",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "block-wall-core-column-01",
+      "title": "砌块墙墙芯柱构造",
+      "category": "墙体",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "hollow-block-forms-01",
+      "title": "空心砌块的常见形式",
+      "category": "墙体",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "apron-flashing-01",
+      "title": "细石混凝土散水构造",
+      "category": "墙体",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "stone-apron-01",
+      "title": "块石散水构造",
+      "category": "墙体",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "foam-insulation-01",
+      "title": "粘贴泡沫塑料保温板外保温",
+      "category": "墙体",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "rockwool-insulation-01",
+      "title": "粘贴岩棉防火保温板外保温",
+      "category": "墙体",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "faced-plinth-01",
+      "title": "贴面勒脚构造做法",
+      "category": "墙体",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "stone-plinth-01",
+      "title": "石砌勒脚构造做法",
+      "category": "墙体",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "plaster-plinth-01",
+      "title": "抹灰勒脚构造做法",
+      "category": "墙体",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "stair-flight-offset-multiple-01",
+      "title": "梯段与平台梁节点处理（梯段错多步）",
+      "category": "楼梯",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "stair-flight-flush-unburied-01",
+      "title": "梯段与平台梁节点处理（梯段齐步不埋步）",
+      "category": "楼梯",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "stair-flight-offset-one-01",
+      "title": "梯段与平台梁节点处理（梯段错一步）",
+      "category": "楼梯",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "stair-flight-flush-buried-01",
+      "title": "梯段与平台梁节点处理（梯段齐步并埋步）",
+      "category": "楼梯",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "rc-elevated-steps-01",
+      "title": "钢筋混凝土架空台阶",
+      "category": "楼梯",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "stair-composition-01",
+      "title": "楼梯的组成",
+      "category": "楼梯",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "concrete-steps-01",
+      "title": "混凝土台阶",
+      "category": "楼梯",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "bottom-landing-entrance-01",
+      "title": "底层中间平台下作出入口（底层长短跑）",
+      "category": "楼梯",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "bottom-landing-entrance-02",
+      "title": "底层中间平台下作出入口（局部降低地坪）",
+      "category": "楼梯",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "bottom-landing-entrance-03",
+      "title": "底层中间平台下作出入口（底层长短跑并局部降低地坪）",
+      "category": "楼梯",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "bottom-landing-entrance-04",
+      "title": "底层中间平台下作出入口（底层直跑）",
+      "category": "楼梯",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "ramp-handrail-01",
+      "title": "坡道扶手",
+      "category": "楼梯",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "ramp-floor-01",
+      "title": "坡道地面构造做法（一）",
+      "category": "楼梯",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "ramp-floor-02",
+      "title": "坡道地面构造做法（二）",
+      "category": "楼梯",
+      "status": "available",
+      "model": true,
+      "diagram": true
+    },
+    {
+      "id": "wall-damp-proof-course",
+      "title": "墙身防潮层的位置",
+      "category": "墙体",
+      "status": "available",
+      "model": false,
+      "diagram": false
+    },
+    {
+      "id": "cantilever-slab-01",
+      "title": "挑梁搭板三种构造",
+      "category": "楼地层",
+      "status": "available",
+      "model": false,
+      "diagram": true
+    },
+    {
+      "id": "independent-foundation-01",
+      "title": "独立式基础三种形式",
+      "category": "基础",
+      "status": "available",
+      "model": false,
+      "diagram": true
+    },
+    {
+      "id": "yuncheng-c-01",
+      "title": "01",
+      "category": "案例",
+      "status": "development",
+      "model": false,
+      "diagram": false
+    },
+    {
+      "id": "yuncheng-c-02",
+      "title": "02",
+      "category": "案例",
+      "status": "development",
+      "model": false,
+      "diagram": false
+    },
+    {
+      "id": "yuncheng-c-03",
+      "title": "03",
+      "category": "案例",
+      "status": "development",
+      "model": false,
+      "diagram": false
+    }
+  ],
+  "trainingModes": [
+    {
+      "id": "identify",
+      "title": "模型构件辨识",
+      "route": "/games/identify"
+    },
+    {
+      "id": "match",
+      "title": "构件功能配对",
+      "route": "/games/match"
+    },
+    {
+      "id": "order",
+      "title": "构造层次排序",
+      "route": "/games/order"
+    },
+    {
+      "id": "diagram",
+      "title": "图纸与模型对应",
+      "route": "/games/diagram"
+    },
+    {
+      "id": "path",
+      "title": "排水与传力路径",
+      "route": "/games/path"
+    },
+    {
+      "id": "scenario",
+      "title": "情境方案判断",
+      "route": "/games/scenario"
+    },
+    {
+      "id": "diagnose",
+      "title": "构造错误诊断",
+      "route": "/games/diagnose"
+    },
+    {
+      "id": "assemble",
+      "title": "三维装配补全",
+      "route": "/games/assemble"
+    }
+  ],
+  "missingCourseLinks": [],
+  "notes": [
+    "Inventory covers registered source data; visual and interaction coverage is recorded separately in measurements.json.",
+    "Visual audit uses a fresh local production build on port 5174 to avoid stale development-module caches. No site files changed after the audited commit."
+  ]
+}

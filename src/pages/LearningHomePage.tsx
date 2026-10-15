@@ -33,8 +33,6 @@ export default function LearningHomePage({ active }: { active: boolean }) {
   const [trainingTarget, setTrainingTarget] = useState<HTMLElement | null>(null);
   const [caseTarget, setCaseTarget] = useState<HTMLElement | null>(null);
   const lastScrollY = useRef(0);
-  const hasLeftHome = useRef(false);
-  const hasVisitedHome = useRef(false);
   const loadedStyles = useRef(new Set<string>());
   const [stylesReady, setStylesReady] = useState(false);
   const markStylesheetReady = (name: string) => {
@@ -80,25 +78,51 @@ export default function LearningHomePage({ active }: { active: boolean }) {
   }, [active, stylesReady]);
 
   useLayoutEffect(() => {
-    if (!active) {
-      hasLeftHome.current = hasVisitedHome.current;
-      return;
-    }
-    if (!stylesReady) return;
+    const homeContainer = container.current;
+    if (!active || !stylesReady || !homeContainer) return;
     document.title = '建筑构造 · 交互式教材';
     const section = new URLSearchParams(location.search).get('section');
     const target = section && ['top', 'introduction', 'modules', 'principles'].includes(section)
-      ? container.current?.querySelector<HTMLElement>(`#${section}`)
+      ? homeContainer.querySelector<HTMLElement>(`#${section}`)
       : null;
-    const top = hasLeftHome.current
-      ? lastScrollY.current
-      : target ? target.getBoundingClientRect().top + window.scrollY - (parseFloat(getComputedStyle(target).scrollMarginTop) || 0) : lastScrollY.current;
-    window.scrollTo({ top, behavior: 'instant' });
-    hasLeftHome.current = false;
-    hasVisitedHome.current = true;
+    // Follow an explicit destination while fonts and previews settle. Stop as
+    // soon as the reader interacts, so later layout changes cannot pull them back.
+    let following = !!target;
+    let positionFrame = 0;
+    const alignSection = () => {
+      positionFrame = 0;
+      if (!following || !target) return;
+      const offset = target.getBoundingClientRect().top - (parseFloat(getComputedStyle(target).scrollMarginTop) || 0);
+      if (Math.abs(offset) > 1) window.scrollTo({ top: window.scrollY + offset, behavior: 'instant' });
+    };
+    const scheduleAlignment = () => {
+      if (following && !positionFrame) positionFrame = requestAnimationFrame(alignSection);
+    };
+    const layoutObserver = target ? new ResizeObserver(scheduleAlignment) : null;
+    const stopFollowing = () => {
+      following = false;
+      layoutObserver?.disconnect();
+      cancelAnimationFrame(positionFrame);
+      window.removeEventListener('wheel', stopFollowing);
+      window.removeEventListener('touchstart', stopFollowing);
+      window.removeEventListener('pointerdown', stopFollowing);
+      window.removeEventListener('keydown', stopFollowing);
+    };
+    if (target) {
+      alignSection();
+      layoutObserver?.observe(homeContainer);
+      document.fonts.ready.then(scheduleAlignment);
+      window.addEventListener('wheel', stopFollowing, { passive: true });
+      window.addEventListener('touchstart', stopFollowing, { passive: true });
+      window.addEventListener('pointerdown', stopFollowing, { passive: true });
+      window.addEventListener('keydown', stopFollowing);
+    } else {
+      window.scrollTo({ top: lastScrollY.current, behavior: 'instant' });
+    }
     const rememberScroll = () => { lastScrollY.current = window.scrollY; };
     window.addEventListener('scroll', rememberScroll, { passive: true });
     return () => {
+      stopFollowing();
       window.removeEventListener('scroll', rememberScroll);
     };
   }, [active, location.search, stylesReady]);

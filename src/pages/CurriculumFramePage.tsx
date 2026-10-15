@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import curriculum from '../data/curriculumDocuments.json';
 import SectionPageHeader from '../components/SectionPageHeader';
 import SiteHeader from '../components/SiteHeader';
@@ -159,6 +159,9 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
 
 export default function CurriculumFramePage() {
   const { '*': documentPath = '' } = useParams();
+  if (documentPath === 'introduction/index.html' || documentPath === 'principles/index.html') {
+    return <Navigate to={`/?section=${documentPath.split('/')[0]}`} replace />;
+  }
   return documents.has(documentPath)
     ? <CourseDocument key={documentPath} documentPath={documentPath} />
     : <CourseProblem missing />;

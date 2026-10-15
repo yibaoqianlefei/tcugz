@@ -18,7 +18,7 @@
 
 同一材料在不同组合中可能有不同表现。例如，金属板可以作为外侧保护面，但板缝、紧固件、支承和排水仍决定整个围护系统的工作状态。读到新材料时，可以先问它承担什么任务，再问它与周边材料怎样连接。
 
-建议先阅读[建筑物的构造组成](/lesson/introduction/intro-composition.html)，建立整体认识；再依次进入[基础与地基](/lesson/basics/foundation/index.html)、墙体、门窗、楼地层、楼梯、屋顶及变形缝。遇到热、水、声、火的共性问题，可到[建筑构造原理](/lesson/principles/index.html)学习，再返回具体构件。
+建议先阅读[建筑物的构造组成](/lesson/introduction/intro-composition.html)，建立整体认识；再依次进入[基础与地基](/lesson/basics/foundation/index.html)、墙体、门窗、楼地层、楼梯、屋顶及变形缝。遇到热、水、声、火的共性问题，可到[建筑构造原理](/#/?section=principles)学习，再返回具体构件。
 
 ## 每次学习形成一份小成果
 

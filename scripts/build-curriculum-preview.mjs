@@ -52,8 +52,12 @@ function renderMarkdown(markdown) {
   return `${toc}<article class="article">${html}</article>`;
 }
 
-function shell({ title, category, parentUrl, parentLabel, body, kind = 'article' }) {
-  return `<!doctype html>\n<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)} · 建筑构造</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/previews/curriculum.css"></head>\n<body class="course-page course-page--${kind}"><div class="layout"><div class="page"><header class="topbar"><a class="course-brand" href="${home}"><img src="/brand/logo.svg" width="40" height="40" alt="" aria-hidden="true"><span>建筑构造 / 学习首页</span></a><a class="back" href="${parentUrl}"><span class="back-icon" aria-hidden="true">←</span><span>${esc(parentLabel)}</span></a></header><main class="content"><div class="page-head"><span class="eyebrow">${esc(category)}</span><h1>${esc(title)}</h1></div>${body}</main></div></div><script type="module" src="/styles/directory-motion-entry.js"></script></body></html>`;
+function shell({ title, category, parentUrl, parentLabel, body, kind = 'article', breadcrumb = '建筑构造 / 学习首页' }) {
+  return `<!doctype html>\n<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)} · 建筑构造</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/previews/curriculum.css"></head>\n<body class="course-page course-page--${kind}"><div class="layout"><div class="page"><header class="topbar"><a class="course-brand" href="${home}"><img src="/brand/logo.svg" width="40" height="40" alt="" aria-hidden="true"><span>${esc(breadcrumb)}</span></a><a class="back" href="${parentUrl}"><span class="back-icon" aria-hidden="true">←</span><span>${esc(parentLabel)}</span></a></header><main class="content"><div class="page-head"><span class="eyebrow">${esc(category)}</span><h1>${esc(title)}</h1></div>${body}</main></div></div><script type="module" src="/styles/directory-motion-entry.js"></script></body></html>`;
+}
+
+function homeSectionRedirect(id, title) {
+  return `<!doctype html>\n<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)} · 建筑构造</title><link rel="canonical" href="${homeSectionUrl(id)}"></head><body><a href="${homeSectionUrl(id)}">返回首页 · ${esc(title)}</a><script>window.location.replace(document.querySelector('a').href);</script></body></html>`;
 }
 
 // Card copy comes from the actual lesson, independently of its full reader body.
@@ -169,13 +173,22 @@ async function articleBody(id, group, topic, index, url) {
 // React and standalone lessons consume the same authored design tokens.
 await mkdir(join(process.cwd(), 'public', 'styles'), { recursive: true });
 await copyFile(join(process.cwd(), 'src', 'styles', 'site-tokens.css'), join(process.cwd(), 'public', 'styles', 'site-tokens.css'));
+await copyFile(join(process.cwd(), 'src', 'styles', 'directory-cards.css'), join(process.cwd(), 'public', 'styles', 'directory-cards.css'));
 await copyFile(join(process.cwd(), 'src', 'ui', 'directoryMotion.js'), join(process.cwd(), 'public', 'styles', 'directory-motion.js'));
 
 for (const [id, group] of Object.entries(groups)) {
+  const onHomepage = id === 'introduction' || id === 'principles';
   const parentUrl = id === 'practice' ? '/#/games' : homeSectionUrl(id);
-  await save(topicUrl(id, 'index'), shell({ title: group.title, category: id === 'practice' ? '实践作业 / 任务目录' : '学习目录', parentUrl, parentLabel: id === 'practice' ? '返回作业训练' : '返回学习首页', kind: 'directory', body: `<p class="intro">${esc(group.description)}</p>${cards(await directoryTopics(id, group.topics), item => topicUrl(id, item.id))}` }));
+  await save(topicUrl(id, 'index'), onHomepage ? homeSectionRedirect(id, group.title) : shell({ title: group.title, category: '实践作业 / 任务目录', parentUrl, parentLabel: '返回作业训练', kind: 'directory', body: `<p class="intro">${esc(group.description)}</p>${cards(await directoryTopics(id, group.topics), item => topicUrl(id, item.id))}` }));
   for (const [index, topic] of group.topics.entries()) {
-    await save(topicUrl(id, topic.id), shell({ title: topic.title, category: `${group.title} / ${String(index + 1).padStart(2, '0')}`, parentUrl: topicUrl(id, 'index'), parentLabel: `返回${group.title}目录`, body: await articleBody(id, group, topic, index, item => topicUrl(id, item)) }));
+    await save(topicUrl(id, topic.id), shell({
+      title: topic.title,
+      category: `${group.title} / ${String(index + 1).padStart(2, '0')}`,
+      parentUrl: onHomepage ? homeSectionUrl(id) : topicUrl(id, 'index'),
+      parentLabel: onHomepage ? `返回首页 · ${group.title}` : `返回${group.title}目录`,
+      breadcrumb: onHomepage ? `建筑构造 / ${group.title}` : undefined,
+      body: await articleBody(id, group, topic, index, item => topicUrl(id, item)),
+    }));
   }
 }
 for (const [id, module] of Object.entries(modules)) {

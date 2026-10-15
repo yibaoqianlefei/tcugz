@@ -30,7 +30,7 @@ for (const article of articles) {
     if (node.type !== 'link') return;
     if (node.url.startsWith('/lesson/')) assert(documents.has(node.url.slice('/lesson/'.length).split('#')[0]), `cross-reference exists: ${article.source} → ${node.url}`);
     else if (node.url.startsWith('/#/node/')) assert(nodes.has(node.url.slice('/#/node/'.length)), `model exists: ${node.url}`);
-    else assert(/^https?:\/\//.test(node.url) || node.url.startsWith('#') || node.url === '/#/games', `recognized link: ${node.url}`);
+    else assert(/^https?:\/\//.test(node.url) || node.url.startsWith('#') || node.url === '/#/games' || /^\/#\/\?section=(introduction|principles)$/.test(node.url), `recognized link: ${node.url}`);
   });
   const html = await readFile(`public/lesson/${article.path}`, 'utf8');
   const legacy = await readFile(`public/curriculum/${article.path}`, 'utf8');
@@ -74,6 +74,27 @@ for (const [id, module] of Object.entries(modules)) {
 const homepage = await readFile('previews/homepage-v1.html', 'utf8');
 assert(homepage.includes('intro-course-guide.html') && homepage.includes('basics/deformation-joint/index.html'));
 assert(!homepage.includes('暂无内容'));
+for (const id of ['introduction', 'principles']) {
+  assert(!homepage.includes(`/${id}/index.html`), `homepage ${id} opens its lessons directly`);
+  assert(!documents.has(`${id}/index.html`), `retired ${id} directory is not a course document`);
+  for (const topic of groups[id].topics) {
+    const html = await readFile(`public/lesson/${id}/${topic.id}.html`, 'utf8');
+    assert(html.includes(`class="back" href="/#/?section=${id}"`), `return to the homepage ${id}: ${topic.id}`);
+    assert(html.includes(`返回首页 · ${groups[id].title}`) && html.includes(`建筑构造 / ${groups[id].title}`), `navigation names its destination: ${topic.id}`);
+  }
+  for (const root of ['lesson', 'curriculum']) {
+    const redirect = await readFile(`public/${root}/${id}/index.html`, 'utf8');
+    assert(redirect.includes('window.location.replace') && redirect.includes(`href="/#/?section=${id}"`), `old ${root} ${id} directory redirects home`);
+    assert(!redirect.includes('directory-card'), 'retired index does not render a second directory');
+  }
+  for (const route of [`/textbook/${id}`, `/textbook/${id}/index`]) {
+    assert.equal(manifest.legacyRoutes[route], `/?section=${id}`, `old bookmark returns to the homepage: ${route}`);
+  }
+  assert(formalizeCourse(`<a href="/previews/curriculum/${id}/index.html">目录</a>`, '/textbook/').includes(`href="/textbook/#/?section=${id}"`), `retired ${id} directory redirect respects hosted subpaths`);
+}
+for (const route of ['/textbook/introduction', '/textbook/introduction/index', '/textbook/index']) {
+  assert.equal(manifest.legacyRoutes[route], '/?section=introduction', `old bookmark returns to the homepage: ${route}`);
+}
 
 const fixture = '<a href="/previews/curriculum/introduction/intro-course-guide.html">课程</a><a href="/lesson/principles/thermal.html">保温</a><a href="/#/node/construction-column-01">节点</a><a href="/previews/homepage-v1.html#modules">首页</a><link href="/previews/curriculum.css"><img src="/brand/logo.svg">';
 const subpath = formalizeCourse(fixture, '/textbook/');
