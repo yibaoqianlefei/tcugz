@@ -20,9 +20,9 @@ try {
   assert(await page.locator('.companion-sources a').count() > 0);
   await page.screenshot({path:`${out}/desktop-home.png`});
   await page.getByRole('button', {name:'关闭问答面板',exact:true}).click();
-  await page.getByRole('button', {name:'下一个模型',exact:true}).click();
+  assert.equal(await page.locator('.node-model-controls, .node-model-index').count(), 0);
   await page.getByRole('button', {name:'打开构造伙伴',exact:true}).click();
-  assert((await page.locator('.companion-context').innerText()).includes('有组织排水'));
+  assert((await page.locator('.companion-context').innerText()).includes('蓄水屋面'));
   await page.goto(`${base}#/node/free-fall-ring-beam-eaves-01`);
   await page.locator('.node-viewport canvas').waitFor();
   await page.evaluate(async () => {

@@ -30,28 +30,20 @@ try {
     });
     return { outlines, surfaces, memory: { ...state.gl.info.memory }, dpr: state.viewport.dpr, clipRatio: state.camera.far / state.camera.near, frameloop: state.frameloop };
   });
-  const next = async () => {
-    const index = await page.locator('.node-model-index-current').innerText();
-    await page.getByRole('button', { name: '下一个模型', exact: true }).click();
-    await page.waitForFunction(previous => document.querySelector('.node-model-index-current').textContent !== previous, index);
-    await page.locator('.node-model-stage[data-model-ready="true"]').waitFor();
-    await page.waitForTimeout(100);
-  };
-  for (let i = 0; i < 5; i++) {
-    const state = await inspect();
-    assert.equal(state.outlines.length, 1, 'All visible authored outlines share one draw object');
-    assert(state.outlines[0].vertices > 0);
-    assert(!state.outlines[0].transparent && !state.outlines[0].depthWrite, 'Outlines neither join the transparency sort nor overwrite surface depth');
-    assert(state.surfaces.every(surface => surface.transparent || surface.polygonOffset), 'Opaque surfaces are separated from their coplanar outlines');
-    assert(state.dpr <= 1.25, 'High DPI pixel workload is capped without resizing each rotation frame');
-    assert(state.clipRatio < 20, 'Depth precision covers the fitted model and allowed zoom range');
-    await next();
-  }
-  const warm = await inspect();
-  for (let i = 0; i < 10; i++) await next();
+  const state = await inspect();
+  assert.equal(await page.locator('.node-model-controls, .node-model-index').count(), 0);
+  assert.equal(state.outlines.length, 1, 'All visible authored outlines share one draw object');
+  assert(state.outlines[0].vertices > 0);
+  assert(!state.outlines[0].transparent && !state.outlines[0].depthWrite, 'Outlines neither join the transparency sort nor overwrite surface depth');
+  assert(state.surfaces.every(surface => surface.transparent || surface.polygonOffset), 'Opaque surfaces are separated from their coplanar outlines');
+  assert(state.dpr <= 1.25, 'High DPI pixel workload is capped');
+  assert(state.clipRatio < 20, 'Depth precision covers the fitted model and allowed zoom range');
+  const warm = state;
+  for (let i = 0; i < 6; i++) await page.locator('#hero-next').click();
+  await page.locator('.hero-slide[aria-hidden="false"] .node-model-stage[data-model-ready="true"]').waitFor();
   const repeated = await inspect();
-  assert(repeated.memory.geometries <= warm.memory.geometries + 1, 'Repeated model switches release owned outline buffers');
-  assert(repeated.memory.textures <= warm.memory.textures + 1, 'Repeated switches reuse source textures');
+  assert(repeated.memory.geometries <= warm.memory.geometries + 1, 'Repeated feature switches release owned outline buffers');
+  assert(repeated.memory.textures <= warm.memory.textures + 1, 'Repeated feature switches reuse source textures');
   await page.evaluate(() => {
     Object.defineProperty(document, 'hidden', { configurable: true, get: () => true });
     document.dispatchEvent(new Event('visibilitychange'));
@@ -64,7 +56,7 @@ try {
   await page.waitForFunction(() => window.__homepageAuditState().frameloop === 'always');
   assert(await canvas.evaluate(element => !element.getContext('webgl2').isContextLost()));
   assert.deepEqual(errors, []);
-  console.log('PASS all five models: batched non-writing outlines, stable depth, bounded DPR, released switch resources, hidden-page pause and retained WebGL context');
+  console.log('PASS single homepage model: batched non-writing outlines, stable depth, bounded DPR, stable feature-switch resources, hidden-page pause and retained WebGL context');
 } finally {
   await browser.close();
 }

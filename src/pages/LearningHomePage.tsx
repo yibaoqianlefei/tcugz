@@ -104,8 +104,8 @@ export default function LearningHomePage({ active }: { active: boolean }) {
   }, [active, location.search, stylesReady]);
 
   return <>
-    <link rel="stylesheet" href={`${siteBase}homepage.css`} media={active ? 'all' : 'not all'} onLoad={() => markStylesheetReady('home')} onError={() => markStylesheetReady('home')} />
-    <link rel="stylesheet" href={`${siteBase}feature-showcase.css`} media={active ? 'all' : 'not all'} onLoad={() => markStylesheetReady('features')} onError={() => markStylesheetReady('features')} />
+    <link rel="stylesheet" href={`${siteBase}homepage.css?v=20261014-home-navigation`} media={active ? 'all' : 'not all'} onLoad={() => markStylesheetReady('home')} onError={() => markStylesheetReady('home')} />
+    <link rel="stylesheet" href={`${siteBase}feature-showcase.css?v=20261014-home-navigation`} media={active ? 'all' : 'not all'} onLoad={() => markStylesheetReady('features')} onError={() => markStylesheetReady('features')} />
     <div ref={container} style={{ visibility: stylesReady ? undefined : 'hidden' }} dangerouslySetInnerHTML={markup} />
     {modelTarget && createPortal(<Suspense fallback={<span className="node-model-status" role="status">模型加载中…</span>}><NodePreview visual={modelTarget.visual} /></Suspense>, modelTarget.mount)}
     {trainingTarget && createPortal(<ErrorBoundary fallback={<div className="practice-preview-placeholder" role="alert"><span>互动预览暂不可用</span><a href={`${siteBase}#/games`}>进入作业训练</a></div>}><Suspense fallback={<div className="practice-preview-placeholder" role="status">正在准备互动训练…</div>}><TrainingPreview visual={trainingTarget} /></Suspense></ErrorBoundary>, trainingTarget)}

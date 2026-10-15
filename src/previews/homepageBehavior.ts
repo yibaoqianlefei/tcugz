@@ -15,6 +15,7 @@ export function initHomepageInteractions(root: HTMLElement, options: { spaAnchor
   const mobileMenuToggle = find<HTMLButtonElement>('#mobile-menu-toggle');
   const mobileNavClose = find<HTMLButtonElement>('#mobile-nav-close');
   const mobileBackdrop = find<HTMLButtonElement>('#mobile-backdrop');
+  const nav = find<HTMLElement>('#preview-nav');
   const main = find<HTMLElement>('.main');
   const mobileMedia = window.matchMedia('(max-width: 760px)');
 
@@ -38,8 +39,8 @@ export function initHomepageInteractions(root: HTMLElement, options: { spaAnchor
   bind(mobileMenuToggle, 'click', () => setMobileNavOpen(true));
   bind(mobileNavClose, 'click', () => setMobileNavOpen(false, true));
   bind(mobileBackdrop, 'click', () => setMobileNavOpen(false, true));
-  bind(find('#preview-nav'), 'click', event => {
-    if (mobileMedia.matches && (event.target as Element).closest('a')) setMobileNavOpen(false);
+  bind(nav, 'click', event => {
+    if (mobileMedia.matches && (event.target as Element).closest('a')) setMobileNavOpen(false, true);
   });
   bind(document, 'keydown', event => {
     if ((event as KeyboardEvent).key === 'Escape' && root.classList.contains('mobile-nav-open')) setMobileNavOpen(false, true);
@@ -54,6 +55,52 @@ export function initHomepageInteractions(root: HTMLElement, options: { spaAnchor
     }
   });
   sidebar.inert = mobileMedia.matches;
+
+  const sectionNavigation = ['top', 'introduction', 'modules', 'principles'].map(id => ({
+    link: find<HTMLAnchorElement>(`#preview-nav a[href="#${id}"]`),
+    section: find<HTMLElement>(`#${id}`),
+  }));
+  let navigationFrame = 0;
+
+  function selectNavigation(link: HTMLAnchorElement) {
+    sectionNavigation.forEach(item => {
+      const selected = item.link === link;
+      item.link.classList.toggle('active', selected);
+      if (selected) item.link.setAttribute('aria-current', 'location');
+      else item.link.removeAttribute('aria-current');
+    });
+  }
+
+  function updateNavigation() {
+    navigationFrame = 0;
+    // The SPA retains the homepage while other routes hide it with display:none.
+    if (!root.getClientRects().length) return;
+    const activationLine = Math.min(180, window.innerHeight * 0.3);
+    let current = sectionNavigation[0];
+    for (const item of sectionNavigation) {
+      if (item.section.getBoundingClientRect().top <= activationLine) current = item;
+      else break;
+    }
+    selectNavigation(current.link);
+  }
+
+  function scheduleNavigation() {
+    if (!navigationFrame) navigationFrame = requestAnimationFrame(updateNavigation);
+  }
+
+  bind(window, 'scroll', scheduleNavigation, { passive: true });
+  bind(window, 'resize', scheduleNavigation);
+  bind(nav, 'click', event => {
+    const click = event as MouseEvent;
+    if (click.button !== 0 || click.metaKey || click.ctrlKey || click.altKey || click.shiftKey) return;
+    const link = (event.target as Element).closest<HTMLAnchorElement>('a');
+    if (link && sectionNavigation.some(item => item.link === link)) selectNavigation(link);
+  });
+  const navigationResize = new ResizeObserver(scheduleNavigation);
+  navigationResize.observe(root);
+  sectionNavigation.forEach(item => navigationResize.observe(item.section));
+  cleanups.push(() => { navigationResize.disconnect(); cancelAnimationFrame(navigationFrame); });
+  scheduleNavigation();
 
   if (options.spaAnchors) {
     bind(root, 'click', event => {
@@ -75,6 +122,28 @@ export function initHomepageInteractions(root: HTMLElement, options: { spaAnchor
   const heroAnnouncement = find<HTMLElement>('#hero-announcement');
   let heroIndex = 0;
   let touchStart: { x: number; y: number } | null = null;
+  let heroResizeFrame = 0;
+
+  function sizeHero() {
+    const slide = heroSlides[heroIndex];
+    const height = slide.offsetHeight;
+    if (!height) return;
+    heroViewport.style.height = `${height}px`;
+    // Keep edge controls beside the preview when the layout stacks on mobile.
+    const visual = slide.querySelector<HTMLElement>('.hero-right')!;
+    const stacked = visual.offsetTop > slide.querySelector<HTMLElement>('.hero-copy')!.offsetTop + 40;
+    const stage = visual.querySelector<HTMLElement>('.node-model-stage, .savoye-model, .training-model-stage') ?? visual;
+    const stageRect = stage.getBoundingClientRect();
+    const center = stacked ? stageRect.top - heroViewport.getBoundingClientRect().top + stageRect.height / 2 : height / 2;
+    root.style.setProperty('--hero-control-y', `${center}px`);
+  }
+
+  const heroResize = new ResizeObserver(() => {
+    cancelAnimationFrame(heroResizeFrame);
+    heroResizeFrame = requestAnimationFrame(sizeHero);
+  });
+  heroSlides.forEach(slide => heroResize.observe(slide));
+  cleanups.push(() => { heroResize.disconnect(); cancelAnimationFrame(heroResizeFrame); });
 
   function showHero(index: number) {
     heroIndex = (index + heroSlides.length) % heroSlides.length;
@@ -85,6 +154,7 @@ export function initHomepageInteractions(root: HTMLElement, options: { spaAnchor
       slide.inert = inactive;
       slide.setAttribute('aria-hidden', String(inactive));
     });
+    sizeHero();
     window.dispatchEvent(new CustomEvent('preview-hero-change', { detail: heroIndex }));
   }
 

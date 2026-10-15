@@ -3,13 +3,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 10px 0;
+  padding: 0;
 }
 .feature-slide .hero-headline { max-width: 720px; }
 .feature-slide .lead {
   align-self: auto;
-  margin: auto 0 34px;
-  max-width: 560px;
+  margin: 0;
+  max-width: 30em;
   font-size: 16px;
   line-height: 1.9;
 }
@@ -17,7 +17,7 @@
 .feature-slide .hero-right { min-width: 0; }
 .showcase-panel {
   width: 100%;
-  min-height: 540px;
+  min-height: 520px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -41,31 +41,30 @@
 .showcase-mark { width: 8px; height: 8px; background: var(--ui-blue); transform: rotate(45deg); }
 
 /* 01 — the whole feature panel is a responsive model stage. */
-.node-browser { position: relative; background: #e2e9f4; }
-.node-browser .showcase-top {
-  position: absolute;
-  inset: 0 0 auto;
-  z-index: 2;
-  border: 0;
-  background: linear-gradient(#e2e9f4f2, #e2e9f400);
-}
+.node-browser { position: relative; background: transparent; border: 0; }
+.node-model-heading-space { height: 48px; flex: 0 0 48px; }
 .node-browser .node-focus-visual {
   flex: 1;
-  min-height: 540px;
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 520px;
   padding: 0;
-  background: radial-gradient(circle at 50% 48%, #eff3f9 15%, #dce5f3 100%);
+  background: transparent;
+  overflow: visible;
 }
 .node-model-footer {
-  position: absolute;
+  position: relative;
   z-index: 2;
-  left: 20px;
-  right: 20px;
-  bottom: 16px;
+  margin-top: auto;
+  padding: 14px 18px 18px;
+  background: transparent;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.node-model-caption {
+.node-model-size { visibility: hidden; display: flex; flex-direction: column; gap: 10px; }
+.node-model-size-caption {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
@@ -73,19 +72,17 @@
   gap: 15px;
   color: var(--ui-ink);
 }
-.node-model-caption span { display: block; margin-bottom: 4px; color: var(--ui-muted); font-size: 13px; letter-spacing: .08em; }
-.node-model-caption strong { display: block; font-size: 22px; line-height: 1.3; }
-.node-model-caption > div { min-width: 0; }
-.node-model-caption a { flex: none; border-bottom: 1px solid #8296c0; padding-bottom: 3px; color: var(--ui-blue); font-size: 12px; font-weight: 700; }
-.node-model-summary { margin: 0; min-height: 3.4em; color: var(--ui-muted); font-size: 13px; line-height: 1.7; }
-.node-model-controls { display: flex; align-items: center; justify-content: center; gap: 0; }
-.node-model-index { width: 128px; display: flex; align-items: center; justify-content: center; gap: 10px; font-variant-numeric: tabular-nums; }
-.node-model-index-current { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--ui-line); border-radius: 8px; background: linear-gradient(145deg, #fafcff, #edf1fa); box-shadow: 0 2px 6px #354a820a; color: var(--ui-blue); font-size: 17px; font-weight: 700; letter-spacing: .02em; }
-.node-model-index-divider { width: 1px; height: 14px; background: var(--ui-line); transform: rotate(22deg); }
-.node-model-index-total { color: var(--ui-muted); font-size: 13px; font-weight: 600; letter-spacing: .05em; }
-.node-model-controls button { width: 34px; height: 36px; display: grid; place-items: center; border: 1px solid var(--ui-line); border-radius: var(--ui-radius-control); background: #f8faffd9; color: var(--ui-blue); cursor: pointer; }
-.node-model-controls button:hover { border-color: var(--ui-blue); background: var(--ui-surface); }
-.node-model-controls svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.node-model-size-caption span { display: block; margin-bottom: 4px; font-size: 13px; line-height: 1.5; letter-spacing: .06em; }
+.node-model-size-caption strong { display: block; font-size: 22px; line-height: 1.3; }
+.node-model-size-caption > div { min-width: 0; }
+.node-model-size-caption > i { width: 4em; min-height: 36px; font-size: 13px; }
+.node-model-size-summary { min-height: 3.4em; font-size: 13px; line-height: 1.7; }
+.node-model-copy { position: absolute; right: 0; bottom: 14px; width: max-content; max-width: calc(100% - 20px); color: #0d1426; text-align: right; }
+.node-model-title { margin: 0; font-size: 24px; line-height: 1.1; letter-spacing: -.025em; font-weight: 700; }
+.node-model-name-detail { display: block; margin-top: 5px; font-size: 14px; line-height: 1.4; letter-spacing: 0; font-weight: 400; }
+@media (min-width: 1101px) and (max-width: 1400px) {
+  .node-model-copy { right: 40px; }
+}
 .node-focus-visual {
   position: relative;
   flex: 1;
@@ -96,16 +93,18 @@
   background: var(--ui-surface);
   overflow: hidden;
 }
-.node-model-root { position: absolute; inset: 0; display: grid; place-items: center; }
-.node-model-stage { position: absolute; inset: 42px 0 195px; }
+.node-model-root { position: relative; width: 100%; min-width: 0; min-height: 520px; display: flex; flex-direction: column; }
+.node-model-stage { position: relative; height: clamp(420px, 50vh, 560px); flex: 0 0 auto; }
 .node-model-root canvas { display: block; width: 100%; height: 100%; touch-action: pan-y; }
 .node-model-status { position: relative; z-index: 1; pointer-events: none; color: var(--ui-muted); font-size: 12px; }
 
 /* 02 — live architectural case preview; shared styles in components/cases. */
-.case-workbench { background: var(--ui-soft); }
+.case-workbench { position: relative; background: var(--ui-soft); }
+.app .case-preview-root .case-experience-showcase .savoye-model { height: 410px; min-height: 360px; }
+.app .case-preview-root .case-experience-showcase .case-model-placeholder { min-height: 360px; }
 
 /* 03 — a model question shared with the current training bank. */
-.practice-showcase { background: var(--ui-soft); }
+.practice-showcase { position: relative; background: var(--ui-soft); }
 .practice-preview-root { flex: 1; min-width: 0; display: flex; }
 .practice-preview { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .practice-preview .showcase-top a { font-size: 13px; letter-spacing: .02em; white-space: nowrap; }
@@ -113,7 +112,7 @@
 .practice-preview-root:empty { min-height: 540px; }
 .practice-preview-root:empty::before { content: '正在准备互动训练…'; margin: auto; color: var(--ui-muted); font-size: 13px; }
 .practice-preview-scene { flex: 1; position: relative; display: flex; flex-direction: column; border-bottom: 1px solid var(--ui-line); }
-.practice-preview .training-model-stage { flex: 1; height: clamp(280px, 33vh, 390px); min-height: 280px; }
+.practice-preview .training-model-stage { flex: 1; height: clamp(220px, 28vh, 280px); min-height: 220px; }
 .practice-preview .training-model-error { color: var(--ui-blue); font-size: 13px; }
 .practice-preview .training-model-error button { border: 1px solid var(--ui-line); border-radius: 6px; padding: 8px 12px; background: var(--ui-surface); color: var(--ui-blue); cursor: pointer; }
 .practice-preview .training-model-label, .practice-preview .training-fit-button { cursor: pointer; }
@@ -158,25 +157,22 @@
 
 .showcase-panel button:focus-visible, .showcase-panel a:focus-visible { outline: 2px solid var(--ui-blue); outline-offset: 2px; }
 @media (max-width: 1200px) {
-  .feature-slide .hero-copy { display: block; padding: 0; }
-  .feature-slide .lead { margin: 0 0 24px; }
-  .feature-slide .hero-actions { margin-top: 0; }
-  .showcase-panel { min-height: 510px; }
-  .node-browser .node-focus-visual { min-height: 510px; }
+  .showcase-panel { min-height: 520px; }
 }
 @media (max-width: 760px) {
   .showcase-panel { min-height: 510px; }
-  .node-browser .node-focus-visual { min-height: 510px; }
+  .node-browser .node-focus-visual { min-height: 0; }
+  .node-model-stage { height: clamp(320px, 100vw, 420px); }
   .feature-slide .lead { font-size: 15px; }
   .feature-slide .hero-right { max-width: 100%; }
 }
 @media (max-width: 520px) {
-  .node-browser .node-focus-visual { min-height: 450px; }
-  .node-model-footer { left: 14px; right: 14px; bottom: 14px; }
-  .node-model-caption strong { font-size: 19px; }
-  .node-model-stage { bottom: 205px; }
-  .node-model-summary { font-size: 12px; }
-  .node-model-caption { gap: 9px; }
+  .node-model-root { min-height: 480px; }
+  .node-model-footer { padding: 14px 10px; }
+  .node-model-size-caption strong { font-size: 19px; }
+  .node-model-size-caption { gap: 9px; }
+  .node-model-copy { right: 0; bottom: 6px; }
+  .node-model-title { font-size: 22px; }
   .showcase-top { padding: 0 14px; font-size: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -186,11 +182,6 @@
 /* Controls have one hierarchy across live previews and dedicated workbenches. */
 .app .showcase-panel { border-color: var(--ui-line); }
 .app .showcase-top { color: var(--ui-muted); letter-spacing: .08em; }
-.app .node-model-index-current { border-radius: var(--ui-radius-control); background: var(--ui-surface); box-shadow: none; color: var(--ui-blue); }
-.app .node-model-index-total { font-size: 13px; color: var(--ui-muted); }
-.app .node-model-controls button { width: 36px; min-height: 36px; border-radius: var(--ui-radius-control); background: var(--ui-surface); }
-.app .node-model-caption a { min-height: 36px; display: inline-flex; align-items: center; padding: 4px 0; font-size: 13px; color: var(--ui-blue); }
-.app .node-model-summary { color: var(--ui-text); }
 .app .practice-preview-observe { min-height: 36px; font-size: 13px; border-radius: var(--ui-radius-control); }
 .app .practice-preview-observe[aria-pressed='true'] { border-color: var(--ui-blue); background: var(--ui-soft); }
 .app .practice-preview-task p { max-width: 180px; font-size: 13px; color: var(--ui-text); }
@@ -211,10 +202,8 @@
 .app .showcase-panel button:disabled { opacity: .55; cursor: default; }
 .app .practice-preview-choices button:disabled { opacity: 1; }
 @media (max-width: 760px) {
-  .app .node-model-controls button, .app .node-model-index-current { width: 44px; height: 44px; }
-  .app .node-model-caption a, .app .practice-preview-observe, .app .practice-preview-feedback button, .app .practice-preview-footer > div a { min-height: 44px; }
-  .app .node-model-stage { bottom: 220px; }
-  .app .node-model-summary { font-size: 13px; }
+  .node-model-size-caption > i { min-height: 44px; }
+  .app .practice-preview-observe, .app .practice-preview-feedback button, .app .practice-preview-footer > div a { min-height: 44px; }
   .app .practice-preview-task p { max-width: none; }
   .app .practice-preview-feedback { padding-top: 12px; padding-bottom: 12px; }
 }
