@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="690" height="360" viewBox="0 0 690 360">
+  <title>墙、柱、板组合示意</title>
+  <desc>蓝色砌体墙留有方形洞口，深色板覆盖墙与立柱上方，砖色短墙在右侧与墙体连接。图形表达构造关系，不表示实际尺寸。</desc>
+  <defs>
+    <pattern id="brick-blue" width="64" height="38" patternUnits="userSpaceOnUse">
+      <path d="M0 0H64M0 38H64M32 0V19M0 19H64M0 19V38M64 19V38" stroke="#f8f8f5" stroke-width="1" opacity=".26" fill="none"/>
+    </pattern>
+    <pattern id="brick-clay" width="42" height="26" patternUnits="userSpaceOnUse">
+      <path d="M0 0H42M0 26H42M21 0V13M0 13H42M0 13V26M42 13V26" stroke="#efe9e2" stroke-width="1" opacity=".42" fill="none"/>
+    </pattern>
+    <mask id="wall-window">
+      <rect x="85" y="98" width="305" height="175" fill="#fff"/>
+      <rect x="195" y="145" width="105" height="128" fill="#000"/>
+    </mask>
+  </defs>
+  <g fill="none" stroke="#d6d8db" stroke-width="1">
+    <path d="M36 304H662M65 42V314M502 47V310"/>
+    <path d="M60 42H70M60 304H70M497 47H507M497 304H507"/>
+  </g>
+  <g fill="#8c929e" font-family="Arial,sans-serif" font-size="9" letter-spacing="1.5">
+    <text x="35" y="70">01</text>
+    <text x="490" y="73">02</text>
+    <text x="81" y="41">03</text>
+  </g>
+  <path d="M76 273L102 253H493L466 281H76Z" fill="#d7dae2"/>
+  <path d="M76 281H466V295H76Z" fill="#aab0bd"/>
+  <path d="M466 281L493 253V268L466 295Z" fill="#8992a5"/>
+  <path d="M85 98L111 78H417L390 98Z" fill="#6072a6"/>
+  <path d="M390 98L417 78V253L390 273Z" fill="#33436f"/>
+  <rect x="85" y="98" width="305" height="175" fill="#43558e" mask="url(#wall-window)"/>
+  <rect x="85" y="98" width="305" height="175" fill="url(#brick-blue)" mask="url(#wall-window)"/>
+  <path d="M195 145H300L319 131H214Z" fill="#283750"/>
+  <path d="M300 145L319 131V253L300 273Z" fill="#d0d5df"/>
+  <path d="M300 145V273" fill="none" stroke="#20283e" stroke-width="1"/>
+  <path d="M420 93L444 75H467L443 93Z" fill="#596581"/>
+  <path d="M443 93L467 75V255L443 273Z" fill="#171e30"/>
+  <path d="M420 93H443V273H420Z" fill="#283750"/>
+  <path d="M74 73L99 53H478L453 73Z" fill="#46516b"/>
+  <path d="M74 73H453V95H74Z" fill="#20283e"/>
+  <path d="M453 73L478 53V75L453 95Z" fill="#171e30"/>
+  <path d="M350 210L371 194H417L396 210Z" fill="#c6a28b"/>
+  <path d="M396 210L417 194V257L396 273Z" fill="#90674f"/>
+  <rect x="350" y="210" width="46" height="63" fill="#b68970"/>
+  <rect x="350" y="210" width="46" height="63" fill="url(#brick-clay)"/>
+  <path d="M347 212V273" fill="none" stroke="#f8f8f5" stroke-width="3"/>
+  <g stroke="#727c90" stroke-width="1" fill="none">
+    <path d="M135 121L120 48H82"/>
+    <path d="M431 163H485"/>
+    <path d="M171 84V42"/>
+    <path d="M355 240L483 279"/>
+  </g>
+  <g fill="#f8f8f5">
+    <circle cx="135" cy="121" r="2.5"/>
+    <circle cx="431" cy="163" r="2.5"/>
+    <circle cx="171" cy="84" r="2.5"/>
+    <circle cx="355" cy="240" r="2.5"/>
+  </g>
+  <path d="M195 273H300" fill="none" stroke="#c9ced8" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="248" y="304" text-anchor="middle" fill="#9399a4" font-family="sans-serif" font-size="9" letter-spacing="2">洞口</text>
+</svg>

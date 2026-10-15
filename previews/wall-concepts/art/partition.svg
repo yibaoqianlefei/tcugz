@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" aria-hidden="true" focusable="false">
+  <defs>
+    <mask id="partition-line-clearance" maskUnits="userSpaceOnUse" x="0" y="0" width="600" height="460">
+      <rect width="600" height="460" fill="white" />
+      <rect x="232" y="0" width="78" height="120" fill="black" />
+    </mask>
+  </defs>
+  <path data-primitive="semicircle-left" d="M266 88a156 156 0 0 0 0 312Z" fill="var(--art-primary, #244be8)" />
+  <path data-primitive="semicircle-right" d="M294 100a156 156 0 0 1 0 312Z" fill="var(--art-secondary, #ff754d)" fill-opacity="0.58" />
+  <path data-primitive="shared-division-line" d="M280 72V436" fill="none" stroke="var(--art-line, #43558e)" stroke-width="1.2" mask="url(#partition-line-clearance)" />
+</svg>

@@ -1,0 +1,344 @@
+.variant-lines {
+  --line-ink: #27344d;
+  --line-blue: #43558e;
+  --line-muted: #777d88;
+  --line-rule: #dcdedb;
+  --line-paper: #f8f8f5;
+  color: var(--line-ink);
+  background: var(--line-paper);
+}
+
+.variant-lines .preview-main {
+  max-width: 1264px;
+  margin-inline: auto;
+  padding-inline: 44px;
+}
+
+.variant-lines .wall-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 48px;
+  min-height: 376px;
+  padding-block: 27px 29px;
+}
+
+.variant-lines .intro-copy {
+  position: relative;
+  padding-block: 13px;
+}
+
+.variant-lines .intro-copy h1 {
+  letter-spacing: -0.055em;
+}
+
+.variant-lines .intro-copy p {
+  max-width: 410px;
+}
+
+.variant-lines .intro-copy .intro-themes,
+.variant-lines .intro-copy .theme-list,
+.variant-lines .intro-copy .intro-tags {
+  gap: 9px 17px;
+}
+
+.variant-lines .hero-art {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  padding-top: 7px;
+}
+
+.variant-lines .drawing-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--line-muted);
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.13em;
+}
+
+.variant-lines .drawing-label span:first-child::before {
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  margin-right: 8px;
+  vertical-align: middle;
+  background: var(--line-blue);
+  content: "";
+}
+
+.variant-lines .wall-line-drawing {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.9;
+  margin-block: 9px 3px;
+}
+
+.variant-lines .hero-art figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-top: 11px;
+  border-top: 1px solid var(--line-rule);
+  color: #646c79;
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.025em;
+}
+
+.variant-lines .art-caption-detail {
+  color: #93969b;
+  font-size: 10px;
+}
+
+.variant-lines .chapters-section {
+  position: relative;
+  padding-top: 23px;
+  border-top: 1px solid var(--line-ink);
+}
+
+.variant-lines .chapters-top {
+  margin-bottom: 23px;
+}
+
+.variant-lines .chapters-top h2 {
+  color: var(--line-ink);
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.variant-lines .chapter-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 48px;
+  border: 0;
+}
+
+.variant-lines .chapter-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 26px;
+  align-items: center;
+  gap: 14px;
+  min-height: 124px;
+  padding: 21px 8px 21px 0;
+  border: 0;
+  border-top: 1px solid var(--line-rule);
+  border-radius: 0;
+  color: var(--line-ink);
+  background: transparent;
+  text-decoration: none;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.variant-lines .chapter-entry:nth-last-child(-n + 2) {
+  border-bottom: 1px solid var(--line-rule);
+}
+
+.variant-lines .chapter-entry::before {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 25px;
+  height: 1px;
+  background: var(--line-blue);
+  content: "";
+}
+
+.variant-lines .chapter-number {
+  align-self: start;
+  padding-top: 5px;
+  color: var(--line-blue);
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.07em;
+}
+
+.variant-lines .chapter-body {
+  min-width: 0;
+}
+
+.variant-lines .chapter-status {
+  color: var(--line-muted);
+  font-size: 10px;
+  line-height: 1.45;
+  letter-spacing: 0.025em;
+}
+
+.variant-lines .chapter-body h3 {
+  margin-block: 4px 6px;
+  color: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.025em;
+}
+
+.variant-lines .chapter-body p {
+  margin: 0;
+  color: #737987;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.variant-lines .chapter-arrow {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border: 0;
+  border-radius: 0;
+  color: var(--line-blue);
+  background: transparent;
+  font-size: 18px;
+  transition: transform 160ms ease;
+}
+
+.variant-lines .chapter-entry:hover {
+  color: var(--line-blue);
+  background: #eceef4;
+}
+
+.variant-lines .chapter-entry:hover .chapter-arrow {
+  transform: translateX(3px);
+}
+
+.variant-lines .chapter-entry:focus-visible {
+  z-index: 1;
+  outline: 2px solid var(--line-blue);
+  outline-offset: 4px;
+}
+
+.variant-lines .chapter-note {
+  margin-top: 22px;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 1440px) {
+  .variant-lines .wall-intro {
+    gap: 66px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .variant-lines .preview-main {
+    padding-inline: 32px;
+  }
+
+  .variant-lines .wall-intro {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 27px;
+    min-height: 353px;
+  }
+
+  .variant-lines .chapter-list {
+    column-gap: 32px;
+  }
+
+  .variant-lines .chapter-entry {
+    grid-template-columns: 31px minmax(0, 1fr) 22px;
+    gap: 9px;
+  }
+}
+
+@media (max-width: 720px) {
+  .variant-lines .preview-main {
+    padding-inline: 24px;
+  }
+
+  .variant-lines .wall-intro {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 25px;
+    min-height: 0;
+    padding-block: 25px 28px;
+  }
+
+  .variant-lines .intro-copy {
+    padding: 0;
+  }
+
+  .variant-lines .intro-copy p {
+    max-width: 480px;
+  }
+
+  .variant-lines .hero-art {
+    width: 100%;
+    max-width: 580px;
+    padding-top: 0;
+  }
+
+  .variant-lines .wall-line-drawing {
+    max-height: 262px;
+    object-fit: contain;
+  }
+
+  .variant-lines .chapters-top {
+    margin-bottom: 20px;
+  }
+
+  .variant-lines .chapter-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .variant-lines .chapter-entry {
+    grid-template-columns: 38px minmax(0, 1fr) 24px;
+    min-height: 114px;
+    gap: 12px;
+    padding-block: 20px;
+  }
+
+  .variant-lines .chapter-entry:nth-last-child(2) {
+    border-bottom: 0;
+  }
+
+  .variant-lines .chapter-body h3 {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 380px) {
+  .variant-lines .preview-main {
+    padding-inline: 18px;
+  }
+
+  .variant-lines .wall-intro {
+    gap: 24px;
+  }
+
+  .variant-lines .chapter-entry {
+    grid-template-columns: 29px minmax(0, 1fr) 20px;
+    gap: 9px;
+    padding-right: 0;
+  }
+
+  .variant-lines .chapter-body h3 {
+    font-size: 16px;
+  }
+
+  .variant-lines .hero-art figcaption {
+    gap: 8px;
+    font-size: 10px;
+  }
+
+  .variant-lines .art-caption-detail {
+    font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .variant-lines .chapter-entry,
+  .variant-lines .chapter-arrow {
+    transition: none;
+  }
+
+  .variant-lines .chapter-entry:hover .chapter-arrow {
+    transform: none;
+  }
+}

@@ -5,38 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>墙体 · 章节目录</title>
   <link rel="icon" type="image/svg+xml" href="/tcugz/favicon.svg" />
-  <link rel="stylesheet" href="../../lesson/wall-directory.css" />
+  <link rel="stylesheet" href="../../lesson/wall-directory.css?v=20261014-directory-v2" />
 </head>
-<body>
-  <svg class="wall-symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <defs>
-      <symbol id="wall-overview" viewBox="0 0 100 100">
-        <path class="diagram-fill" d="m19 35 42-18 22 12-42 18Z"/><path d="M19 35v44l22 12V47l42-18v44L41 91M61 17v44M19 35l22 12"/>
-        <path class="diagram-faint" d="m26 42 9 5m-9 7 9 5m-9 7 9 5m15-20 25-11M50 62l25-11M50 74l25-11"/>
-      </symbol>
-      <symbol id="wall-role" viewBox="0 0 100 100">
-        <path class="diagram-fill" d="M30 30h40v53H30Z"/><path d="M30 30h40v53H30ZM21 86h58M50 10v17m-5-5 5 5 5-5M13 56h14m-5-5 5 5-5 5M87 56H73m5-5-5 5 5 5"/>
-        <path class="diagram-faint" d="M38 42h24M38 55h24M38 68h24"/>
-      </symbol>
-      <symbol id="wall-types" viewBox="0 0 100 100">
-        <path class="diagram-warm" d="m17 30 13-6 8 5v46l-13 6-8-5Z"/><path class="diagram-fill" d="m44 24 13-6 8 5v46l-13 6-8-5Z"/>
-        <path d="m17 30 13-6 8 5v46l-13 6-8-5Zm0 0 8 5 13-6M25 35v46M44 24l13-6 8 5v46l-13 6-8-5Zm0 0 8 5 13-6M52 29v46M71 18l9-4 8 5v46l-9 4-8-5Zm0 0 8 5 9-4M79 23v46"/>
-      </symbol>
-      <symbol id="wall-masonry" viewBox="0 0 100 100">
-        <path class="diagram-warm" d="M16 30h68v50H16Z"/><path d="M16 30h68v50H16ZM16 42h68M16 55h68M16 68h68M39 30v12m23-12v12M27 42v13m23-13v13m23-13v13M39 55v13m23-13v13M27 68v12m23-12v12m23-12v12M13 85h74"/>
-        <path class="diagram-fill" d="M16 22h68v8H16Z"/><path d="M16 22h68v8H16Z"/>
-      </symbol>
-      <symbol id="wall-partition" viewBox="0 0 100 100">
-        <path class="diagram-fill" d="m16 28 13-5v54l-13 5Z"/><path d="m16 28 13-5v54l-13 5ZM29 23h45v54H29M38 23v54M51 23v54M64 23v54M29 34h45M29 66h45"/>
-        <path class="diagram-paper" d="m62 29 18 8v47l-18-8Z"/><path d="m62 29 18 8v47l-18-8ZM13 88h74"/>
-      </symbol>
-      <symbol id="wall-performance" viewBox="0 0 100 100">
-        <path class="diagram-fill" d="m23 26 12-6v52l-12 6Z"/><path class="diagram-warm" d="m45 26 8-4v52l-8 4Z"/>
-        <path d="m23 26 12-6v52l-12 6Zm22 0 8-4v52l-8 4ZM66 26l8-4v52l-8 4ZM14 47h6m-3-3 3 3-3 3M84 47h-7m3-3-3 3 3 3"/>
-        <path class="diagram-faint" d="m38 33 5 5-5 5 5 5-5 5 5 5-5 5M13 85h75"/>
-      </symbol>
-    </defs>
-  </svg>
+<body class="course-page course-page--cover">
   <div class="wall-page">
     <main class="main" id="top">
       <header class="topbar">
@@ -51,29 +22,92 @@
             <p class="wall-lead">构筑空间，也连接结构。</p>
             <p class="wall-intro-desc">从一块砖到一道墙，认识墙体的作用、类型与连接方式，理解建筑如何承重、围护与分隔。</p>
             <ul class="wall-themes" aria-label="墙体的三大功能"><li>承重</li><li>围护</li><li>分隔</li></ul>
+            <a class="module-browse" href="#chapters"><span>浏览章节</span><span aria-hidden="true">↓</span></a>
           </div>
-          <figure class="wall-visual">
-            <div class="wall-visual-grid" aria-hidden="true"></div>
-            <span class="wall-visual-label" aria-hidden="true">MASONRY<br />&amp; CONNECTION</span>
-            <img class="wall-cover" src="../../images/wall/chapter-cover.webp" width="611" height="756" fetchpriority="high" alt="构造柱教学模型轴测图，展示砖墙交接处的混凝土构造柱、圈梁、楼板和外露钢筋" />
-            <div class="wall-callouts" aria-hidden="true"><span class="wall-callout column">构造柱</span><span class="wall-callout beam">圈梁</span><span class="wall-callout masonry">砖砌体</span></div>
-            <figcaption><span>砌体与构造柱 <small>站内模型 · 构造示意</small></span><a href="/tcugz/#/node/construction-column-01">查看节点 <span aria-hidden="true">↗</span></a></figcaption>
+          <figure class="wall-visual wall-visual--geometry">
+            <a class="wall-art-stage" href="/tcugz/#/node/construction-column-01" aria-label="查看砌体与构造柱三维节点">
+              <svg class="wall-geometry" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" aria-hidden="true" focusable="false">
+                <defs>
+                  <mask id="wall-line-clearance" maskUnits="userSpaceOnUse" x="0" y="0" width="600" height="460">
+                    <rect width="600" height="460" fill="white" />
+                    <rect x="232" y="0" width="78" height="120" fill="black" />
+                  </mask>
+                </defs>
+                <rect x="52" y="136" width="290" height="246" transform="rotate(-18 197 259)" fill="#e34b36" />
+                <circle cx="430" cy="232" r="148" fill="#43558e" />
+                <g mask="url(#wall-line-clearance)">
+                  <ellipse cx="315" cy="237" rx="255" ry="192" transform="rotate(-18 315 237)" fill="none" stroke="#222222" stroke-width="2.4" />
+                </g>
+              </svg>
+              <img class="wall-geometry-cover" src="../../images/wall/chapter-cover-outlined.webp" width="611" height="758" fetchpriority="high" alt="构造柱教学模型轴测图，以黑色描边展示砖墙交接处的混凝土构造柱、圈梁、楼板和外露钢筋" />
+            </a>
           </figure>
         </section>
         <section class="wall-section" id="chapters" aria-labelledby="chapters-heading">
-          <div class="section-top"><div><span class="mini-label">READ &amp; EXPLORE / 06</span><h2 id="chapters-heading">墙体章节</h2></div><p>从整体认识，走向构造细节</p></div>
-          <div class="chapter-grid">
-            <a class="chapter-card" href="/tcugz/curriculum/basics/wall/index.html"><svg class="chapter-sketch" aria-hidden="true"><use href="#wall-overview" /></svg><div class="chapter-copy"><div class="chapter-meta"><span>01 / CHAPTER</span><span class="chapter-status is-readable">可阅读</span></div><h3>墙体概述</h3><p>建立对墙体功能与基本构造的整体认识</p></div><span class="chapter-arrow" aria-hidden="true">↗</span></a>
-            <a class="chapter-card" href="/tcugz/curriculum/basics/wall/wall-role.html"><svg class="chapter-sketch" aria-hidden="true"><use href="#wall-role" /></svg><div class="chapter-copy"><div class="chapter-meta"><span>02 / CHAPTER</span><span class="chapter-status">暂无内容</span></div><h3>墙体在建筑中的作用</h3><p>理解承重、围护与空间分隔三大功能</p></div><span class="chapter-arrow" aria-hidden="true">↗</span></a>
-            <a class="chapter-card" href="/tcugz/curriculum/basics/wall/wall-types.html"><svg class="chapter-sketch" aria-hidden="true"><use href="#wall-types" /></svg><div class="chapter-copy"><div class="chapter-meta"><span>03 / CHAPTER</span><span class="chapter-status">暂无内容</span></div><h3>墙体的类型</h3><p>按受力、位置与材料认识不同墙体</p></div><span class="chapter-arrow" aria-hidden="true">↗</span></a>
-            <a class="chapter-card" href="/tcugz/curriculum/basics/wall/wall-masonry.html"><svg class="chapter-sketch" aria-hidden="true"><use href="#wall-masonry" /></svg><div class="chapter-copy"><div class="chapter-meta"><span>04 / CHAPTER</span><span class="chapter-status">暂无内容</span></div><h3>砌体结构</h3><p>认识砖砌体、砌块墙与构造柱圈梁</p></div><span class="chapter-arrow" aria-hidden="true">↗</span></a>
-            <a class="chapter-card" href="/tcugz/curriculum/basics/wall/wall-partition.html"><svg class="chapter-sketch" aria-hidden="true"><use href="#wall-partition" /></svg><div class="chapter-copy"><div class="chapter-meta"><span>05 / CHAPTER</span><span class="chapter-status is-readable">可阅读</span></div><h3>隔墙</h3><p>了解非承重隔墙的类型与构造做法</p></div><span class="chapter-arrow" aria-hidden="true">↗</span></a>
-            <a class="chapter-card" href="/tcugz/curriculum/basics/wall/wall-design-requirements.html"><svg class="chapter-sketch" aria-hidden="true"><use href="#wall-performance" /></svg><div class="chapter-copy"><div class="chapter-meta"><span>06 / CHAPTER</span><span class="chapter-status is-readable">可阅读</span></div><h3>墙体的设计要求</h3><p>串联结构、保温、防水、隔声与防火要求</p></div><span class="chapter-arrow" aria-hidden="true">↗</span></a>
+          <div class="section-top"><div><span class="mini-label">READ &amp; EXPLORE</span><div class="directory-section-title"><h2 id="chapters-heading">墙体章节</h2><span class="directory-section-count">08<span>节</span></span></div></div><p>从整体认识，走向构造细节</p></div>
+          <div class="chapter-grid directory-grid">
+            <a class="chapter-card directory-card" href="/tcugz/lesson/basics/wall/index.html">
+              <div class="chapter-card-top directory-card-top"><span class="chapter-number directory-card-number">01</span><span class="directory-card-kicker">学习小节</span></div>
+              <h3 class="directory-card-title">墙体概述</h3>
+              <p class="directory-card-description">从一片墙的承重、围护与分隔任务出发，梳理材料、连接和剖面层次，建立阅读墙体构造的整体顺序。</p>
+              <div class="directory-card-tags"><span>墙体任务</span><span>剖面层次</span><span>阅读顺序</span></div>
+              <span class="directory-card-footer"><span>开始阅读</span><span class="directory-card-arrow" aria-hidden="true">→</span></span>
+            </a>
+            <a class="chapter-card directory-card" href="/tcugz/lesson/basics/wall/wall-role.html">
+              <div class="chapter-card-top directory-card-top"><span class="chapter-number directory-card-number">02</span><span class="directory-card-kicker">学习小节</span></div>
+              <h3 class="directory-card-title">墙体在建筑中的作用</h3>
+              <p class="directory-card-description">沿楼板到基础的传力路径判断墙体作用，再比较外墙的环境边界与隔墙的空间边界，分清三种任务的联系。</p>
+              <div class="directory-card-tags"><span>承重传力</span><span>围护边界</span><span>空间分隔</span></div>
+              <span class="directory-card-footer"><span>开始阅读</span><span class="directory-card-arrow" aria-hidden="true">→</span></span>
+            </a>
+            <a class="chapter-card directory-card" href="/tcugz/lesson/basics/wall/wall-types.html">
+              <div class="chapter-card-top directory-card-top"><span class="chapter-number directory-card-number">03</span><span class="directory-card-kicker">学习小节</span></div>
+              <h3 class="directory-card-title">墙体的类型</h3>
+              <p class="directory-card-description">分别按位置、结构角色、材料和施工方法认识墙体，学会把多个分类维度组合起来描述具体做法。</p>
+              <div class="directory-card-tags"><span>位置与方向</span><span>结构角色</span><span>材料与施工</span></div>
+              <span class="directory-card-footer"><span>开始阅读</span><span class="directory-card-arrow" aria-hidden="true">→</span></span>
+            </a>
+            <a class="chapter-card directory-card" href="/tcugz/lesson/basics/wall/wall-masonry.html">
+              <div class="chapter-card-top directory-card-top"><span class="chapter-number directory-card-number">04</span><span class="directory-card-kicker">学习小节</span></div>
+              <h3 class="directory-card-title">砌体结构</h3>
+              <p class="directory-card-description">认识块材、砂浆与组砌怎样共同工作，结合承重布置、排块尺度和拉结措施理解砌体的稳定与整体性。</p>
+              <div class="directory-card-tags"><span>块材与砂浆</span><span>组砌与排块</span><span>整体拉结</span></div>
+              <span class="directory-card-footer"><span>开始阅读</span><span class="directory-card-arrow" aria-hidden="true">→</span></span>
+            </a>
+            <a class="chapter-card directory-card" href="/tcugz/lesson/basics/wall/wall-partition.html">
+              <div class="chapter-card-top directory-card-top"><span class="chapter-number directory-card-number">05</span><span class="directory-card-kicker">学习小节</span></div>
+              <h3 class="directory-card-title">隔墙</h3>
+              <p class="directory-card-description">比较块材、轻骨架与条板三类隔墙，沿支承、连接和接缝检查稳定、隔声、防火与变形协调。</p>
+              <div class="directory-card-tags"><span>块材隔墙</span><span>轻骨架隔墙</span><span>条板连接</span></div>
+              <span class="directory-card-footer"><span>开始阅读</span><span class="directory-card-arrow" aria-hidden="true">→</span></span>
+            </a>
+            <a class="chapter-card directory-card" href="/tcugz/lesson/basics/wall/wall-design-requirements.html">
+              <div class="chapter-card-top directory-card-top"><span class="chapter-number directory-card-number">06</span><span class="directory-card-kicker">学习小节</span></div>
+              <h3 class="directory-card-title">墙体的设计要求</h3>
+              <p class="directory-card-description">从安全、保温、防潮、隔声和防火要求确定墙体层次，在洞口、转角与墙脚检查性能边界的连续性。</p>
+              <div class="directory-card-tags"><span>承载与稳定</span><span>热工与结露</span><span>水声火边界</span></div>
+              <span class="directory-card-footer"><span>开始阅读</span><span class="directory-card-arrow" aria-hidden="true">→</span></span>
+            </a>
+            <a class="chapter-card directory-card" href="/tcugz/lesson/basics/wall/wall-details.html">
+              <div class="chapter-card-top directory-card-top"><span class="chapter-number directory-card-number">07</span><span class="directory-card-kicker">学习小节</span></div>
+              <h3 class="directory-card-title">墙体细部构造</h3>
+              <p class="directory-card-description">沿墙脚、洞口和墙顶逐处读节点，认识防潮层、散水、过梁与圈梁，追踪排水、连接和施工顺序。</p>
+              <div class="directory-card-tags"><span>墙脚防潮</span><span>洞口过梁</span><span>圈梁构造柱</span></div>
+              <span class="directory-card-footer"><span>开始阅读</span><span class="directory-card-arrow" aria-hidden="true">→</span></span>
+            </a>
+            <a class="chapter-card directory-card" href="/tcugz/lesson/basics/wall/wall-finishes.html">
+              <div class="chapter-card-top directory-card-top"><span class="chapter-number directory-card-number">08</span><span class="directory-card-kicker">学习小节</span></div>
+              <h3 class="directory-card-title">墙面装修</h3>
+              <p class="directory-card-description">比较抹灰、涂料、粘贴与机械连接饰面，梳理基层、支承层和面层的职责，处理室内外接缝与收口。</p>
+              <div class="directory-card-tags"><span>基层与面层</span><span>抹灰与涂料</span><span>饰面连接</span></div>
+              <span class="directory-card-footer"><span>开始阅读</span><span class="directory-card-arrow" aria-hidden="true">→</span></span>
+            </a>
           </div>
-          <div class="section-note"><span>已开放：墙体概述、隔墙、墙体的设计要求。</span><span>其余章节可进入查看内容状态</span></div>
+          <div class="section-note"><span>8 节正文已开放，涵盖墙体作用、砌体、隔墙、细部与装修。</span><span>结合构造原理与节点模型理解连接做法</span></div>
         </section>
       </div>
     </main>
   </div>
+  <script type="module" src="/tcugz/styles/directory-motion-entry.js"></script>
 </body>
 </html>
