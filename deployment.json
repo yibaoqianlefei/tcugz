@@ -1,6 +1,7 @@
 {
-  "sourceCommit": "8ebc3455388553cd8484ffc18a04c37b526689b9",
+  "sourceCommit": "4727c1007c8c0da91a7d2195e88e230d2a41b87e",
   "sourceBranch": "ui-improvements",
-  "publishedAt": "2026-10-15T13:24:30.8272412Z",
-  "base": "/tcugz/"
+  "publishedAt": "2026-10-17T11:16:19.5060128Z",
+  "base": "/tcugz/",
+  "nodeCount": 66
 }
