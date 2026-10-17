@@ -120,19 +120,25 @@ export function initHomepageInteractions(root: HTMLElement, options: { spaAnchor
   const heroPrev = find<HTMLButtonElement>('#hero-prev');
   const heroNext = find<HTMLButtonElement>('#hero-next');
   const heroAnnouncement = find<HTMLElement>('#hero-announcement');
+  const heroTemplate = heroSlides[0];
+  const heroTemplateCopy = heroTemplate.querySelector<HTMLElement>('.hero-copy')!;
+  const heroTemplateVisual = heroTemplate.querySelector<HTMLElement>('.hero-right')!;
   let heroIndex = 0;
   let touchStart: { x: number; y: number } | null = null;
   let heroResizeFrame = 0;
 
   function sizeHero() {
-    const slide = heroSlides[heroIndex];
-    const height = slide.offsetHeight;
+    // The first preview owns the frame. Switching or loading another preview
+    // must not move the page, its artwork, or the edge controls vertically.
+    const height = heroTemplate.getBoundingClientRect().height;
     if (!height) return;
     heroViewport.style.height = `${height}px`;
+    heroTrack.style.setProperty('--hero-slide-height', `${height}px`);
+    heroTrack.style.setProperty('--hero-copy-height', `${heroTemplateCopy.getBoundingClientRect().height}px`);
+    heroTrack.style.setProperty('--hero-visual-height', `${heroTemplateVisual.getBoundingClientRect().height}px`);
     // Keep edge controls beside the preview when the layout stacks on mobile.
-    const visual = slide.querySelector<HTMLElement>('.hero-right')!;
-    const stacked = visual.offsetTop > slide.querySelector<HTMLElement>('.hero-copy')!.offsetTop + 40;
-    const stage = visual.querySelector<HTMLElement>('.node-model-stage, .savoye-model, .training-model-stage') ?? visual;
+    const stacked = heroTemplateVisual.offsetTop > heroTemplateCopy.offsetTop + 40;
+    const stage = heroTemplateVisual.querySelector<HTMLElement>('.node-model-stage') ?? heroTemplateVisual;
     const stageRect = stage.getBoundingClientRect();
     const center = stacked ? stageRect.top - heroViewport.getBoundingClientRect().top + stageRect.height / 2 : height / 2;
     root.style.setProperty('--hero-control-y', `${center}px`);
@@ -142,7 +148,7 @@ export function initHomepageInteractions(root: HTMLElement, options: { spaAnchor
     cancelAnimationFrame(heroResizeFrame);
     heroResizeFrame = requestAnimationFrame(sizeHero);
   });
-  heroSlides.forEach(slide => heroResize.observe(slide));
+  [heroTemplate, heroTemplateCopy, heroTemplateVisual].forEach(element => heroResize.observe(element));
   cleanups.push(() => { heroResize.disconnect(); cancelAnimationFrame(heroResizeFrame); });
 
   function showHero(index: number) {

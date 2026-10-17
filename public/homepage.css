@@ -82,10 +82,13 @@ body[data-preview-page] { margin: 0; background: var(--ui-canvas); }
 /* Three interactive highlights share the same title and action hierarchy. */
 .app .hero-carousel { position: relative; border-bottom: 1px solid var(--ui-line); }
 .app .hero-mobile-hint { display: none; }
-.app .hero-viewport { overflow: hidden; transition: height 300ms ease; }
+.app .hero-viewport { overflow: hidden; }
 .app .hero-track { display: flex; align-items: flex-start; transition: transform 480ms cubic-bezier(.22,.61,.36,1); will-change: transform; }
 .app .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 1.08fr); gap: clamp(32px, 3.2vw, 56px); }
 .app .hero-slide { flex: 0 0 100%; min-width: 0; min-height: 620px; align-items: center; padding: 48px 8px; }
+.app .hero-slide:not(:first-child) { height: var(--hero-slide-height, auto); min-height: 0; }
+.app .hero-slide:not(:first-child) .hero-copy { height: var(--hero-copy-height, auto); }
+.app .hero-slide:not(:first-child) .hero-right { height: var(--hero-visual-height, auto); min-height: 0; }
 .app .hero-copy { min-width: 0; }
 .app .eyebrow { display: flex; align-items: center; gap: 12px; color: var(--ui-blue); font-size: 12px; letter-spacing: .12em; font-weight: 700; }
 .app .eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--ui-blue); }
@@ -141,6 +144,7 @@ body[data-preview-page] { margin: 0; background: var(--ui-canvas); }
   .app .hero-slide { min-height: 0; padding: 48px 12px; align-content: start; }
   .app .hero-headline { font-size: clamp(36px, 4.2vw, 48px); }
   .app .hero-right { width: 100%; max-width: 620px; justify-self: center; }
+  .app .hero-slide:not(:first-child) .hero-actions { margin-top: auto; flex-shrink: 0; }
 }
 @media (max-width: 1200px) {
   .app .module-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -192,6 +196,7 @@ body[data-preview-page] { margin: 0; background: var(--ui-canvas); }
   .app .module-grid { grid-template-columns: 1fr; }
   .app .hero-actions { width: 100%; }
   .app .hero-actions .btn { flex: 1 1 135px; padding-left: 12px; padding-right: 12px; }
+  .app .hero-slide:not(:first-child) .hero-actions .btn { flex-basis: auto; }
   .app .section-note { display: block; }
   .app .section-note a { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; }
   .app .explore { grid-template-columns: 1fr; gap: 0; }
@@ -219,12 +224,12 @@ body[data-preview-page] { margin: 0; background: var(--ui-canvas); }
 .app .hero-lead-heading { display: block; color: var(--ui-ink); font-size: clamp(22px, 4.4cqw, 28px); font-weight: 500; }
 .app .hero-lead-detail { display: block; margin-top: 12px; color: #4d5972; font-size: clamp(20px, 3.8cqw, 24px); line-height: 1.7; }
 .app .hero-copy .hero-actions { margin-top: 80px; }
-.app .hero-node-slide .hero-lead-heading { font-size: clamp(24px, 5cqw, 32px); }
-.app .hero-node-slide .hero-lead-detail { font-size: clamp(22px, 4.2cqw, 26px); text-wrap: balance; }
+.app .feature-slide .hero-lead-heading { font-size: clamp(24px, 5cqw, 32px); }
+.app .feature-slide .hero-lead-detail { font-size: clamp(22px, 4.2cqw, 26px); text-wrap: balance; }
 .app .hero-node-slide .hero-lead-detail > span { display: inline-block; }
 @media (min-width: 1101px) {
-  .app .hero-node-slide .hero-copy { position: relative; align-self: stretch; justify-content: center; padding-bottom: 124px; }
-  .app .hero-node-slide .hero-actions { position: absolute; left: 0; bottom: 30px; margin-top: 0; }
+  .app .feature-slide .hero-copy { position: relative; align-self: stretch; justify-content: center; padding-bottom: 124px; }
+  .app .feature-slide .hero-actions { position: absolute; left: 0; bottom: 30px; margin-top: 0; }
 }
 .app .hero-actions .btn-secondary { font-weight: 500; }
 .app .curriculum-section .mini-label { color: var(--ui-blue); }
@@ -236,6 +241,6 @@ body[data-preview-page] { margin: 0; background: var(--ui-canvas); }
   .app .hero-copy .hero-actions { margin-top: 36px; }
   .app .hero-lead-heading { font-size: 18px; }
   .app .hero-lead-detail { margin-top: 10px; font-size: 16px; }
-  .app .hero-node-slide .hero-lead-heading { font-size: 20px; }
-  .app .hero-node-slide .hero-lead-detail { font-size: 18px; }
+  .app .feature-slide .hero-lead-heading { font-size: 20px; }
+  .app .feature-slide .hero-lead-detail { font-size: 18px; }
 }

@@ -10,6 +10,7 @@ import { getNodeDefinition } from '../data/nodeDefinitions';
 import { useCompanionStore } from '../store/companionStore';
 import { collectOutlineSources, createFeatureEdges, separateOpaqueSurfaceDepth } from '../utils/modelOutlines';
 import { fitHomepageModelOrbit } from '../utils/homepageModelFit';
+import { getNodeOrbitRotationSpeed } from '../utils/nodeRotation';
 
 const featuredNodeId = 'water-storage-eaves-drainage-01';
 const featuredNodeDefinition = getNodeDefinition(featuredNodeId);
@@ -23,7 +24,6 @@ const featuredNode = {
   outlineExcluded: featuredNodeDefinition.model.outlineExcluded,
 };
 
-const AUTO_ROTATE_SPEED = 0.55;
 // Start above the open gutter so its outlet and the roof basin are visible together.
 const INITIAL_VIEW_DIRECTION: [number, number, number] = [-0.55, 0.33, 1];
 
@@ -35,7 +35,7 @@ function MotionTiming({ controls }: { controls: React.RefObject<OrbitControlsImp
     // three-stdlib OrbitControls assumes 60 updates/second. Account for
     // elapsed time before Drei updates it, without jumping after a hidden tab.
     const frameUnits = Math.min(delta, 1 / 15) * 60;
-    orbit.autoRotateSpeed = AUTO_ROTATE_SPEED * frameUnits;
+    orbit.autoRotateSpeed = getNodeOrbitRotationSpeed(delta);
     orbit.dampingFactor = 1 - Math.pow(1 - 0.08, frameUnits);
   }, -2);
   return null;
@@ -254,7 +254,7 @@ function NodePreview({ visual }: { visual: HTMLElement }) {
               </Suspense>
             </ModelErrorBoundary>
             <MotionTiming controls={controls} />
-            <OrbitControls ref={registerControls} makeDefault enablePan={false} enableZoom={false} autoRotate={running && rotating} autoRotateSpeed={AUTO_ROTATE_SPEED} onStart={pauseRotation} onEnd={resumeRotation} />
+            <OrbitControls ref={registerControls} makeDefault enablePan={false} enableZoom={false} autoRotate={running && rotating} autoRotateSpeed={getNodeOrbitRotationSpeed(1 / 60)} onStart={pauseRotation} onEnd={resumeRotation} />
           </Canvas>
       </div>}
       {(!ready || failed || !webgl) && <span className="node-model-status" role="status">{failed || !webgl ? '模型暂不可用，可打开节点查看' : '模型加载中…'}</span>}

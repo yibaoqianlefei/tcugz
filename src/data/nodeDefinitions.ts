@@ -65,6 +65,13 @@ import { cantileverCanopySlabLayers, getLayerInfo as getCantileverCanopySlabLaye
 import { cantileverCanopyRaisedLayers, getLayerInfo as getCantileverCanopyRaisedLayer } from "./cantileverCanopyRaisedLayers";
 import { freeFallWaterproofEavesLayers, getLayerInfo as getFreeFallWaterproofEavesLayer } from "./freeFallWaterproofEavesLayers";
 import { freeFallRingBeamEavesLayers, getLayerInfo as getFreeFallRingBeamEavesLayer } from "./freeFallRingBeamEavesLayers";
+import { straightRainwaterOutlet65Layers, getLayerInfo as getStraightRainwaterOutlet65Layer } from "./straightRainwaterOutlet65Layers";
+import { straightRainwaterOutletCastIronLayers, getLayerInfo as getStraightRainwaterOutletCastIronLayer } from "./straightRainwaterOutletCastIronLayers";
+import { slabFoundationLayers, beamSlabFoundationLayers, boxFoundationLayers, columnCrossFoundationLayers, columnStripFoundationLayers, foundationLayerConfig } from "./combinedFoundationLayers";
+import { coatingParapetFlashingLayers, getLayerInfo as getCoatingParapetFlashingLayer } from "./coatingParapetFlashingLayers";
+import { timberTrussLayers, reinforcedConcreteTrussLayers, steelTimberTrussLayers, roofTrussLayerConfig } from "./roofTrussLayers";
+import { passiveSolarWallLayers, getLayerInfo as getPassiveSolarWallLayer } from "./passiveSolarWallLayers";
+import { windowWallGapSealingLayers, getLayerInfo as getWindowWallGapSealingLayer } from "./windowWallGapSealingLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
@@ -235,6 +242,127 @@ const STONE_GROUPS: Record<string, string> = {
 
 export const nodeDefinitions: NodeDefinition[] = [
   /* ── Roof nodes ─────────────────────────────────────────── */
+  {
+    id: "roof-truss-timber-01",
+    title: "屋架形式（木屋架）",
+    description: "对照图示跨度6–12 m的木屋架形式，观察弦杆、腹杆与支座的组合，支持整体点选、旋转观察与图纸对照。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/roof-truss-timber-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/roof-trusses/timber.glb"),
+      scale: 2.5,
+      noAnimation: true,
+    },
+    diagram: {
+      path: assetPath("images/roof/roof-truss-timber-diagram.png"),
+      subtitle: "屋架形式 · 木屋架",
+    },
+    layerConfig: roofTrussLayerConfig(timberTrussLayers),
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-slope" }],
+  },
+  {
+    id: "roof-truss-reinforced-concrete-01",
+    title: "屋架形式（钢筋混凝土屋架）",
+    description: "对照图示跨度15–24 m的屋架形式，观察上弦、下弦、腹杆和两端支座，支持整体点选、旋转观察与图纸对照。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/roof-truss-reinforced-concrete-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/roof-trusses/reinforced-concrete.glb"),
+      scale: 2.5,
+      noAnimation: true,
+    },
+    diagram: {
+      path: assetPath("images/roof/roof-truss-reinforced-concrete-diagram.png"),
+      subtitle: "屋架形式 · 钢筋混凝土屋架",
+    },
+    layerConfig: roofTrussLayerConfig(reinforcedConcreteTrussLayers),
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-slope" }],
+  },
+  {
+    id: "roof-truss-steel-timber-01",
+    title: "屋架形式（钢木屋架）",
+    description: "对照图示跨度12–18 m的钢木屋架形式，观察不同材质杆件的组合，支持整体点选、旋转观察与图纸对照。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/roof-truss-steel-timber-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/roof-trusses/steel-timber.glb"),
+      scale: 2.5,
+      noAnimation: true,
+    },
+    diagram: {
+      path: assetPath("images/roof/roof-truss-steel-timber-diagram.png"),
+      subtitle: "屋架形式 · 钢木屋架",
+    },
+    layerConfig: roofTrussLayerConfig(steelTimberTrussLayers),
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-slope" }],
+  },
+  {
+    id: "coating-parapet-flashing-01",
+    title: "涂膜防水屋面的女儿墙泛水",
+    description: "观察涂膜防水层、附加卷材在女儿墙根部的转折，以及压条、水泥钉和油膏嵌缝的连接，支持分解动画、构件点选与剖面对照。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/coating-parapet-flashing-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/coating-parapet-flashing/coating-parapet-flashing.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/coating-parapet-flashing-diagram.png"),
+      subtitle: "涂膜防水屋面 · 女儿墙泛水",
+    },
+    layerConfig: {
+      layers: coatingParapetFlashingLayers,
+      getLayerInfo: getCoatingParapetFlashingLayer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
+  },
+  {
+    id: "straight-rainwater-outlet-65-01",
+    title: "直管式水落口（65 型水落口）",
+    description: "观察 65 型铸铁进水罩、定型铸铁水落口与屋面防水、砂浆填嵌及油膏嵌缝的连接，支持分解动画、构件选择和剖面对照。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/straight-rainwater-outlet-65-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/straight-rainwater-outlet/type-65.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/roof/straight-rainwater-outlet-65-diagram.png"),
+      subtitle: "直管式水落口 · 65 型水落口",
+    },
+    layerConfig: {
+      layers: straightRainwaterOutlet65Layers,
+      getLayerInfo: getStraightRainwaterOutlet65Layer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
+  },
+  {
+    id: "straight-rainwater-outlet-cast-iron-01",
+    title: "直管式水落口（铸铁水落口）",
+    description: "观察镀锌钢丝球、铸铁水落口与屋面防水卷材、砂浆填嵌及油膏嵌缝的连接，支持分解动画、构件选择和剖面对照。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/straight-rainwater-outlet-cast-iron-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/straight-rainwater-outlet/cast-iron.glb"),
+      scale: 2.5,
+      outlineExcluded: ["镀锌钢丝球"],
+    },
+    diagram: {
+      path: assetPath("images/roof/straight-rainwater-outlet-cast-iron-diagram.png"),
+      subtitle: "直管式水落口 · 铸铁水落口",
+    },
+    layerConfig: {
+      layers: straightRainwaterOutletCastIronLayers,
+      getLayerInfo: getStraightRainwaterOutletCastIronLayer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
+  },
   {
     id: "free-fall-ring-beam-eaves-01",
     title: "自由落水檐口（圈梁带挑檐板）",
@@ -814,6 +942,48 @@ export const nodeDefinitions: NodeDefinition[] = [
   },
 
   /* ── Wall nodes ─────────────────────────────────────────── */
+  {
+    id: "window-wall-gap-sealing-01",
+    title: "封堵窗墙间缝隙做法",
+    description: "对照窗框与外墙之间的7 mm安装缝，观察袋装矿棉、弹性密封胶与两侧木条的位置，支持分解动画、构件点选与剖面对照。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/window-wall-gap-sealing-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/wall/window-wall-gap-sealing/window-wall-gap-sealing.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/wall/window-wall-gap-sealing-diagram.png"),
+      subtitle: "窗墙安装缝 · 图示缝宽7 mm",
+    },
+    layerConfig: {
+      layers: windowWallGapSealingLayers,
+      getLayerInfo: getWindowWallGapSealingLayer,
+    },
+    textbookLinks: [{ moduleId: "door-window", chapterId: "window-door-design" }],
+  },
+  {
+    id: "passive-solar-wall-01",
+    title: "被动式太阳房墙体构造",
+    description: "对照玻璃、空气间层、薄钢板、矿棉保温层与墙体的层次，观察上下孔口及室内抹灰的连接，支持分解动画、构件点选与剖面对照。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/passive-solar-wall-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/wall/passive-solar-wall/passive-solar-wall.glb"),
+      scale: 2.5,
+    },
+    diagram: {
+      path: assetPath("images/wall/passive-solar-wall-diagram.png"),
+      subtitle: "被动式太阳房 · 墙体构造",
+    },
+    layerConfig: {
+      layers: passiveSolarWallLayers,
+      getLayerInfo: getPassiveSolarWallLayer,
+    },
+    textbookLinks: [{ moduleId: "wall", chapterId: "wall-design-requirements" }],
+  },
   {
     id: "construction-column-01",
     title: "构造柱",
@@ -1704,6 +1874,66 @@ export const nodeDefinitions: NodeDefinition[] = [
     ],
   },
 
+  {
+    id: "combined-foundation-slab-01",
+    title: "联合基础（板式基础）",
+    description: "转动平板式筏板模型，观察多根柱与连续底板的连接，支持构件点选和图纸对照。",
+    category: "基础",
+    thumbnail: assetPath("images/foundation/combined-foundation-slab-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/foundation/combined-foundation/slab.glb"), scale: 2.5, noAnimation: true },
+    diagram: { path: assetPath("images/foundation/combined-foundation-slab-diagram.png"), subtitle: "联合基础 · 板式基础" },
+    layerConfig: foundationLayerConfig(slabFoundationLayers),
+    textbookLinks: [{ moduleId: "foundation", chapterId: "foundation-types" }],
+  },
+  {
+    id: "combined-foundation-beam-slab-01",
+    title: "联合基础（梁板式基础）",
+    description: "对照柱、基础梁与底板的空间关系，观察梁格布置及柱脚连接，支持构件点选和图纸对照。",
+    category: "基础",
+    thumbnail: assetPath("images/foundation/combined-foundation-beam-slab-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/foundation/combined-foundation/beam-slab.glb"), scale: 2.5, noAnimation: true },
+    diagram: { path: assetPath("images/foundation/combined-foundation-beam-slab-diagram.png"), subtitle: "联合基础 · 梁板式基础" },
+    layerConfig: foundationLayerConfig(beamSlabFoundationLayers),
+    textbookLinks: [{ moduleId: "foundation", chapterId: "foundation-types" }],
+  },
+  {
+    id: "combined-foundation-box-01",
+    title: "联合基础（箱形基础）",
+    description: "观察底板、内外墙、顶板及梁形成的箱体，以及上部柱的连接，支持构件点选和图纸对照。",
+    category: "基础",
+    thumbnail: assetPath("images/foundation/combined-foundation-box-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/foundation/combined-foundation/box.glb"), scale: 2.5, noAnimation: true },
+    diagram: { path: assetPath("images/foundation/combined-foundation-box-diagram.png"), subtitle: "联合基础 · 箱形基础" },
+    layerConfig: foundationLayerConfig(boxFoundationLayers),
+    textbookLinks: [{ moduleId: "foundation", chapterId: "foundation-underground" }],
+  },
+  {
+    id: "combined-foundation-column-cross-01",
+    title: "联合基础（柱下十字交叉基础）",
+    description: "观察纵横条基相交形成的基础网格及交叉处的柱位，支持构件点选和图纸对照。",
+    category: "基础",
+    thumbnail: assetPath("images/foundation/combined-foundation-column-cross-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/foundation/combined-foundation/column-cross.glb"), scale: 2.5, noAnimation: true },
+    diagram: { path: assetPath("images/foundation/combined-foundation-column-cross-diagram.png"), subtitle: "联合基础 · 柱下十字交叉基础" },
+    layerConfig: foundationLayerConfig(columnCrossFoundationLayers),
+    textbookLinks: [{ moduleId: "foundation", chapterId: "foundation-types" }],
+  },
+  {
+    id: "combined-foundation-column-strip-01",
+    title: "联合基础（柱下条形基础）",
+    description: "观察沿柱列延伸的平行条基及近端连接梁，支持构件点选和图纸对照。",
+    category: "基础",
+    thumbnail: assetPath("images/foundation/combined-foundation-column-strip-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/foundation/combined-foundation/column-strip.glb"), scale: 2.5, noAnimation: true },
+    diagram: { path: assetPath("images/foundation/combined-foundation-column-strip-diagram.png"), subtitle: "联合基础 · 柱下条形基础" },
+    layerConfig: foundationLayerConfig(columnStripFoundationLayers),
+    textbookLinks: [{ moduleId: "foundation", chapterId: "foundation-types" }],
+  },
   {
     id: "independent-foundation-01",
     title: "独立式基础三种形式",

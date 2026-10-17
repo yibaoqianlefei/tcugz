@@ -5,8 +5,11 @@ import * as THREE from 'three';
 
 // Append a local box as an animated component's child. Existing binary data,
 // object indices, materials and animation channels remain unchanged.
-const [sourcePath, targetPath, componentName] = process.argv.slice(2);
-assert(sourcePath && targetPath && componentName, 'Usage: node scripts/add-component-hitbox.mjs <source.glb> <target.glb> <componentName>');
+const [sourcePath, targetPath, componentName, ...minimumSizeArgs] = process.argv.slice(2);
+assert(sourcePath && targetPath && componentName, 'Usage: node scripts/add-component-hitbox.mjs <source.glb> <target.glb> <componentName> [minWidth minHeight minDepth]');
+assert(minimumSizeArgs.length === 0 || minimumSizeArgs.length === 3, 'Provide all three minimum dimensions, in model units');
+const minimumSize = minimumSizeArgs.length ? minimumSizeArgs.map(Number) : [0, .06, 0];
+assert(minimumSize.every(value => Number.isFinite(value) && value >= 0), 'Minimum dimensions must be finite non-negative numbers');
 assert(resolve(sourcePath).toLowerCase() !== resolve(targetPath).toLowerCase(), 'Write a separate deployment asset, preserving the source');
 const source = await readFile(sourcePath);
 assert.equal(source.readUInt32LE(0), 0x46546c67);
@@ -33,7 +36,7 @@ for (const primitive of doc.meshes[component.mesh].primitives) {
   bounds.expandByPoint(new THREE.Vector3(...position.max));
 }
 const size = bounds.getSize(new THREE.Vector3()).addScalar(.016);
-size.y = Math.max(size.y, .06); // A thin horizontal steel net needs depth for picking.
+size.max(new THREE.Vector3(...minimumSize));
 const center = bounds.getCenter(new THREE.Vector3());
 const box = new THREE.BoxGeometry(size.x, size.y, size.z);
 const chunks = [originalBin];

@@ -64,7 +64,7 @@ try {
   await page.goto(`${base}/#/tools`);
   await page.locator('.site-empty-state a').click();
   await page.getByRole('heading', { level: 1, name: '构造节点', exact: true }).waitFor();
-  assert.equal(await page.locator('.library-node-card').count(), 53, 'empty-state action opens complete node catalog');
+  assert.equal(await page.locator('.library-node-card').count(), 66, 'empty-state action opens complete node catalog');
 
   // Short embedded documents must not reserve the mobile dock twice.
   await page.setViewportSize({ width: 700, height: 1366 });

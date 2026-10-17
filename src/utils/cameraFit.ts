@@ -19,6 +19,7 @@
  */
 
 import * as THREE from "three";
+import { isHitboxName } from "./nameUtils";
 
 /* ═══════════════════════════════════════════════════════════════
    Fit constants
@@ -48,6 +49,7 @@ const _fitV2 = new THREE.Vector3();
  *
  * Excludes:
  *   - proxy meshes (`userData._isProxy`)
+ *   - named component hitboxes (`*_hitbox`)
  *   - edge LineSegments (not Meshes, skipped by the Mesh guard)
  *   - DEV debug markers (`__dev_pivot_marker`, `__dev_geo_marker`)
  *
@@ -63,6 +65,7 @@ export function computeVisibleGeometryWorldBox(root: THREE.Object3D): THREE.Box3
   root.traverse((child) => {
     if (!(child instanceof THREE.Mesh)) return;
     if (child.userData._isProxy) return;
+    if (isHitboxName(child.name)) return;
     if (child.name === "__dev_pivot_marker" || child.name === "__dev_geo_marker") return;
     child.updateWorldMatrix(true, false);
     const geo = child.geometry;

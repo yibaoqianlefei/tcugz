@@ -100,19 +100,23 @@
 
 /* 02 — live architectural case preview; shared styles in components/cases. */
 .case-workbench { position: relative; background: var(--ui-soft); }
-.app .case-preview-root .case-experience-showcase .savoye-model { height: 410px; min-height: 360px; }
-.app .case-preview-root .case-experience-showcase .case-model-placeholder { min-height: 360px; }
+/* Fit both interactive previews inside the first slide's measured stage. */
+.app .hero-slide:not(:first-child) .showcase-panel { height: 100%; min-height: 0; }
+.app .case-preview-root { min-height: 0; }
+.app .case-preview-root .case-experience-showcase .savoye-model { height: 100%; min-height: 0; }
+.app .case-preview-root .case-experience-showcase .case-model-placeholder { height: 100%; min-height: 0; }
 
 /* 03 — a model question shared with the current training bank. */
 .practice-showcase { position: relative; background: var(--ui-soft); }
-.practice-preview-root { flex: 1; min-width: 0; display: flex; }
-.practice-preview { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.practice-preview-root { flex: 1; min-width: 0; min-height: 0; display: flex; }
+.practice-preview { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
 .practice-preview .showcase-top a { font-size: 13px; letter-spacing: .02em; white-space: nowrap; }
 .practice-preview-placeholder { flex: 1; min-height: 280px; display: flex; gap: 15px; flex-direction: column; align-items: center; justify-content: center; color: var(--ui-muted); font-size: 13px; }
-.practice-preview-root:empty { min-height: 540px; }
+.practice-preview-root:empty { min-height: 0; }
 .practice-preview-root:empty::before { content: '正在准备互动训练…'; margin: auto; color: var(--ui-muted); font-size: 13px; }
-.practice-preview-scene { flex: 1; position: relative; display: flex; flex-direction: column; border-bottom: 1px solid var(--ui-line); }
-.practice-preview .training-model-stage { flex: 1; height: clamp(220px, 28vh, 280px); min-height: 220px; }
+.practice-preview-scene { flex: 1; min-height: 140px; position: relative; display: flex; flex-direction: column; border-bottom: 1px solid var(--ui-line); }
+.practice-preview-scene > .practice-preview-placeholder { min-height: 0; }
+.practice-preview .training-model-stage { flex: 1; height: 100%; min-height: 0; }
 .practice-preview .training-model-error { color: var(--ui-blue); font-size: 13px; }
 .practice-preview .training-model-error button { border: 1px solid var(--ui-line); border-radius: 6px; padding: 8px 12px; background: var(--ui-surface); color: var(--ui-blue); cursor: pointer; }
 .practice-preview .training-model-label, .practice-preview .training-fit-button { cursor: pointer; }
@@ -149,7 +153,6 @@
   .practice-preview .showcase-top a { font-size: 12px; }
   .practice-preview-task { padding: 17px 15px 12px; gap: 7px; }
   .practice-preview-task p { max-width: none; }
-  .practice-preview .training-model-stage { height: 300px; }
   .practice-preview-choices, .practice-preview-feedback { margin-left: 15px; margin-right: 15px; }
   .practice-preview-choices button { min-height: 40px; }
   .practice-preview-footer { padding: 13px 15px; }
@@ -206,4 +209,10 @@
   .app .practice-preview-observe, .app .practice-preview-feedback button, .app .practice-preview-footer > div a { min-height: 44px; }
   .app .practice-preview-task p { max-width: none; }
   .app .practice-preview-feedback { padding-top: 12px; padding-bottom: 12px; }
+}
+@media (max-width: 520px) {
+  .app .practice-preview-task { padding: 12px 15px 10px; gap: 6px; }
+  .app .practice-preview-task span { display: none; }
+  .app .practice-preview-task h3 { margin: 0; font-size: 20px; }
+  .app .practice-preview-footer > div { display: none; }
 }

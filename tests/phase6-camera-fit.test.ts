@@ -138,6 +138,11 @@ group("Union box includes all three LayoutRoots, excludes helpers");
   proxy.userData._isProxy = true;
   holder.add(proxy);
 
+  const hitbox = makeMesh(100, 100, 100);
+  hitbox.name = '水泥钉_hitbox';
+  hitbox.position.set(0, 500, 0);
+  holder.add(hitbox);
+
   const edges = new THREE.LineSegments(
     new THREE.EdgesGeometry(new THREE.BoxGeometry(300, 300, 300)),
     new THREE.LineBasicMaterial(),

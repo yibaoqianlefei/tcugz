@@ -1,4 +1,4 @@
-import { useRef, useEffect, Suspense, useState, useCallback, useMemo } from "react";
+import { useRef, useEffect, Suspense, useState, useCallback, useMemo, type RefObject } from "react";
 import { Canvas, useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
@@ -13,6 +13,7 @@ import { computeExplodedPosition } from "../../utils/explodeLayout";
 import type { ResolvedVariantExplodeConfig, ResolvedExplodeComponent } from "../../utils/explodeLayout";
 import { isInteractionAllowed } from "../../utils/interactionGates";
 import { collectOutlineSources, createFeatureEdges, separateOpaqueSurfaceDepth } from "../../utils/modelOutlines";
+import { getNodeAutoRotationAngle, getNodeOrbitRotationSpeed } from "../../utils/nodeRotation";
 
 /* ═══════════════════════════════════════════════════════════════
    Material highlight — original-state cache + dual-channel restore
@@ -90,6 +91,18 @@ function logCameraWrite(source: string, payload: Record<string, unknown>): void 
 }
 
 /* ── Renderer setup ───────────────────────────────────────── */
+function AutoRotationTiming({ controls }: { controls: RefObject<OrbitControlsImpl | null> }) {
+  useFrame((_, delta) => {
+    const orbit = controls.current;
+    if (!orbit) return;
+    // Drei updates OrbitControls at priority -1 without passing elapsed time.
+    // Only adjust automatic motion; keep manual drag sensitivity and damping.
+    // eslint-disable-next-line react-hooks/immutability
+    orbit.autoRotateSpeed = getNodeOrbitRotationSpeed(delta);
+  }, -2);
+  return null;
+}
+
 function RendererSetup({ showShadows }: { showShadows: boolean }) {
   const { gl } = useThree();
   useEffect(() => {
@@ -1016,7 +1029,6 @@ interface ModelEntry { id: string; src: string; scale?: number; label?: string; 
 const EDGE_GAP_RATIO = 0.38;   // wider inter-model spacing
 const EDGE_GAP_MIN = 0.28;     // raised proportionally
 const EDGE_GAP_MAX = 1.00;     // raised proportionally
-const AUTO_ROTATE_SPEED = 0.12; // rad/s — ~52s per full rotation, comfortable for study
 
 function MultiModelGroup({ models, explodeConfigs, knowledgeNamesByVariant, nodeId, onAllReady, autoRotate }: { models: ModelEntry[]; explodeConfigs?: ExplodeVariantConfig[]; knowledgeNamesByVariant?: Record<string, string[]>; nodeId?: string; onAllReady?: () => void; autoRotate?: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
@@ -1301,10 +1313,10 @@ function MultiModelGroup({ models, explodeConfigs, knowledgeNamesByVariant, node
   const diagSampledRef = useRef(new Set<number>());
   useFrame((_, delta) => {
     if (!autoRotateEnabled) return;
-    const dt = Math.min(delta, 0.1);
+    const rotationStep = getNodeAutoRotationAngle(delta);
     rotationPivotRefs.current.forEach((pivot) => {
       pivot.rotation.y = THREE.MathUtils.euclideanModulo(
-        pivot.rotation.y + dt * AUTO_ROTATE_SPEED,
+        pivot.rotation.y + rotationStep,
         Math.PI * 2,
       );
     });
@@ -1534,6 +1546,7 @@ export default function ModelViewer({
   suspendResponsiveFit?: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const controlsRef = useRef<OrbitControlsImpl | null>(null);
   const [containerWidth, setContainerWidth] = useState(0);
 
   // ── Phase 6 Step 2: track when model scene is ready for section binding ──
@@ -1621,6 +1634,7 @@ export default function ModelViewer({
         </Suspense>
         <OrbitControls
           ref={(ctrl) => {
+            controlsRef.current = ctrl;
             _controls = ctrl;
             // DEV diagnostic for the rotation-toggle browser acceptance
             // (mirrors __cameraWrites / __rotDiag / __multiModelDebug).
@@ -1629,7 +1643,7 @@ export default function ModelViewer({
             }
           }}
           autoRotate={!isMulti && autoRotate}
-          autoRotateSpeed={0.6}
+          autoRotateSpeed={getNodeOrbitRotationSpeed(1 / 60)}
           enableDamping dampingFactor={0.08}
           minDistance={1} maxDistance={40}
           maxPolarAngle={Math.PI / 2.2}
@@ -1637,6 +1651,7 @@ export default function ModelViewer({
           onStart={handleControlsStart}
           onEnd={handleControlsEnd}
         />
+        <AutoRotationTiming controls={controlsRef} />
         <CameraTracker
           layoutKey={layoutKey}
           containerWidth={containerWidth}
