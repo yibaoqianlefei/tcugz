@@ -1,0 +1,1 @@
+var e=Math.PI*2/60;function t(t){return Math.max(0,Math.min(t,1/15))*e}function n(e){return t(e)*3600/(Math.PI*2)}export{n,t};
