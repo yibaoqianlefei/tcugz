@@ -1,0 +1,46 @@
+{
+  "round": 3,
+  "audit_type": "中文禁则标点修复后的最终PDF视觉复核",
+  "date": "2026-10-16",
+  "reviewer": "author_foundation_wall",
+  "source_pdf": "建筑构造教材_基础7部分与原理6部分.pdf",
+  "pdf_sha256": "06caa4db3bd41ead6b639b49ef21dc919c44b614f8cddebffe119d2be286270a",
+  "previous_report": "work/audit-round3-visual-001-025.json",
+  "page_scope": [1, 25],
+  "changed_pages_reopened": [4, 6, 7, 8, 10, 12, 14, 17, 18, 19, 23, 25],
+  "method": "对主agent提供的本组12张实际变化页逐张调用view_image(detail=original)重新查看，原图893×1263；重点复查旧行首中文标点、字形、行距、边界、标题、跨页衔接和页脚。本组其余13页此前已逐页original检查，主agent提供的前后PNG字节哈希比较显示其未变化，因此沿用前次视觉结果。本次未使用contact sheet替代逐页检查。",
+  "result": "pass",
+  "closure": [
+    {
+      "id": "R3-VIS-001-025-01",
+      "status": "closed",
+      "evidence": "004页末段、006页压力说明、014页首段、025页框位及立口说明原行首逗号均已留在前行，未造成正文溢出或重叠。其余变化页相应逗号、引号、顿号的折行亦正常。"
+    }
+  ],
+  "pages": [
+    {"page": 4, "status": "pass", "note": "末段逗号位置已修复；组成与影响因素标题、底部文字完整。"},
+    {"page": 6, "status": "pass", "note": "平均压力段逗号回到前行，p=N/A及N/A说明清楚，页末土抗剪段未溢出。"},
+    {"page": 7, "status": "pass", "note": "承载、资料、处理三个小标题与随文完整；禁则调整未改变页末正文。"},
+    {"page": 8, "status": "pass", "note": "分类、材料截面和桩基础段落边界正常，逗号与引号没有孤立行首。"},
+    {"page": 10, "status": "pass", "note": "冻胀周边条件及不均匀沉降排版正常，最后续段仍自然接011。"},
+    {"page": 12, "status": "pass", "note": "墙体章首页和目录目标保持12，标题、导入与分类正文未出现重叠。"},
+    {"page": 14, "status": "pass", "note": "原首段行首逗号已修复，组砌尺寸及圈梁构造柱正文完整。"},
+    {"page": 17, "status": "pass", "note": "热工续文、声火水要求与墙脚细部折行正常，无孤立标题。"},
+    {"page": 18, "status": "pass", "note": "防潮、勒脚散水、洞口防雨文字完整；散水段标点随前文，未侵入边距。"},
+    {"page": 19, "status": "pass", "note": "墙面装修及抹灰段折行正常，末段接020，底部留有页脚间隔。"},
+    {"page": 23, "status": "pass", "note": "窗形式和材料组成完整，引号及冒号折行正常，与022/024续文无缺失。"},
+    {"page": 25, "status": "pass", "note": "框位及立口两段行首逗号已修复，隔热型材、中空玻璃与结露段未裁切。"}
+  ],
+  "regression_checks": {
+    "clipping_or_overlap": "12张变化页均未见裁切、越界、行段或页脚重叠。",
+    "glyphs": "未见缺字、黑方块、乱码；基础公式、材料符号与尺寸继续正常。",
+    "headings_and_blanks": "未见新孤立标题或异常空页，页脚编号正确。",
+    "tables": "本组无正文网格表格，目录未变化。",
+    "pagination": "主agent提供及完整性记录均为75页，基础一6、基础二12、基础三22的章起始未变化。",
+    "text_integrity": "完整性记录报告834段，PDF与DOCX缺失段落均为0；此项为文本比对证据，与本轮视觉证据分开。"
+  },
+  "remaining_blocking_findings": [],
+  "remaining_nonblocking_findings": [],
+  "artifact_boundary": "复核对象为新PDF实际渲染PNG。DOCX原生Word分页仍因缺soffice未渲染；全文和OOXML检查不能替代Word原生分页验证。",
+  "conclusion": "本组最终复核通过。先前唯一P3标点排版项关闭，12张变化页无新缺陷；其余13页沿用经哈希证明未变化的前次逐页结果。未修改正文或成稿。"
+}

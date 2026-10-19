@@ -5,6 +5,8 @@ import SectionPageHeader from '../components/SectionPageHeader';
 import SiteHeader from '../components/SiteHeader';
 import { useCompanionStore } from '../store/companionStore';
 import { initDirectoryMotion } from '../ui/directoryMotion.js';
+import { lessonMedia } from '../components/textbook/lessonMedia';
+import LessonExplorer from '../components/textbook/LessonExplorer';
 
 const siteBase = import.meta.env.BASE_URL;
 const documents = new Set(curriculum.documents);
@@ -30,6 +32,10 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
   const [attempt, setAttempt] = useState(0);
   const [navigation, setNavigation] = useState({ to: '/', label: '返回学习首页', breadcrumb: '建筑构造 / 课程学习' });
   const loaded = useRef(false);
+  const [exploring, setExploring] = useState<{ figure: string; tab: 'diagram' | 'model' } | null>(null);
+  const [progress, setProgress] = useState(0);
+  const figureTrigger = useRef<HTMLAnchorElement | null>(null);
+  const lesson = Object.values(lessonMedia).find(item => item.path === documentPath);
   const source = `${siteBase}lesson/${documentPath}`;
 
   useLayoutEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, []);
@@ -114,10 +120,53 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
     // Reset once the replacement document has its final height.
     window.scrollTo({ top: 0, behavior: 'instant' });
     const disposeDirectoryMotion = initDirectoryMotion(doc);
+    const article = doc.querySelector<HTMLElement>('.article');
+    const sidebar = doc.querySelector<HTMLElement>('.lesson-sidebar');
+    const sidebarInner = doc.querySelector<HTMLElement>('.lesson-sidebar-inner');
+    const articleLayout = doc.querySelector<HTMLElement>('.article-layout');
+    const sections = [...doc.querySelectorAll<HTMLElement>('.article h2[id]')];
+    const tocLinks = [...doc.querySelectorAll<HTMLAnchorElement>('.article-toc a')];
+    let readingFrame = 0;
+    const updateReading = () => {
+      readingFrame = 0;
+      if (disposed || !article || !iframe.isConnected) return;
+      const headerHeight = document.querySelector('.site-subpage-topbar')?.getBoundingClientRect().height ?? 0;
+      const frameTop = iframe.getBoundingClientRect().top;
+      const articleTop = frameTop + article.getBoundingClientRect().top;
+      const distance = Math.max(1, article.offsetHeight - window.innerHeight + headerHeight + 40);
+      setProgress(Math.max(0, Math.min(100, Math.round((headerHeight - articleTop) / distance * 100))));
+      let active = sections[0]?.id;
+      for (const section of sections) if (frameTop + section.getBoundingClientRect().top <= headerHeight + 100) active = section.id;
+      for (const link of tocLinks) {
+        if (link.hash === `#${active}`) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      }
+      if (sidebar && sidebarInner && articleLayout) {
+        const wide = doc.documentElement.clientWidth > 1100;
+        sidebarInner.style.maxHeight = wide ? `${Math.max(240, window.innerHeight - headerHeight - 60)}px` : '';
+        const desired = headerHeight + 24 - frameTop - articleLayout.getBoundingClientRect().top;
+        const limit = Math.max(0, articleLayout.offsetHeight - sidebar.offsetHeight);
+        sidebar.style.transform = wide ? `translateY(${Math.max(0, Math.min(desired, limit))}px)` : '';
+      }
+    };
+    const scheduleReading = () => { if (!readingFrame) readingFrame = window.requestAnimationFrame(updateReading); };
+    window.addEventListener('scroll', scheduleReading, { passive: true });
+    window.addEventListener('resize', scheduleReading);
+    doc.addEventListener('load', scheduleReading, true);
+    doc.addEventListener('toggle', scheduleReading, true);
+    updateReading();
 
     const followLink = (event: MouseEvent) => {
       const anchor = (event.target as Element | null)?.closest?.('a[href]') as HTMLAnchorElement | null;
-      if (!anchor || anchor.target === '_blank' || event.button !== 0 || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (!anchor || event.button !== 0 || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const figureId = anchor.dataset.lessonFigure;
+      if (figureId && lesson?.figures.some(figure => figure.id === figureId)) {
+        event.preventDefault();
+        figureTrigger.current = anchor;
+        setExploring({ figure: figureId, tab: anchor.dataset.lessonView === 'model' ? 'model' : 'diagram' });
+        return;
+      }
+      if (anchor.target === '_blank') return;
       const url = new URL(anchor.href, iframe.contentWindow?.location.href);
       if (url.origin !== window.location.origin) return;
       const coursePrefix = `${siteBase}lesson/`;
@@ -147,6 +196,11 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
       disposeDirectoryMotion();
       window.clearTimeout(resizeTimer);
       window.removeEventListener('resize', scheduleResize);
+      window.removeEventListener('scroll', scheduleReading);
+      window.removeEventListener('resize', scheduleReading);
+      doc.removeEventListener('load', scheduleReading, true);
+      doc.removeEventListener('toggle', scheduleReading, true);
+      window.cancelAnimationFrame(readingFrame);
       doc.removeEventListener('click', followLink);
       doc.removeEventListener('selectionchange', selectionChanged);
       if (useCompanionStore.getState().detail?.route === courseContext.route) useCompanionStore.getState().publishDetail(null);
@@ -154,7 +208,11 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
   };
 
   if (failed) return <CourseProblem missing={false} retry={() => { setFailed(false); setAttempt(value => value + 1); }} />;
-  return <><SiteHeader {...navigation} /><iframe key={attempt} ref={frame} src={source} title="课程章节" onLoad={onLoad} onError={() => { cleanup.current?.(); cleanup.current = null; setFailed(true); }} className="curriculum-frame" /></>;
+  const closeExplorer = () => {
+    setExploring(null);
+    window.requestAnimationFrame(() => figureTrigger.current?.isConnected && figureTrigger.current.focus({ preventScroll: true }));
+  };
+  return <><SiteHeader {...navigation} />{lesson && <div className="lesson-reading-progress" role="progressbar" aria-label="本节阅读进度" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}><span style={{ width: `${progress}%` }} /></div>}<iframe key={attempt} ref={frame} src={source} title="课程章节" onLoad={onLoad} onError={() => { cleanup.current?.(); cleanup.current = null; setFailed(true); }} className="curriculum-frame" />{exploring && lesson && <LessonExplorer lesson={lesson} initialFigure={exploring.figure} initialTab={exploring.tab} onClose={closeExplorer} />}</>;
 }
 
 export default function CurriculumFramePage() {

@@ -1,0 +1,2099 @@
+{
+  "introduction/intro-course-guide": {
+    "key": "introduction/intro-course-guide",
+    "title": "课程导读",
+    "path": "introduction/intro-course-guide.html",
+    "intro": "把文字中的作用路径放回节点图，再进入三维模型核对构件之间的空间关系。",
+    "readingMinutes": 2,
+    "figures": [
+      {
+        "nodeId": "independent-foundation-01",
+        "anchor": "基础与原理的学习顺序",
+        "title": "从基础开始认识构件与连接",
+        "caption": "独立基础三种形式用于建立“构件承担什么作用、怎样连接上部结构”的学习方法；形式名称不能代替受力与场地判断。",
+        "focus": [
+          "找出柱与基础的连接位置",
+          "比较杯形、阶梯形和锥形的外形"
+        ],
+        "imageAlt": "杯形、阶梯形和锥形独立基础的构造示意图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "基础与原理的学习顺序",
+        "nodeTitle": "独立式基础三种形式",
+        "image": "/images/foundation/independent-foundation-diagram.png",
+        "hasModel": true,
+        "layerCount": 6
+      },
+      {
+        "nodeId": "organized-drainage-01",
+        "anchor": "从作用路径到图纸表达",
+        "title": "沿屋面追踪一条水路",
+        "caption": "用有组织排水节点练习从坡面追踪至沟和出口，并把二维剖面与三维空间关系对应。",
+        "focus": [
+          "水从哪一面汇集",
+          "排出屋面后还要接到哪里"
+        ],
+        "imageAlt": "有组织排水屋顶的构造剖面图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-3",
+        "sectionTitle": "从作用路径到图纸表达",
+        "nodeTitle": "有组织排水屋顶",
+        "image": "/images/roof/organized-drainage-diagram.png",
+        "hasModel": true,
+        "layerCount": 4
+      }
+    ]
+  },
+  "introduction/intro-classification": {
+    "key": "introduction/intro-classification",
+    "title": "建筑物的分类",
+    "path": "introduction/intro-classification.html",
+    "intro": "同一个节点可以同时具有材料、受力和建造方式等多种分类身份，读图时逐项说明。",
+    "readingMinutes": 2,
+    "figures": [
+      {
+        "nodeId": "roof-truss-timber-01",
+        "anchor": "按结构与围护体系分类",
+        "title": "用木屋架区分材料与传力形式",
+        "caption": "木屋架是按材料和受力形式认识构件的例子；仅凭屋架不能判断整栋建筑的使用分类或完整结构体系。",
+        "focus": [
+          "哪个词说明材料",
+          "屋架与屋面覆盖层是否同一对象"
+        ],
+        "imageAlt": "木屋架的杆件与屋面支承构造图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-4",
+        "sectionTitle": "按结构与围护体系分类",
+        "nodeTitle": "屋架形式（木屋架）",
+        "image": "/images/roof/roof-truss-timber-diagram.png",
+        "hasModel": true,
+        "layerCount": 1
+      }
+    ]
+  },
+  "introduction/intro-grading": {
+    "key": "introduction/intro-grading",
+    "title": "建筑物的分级",
+    "path": "introduction/intro-grading.html",
+    "intro": "先明确分级的对象与依据，再判断材料、构件和整体建筑之间能够说明什么。",
+    "readingMinutes": 2,
+    "figures": []
+  },
+  "introduction/intro-composition": {
+    "key": "introduction/intro-composition",
+    "title": "建筑物的构造组成",
+    "path": "introduction/intro-composition.html",
+    "intro": "分别观察承载、交通与围护节点，再把各自的作用接回完整建筑。",
+    "readingMinutes": 2,
+    "figures": [
+      {
+        "nodeId": "cast-ribbed-floor-01",
+        "anchor": "典型传力路径",
+        "title": "板、梁与竖向支承的关系",
+        "caption": "现浇肋梁楼板用于辨认板与梁的层级；继续追踪荷载时，还需在建筑图中找到墙柱及其基础。",
+        "focus": [
+          "先找板再找支承梁",
+          "图外还缺少哪些后续传力构件"
+        ],
+        "imageAlt": "现浇肋梁楼板的板梁支承构造图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "典型传力路径",
+        "nodeTitle": "现浇肋梁楼板",
+        "image": "/images/floor/cast-ribbed-floor.png",
+        "hasModel": true,
+        "layerCount": 4
+      },
+      {
+        "nodeId": "stair-composition-01",
+        "anchor": "承载围护交通与设备系统",
+        "title": "交通系统中的楼梯组成",
+        "caption": "楼梯的梯段、平台及防护构件共同组织竖向通行；它们与楼层和入口的关系需要在平剖面中进一步检查。",
+        "focus": [
+          "区分梯段与平台",
+          "找到通行边缘的防护位置"
+        ],
+        "imageAlt": "楼梯梯段、平台及栏杆扶手的组成示意图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-1",
+        "sectionTitle": "承载围护交通与设备系统",
+        "nodeTitle": "楼梯的组成",
+        "image": "/images/stairs/stair-composition-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      }
+    ]
+  },
+  "introduction/intro-factors": {
+    "key": "introduction/intro-factors",
+    "title": "影响建筑物的因素",
+    "path": "introduction/intro-factors.html",
+    "intro": "把环境与使用者条件转成节点中的观察问题，避免只按外形挑选做法。",
+    "readingMinutes": 2,
+    "figures": [
+      {
+        "nodeId": "eaves-gutter-01",
+        "anchor": "气候地形与地质条件",
+        "title": "降雨条件怎样落实到檐沟",
+        "caption": "檐沟节点帮助识别汇水与排出的位置；实际沟断面、坡度和排水能力还需结合当地降雨与汇水条件确定。",
+        "focus": [
+          "屋面水怎样进入檐沟",
+          "出口堵塞后应继续检查什么"
+        ],
+        "imageAlt": "屋面檐沟外排水的构造剖面图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "气候地形与地质条件",
+        "nodeTitle": "檐沟外排水",
+        "image": "/images/roof/eaves-gutter-diagram.png",
+        "hasModel": true,
+        "layerCount": 6
+      },
+      {
+        "nodeId": "ramp-handrail-01",
+        "anchor": "使用者与使用活动",
+        "title": "使用者条件落实到坡道扶手",
+        "caption": "扶手节点用于观察抓握、支承及坡道边缘的关系；是否满足具体无障碍与儿童使用要求，仍需核对适用条件与尺寸。",
+        "focus": [
+          "扶手固定到何处",
+          "通行与抓握空间是否需要共同检查"
+        ],
+        "imageAlt": "坡道扶手及其支承连接的构造图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-3",
+        "sectionTitle": "使用者与使用活动",
+        "nodeTitle": "坡道扶手",
+        "image": "/images/stairs/ramp-handrail-diagram.png",
+        "hasModel": true,
+        "layerCount": 2
+      }
+    ]
+  },
+  "introduction/intro-design-principles": {
+    "key": "introduction/intro-design-principles",
+    "title": "建筑构造的设计原则",
+    "path": "introduction/intro-design-principles.html",
+    "intro": "在同一个接口中同时找传力、阻水、保温和施工衔接，理解多项要求怎样共同实现。",
+    "readingMinutes": 2,
+    "figures": [
+      {
+        "nodeId": "window-wall-gap-sealing-01",
+        "anchor": "节点中的多项要求",
+        "title": "一个窗墙接口中的多项任务",
+        "caption": "图示为木条、袋装矿棉与弹性密封胶的传统窗墙缝示例，用于区分填缝与密封的位置；再联系正文检查固定、排水及相邻保温，不能据此评价整樘门窗。",
+        "focus": [
+          "填缝和密封是否承担同一种任务",
+          "接口怎样接到墙体外围护层"
+        ],
+        "imageAlt": "木条、袋装矿棉与弹性密封胶组成的窗墙安装缝示例图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "节点中的多项要求",
+        "nodeTitle": "封堵窗墙间缝隙做法",
+        "image": "/images/wall/window-wall-gap-sealing-diagram.png",
+        "hasModel": true,
+        "layerCount": 6
+      }
+    ]
+  },
+  "introduction/intro-drawing-standards": {
+    "key": "introduction/intro-drawing-standards",
+    "title": "专题：制图标准与规范",
+    "path": "introduction/intro-drawing-standards.html",
+    "intro": "用楼梯剖面练习区分标高、层高和通行净空，再把节点索引接回整套图纸。",
+    "readingMinutes": 3,
+    "figures": [
+      {
+        "nodeId": "bottom-landing-entrance-01",
+        "anchor": "轴线层高与净高",
+        "title": "用平台下入口辨认净高检查对象",
+        "caption": "底层长短跑楼梯示例把梯段、平台和入口放在同一剖面内；观察梁板底与实际通行面，不把层高直接作为净高。",
+        "focus": [
+          "从哪里量通行净空",
+          "完成面改变会影响哪些标高"
+        ],
+        "imageAlt": "底层采用长短跑并在中间平台下设入口的楼梯剖面图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-3",
+        "sectionTitle": "轴线层高与净高",
+        "nodeTitle": "底层中间平台下作出入口（底层长短跑）",
+        "image": "/images/stairs/bottom-landing-entrance-diagram.png",
+        "hasModel": true,
+        "layerCount": 6
+      }
+    ]
+  },
+  "principles/thermal": {
+    "key": "principles/thermal",
+    "title": "建筑保温",
+    "path": "principles/thermal.html",
+    "intro": "先找热工边界，再检查保温与密封在接口处是否连续。图和模型用于识别层次，不提供热工计算结果。",
+    "readingMinutes": 5,
+    "figures": [
+      {
+        "nodeId": "foam-insulation-01",
+        "anchor": "保温层位置与节点连续性",
+        "title": "外保温的层次与基层关系",
+        "caption": "粘贴泡沫塑料保温板节点用于识别保温、固定及外侧保护的关系；整墙热工与防火性能仍取决于完整系统和实际边界条件。",
+        "focus": [
+          "保温层位于主体的哪一侧",
+          "固定和饰面怎样与基层联系"
+        ],
+        "imageAlt": "粘贴泡沫塑料保温板外墙外保温构造图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-3",
+        "sectionTitle": "保温层位置与节点连续性",
+        "nodeTitle": "粘贴泡沫塑料保温板外保温",
+        "image": "/images/wall/foam-insulation-diagram.png",
+        "hasModel": true,
+        "layerCount": 7
+      },
+      {
+        "nodeId": "window-wall-gap-sealing-01",
+        "anchor": "保温与空气 水分及防火",
+        "title": "保温与气密需要在窗边衔接",
+        "caption": "用图中的袋装矿棉和边缘密封胶辨认安装缝的层次；这是传统做法示例，填缝不等于结构固定，也不能仅凭填满就确认气密或保温性能。",
+        "focus": [
+          "是否存在贯通安装缝",
+          "保温与密封的连接位置在哪里"
+        ],
+        "imageAlt": "传统窗墙安装缝内袋装矿棉与边缘密封胶的位置示意图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-4",
+        "sectionTitle": "保温与空气 水分及防火",
+        "nodeTitle": "封堵窗墙间缝隙做法",
+        "image": "/images/wall/window-wall-gap-sealing-diagram.png",
+        "hasModel": true,
+        "layerCount": 6
+      }
+    ]
+  },
+  "principles/waterproof": {
+    "key": "principles/waterproof",
+    "title": "建筑防水",
+    "path": "principles/waterproof.html",
+    "intro": "把排水方向、连续阻水线和保护收头放在同一剖面里追踪。",
+    "readingMinutes": 5,
+    "figures": [
+      {
+        "nodeId": "coating-parapet-flashing-01",
+        "anchor": "连续防水线与节点转换",
+        "title": "从屋面到女儿墙的防水转折",
+        "caption": "涂膜防水女儿墙泛水展示水平屋面与竖向墙面的接口；沿图追踪上翻、收头和保护，并核对它们是否属于所选防水系统。",
+        "focus": [
+          "水平防水线在哪里转向",
+          "收头怎样防止水绕入"
+        ],
+        "imageAlt": "涂膜防水屋面在女儿墙处上翻和收头的泛水构造图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-4",
+        "sectionTitle": "连续防水线与节点转换",
+        "nodeTitle": "涂膜防水屋面的女儿墙泛水",
+        "image": "/images/roof/coating-parapet-flashing-diagram.png",
+        "hasModel": true,
+        "layerCount": 10
+      },
+      {
+        "nodeId": "straight-rainwater-outlet-cast-iron-01",
+        "anchor": "排水 阻水与保护的配合",
+        "title": "落水口既排水也连接防水",
+        "caption": "铸铁水落口节点用于观察屋面低点、出口及防水层接入的位置；排水通畅与接口阻水需要分别检查。",
+        "focus": [
+          "低点能否接入出口",
+          "防水层怎样接到落口"
+        ],
+        "imageAlt": "直管式铸铁水落口与屋面防水层交接的剖面图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-2",
+        "sectionTitle": "排水 阻水与保护的配合",
+        "nodeTitle": "直管式水落口（铸铁水落口）",
+        "image": "/images/roof/straight-rainwater-outlet-cast-iron-diagram.png",
+        "hasModel": true,
+        "layerCount": 7
+      }
+    ]
+  },
+  "principles/insulation": {
+    "key": "principles/insulation",
+    "title": "建筑隔热",
+    "path": "principles/insulation.html",
+    "intro": "围绕太阳得热、蓄热与通风分析夏季策略，特殊屋面必须连同荷载、防水和维护一起判断。",
+    "readingMinutes": 4,
+    "figures": [
+      {
+        "nodeId": "water-storage-eaves-drainage-01",
+        "anchor": "室内通风与特殊屋面",
+        "title": "蓄水屋面的水体与排水边界",
+        "caption": "檐沟式蓄水屋面用于观察蓄水、围边与排水的关系；隔热效果不能仅由图形判断，还需核查气候、水深、补排水、荷载及维护。",
+        "focus": [
+          "蓄水区域如何与排水出口联系",
+          "普通屋面改蓄水还需复核哪些条件"
+        ],
+        "imageAlt": "采用檐沟式排水的蓄水屋面构造剖面图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-4",
+        "sectionTitle": "室内通风与特殊屋面",
+        "nodeTitle": "蓄水屋面（檐沟式排水）",
+        "image": "/images/roof/water-storage-eaves-drainage-diagram.png",
+        "hasModel": true,
+        "layerCount": 14
+      }
+    ]
+  },
+  "principles/acoustic": {
+    "key": "principles/acoustic",
+    "title": "建筑隔声",
+    "path": "principles/acoustic.html",
+    "intro": "先辨认声音可能穿过的实体、缝隙和连接旁路，再判断需要什么证据评价隔声。",
+    "readingMinutes": 4,
+    "figures": [
+      {
+        "nodeId": "window-wall-gap-sealing-01",
+        "anchor": "单层墙 双层墙与开口",
+        "title": "从窗墙缝寻找可能的漏声通道",
+        "caption": "此传统矿棉填缝与胶封边图只用于定位缝隙和密封检查位置，不是声学试验或仿真。整窗隔声还需结合玻璃、框扇、安装及通风开口评价。",
+        "focus": [
+          "连续缝隙会绕过哪些实体材料",
+          "图形本身能够证明隔声量吗"
+        ],
+        "imageAlt": "传统窗墙安装缝填塞与密封示例图，用于定位可能的漏声通道",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "单层墙 双层墙与开口",
+        "nodeTitle": "封堵窗墙间缝隙做法",
+        "image": "/images/wall/window-wall-gap-sealing-diagram.png",
+        "hasModel": true,
+        "layerCount": 6
+      }
+    ]
+  },
+  "principles/fire": {
+    "key": "principles/fire",
+    "title": "建筑防火",
+    "path": "principles/fire.html",
+    "intro": "把材料燃烧性能、构件耐火和疏散路径分开判断，再检查它们在节点中怎样协调。",
+    "readingMinutes": 4,
+    "figures": [
+      {
+        "nodeId": "rockwool-insulation-01",
+        "anchor": "结构保护 外围护与竖井",
+        "title": "外墙保温的材料与系统不能混同",
+        "caption": "岩棉保温板节点用于认识基层、保温与外侧保护的组合。岩棉材料名称不能直接证明整个外墙系统或构件满足某项防火要求。",
+        "focus": [
+          "保温之外还包含哪些层次和连接",
+          "材料性能与系统性能分别需要什么依据"
+        ],
+        "imageAlt": "粘贴岩棉保温板的外墙外保温构造图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-3",
+        "sectionTitle": "结构保护 外围护与竖井",
+        "nodeTitle": "粘贴岩棉防火保温板外保温",
+        "image": "/images/wall/rockwool-insulation-diagram.png",
+        "hasModel": true,
+        "layerCount": 7
+      },
+      {
+        "nodeId": "stair-composition-01",
+        "anchor": "疏散路径与使用维护",
+        "title": "在楼梯组成中识别疏散检查对象",
+        "caption": "楼梯组成图帮助辨认梯段、平台和防护位置；它未表达完整楼梯间、防火门与前室，不能单凭此图判定疏散合格。",
+        "focus": [
+          "通行路径在哪些位置转折",
+          "还需要补充哪些楼梯间与门的图纸"
+        ],
+        "imageAlt": "楼梯梯段、休息平台与栏杆扶手组成图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-4",
+        "sectionTitle": "疏散路径与使用维护",
+        "nodeTitle": "楼梯的组成",
+        "image": "/images/stairs/stair-composition-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      }
+    ]
+  },
+  "principles/moisture": {
+    "key": "principles/moisture",
+    "title": "建筑防潮",
+    "path": "principles/moisture.html",
+    "intro": "从墙脚标高、毛细水路径和防潮层连续性入手，避免把所有潮湿都归为外部漏水。",
+    "readingMinutes": 4,
+    "figures": [
+      {
+        "nodeId": "plaster-plinth-01",
+        "anchor": "墙脚与首层地面的防潮",
+        "title": "墙脚防潮层与室内外标高",
+        "caption": "抹灰勒脚图标出墙脚防潮层和室内外地面关系，用于检查毛细水阻断位置。图示为局部墙脚做法，不能代替有水压力条件下的地下防水设计。",
+        "focus": [
+          "防潮层位于地面哪一侧",
+          "抹灰或铺装是否可能绕过防潮层"
+        ],
+        "imageAlt": "标出墙身防潮层、抹灰勒脚和室内外地面高差的剖面图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "墙脚与首层地面的防潮",
+        "nodeTitle": "抹灰勒脚构造做法",
+        "image": "/images/wall/plaster-plinth-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      },
+      {
+        "nodeId": "window-wall-gap-sealing-01",
+        "anchor": "隔汽 气密与干燥路径",
+        "title": "用接缝图区分材料与连续密封",
+        "caption": "用木条、袋装矿棉与胶封边的传统示例检查空气可能通过的路径；隔汽性能及干燥能力还需另查材料参数与热湿条件，不能从密封外观推定。",
+        "focus": [
+          "空气可能从哪里穿过接口",
+          "气密与隔汽是否需要分别核查"
+        ],
+        "imageAlt": "木条、袋装矿棉与密封胶组成的传统窗墙安装缝示例图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-4",
+        "sectionTitle": "隔汽 气密与干燥路径",
+        "nodeTitle": "封堵窗墙间缝隙做法",
+        "image": "/images/wall/window-wall-gap-sealing-diagram.png",
+        "hasModel": true,
+        "layerCount": 6
+      }
+    ]
+  },
+  "practice/construction-brief": {
+    "key": "practice/construction-brief",
+    "title": "构造方案说明",
+    "path": "practice/construction-brief.html",
+    "intro": "选一个真实节点作为方案说明的证据，讲清选择理由、替代方案和仍待核实的条件。",
+    "readingMinutes": 2,
+    "figures": [
+      {
+        "nodeId": "foam-insulation-01",
+        "anchor": "工作步骤",
+        "title": "把外墙方案转成可检查的层次",
+        "caption": "以外保温节点练习记录结构基层、保温、固定及保护层，再说明场地、气候、防火与施工条件怎样影响方案选择。",
+        "focus": [
+          "每一层解决什么问题",
+          "哪些参数仍须项目资料确认"
+        ],
+        "imageAlt": "外墙粘贴泡沫塑料保温板的层次与连接示意图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-3",
+        "sectionTitle": "工作步骤",
+        "nodeTitle": "粘贴泡沫塑料保温板外保温",
+        "image": "/images/wall/foam-insulation-diagram.png",
+        "hasModel": true,
+        "layerCount": 7
+      }
+    ]
+  },
+  "practice/floor-layout": {
+    "key": "practice/floor-layout",
+    "title": "楼面构造布置",
+    "path": "practice/floor-layout.html",
+    "intro": "先沿模型追踪支承，再把同一关系画成有轴线、编号和标高的布置图。",
+    "readingMinutes": 2,
+    "figures": [
+      {
+        "nodeId": "cast-ribbed-floor-01",
+        "anchor": "工作步骤",
+        "title": "从板梁关系建立楼面布置",
+        "caption": "现浇肋梁楼板用于辨认板与梁的支承层级。练习图仍须补足轴网、墙柱、洞口和实际设计状态，不能直接套用模型截面。",
+        "focus": [
+          "板的支承边在哪里",
+          "梁的反力继续传到何处"
+        ],
+        "imageAlt": "现浇肋梁楼板的梁板布置构造图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-3",
+        "sectionTitle": "工作步骤",
+        "nodeTitle": "现浇肋梁楼板",
+        "image": "/images/floor/cast-ribbed-floor.png",
+        "hasModel": true,
+        "layerCount": 4
+      },
+      {
+        "nodeId": "flat-slab-01",
+        "anchor": "任务内容与条件",
+        "title": "比较无梁楼盖的板柱接口",
+        "caption": "无梁楼板作为另一种支承形式，帮助比较梁板体系与板柱体系；选择仍须核查冲切、变形、跨度及整体结构要求。",
+        "focus": [
+          "板与柱直接连接的位置在哪里",
+          "取消梁后哪些检查更关键"
+        ],
+        "imageAlt": "无梁楼板与柱及柱周区域的构造示意图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-2",
+        "sectionTitle": "任务内容与条件",
+        "nodeTitle": "无梁楼板",
+        "image": "/images/floor/flat-slab-diagram.png",
+        "hasModel": true,
+        "layerCount": 1
+      }
+    ]
+  },
+  "practice/stairs-drawing": {
+    "key": "practice/stairs-drawing",
+    "title": "楼梯绘图",
+    "path": "practice/stairs-drawing.html",
+    "intro": "把级数计算、平面长度和剖面净空互相核对，再观察平台节点的空间关系。",
+    "readingMinutes": 3,
+    "figures": [
+      {
+        "nodeId": "stair-composition-01",
+        "anchor": "任务内容与条件",
+        "title": "把计算对象对应到梯段和平台",
+        "caption": "楼梯组成图用于辨认踏步、梯段、平台和防护构件。练习中的给定尺寸是几何讨论条件，图示不能证明其符合实际项目要求。",
+        "focus": [
+          "上升级数与水平踏面数怎样对应",
+          "平台是否计作独立水平踏面"
+        ],
+        "imageAlt": "楼梯梯段、踏步、平台和扶手的组成图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "任务内容与条件",
+        "nodeTitle": "楼梯的组成",
+        "image": "/images/stairs/stair-composition-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      },
+      {
+        "nodeId": "bottom-landing-entrance-01",
+        "anchor": "工作步骤",
+        "title": "用剖面检查平台下入口",
+        "caption": "底层长短跑示例帮助核对入口与平台梁板的关系。是否采用此方案应由实际净空、空间及适用要求决定。",
+        "focus": [
+          "平台下最低构件在哪里",
+          "入口通行面是否与室内外高差协调"
+        ],
+        "imageAlt": "底层长短跑楼梯中间平台下设置出入口的剖面图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-3",
+        "sectionTitle": "工作步骤",
+        "nodeTitle": "底层中间平台下作出入口（底层长短跑）",
+        "image": "/images/stairs/bottom-landing-entrance-diagram.png",
+        "hasModel": true,
+        "layerCount": 6
+      }
+    ]
+  },
+  "practice/roof-drainage": {
+    "key": "practice/roof-drainage",
+    "title": "屋顶排水设计",
+    "path": "practice/roof-drainage.html",
+    "intro": "从分水线追到出口，再用节点剖面核对平面上的坡向和标高。",
+    "readingMinutes": 2,
+    "figures": [
+      {
+        "nodeId": "organized-drainage-01",
+        "anchor": "工作步骤",
+        "title": "由排水分区走向实际出口",
+        "caption": "有组织排水图提供坡面汇水与集中排出的观察对象；任务还需补齐分水线、控制点标高、排水能力与溢流分析。",
+        "focus": [
+          "各片屋面是否都有出口",
+          "排水路线与立面雨水管是否相容"
+        ],
+        "imageAlt": "屋面有组织排水的构造示意图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-3",
+        "sectionTitle": "工作步骤",
+        "nodeTitle": "有组织排水屋顶",
+        "image": "/images/roof/organized-drainage-diagram.png",
+        "hasModel": true,
+        "layerCount": 4
+      },
+      {
+        "nodeId": "straight-rainwater-outlet-65-01",
+        "anchor": "提交物",
+        "title": "在落水口处收束排水与防水",
+        "caption": "65型直管式水落口是节点识图示例。选型与尺寸应按汇水、雨量、系统及接口条件确定，不能把型号作为通用答案。",
+        "focus": [
+          "平面低点如何接入落口",
+          "防水层在出口处怎样收接"
+        ],
+        "imageAlt": "65型直管式水落口与屋面交接的剖面图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-5",
+        "sectionTitle": "提交物",
+        "nodeTitle": "直管式水落口（65 型水落口）",
+        "image": "/images/roof/straight-rainwater-outlet-65-diagram.png",
+        "hasModel": true,
+        "layerCount": 7
+      }
+    ]
+  },
+  "practice/envelope-detail": {
+    "key": "practice/envelope-detail",
+    "title": "外檐节点综合",
+    "path": "practice/envelope-detail.html",
+    "intro": "在墙脚、窗周和屋面交接处分别画出连续性能线，再核对它们能否接成一体。",
+    "readingMinutes": 2,
+    "figures": [
+      {
+        "nodeId": "window-wall-gap-sealing-01",
+        "anchor": "工作步骤",
+        "title": "外檐剖面中的窗墙接口",
+        "caption": "此传统矿棉填缝与胶封边图只提供局部层次观察。任务图还须分别表达主体固定、相邻保温、窗台排水和收口，不能用这张填缝图替代完整外窗节点。",
+        "focus": [
+          "连接件应固定到何处",
+          "各性能线到洞口边缘是否连续"
+        ],
+        "imageAlt": "外窗框与墙洞口之间袋装矿棉填缝及胶封边的传统示例图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-3",
+        "sectionTitle": "工作步骤",
+        "nodeTitle": "封堵窗墙间缝隙做法",
+        "image": "/images/wall/window-wall-gap-sealing-diagram.png",
+        "hasModel": true,
+        "layerCount": 6
+      },
+      {
+        "nodeId": "coating-parapet-flashing-01",
+        "anchor": "任务内容与条件",
+        "title": "外檐剖面中的女儿墙泛水",
+        "caption": "女儿墙泛水提供屋面转墙面的局部示例，用于把低处排水、竖向上翻和收头保护与整张外檐剖面联系。",
+        "focus": [
+          "剖切位置与屋顶平面是否对应",
+          "上翻和外墙构造怎样交接"
+        ],
+        "imageAlt": "涂膜防水屋面的女儿墙泛水剖面图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-2",
+        "sectionTitle": "任务内容与条件",
+        "nodeTitle": "涂膜防水屋面的女儿墙泛水",
+        "image": "/images/roof/coating-parapet-flashing-diagram.png",
+        "hasModel": true,
+        "layerCount": 10
+      }
+    ]
+  },
+  "practice/integrated-design": {
+    "key": "practice/integrated-design",
+    "title": "综合课程设计",
+    "path": "practice/integrated-design.html",
+    "intro": "用相同的轴网、标高和使用者条件检查楼面、楼梯与屋面，模型只作为构造关系的观察依据。",
+    "readingMinutes": 2,
+    "figures": [
+      {
+        "nodeId": "stair-composition-01",
+        "anchor": "任务内容与条件",
+        "title": "在综合方案中核对楼梯与使用者",
+        "caption": "楼梯组成图帮助建立跨图纸检查对象。幼儿园还需核对儿童尺度、扶手、防护与可攀爬性，不能照搬图中或其他建筑的参数。",
+        "focus": [
+          "平台标高是否与各层楼面统一",
+          "儿童使用还需补充哪些细部检查"
+        ],
+        "imageAlt": "楼梯梯段、平台和栏杆扶手组成示意图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "任务内容与条件",
+        "nodeTitle": "楼梯的组成",
+        "image": "/images/stairs/stair-composition-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      },
+      {
+        "nodeId": "organized-drainage-01",
+        "anchor": "工作步骤",
+        "title": "让屋面排水与下部建筑共同校核",
+        "caption": "有组织排水节点用于把屋顶出口接回立面和下部空间，检查雨水管、门窗、设备与入口的相互影响。",
+        "focus": [
+          "出口下方是否有门窗或入口",
+          "改变屋面后哪些图纸需要同步"
+        ],
+        "imageAlt": "有组织排水屋顶的构造示意图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-3",
+        "sectionTitle": "工作步骤",
+        "nodeTitle": "有组织排水屋顶",
+        "image": "/images/roof/organized-drainage-diagram.png",
+        "hasModel": true,
+        "layerCount": 4
+      }
+    ]
+  },
+  "practice/construction-survey": {
+    "key": "practice/construction-survey",
+    "title": "构造调研",
+    "path": "practice/construction-survey.html",
+    "intro": "把现场照片、节点图与模型并列比较，逐条说明哪些是可见事实、资料确认或待核推测。",
+    "readingMinutes": 2,
+    "figures": [
+      {
+        "nodeId": "apron-flashing-01",
+        "anchor": "工作步骤",
+        "title": "以墙脚散水练习现场证据记录",
+        "caption": "散水图可作为观察坡向、墙边接口与地面关系的提问参照。现场隐蔽层次和厚度不能仅凭此图推定为相同做法。",
+        "focus": [
+          "现场可直接看到哪些部分",
+          "哪些层次需要图纸或其他证据确认"
+        ],
+        "imageAlt": "细石混凝土散水与墙脚、室外地面关系的剖面图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-3",
+        "sectionTitle": "工作步骤",
+        "nodeTitle": "细石混凝土散水构造",
+        "image": "/images/wall/apron-flashing-diagram.png",
+        "hasModel": true,
+        "layerCount": 9
+      },
+      {
+        "nodeId": "stair-flight-flush-unburied-01",
+        "anchor": "提交物",
+        "title": "把楼梯外观与平台节点证据区分",
+        "caption": "梯段齐步不埋步节点用于练习平剖面对应。现场外观相似不代表内部配筋、连接及支承完全相同，报告应注明证据范围。",
+        "focus": [
+          "平台与踏步的相对位置能否实测",
+          "隐蔽连接是否已有可靠资料"
+        ],
+        "imageAlt": "梯段齐步不埋步与平台梁相接的节点剖面图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-4",
+        "sectionTitle": "提交物",
+        "nodeTitle": "梯段与平台梁节点处理（梯段齐步不埋步）",
+        "image": "/images/stairs/stair-flight-flush-unburied-01-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      }
+    ]
+  },
+  "foundation/foundation-overview": {
+    "key": "foundation/foundation-overview",
+    "title": "基础与地基概述",
+    "path": "basics/foundation/foundation-overview.html",
+    "intro": "从上部构件追到基础，再区分承受作用的地基与人工建造的基础。",
+    "readingMinutes": 3,
+    "figures": [
+      {
+        "nodeId": "independent-foundation-01",
+        "anchor": "基础、地基与持力层",
+        "title": "柱下基础的构件边界",
+        "caption": "独立基础图用于辨认柱与基础的形体及连接；图未提供真实场地分层，持力层和下卧层须结合勘察剖面阅读。",
+        "focus": [
+          "基础本体在哪里结束",
+          "支承它的土岩是否也是建筑构件"
+        ],
+        "imageAlt": "杯形、阶梯形和锥形柱下独立基础构造图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-1",
+        "sectionTitle": "基础、地基与持力层",
+        "nodeTitle": "独立式基础三种形式",
+        "image": "/images/foundation/independent-foundation-diagram.png",
+        "hasModel": true,
+        "layerCount": 6
+      }
+    ]
+  },
+  "foundation/foundation-design": {
+    "key": "foundation/foundation-design",
+    "title": "基础与地基的设计要求",
+    "path": "basics/foundation/foundation-design.html",
+    "intro": "把承载、稳定、变形和耐久分别列为检查项，不让一种基础外形代替全部设计判断。",
+    "readingMinutes": 3,
+    "figures": [
+      {
+        "nodeId": "combined-foundation-beam-slab-01",
+        "anchor": "承载、稳定、变形和耐久",
+        "title": "梁板式基础中的共同工作关系",
+        "caption": "梁板式基础帮助观察柱、梁与底板的联系；基础整体性并不等于地基不会沉降，承载与变形仍需分别核查。",
+        "focus": [
+          "上部作用如何进入梁板",
+          "图形之外还缺哪些场地与荷载资料"
+        ],
+        "imageAlt": "梁板式基础的梁、底板和柱连接构造示意图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-1",
+        "sectionTitle": "承载、稳定、变形和耐久",
+        "nodeTitle": "联合基础（梁板式基础）",
+        "image": "/images/foundation/combined-foundation-beam-slab-diagram.png",
+        "hasModel": true,
+        "layerCount": 3
+      }
+    ]
+  },
+  "foundation/foundation-types": {
+    "key": "foundation/foundation-types",
+    "title": "基础的分类",
+    "path": "basics/foundation/foundation-types.html",
+    "intro": "分别按构造形式、材料与传力方式分类，再比较浅基础与桩基础的作用路径。",
+    "readingMinutes": 4,
+    "figures": [
+      {
+        "nodeId": "independent-foundation-01",
+        "anchor": "按构造形式认识浅基础",
+        "title": "独立基础的三种形体",
+        "caption": "比较杯形、阶梯形和锥形独立基础，观察柱脚连接和底面扩展；形体分类不应与材料、埋深分类混为一层。",
+        "focus": [
+          "杯口解决哪类柱脚连接",
+          "扩底与柱脚连接是同一任务吗"
+        ],
+        "imageAlt": "杯形、阶梯形和锥形独立基础对比图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-1",
+        "sectionTitle": "按构造形式认识浅基础",
+        "nodeTitle": "独立式基础三种形式",
+        "image": "/images/foundation/independent-foundation-diagram.png",
+        "hasModel": true,
+        "layerCount": 6
+      },
+      {
+        "nodeId": "pile-foundation-composition-01",
+        "anchor": "桩基础与其他深基础",
+        "title": "桩与承台组成的传力环节",
+        "caption": "桩基组成图用于识别承台、桩和上部构件；实际桩侧与桩端分担作用，需由地层和设计确定，不能由模型形状推定。",
+        "focus": [
+          "承台怎样汇集上部作用",
+          "桩侧与桩端可能分别怎样传力"
+        ],
+        "imageAlt": "由桩、承台与上部支承构件组成的桩基础示意图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-3",
+        "sectionTitle": "桩基础与其他深基础",
+        "nodeTitle": "桩基组成",
+        "image": "/images/foundation/pile-foundation-composition-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      }
+    ]
+  },
+  "foundation/foundation-underground": {
+    "key": "foundation/foundation-underground",
+    "title": "基础与地下结构的类型",
+    "path": "basics/foundation/foundation-underground.html",
+    "intro": "先分清箱形基础和地下室的概念，再分别检查结构作用与连续防水。",
+    "readingMinutes": 3,
+    "figures": [
+      {
+        "nodeId": "combined-foundation-box-01",
+        "anchor": "箱形基础与地下室",
+        "title": "箱形基础中的墙板整体",
+        "caption": "箱形基础图用于辨认底板、墙和上部板的联系；地下室可采用不同结构组合，不能把所有地下空间都称作箱形基础。",
+        "focus": [
+          "哪些墙板共同形成箱体",
+          "取消内部结构墙会改变什么"
+        ],
+        "imageAlt": "箱形基础底板、内外墙与上部板组成示意图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-1",
+        "sectionTitle": "箱形基础与地下室",
+        "nodeTitle": "联合基础（箱形基础）",
+        "image": "/images/foundation/combined-foundation-box-diagram.png",
+        "hasModel": true,
+        "layerCount": 4
+      }
+    ]
+  },
+  "foundation/foundation-depth": {
+    "key": "foundation/foundation-depth",
+    "title": "基础的埋置深度与影响因素",
+    "path": "basics/foundation/foundation-depth.html",
+    "intro": "把设计地面、基础底面、地层与地下水放进同一剖面，再讨论埋深。现有节点外形不能替代场地剖面。",
+    "readingMinutes": 3,
+    "figures": []
+  },
+  "foundation/foundation-settlement": {
+    "key": "foundation/foundation-settlement",
+    "title": "不均匀沉降",
+    "path": "basics/foundation/foundation-settlement.html",
+    "intro": "沿“成因—相对变形—结构断开—围护接口”检查沉降协调，避免仅凭裂缝外形下结论。",
+    "readingMinutes": 3,
+    "figures": [
+      {
+        "nodeId": "high-low-roof-joint-01",
+        "anchor": "预防与构造协调",
+        "title": "差异变形传到屋面后的接口问题",
+        "caption": "高低屋面变形缝图仅展示上部防水接口，用于思考两侧相对运动时如何保持阻水；是否设置沉降缝及基础断开范围，仍需整体设计判断。",
+        "focus": [
+          "两侧相对位移会作用到哪些层",
+          "仅看屋面图能否确认基础已经分开"
+        ],
+        "imageAlt": "高低屋面之间留缝并以附加卷材处理防水的构造图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "预防与构造协调",
+        "nodeTitle": "高低屋面变形缝（一）",
+        "image": "/images/roof/high-low-roof-joint-01-diagram.png",
+        "hasModel": true,
+        "layerCount": 10
+      }
+    ]
+  },
+  "wall/index": {
+    "key": "wall/index",
+    "title": "墙体概述",
+    "path": "basics/wall/index.html",
+    "intro": "沿墙脚、墙身、洞口到屋顶交接的剖面读图，把墙体功能与局部节点连起来。",
+    "readingMinutes": 3,
+    "figures": [
+      {
+        "nodeId": "construction-column-01",
+        "anchor": "用一张剖面组织知识",
+        "title": "砌体墙中的竖向联系",
+        "caption": "原图示一字墙构造柱的局部平剖面，模型补充墙体交接处的空间观察，二者不是同一平面布置的复刻。用于对照砌体与混凝土构件的联系，不能把构造柱直接当作框架柱。",
+        "focus": [
+          "两种墙体布置中的联系位置有何不同",
+          "构造柱与框架柱为什么不能混同"
+        ],
+        "imageAlt": "一字砌体墙与钢筋混凝土构造柱连接的局部平剖面图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-3",
+        "sectionTitle": "用一张剖面组织知识",
+        "nodeTitle": "构造柱",
+        "image": "/images/wall/construction-column-diagram.png",
+        "hasModel": true,
+        "layerCount": 7
+      },
+      {
+        "nodeId": "plaster-plinth-01",
+        "anchor": "本章学习目标",
+        "title": "从墙脚进入墙体细部",
+        "caption": "勒脚与防潮层示例将墙体、地面和室外环境放在同一剖面中，便于建立后续章节的读图起点。",
+        "focus": [
+          "辨认室内外地面",
+          "区分表面保护与水平防潮层"
+        ],
+        "imageAlt": "墙身防潮层与抹灰勒脚的剖面图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-1",
+        "sectionTitle": "本章学习目标",
+        "nodeTitle": "抹灰勒脚构造做法",
+        "image": "/images/wall/plaster-plinth-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      }
+    ]
+  },
+  "wall/wall-role": {
+    "key": "wall/wall-role",
+    "title": "墙体在建筑中的作用",
+    "path": "basics/wall/wall-role.html",
+    "intro": "先确认墙体的体系身份，再检查其承载、围护和分隔任务。",
+    "readingMinutes": 2,
+    "figures": [
+      {
+        "nodeId": "foam-insulation-01",
+        "anchor": "承重、围护与分隔",
+        "title": "围护任务怎样落实到墙体外侧",
+        "caption": "外保温节点展示墙体外围护的部分层次；保温板不是主体承重墙，图示也不能单独说明基层墙在整栋建筑中的受力身份。",
+        "focus": [
+          "哪些层主要承担围护性能",
+          "承重身份还需要查什么图"
+        ],
+        "imageAlt": "墙体基层与外侧保温、保护层的构造图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-1",
+        "sectionTitle": "承重、围护与分隔",
+        "nodeTitle": "粘贴泡沫塑料保温板外保温",
+        "image": "/images/wall/foam-insulation-diagram.png",
+        "hasModel": true,
+        "layerCount": 7
+      }
+    ]
+  },
+  "wall/wall-types": {
+    "key": "wall/wall-types",
+    "title": "墙体的类型",
+    "path": "basics/wall/wall-types.html",
+    "intro": "把材料形式与受力身份分开，再用节点识别块材和墙体连接。",
+    "readingMinutes": 3,
+    "figures": [
+      {
+        "nodeId": "hollow-block-forms-01",
+        "anchor": "按材料与构造方式分类",
+        "title": "空心砌块属于材料形式分类",
+        "caption": "空心砌块图用于比较块材外形与孔洞。砌块材料、墙体承重身份、保温与防火性能属于不同判断，不能相互代替。",
+        "focus": [
+          "孔洞与肋的位置有什么差别",
+          "仅凭块材外形能否判断承重身份"
+        ],
+        "imageAlt": "不同空心砌块外形和孔洞构造示意图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "按材料与构造方式分类",
+        "nodeTitle": "空心砌块的常见形式",
+        "image": "/images/wall/hollow-block-forms-diagram.png",
+        "hasModel": true,
+        "layerCount": 4
+      }
+    ]
+  },
+  "wall/wall-masonry": {
+    "key": "wall/wall-masonry",
+    "title": "砌体结构",
+    "path": "basics/wall/wall-masonry.html",
+    "intro": "从块材到墙体整体联系逐级观察，不把单块材料或混凝土柱当作完整砌体体系。",
+    "readingMinutes": 7,
+    "figures": [
+      {
+        "nodeId": "hollow-block-forms-01",
+        "anchor": "块材、砂浆和砌体性能",
+        "title": "块材形式与砌体组合",
+        "caption": "比较空心砌块的孔洞与肋，联系砂浆、砌筑和整体连接理解砌体；单块强度不能直接代表墙体性能。",
+        "focus": [
+          "孔洞和肋怎样影响砌筑认识",
+          "墙体性能还取决于哪些连接与施工"
+        ],
+        "imageAlt": "空心砌块常见形式的示意图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "块材、砂浆和砌体性能",
+        "nodeTitle": "空心砌块的常见形式",
+        "image": "/images/wall/hollow-block-forms-diagram.png",
+        "hasModel": true,
+        "layerCount": 4
+      },
+      {
+        "nodeId": "block-wall-core-column-01",
+        "anchor": "圈梁、构造柱与芯柱",
+        "title": "砌块墙芯柱的空间关系",
+        "caption": "芯柱节点用于观察砌块孔洞内的混凝土与钢筋联系；芯柱、构造柱和框架柱不能仅凭同为混凝土构件而互换。",
+        "focus": [
+          "芯柱位于块材的什么位置",
+          "连续性与锚固应在哪里检查"
+        ],
+        "imageAlt": "砌块墙孔洞内设置芯柱的构造图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-4",
+        "sectionTitle": "圈梁、构造柱与芯柱",
+        "nodeTitle": "砌块墙墙芯柱构造",
+        "image": "/images/wall/block-wall-core-column-01.png",
+        "hasModel": true,
+        "layerCount": 3
+      }
+    ]
+  },
+  "wall/wall-partition": {
+    "key": "wall/wall-partition",
+    "title": "隔墙",
+    "path": "basics/wall/wall-partition.html",
+    "intro": "区分隔墙的使用身份与材料类别，再核对自重、稳定和主体变形的关系。",
+    "readingMinutes": 4,
+    "figures": [
+      {
+        "nodeId": "hollow-block-forms-01",
+        "anchor": "砌筑隔墙与框架填充墙",
+        "title": "块材形式不等于隔墙适用结论",
+        "caption": "空心砌块是认识砌筑材料的一种图例。用于隔墙时，仍需核查材性、墙高、自重、支承与连接，不能把有孔当作足够轻或自动稳定的证明。",
+        "focus": [
+          "材料类别与非承重身份是否同义",
+          "隔墙自重由谁承担"
+        ],
+        "imageAlt": "用于认识砌筑材料形态的空心砌块形式图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "砌筑隔墙与框架填充墙",
+        "nodeTitle": "空心砌块的常见形式",
+        "image": "/images/wall/hollow-block-forms-diagram.png",
+        "hasModel": true,
+        "layerCount": 4
+      }
+    ]
+  },
+  "wall/wall-design-requirements": {
+    "key": "wall/wall-design-requirements",
+    "title": "墙体的设计要求",
+    "path": "basics/wall/wall-design-requirements.html",
+    "intro": "同时检查整体联系与围护性能，让结构和环境要求在节点中对应。",
+    "readingMinutes": 6,
+    "figures": [
+      {
+        "nodeId": "construction-column-01",
+        "anchor": "整体性与抗震",
+        "title": "砌体整体联系的局部节点",
+        "caption": "原图为一字墙局部，模型为墙交接处示意，用于比较构造柱与砌体的联系，不表示同一墙体布置。整体抗震性能还需结合结构布置、圈梁和其他配套措施判断。",
+        "focus": [
+          "不同墙体布置怎样形成联系",
+          "局部图以外还需看哪些整体条件"
+        ],
+        "imageAlt": "一字砌体墙与构造柱交接的局部平剖面图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "整体性与抗震",
+        "nodeTitle": "构造柱",
+        "image": "/images/wall/construction-column-diagram.png",
+        "hasModel": true,
+        "layerCount": 7
+      },
+      {
+        "nodeId": "rockwool-insulation-01",
+        "anchor": "保温、隔热、气密与防结露",
+        "title": "外保温系统的多项配合",
+        "caption": "岩棉外保温图用于辨认保温层、基层与外侧保护；保温、气密和防结露仍须分别检查连续性与热湿条件。",
+        "focus": [
+          "保温层如何固定并受到保护",
+          "此图能够直接证明全年无结露吗"
+        ],
+        "imageAlt": "粘贴岩棉保温板的外墙层次构造图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-3",
+        "sectionTitle": "保温、隔热、气密与防结露",
+        "nodeTitle": "粘贴岩棉防火保温板外保温",
+        "image": "/images/wall/rockwool-insulation-diagram.png",
+        "hasModel": true,
+        "layerCount": 7
+      }
+    ]
+  },
+  "wall/wall-details": {
+    "key": "wall/wall-details",
+    "title": "墙体细部构造",
+    "path": "basics/wall/wall-details.html",
+    "intro": "按墙脚、勒脚散水、洞口的顺序追踪水和力，观察不同接口怎样接成连续系统。",
+    "readingMinutes": 6,
+    "figures": [
+      {
+        "nodeId": "plaster-plinth-01",
+        "anchor": "墙脚防潮",
+        "title": "墙脚防潮层与地面关系",
+        "caption": "图中水平防潮层与室内外标高共同决定识图起点；墙面抹灰和地面铺装不能形成绕过防潮层的连续吸水路径。",
+        "focus": [
+          "水平防潮层在哪个高度",
+          "两侧地面高差会不会改变连接需求"
+        ],
+        "imageAlt": "墙脚水平防潮层和抹灰勒脚剖面图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-1",
+        "sectionTitle": "墙脚防潮：先追踪水的路径",
+        "nodeTitle": "抹灰勒脚构造做法",
+        "image": "/images/wall/plaster-plinth-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      },
+      {
+        "nodeId": "apron-flashing-01",
+        "anchor": "勒脚、散水与明沟",
+        "title": "散水将表面水引离墙脚",
+        "caption": "细石混凝土散水图用于观察坡向、墙边接缝与承托层。散水减少墙脚受水机会，但不能替代墙身防潮层。",
+        "focus": [
+          "表面水应流向哪里",
+          "与主体交接处是否需要适应变形"
+        ],
+        "imageAlt": "细石混凝土散水与墙脚交接构造剖面图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-2",
+        "sectionTitle": "勒脚、散水与明沟",
+        "nodeTitle": "细石混凝土散水构造",
+        "image": "/images/wall/apron-flashing-diagram.png",
+        "hasModel": true,
+        "layerCount": 9
+      },
+      {
+        "nodeId": "rc-lintel-flush-01",
+        "anchor": "门窗洞口",
+        "title": "过梁与窗框承担不同任务",
+        "caption": "此图为洞口上口沿墙厚方向的局部剖面，用于辨认过梁、上部墙体与窗框的位置；未展示过梁两端支座，支承、截面与配筋仍须结合完整结构图。",
+        "focus": [
+          "过梁与窗框是否为同一构件",
+          "还需哪张图确认两端支承"
+        ],
+        "imageAlt": "平墙过梁、上部墙体与窗框位置的局部剖面图",
+        "id": "figure-3",
+        "number": "03",
+        "sectionId": "section-3",
+        "sectionTitle": "门窗洞口：传力、密封与排水",
+        "nodeTitle": "钢筋混凝土过梁（平墙过梁）",
+        "image": "/images/wall/rc-lintel-flush-diagram.png",
+        "hasModel": true,
+        "layerCount": 3
+      }
+    ]
+  },
+  "wall/wall-finishes": {
+    "key": "wall/wall-finishes",
+    "title": "墙面装修",
+    "path": "basics/wall/wall-finishes.html",
+    "intro": "从可见面层反向追到基层，再核对粘结、连接、受潮和收口条件。",
+    "readingMinutes": 6,
+    "figures": [
+      {
+        "nodeId": "plaster-plinth-01",
+        "anchor": "抹灰类饰面",
+        "title": "抹灰勒脚的面层与墙脚环境",
+        "caption": "抹灰勒脚示例把墙体表面保护与室外地面联系起来；面层并不承担全部防潮任务，还需区分水平防潮层。",
+        "focus": [
+          "抹灰与墙体基层怎样对应",
+          "饰面防护和墙身防潮有何区别"
+        ],
+        "imageAlt": "墙脚采用抹灰饰面的勒脚构造图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "抹灰类饰面与传统石渣饰面",
+        "nodeTitle": "抹灰勒脚构造做法",
+        "image": "/images/wall/plaster-plinth-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      },
+      {
+        "nodeId": "faced-plinth-01",
+        "anchor": "粘贴、湿挂与干挂饰面",
+        "title": "贴面勒脚中的面层与承托",
+        "caption": "贴面勒脚提供块材饰面的局部例子，用于辨认面层与基层；它不代表所有湿挂或干挂体系，应按具体连接方式另行识图。",
+        "focus": [
+          "块材背面由什么承托或连接",
+          "不能把此图推广为哪类通用做法"
+        ],
+        "imageAlt": "墙脚贴面勒脚的块材饰面构造图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-4",
+        "sectionTitle": "粘贴、湿挂与干挂饰面",
+        "nodeTitle": "贴面勒脚构造做法",
+        "image": "/images/wall/faced-plinth-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      }
+    ]
+  },
+  "door-window/window-door-overview": {
+    "key": "door-window/window-door-overview",
+    "title": "门窗的作用与分类",
+    "path": "basics/door-window/window-door-overview.html",
+    "intro": "先区分洞口支承、门窗自身受力与安装接口，再阅读门窗的开启分类。",
+    "readingMinutes": 7,
+    "figures": [
+      {
+        "nodeId": "rc-lintel-window-surround-01",
+        "anchor": "门窗在建筑中的位置",
+        "title": "洞口支承与门窗框分别承担什么",
+        "caption": "带窗套过梁示例帮助辨认洞口上部承重构件；门窗自身的自重、风及启闭作用仍须经框与连接件传到可靠基层。",
+        "focus": [
+          "门窗上方墙体作用由谁承担",
+          "窗套外形是否等于窗框本体"
+        ],
+        "imageAlt": "带窗套钢筋混凝土过梁的构造图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-1",
+        "sectionTitle": "门窗在建筑中的位置",
+        "nodeTitle": "钢筋混凝土过梁（带窗套过梁）",
+        "image": "/images/wall/rc-lintel-window-surround-diagram.png",
+        "hasModel": true,
+        "layerCount": 3
+      }
+    ]
+  },
+  "door-window/window-door-design": {
+    "key": "door-window/window-door-design",
+    "title": "门窗的设计要求",
+    "path": "basics/door-window/window-door-design.html",
+    "intro": "把固定、填缝、密封和排水分成可检查的接口任务，避免只靠窗型或材料名称判断性能。",
+    "readingMinutes": 8,
+    "figures": [
+      {
+        "nodeId": "window-wall-gap-sealing-01",
+        "anchor": "框与洞口的可靠连接",
+        "title": "安装缝中的填塞与密封",
+        "caption": "图示为木条、袋装矿棉与弹性密封胶的传统安装缝示例；填塞和密封不能替代锚固，固定方式仍须按实际门窗系统与基层另行表达和检查。",
+        "focus": [
+          "填缝材料主要解决什么问题",
+          "固定与密封是否都已明确"
+        ],
+        "imageAlt": "木条、袋装矿棉和弹性密封胶组成的传统窗墙安装缝示例图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "框与洞口的可靠连接",
+        "nodeTitle": "封堵窗墙间缝隙做法",
+        "image": "/images/wall/window-wall-gap-sealing-diagram.png",
+        "hasModel": true,
+        "layerCount": 6
+      },
+      {
+        "nodeId": "rc-lintel-window-hood-01",
+        "anchor": "缝隙、雨水与声音的处理",
+        "title": "窗楣处的遮雨与洞口接口",
+        "caption": "带窗楣过梁用于观察洞口上方的外形与支承；遮雨外形只能减少部分来水，窗周密封、窗台排水仍需完整设计。",
+        "focus": [
+          "上方来水怎样避开洞口",
+          "下口和侧口还缺哪些防水信息"
+        ],
+        "imageAlt": "带窗楣钢筋混凝土过梁构造图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-4",
+        "sectionTitle": "缝隙、雨水与声音的处理",
+        "nodeTitle": "钢筋混凝土过梁（带窗楣过梁）",
+        "image": "/images/wall/rc-lintel-window-hood-diagram.png",
+        "hasModel": true,
+        "layerCount": 3
+      }
+    ]
+  },
+  "floor/floor-overview": {
+    "key": "floor/floor-overview",
+    "title": "楼地层概述",
+    "path": "basics/floor/floor-overview.html",
+    "intro": "先判断下面是结构支承还是土基，再把承重层与面层、功能层分开。",
+    "readingMinutes": 4,
+    "figures": [
+      {
+        "nodeId": "cast-ribbed-floor-01",
+        "anchor": "楼板层与地坪层",
+        "title": "楼板层中的承重骨架",
+        "caption": "肋梁楼板图用于辨认板和梁的结构关系；面层、隔声、防水及顶棚是否设置，需按使用要求在做法中另行表达。",
+        "focus": [
+          "哪一部分将荷载传向竖向支承",
+          "结构图是否已经表达全部使用层次"
+        ],
+        "imageAlt": "现浇肋梁楼板的结构构造图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-1",
+        "sectionTitle": "楼板层与地坪层",
+        "nodeTitle": "现浇肋梁楼板",
+        "image": "/images/floor/cast-ribbed-floor.png",
+        "hasModel": true,
+        "layerCount": 4
+      }
+    ]
+  },
+  "floor/floor-rc-slab": {
+    "key": "floor/floor-rc-slab",
+    "title": "钢筋混凝土楼板",
+    "path": "basics/floor/floor-rc-slab.html",
+    "intro": "把施工方式、截面形式和传力体系分别比较，再在三维中核对支承位置。",
+    "readingMinutes": 7,
+    "figures": [
+      {
+        "nodeId": "precast-hollow-slab-01",
+        "anchor": "传统预制板的类型与布置",
+        "title": "预制空心板的截面形式",
+        "caption": "空心板图用于识别孔洞与保留的混凝土截面；是否预应力、怎样支承及接缝如何联系，不能仅凭有孔外形判断。",
+        "focus": [
+          "空腔与受力截面怎样布置",
+          "端部支承和板缝还需补充什么"
+        ],
+        "imageAlt": "预制钢筋混凝土空心板的构造示意图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-3",
+        "sectionTitle": "传统预制板的类型与布置",
+        "nodeTitle": "预制钢筋混凝土板（空心板）",
+        "image": "/images/floor/precast-slab-hollow-diagram.png",
+        "hasModel": true,
+        "layerCount": 4
+      },
+      {
+        "nodeId": "cast-ribbed-floor-01",
+        "anchor": "板式、梁板式与无梁楼盖",
+        "title": "梁板楼盖的层级传力",
+        "caption": "现浇肋梁楼板帮助从板追到梁，再追向墙柱；实际主次关系和受力方向还取决于支承、连续及荷载条件。",
+        "focus": [
+          "板与梁怎样连接",
+          "梁端是否存在可靠支承"
+        ],
+        "imageAlt": "现浇肋梁楼板的板梁构造图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-5",
+        "sectionTitle": "板式、梁板式与无梁楼盖",
+        "nodeTitle": "现浇肋梁楼板",
+        "image": "/images/floor/cast-ribbed-floor.png",
+        "hasModel": true,
+        "layerCount": 4
+      },
+      {
+        "nodeId": "flat-slab-01",
+        "anchor": "板式、梁板式与无梁楼盖",
+        "title": "无梁楼盖的板柱支承与柱帽",
+        "caption": "无梁楼板图展示板直接支承于柱及柱帽的形式，可与梁板体系比较；柱周冲切、变形和节点仍需专门验算，图示不能代替结构分析。",
+        "focus": [
+          "板与柱帽怎样形成局部支承",
+          "柱周区域为什么需要重点检查"
+        ],
+        "imageAlt": "带柱帽的无梁楼板与柱周区域构造示意图",
+        "id": "figure-3",
+        "number": "03",
+        "sectionId": "section-5",
+        "sectionTitle": "板式、梁板式与无梁楼盖",
+        "nodeTitle": "无梁楼板",
+        "image": "/images/floor/flat-slab-diagram.png",
+        "hasModel": true,
+        "layerCount": 1
+      }
+    ]
+  },
+  "floor/floor-ground-composition": {
+    "key": "floor/floor-ground-composition",
+    "title": "地面的构造组成",
+    "path": "basics/floor/floor-ground-composition.html",
+    "intro": "从面层向下辨认结合层、垫层与土基，再检查墙地交接的水分路径。",
+    "readingMinutes": 3,
+    "figures": [
+      {
+        "nodeId": "ramp-floor-01",
+        "anchor": "实铺地面的传力与基层",
+        "title": "以实铺坡道辨认面层到土基",
+        "caption": "块料坡道地面是实铺构造的局部示例，可依次识别面层、结合层、混凝土与夯实土。其坡度和尺寸不应直接套用于室内地面。",
+        "focus": [
+          "各层由谁承托",
+          "找坡与基层稳定是否同一问题"
+        ],
+        "imageAlt": "块料坡道地面的面层、结合层、混凝土和夯实土剖面图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-1",
+        "sectionTitle": "实铺地面的传力与基层",
+        "nodeTitle": "坡道地面构造做法（一）",
+        "image": "/images/stairs/ramp-floor-01-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      },
+      {
+        "nodeId": "plaster-plinth-01",
+        "anchor": "防潮、防水、保温与架空",
+        "title": "地面功能层要与墙脚衔接",
+        "caption": "墙脚局部图帮助检查地面标高与墙身防潮层的关系；普通地坪防潮与有水压力的地下防水应分别设计。",
+        "focus": [
+          "墙地接口可能从哪里绕水",
+          "何种水作用不能按普通防潮处理"
+        ],
+        "imageAlt": "室内地面与墙脚水平防潮层的交接剖面图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-2",
+        "sectionTitle": "防潮、防水、保温与架空",
+        "nodeTitle": "抹灰勒脚构造做法",
+        "image": "/images/wall/plaster-plinth-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      }
+    ]
+  },
+  "floor/floor-ground-layer": {
+    "key": "floor/floor-ground-layer",
+    "title": "地面层",
+    "path": "basics/floor/floor-ground-layer.html",
+    "intro": "用一种具体铺装练习区分表面材料与承托做法，再比较室内外使用条件。",
+    "readingMinutes": 5,
+    "figures": [
+      {
+        "nodeId": "ramp-floor-01",
+        "anchor": "块料、弹性及木质地面",
+        "title": "块料铺装的面层、结合层与基层",
+        "caption": "水泥方砖坡道地面用于观察块材接缝、结合层和下部承托。它属于室外坡道示例，不能代表所有块料地面或弹性、木质地面做法。",
+        "focus": [
+          "面层与结合层是否同一层",
+          "室外水与温度变化会影响哪些接口"
+        ],
+        "imageAlt": "水泥方砖坡道的块料铺装及下部基层构造图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-3",
+        "sectionTitle": "块料、弹性及木质地面",
+        "nodeTitle": "坡道地面构造做法（一）",
+        "image": "/images/stairs/ramp-floor-01-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      }
+    ]
+  },
+  "floor/floor-balcony": {
+    "key": "floor/floor-balcony",
+    "title": "阳台及雨棚",
+    "path": "basics/floor/floor-balcony.html",
+    "intro": "把悬挑支承、排水和临空防护分别观察，再检查它们在边缘节点中怎样配合。",
+    "readingMinutes": 4,
+    "figures": [
+      {
+        "nodeId": "cantilever-slab-01",
+        "anchor": "空间形式与结构形式分别判断",
+        "title": "挑梁搭板的三种支承构造",
+        "caption": "原图(a)为挑梁外露、(b)为设置边梁、(c)为L形挑梁卡口板。三维菜单按方案名称选择，不能把菜单顺序当成原图标号；再比较各自支承与传力。",
+        "focus": [
+          "板由哪些构件支承",
+          "边缘构件在各方案中的位置有何不同"
+        ],
+        "imageAlt": "挑梁外露、设置边梁和L形挑梁卡口板三种构造对照图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-1",
+        "sectionTitle": "空间形式与结构形式分别判断",
+        "nodeTitle": "挑梁搭板三种构造",
+        "image": "/images/floor/cantilever-slab-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      },
+      {
+        "nodeId": "balcony-railing-weld-01",
+        "anchor": "阳台排水、防水与防护",
+        "title": "栏杆荷载如何进入阳台板",
+        "caption": "预埋件焊接节点用于观察栏杆连接至板的路径；锚固承载、防腐、防水和临空防护仍需按实际系统共同核查。",
+        "focus": [
+          "栏杆通过什么连接到板",
+          "连接部位怎样兼顾水分与腐蚀"
+        ],
+        "imageAlt": "栏杆通过预埋件焊接连接到阳台板的节点图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-2",
+        "sectionTitle": "阳台排水、防水与防护",
+        "nodeTitle": "栏杆与阳台板的连接（预埋件焊接）",
+        "image": "/images/floor/balcony-railing-weld-diagram.png",
+        "hasModel": true,
+        "layerCount": 7
+      },
+      {
+        "nodeId": "cantilever-canopy-slab-01",
+        "anchor": "雨棚的支承与排水",
+        "title": "悬挑板式雨篷的边缘关系",
+        "caption": "悬挑板式雨篷帮助辨认支承端、外挑板与边缘；图示之外还应核查反坡、滴水、防水和固定，避免水回流至入口。",
+        "focus": [
+          "悬挑板从哪里获得支承",
+          "雨水到达边缘后应怎样离开"
+        ],
+        "imageAlt": "悬挑板式雨篷构造剖面图",
+        "id": "figure-3",
+        "number": "03",
+        "sectionId": "section-3",
+        "sectionTitle": "雨棚的支承与排水",
+        "nodeTitle": "悬挑雨篷构造（悬挑板式）",
+        "image": "/images/floor/cantilever-canopy-slab-01-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      }
+    ]
+  },
+  "floor/finish-overview": {
+    "key": "floor/finish-overview",
+    "title": "建筑装修概论",
+    "path": "basics/floor/finish-overview.html",
+    "intro": "由可见面层追到连接和基层，把装修表达与保护、耐久及性能条件一并检查。",
+    "readingMinutes": 3,
+    "figures": [
+      {
+        "nodeId": "faced-plinth-01",
+        "anchor": "实体基层、骨架基层与连接",
+        "title": "以贴面勒脚辨认饰面和基层",
+        "caption": "贴面勒脚提供实体基层饰面的观察例子；它不代表骨架干挂体系，面板支承与连接方式应按各自系统确定。",
+        "focus": [
+          "可见面层后面是什么基层",
+          "哪些连接方式不能由表面材料推定"
+        ],
+        "imageAlt": "贴面勒脚的面层与墙体基层构造图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "实体基层、骨架基层与连接",
+        "nodeTitle": "贴面勒脚构造做法",
+        "image": "/images/wall/faced-plinth-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      }
+    ]
+  },
+  "floor/floor-ceiling": {
+    "key": "floor/floor-ceiling",
+    "title": "顶棚构造",
+    "path": "basics/floor/floor-ceiling.html",
+    "intro": "先分别画出顶棚自重的传力路径和设备吊挂路径，再检查板底、龙骨、面板与检修接口。",
+    "readingMinutes": 3,
+    "figures": []
+  },
+  "stairs/stairs-overview": {
+    "key": "stairs/stairs-overview",
+    "title": "楼梯的基本概念及设计要求",
+    "path": "basics/stairs/stairs-overview.html",
+    "intro": "把踏步、平台与楼层关系放在同一空间中，再用平剖面和计算互相校核。",
+    "readingMinutes": 11,
+    "figures": [
+      {
+        "nodeId": "stair-composition-01",
+        "anchor": "组成与形式",
+        "title": "楼梯的组成与通行路径",
+        "caption": "辨认梯段、平台、梯井及栏杆扶手，沿上行方向理解各部分怎样相接；平面形式和安全尺度仍需按项目条件确定。",
+        "focus": [
+          "梯段从哪里起步和到达",
+          "平台在哪些位置改变行进方向"
+        ],
+        "imageAlt": "楼梯梯段、平台、梯井与栏杆扶手组成示意图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "组成与形式",
+        "nodeTitle": "楼梯的组成",
+        "image": "/images/stairs/stair-composition-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      },
+      {
+        "nodeId": "bottom-landing-entrance-01",
+        "anchor": "净高检查与设计闭环",
+        "title": "平台下入口的净空协调",
+        "caption": "底层长短跑楼梯用于观察入口与平台的上下关系；应从实际完成面检查最低梁板，而非以层高直接代替净高。",
+        "focus": [
+          "平台下的最低构件在哪里",
+          "改动级数会连带影响哪些标高"
+        ],
+        "imageAlt": "底层长短跑楼梯中间平台下设入口的剖面图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-5",
+        "sectionTitle": "净高检查与设计闭环",
+        "nodeTitle": "底层中间平台下作出入口（底层长短跑）",
+        "image": "/images/stairs/bottom-landing-entrance-diagram.png",
+        "hasModel": true,
+        "layerCount": 6
+      }
+    ]
+  },
+  "stairs/stairs-rc-structure": {
+    "key": "stairs/stairs-rc-structure",
+    "title": "钢筋混凝土楼梯构造",
+    "path": "basics/stairs/stairs-rc-structure.html",
+    "intro": "区分施工方式与受力形式，再观察梯段怎样把作用传给平台及其支承。",
+    "readingMinutes": 4,
+    "figures": [
+      {
+        "nodeId": "stair-flight-flush-unburied-01",
+        "anchor": "预制楼梯与连接",
+        "title": "传统预制梯段与平台梁的支承关系",
+        "caption": "此传统预制梯段示例用于辨认梯段端部、平台板与平台梁的相接位置；支承、连接及活动条件仍须按具体体系核对，不能将图示直接套用于现浇楼梯或现代装配节点。",
+        "focus": [
+          "梯段端部在哪里支承于平台梁",
+          "仅凭局部图能否确定完整传力体系"
+        ],
+        "imageAlt": "传统预制梯段齐步不埋步与平台梁交接的楼梯节点图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-3",
+        "sectionTitle": "预制楼梯与连接",
+        "nodeTitle": "梯段与平台梁节点处理（梯段齐步不埋步）",
+        "image": "/images/stairs/stair-flight-flush-unburied-01-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      }
+    ]
+  },
+  "stairs/stairs-details": {
+    "key": "stairs/stairs-details",
+    "title": "楼梯的细部构造",
+    "path": "basics/stairs/stairs-details.html",
+    "intro": "对照齐步与错步的空间关系，核对踏面连续、平台标高和梁板相接的位置。",
+    "readingMinutes": 4,
+    "figures": [
+      {
+        "nodeId": "stair-flight-flush-unburied-01",
+        "anchor": "齐步、错步与平台节点",
+        "title": "齐步不埋步的梯段平台节点",
+        "caption": "此例用于读清两梯段端部与平台梁的相对位置，不能只根据表面踏步外观推断隐蔽连接。",
+        "focus": [
+          "两侧梯段端部怎样对齐",
+          "平台梁与首末踏步在哪里相接"
+        ],
+        "imageAlt": "梯段齐步不埋步的平台梁节点剖面图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-1",
+        "sectionTitle": "齐步、错步与平台节点",
+        "nodeTitle": "梯段与平台梁节点处理（梯段齐步不埋步）",
+        "image": "/images/stairs/stair-flight-flush-unburied-01-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      },
+      {
+        "nodeId": "stair-flight-offset-one-01",
+        "anchor": "齐步、错步与平台节点",
+        "title": "错一步时踏步与平台的衔接",
+        "caption": "与齐步示例比较两梯段起止踏步及平台梁的相对关系；错步会怎样影响支承、平台和扶手转折，应结合完整平剖面检查。",
+        "focus": [
+          "哪一侧相对错开一步",
+          "对齐关系改变后还应核对哪些支承和通行条件"
+        ],
+        "imageAlt": "两梯段错一步与平台梁相接的构造剖面图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-1",
+        "sectionTitle": "齐步、错步与平台节点",
+        "nodeTitle": "梯段与平台梁节点处理（梯段错一步）",
+        "image": "/images/stairs/stair-flight-offset-one-01-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      }
+    ]
+  },
+  "stairs/stairs-steps-ramps": {
+    "key": "stairs/stairs-steps-ramps",
+    "title": "台阶与坡道",
+    "path": "basics/stairs/stairs-steps-ramps.html",
+    "intro": "先组织入口高差与通行路线，再分别检查台阶支承、地面排水和坡道防护。",
+    "readingMinutes": 4,
+    "figures": [
+      {
+        "nodeId": "concrete-steps-01",
+        "anchor": "台阶构造与不均匀变形",
+        "title": "实铺台阶的下部承托",
+        "caption": "混凝土台阶图用于辨认踏步与下部基层，关注回填沉降及与主体交接的变形；图示尺寸不是各类入口的统一参数。",
+        "focus": [
+          "台阶自重向下传给哪里",
+          "主体与台阶不同步变形会影响何处"
+        ],
+        "imageAlt": "混凝土台阶与下部基层的构造剖面图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "台阶构造与不均匀变形",
+        "nodeTitle": "混凝土台阶",
+        "image": "/images/stairs/concrete-steps-diagram.png",
+        "hasModel": true,
+        "layerCount": 5
+      },
+      {
+        "nodeId": "ramp-handrail-01",
+        "anchor": "坡道的坡度、平台与防护",
+        "title": "坡道扶手与通行边缘",
+        "caption": "坡道扶手图提供抓握与固定关系的观察对象；坡度、平台、净宽和无障碍要求仍需在整体平剖面中共同核查。",
+        "focus": [
+          "扶手固定在何种支承上",
+          "转折与起终点是否需要保持连续"
+        ],
+        "imageAlt": "坡道扶手及其支承固定构造图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-3",
+        "sectionTitle": "坡道的坡度、平台与防护",
+        "nodeTitle": "坡道扶手",
+        "image": "/images/stairs/ramp-handrail-diagram.png",
+        "hasModel": true,
+        "layerCount": 2
+      }
+    ]
+  },
+  "stairs/stairs-elevator": {
+    "key": "stairs/stairs-elevator",
+    "title": "电梯及自动扶梯",
+    "path": "basics/stairs/stairs-elevator.html",
+    "intro": "围绕井道、底坑、顶层及设备反力建立建筑接口清单。现有楼梯节点不能代替电梯或自动扶梯设备图。",
+    "readingMinutes": 4,
+    "figures": []
+  },
+  "roof/roof-overview": {
+    "key": "roof/roof-overview",
+    "title": "屋顶概述",
+    "path": "basics/roof/roof-overview.html",
+    "intro": "区分承重与围护层，再沿坡面、檐口和出口理解屋顶的水路。",
+    "readingMinutes": 5,
+    "figures": [
+      {
+        "nodeId": "roof-truss-timber-01",
+        "anchor": "屋顶的功能与构成",
+        "title": "屋架属于屋顶的承重体系",
+        "caption": "图与模型只展示一榀木屋架，用于辨认弦杆、腹杆和端部支承；未展示上方覆盖层及檩条，完整围护层次和连接需另图补足。",
+        "focus": [
+          "弦杆和腹杆怎样组成屋架",
+          "图中还未展示哪些屋面构件"
+        ],
+        "imageAlt": "一榀木屋架的弦杆、腹杆与端部支承示意图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-1",
+        "sectionTitle": "屋顶的功能与构成",
+        "nodeTitle": "屋架形式（木屋架）",
+        "image": "/images/roof/roof-truss-timber-diagram.png",
+        "hasModel": true,
+        "layerCount": 1
+      },
+      {
+        "nodeId": "eaves-gutter-01",
+        "anchor": "坡度、材料与水路",
+        "title": "从坡面走向檐沟",
+        "caption": "檐沟图帮助把屋面坡度与集中汇水联系起来；坡面、沟底和最终出口应形成连续水路。",
+        "focus": [
+          "坡面水汇入何处",
+          "檐沟排出的水还需怎样组织"
+        ],
+        "imageAlt": "屋面与檐沟外排水交接的构造剖面图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-3",
+        "sectionTitle": "坡度、材料与水路",
+        "nodeTitle": "檐沟外排水",
+        "image": "/images/roof/eaves-gutter-diagram.png",
+        "hasModel": true,
+        "layerCount": 6
+      }
+    ]
+  },
+  "roof/roof-flat": {
+    "key": "roof/roof-flat",
+    "title": "平屋面构造",
+    "path": "basics/roof/roof-flat.html",
+    "intro": "把大面层次与泛水、落口、穿管等接口一起检查，沿实际水路核对连续性。",
+    "readingMinutes": 17,
+    "figures": [
+      {
+        "nodeId": "organized-drainage-01",
+        "anchor": "无组织与有组织排水",
+        "title": "有组织排水的汇水与出口",
+        "caption": "有组织排水示例用于辨认集中汇水路径；实际分区、雨量、落口能力及堵塞后的溢流需另外校核。",
+        "focus": [
+          "水由哪些坡面进入出口",
+          "是否存在没有排出路径的低点"
+        ],
+        "imageAlt": "有组织排水平屋顶的构造示意图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-2",
+        "sectionTitle": "无组织与有组织排水",
+        "nodeTitle": "有组织排水屋顶",
+        "image": "/images/roof/organized-drainage-diagram.png",
+        "hasModel": true,
+        "layerCount": 4
+      },
+      {
+        "nodeId": "coating-parapet-flashing-01",
+        "anchor": "女儿墙、檐口与水落口",
+        "title": "女儿墙泛水的上翻与收头",
+        "caption": "涂膜防水女儿墙节点用于追踪屋面水平层到竖向上翻的连接；图中传统尺寸和材料应按正文所述项目条件复核。",
+        "focus": [
+          "防水怎样从水平面转到墙面",
+          "收头与保护怎样防止水绕入"
+        ],
+        "imageAlt": "涂膜防水屋面的女儿墙泛水构造图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-6",
+        "sectionTitle": "女儿墙、檐口与水落口",
+        "nodeTitle": "涂膜防水屋面的女儿墙泛水",
+        "image": "/images/roof/coating-parapet-flashing-diagram.png",
+        "hasModel": true,
+        "layerCount": 10
+      },
+      {
+        "nodeId": "vent-pipe-roof-01",
+        "anchor": "贯穿设施、出入口与变形缝",
+        "title": "透气管穿屋面的防水接口",
+        "caption": "透气管节点把管道、屋面防水与上部保护联系起来；管道固定、位移和收头密封应配合检查。",
+        "focus": [
+          "防水层怎样围住管根",
+          "管道移动会作用到哪个接口"
+        ],
+        "imageAlt": "透气管穿过屋面时的管根防水构造剖面图",
+        "id": "figure-3",
+        "number": "03",
+        "sectionId": "section-7",
+        "sectionTitle": "贯穿设施、出入口与变形缝",
+        "nodeTitle": "透气管出屋面",
+        "image": "/images/roof/vent-pipe-diagram.png",
+        "hasModel": true,
+        "layerCount": 11
+      }
+    ]
+  },
+  "roof/roof-slope": {
+    "key": "roof/roof-slope",
+    "title": "坡屋面构造",
+    "path": "basics/roof/roof-slope.html",
+    "intro": "同时观察屋面支承、瓦的固定和瓦下排水，不把坡度大等同于接口无需防水。",
+    "readingMinutes": 9,
+    "figures": [
+      {
+        "nodeId": "roof-truss-steel-timber-01",
+        "anchor": "坡面组织与承重体系",
+        "title": "钢木屋架的支承关系",
+        "caption": "钢木屋架是坡屋顶承重形式之一，用于辨认杆件与屋面支承；实际体系还需核查支座、稳定及节点连接。",
+        "focus": [
+          "杆件怎样组成承重形体",
+          "屋架支座最终把作用传向哪里"
+        ],
+        "imageAlt": "钢木组合屋架的杆件与屋面支承构造图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-1",
+        "sectionTitle": "坡面组织与承重体系",
+        "nodeTitle": "屋架形式（钢木屋架）",
+        "image": "/images/roof/roof-truss-steel-timber-diagram.png",
+        "hasModel": true,
+        "layerCount": 1
+      },
+      {
+        "nodeId": "wood-batten-tile-roof-01",
+        "anchor": "瓦屋面的基层、搭接与固定",
+        "title": "木挂瓦条屋面的固定与层次",
+        "caption": "木挂瓦条块瓦屋面展示瓦、挂瓦条、顺水条及下部层次的关系；搭接、固定和瓦下水路应按具体系统核查。",
+        "focus": [
+          "瓦怎样固定到基层",
+          "瓦下偶然进入的水怎样排出"
+        ],
+        "imageAlt": "木挂瓦条块瓦屋面的瓦、条材及下部层次剖面图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-2",
+        "sectionTitle": "瓦屋面的基层、搭接与固定",
+        "nodeTitle": "木挂瓦条块瓦屋面构造",
+        "image": "/images/roof/wood-batten-tile-roof-01.png",
+        "hasModel": true,
+        "layerCount": 7
+      }
+    ]
+  },
+  "deformation-joint/roof-deformation-concept": {
+    "key": "deformation-joint/roof-deformation-concept",
+    "title": "建筑变形缝的概念",
+    "path": "basics/deformation-joint/roof-deformation-concept.html",
+    "intro": "先区分永久结构断开与局部构造分格，再检查每一种缝允许什么运动。",
+    "readingMinutes": 4,
+    "figures": [
+      {
+        "nodeId": "high-low-roof-joint-01",
+        "anchor": "为什么需要允许建筑变形",
+        "title": "结构分开以后仍需处理围护接口",
+        "caption": "高低屋面变形缝展示两侧相对独立时的局部防水连接。其设缝目的与基础断开范围，不能仅由屋面这一张节点图确定。",
+        "focus": [
+          "结构断开与阻水连续怎样同时处理",
+          "局部图还缺哪些整体设缝资料"
+        ],
+        "imageAlt": "高低屋面之间变形缝与附加卷材防水连接剖面图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-1",
+        "sectionTitle": "为什么需要允许建筑变形",
+        "nodeTitle": "高低屋面变形缝（一）",
+        "image": "/images/roof/high-low-roof-joint-01-diagram.png",
+        "hasModel": true,
+        "layerCount": 10
+      },
+      {
+        "nodeId": "rigid-roof-transverse-joint-01",
+        "anchor": "与分格缝、施工缝、后浇带的区别",
+        "title": "刚性防水分格缝不等于整栋结构缝",
+        "caption": "传统刚性防水屋面横向分格缝用于对照局部构造层的变形协调；不可把它当成贯通基础与主体的沉降缝。",
+        "focus": [
+          "图中的缝作用于哪些层",
+          "主体结构是否一定在此断开"
+        ],
+        "imageAlt": "传统刚性防水屋面横向分格缝的局部构造图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-3",
+        "sectionTitle": "与分格缝、施工缝、后浇带的区别",
+        "nodeTitle": "刚性防水屋面横向分格缝（一）",
+        "image": "/images/roof/rigid-roof-transverse-joint-01-diagram.png",
+        "hasModel": true,
+        "layerCount": 9
+      }
+    ]
+  },
+  "deformation-joint/roof-deformation-location": {
+    "key": "deformation-joint/roof-deformation-location",
+    "title": "变形缝的设置",
+    "path": "basics/deformation-joint/roof-deformation-location.html",
+    "intro": "先明确作用与单元划分，再用局部接口检查运动空间。节点外形不能反向决定是否设缝。",
+    "readingMinutes": 4,
+    "figures": [
+      {
+        "nodeId": "high-low-roof-joint-02",
+        "anchor": "差异沉降与新旧建筑交接",
+        "title": "高低交接处需要检查相对运动",
+        "caption": "高低屋面缝图提供局部接口观察例子，不表示所有高低建筑都必须按此设缝；位置、宽度和运动方向仍须整体分析。",
+        "focus": [
+          "两侧高差会影响哪些接口",
+          "预计运动与防水余量是否相容"
+        ],
+        "imageAlt": "高低屋面交接的另一种变形缝构造剖面图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-3",
+        "sectionTitle": "差异沉降与新旧建筑交接",
+        "nodeTitle": "高低屋面变形缝（二）",
+        "image": "/images/roof/high-low-roof-joint-02-diagram.png",
+        "hasModel": true,
+        "layerCount": 12
+      }
+    ]
+  },
+  "deformation-joint/roof-deformation-construction": {
+    "key": "deformation-joint/roof-deformation-construction",
+    "title": "变形缝的构造",
+    "path": "basics/deformation-joint/roof-deformation-construction.html",
+    "intro": "在同一张图上分别找固定、活动和阻水位置，再设想开合与错动是否会使接口失效。",
+    "readingMinutes": 6,
+    "figures": [
+      {
+        "nodeId": "high-low-roof-joint-01",
+        "anchor": "等高屋面与高低屋面",
+        "title": "高低屋面变形缝的防水连接",
+        "caption": "沿高侧墙面、低屋面上翻与附加卷材追踪阻水线，并检查两侧运动的余量。图中局部形式不代表地下或地面盖缝系统。",
+        "focus": [
+          "防水连接在哪些位置固定和转折",
+          "两侧开合时哪些材料需要适应运动"
+        ],
+        "imageAlt": "高低屋面变形缝以附加卷材连接防水的剖面图",
+        "id": "figure-1",
+        "number": "01",
+        "sectionId": "section-4",
+        "sectionTitle": "等高屋面与高低屋面",
+        "nodeTitle": "高低屋面变形缝（一）",
+        "image": "/images/roof/high-low-roof-joint-01-diagram.png",
+        "hasModel": true,
+        "layerCount": 10
+      },
+      {
+        "nodeId": "high-low-roof-joint-02",
+        "anchor": "读图与维护实例",
+        "title": "比较另一种高低屋面接口",
+        "caption": "将两种高低屋面节点对照，记录保护、固定和活动空间的差别；实际选用仍须匹配缝宽、预计位移和所选防水材料。",
+        "focus": [
+          "保护盖缝与防水线是否同一层",
+          "维护时应观察哪些松动或开裂部位"
+        ],
+        "imageAlt": "高低屋面变形缝第二种接口形式的剖面图",
+        "id": "figure-2",
+        "number": "02",
+        "sectionId": "section-6",
+        "sectionTitle": "读图与维护实例",
+        "nodeTitle": "高低屋面变形缝（二）",
+        "image": "/images/roof/high-low-roof-joint-02-diagram.png",
+        "hasModel": true,
+        "layerCount": 12
+      }
+    ]
+  }
+}

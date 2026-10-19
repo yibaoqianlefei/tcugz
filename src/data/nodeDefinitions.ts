@@ -72,6 +72,10 @@ import { coatingParapetFlashingLayers, getLayerInfo as getCoatingParapetFlashing
 import { timberTrussLayers, reinforcedConcreteTrussLayers, steelTimberTrussLayers, roofTrussLayerConfig } from "./roofTrussLayers";
 import { passiveSolarWallLayers, getLayerInfo as getPassiveSolarWallLayer } from "./passiveSolarWallLayers";
 import { windowWallGapSealingLayers, getLayerInfo as getWindowWallGapSealingLayer } from "./windowWallGapSealingLayers";
+import { flatSlabLayers, getLayerInfo as getFlatSlabLayer } from "./flatSlabLayers";
+import { precastFlatSlabLayers, precastHollowSlabLayers, precastUprightChannelSlabLayers, precastInvertedChannelSlabLayers, precastSlabLayerConfig } from "./precastSlabLayers";
+import { pileFoundationLayers, getLayerInfo as getPileFoundationLayer } from "./pileFoundationLayers";
+import { flushLintelLayers, windowSurroundLintelLayers, windowHoodLintelLayers, rcLintelLayerConfig } from "./rcLintelLayers";
 
 /* ── Static asset path helper ─────────────────────────────────── */
 
@@ -541,7 +545,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     id: "wood-batten-tile-roof-01",
     title: "木挂瓦条块瓦屋面构造",
     description:
-      "木挂瓦条块瓦屋面：块瓦→木挂瓦条→木顺水条→防水卷材（或防水涂膜）→水泥砂浆找平层→细石混凝土找平层→钢筋混凝土屋面板。",
+      "图示木挂瓦条块瓦屋面：块瓦→木挂瓦条→木顺水条→细石混凝土层→防水卷材（或防水涂膜）→水泥砂浆找平层→钢筋混凝土屋面板；尺寸与材料按该示例条件识读。",
     category: "屋顶",
     thumbnail: assetPath("images/roof/wood-batten-tile-roof-01.png"),
     status: "available",
@@ -809,6 +813,76 @@ export const nodeDefinitions: NodeDefinition[] = [
 
   /* ── Floor nodes ─────────────────────────────────────────── */
   {
+    id: "precast-flat-slab-01",
+    title: "预制钢筋混凝土板（平板）",
+    description: "对照实心平板与墙内梁、中梁的支承位置，转动观察板面、板底和板端连接，支持构件点选与剖面对照。",
+    category: "楼地层",
+    thumbnail: assetPath("images/floor/precast-slab-flat-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/floor/precast-slabs/flat.glb"), scale: 2.5, noAnimation: true },
+    diagram: { path: assetPath("images/floor/precast-slab-flat-diagram.png"), subtitle: "预制钢筋混凝土板的类型 · 平板" },
+    layerConfig: precastSlabLayerConfig(precastFlatSlabLayers),
+    textbookLinks: [{ moduleId: "floor", chapterId: "floor-rc-slab" }],
+  },
+  {
+    id: "precast-hollow-slab-01",
+    title: "预制钢筋混凝土板（空心板）",
+    description: "从板端观察空心板孔洞，对照墙内梁、中梁与板端支承，支持构件点选、旋转观察与剖面对照。",
+    category: "楼地层",
+    thumbnail: assetPath("images/floor/precast-slab-hollow-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/floor/precast-slabs/hollow.glb"), scale: 2.5, noAnimation: true },
+    diagram: { path: assetPath("images/floor/precast-slab-hollow-diagram.png"), subtitle: "预制钢筋混凝土板的类型 · 空心板" },
+    layerConfig: precastSlabLayerConfig(precastHollowSlabLayers),
+    textbookLinks: [{ moduleId: "floor", chapterId: "floor-rc-slab" }],
+  },
+  {
+    id: "precast-upright-channel-slab-01",
+    title: "预制钢筋混凝土板（正放槽形板）",
+    description: "观察槽口朝下的板底肋部，对照槽形板与墙内梁挑肩的支承位置，支持构件点选、旋转观察与剖面对照。",
+    category: "楼地层",
+    thumbnail: assetPath("images/floor/precast-slab-channel-upright-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/floor/precast-slabs/channel-upright.glb"), scale: 2.5, noAnimation: true },
+    diagram: { path: assetPath("images/floor/precast-slab-channel-upright-diagram.png"), subtitle: "预制钢筋混凝土板的类型 · 正放槽形板" },
+    layerConfig: precastSlabLayerConfig(precastUprightChannelSlabLayers),
+    textbookLinks: [{ moduleId: "floor", chapterId: "floor-rc-slab" }],
+  },
+  {
+    id: "precast-inverted-channel-slab-01",
+    title: "预制钢筋混凝土板（倒放槽形板）",
+    description: "对照槽口朝上的板形、槽内填料与上部平整层，观察板端支承关系，支持构件点选、旋转观察与剖面对照。",
+    category: "楼地层",
+    thumbnail: assetPath("images/floor/precast-slab-channel-inverted-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/floor/precast-slabs/channel-inverted.glb"), scale: 2.5, noAnimation: true },
+    diagram: { path: assetPath("images/floor/precast-slab-channel-inverted-diagram.png"), subtitle: "预制钢筋混凝土板的类型 · 倒放槽形板" },
+    layerConfig: precastSlabLayerConfig(precastInvertedChannelSlabLayers),
+    textbookLinks: [{ moduleId: "floor", chapterId: "floor-rc-slab" }],
+  },
+  {
+    id: "flat-slab-01",
+    title: "无梁楼板",
+    description: "对照楼板、柱与柱帽的连接，观察无梁楼板的板底空间和直接支承形式，支持整体点选、旋转观察与剖面对照。",
+    category: "楼地层",
+    thumbnail: assetPath("images/floor/flat-slab-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/floor/flat-slab/flat-slab.glb"),
+      scale: 1,
+      noAnimation: true,
+    },
+    diagram: {
+      path: assetPath("images/floor/flat-slab-diagram.png"),
+      subtitle: "图3-7 · 无梁楼板与柱帽",
+    },
+    layerConfig: {
+      layers: flatSlabLayers,
+      getLayerInfo: getFlatSlabLayer,
+    },
+    textbookLinks: [{ moduleId: "floor", chapterId: "floor-rc-slab" }],
+  },
+  {
     id: "cantilever-canopy-slab-01",
     title: "悬挑雨篷构造（悬挑板式）",
     description: "观察过梁与悬挑板、板面防水砂浆及檐口滴水槽的连接，支持分解动画、构件知识卡片和剖面对照。",
@@ -942,6 +1016,42 @@ export const nodeDefinitions: NodeDefinition[] = [
   },
 
   /* ── Wall nodes ─────────────────────────────────────────── */
+  {
+    id: "rc-lintel-flush-01",
+    title: "钢筋混凝土过梁（平墙过梁）",
+    description: "观察平墙过梁、外围包覆层与上部墙体的连接，比较与墙身齐平的截面轮廓，支持构件点选、旋转观察与剖面对照。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/rc-lintel-flush-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/wall/rc-lintels/flush.glb"), scale: 2.5, noAnimation: true },
+    diagram: { path: assetPath("images/wall/rc-lintel-flush-diagram.png"), subtitle: "钢筋混凝土过梁 · 平墙过梁" },
+    layerConfig: rcLintelLayerConfig(flushLintelLayers),
+    textbookLinks: [{ moduleId: "wall", chapterId: "wall-details" }],
+  },
+  {
+    id: "rc-lintel-window-surround-01",
+    title: "钢筋混凝土过梁（带窗套过梁）",
+    description: "观察过梁外侧与窗套相接的轮廓，对照过梁主体、包覆层与墙体的位置，支持构件点选、旋转观察与剖面对照。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/rc-lintel-window-surround-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/wall/rc-lintels/window-surround.glb"), scale: 2.5, noAnimation: true },
+    diagram: { path: assetPath("images/wall/rc-lintel-window-surround-diagram.png"), subtitle: "钢筋混凝土过梁 · 带窗套过梁" },
+    layerConfig: rcLintelLayerConfig(windowSurroundLintelLayers),
+    textbookLinks: [{ moduleId: "wall", chapterId: "wall-details" }],
+  },
+  {
+    id: "rc-lintel-window-hood-01",
+    title: "钢筋混凝土过梁（带窗楣过梁）",
+    description: "沿外挑窗楣观察顶面、外缘和底面的包覆关系，对照主体与上部墙体，支持构件点选、旋转观察与剖面对照。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/rc-lintel-window-hood-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/wall/rc-lintels/window-hood.glb"), scale: 2.5, noAnimation: true },
+    diagram: { path: assetPath("images/wall/rc-lintel-window-hood-diagram.png"), subtitle: "钢筋混凝土过梁 · 带窗楣过梁" },
+    layerConfig: rcLintelLayerConfig(windowHoodLintelLayers),
+    textbookLinks: [{ moduleId: "wall", chapterId: "wall-details" }],
+  },
   {
     id: "window-wall-gap-sealing-01",
     title: "封堵窗墙间缝隙做法",
@@ -1874,6 +1984,28 @@ export const nodeDefinitions: NodeDefinition[] = [
     ],
   },
 
+  {
+    id: "pile-foundation-composition-01",
+    title: "桩基组成",
+    description: "对照柱下承台板与墙下承台梁两种构造，观察桩、承台和上部墙柱的连接，支持构件点选、旋转观察与剖面对照。",
+    category: "基础",
+    thumbnail: assetPath("images/foundation/pile-foundation-composition-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/foundation/pile-foundation-composition/pile-foundation-composition.glb"),
+      scale: 1,
+      noAnimation: true,
+    },
+    diagram: {
+      path: assetPath("images/foundation/pile-foundation-composition-diagram.png"),
+      subtitle: "图8-10 · 桩基组成",
+    },
+    layerConfig: {
+      layers: pileFoundationLayers,
+      getLayerInfo: getPileFoundationLayer,
+    },
+    textbookLinks: [{ moduleId: "foundation", chapterId: "foundation-types" }],
+  },
   {
     id: "combined-foundation-slab-01",
     title: "联合基础（板式基础）",

@@ -1,0 +1,90 @@
+{
+  "round": 3,
+  "phase": "修复后最终回归复核",
+  "date": "2026-10-16",
+  "read_only": true,
+  "result": "pass",
+  "new_findings": [],
+  "bound_pdf": {
+    "file": "建筑构造教材_基础7部分与原理6部分.pdf",
+    "sha256": "06caa4db3bd41ead6b639b49ef21dc919c44b614f8cddebffe119d2be286270a",
+    "sha256_verified_from_file_bytes": true,
+    "pages_verified_with_pypdf": 75
+  },
+  "scope": {
+    "previous_full_visual_review": "第051至075页25张PNG均在work/audit-round3-visual-051-075-and-website.json所述审查中用view_image(detail=original)逐张查看。",
+    "changed_pages_reopened_original": [51,53,54,58,67],
+    "unchanged_pages": [52,55,56,57,59,60,61,62,63,64,65,66,68,69,70,71,72,73,74,75],
+    "unchanged_evidence_boundary": "主编提供其余PNG字节未变化的增量范围，本次据此复看全部5张变化页；未把未变化页表述为本次重新打开。前轮已完成这些页的逐张原图查看。",
+    "website": "网站文本/manifest.json及全部54个articleMarkdown文件的真实字节、文本字符数和换行。"
+  },
+  "visual_recheck": [
+    {
+      "page":51,
+      "sha256_png":"20dc1785e27c04c6fdd2e8db4542499a8af22579ce79e64b64bcc2c994e9914d",
+      "result":"pass",
+      "note":"松散保温段原行首逗号已回到前行，重排后的保温与正置倒置段完整；无裁切、重叠、缺字黑方块或标题孤立。"
+    },
+    {
+      "page":53,
+      "sha256_png":"0ee60955ffd6cb82cf0fca7c9d23db4e0c0997cf4724aa92b99a453a64d842d9",
+      "result":"pass",
+      "note":"坡面组织、承重和瓦基层段重排正常，标题后有正文，页底文字完整。"
+    },
+    {
+      "page":54,
+      "sha256_png":"267c68bf6cb1575e200ab0e34c8aac163671fe7059584560332292df3cb2ca41",
+      "result":"pass",
+      "note":"檐口山墙、天沟与小青瓦各节正常，未见行首禁则标点、行段重叠或字形故障。"
+    },
+    {
+      "page":58,
+      "sha256_png":"c122f7f7626b3046d4360b7212cf1c68cb82b1dc706839a3f63a452f0ed86287",
+      "result":"pass",
+      "note":"后浇带段原行首逗号已修复；变形缝构造及独立传力标题后有完整正文，未见重排回归问题。"
+    },
+    {
+      "page":67,
+      "sha256_png":"eab13cd2f98aba76084c48c00c754cdfec7e7694598cc6e25412b385ef4bea49",
+      "result":"pass",
+      "note":"隔声各段与自下一页续接正常，标题、行距、页脚均可读；无裁切、重叠或孤立标题。"
+    }
+  ],
+  "closed_findings": [
+    {
+      "previous_report":"work/audit-round3-visual-051-075-and-website.json",
+      "previous_severity":"medium",
+      "issue":"manifest.sha256原按LF文本计算而topics落盘为CRLF，实际文件字节哈希不一致",
+      "status":"closed",
+      "evidence":"本次独立逐一读取54个topic文件实际bytes计算SHA256，与manifest.articles[].sha256全部一致；文件CRLF检测数量为0；54个characters也与读取文本长度一致。"
+    },
+    {
+      "previous_report":"work/audit-round3-visual-051-075-and-website.json",
+      "previous_severity":"low",
+      "issue":"第051及058页个别逗号出现在行首",
+      "status":"closed",
+      "evidence":"逐张original复看051、053、054、058、067全部变化页，原标点问题已修复，未产生裁切、行重叠、黑方块或标题孤立。"
+    },
+    {
+      "previous_report":"work/audit-round2-system-consistency.json",
+      "previous_severity":"low",
+      "issue":"墙体热桥内表面温度变化缺少冬季条件",
+      "status":"closed_in_previous_visual_round",
+      "evidence":"前次已核对冻结的02墙体第127行，分别说明冬季外冷与夏季外热条件，本轮不重复列为新问题。"
+    }
+  ],
+  "website_recheck": {
+    "manifest_articles":54,
+    "actual_files_checked":54,
+    "raw_byte_sha256_mismatches":0,
+    "files_containing_crlf":0,
+    "text_character_count_mismatches":0,
+    "previous_mapping_result":"13部分、7基础、6原理及54篇父章对应正文的映射前轮全部一致；本轮修复只涉及输出换行，未发现文本字符数改变。"
+  },
+  "artifact_boundary": "PDF有实际分页渲染并完成变化页原图复核。DOCX原生Word渲染因soffice缺失未完成；834段文字比对与OOXML结构检查属于文本/结构验证，不是Word实际渲染。",
+  "limits": [
+    "本回归检查绑定上述PDF真实字节SHA256和记录的变化页PNG，后续若改文件需重新核验。",
+    "未改正文、PDF、PNG、manifest或生成程序，只写本审计记录。",
+    "输出质量与映射审计不等同全部工程规范条文合规审定。"
+  ]
+}

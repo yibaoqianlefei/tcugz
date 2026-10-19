@@ -1,0 +1,25 @@
+{
+  "lessons": 54,
+  "figures": 85,
+  "widths": [
+    1440,
+    390,
+    320
+  ],
+  "verified": [
+    "lazy-model",
+    "real-model-and-parts",
+    "diagram-zoom",
+    "keyboard-tabs",
+    "escape",
+    "focus-return",
+    "scroll-return",
+    "reading-progress",
+    "self-check-feedback",
+    "all-assets",
+    "all-narrow-readers",
+    "image-error-retry",
+    "no-webgl-fallback"
+  ],
+  "errors": []
+}

@@ -40,7 +40,8 @@ for (const article of articles) {
   assert(body, `body rendered: ${article.path}`);
   let expected = '';
   for (const node of ast.children.slice(1)) walk(node, child => { if (child.type === 'text' || child.type === 'inlineCode' || child.type === 'code') expected += child.value; });
-  assert.equal(cjk(body.replace(/<[^>]+>/g, '')), cjk(expected), `no source text silently lost: ${article.path}`);
+  const originalBody = body.replace(/<!-- textbook-enhancement:start -->[\s\S]*?<!-- textbook-enhancement:end -->/g, '');
+  assert.equal(cjk(originalBody.replace(/<[^>]+>/g, '')), cjk(expected), `no source text silently lost: ${article.path}`);
   const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]));
   for (const link of html.matchAll(/href="#([^"]+)"/g)) assert(ids.has(link[1]), `in-page index target exists: ${article.path}#${link[1]}`);
 }
@@ -105,5 +106,6 @@ assert(directoryAssets.includes('href="/textbook/lesson/module-directory.css?v=2
 assert(directoryAssets.includes('src="/textbook/images/chapters/foundation.webp"'));
 assert(directoryAssets.includes('href="/textbook/styles/directory-cards.css"'));
 assert(directoryAssets.includes('src="/textbook/styles/directory-motion-entry.js"'));
+assert(formalizeCourse('<a href="/images/wall/detail.png">原图</a>', '/textbook/').includes('href="/textbook/images/wall/detail.png"'), 'original drawing links respect hosted subpaths');
 assert.throws(() => formalizeCourse(fixture, 'textbook/'));
 console.log(`Textbook checks passed: ${articles.length} full articles, ${documents.size} routes, complete rendered text, links, task requirements and hosted subpaths.`);

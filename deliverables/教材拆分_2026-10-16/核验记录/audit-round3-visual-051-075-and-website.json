@@ -1,0 +1,88 @@
+{
+  "round": 3,
+  "date": "2026-10-16",
+  "audit_type": "最终PDF第051至075页逐页原图视觉检查及网站清单正文映射检查",
+  "read_only": true,
+  "source_images": "work/pdf-pages/page-051.png 至 page-075.png",
+  "pages_inspected": 25,
+  "method": "逐张调用view_image(detail=original)查看25张完整PNG，未用contact sheet代替逐页审阅。检查正文边界、上下段续接、标题与后文、字形、公式、表格、页码、留白和页脚。网站包另以独立只读程序逐条重建父章对应文本，比较topic正文、标题、长度、哈希及目录路由。",
+  "artifact_boundary": "视觉检查仅针对最终PDF实际渲染出的PNG。DOCX原生Word分页渲染因soffice缺失未完成；834段文字与OOXML结构校验为主编另行实施的文本/结构验证，不能称为Word实际渲染。",
+  "previous_issue_closure": {
+    "issue": "第二轮墙体热桥句缺少冬季温差条件",
+    "status": "closed",
+    "evidence": "parts/02-墙体.md第127行现明确写冬季供暖且室外较冷时可能降低局部内表面温度，夏季外热内冷时可能增加局部得热。"
+  },
+  "visual_result": "未发现裁切、正文重叠、缺字黑方块、孤立标题、异常空页或表格断裂；存在轻微中文标点避头断行问题，见低优先观察。",
+  "page_results": [
+    {"page":51,"result":"pass_with_note","content":"屋顶续文、保温材料形态、正置倒置水汽控制","note":"字形与边界清楚；松散保温段有逗号行首，属中文断行微调。"},
+    {"page":52,"result":"pass","content":"通风反射蓄水种植及读图应用","note":"标题与正文同页，段落未裁切。"},
+    {"page":53,"result":"pass","content":"坡屋面构造与承重、瓦基层","note":"三级标题分层明确，受力文字与符号正常。"},
+    {"page":54,"result":"pass","content":"檐口天沟、小青瓦筒板瓦","note":"续文及各标题后均有正文，无重叠。"},
+    {"page":55,"result":"pass","content":"保温通风金属板、自测答案","note":"题号完整，章末留白正常。"},
+    {"page":56,"result":"pass","content":"基础七开章及三类变形缝概念","note":"章标题与导入正常，页底段落完整。"},
+    {"page":57,"result":"pass","content":"三类变形缝比较表及设置原则","note":"三列四行表格完整同页，单元格文字未越界，表后正文连续。"},
+    {"page":58,"result":"pass_with_note","content":"沉降抗震设置、其他控制措施及构造起始","note":"构造标题及子标题后有完整段落；后浇带段有逗号行首，属中文断行微调。"},
+    {"page":59,"result":"pass","content":"连廊、墙地面与屋面盖缝","note":"行间与段间间距稳定，未见裁切。"},
+    {"page":60,"result":"pass","content":"地下管线接口、维护、自测答案","note":"题号和参考答案连续，章末留白正常。"},
+    {"page":61,"result":"pass","content":"原理一开章、热阻公式与热桥","note":"λ、R=d/λ、U、m²等字形可读，无黑方块；标题均有后文。"},
+    {"page":62,"result":"pass","content":"保温与水分防火、应用与自测","note":"正文及标准编号正常，章末留白正常。"},
+    {"page":63,"result":"pass","content":"原理二开章、水作用、防排水系统","note":"标题层次、段落与页码清晰。"},
+    {"page":64,"result":"pass","content":"连续防水、检查与自测","note":"标准编号可读，无孤立标题，章末留白正常。"},
+    {"page":65,"result":"pass","content":"原理三开章、热作用遮阳空腔","note":"内外遮阳、空气层文字正常，无段落碰撞。"},
+    {"page":66,"result":"pass","content":"通风特殊屋面及自测","note":"章末篇幅较短但并非异常空页。"},
+    {"page":67,"result":"pass","content":"原理四开章、墙体和撞击声","note":"侧向传声标题后有正文，页边界正常。"},
+    {"page":68,"result":"pass","content":"隔声指标、标准与自测","note":"本章结束页留白较多，连续内容和题答完整，不属于空页。"},
+    {"page":69,"result":"pass","content":"原理五开章、燃烧耐火分隔封堵","note":"所有标题有后文，文本无缺字。"},
+    {"page":70,"result":"pass","content":"疏散维护、标准和自测","note":"GB55037及GB55038编号可读，章末留白正常。"},
+    {"page":71,"result":"pass","content":"原理六开章、潮湿墙脚及结露","note":"正文、标题与底部段落完整。"},
+    {"page":72,"result":"pass","content":"隔汽气密干燥与自测","note":"题答完整，章末留白正常。"},
+    {"page":73,"result":"pass","content":"实践任务开章、方案楼面楼梯排水","note":"数值和比例符号可读，排水标题后有正文。"},
+    {"page":74,"result":"pass","content":"排水续文、外檐综合设计与调研","note":"任务续接清楚，无孤立标题。"},
+    {"page":75,"result":"pass","content":"参考标准与资料","note":"7项参考条目、资料说明和页码完整，末页留白正常。"}
+  ],
+  "website_checks": {
+    "manifest": "网站文本/manifest.json",
+    "part_count": 13,
+    "basics": 7,
+    "principles": 6,
+    "article_count": 54,
+    "group_counts": {"introduction":7,"principles":6,"practice":7,"foundation":6,"wall":8,"door-window":2,"floor":7,"stairs":5,"roof":3,"deformation-joint":3},
+    "part_titles_match": true,
+    "article_text_compared": 54,
+    "normalized_text_mismatch_count": 0,
+    "character_count_mismatch_count": 0,
+    "normalized_lf_hash_mismatch_count": 0,
+    "raw_file_sha256_mismatch_count": 54,
+    "catalog_group_id_route_future_source_mismatch_count": 0,
+    "duplicate_routes": 0,
+    "duplicate_topic_paths": 0,
+    "duplicate_future_source_paths": 0,
+    "mapping_detail": "基础正文33个二级栏目各承接1篇，另墙体导入形成墙体概述1篇，共34篇基础文章；原理6篇采用各原理全文；导学拆7篇、实践拆7篇，合计54。父章H1与栏目标题按独立文章H1转换，正文均与对应部分一致。",
+    "integration_boundary": "清单明确为文本交付包，尚未写入现有网站；futureSourceFile是未来落地位置，不代表网站已经更新。"
+  },
+  "findings": [
+    {
+      "severity": "medium",
+      "file": "网站文本/manifest.json",
+      "heading": "articles[].sha256",
+      "issue": "54个sha256均匹配读取后归一化为LF的文本，而不匹配对应文件实际字节。生成器在Windows以默认换行写出CRLF，但在写前对LF字符串计算SHA256；字段未声明文本规范化规则，常规文件哈希验证会全部失败。正文映射本身没有差异。",
+      "fix": "选择一种明确语义：输出topics时固定newline='\n'并重包，使sha256对应真实字节；或把字段改名为normalizedTextSha256并写清UTF-8、LF及无BOM规则。不要改正文内容。",
+      "source": ["work/package_website.py 第29至30行的write_text与字符串hash", "独立只读检查54篇：LF文本哈希0不符，文件字节哈希54不符"]
+    },
+    {
+      "severity": "low",
+      "file": "最终PDF／第051和058页",
+      "heading": "中文标点断行",
+      "issue": "个别行首出现逗号，例如51页松散保温段与58页后浇带段。内容完整且不影响阅读，但不符合较精细的中文标点避头排版。",
+      "fix": "若继续精修排版，可在PDF行折算法加入中文禁则，避免逗号句号等出现在行首；不需要改写教材正文。",
+      "source": ["work/pdf-pages/page-051.png原图", "work/pdf-pages/page-058.png原图"]
+    }
+  ],
+  "blocking_visual_findings": 0,
+  "limitations": [
+    "本代理逐页视觉范围为051至075，未声称亲自查看001至050。",
+    "没有进行DOCX原生Word渲染。",
+    "本轮为输出质量及文件映射审计，不是全部工程规范条文合规审定。",
+    "只新增审计报告，没有修改正文、PDF、PNG、manifest或打包程序。"
+  ]
+}

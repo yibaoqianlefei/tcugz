@@ -2,8 +2,8 @@
  * Wooden-batten block-tile roof (木挂瓦条块瓦屋面) — layer data mapping.
  * Maps GLB mesh objectName (canonical Blender export names) → construction knowledge.
  *
- * Load path (bottom → top): 钢筋混凝土屋面板 → C15细石混凝土找平层 → 水泥砂浆找平层
- *   → 防水卷材/防水涂膜 → 顺水条 → 挂瓦条 → 块瓦
+ * 图示层序（下→上）：钢筋混凝土屋面板 → 水泥砂浆找平层 → 防水卷材/防水涂膜
+ *   → C15细石混凝土层 → 顺水条 → 挂瓦条 → 块瓦
  *
  * 与钢挂瓦条块瓦屋面同为"顺水条+挂瓦条"构造，但挂瓦条、顺水条均采用
  * 经防腐处理的木条；防水层允许采用高聚物改性沥青防水卷材 3mm 或防水涂膜 ≥2mm。
@@ -34,29 +34,29 @@ export const woodBattenTileRoofLayers: LayerInfo[] = [
   {
     objectName: "C15细石混凝土找平层，厚_35mm（配φ6@500×500钢筋",
     name: "找平层（细石混凝土）",
-    order: 2,
+    order: 4,
     thickness: "35mm",
     material: "C15细石混凝土，配φ6@500×500钢筋",
     description:
-      "在结构层上浇筑C15细石混凝土找坡找平，厚35mm，内配φ6@500×500钢筋网以防收缩开裂，形成平整坚固的基层，为防水层提供可靠的铺贴面。",
+      "本配图与模型中，此层位于防水层之上、顺水条之下。图示为35厚C15细石混凝土及φ6@500×500钢筋网，用于该示例层次的识读；其功能、固定和配筋应按配套系统设计确认，不能误置于防水层下方。",
   },
   {
     objectName: "1：3水泥砂浆找平层_15mm",
     name: "找平层（水泥砂浆）",
-    order: 3,
+    order: 2,
     thickness: "15mm",
     material: "1:3水泥砂浆",
     description:
-      "在细石混凝土层之上抹1:3水泥砂浆作精找平，表面压实抹光，进一步提高基层平整度，保证防水卷材铺贴密实、不空鼓。",
+      "图示15厚1:3水泥砂浆找平层，位于钢筋混凝土屋面板之上、防水层之下；不是位于上部35厚细石混凝土层之上。图中厚度和配比只对应该示例。",
   },
   {
     objectName: "高聚物改性沥青防水卷材_3mm（或防水涂膜≥2mm",
     name: "防水层",
-    order: 4,
+    order: 3,
     thickness: "卷材3mm 或 涂膜≥2mm",
     material: "高聚物改性沥青防水卷材 / 防水涂膜",
     description:
-      "坡屋面防水的核心层次，铺贴于找平层之上、顺水条之下。可采用高聚物改性沥青防水卷材厚3mm，或防水涂膜厚≥2mm；卷材应顺水流方向搭接，搭接宽度不小于100mm，将雨水与结构层完全隔离。",
+      "本图防水层位于15厚水泥砂浆找平层与35厚细石混凝土层之间。原图列3厚卷材或相应涂膜的示例条件；选材、厚度、搭接和转折收头应按所选系统核查，不把图中数值当作统一要求。",
   },
   {
     objectName: "顺水条（35×25h，中距500）",
@@ -65,7 +65,7 @@ export const woodBattenTileRoofLayers: LayerInfo[] = [
     thickness: "35×25h mm，中距500mm",
     material: "防腐木条",
     description:
-      "沿坡向布置的防腐木顺水条，断面35×25mm（h为高度方向），中距500mm，钉固于防水层之上。既压紧保护卷材，又在其间形成空气流通层，加速雨水蒸发、防止瓦下积水。",
+      "图示沿坡向布置的木顺水条，位于35厚细石混凝土层之上，承接挂瓦条；35×25h与中距500为原图示例。条材间的空间有利于组织瓦下排水与通风，其连续出口、固定和防腐处理仍需按配套节点落实。",
   },
   {
     objectName: "挂瓦条（30×25，中距按瓦材规格）",
@@ -83,9 +83,9 @@ export const woodBattenTileRoofLayers: LayerInfo[] = [
     thickness: "按瓦材规格",
     material: "烧结块瓦 / 水泥瓦",
     description:
-      "屋面最外层的块瓦，依靠挂瓦条挂接，形成完整防水、防雨、保温、美观的屋面面层。块瓦搭接应顺水流方向，上下搭接长度符合规范。",
+      "最外侧搭接覆盖层，通过条材及连接组织固定和排雨。块瓦不能单独代表完整防水或保温系统；瓦下防水、通风、搭接和抗风固定需共同检查，具体搭接及间距按产品和设计条件确定。",
   },
-];
+].sort((a, b) => a.order - b.order);
 
 export function getLayerInfo(objectName: string): LayerInfo | undefined {
   return woodBattenTileRoofLayers.find((l) => l.objectName === objectName);

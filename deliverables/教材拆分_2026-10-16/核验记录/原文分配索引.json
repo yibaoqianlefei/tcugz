@@ -1,0 +1,3239 @@
+{
+  "sourceSha256": "94b82def87058e630a616aab7b65b5d5703194c64227fcc122a1e385764ffecb",
+  "paragraphCount": 4321,
+  "blocks": [
+    {
+      "blockId": "B001",
+      "sourceStart": 1,
+      "sourceEnd": 59,
+      "sourceTitle": "旧目录和域代码",
+      "finalPart": "原文留档/source-paragraphs.txt",
+      "contentPoints": [
+        "目录仅作历史索引，网站目录按实际内容重新生成"
+      ],
+      "disposition": "留档不入教材正文",
+      "previousSectionHint": "原资料归档"
+    },
+    {
+      "blockId": "B002",
+      "sourceStart": 60,
+      "sourceEnd": 60,
+      "sourceTitle": "讲义标题",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "保留课程名称，取消手动分页标记"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "课程导读"
+    },
+    {
+      "blockId": "B003",
+      "sourceStart": 61,
+      "sourceEnd": 77,
+      "sourceTitle": "课程内容及建筑构造学科定位",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "建筑构造的研究对象、综合性与方案可实施性",
+        "构造原理、构造做法与详图表达的关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "课程导学（建议放绪论入口）"
+    },
+    {
+      "blockId": "B004",
+      "sourceStart": 78,
+      "sourceEnd": 105,
+      "sourceTitle": "课程任务、设计阶段、建筑基本功能",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "方案、初步设计、施工图中的构造设计任务",
+        "建筑承载和围护基本功能与使用功能的区别",
+        "多专业协同与建筑整体性"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "课程导学（建议放绪论入口）"
+    },
+    {
+      "blockId": "B005",
+      "sourceStart": 106,
+      "sourceEnd": 118,
+      "sourceTitle": "课程特点和学习方法",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "实践性、综合性",
+        "材料、结构、物理、施工、设备、经济之间的联系",
+        "观察实物、分析原理、课程设计训练"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "课程导学（建议放绪论入口）"
+    },
+    {
+      "blockId": "B006",
+      "sourceStart": 119,
+      "sourceEnd": 149,
+      "sourceTitle": "学习目的、重点难点和建筑目标",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "理解为何这样做、会选择做法、会表达详图",
+        "掌握原理与设计方法、综合应用能力",
+        "安全、适用、经济、美观的综合要求"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "课程导学（建议放绪论入口）"
+    },
+    {
+      "blockId": "B007",
+      "sourceStart": 150,
+      "sourceEnd": 166,
+      "sourceTitle": "学习要求、参考书与教学安排",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "理论联系实际的学习要求",
+        "可保留原教材参考书作为历史资料来源"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "课程导学（建议放绪论入口）"
+    },
+    {
+      "blockId": "B008",
+      "sourceStart": 167,
+      "sourceEnd": 208,
+      "sourceTitle": "承重结构体系与荷载传递",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "墙承重与框架体系特点及适用空间",
+        "板/梁→墙或柱→基础→地基荷载路径",
+        "竖向、水平承重构件的工作特点",
+        "承载构件与围护构件的关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑物的构造组成"
+    },
+    {
+      "blockId": "B009",
+      "sourceStart": 209,
+      "sourceEnd": 245,
+      "sourceTitle": "建筑物各组成部分及作用",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "基础、墙柱、楼地层、饰面、楼梯电梯、屋盖、门窗及附属部分",
+        "各部分的承载、围护、交通和装修功能",
+        "把六大基本构件与装修、电梯、附属构件区分层次"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑物的构造组成"
+    },
+    {
+      "blockId": "B010",
+      "sourceStart": 246,
+      "sourceEnd": 269,
+      "sourceTitle": "按使用功能分类",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "民用、工业、农业建筑",
+        "民用建筑下分居住、公共建筑",
+        "不同使用需求影响构造选择"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑物的分类"
+    },
+    {
+      "blockId": "B011",
+      "sourceStart": 270,
+      "sourceEnd": 281,
+      "sourceTitle": "按修建量和规模分类",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "大量性建筑与大型性建筑",
+        "规模、数量、复杂程度与构造标准的关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑物的分类"
+    },
+    {
+      "blockId": "B012",
+      "sourceStart": 282,
+      "sourceEnd": 311,
+      "sourceTitle": "按层数高度分类及高度计算",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "区分居住与公共建筑原讲义的分类方式",
+        "建筑高度和层数计算必须先明确所用规范场景",
+        "用建筑示例练习分类和高度识读"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑物的分类"
+    },
+    {
+      "blockId": "B013",
+      "sourceStart": 312,
+      "sourceEnd": 343,
+      "sourceTitle": "耐火等级、燃烧性能和耐火极限",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "耐火等级取决于构件燃烧性能及耐火极限",
+        "燃烧性能与耐火极限是不同概念",
+        "耐火试验判定维度、建筑等级与构件性能的联系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑物的分级"
+    },
+    {
+      "blockId": "B014",
+      "sourceStart": 344,
+      "sourceEnd": 355,
+      "sourceTitle": "防火间距、防火分区、防火墙和安全疏散",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "建筑防火体系中的间距、分区、分隔和疏散",
+        "安全疏散连续通路的三个基本示例"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑物的分级"
+    },
+    {
+      "blockId": "B015",
+      "sourceStart": 356,
+      "sourceEnd": 366,
+      "sourceTitle": "设计使用年限及分类分级与构造的关系",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "设计使用年限与使用性质、重要性、结构材料和防护措施的关系",
+        "分类、分级直接影响构造选择"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑物的分级"
+    },
+    {
+      "blockId": "B016",
+      "sourceStart": 367,
+      "sourceEnd": 389,
+      "sourceTitle": "环境、荷载、气候与人为影响",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "外界作用力影响结构和节点",
+        "地域气候、水文地质影响构造做法",
+        "火灾、噪声、振动、腐蚀、用水等使用因素"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "影响建筑物的因素"
+    },
+    {
+      "blockId": "B017",
+      "sourceStart": 390,
+      "sourceEnd": 405,
+      "sourceTitle": "使用者、技术条件与经济因素",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "安全、舒适、无障碍等使用者需求",
+        "材料、结构、设备与施工技术条件",
+        "投资、建筑标准、全寿命维护对材料和做法的影响"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "影响建筑物的因素"
+    },
+    {
+      "blockId": "B018",
+      "sourceStart": 406,
+      "sourceEnd": 418,
+      "sourceTitle": "建筑构造设计原则",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "坚固耐久、安全可靠",
+        "功能合理、实用方便",
+        "技术先进、施工方便",
+        "合理选材、造价经济",
+        "造型美观与遵守法规规范"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑构造的设计原则"
+    },
+    {
+      "blockId": "B019",
+      "sourceStart": 419,
+      "sourceEnd": 433,
+      "sourceTitle": "建筑工业化与模数协调的意义",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "标准化、通用化与构配件互换",
+        "专用体系和通用体系",
+        "模数协调服务定位、连接与工业化生产"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "专题：制图标准与规范"
+    },
+    {
+      "blockId": "B020",
+      "sourceStart": 434,
+      "sourceEnd": 459,
+      "sourceTitle": "基本模数、导出模数、数列和协调",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "模数与基本模数M",
+        "扩大模数、分模数及数列",
+        "模数协调的目的与不同尺寸适用场景"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "专题：制图标准与规范"
+    },
+    {
+      "blockId": "B021",
+      "sourceStart": 460,
+      "sourceEnd": 476,
+      "sourceTitle": "空间网络、轴线和三种尺寸",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "构配件、模数化空间网络",
+        "定位轴线与定位线",
+        "标志尺寸、构造尺寸、实际尺寸",
+        "缝隙与允许偏差的区别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "专题：制图标准与规范"
+    },
+    {
+      "blockId": "B022",
+      "sourceStart": 477,
+      "sourceEnd": 492,
+      "sourceTitle": "开间、进深、标高及图纸单位",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "开间、进深、层高、净高",
+        "绝对高程与相对标高",
+        "平面尺寸、标高表达与单位"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "专题：制图标准与规范"
+    },
+    {
+      "blockId": "B023",
+      "sourceStart": 493,
+      "sourceEnd": 494,
+      "sourceTitle": "绪论复习知识点",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "构件作用、分类分级、因素原则、模数尺寸的综合复习"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "专题：制图标准与规范"
+    },
+    {
+      "blockId": "B024",
+      "sourceStart": 495,
+      "sourceEnd": 497,
+      "sourceTitle": "墙体课程入口及功能概述",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "承重、围护、分隔三项功能",
+        "同一墙体随位置与结构体系承担不同作用"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体在建筑中的作用"
+    },
+    {
+      "blockId": "B025",
+      "sourceStart": 498,
+      "sourceEnd": 522,
+      "sourceTitle": "墙体的分类",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "内外墙、窗间墙、窗下墙、纵横墙",
+        "承重与非承重墙",
+        "材料、实体/空体/组合构造",
+        "块材、现浇、预制板材施工分类"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体的类型"
+    },
+    {
+      "blockId": "B026",
+      "sourceStart": 523,
+      "sourceEnd": 586,
+      "sourceTitle": "墙承重结构布置方案",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "横墙承重、纵墙承重、纵横混合承重",
+        "框架、底部框架、内框架的比较",
+        "墙体连续对齐、布局均匀对称的整体性原则"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "砌体结构"
+    },
+    {
+      "blockId": "B027",
+      "sourceStart": 587,
+      "sourceEnd": 612,
+      "sourceTitle": "墙体承载力和稳定性",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "承载能力与材料、厚度、截面有关",
+        "稳定性与高厚比、支撑和墙体长度高度有关",
+        "增厚、壁柱、圈梁等措施的机理"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体的设计要求"
+    },
+    {
+      "blockId": "B028",
+      "sourceStart": 613,
+      "sourceEnd": 652,
+      "sourceTitle": "保温隔热、凝结、渗透与热桥",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "气候分区决定热工策略",
+        "传导、空气渗透与水汽凝结",
+        "合理选材、复合墙、缝隙处理、隔汽策略",
+        "热桥与局部内表面温度降低"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体的设计要求"
+    },
+    {
+      "blockId": "B029",
+      "sourceStart": 653,
+      "sourceEnd": 671,
+      "sourceTitle": "节能发展阶段及建筑指标",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "体形系数、传热系数、窗墙比、朝向与气密性",
+        "墙体热工性能与整栋建筑能耗的联系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体的设计要求"
+    },
+    {
+      "blockId": "B030",
+      "sourceStart": 672,
+      "sourceEnd": 698,
+      "sourceTitle": "墙体隔声机理与措施",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "空气传声与结构传声",
+        "墙体/门窗/楼地层不同隔声任务",
+        "缝隙封闭、质量、复合构造、布局的作用"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体的设计要求"
+    },
+    {
+      "blockId": "B031",
+      "sourceStart": 699,
+      "sourceEnd": 716,
+      "sourceTitle": "防火、防水防潮、工业化及墙体要求小结",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "燃烧性能、耐火性能、防火分隔",
+        "雨雪、地下水、室内用水",
+        "工业化与材料经济性",
+        "结构、热工、声学、防护综合要求"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体的设计要求"
+    },
+    {
+      "blockId": "B032",
+      "sourceStart": 717,
+      "sourceEnd": 742,
+      "sourceTitle": "砖墙特点及砖材",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "传统砖墙优缺点、墙材改革背景",
+        "按原料、形状和工艺分砖",
+        "标准砖尺寸、材料强度等级符号与单位"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "砌体结构"
+    },
+    {
+      "blockId": "B033",
+      "sourceStart": 743,
+      "sourceEnd": 756,
+      "sourceTitle": "砌块种类、强度和模数",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "承重与非承重砌块不能只靠外形判断",
+        "小型砌块规格与灰缝的模数协调",
+        "材料类别、密度与强度等级的区别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "砌体结构"
+    },
+    {
+      "blockId": "B034",
+      "sourceStart": 757,
+      "sourceEnd": 781,
+      "sourceTitle": "砂浆与砌体强度",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "砂浆粘结、找平、填实三作用",
+        "水泥、混合、石灰砂浆的基础区别",
+        "砌体性能由块材、砂浆、砌筑共同决定"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "砌体结构"
+    },
+    {
+      "blockId": "B035",
+      "sourceStart": 782,
+      "sourceEnd": 801,
+      "sourceTitle": "砖的组砌与灰缝",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "错缝搭接、避免通缝、砂浆饱满",
+        "丁、顺、灰缝、平砌/斗砌/立砌",
+        "全顺、一顺一丁、梅花丁、三顺一丁"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "砌体结构"
+    },
+    {
+      "blockId": "B036",
+      "sourceStart": 802,
+      "sourceEnd": 823,
+      "sourceTitle": "砌块排布、墙厚与洞口模数",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "砌块排块图、洞口及交接部位协调",
+        "墙厚习惯称谓和材料实际尺寸",
+        "洞口标志尺寸与灰缝的关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "砌体结构"
+    },
+    {
+      "blockId": "B037",
+      "sourceStart": 824,
+      "sourceEnd": 864,
+      "sourceTitle": "墙脚和水平/垂直防潮层",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "水分沿砌体毛细上升的路径",
+        "水平防潮层与地坪垫层关系",
+        "高差墙体水平与垂直防潮层闭合",
+        "砂浆、细石混凝土、传统油毡做法及局限"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "砌体结构"
+    },
+    {
+      "blockId": "B038",
+      "sourceStart": 865,
+      "sourceEnd": 880,
+      "sourceTitle": "勒脚构造",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "勒脚位置与水、碰撞、冻融风险",
+        "加固、防水、抹灰、贴面的选择",
+        "构造高度与立面整体关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "砌体结构"
+    },
+    {
+      "blockId": "B039",
+      "sourceStart": 881,
+      "sourceEnd": 903,
+      "sourceTitle": "散水明沟及节点设计思想",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "散水坡向、排水目的",
+        "散水与勒脚分离缝、分格缝、柔性密封",
+        "明沟有组织排水与外部排水系统",
+        "节点是不同材料方向构件的连接部位"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "砌体结构"
+    },
+    {
+      "blockId": "B040",
+      "sourceStart": 904,
+      "sourceEnd": 922,
+      "sourceTitle": "门窗过梁及洞口上口",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "过梁支承洞口上方墙体并传力至两侧",
+        "钢筋混凝土过梁与传统砖拱过梁",
+        "框墙密封、滴水阻断雨水"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "砌体结构"
+    },
+    {
+      "blockId": "B041",
+      "sourceStart": 923,
+      "sourceEnd": 935,
+      "sourceTitle": "室内外窗台",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "室外窗台向外排水、下口滴水和框下口防水",
+        "室内窗台满足清洁使用与美观"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "砌体结构"
+    },
+    {
+      "blockId": "B042",
+      "sourceStart": 936,
+      "sourceEnd": 950,
+      "sourceTitle": "门垛、壁柱及扶壁",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "门垛位置与安装、稳定需要",
+        "壁柱对集中荷载和墙身稳定的作用",
+        "扶壁侧向支撑与壁柱区别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "砌体结构"
+    },
+    {
+      "blockId": "B043",
+      "sourceStart": 951,
+      "sourceEnd": 993,
+      "sourceTitle": "震级、烈度、设防及建筑类别",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "震级与烈度不是同一指标",
+        "设防、建筑类别与抗震构造措施的关系",
+        "历史地震与地区参数只能带日期使用"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体的设计要求"
+    },
+    {
+      "blockId": "B044",
+      "sourceStart": 994,
+      "sourceEnd": 1021,
+      "sourceTitle": "地震作用、震害特点和抗震目标",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "竖向/水平地震作用与典型损伤",
+        "规则性、整体性、屋盖自重、场地影响",
+        "多遇、设防、罕遇三个水准的性能目标"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体的设计要求"
+    },
+    {
+      "blockId": "B045",
+      "sourceStart": 1022,
+      "sourceEnd": 1042,
+      "sourceTitle": "多层砖房布置与尺寸限值",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "墙体均匀对齐、洞口相对齐",
+        "高度层数、高宽比、横墙间距、局部墙段尺寸的控制逻辑"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体的设计要求"
+    },
+    {
+      "blockId": "B046",
+      "sourceStart": 1043,
+      "sourceEnd": 1077,
+      "sourceTitle": "圈梁作用与构造",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "圈梁提升整体性并联系墙体",
+        "封闭交圈、与洞口过梁协调及附加圈梁",
+        "位置、材料、配筋需要结合建筑条件"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "砌体结构"
+    },
+    {
+      "blockId": "B047",
+      "sourceStart": 1078,
+      "sourceEnd": 1105,
+      "sourceTitle": "构造柱、拉结和空心砌块芯柱",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "构造柱与圈梁共同加强砌体整体性",
+        "薄弱部位设置、马牙槎、拉结、施工顺序",
+        "芯柱与构造柱不同构造机理"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "砌体结构"
+    },
+    {
+      "blockId": "B048",
+      "sourceStart": 1106,
+      "sourceEnd": 1109,
+      "sourceTitle": "隔震案例及后续变形缝提示",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "隔震通过改变结构与基础之间的动力传递",
+        "变形缝内容转后章引用"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体的设计要求"
+    },
+    {
+      "blockId": "B049",
+      "sourceStart": 1110,
+      "sourceEnd": 1133,
+      "sourceTitle": "隔墙要求、分类与半砖隔墙",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "非承重内隔墙自重轻、可分隔、兼顾声火湿",
+        "块材、轻骨架、条板三种主要体系",
+        "半砖隔墙与周边主体连接及自身稳定"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "隔墙"
+    },
+    {
+      "blockId": "B050",
+      "sourceStart": 1134,
+      "sourceEnd": 1142,
+      "sourceTitle": "空心砖、砌块隔墙及框架填充墙",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "砌块隔墙的防潮、稳定、洞口和周边连接",
+        "框架填充墙与隔墙的用途区别",
+        "按产品规格选择墙厚"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "隔墙"
+    },
+    {
+      "blockId": "B051",
+      "sourceStart": 1143,
+      "sourceEnd": 1158,
+      "sourceTitle": "木骨架板条抹灰隔墙",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "骨架—面层的构造逻辑",
+        "木骨架上下槛、墙筋、斜撑、板条抹灰",
+        "传统做法与当代材料取代的背景"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "隔墙"
+    },
+    {
+      "blockId": "B052",
+      "sourceStart": 1159,
+      "sourceEnd": 1167,
+      "sourceTitle": "轻钢骨架隔墙",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "沿顶沿地龙骨、竖龙骨与面层",
+        "面板规格与骨架排布协调",
+        "板材与骨架固定方式、轻质装配特点"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "隔墙"
+    },
+    {
+      "blockId": "B053",
+      "sourceStart": 1168,
+      "sourceEnd": 1184,
+      "sourceTitle": "条板、增强石膏板及复合板隔墙",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "不用骨架的条板安装逻辑",
+        "板—板、板—主体连接",
+        "加气条板、GRC、石膏空心板、复合板的区别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "隔墙"
+    },
+    {
+      "blockId": "B054",
+      "sourceStart": 1185,
+      "sourceEnd": 1193,
+      "sourceTitle": "门窗作用及外围护意义",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "窗的采光、通风、观景；门的交通、疏散",
+        "按位置区分围护与内部分隔",
+        "门窗参与立面造型"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的作用与分类"
+    },
+    {
+      "blockId": "B055",
+      "sourceStart": 1194,
+      "sourceEnd": 1212,
+      "sourceTitle": "性能要求、材料和构造研究路径",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "耐久、开启、密闭、维修、清洁与工业化",
+        "门窗荷载由洞口周边支承，门窗自身也受作用",
+        "缝隙是雨水、空气、声、烟火的薄弱部位"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的设计要求"
+    },
+    {
+      "blockId": "B056",
+      "sourceStart": 1213,
+      "sourceEnd": 1240,
+      "sourceTitle": "门的开启分类",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "平开、弹簧、推拉、折叠、旋转及其他门",
+        "开启轨迹、占空间、自动关闭和防碰撞",
+        "旋转门与疏散通行的设计区别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的作用与分类"
+    },
+    {
+      "blockId": "B057",
+      "sourceStart": 1241,
+      "sourceEnd": 1247,
+      "sourceTitle": "门洞口尺度",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "门宽高与人流、搬运、家具、疏散、无障碍关联",
+        "洞口尺寸与净通行宽度不是同一值"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的设计要求"
+    },
+    {
+      "blockId": "B058",
+      "sourceStart": 1248,
+      "sourceEnd": 1273,
+      "sourceTitle": "窗的开启分类",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "平开、固定、上悬下悬中悬、推拉提拉",
+        "内外开、纱扇、玻璃扇、百叶扇",
+        "可开启面积、雨水、维护清洁、碰撞和坠落风险的差异"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的作用与分类"
+    },
+    {
+      "blockId": "B059",
+      "sourceStart": 1274,
+      "sourceEnd": 1287,
+      "sourceTitle": "窗面积、尺度与分格",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "采光通风、窗地比、玻地比、窗墙比的区别",
+        "模数协调、立面分格、单扇尺寸与刚度",
+        "采光与能耗的协调"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的设计要求"
+    },
+    {
+      "blockId": "B060",
+      "sourceStart": 1288,
+      "sourceEnd": 1300,
+      "sourceTitle": "门窗平立剖面图纸表达",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "洞口、定位尺寸、编号与不同绘图比例",
+        "门的平面开启轨迹及立面开启线",
+        "门窗表和详图之间的索引关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的设计要求"
+    },
+    {
+      "blockId": "B061",
+      "sourceStart": 1301,
+      "sourceEnd": 1314,
+      "sourceTitle": "门窗组成及框料术语",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "框、扇、亮窗、五金配件",
+        "上/中/下槛、边框、中竖框的名称",
+        "传统木门窗命名可用于构造识读"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的作用与分类"
+    },
+    {
+      "blockId": "B062",
+      "sourceStart": 1315,
+      "sourceEnd": 1340,
+      "sourceTitle": "木门窗框截面和防水防变形",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "框料刚度、接榫、安装和密闭需要",
+        "裁口、铲灰口、背槽、披水和滴水的作用",
+        "不同框料截面满足不同层数和尺寸"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的设计要求"
+    },
+    {
+      "blockId": "B063",
+      "sourceStart": 1341,
+      "sourceEnd": 1359,
+      "sourceTitle": "木门窗立口、塞口及缝隙处理",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "先立框后砌墙与后装框的流程比较",
+        "框墙固定、安装预留缝、防腐和密封",
+        "框在墙厚中的位置与收口"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的设计要求"
+    },
+    {
+      "blockId": "B064",
+      "sourceStart": 1360,
+      "sourceEnd": 1396,
+      "sourceTitle": "门窗扇组成和玻璃镶嵌",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "边挺、冒头、窗芯、芯板与玻璃",
+        "披水板、裁口、玻璃压条的作用",
+        "外露骨架与夹板门的构成区别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的设计要求"
+    },
+    {
+      "blockId": "B065",
+      "sourceStart": 1397,
+      "sourceEnd": 1418,
+      "sourceTitle": "平开门、镶板门及夹板门",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "木门框扇组成",
+        "门芯板、玻璃和骨架接合",
+        "夹板门封边、五金固定补强与通气"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的设计要求"
+    },
+    {
+      "blockId": "B066",
+      "sourceStart": 1419,
+      "sourceEnd": 1430,
+      "sourceTitle": "门窗保温的基本途径",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "传热与冷风渗透两条损失路径",
+        "框、玻璃、开启缝的共同作用",
+        "开启面积应兼顾自然通风"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的设计要求"
+    },
+    {
+      "blockId": "B067",
+      "sourceStart": 1431,
+      "sourceEnd": 1444,
+      "sourceTitle": "铝合金、断桥、塑钢与中空玻璃",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "金属型材热桥、断桥的构造机理",
+        "塑料型材与钢增强的组合",
+        "中空玻璃密封、间隔条、干燥剂与气体层"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的作用与分类"
+    },
+    {
+      "blockId": "B068",
+      "sourceStart": 1445,
+      "sourceEnd": 1453,
+      "sourceTitle": "型材门窗安装、密封及防腐",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "框墙固定与安装间隙分工",
+        "周边缝保温填充、外侧耐候防水、框材保护",
+        "固定连接需要按基材与门窗受力设计"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的设计要求"
+    },
+    {
+      "blockId": "B069",
+      "sourceStart": 1454,
+      "sourceEnd": 1479,
+      "sourceTitle": "门窗节能措施和各类密封缝",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "框玻璃传热与空气渗透",
+        "框墙、框扇、扇扇、玻璃镶嵌四类缝",
+        "断桥、中空玻璃、密封、合理开启面积和窗口面积协调"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的设计要求"
+    },
+    {
+      "blockId": "B070",
+      "sourceStart": 1480,
+      "sourceEnd": 1490,
+      "sourceTitle": "遮阳种类与构件形式",
+      "finalPart": "parts/03-门窗.md",
+      "contentPoints": [
+        "绿化、可活动遮阳和建筑遮阳构件",
+        "水平、垂直、综合与挡板形式",
+        "朝向、太阳高度角、采光通风之间的关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "门窗的设计要求"
+    },
+    {
+      "blockId": "B071",
+      "sourceStart": 1491,
+      "sourceEnd": 1513,
+      "sourceTitle": "基础地基概念与面积荷载关系",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "基础是建筑构件，地基是支承基础的地层",
+        "上部结构→基础→地基的传力关系",
+        "面积、作用、地基承载的概念联系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "概述"
+    },
+    {
+      "blockId": "B072",
+      "sourceStart": 1514,
+      "sourceEnd": 1532,
+      "sourceTitle": "承载稳定沉降耐久经济设计条件",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "强度、稳定性、沉降控制、耐久与经济性",
+        "荷载、基础面积、地基条件之间的选型关系",
+        "地下水腐蚀与冻融对材料的影响"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础与地基的设计要求"
+    },
+    {
+      "blockId": "B073",
+      "sourceStart": 1533,
+      "sourceEnd": 1551,
+      "sourceTitle": "天然人工地基与土的分类组成",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "天然与人工地基的区别",
+        "土与岩的类型、固体颗粒/水/空气组成",
+        "不同土层状态影响承载与变形"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "概述"
+    },
+    {
+      "blockId": "B074",
+      "sourceStart": 1552,
+      "sourceEnd": 1556,
+      "sourceTitle": "土压缩沉降与抗剪滑动",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "土压缩引起基础沉降",
+        "沉降量与差异沉降均需控制",
+        "土抗剪能力与滑动稳定的关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "不均匀沉降"
+    },
+    {
+      "blockId": "B075",
+      "sourceStart": 1557,
+      "sourceEnd": 1574,
+      "sourceTitle": "土中水、地形与工程勘察资料",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "地形地貌、周边地下设施和建筑现状",
+        "钻孔、地质剖面、土层参数、地下水和腐蚀性",
+        "勘察报告对基础类型和埋深的建议"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础与地基的设计要求"
+    },
+    {
+      "blockId": "B076",
+      "sourceStart": 1575,
+      "sourceEnd": 1604,
+      "sourceTitle": "人工地基及压实换土",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "人工处理改善地基承载与变形",
+        "压实、夯实、碾压、振动的机理",
+        "换填用于软弱土层，范围和材料需设计"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础与地基的设计要求"
+    },
+    {
+      "blockId": "B077",
+      "sourceStart": 1605,
+      "sourceEnd": 1621,
+      "sourceTitle": "桩基础类型及承台联系",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "桩端和桩侧传力、摩擦/端承的概念",
+        "按材料和施工方法分类",
+        "桩与承台共同传递荷载"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础的分类"
+    },
+    {
+      "blockId": "B078",
+      "sourceStart": 1622,
+      "sourceEnd": 1635,
+      "sourceTitle": "基础埋深定义及地层影响",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "室外地面到基础底面的距离",
+        "土层分布、持力层、软弱下卧层与埋深选择",
+        "工程开挖与经济性的联系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础的埋置深度与影响因素"
+    },
+    {
+      "blockId": "B079",
+      "sourceStart": 1636,
+      "sourceEnd": 1644,
+      "sourceTitle": "地下水与埋深材料",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "地下水位季节变化影响土和基础",
+        "地下水腐蚀、施工降水、浮力与耐水材料",
+        "结合水文地质条件选择埋深"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础的埋置深度与影响因素"
+    },
+    {
+      "blockId": "B080",
+      "sourceStart": 1645,
+      "sourceEnd": 1654,
+      "sourceTitle": "冻深冻胀影响",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "冻结线、冻胀性、含水量和地下水影响",
+        "地域资料与计算决定防冻胀措施",
+        "埋深只是抗冻胀的一种手段"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础的埋置深度与影响因素"
+    },
+    {
+      "blockId": "B081",
+      "sourceStart": 1655,
+      "sourceEnd": 1661,
+      "sourceTitle": "相邻建筑荷载功能影响",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "相邻基础高差、基坑开挖与原建筑稳定",
+        "上部竖向荷载与水平作用",
+        "地下室、设备层和地下设施对基础选择的影响"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础的埋置深度与影响因素"
+    },
+    {
+      "blockId": "B082",
+      "sourceStart": 1662,
+      "sourceEnd": 1676,
+      "sourceTitle": "条形及独立基础",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "按构造形式、材料、传力分类的不同维度",
+        "墙下与柱下条形基础",
+        "台阶、锥形、杯形独立基础及上部结构联系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础的分类"
+    },
+    {
+      "blockId": "B083",
+      "sourceStart": 1677,
+      "sourceEnd": 1686,
+      "sourceTitle": "联合柱下条形与筏形基础",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "柱下联合、条形和交叉条形基础",
+        "筏形板式/梁板式与基础面积连续化",
+        "低承载地基、荷载与整体刚度选型联系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础的分类"
+    },
+    {
+      "blockId": "B084",
+      "sourceStart": 1687,
+      "sourceEnd": 1690,
+      "sourceTitle": "箱形基础与地下室",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "箱形基础底板、顶板和内外墙形成空间体系",
+        "地下空间可以具备使用功能",
+        "地下结构防水、防潮和受力要求需分别处理"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础与地下结构的类型"
+    },
+    {
+      "blockId": "B085",
+      "sourceStart": 1691,
+      "sourceEnd": 1693,
+      "sourceTitle": "基础上部结构地基关系小结",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "基础形式与墙柱受力体系相联系",
+        "地基条件与扩大/连续基础的联系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础的分类"
+    },
+    {
+      "blockId": "B086",
+      "sourceStart": 1694,
+      "sourceEnd": 1717,
+      "sourceTitle": "材料、无筋扩展与钢筋混凝土扩展基础",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "按材料与是否配筋分类",
+        "扩展宽高比、材料抗拉能力与截面关系",
+        "传统刚性/柔性称呼与原文已提示的术语更新"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础的分类"
+    },
+    {
+      "blockId": "B087",
+      "sourceStart": 1718,
+      "sourceEnd": 1723,
+      "sourceTitle": "砖基础大放脚",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "传统砖基础阶梯放脚",
+        "两皮一收、二一间收与宽高比、材料用量"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础的分类"
+    },
+    {
+      "blockId": "B088",
+      "sourceStart": 1724,
+      "sourceEnd": 1732,
+      "sourceTitle": "石基础构造",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "毛石、料石基础与台阶砌筑",
+        "材料强度和基底宽度影响构造"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础的分类"
+    },
+    {
+      "blockId": "B089",
+      "sourceStart": 1733,
+      "sourceEnd": 1743,
+      "sourceTitle": "混凝土毛石混凝土基础",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "材料可塑性与截面形式选择",
+        "矩形、阶梯、梯形截面和工程量关系",
+        "毛石混凝土与普通混凝土的区别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "基础的分类"
+    },
+    {
+      "blockId": "B090",
+      "sourceStart": 1744,
+      "sourceEnd": 1744,
+      "sourceTitle": "基础沉降缝后续讲述占位",
+      "finalPart": "parts/01-基础与地基.md",
+      "contentPoints": [
+        "沉降缝与不均匀沉降预防的联系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "不均匀沉降"
+    },
+    {
+      "blockId": "B091",
+      "sourceStart": 1745,
+      "sourceEnd": 1752,
+      "sourceTitle": "第五讲标题、楼板与地坪概念、支承关系",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "楼板是分隔上下层空间的承重构件；与直接接触土壤的地坪对照",
+        "用荷载由楼板到梁、墙柱的路线说明水平与竖向构件协同",
+        "上下层承重构件对位作为结构布置意识"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "概述"
+    },
+    {
+      "blockId": "B092",
+      "sourceStart": 1753,
+      "sourceEnd": 1767,
+      "sourceTitle": "楼板层的基本组成",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "面层、结构层、顶棚层的作用",
+        "附加层根据防水、保温、隔声、管线等需要增设",
+        "使用者看到的表面与内部构造层次的区别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "概述"
+    },
+    {
+      "blockId": "B093",
+      "sourceStart": 1768,
+      "sourceEnd": 1777,
+      "sourceTitle": "楼板层设计要求",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "强度、刚度、耐久与防火等性能",
+        "弹性面层、浮筑层、吊顶的隔声思路",
+        "结构、材料、施工与经济性的综合选择"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "概述"
+    },
+    {
+      "blockId": "B094",
+      "sourceStart": 1778,
+      "sourceEnd": 1793,
+      "sourceTitle": "楼板材料类型与选择",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "木楼板、砖拱楼板、钢筋混凝土楼板、压型钢板组合楼板的分类",
+        "材料类型与受力方式、施工方式分开比较",
+        "木楼板、砖拱楼板保留为传统技术识读"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "概述"
+    },
+    {
+      "blockId": "B095",
+      "sourceStart": 1794,
+      "sourceEnd": 1816,
+      "sourceTitle": "钢筋混凝土楼板施工分类与预应力",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "现浇、预制装配、装配整体的区别",
+        "钢筋与混凝土协同工作及预应力改善抗裂的概念",
+        "先张、后张的施力与传递路径"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "钢筋混凝土楼板"
+    },
+    {
+      "blockId": "B096",
+      "sourceStart": 1817,
+      "sourceEnd": 1836,
+      "sourceTitle": "预制平板、槽形板、空心板",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "三类板的截面、受力与顶底面形态",
+        "预应力与非预应力板的区别",
+        "地方构件规格作为历史图册示例"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "钢筋混凝土楼板"
+    },
+    {
+      "blockId": "B097",
+      "sourceStart": 1837,
+      "sourceEnd": 1844,
+      "sourceTitle": "预制板布置与梁截面",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "板跨度方向与承重墙、梁的位置关系",
+        "荷载、隔墙、孔洞和阳台影响布板",
+        "矩形、T形、十字形、花篮梁识读"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "钢筋混凝土楼板"
+    },
+    {
+      "blockId": "B098",
+      "sourceStart": 1845,
+      "sourceEnd": 1870,
+      "sourceTitle": "预制板板缝、隔墙、搁置、锚固",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "板缝灌注与非标准板带的处理目的",
+        "隔墙荷载须有明确支承路径",
+        "支座、端孔、坐浆和整体拉结的作用"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "钢筋混凝土楼板"
+    },
+    {
+      "blockId": "B099",
+      "sourceStart": 1871,
+      "sourceEnd": 1902,
+      "sourceTitle": "现浇楼板、单向板与双向板、墙承板",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "现浇梁板整体性及支承状况",
+        "单向、双向主要传力方向和配筋方向",
+        "墙承板适用平面与传力示意"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "钢筋混凝土楼板"
+    },
+    {
+      "blockId": "B100",
+      "sourceStart": 1903,
+      "sourceEnd": 1912,
+      "sourceTitle": "无梁楼板",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "板柱直接传力与柱帽、托板作用",
+        "冲切问题与结构高度、顶棚平整的关系",
+        "适用空间与构造选择"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "钢筋混凝土楼板"
+    },
+    {
+      "blockId": "B101",
+      "sourceStart": 1913,
+      "sourceEnd": 1941,
+      "sourceTitle": "单向梁板、主次梁楼板、梁高表",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "板→次梁→主梁→柱/墙的主要传力路线",
+        "梁格与房间平面、净高、施工的关系",
+        "梁截面估算与结构计算的区别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "钢筋混凝土楼板"
+    },
+    {
+      "blockId": "B102",
+      "sourceStart": 1942,
+      "sourceEnd": 1957,
+      "sourceTitle": "井格式楼板",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "两个方向等高交叉梁与双向协同",
+        "正交、斜交布置和方形/近方形平面",
+        "井格楼板的下表面与空间效果"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "钢筋混凝土楼板"
+    },
+    {
+      "blockId": "B103",
+      "sourceStart": 1958,
+      "sourceEnd": 1979,
+      "sourceTitle": "密肋楼板重复段",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "密肋、小跨度薄板与模壳模板",
+        "单向、双向等高、双向不等高的区别",
+        "板→密肋梁→边梁的传力路径"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "钢筋混凝土楼板"
+    },
+    {
+      "blockId": "B104",
+      "sourceStart": 1980,
+      "sourceEnd": 1997,
+      "sourceTitle": "装配整体、填充块与叠合楼板",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "预制部分和现浇部分形成整体的思路",
+        "填充块的模板/填充作用与承重构件区分",
+        "叠合板施工阶段与成型后协同"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "钢筋混凝土楼板"
+    },
+    {
+      "blockId": "B105",
+      "sourceStart": 1998,
+      "sourceEnd": 2017,
+      "sourceTitle": "地坪层定义、实铺地坪层次",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "首层直接接触土壤的地面及传力",
+        "实铺地坪面层、垫层、基层",
+        "结合、找平、防水、保温等附加层按需要设置"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "地面的构造组成"
+    },
+    {
+      "blockId": "B106",
+      "sourceStart": 2018,
+      "sourceEnd": 2034,
+      "sourceTitle": "地基土、刚性/非刚性/复式垫层",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "基层稳定与分层夯实",
+        "垫层承载、找平和均匀传力作用",
+        "刚性、非刚性、复式垫层识别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "地面的构造组成"
+    },
+    {
+      "blockId": "B107",
+      "sourceStart": 2035,
+      "sourceEnd": 2044,
+      "sourceTitle": "地坪各层功能重复与防潮保温",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "面层接触使用、垫层传力、基层承载",
+        "土壤条件与荷载影响基层处理",
+        "附加层解决防水、保温、管线问题"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "地面的构造组成"
+    },
+    {
+      "blockId": "B108",
+      "sourceStart": 2045,
+      "sourceEnd": 2055,
+      "sourceTitle": "架空式地坪、木地板、活动地板",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "地坪架空、通风防潮与特殊使用需求",
+        "架空木地板与活动地板的支承方式",
+        "高差、土方、荷载等方案选择因素"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "地面层"
+    },
+    {
+      "blockId": "B109",
+      "sourceStart": 2056,
+      "sourceEnd": 2073,
+      "sourceTitle": "阳台作用与分类",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "生活/服务功能、凸/凹/角阳台与外廊",
+        "采光通风、私密与立面因素",
+        "阳台平面位置与结构支承的区别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "阳台及雨棚"
+    },
+    {
+      "blockId": "B110",
+      "sourceStart": 2074,
+      "sourceEnd": 2102,
+      "sourceTitle": "阳台设计要求与承重结构",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "抗倾覆、支承与临空防护",
+        "搁板式、挑板式、挑梁式传力",
+        "现浇与传统预制布置及边梁净高/采光关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "阳台及雨棚"
+    },
+    {
+      "blockId": "B111",
+      "sourceStart": 2103,
+      "sourceEnd": 2110,
+      "sourceTitle": "阳台排水",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "室内外标高、找坡、防倒灌",
+        "地漏接排水系统与泄水管的区别",
+        "挡水边、穿板管周边防水连续"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "阳台及雨棚"
+    },
+    {
+      "blockId": "B112",
+      "sourceStart": 2111,
+      "sourceEnd": 2123,
+      "sourceTitle": "阳台栏杆高度、形式与防攀爬",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "栏杆/栏板的防护和立面作用",
+        "测量起点、临空高度、可踏面等安全概念",
+        "防儿童攀爬与竖杆间距"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "阳台及雨棚"
+    },
+    {
+      "blockId": "B113",
+      "sourceStart": 2124,
+      "sourceEnd": 2148,
+      "sourceTitle": "栏杆/栏板连接细部",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "强度、可靠锚固、防腐与接缝",
+        "焊接、榫接坐浆、插筋三种传统连接",
+        "扶手压顶、栏板拼接、与墙体交接"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "阳台及雨棚"
+    },
+    {
+      "blockId": "B114",
+      "sourceStart": 2149,
+      "sourceEnd": 2176,
+      "sourceTitle": "雨棚作用、分类、结构与防排水",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "入口过渡、遮雨和立面作用",
+        "小型悬挑/悬挂与大型柱墙支承",
+        "墙根泛水、檐口滴水、排水与主体连接"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "阳台及雨棚"
+    },
+    {
+      "blockId": "B115",
+      "sourceStart": 2177,
+      "sourceEnd": 2192,
+      "sourceTitle": "第六讲标题、饰面作用",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "保护构件、改善使用性能与环境形象",
+        "饰面、基层和主体结构的关系",
+        "内外装修面对的环境差异"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "饰面装修总论（拟新增）"
+    },
+    {
+      "blockId": "B116",
+      "sourceStart": 2193,
+      "sourceEnd": 2207,
+      "sourceTitle": "饰面设计要求",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "使用功能、材料性能、施工可行性与经济性",
+        "材料供应、技术条件和费用",
+        "设计要求转化为材料与构造选择"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "饰面装修总论（拟新增）"
+    },
+    {
+      "blockId": "B117",
+      "sourceStart": 2208,
+      "sourceEnd": 2219,
+      "sourceTitle": "装修基层类型与基本要求",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "实体基层与骨架基层",
+        "承载、变形、平整度及附着牢固",
+        "基层缺陷导致开裂空鼓脱落的链条"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "饰面装修总论（拟新增）"
+    },
+    {
+      "blockId": "B118",
+      "sourceStart": 2220,
+      "sourceEnd": 2240,
+      "sourceTitle": "装修分类",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "按部位、材料、表面命名和构造工艺分类",
+        "抹灰、涂料、粘贴、钉挂的连接差别",
+        "室内墙面、地面、顶棚与室外墙面范围"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "饰面装修总论（拟新增）"
+    },
+    {
+      "blockId": "B119",
+      "sourceStart": 2241,
+      "sourceEnd": 2262,
+      "sourceTitle": "外墙抹灰与水泥石渣做法",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "外墙抹灰保护目的",
+        "水泥砂浆、水刷石、斩假石传统做法",
+        "底层、结合、面层的层次识读"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体饰面构造（拟新增）"
+    },
+    {
+      "blockId": "B120",
+      "sourceStart": 2263,
+      "sourceEnd": 2279,
+      "sourceTitle": "分层抹灰、质量标准与基层处理",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "分层施工的找平、粘结和抗裂目的",
+        "砖墙、加气混凝土、混凝土等基层处理差异",
+        "灰饼、冲筋与基层清理"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体饰面构造（拟新增）"
+    },
+    {
+      "blockId": "B121",
+      "sourceStart": 2280,
+      "sourceEnd": 2298,
+      "sourceTitle": "中灰面灰、分格与常见质量问题",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "中层找平、面层表面性能",
+        "分格与温度、接茬、材料胀缩",
+        "裂缝、空鼓、表面析白/色差的识别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体饰面构造（拟新增）"
+    },
+    {
+      "blockId": "B122",
+      "sourceStart": 2299,
+      "sourceEnd": 2306,
+      "sourceTitle": "外墙涂料",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "成膜保护与装饰",
+        "基层找平、分层施工",
+        "有机/无机分类"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体饰面构造（拟新增）"
+    },
+    {
+      "blockId": "B123",
+      "sourceStart": 2307,
+      "sourceEnd": 2330,
+      "sourceTitle": "贴面、湿挂和干挂",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "面砖、石材等材料与重量尺寸影响连接",
+        "直接粘贴、加强连接、湿挂、干挂的区别",
+        "龙骨/连接件承担重力与防水接缝的职责"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体饰面构造（拟新增）"
+    },
+    {
+      "blockId": "B124",
+      "sourceStart": 2331,
+      "sourceEnd": 2344,
+      "sourceTitle": "室内饰面与墙面特殊部位提纲",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "内墙面抹灰、涂料、粘贴、钉挂分类",
+        "护角、墙裙、踢脚与顶棚交接",
+        "室内外环境区别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体饰面构造（拟新增）"
+    },
+    {
+      "blockId": "B125",
+      "sourceStart": 2345,
+      "sourceEnd": 2350,
+      "sourceTitle": "吊顶骨架与主体连接",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "吊杆、预埋件与主体承重连接",
+        "吊顶属于骨架基层装饰系统",
+        "连接选择与实际支承条件"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "顶棚与吊顶构造（拟新增）"
+    },
+    {
+      "blockId": "B126",
+      "sourceStart": 2351,
+      "sourceEnd": 2371,
+      "sourceTitle": "饰面设计方法、收头与标注",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "设计从表面使用要求推导内部构造",
+        "图纸按层次表达材料、厚度、配比、做法",
+        "交接处强调差异、找平或第三材料过渡"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "饰面装修总论（拟新增）"
+    },
+    {
+      "blockId": "B127",
+      "sourceStart": 2372,
+      "sourceEnd": 2409,
+      "sourceTitle": "墙面抹灰组成、材料和重复做法",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "内外墙抹灰各层职责及材料匹配",
+        "纸筋灰、混合灰、水泥砂浆与传统石渣饰面",
+        "命名和构造层次标注"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体饰面构造（拟新增）"
+    },
+    {
+      "blockId": "B128",
+      "sourceStart": 2410,
+      "sourceEnd": 2418,
+      "sourceTitle": "墙面刷浆、涂料与粘贴构造",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "垂直面饰面与水平地面结合层的差异",
+        "薄块材专用粘合与较重面材机械连接",
+        "面材、基层、粘结材料相容性"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体饰面构造（拟新增）"
+    },
+    {
+      "blockId": "B129",
+      "sourceStart": 2419,
+      "sourceEnd": 2429,
+      "sourceTitle": "清水砖勾缝与墙面交接细部",
+      "finalPart": "parts/02-墙体.md",
+      "contentPoints": [
+        "勾缝严密与外观",
+        "阳角护角、墙地踢脚、墙顶交接",
+        "不同材料交接与外墙抹灰分格"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "墙体饰面构造（拟新增）"
+    },
+    {
+      "blockId": "B130",
+      "sourceStart": 2430,
+      "sourceEnd": 2438,
+      "sourceTitle": "楼地面装修总览",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "整体、块料、塑料、木地面分类",
+        "楼地面按面层材料/做法命名",
+        "使用性能与完成面标高协调"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "地面层"
+    },
+    {
+      "blockId": "B131",
+      "sourceStart": 2439,
+      "sourceEnd": 2456,
+      "sourceTitle": "水泥砂浆与水磨石整体地面",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "整体地面单层/双层工艺概念",
+        "水磨石找平、分格、罩面与磨光",
+        "材料使用性能及维护"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "地面层"
+    },
+    {
+      "blockId": "B132",
+      "sourceStart": 2457,
+      "sourceEnd": 2466,
+      "sourceTitle": "块料、塑料和涂料地面",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "块料与结合层、填缝的关系",
+        "室内外使用环境影响铺装",
+        "塑料卷材/块材及涂布地面类型"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "地面层"
+    },
+    {
+      "blockId": "B133",
+      "sourceStart": 2467,
+      "sourceEnd": 2470,
+      "sourceTitle": "地面变形缝",
+      "finalPart": "parts/07-变形缝.md",
+      "contentPoints": [
+        "基层/饰面需与结构缝协调",
+        "密封与盖缝兼顾活动能力和通行",
+        "跨缝饰面不得约束变形"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "变形缝的构造"
+    },
+    {
+      "blockId": "B134",
+      "sourceStart": 2471,
+      "sourceEnd": 2475,
+      "sourceTitle": "防水楼地面",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "湿区找平、防水、保护、找坡与面层",
+        "墙根上翻、地漏、门口、穿板管防水连续",
+        "施工层次与排水路径"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "地面层"
+    },
+    {
+      "blockId": "B135",
+      "sourceStart": 2476,
+      "sourceEnd": 2480,
+      "sourceTitle": "直接顶棚",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "直接喷涂、抹灰、粘贴三种基本形式",
+        "板底基层与饰面的关系",
+        "装修层次对净高的影响"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "顶棚与吊顶构造（拟新增）"
+    },
+    {
+      "blockId": "B136",
+      "sourceStart": 2481,
+      "sourceEnd": 2504,
+      "sourceTitle": "吊顶组成、材料、木龙骨、金属骨架",
+      "finalPart": "parts/04-楼地层.md",
+      "contentPoints": [
+        "吊杆、主次龙骨、饰面板的受力关系",
+        "隐藏管线与净高控制",
+        "木/金属骨架、板面形式、节点连接与检修"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "顶棚与吊顶构造（拟新增）"
+    },
+    {
+      "blockId": "B137",
+      "sourceStart": 2505,
+      "sourceEnd": 2547,
+      "sourceTitle": "第七讲概述、交通与疏散、楼梯间分类",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "垂直交通与紧急疏散的区别和联系",
+        "数量、位置、宽度、贯通及防火防烟",
+        "开敞、封闭、防烟楼梯间的空间关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯的基本概念及设计要求"
+    },
+    {
+      "blockId": "B138",
+      "sourceStart": 2548,
+      "sourceEnd": 2576,
+      "sourceTitle": "楼梯组成、形式和平面构成",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "梯段、楼层平台、中间平台、栏杆与扶手",
+        "梯段数量和相连方式两种分类轴",
+        "直跑、折返、折角、剪刀、螺旋、弧形识图"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯的基本概念及设计要求"
+    },
+    {
+      "blockId": "B139",
+      "sourceStart": 2577,
+      "sourceEnd": 2585,
+      "sourceTitle": "梯段板式/梁式与支承形式",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "施工方法、梯段构成、支承方式分三个维度",
+        "板式与梁式的受力层次",
+        "简支、悬挑、悬挂支承"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "钢筋混凝土楼梯构造"
+    },
+    {
+      "blockId": "B140",
+      "sourceStart": 2586,
+      "sourceEnd": 2623,
+      "sourceTitle": "现浇钢筋混凝土楼梯及支座布置",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "现浇梯段、平台板、平台梁的整体关系",
+        "板式、梁板式、明步暗步、悬臂与扭板",
+        "荷载到支座及与主体结构、楼梯洞口的关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "钢筋混凝土楼梯构造"
+    },
+    {
+      "blockId": "B141",
+      "sourceStart": 2624,
+      "sourceEnd": 2638,
+      "sourceTitle": "踏步尺度、坡度和经验公式",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "踏面b、踏高h与坡度的几何关系",
+        "步距经验式与使用者行走舒适",
+        "建筑使用类型影响尺度选择"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯的基本概念及设计要求"
+    },
+    {
+      "blockId": "B142",
+      "sourceStart": 2639,
+      "sourceEnd": 2656,
+      "sourceTitle": "梯段宽度与疏散宽度",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "净宽测量与人流空间",
+        "舒适宽度、最小要求与疏散计算宽度区别",
+        "层人数及疏散路线影响设计"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯的基本概念及设计要求"
+    },
+    {
+      "blockId": "B143",
+      "sourceStart": 2657,
+      "sourceEnd": 2686,
+      "sourceTitle": "梯段长度、平台、梯井与尺寸计算",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "层高、级数、踏面数与水平投影长度",
+        "平台转向、开门和家具通行",
+        "梯井与楼梯间开间/进深的协调"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯的基本概念及设计要求"
+    },
+    {
+      "blockId": "B144",
+      "sourceStart": 2687,
+      "sourceEnd": 2697,
+      "sourceTitle": "栏杆扶手尺度",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "临空侧防护与靠墙扶手",
+        "高度测量起点、水平段和使用者差异",
+        "防攀爬、抓握和可达性"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯的基本概念及设计要求"
+    },
+    {
+      "blockId": "B145",
+      "sourceStart": 2698,
+      "sourceEnd": 2712,
+      "sourceTitle": "净空高度与首层入口调整",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "平台/梯段下通行净高与突出物",
+        "长短跑、局部降地面、组合调整",
+        "调整后再核平面、剖面与入口排水"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯的基本概念及设计要求"
+    },
+    {
+      "blockId": "B146",
+      "sourceStart": 2713,
+      "sourceEnd": 2765,
+      "sourceTitle": "楼梯设计步骤、平剖面表达与图纸深度",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "从形式与踏步到平面、净空、调整的闭环",
+        "底层/中间层/顶层上下行箭头与标高",
+        "方案、初设、施工图表达目的"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯的基本概念及设计要求"
+    },
+    {
+      "blockId": "B147",
+      "sourceStart": 2766,
+      "sourceEnd": 2790,
+      "sourceTitle": "住宅楼梯设计实例",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "层高总级数与每跑分配",
+        "开间、梯井、平台、进深协调",
+        "首层入口净高复核与调整"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯的基本概念及设计要求"
+    },
+    {
+      "blockId": "B148",
+      "sourceStart": 2791,
+      "sourceEnd": 2830,
+      "sourceTitle": "预制装配楼梯构件与布置",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "大中型梯段与小型踏步构件装配区别",
+        "梯段、平台梁、平台板组成",
+        "梁板与板式梯段的支承和净空关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "钢筋混凝土楼梯构造"
+    },
+    {
+      "blockId": "B149",
+      "sourceStart": 2831,
+      "sourceEnd": 2841,
+      "sourceTitle": "梯段齐步/错步、埋步/不埋步节点",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "齐步与错步是上下梯段关系",
+        "埋步与不埋步是梯段与平台梁关系",
+        "支承位置、平台完整性、净空与进深的取舍"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯的细部构造"
+    },
+    {
+      "blockId": "B150",
+      "sourceStart": 2842,
+      "sourceEnd": 2859,
+      "sourceTitle": "预制构件连接、墙承与墙悬臂",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "踏步与斜梁、梯段与平台梁、底端与梯基连接",
+        "坐浆、插筋、预埋件的功能",
+        "墙承与墙悬臂传统构造的支承区别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "钢筋混凝土楼梯构造"
+    },
+    {
+      "blockId": "B151",
+      "sourceStart": 2860,
+      "sourceEnd": 2876,
+      "sourceTitle": "踏步面层和防滑",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "平整、耐磨、防滑、耐冲击与易清洁",
+        "局部凹槽、防滑条、防滑包口",
+        "保护踏口与通行安全"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯的细部构造"
+    },
+    {
+      "blockId": "B152",
+      "sourceStart": 2877,
+      "sourceEnd": 2904,
+      "sourceTitle": "栏杆栏板形式与连接",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "透空、实心、混合形式及防儿童风险",
+        "立杆抗侧力与梯段/平台可靠锚固",
+        "材料与结构支承、装饰板面的区别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯的细部构造"
+    },
+    {
+      "blockId": "B153",
+      "sourceStart": 2905,
+      "sourceEnd": 2918,
+      "sourceTitle": "扶手材料、连接与转折",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "扶手抓握与截面",
+        "扶手和栏杆连接",
+        "齐步/错步对平台转折及连续性的影响"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯的细部构造"
+    },
+    {
+      "blockId": "B154",
+      "sourceStart": 2919,
+      "sourceEnd": 2933,
+      "sourceTitle": "台阶坡道作用、形式与台阶尺度",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "入口内外高差的过渡",
+        "台阶踏步与平台、单/双/三面形式",
+        "入口平台排水与门开启/通行"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "台阶与坡道"
+    },
+    {
+      "blockId": "B155",
+      "sourceStart": 2934,
+      "sourceEnd": 2951,
+      "sourceTitle": "台阶构造、实铺架空与防裂",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "面层、结构/垫层、基层",
+        "抗冻耐磨防滑与地基稳定",
+        "台阶与主体沉降差的协调"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "台阶与坡道"
+    },
+    {
+      "blockId": "B156",
+      "sourceStart": 2952,
+      "sourceEnd": 2957,
+      "sourceTitle": "坡道尺度、扶手与构造提纲",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "坡段、休息平台、面层防滑",
+        "使用类型、上升高度与坡度的关系",
+        "扶手、挡轮边和入口净空协调"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "台阶与坡道"
+    },
+    {
+      "blockId": "B157",
+      "sourceStart": 2958,
+      "sourceEnd": 2978,
+      "sourceTitle": "电梯类型、井道底坑机房与防火隔声",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "设备、建筑井道、底坑、顶层和机房接口",
+        "型号、载重、速度影响预留空间",
+        "防水、防火、隔声与检修"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "电梯及自动扶梯"
+    },
+    {
+      "blockId": "B158",
+      "sourceStart": 2979,
+      "sourceEnd": 2982,
+      "sourceTitle": "自动扶梯",
+      "finalPart": "parts/05-楼梯.md",
+      "contentPoints": [
+        "出入口等候缓冲与设备支承",
+        "预留空间、装饰外壳及底坑",
+        "跨层开口与防火分区协调"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "电梯及自动扶梯"
+    },
+    {
+      "blockId": "B159",
+      "sourceStart": 2983,
+      "sourceEnd": 2993,
+      "sourceTitle": "第八讲标题、屋顶作用与核心任务",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "承重、围护、造型与使用",
+        "防排水、热工和荷载三组要求",
+        "导水与堵水、结构与围护层协同"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "概述"
+    },
+    {
+      "blockId": "B160",
+      "sourceStart": 2994,
+      "sourceEnd": 3027,
+      "sourceTitle": "屋顶材料、外形分类、平坡屋顶概念",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "材料与形态两个分类轴",
+        "平屋顶、坡屋顶、其它空间形式",
+        "坡屋顶下空间与造型关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "概述"
+    },
+    {
+      "blockId": "B161",
+      "sourceStart": 3028,
+      "sourceEnd": 3039,
+      "sourceTitle": "屋顶设计要求",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "强度刚度、耐久、防排水、热工、使用和经济",
+        "防水和排水互相配合",
+        "使用功能影响承载和保护层"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "概述"
+    },
+    {
+      "blockId": "B162",
+      "sourceStart": 3040,
+      "sourceEnd": 3055,
+      "sourceTitle": "屋面排水原理与坡度表示",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "各类屋顶都需要有效排水坡度",
+        "角度、比值、百分率互换",
+        "材料、气候、构造、造型共同影响坡度"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "概述"
+    },
+    {
+      "blockId": "B163",
+      "sourceStart": 3056,
+      "sourceEnd": 3082,
+      "sourceTitle": "材料最小坡度旧表与气候因素",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "面材尺寸、接缝与排水坡度关系",
+        "气候影响设计",
+        "坡度选择需要对应材料系统"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "概述"
+    },
+    {
+      "blockId": "B164",
+      "sourceStart": 3083,
+      "sourceEnd": 3094,
+      "sourceTitle": "材料找坡与结构找坡",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "水平结构上材料找坡",
+        "结构标高形成坡度",
+        "荷载、室内顶棚与施工的取舍"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B165",
+      "sourceStart": 3095,
+      "sourceEnd": 3113,
+      "sourceTitle": "无组织/有组织、内外排水",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "自由落水与有组织排水路径",
+        "内排水与外排水的不同管位",
+        "气候、建筑高度、维护对选择的影响"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B166",
+      "sourceStart": 3114,
+      "sourceEnd": 3130,
+      "sourceTitle": "排水组织设计步骤与雨水管",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "汇水区域、分水线、坡向、沟、口、管",
+        "短捷流路与均匀汇水",
+        "高低屋面、沟内找坡与设备协调"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B167",
+      "sourceStart": 3131,
+      "sourceEnd": 3147,
+      "sourceTitle": "檐沟、女儿墙和内排水方案",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "挑檐外排、女儿墙外排、内天沟",
+        "挑檐承重与抗倾覆",
+        "沟、口与防水收头关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B168",
+      "sourceStart": 3148,
+      "sourceEnd": 3164,
+      "sourceTitle": "屋面防水系统与旧四等级表",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "防水选型依据功能、环境、耐久与可靠性",
+        "坡面构造防水和材料防水可协同",
+        "多层/复合防水的材料相容性"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B169",
+      "sourceStart": 3165,
+      "sourceEnd": 3198,
+      "sourceTitle": "卷材防水概念、沥青/改性沥青/高分子材料",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "连续柔性防水层适应一定变形",
+        "胎体、涂盖层和表面材料",
+        "沥青、SBS/APP、橡胶/树脂类卷材区别"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B170",
+      "sourceStart": 3199,
+      "sourceEnd": 3210,
+      "sourceTitle": "卷材基层处理剂和胶粘剂",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "基层处理与粘结职责区分",
+        "卷材与基层、搭接缝的相容性",
+        "专用材料应按体系和产品文件"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B171",
+      "sourceStart": 3211,
+      "sourceEnd": 3233,
+      "sourceTitle": "卷材屋面基本/辅助层次、结构、找平、结合",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "基础层次按功能讲解而非固定全部必设",
+        "找平、找坡、保温、隔汽各不同",
+        "防水基层平整坚实与开裂控制"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B172",
+      "sourceStart": 3234,
+      "sourceEnd": 3266,
+      "sourceTitle": "防水层施工、叠毡工艺及粘结方式",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "不同卷材相适配的冷粘、自粘、热熔、热风焊接",
+        "材料、接缝与基层要求影响工艺",
+        "多道设防与单层材料不是简单数量对应"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B173",
+      "sourceStart": 3267,
+      "sourceEnd": 3293,
+      "sourceTitle": "满粘/空铺/条粘/点粘、方向与搭接",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "基层粘结方式与搭接密封分别考虑",
+        "水流、风和坡度影响搭接组织",
+        "错缝、沟内接缝与连续防水"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B174",
+      "sourceStart": 3294,
+      "sourceEnd": 3309,
+      "sourceTitle": "防水保护层、上人与不上人",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "防水层耐候/机械损伤保护",
+        "上人屋面兼作使用面层",
+        "刚性保护与柔性防水间隔离、分格"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B175",
+      "sourceStart": 3310,
+      "sourceEnd": 3324,
+      "sourceTitle": "泛水与女儿墙收头",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "平立面转折防水连续",
+        "基层转角与附加增强",
+        "收头固定、密封、保护及压顶排水"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B176",
+      "sourceStart": 3325,
+      "sourceEnd": 3333,
+      "sourceTitle": "檐口与檐沟卷材收头",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "自由落水檐口收头与滴水",
+        "檐沟/天沟转角、附加层及收头",
+        "连续防水与可变形连接"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B177",
+      "sourceStart": 3334,
+      "sourceEnd": 3350,
+      "sourceTitle": "水落口直管/弯管与密封",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "沟/面雨水接入口和雨水管",
+        "最低标高、周边找坡与防堵",
+        "防水层伸入、接口密封与固定"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B178",
+      "sourceStart": 3351,
+      "sourceEnd": 3359,
+      "sourceTitle": "屋面等高/高低变形缝",
+      "finalPart": "parts/07-变形缝.md",
+      "contentPoints": [
+        "两侧独立泛水、柔性跨缝与保护盖板",
+        "等高与高低屋面关系",
+        "缝的变形能力与防水连续"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "变形缝的构造"
+    },
+    {
+      "blockId": "B179",
+      "sourceStart": 3360,
+      "sourceEnd": 3364,
+      "sourceTitle": "检修孔与屋面出入口",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "垂直检修孔与水平出入口区别",
+        "洞口上翻、泛水、压盖和门槛防水",
+        "上屋面通行与维护"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B180",
+      "sourceStart": 3365,
+      "sourceEnd": 3387,
+      "sourceTitle": "刚性防水概念、范围与构造层",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "细石混凝土刚性层与变形开裂",
+        "结构、找平、隔离、防水的职责",
+        "气候、结构、保温与施工条件影响选择"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B181",
+      "sourceStart": 3388,
+      "sourceEnd": 3406,
+      "sourceTitle": "刚性防水混凝土、外加剂、隔离、找平",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "抗裂钢筋、分缝、养护和材料配合",
+        "隔离层降低层间变形传递",
+        "不同位置隔离层材料功能"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B182",
+      "sourceStart": 3407,
+      "sourceEnd": 3431,
+      "sourceTitle": "刚性屋面分格缝",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "温度/结构变形释放",
+        "支座、板缝、转折、屋脊等敏感部位",
+        "止水密封与缝内钢筋关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B183",
+      "sourceStart": 3432,
+      "sourceEnd": 3452,
+      "sourceTitle": "刚性屋面泛水、檐口、落口",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "刚柔交接、防裂与密封",
+        "自由落水、檐沟、女儿墙排水",
+        "水落口周边增强与接缝"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B184",
+      "sourceStart": 3453,
+      "sourceEnd": 3493,
+      "sourceTitle": "涂膜材料、厚度旧表与胎体",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "涂料成膜、胎体增强与连续防水",
+        "按基料及施工方法分类",
+        "材料厚度、用量和成膜质量的关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B185",
+      "sourceStart": 3494,
+      "sourceEnd": 3510,
+      "sourceTitle": "涂膜屋面构造、氯丁/焦油聚氨酯旧材料",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "基层、底涂、增强层、面涂和保护的连续关系",
+        "干/湿铺增强胎体工艺差别",
+        "材料相容、固化和层间施工条件"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B186",
+      "sourceStart": 3511,
+      "sourceEnd": 3526,
+      "sourceTitle": "瓦屋面原理、结构体系概念",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "瓦搭接导水与辅助防水体系",
+        "屋面与支承结构的层级",
+        "有檩/无檩及传统材料更新"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "坡屋面构造"
+    },
+    {
+      "blockId": "B187",
+      "sourceStart": 3527,
+      "sourceEnd": 3559,
+      "sourceTitle": "山墙承檩、檩条与屋架承檩",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "檩条支承屋面板、山墙/屋架支承檩条",
+        "木、混凝土、钢檩及支承防腐连接",
+        "屋架弦杆腹杆、纵横支撑与空间稳定"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "坡屋面构造"
+    },
+    {
+      "blockId": "B188",
+      "sourceStart": 3560,
+      "sourceEnd": 3582,
+      "sourceTitle": "双坡、四坡、歇山、转角屋顶结构布置",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "屋顶平面与结构支承协调",
+        "半屋架、斜梁与转角交汇传力",
+        "丁字交接的檩条支承路径"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "坡屋面构造"
+    },
+    {
+      "blockId": "B189",
+      "sourceStart": 3583,
+      "sourceEnd": 3599,
+      "sourceTitle": "正脊、斜脊、斜天沟与四坡组织",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "凸线分水、凹线集水",
+        "等坡等高檐口的45°平面几何",
+        "从建筑平面分解到屋顶脊谷线"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "坡屋面构造"
+    },
+    {
+      "blockId": "B190",
+      "sourceStart": 3600,
+      "sourceEnd": 3645,
+      "sourceTitle": "平瓦、冷摊瓦、木望板、挂瓦板、混凝土基层",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "瓦、挂瓦条、顺水条、基层各职责",
+        "不同支承/基层/辅助防水做法",
+        "传统冷摊瓦与现代有防水层体系对照"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "坡屋面构造"
+    },
+    {
+      "blockId": "B191",
+      "sourceStart": 3646,
+      "sourceEnd": 3674,
+      "sourceTitle": "坡屋顶纵墙/山墙檐口",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "挑檐、女儿墙包檐、硬山和悬山",
+        "结构出挑、瓦头、封檐与泛水",
+        "传统木/砖/混凝土出檐做法"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "坡屋面构造"
+    },
+    {
+      "blockId": "B192",
+      "sourceStart": 3675,
+      "sourceEnd": 3699,
+      "sourceTitle": "坡屋顶排水沟、屋脊、烟囱",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "檐沟、天沟、斜天沟、屋脊位置",
+        "金属沟与瓦/辅助防水搭接",
+        "穿屋面烟囱的防火和防水分别处理"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "坡屋面构造"
+    },
+    {
+      "blockId": "B193",
+      "sourceStart": 3700,
+      "sourceEnd": 3720,
+      "sourceTitle": "小青瓦、筒板瓦与传统细部",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "底瓦/盖瓦、仰铺/覆铺与搭接",
+        "传统基层、冷摊和灰泥卧瓦",
+        "传统檐口、脊、沟的材料逻辑"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "坡屋面构造"
+    },
+    {
+      "blockId": "B194",
+      "sourceStart": 3721,
+      "sourceEnd": 3726,
+      "sourceTitle": "坡屋面的保温",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "保温置于坡面支承间或顶棚界面",
+        "热工边界随利用空间改变",
+        "屋面保温与顶棚的交接"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "坡屋面构造"
+    },
+    {
+      "blockId": "B195",
+      "sourceStart": 3727,
+      "sourceEnd": 3750,
+      "sourceTitle": "屋顶热工概述、分区表",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "保温隔热与室内环境、节能",
+        "气候与使用工况影响热工方案",
+        "屋顶热工需结合建筑整体"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "概述"
+    },
+    {
+      "blockId": "B196",
+      "sourceStart": 3751,
+      "sourceEnd": 3784,
+      "sourceTitle": "屋顶保温材料及铺设",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "热阻与保温层",
+        "松散、整体混合料、板状施工形式",
+        "含水、强度、材料厚度与施工保护"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B197",
+      "sourceStart": 3785,
+      "sourceEnd": 3822,
+      "sourceTitle": "正置保温、隔汽与湿气",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "保温层在防水层下的层序",
+        "室内水汽、施工水分与结露/起鼓",
+        "隔汽位置和连续性应依据气候、室内工况与计算"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B198",
+      "sourceStart": 3823,
+      "sourceEnd": 3837,
+      "sourceTitle": "排汽屋面",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "基层施工水分与防水层起鼓",
+        "排汽道/排汽孔连通及防雨",
+        "排汽口根部防水与维护"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B199",
+      "sourceStart": 3838,
+      "sourceEnd": 3855,
+      "sourceTitle": "倒置式保温",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "防水在保温下，保护防水的温度和机械作用",
+        "保温吸水、上覆稳定与排水",
+        "与正置屋面的层序比较"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B200",
+      "sourceStart": 3856,
+      "sourceEnd": 3865,
+      "sourceTitle": "隔热机理、室内热源与综合策略",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "太阳辐射、室外气温与室内热源",
+        "遮阳、通风、围护热工和绿化协同",
+        "屋顶是整体热环境策略的一部分"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "概述"
+    },
+    {
+      "blockId": "B201",
+      "sourceStart": 3866,
+      "sourceEnd": 3888,
+      "sourceTitle": "架空板与顶棚通风隔热",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "遮挡太阳辐射并组织通风带热",
+        "结构上/下通风空气间层",
+        "进出风、防雨、防堵与维护"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B202",
+      "sourceStart": 3889,
+      "sourceEnd": 3916,
+      "sourceTitle": "蓄水隔热屋面及一壁三孔",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "水蒸发带热与蓄水荷载",
+        "分仓、过水、溢水、泄水和给水维护",
+        "独立变形区与防水连续"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B203",
+      "sourceStart": 3917,
+      "sourceEnd": 3942,
+      "sourceTitle": "种植隔热、基质、排灌、防水、防护",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "植被遮荫和栽培介质热工影响",
+        "新增荷载、过滤排水与根系对防水影响",
+        "给水、维护、上人防护与花池边界"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B204",
+      "sourceStart": 3943,
+      "sourceEnd": 3944,
+      "sourceTitle": "反射降温标题与教学顺序备注",
+      "finalPart": "parts/06-屋顶.md",
+      "contentPoints": [
+        "反射降温只存在标题，没有可直接归位正文",
+        "与屋面颜色/表面辐射吸收的关系需补写"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "平屋面构造"
+    },
+    {
+      "blockId": "B205",
+      "sourceStart": 3945,
+      "sourceEnd": 3985,
+      "sourceTitle": "变形作用与变形缝总概念",
+      "finalPart": "parts/07-变形缝.md",
+      "contentPoints": [
+        "温度、沉降、地震引起的变形",
+        "分成独立结构单元的原理",
+        "伸缩缝、沉降缝、抗震缝三类",
+        "设缝后围护和使用连续性问题"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑变形缝的概念"
+    },
+    {
+      "blockId": "B206",
+      "sourceStart": 3986,
+      "sourceEnd": 3989,
+      "sourceTitle": "伸缩缝定义",
+      "finalPart": "parts/07-变形缝.md",
+      "contentPoints": [
+        "伸缩缝的原因与作用"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑变形缝的概念"
+    },
+    {
+      "blockId": "B207",
+      "sourceStart": 3990,
+      "sourceEnd": 3999,
+      "sourceTitle": "伸缩缝设置影响因素",
+      "finalPart": "parts/07-变形缝.md",
+      "contentPoints": [
+        "结构材料、结构整体性、屋顶保温隔热与环境温差",
+        "用条件说明设置间距的差异"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "变形缝的设置"
+    },
+    {
+      "blockId": "B208",
+      "sourceStart": 4000,
+      "sourceEnd": 4008,
+      "sourceTitle": "伸缩缝断开范围和间距表",
+      "finalPart": "parts/07-变形缝.md",
+      "contentPoints": [
+        "伸缩缝断开范围",
+        "缝内弹性填充和立面可变形处理"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "变形缝的构造"
+    },
+    {
+      "blockId": "B209",
+      "sourceStart": 4009,
+      "sourceEnd": 4012,
+      "sourceTitle": "沉降缝定义",
+      "finalPart": "parts/07-变形缝.md",
+      "contentPoints": [
+        "不均匀沉降、独立沉降单元"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑变形缝的概念"
+    },
+    {
+      "blockId": "B210",
+      "sourceStart": 4013,
+      "sourceEnd": 4017,
+      "sourceTitle": "沉降缝设置场景",
+      "finalPart": "parts/07-变形缝.md",
+      "contentPoints": [
+        "土质差异、高差与荷载差异、结构变化、新旧建筑交界"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "变形缝的设置"
+    },
+    {
+      "blockId": "B211",
+      "sourceStart": 4018,
+      "sourceEnd": 4031,
+      "sourceTitle": "沉降缝断开范围和缝宽表",
+      "finalPart": "parts/07-变形缝.md",
+      "contentPoints": [
+        "自基础至屋顶断开",
+        "缝宽与高度、沉降和倾斜有关"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "变形缝的构造"
+    },
+    {
+      "blockId": "B212",
+      "sourceStart": 4032,
+      "sourceEnd": 4034,
+      "sourceTitle": "抗震缝定义",
+      "finalPart": "parts/07-变形缝.md",
+      "contentPoints": [
+        "地震中相邻单元相对位移与碰撞风险"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑变形缝的概念"
+    },
+    {
+      "blockId": "B213",
+      "sourceStart": 4035,
+      "sourceEnd": 4039,
+      "sourceTitle": "抗震缝设置场景",
+      "finalPart": "parts/07-变形缝.md",
+      "contentPoints": [
+        "复杂平面、刚度差异、高差、错层和不同体系",
+        "结合其他变形缝考虑"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "变形缝的设置"
+    },
+    {
+      "blockId": "B214",
+      "sourceStart": 4040,
+      "sourceEnd": 4049,
+      "sourceTitle": "抗震缝断开范围和缝宽",
+      "finalPart": "parts/07-变形缝.md",
+      "contentPoints": [
+        "缝宽需满足结构位移需求",
+        "结合伸缩缝与沉降缝的原则"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "变形缝的构造"
+    },
+    {
+      "blockId": "B215",
+      "sourceStart": 4050,
+      "sourceEnd": 4080,
+      "sourceTitle": "各部位变形缝节点",
+      "finalPart": "parts/07-变形缝.md",
+      "contentPoints": [
+        "双墙、双柱、悬挑、连接廊等结构布置",
+        "墙面平缝、转角缝的覆盖和填缝",
+        "屋顶等高与高低跨盖缝",
+        "内墙和楼地面盖缝"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "变形缝的构造"
+    },
+    {
+      "blockId": "B216",
+      "sourceStart": 4081,
+      "sourceEnd": 4090,
+      "sourceTitle": "设缝以外的措施",
+      "finalPart": "parts/07-变形缝.md",
+      "contentPoints": [
+        "设缝与其他措施的比较",
+        "温度应力验算、施工顺序、后浇带、地基处理、形体优化"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "变形缝的设置"
+    },
+    {
+      "blockId": "B217",
+      "sourceStart": 4091,
+      "sourceEnd": 4101,
+      "sourceTitle": "住宅楼梯考试与补考题",
+      "finalPart": "实践任务.md",
+      "contentPoints": [
+        "六层住宅双跑楼梯平剖面",
+        "底层入口处理",
+        "栏杆扶手和踏步节点详图"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯绘图训练"
+    },
+    {
+      "blockId": "B218",
+      "sourceStart": 4102,
+      "sourceEnd": 4118,
+      "sourceTitle": "青少年活动中心设计说明书",
+      "finalPart": "实践任务.md",
+      "contentPoints": [
+        "建筑概况、分类、结构体系",
+        "防火依据、建筑模数",
+        "围护与分隔构造方案"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "构造方案说明训练"
+    },
+    {
+      "blockId": "B219",
+      "sourceStart": 4119,
+      "sourceEnd": 4132,
+      "sourceTitle": "幼儿园楼面结构布置练习",
+      "finalPart": "实践任务.md",
+      "contentPoints": [
+        "结构布置、轴线、标高、构件编号与尺寸"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼面构造布置训练"
+    },
+    {
+      "blockId": "B220",
+      "sourceStart": 4133,
+      "sourceEnd": 4139,
+      "sourceTitle": "幼儿园楼梯练习",
+      "finalPart": "实践任务.md",
+      "contentPoints": [
+        "幼儿园主要楼梯平剖面和节点"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯绘图训练"
+    },
+    {
+      "blockId": "B221",
+      "sourceStart": 4140,
+      "sourceEnd": 4145,
+      "sourceTitle": "幼儿园屋顶平面练习",
+      "finalPart": "实践任务.md",
+      "contentPoints": [
+        "屋顶轴线、分水线、排水分区、雨水管、坡度"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "屋顶排水设计训练"
+    },
+    {
+      "blockId": "B222",
+      "sourceStart": 4146,
+      "sourceEnd": 4152,
+      "sourceTitle": "幼儿园外檐详图练习",
+      "finalPart": "实践任务.md",
+      "contentPoints": [
+        "主入口和自选部位外檐详图",
+        "索引、材料图例、各层做法"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "外檐节点综合训练"
+    },
+    {
+      "blockId": "B223",
+      "sourceStart": 4153,
+      "sourceEnd": 4192,
+      "sourceTitle": "幼儿园期末综合构造方案",
+      "finalPart": "实践任务.md",
+      "contentPoints": [
+        "楼面布置、楼梯、屋顶平面、两张外檐详图",
+        "设计草图到正式图的流程",
+        "构造合理和图纸表达的评价"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "综合课程设计"
+    },
+    {
+      "blockId": "B224",
+      "sourceStart": 4193,
+      "sourceEnd": 4202,
+      "sourceTitle": "分组建筑构造调研",
+      "finalPart": "实践任务.md",
+      "contentPoints": [
+        "观察建筑或施工现场",
+        "照片、手绘节点与文字解释",
+        "比较材料层次、连接与构造原理"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "构造调研训练"
+    },
+    {
+      "blockId": "B225",
+      "sourceStart": 4203,
+      "sourceEnd": 4213,
+      "sourceTitle": "园林专业住宅楼梯练习",
+      "finalPart": "实践任务.md",
+      "contentPoints": [
+        "五层住宅双跑楼梯",
+        "墙厚、门洞、墙垛等更完整题目条件"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "楼梯绘图训练"
+    },
+    {
+      "blockId": "B226",
+      "sourceStart": 4214,
+      "sourceEnd": 4234,
+      "sourceTitle": "园林专业构造调研",
+      "finalPart": "实践任务.md",
+      "contentPoints": [
+        "砌体与框架体系比较",
+        "墙身节点、楼梯调研",
+        "结合小建筑方案反思构造设计"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "构造调研训练"
+    },
+    {
+      "blockId": "B227",
+      "sourceStart": 4235,
+      "sourceEnd": 4243,
+      "sourceTitle": "小建筑屋顶平面练习",
+      "finalPart": "实践任务.md",
+      "contentPoints": [
+        "排水分区、雨水管、轴线与坡度"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "屋顶排水设计训练"
+    },
+    {
+      "blockId": "B228",
+      "sourceStart": 4244,
+      "sourceEnd": 4257,
+      "sourceTitle": "小建筑外檐详图练习",
+      "finalPart": "实践任务.md",
+      "contentPoints": [
+        "主入口及另一处外檐详图",
+        "索引与层次说明"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "外檐节点综合训练"
+    },
+    {
+      "blockId": "B229",
+      "sourceStart": 4258,
+      "sourceEnd": 4271,
+      "sourceTitle": "课程衔接补遗",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "构造与建筑设计的关系",
+        "方案可实施性、综合能力与施工图表达"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "课程导读"
+    },
+    {
+      "blockId": "B230",
+      "sourceStart": 4272,
+      "sourceEnd": 4296,
+      "sourceTitle": "建筑性能与构件体系补遗",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "承载、围护、交通设备三个观察维度",
+        "基本性能、维护加工与资源条件",
+        "构造技术与艺术表达"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑物的构造组成"
+    },
+    {
+      "blockId": "B231",
+      "sourceStart": 4297,
+      "sourceEnd": 4308,
+      "sourceTitle": "建筑构造手段与体系补遗",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "环境、设备、材料与构造四种手段",
+        "材料、设计、施工共同影响质量"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑构造的设计原则"
+    },
+    {
+      "blockId": "B232",
+      "sourceStart": 4309,
+      "sourceEnd": 4312,
+      "sourceTitle": "构造层次补遗",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "饰面层、连接层、性能设备层、结构层"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "建筑物的构造组成"
+    },
+    {
+      "blockId": "B233",
+      "sourceStart": 4313,
+      "sourceEnd": 4319,
+      "sourceTitle": "材料构法节点学习路径",
+      "finalPart": "导学与绪论.md",
+      "contentPoints": [
+        "材料、构法、节点三个学习入口",
+        "材料与连接、复合方式的关系"
+      ],
+      "disposition": "整理改写或合并 具体保留与省略见分章修订记录",
+      "previousSectionHint": "课程导读"
+    },
+    {
+      "blockId": "B234",
+      "sourceStart": 4320,
+      "sourceEnd": 4321,
+      "sourceTitle": "尾部页码与嵌入对象",
+      "finalPart": "原文留档/source-paragraphs.txt",
+      "contentPoints": [
+        "游离页码18及对象占位"
+      ],
+      "disposition": "留档不入教材正文",
+      "previousSectionHint": "原资料归档"
+    }
+  ],
+  "note": "P号是文本提取定位号而非Word页码。覆盖指标只证明原文条目都有去向；不表示旧数值、重复段、课堂口述和嵌图已逐字保留。分章映射记录实际教材小节、纠错和省略理由。"
+}

@@ -1,0 +1,74 @@
+{
+  "round": 3,
+  "date": "2026-10-16",
+  "reviewer": "author_foundation_wall",
+  "audit_type": "最终PDF逐页原图视觉审计",
+  "page_range": [1, 25],
+  "pages_inspected": 25,
+  "source_images": "work/pdf-pages/page-001.png 至 page-025.png",
+  "source_pdf": "建筑构造教材_基础7部分与原理6部分.pdf",
+  "pdf_sha256": "3a99344fc9586aace809bdb7b895519cf5736f1c15f54fa8eb38f845c2b36314",
+  "method": "25张PNG均逐张使用view_image(detail=original)查看，按001–005、006–010、011–015、016–020、021–025五批展示原图；未以contact sheet替代逐页检查。原图为893×1263像素，渲染来源记录为最终PDF经PDFium以108dpi栅格化。逐页检查正文边界、重叠、字形、标题和随文、页脚、跨页续段及留白。",
+  "artifact_boundary": "本报告的视觉证据仅证明最终PDF第001–025页的实际分页。DOCX原生Word分页渲染因缺少soffice而未完成；834段完整性及OOXML检查属于另外的文本、结构核对，不等同Word视觉分页验证，也没有以PDF代替DOCX原生渲染。",
+  "result": "pass_with_nonblocking_typographic_observation",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "id": "R3-VIS-001-025-01",
+      "severity": "P3",
+      "pages": [4, 6, 14, 25],
+      "category": "中文行首标点排版",
+      "issue": "个别长段折行后逗号位于行首，例如004页末段、006页平均压力说明、014页首段、025页框位及立口段。字形完整、文本未裁切，阅读与技术含义不受影响。",
+      "recommendation": "后续排版优化可启用中文避头尾规则，使逗号等闭合标点随前字移到上一行。此项不构成内容或交付阻断。"
+    }
+  ],
+  "checks": {
+    "clipping_or_out_of_page": "001–025未见正文、标题、算式或页码裁切及越界。",
+    "overlap": "未见正文行间、段落、标题或页脚相互重叠。",
+    "missing_glyph_or_black_boxes": "未见缺字、黑方块或乱码；006页p=N/A、014页MU/M与尺寸、016页1/20等正常显示。",
+    "broken_tables": "001–025没有正文网格表格；002页目录左右列完整对齐，没有断行错列。不得据此推断其他页表格均通过。",
+    "isolated_headings": "未见页底仅留标题而正文全移下一页；016页底保温标题附有完整段落，009页底埋深标题也附有正文。",
+    "abnormal_blank_pages": "未见异常空页；001为有意的封面留白，011与021为章末自测/续段后留白，随后新章另起页，均非空白页。",
+    "page_numbers": "002–025页脚编号顺序连续，与PDF物理页一致；001封面无页码属合理处理。",
+    "continuations": "008→009桩基础续文、010→011沉降缝续段、013→014砂浆续段、014→015芯柱续文、019→020抹灰续段、022→023转门续段、023→024木门窗续文衔接正常。"
+  },
+  "toc_check": {
+    "toc_page": 2,
+    "visible_entries": "导学及基础7部分、原理6部分、实践任务和参考标准条目清楚，页码列完整。",
+    "directly_verified_targets": [
+      {"entry": "建筑构造学习导学", "toc_page_number": 3, "actual_page": 3, "result": "match"},
+      {"entry": "基础一 基础与地基", "toc_page_number": 6, "actual_page": 6, "result": "match"},
+      {"entry": "基础二 墙体", "toc_page_number": 12, "actual_page": 12, "result": "match"},
+      {"entry": "基础三 门窗", "toc_page_number": 22, "actual_page": 22, "result": "match"}
+    ],
+    "scope_limit": "目录所列28页及之后章首页超出本组001–025视觉范围，交相应页段审计者核对；本报告不声称亲自查看这些目标页。"
+  },
+  "pages": [
+    {"page": 1, "status": "pass", "note": "封面标题、副标题、基础与原理清单、说明和日期完整；留白有意，无异常裁切。"},
+    {"page": 2, "status": "pass", "note": "目录条目与页码两列清楚，底部参考标准条目和页脚不碰撞。"},
+    {"page": 3, "status": "pass", "note": "导学章首页、课程导读、分类和分级标题层次清楚，分级标题后有正文。"},
+    {"page": 4, "status": "pass_with_note", "note": "分级续文、构造组成、影响因素完整；仅个别行首逗号，见非阻断观察。"},
+    {"page": 5, "status": "pass", "note": "设计原则、制图模数与标高文字完整；M=100mm、3M、M/2及尺寸示例正常。"},
+    {"page": 6, "status": "pass_with_note", "note": "基础一章首页、传力、压力概念式及土组成正常；个别行首逗号，无字形损失。"},
+    {"page": 7, "status": "pass", "note": "基础设计要求、场地资料和处理思路，标题与段落间距统一，无孤立标题。"},
+    {"page": 8, "status": "pass", "note": "基础分类及材料性能层次清楚；底部桩基础标题后有完整介绍段。"},
+    {"page": 9, "status": "pass", "note": "桩基础续文、箱基地下结构、防水与埋深完整；页底小标题后有正文。"},
+    {"page": 10, "status": "pass", "note": "埋深因素、不均匀沉降及预防连续；末段自然续至011。"},
+    {"page": 11, "status": "pass", "note": "沉降缝续文及五题自测完整；章末留白合理，非异常空页。"},
+    {"page": 12, "status": "pass", "note": "基础二墙体起页，与目录12匹配；作用与类型层级清楚。"},
+    {"page": 13, "status": "pass", "note": "材料构造分类、砌体传力及材料性能文字清楚，底部段落续排正常。"},
+    {"page": 14, "status": "pass_with_note", "note": "组砌、墙厚模数和圈梁构造柱完整，尺寸及拉丁字母可读；首段个别行首逗号。"},
+    {"page": 15, "status": "pass", "note": "芯柱续文、隔墙与刚柔连接、骨架隔墙层次完整，无挤压和错行。"},
+    {"page": 16, "status": "pass", "note": "条板、承载稳定和抗震排版正常；底部保温标题附正文，非孤立标题。"},
+    {"page": 17, "status": "pass", "note": "热工续文、声火水要求及墙脚细部完整，页脚间距正常。"},
+    {"page": 18, "status": "pass", "note": "防潮续文、勒脚散水明沟、门窗洞口均清楚，无标题和正文分离。"},
+    {"page": 19, "status": "pass", "note": "门垛壁柱、墙面装修、抹灰层次连续，末段与020接续正常。"},
+    {"page": 20, "status": "pass", "note": "涂饰裱糊、湿挂干挂、特殊部位及图纸标注完整，无底部裁切。"},
+    {"page": 21, "status": "pass", "note": "墙体五题自测完整，章末留白与下一章另起页一致。"},
+    {"page": 22, "status": "pass", "note": "基础三门窗起页与目录22匹配；开篇和门分类正常，转门段自然续页。"},
+    {"page": 23, "status": "pass", "note": "门分类续文、窗形式、材料组成及传统命名可读，正文边界完整。"},
+    {"page": 24, "status": "pass", "note": "木门窗续文及设计要求完整，玻地比新增内容正常显示，标题不孤立。"},
+    {"page": 25, "status": "pass_with_note", "note": "框位、洞口连接、热工和中空玻璃完整，结露段落未裁切；个别行首逗号。"}
+  ],
+  "conclusion": "本组25页已逐页原图审阅，六类重点缺陷均未形成阻断；目录在本组可直接验证的4个目标全部吻合。仅记录一项不影响内容完整性的中文标点折行建议。未修改任何正文、PDF或DOCX。"
+}

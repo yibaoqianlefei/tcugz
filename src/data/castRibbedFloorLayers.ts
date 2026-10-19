@@ -22,7 +22,7 @@ export const castRibbedFloorLayers: LayerInfo[] = [
     thickness: "—",
     material: "钢筋混凝土柱",
     description:
-      "楼盖竖向承重构件，支承主梁并将楼板全部荷载传至基础。柱的间距决定主梁跨度，是肋梁楼板传力路径的终点。",
+      "本例楼盖的竖向支承，承接主梁传来的作用并继续传向下部结构、基础和地基。柱是这张局部图的支承边界，不能视作整栋建筑传力路径的终点。",
   },
   {
     objectName: "主梁",
@@ -31,7 +31,7 @@ export const castRibbedFloorLayers: LayerInfo[] = [
     thickness: "—",
     material: "钢筋混凝土主梁",
     description:
-      "沿柱距方向布置的主要承重梁，支承次梁，将楼面荷载集中传递给柱。主梁截面尺寸大于次梁。",
+      "本例中承接次梁反力并传向柱的梁。主次梁的区分应依据实际支承与传力关系，不能只凭截面大小判断；连续楼盖仍需整体分析。",
   },
   {
     objectName: "次梁",
@@ -46,7 +46,7 @@ export const castRibbedFloorLayers: LayerInfo[] = [
     objectName: "板",
     name: "现浇板",
     order: 4,
-    thickness: "板厚 60~120mm",
+    thickness: "板厚未标注，按结构设计确定",
     material: "钢筋混凝土现浇板",
     description:
       "楼面水平承重构件，直接承受使用荷载，并将荷载传给次梁。肋梁楼板中板跨度较小、板厚较薄，与次梁、主梁现浇成整体。",

@@ -1,0 +1,168 @@
+{
+  "date": "2026-10-19",
+  "originalImport": "src/data/reviewedTextbookImport.json",
+  "policy": "原始导入记录不变；独立记录教学排版版本，不接受原句删除或改写",
+  "articles": [
+    {
+      "source": "src/data/textbook/walls/index.md",
+      "importedSha256": "e05724b1b09e3bbf179e9c814c0fddfd1f2dd5fb47c1b53173a2e6003b9d527a",
+      "websiteSha256": "d9b9918058a174981ef351046404febab9464465d3014a197bc3087fc704c9d5",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/walls/index.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/walls/wall-role.md",
+      "importedSha256": "6d316a8088a7d75217e6f65a12683d55c43fed1709c543d740bc8df368621b3b",
+      "websiteSha256": "f03bc911b61c86932837a7291a48751bec3675601fdc09843c134c7079470f3e",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/walls/wall-role.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/walls/wall-types.md",
+      "importedSha256": "1fc8a4942d44f3b3accde9ca99405ecd942734561d469ac81d1a113499061ab4",
+      "websiteSha256": "a97349f72a5ea966ca12b65e2d1d8cb291bc8c45624125926b5188b295eff693",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/walls/wall-types.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/walls/wall-masonry.md",
+      "importedSha256": "8d82368f2ad23b3ba4d4d4a7c0605b73d42c6236cf10fba3544c0608fe3ae5ca",
+      "websiteSha256": "0474daf2eb4e6aa370a316b657b70937c971a82f9124bbeafbea921eb814ffde",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/walls/wall-masonry.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/walls/partitions.md",
+      "importedSha256": "c8b264c70b8bb63322088e7d9e6231f9c3e89d6bc7fd611cc41ad03a45f6e7fe",
+      "websiteSha256": "998df443165e5ad25acdb44a11a7b2218fc38708abc72d59359550be085b6fbb",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/walls/partitions.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/walls/wall-design-requirements.md",
+      "importedSha256": "ab5e29c2805da7b7696604790ed38b6946fa9169d3f62c369b12fe3a45422847",
+      "websiteSha256": "510b06be367698550592d568968f2783be315175f46f25fbc6171420ab9790f8",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/walls/wall-design-requirements.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/walls/wall-details.md",
+      "importedSha256": "f9f9cd8ae0d3862264eff0b194ed161e774a989847ba2cec0332ef2d68815798",
+      "websiteSha256": "153b4e66b8083bc955adf5761b536435baa0055b41a249f15713224d83ba9c9e",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/walls/wall-details.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/walls/wall-finishes.md",
+      "importedSha256": "f0419e66cca72fae02465d2f349d19db6ac22ca9145e5e64dd8873ce9a610ed0",
+      "websiteSha256": "61ce0298e3b3201c8741663445c806f0c18eaad720becd8efc5cb97d312be2a8",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/walls/wall-finishes.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/door-window/window-door-overview.md",
+      "importedSha256": "2063670980374a144892879fdd3dc154ccfd26777375b89116cd9a78ed586416",
+      "websiteSha256": "1ae45689cffa3d488cf0bacf376fba56a6c30a510a2d7cad241808ee16dd0131",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/door-window/window-door-overview.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/floor/floor-overview.md",
+      "importedSha256": "815dad0ca00b12d3dda322738e90d7575d21ed9e8523b6a7c10891ae79253e8a",
+      "websiteSha256": "5923538fa129cc5d6bb5f4889aba62bbe6eb44fc16e1e0c862359d2b2c28b060",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/floor/floor-overview.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/floor/floor-rc-slab.md",
+      "importedSha256": "bd8af10bf1e14dd024960495053c6b89870cd3774e854d9b52ed90f7153a44f2",
+      "websiteSha256": "18b87a56da4f44a3cf7a9586b5d3ed507167ec8fd8b169f017bb70ca3f5e1b06",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/floor/floor-rc-slab.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/floor/floor-ground-composition.md",
+      "importedSha256": "07bf66814f050513f9c313590a5a2f7ceb92c5211981d1aaaeb0d2ebaad721ba",
+      "websiteSha256": "0d22596c2be8be9e94f03bea77b06e6c4757da678ff32a9cd3e96adbb9d0a4b5",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/floor/floor-ground-composition.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/floor/floor-ground-layer.md",
+      "importedSha256": "1da691298b424c2996a8868c98489861ddd264f9eb18bd188fe756850899f25a",
+      "websiteSha256": "559cc37e50f792d41a79f1bae371063855d27c7b27aa9bd9876977aa16f3e768",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/floor/floor-ground-layer.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/floor/floor-balcony.md",
+      "importedSha256": "88f3b6d67d072ed84d8e3ad9c144bf9edddd12cbdfaa3e643259faac152096a1",
+      "websiteSha256": "a2e0cbacd6633cf0153109bcaffe9d0a08187ec07b7902780639e65b152fe6b7",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/floor/floor-balcony.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/floor/finish-overview.md",
+      "importedSha256": "fd990911b093605d207964507af271dbd55cd56bc41a069ec1b08399af2d989b",
+      "websiteSha256": "23ced3045d924284aae7bb4ed290dfd1113c15d1f98d70eee460aa6e2a133203",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/floor/finish-overview.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/stairs/stairs-overview.md",
+      "importedSha256": "5737b42df9c5045302692f51251178179ca382993082ba7843b73708fd98a85d",
+      "websiteSha256": "338134739ac549a18b9f398d9f33a0423b1af63c11f73ffa65901e969d262e9e",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/stairs/stairs-overview.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/stairs/stairs-rc-structure.md",
+      "importedSha256": "ef294a51b99d503567d619bffeb7e24624e9c7c8b78130348b86d09574330fd5",
+      "websiteSha256": "d6bab0c6a3dcc9e27289ff6d70898c376d34673e80c6e4e6f7e16d3122d162a8",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/stairs/stairs-rc-structure.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/stairs/stairs-details.md",
+      "importedSha256": "977b669bf9287358a43d58e133d6ecc578218778463c06e14b778d0fd411487c",
+      "websiteSha256": "30f4f20ff7051cdbfddf67f3fe3a28877b92eff2b7b60e751a9b4c22c4802368",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/stairs/stairs-details.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/stairs/stairs-steps-ramps.md",
+      "importedSha256": "af0dc0c91626c3bc4788583ec143a59adb3349d8e411ae7a6f7e362cf5845d07",
+      "websiteSha256": "975e1b2e615199ee656c717a364d53be2101f1e399b223da13ef5768c3f0017d",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/stairs/stairs-steps-ramps.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/roof/index.md",
+      "importedSha256": "9033b1021d3dc112e36ce8dddb33fcdd315db4e4a48e39b11582aef775000808",
+      "websiteSha256": "109799f25de1b8873ef79e1564432378f5038e008ab08d6579fa8f44bec01475",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/roof/index.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/roof/roof-flat.md",
+      "importedSha256": "980e9b79d26c6458b846908396779ea070813b13d80410b2c5c7c27f7dde1c1d",
+      "websiteSha256": "0cc2bf81493f4707196914493d5f09da7413e2e263cec86b7050b6dcaa0e57e5",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/roof/roof-flat.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/deformation-joint/roof-deformation-concept.md",
+      "importedSha256": "44cb52a2d54436ce8ff9cdc048c6178eec50ce3792352a8d9f0a93d16d33a6d8",
+      "websiteSha256": "52247cbbf6933dba348aa997ff5c4a8fedb49e8284d560eef7524150c645912c",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/deformation-joint/roof-deformation-concept.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    },
+    {
+      "source": "src/data/textbook/deformation-joint/roof-deformation-location.md",
+      "importedSha256": "077e9a5f73bbd2e99e9259bb5c6ea7497bb0550e34a8a439b26df3b5b5d01ca4",
+      "websiteSha256": "2d8be9b7fb6ed5191a1bcaed2e2423305fa50ca6212e6a20a315a683f21aa5f8",
+      "baselinePath": "audit-output/digital-textbook-2026-10-19/source-baseline/src/data/textbook/deformation-joint/roof-deformation-location.md",
+      "change": "保留工作区教学提示及强调格式调整；原句及其出现次数、顺序完整保留"
+    }
+  ]
+}

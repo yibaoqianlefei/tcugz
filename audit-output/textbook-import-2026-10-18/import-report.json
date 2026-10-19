@@ -1,0 +1,718 @@
+{
+  "edition": "reviewed-2026-10-16",
+  "importedOn": "2026-10-18",
+  "packageManifest": "deliverables/教材拆分_2026-10-16/网站文本/manifest.json",
+  "policy": "审定正文完整保留 仅适配标题和任务结构 保留网站小节自测 三维节点与参考资料",
+  "articles": [
+    {
+      "source": "src/data/textbook/introduction/intro-course-guide.md",
+      "reviewedFile": "topics/introduction/intro-course-guide.md",
+      "group": "introduction",
+      "id": "intro-course-guide",
+      "route": "/lesson/introduction/intro-course-guide.html",
+      "reviewedSha256": "9f50b8f193a8d338512d26e11c651af394acb3d61ddadc4fbf77930296510069",
+      "beforeSha256": "fcd3a5c0a4eb2caddd5c062ad862346a2795529df5d493cb03f48a7f83af7f22",
+      "importedSha256": "40cb4ee9bda59f5bb0584b3fdcfd79aa3da577166d1323777dc57077f4d1f42f",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/introduction/intro-classification.md",
+      "reviewedFile": "topics/introduction/intro-classification.md",
+      "group": "introduction",
+      "id": "intro-classification",
+      "route": "/lesson/introduction/intro-classification.html",
+      "reviewedSha256": "09969dc9640bc10319e0ce0e98059dadf8ad7d32263895acaf5576a6e7f6af31",
+      "beforeSha256": "db897488814574fa19fedcc865592a99d9bc8c55bedd4d091e20253cadd7d28e",
+      "importedSha256": "57bbea004df550816df27e7b0c42b091ea6b7ad34ed9871b3ad0521d5c684d8c",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/introduction/intro-grading.md",
+      "reviewedFile": "topics/introduction/intro-grading.md",
+      "group": "introduction",
+      "id": "intro-grading",
+      "route": "/lesson/introduction/intro-grading.html",
+      "reviewedSha256": "7c67b224232399bdb776b925902590e368b2fa3e6c9a520fa74600d384aa2d00",
+      "beforeSha256": "4645ba92e64887a01c348c68ecd8efaa70c9aa083606fe07d4b49eafe0a5e5ae",
+      "importedSha256": "262850bb37dded628127b4f6d62e42a1b8b3c6a45e260b6518bdf1789760654d",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/introduction/intro-composition.md",
+      "reviewedFile": "topics/introduction/intro-composition.md",
+      "group": "introduction",
+      "id": "intro-composition",
+      "route": "/lesson/introduction/intro-composition.html",
+      "reviewedSha256": "8e79f76a3e1200cf5ef2f814c717bd02398cf9e710a0cee05bdf0791ce246c63",
+      "beforeSha256": "fba5f842b24ffb8e478b6858aefc0e546f3aa435c008f6ae77a2292698ed0b8a",
+      "importedSha256": "71a1996de06c4ee7e890760382eecfec51fa84f85e1662be33931301e9ceaf5d",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/introduction/intro-factors.md",
+      "reviewedFile": "topics/introduction/intro-factors.md",
+      "group": "introduction",
+      "id": "intro-factors",
+      "route": "/lesson/introduction/intro-factors.html",
+      "reviewedSha256": "ac57c290ae3e3d66ea45c55f3647990f1531725704767dd338b0601239408389",
+      "beforeSha256": "40ad800982c00152eca85edf43b7858bfa13fadbfd555407e6d0ff09e70b9b66",
+      "importedSha256": "e78d4245a3090b4de8a1377b3151a92417b583413ae758a31c5f397f8a0063e3",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/introduction/intro-design-principles.md",
+      "reviewedFile": "topics/introduction/intro-design-principles.md",
+      "group": "introduction",
+      "id": "intro-design-principles",
+      "route": "/lesson/introduction/intro-design-principles.html",
+      "reviewedSha256": "6d7494f1012c9cb536922923731ce30d78cc95f17c97bd5a220d4ffe179370d4",
+      "beforeSha256": "96b2fc9711ca7096ed1f03d9455c52c8c0da42b118fd94d068a2c7efd3105b45",
+      "importedSha256": "c6cf3bbb3f4404173377dec4fdc7cc8be8e55a340ff042bb43a2f1318990145d",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/introduction/intro-drawing-standards.md",
+      "reviewedFile": "topics/introduction/intro-drawing-standards.md",
+      "group": "introduction",
+      "id": "intro-drawing-standards",
+      "route": "/lesson/introduction/intro-drawing-standards.html",
+      "reviewedSha256": "1ab2209f0c33bf02da72505ef747111fb0e238c634b94aabf3fb7d3b6172f984",
+      "beforeSha256": "b913555c08e72f32213ff101fce4354ed1a81c867b3337d3cc1745d6ebb34795",
+      "importedSha256": "499bae6a80daaba37fb282c221d7ec2d0ce1587e8d3a3792c548abb8747faaa7",
+      "supplements": [
+        "保留本小节自测与参考答案",
+        "保留已有参考资料链接"
+      ]
+    },
+    {
+      "source": "src/data/textbook/principles/thermal.md",
+      "reviewedFile": "topics/principles/thermal.md",
+      "group": "principles",
+      "id": "thermal",
+      "route": "/lesson/principles/thermal.html",
+      "reviewedSha256": "1d96deff513579963ef80ed6ab0e2f381074d242bae6f8b2ee288c99fcedbbb8",
+      "beforeSha256": "67f4bc29a7ea790c61d4b004bbdb1d5c65ef13db1693f54f8975a803d3d269d2",
+      "importedSha256": "fcf31e44fd6dfad425397853f4f05d0fea4c646aba105ccb1deb7f770fecfa30",
+      "supplements": [
+        "保留已有参考资料链接"
+      ]
+    },
+    {
+      "source": "src/data/textbook/principles/waterproof.md",
+      "reviewedFile": "topics/principles/waterproof.md",
+      "group": "principles",
+      "id": "waterproof",
+      "route": "/lesson/principles/waterproof.html",
+      "reviewedSha256": "b7eca4fdefd31b91c69213eaefa029875c1408f5c58ec039139e8a0c37540276",
+      "beforeSha256": "550840a8781fb86620d92f8b74b6eda9b3007a781e8160573d7741175b437ad9",
+      "importedSha256": "90bf12ea1c5531fe2f8f338fb6bd9985c20eb31550a3e512659ca091c250b3c1",
+      "supplements": [
+        "保留已有参考资料链接"
+      ]
+    },
+    {
+      "source": "src/data/textbook/principles/insulation.md",
+      "reviewedFile": "topics/principles/insulation.md",
+      "group": "principles",
+      "id": "insulation",
+      "route": "/lesson/principles/insulation.html",
+      "reviewedSha256": "20d44b78a9243ffd88ba7ad246f574f9385b06b3fd9f454d59d733844d00094a",
+      "beforeSha256": "be11b8f6d4868a7b871aff74d768eb1367ac7ac07f303b90f36c0de17c814f0a",
+      "importedSha256": "aa162b030a1e12670ad3812d60ed511bba7a8d2c0dee4837441df0594aed05fe",
+      "supplements": [
+        "保留已有参考资料链接"
+      ]
+    },
+    {
+      "source": "src/data/textbook/principles/acoustic.md",
+      "reviewedFile": "topics/principles/acoustic.md",
+      "group": "principles",
+      "id": "acoustic",
+      "route": "/lesson/principles/acoustic.html",
+      "reviewedSha256": "8d891f92baf172dfbc315e6ae066a9d9467b608769b1873e47e980bb13733e30",
+      "beforeSha256": "a42ef8b78ce420d06380f67cca212d9d2bc40605642258e20bb0e268dd06d857",
+      "importedSha256": "552e06e6b1b71abec5575e722e753bdb7aad0ff108a95f03a49972f58439c61d",
+      "supplements": [
+        "保留已有参考资料链接"
+      ]
+    },
+    {
+      "source": "src/data/textbook/principles/fire.md",
+      "reviewedFile": "topics/principles/fire.md",
+      "group": "principles",
+      "id": "fire",
+      "route": "/lesson/principles/fire.html",
+      "reviewedSha256": "e27e22f765be022176fbf4bbb0722875748310e78c7935c5082173f0486bcec9",
+      "beforeSha256": "7d8929dcfc80d0f017ca74384ac7c84958ba0aa264b9c3b18fe0b5c09ddde991",
+      "importedSha256": "658c5d9d040a91634573ab2527d5dfb2cc2b82208c8b6636aec2eb1541fe9f70",
+      "supplements": [
+        "保留已有参考资料链接"
+      ]
+    },
+    {
+      "source": "src/data/textbook/principles/moisture.md",
+      "reviewedFile": "topics/principles/moisture.md",
+      "group": "principles",
+      "id": "moisture",
+      "route": "/lesson/principles/moisture.html",
+      "reviewedSha256": "ed276ce23e9ff9b9755aec6cdd31c52a6a324c734c0af580abc43d510792199c",
+      "beforeSha256": "c94121f4195e91693b7795d22a6a8d073b1914b039ca2c71ed2e425d23ac5ce4",
+      "importedSha256": "ed276ce23e9ff9b9755aec6cdd31c52a6a324c734c0af580abc43d510792199c",
+      "supplements": []
+    },
+    {
+      "source": "src/data/textbook/practice/construction-brief.md",
+      "reviewedFile": "topics/practice/construction-brief.md",
+      "group": "practice",
+      "id": "construction-brief",
+      "route": "/lesson/practice/construction-brief.html",
+      "reviewedSha256": "ac67d8aa156fe3039573e2fd20d5f8324b7fc698529e3185f34132ad8a9a5c99",
+      "beforeSha256": "77091bd9167a45663bf5f5f899d4446647fcdac4799e42858a14cac2e69df9e3",
+      "importedSha256": "293344a8909ab4d6aa88ffa2572024fdbb2e92a120be71721ed2818c66ec27a5",
+      "supplements": [
+        "保留网站任务的前置阅读和工作步骤"
+      ]
+    },
+    {
+      "source": "src/data/textbook/practice/floor-layout.md",
+      "reviewedFile": "topics/practice/floor-layout.md",
+      "group": "practice",
+      "id": "floor-layout",
+      "route": "/lesson/practice/floor-layout.html",
+      "reviewedSha256": "8e10e68f662377e5d8982a89953c5c2ff5f072164c6874a9dd05eb2252a81501",
+      "beforeSha256": "e871474d27a0ae098840eb1aecfc872f6f56d6a1e91ba399b22010ddeab00076",
+      "importedSha256": "a3900de5f678130448f6b7596cf888a0c67ee1f620bd5bbbb7491cf65d900e5d",
+      "supplements": [
+        "保留网站任务的前置阅读和工作步骤"
+      ]
+    },
+    {
+      "source": "src/data/textbook/practice/stairs-drawing.md",
+      "reviewedFile": "topics/practice/stairs-drawing.md",
+      "group": "practice",
+      "id": "stairs-drawing",
+      "route": "/lesson/practice/stairs-drawing.html",
+      "reviewedSha256": "5ec27576395e36b12ade99372194f5f348b5d673a3b4d54161e7b5e49bc50286",
+      "beforeSha256": "b3fff58a689280fe685f3c5bac5d0b7306dfeaeea5df72fe242e1c125a196d7e",
+      "importedSha256": "5952a9d0f83adf16d4c0a62a959b22101f40d1bb1113a0e4a65af754938a8fd3",
+      "supplements": [
+        "保留网站任务的前置阅读和工作步骤",
+        "保留明确假设条件的几何参考例"
+      ]
+    },
+    {
+      "source": "src/data/textbook/practice/roof-drainage.md",
+      "reviewedFile": "topics/practice/roof-drainage.md",
+      "group": "practice",
+      "id": "roof-drainage",
+      "route": "/lesson/practice/roof-drainage.html",
+      "reviewedSha256": "42c78e5cae7f88c30b5ec70d59207609f795a8dda7e3efabb67ff58afe2ac687",
+      "beforeSha256": "515492e7dc04f2c356e5acd34da9995fcb8651aa888a6d522dbba5bc2d3bc8be",
+      "importedSha256": "242266eebf1b69dc3c43ddb8a15817c93a24fd414ab995c7e2a40a1f3b8d72bd",
+      "supplements": [
+        "保留网站任务的前置阅读和工作步骤",
+        "保留明确假设条件的几何参考例"
+      ]
+    },
+    {
+      "source": "src/data/textbook/practice/envelope-detail.md",
+      "reviewedFile": "topics/practice/envelope-detail.md",
+      "group": "practice",
+      "id": "envelope-detail",
+      "route": "/lesson/practice/envelope-detail.html",
+      "reviewedSha256": "320d491433293e04b8c4e0af8a3e87d0ffebe25c44fc9bde05bc08e7254cfdac",
+      "beforeSha256": "caa4c2f1551d0c6e9b3203746788faa7d18f12982ba1b3eb69203145562f93a8",
+      "importedSha256": "f916cf0a2584d6988735b538b68020c17edc0c88b3dc77993608feb209bd6c16",
+      "supplements": [
+        "保留网站任务的前置阅读和工作步骤"
+      ]
+    },
+    {
+      "source": "src/data/textbook/practice/integrated-design.md",
+      "reviewedFile": "topics/practice/integrated-design.md",
+      "group": "practice",
+      "id": "integrated-design",
+      "route": "/lesson/practice/integrated-design.html",
+      "reviewedSha256": "f61f7b594b585772fcd27a7e6da76eea801fa50be7c2259c76f5d3ea6b2a64b8",
+      "beforeSha256": "62fc242822cb2c5bdceeeb1676e6fcfc35376b32835ebd800fc48c44bdb453cc",
+      "importedSha256": "71105afc2d0ca8b0a598757d35654247845e34b2d436183da8ddad62d4bb5cb7",
+      "supplements": [
+        "保留网站任务的前置阅读和工作步骤"
+      ]
+    },
+    {
+      "source": "src/data/textbook/practice/construction-survey.md",
+      "reviewedFile": "topics/practice/construction-survey.md",
+      "group": "practice",
+      "id": "construction-survey",
+      "route": "/lesson/practice/construction-survey.html",
+      "reviewedSha256": "5a5b08e2e223a1b51dfbca57f91daa87852d87918790c9fc917379738dc91536",
+      "beforeSha256": "1f6c8cf38d39f5ef91c63b8256bbde5774f7a53e1c6f2d30656bbf986ede00f3",
+      "importedSha256": "a11eb32f2011dda9bed01507c8ac4ed08d06b086c9b9efa907d58ab739c68302",
+      "supplements": [
+        "保留网站任务的前置阅读和工作步骤"
+      ]
+    },
+    {
+      "source": "src/data/textbook/foundation/foundation-overview.md",
+      "reviewedFile": "topics/foundation/foundation-overview.md",
+      "group": "foundation",
+      "id": "foundation-overview",
+      "route": "/lesson/basics/foundation/foundation-overview.html",
+      "reviewedSha256": "bffca04263f70e43a898d09c0523896b949e6ff0aa3204bbbe8cf7e7625b5026",
+      "beforeSha256": "6fb4ca24eacbf4d1b5116b7f884e203f06f8185c5bcbd94053c3cb89f1dd1a6c",
+      "importedSha256": "faa9f1c2465925345158062db597b48a8e2c4cf51252384f313813d6e2041bd4",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/foundation/foundation-design.md",
+      "reviewedFile": "topics/foundation/foundation-design.md",
+      "group": "foundation",
+      "id": "foundation-design",
+      "route": "/lesson/basics/foundation/foundation-design.html",
+      "reviewedSha256": "2b502df4b9e7b2612ae48a68a8f3de27a168ed993be0feee8c4c47f4dee4b7e0",
+      "beforeSha256": "9ff61ecd86ffdc5113a9fa71a913fe8661aa5c453c3150dcefc47012437ee3b7",
+      "importedSha256": "86a3ff39bfb01ab68e94516550d893cae35bfdf72a9f82be751306848061dfba",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/foundation/foundation-types.md",
+      "reviewedFile": "topics/foundation/foundation-types.md",
+      "group": "foundation",
+      "id": "foundation-types",
+      "route": "/lesson/basics/foundation/foundation-types.html",
+      "reviewedSha256": "a08fc9125a05ff1865aebeda1495e12fe4b930cceef3f9ddb9a09ec46a387ba3",
+      "beforeSha256": "8f9e2c445f0b33eab55c0e0868cc0baf942cf9409373810a7aafa9a835ef87fd",
+      "importedSha256": "b0d44f394e0d3f18660b587b4476ecfb2933eea85091645ee8fe54bd31bed59c",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/foundation/foundation-underground.md",
+      "reviewedFile": "topics/foundation/foundation-underground.md",
+      "group": "foundation",
+      "id": "foundation-underground",
+      "route": "/lesson/basics/foundation/foundation-underground.html",
+      "reviewedSha256": "f8258ac165a3187cdc34c89bdfe37471a8011deb7b02efd187e6c2451e671b35",
+      "beforeSha256": "4581e9404d1ba89c519f9b1380dfd5d69f66684f0d08cf467be4d9c68753f19d",
+      "importedSha256": "4a763634773fb3675fd4df909365850c9df71e1f3d4ab8b14e684db970a79992",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/foundation/foundation-depth.md",
+      "reviewedFile": "topics/foundation/foundation-depth.md",
+      "group": "foundation",
+      "id": "foundation-depth",
+      "route": "/lesson/basics/foundation/foundation-depth.html",
+      "reviewedSha256": "716a97046988044d710a37b8833120b2d79b1848c6dd7d9767b90e2295a60521",
+      "beforeSha256": "791b08b94f8455fc9a608ccd73202f9d9481332b2561bb97d609181e126fe707",
+      "importedSha256": "6d065012838aa15acef4f340a7dabcf1b9c01ecdda4250c5bd6347210680fae1",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/foundation/foundation-settlement.md",
+      "reviewedFile": "topics/foundation/foundation-settlement.md",
+      "group": "foundation",
+      "id": "foundation-settlement",
+      "route": "/lesson/basics/foundation/foundation-settlement.html",
+      "reviewedSha256": "73c708a44c0dfe5c77f779aa0b0bc6aef67db4e2f5cacf125cd81b90fd429091",
+      "beforeSha256": "35853a66250f0461abbc0bc4c46e3381a63470507cd7e1ac0bc03d04f3dc24c0",
+      "importedSha256": "1d40b9de53c4e6c27cd441029037dec6dee9f494733fec95c52fbd6872a0ed51",
+      "supplements": [
+        "明确标注审定稿自测中已附的参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/walls/index.md",
+      "reviewedFile": "topics/walls/index.md",
+      "group": "wall",
+      "id": "index",
+      "route": "/lesson/basics/wall/index.html",
+      "reviewedSha256": "26995237deaee006e6eb88adb401ffbcd18d4ea803afee9705ccce0e72df22b3",
+      "beforeSha256": "488da4e5886bb6716cc2523b069bae48684ab2e5ecd702168626140e091cd069",
+      "importedSha256": "e05724b1b09e3bbf179e9c814c0fddfd1f2dd5fb47c1b53173a2e6003b9d527a",
+      "supplements": [
+        "保留墙体总览的学习目标、阅读顺序和剖面练习"
+      ]
+    },
+    {
+      "source": "src/data/textbook/walls/wall-role.md",
+      "reviewedFile": "topics/walls/wall-role.md",
+      "group": "wall",
+      "id": "wall-role",
+      "route": "/lesson/basics/wall/wall-role.html",
+      "reviewedSha256": "243307ee0b805e9a4b25c06570ccfc9d6cbb21f2a3be4991488319826a8d39cb",
+      "beforeSha256": "b00e78ddc66548c2723421e2453975ba5913f4085a28087eb8f338879435f522",
+      "importedSha256": "6d316a8088a7d75217e6f65a12683d55c43fed1709c543d740bc8df368621b3b",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/walls/wall-types.md",
+      "reviewedFile": "topics/walls/wall-types.md",
+      "group": "wall",
+      "id": "wall-types",
+      "route": "/lesson/basics/wall/wall-types.html",
+      "reviewedSha256": "d59a2caf51b7ea9e2b0a60287a1c56bea281105a06410836825f083834d4dd0c",
+      "beforeSha256": "1d59868756e429fd74e1bea45f25de8cdbcd296b92a40192fb779a531799162d",
+      "importedSha256": "1fc8a4942d44f3b3accde9ca99405ecd942734561d469ac81d1a113499061ab4",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/walls/wall-masonry.md",
+      "reviewedFile": "topics/walls/wall-masonry.md",
+      "group": "wall",
+      "id": "wall-masonry",
+      "route": "/lesson/basics/wall/wall-masonry.html",
+      "reviewedSha256": "19e48b23c3af067af6487bf3cc979024bebd29fec2491740444faa43426acb34",
+      "beforeSha256": "d095763416bde5d775f483ea6e4985d3ced6fc995c296c0498e048048b360bda",
+      "importedSha256": "8d82368f2ad23b3ba4d4d4a7c0605b73d42c6236cf10fba3544c0608fe3ae5ca",
+      "supplements": [
+        "保留已有三维节点及其阅读提示",
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/walls/partitions.md",
+      "reviewedFile": "topics/walls/partitions.md",
+      "group": "wall",
+      "id": "wall-partition",
+      "route": "/lesson/basics/wall/wall-partition.html",
+      "reviewedSha256": "a52e292f607b77fbae5f6fff84abf531e123610c400b537dd90737e5983dd5aa",
+      "beforeSha256": "fe43fa0d5b4eb55bbf1a2ff07ed8bbac99dcae206897eba715d177684c947beb",
+      "importedSha256": "c8b264c70b8bb63322088e7d9e6231f9c3e89d6bc7fd611cc41ad03a45f6e7fe",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/walls/wall-design-requirements.md",
+      "reviewedFile": "topics/walls/wall-design-requirements.md",
+      "group": "wall",
+      "id": "wall-design-requirements",
+      "route": "/lesson/basics/wall/wall-design-requirements.html",
+      "reviewedSha256": "1a8f066e797073fe6b715ca9f499cd8415114349453ce32c7d92285a14742b7f",
+      "beforeSha256": "7cbe59b0fab66760201bc93920ced0495aef5c4a9aa746a54cbce69407a9cc6d",
+      "importedSha256": "ab5e29c2805da7b7696604790ed38b6946fa9169d3f62c369b12fe3a45422847",
+      "supplements": [
+        "保留已有三维节点及其阅读提示",
+        "保留本小节自测与参考答案",
+        "保留已有参考资料链接"
+      ]
+    },
+    {
+      "source": "src/data/textbook/walls/wall-details.md",
+      "reviewedFile": "topics/walls/wall-details.md",
+      "group": "wall",
+      "id": "wall-details",
+      "route": "/lesson/basics/wall/wall-details.html",
+      "reviewedSha256": "f87f7fae04163c8f86870e63b453b56606c6e62c1d4be5cc82b68fee9a99053e",
+      "beforeSha256": "4cda1387474183f26074edc9a104c6756e6daac920a14397184b8fc78c3d72c6",
+      "importedSha256": "f9f9cd8ae0d3862264eff0b194ed161e774a989847ba2cec0332ef2d68815798",
+      "supplements": [
+        "保留已有三维节点及其阅读提示",
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/walls/wall-finishes.md",
+      "reviewedFile": "topics/walls/wall-finishes.md",
+      "group": "wall",
+      "id": "wall-finishes",
+      "route": "/lesson/basics/wall/wall-finishes.html",
+      "reviewedSha256": "87ebfc8e37f71e7e26c09f94fe27557f4bb06422ad8a6d43bf0903a19f24c066",
+      "beforeSha256": "7996e5f64b77fea9d77403be5a467c4cb44dd4cb77ee5d6a49594010f287eeca",
+      "importedSha256": "f0419e66cca72fae02465d2f349d19db6ac22ca9145e5e64dd8873ce9a610ed0",
+      "supplements": [
+        "明确标注审定稿自测中已附的参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/door-window/window-door-overview.md",
+      "reviewedFile": "topics/door-window/window-door-overview.md",
+      "group": "door-window",
+      "id": "window-door-overview",
+      "route": "/lesson/basics/door-window/window-door-overview.html",
+      "reviewedSha256": "5f8855c59ad34a0790dc65dae20697f19810333746347350d465eca21eb8a660",
+      "beforeSha256": "cc401775a12b9a4f129d5c6c2a19347451236abb3c3eb401b2e68abd60d8b74f",
+      "importedSha256": "2063670980374a144892879fdd3dc154ccfd26777375b89116cd9a78ed586416",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/door-window/window-door-design.md",
+      "reviewedFile": "topics/door-window/window-door-design.md",
+      "group": "door-window",
+      "id": "window-door-design",
+      "route": "/lesson/basics/door-window/window-door-design.html",
+      "reviewedSha256": "0fa40ac1c725dad6c3c0f84e7613f269fe62461ae9cf8f6aad8b6ccb21460e78",
+      "beforeSha256": "ca41740c4df069f18f203fe2350801783be6d41b85e6fb33c43a63814ea87ebc",
+      "importedSha256": "a86018a9941c2269e42fc62845b2aefacacb1fce7c5c1e3f1dc6b36322365bff",
+      "supplements": [
+        "保留已有参考资料链接"
+      ]
+    },
+    {
+      "source": "src/data/textbook/floor/floor-overview.md",
+      "reviewedFile": "topics/floor/floor-overview.md",
+      "group": "floor",
+      "id": "floor-overview",
+      "route": "/lesson/basics/floor/floor-overview.html",
+      "reviewedSha256": "7787799992e2995559fd613c16454e8b971f9b776277fd0cd87eef1e546d0960",
+      "beforeSha256": "bf6ae79f4522d8bf2bc1a001096e6f76cc5d25904b94b59605160f1d597ed464",
+      "importedSha256": "815dad0ca00b12d3dda322738e90d7575d21ed9e8523b6a7c10891ae79253e8a",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/floor/floor-rc-slab.md",
+      "reviewedFile": "topics/floor/floor-rc-slab.md",
+      "group": "floor",
+      "id": "floor-rc-slab",
+      "route": "/lesson/basics/floor/floor-rc-slab.html",
+      "reviewedSha256": "9d8a1a338d782a237ad91ff5205fad72346e6fc12376829633cc8046cfe2825c",
+      "beforeSha256": "e552547e00661aeca2615859c80bdb5bc7159441efd9bc4a741e60b82c2fa581",
+      "importedSha256": "bd8af10bf1e14dd024960495053c6b89870cd3774e854d9b52ed90f7153a44f2",
+      "supplements": [
+        "保留已有三维节点及其阅读提示",
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/floor/floor-ground-composition.md",
+      "reviewedFile": "topics/floor/floor-ground-composition.md",
+      "group": "floor",
+      "id": "floor-ground-composition",
+      "route": "/lesson/basics/floor/floor-ground-composition.html",
+      "reviewedSha256": "49e56dd745a9d35ca94e4ed1454813133ab223a978edf65df0166886b0f0540e",
+      "beforeSha256": "55ab6b5daa98bda46cb7966e17cc4bdb33ab389b3134f015a6d1830792a6ada0",
+      "importedSha256": "07bf66814f050513f9c313590a5a2f7ceb92c5211981d1aaaeb0d2ebaad721ba",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/floor/floor-ground-layer.md",
+      "reviewedFile": "topics/floor/floor-ground-layer.md",
+      "group": "floor",
+      "id": "floor-ground-layer",
+      "route": "/lesson/basics/floor/floor-ground-layer.html",
+      "reviewedSha256": "551193a1ecb30fe857f06e50b610fbe2bb6983a28c3acce6ab082bbf18e1bdb2",
+      "beforeSha256": "b06c6cb055a04418aa48fb7339fb1e0f0d28d4863c6616c5dbfcfcc9383b9d21",
+      "importedSha256": "1da691298b424c2996a8868c98489861ddd264f9eb18bd188fe756850899f25a",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/floor/floor-balcony.md",
+      "reviewedFile": "topics/floor/floor-balcony.md",
+      "group": "floor",
+      "id": "floor-balcony",
+      "route": "/lesson/basics/floor/floor-balcony.html",
+      "reviewedSha256": "fb6a59da379fb04c89f7b734cd87aee86bbc5cbc485b6c3f8678eee0b6c815f9",
+      "beforeSha256": "4ab5e5eb88bb517943c3e4575d4f6b07868f892741e7feaa8ca9aa90320bf477",
+      "importedSha256": "88f3b6d67d072ed84d8e3ad9c144bf9edddd12cbdfaa3e643259faac152096a1",
+      "supplements": [
+        "保留已有三维节点及其阅读提示",
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/floor/finish-overview.md",
+      "reviewedFile": "topics/floor/finish-overview.md",
+      "group": "floor",
+      "id": "finish-overview",
+      "route": "/lesson/basics/floor/finish-overview.html",
+      "reviewedSha256": "c77b2aa98d4ce7398b5e4602911f6e1610a289d2433b9389c4c446b9e7adc733",
+      "beforeSha256": "908f9b02bde1b14db727f03f6322d12904ad7806e24448d798fe1326c8bb910c",
+      "importedSha256": "fd990911b093605d207964507af271dbd55cd56bc41a069ec1b08399af2d989b",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/floor/floor-ceiling.md",
+      "reviewedFile": "topics/floor/floor-ceiling.md",
+      "group": "floor",
+      "id": "floor-ceiling",
+      "route": "/lesson/basics/floor/floor-ceiling.html",
+      "reviewedSha256": "055be242f5bfc1337e6015de469e6b828feba2243072c327d90e8e3ea1828ece",
+      "beforeSha256": "9c7a1a013848b30511f51126f9ece039b35276db245e1a8a95f1de8fc9cc86b7",
+      "importedSha256": "1fcbd6e7c1e640416b709f852853d78abad4dfe7f4dfd74d02c5de6dfa4fb6be",
+      "supplements": []
+    },
+    {
+      "source": "src/data/textbook/stairs/stairs-overview.md",
+      "reviewedFile": "topics/stairs/stairs-overview.md",
+      "group": "stairs",
+      "id": "stairs-overview",
+      "route": "/lesson/basics/stairs/stairs-overview.html",
+      "reviewedSha256": "3f9b72f1f258ab961f593b31f83d7fead053c4c0d107b5b3c90da4b04203b6dd",
+      "beforeSha256": "e81f51c037b2f7c27e9d14a0cc2b16adc2e81d25140ce8eea7261b624bd4edd8",
+      "importedSha256": "5737b42df9c5045302692f51251178179ca382993082ba7843b73708fd98a85d",
+      "supplements": [
+        "保留已有三维节点及其阅读提示",
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/stairs/stairs-rc-structure.md",
+      "reviewedFile": "topics/stairs/stairs-rc-structure.md",
+      "group": "stairs",
+      "id": "stairs-rc-structure",
+      "route": "/lesson/basics/stairs/stairs-rc-structure.html",
+      "reviewedSha256": "919eb69f2de04e283e7cf1fb58fbb927c9f915c32fb84dcbc781e7729ffe06e0",
+      "beforeSha256": "507f28e9c43ebcf6b336bf263a03a0144d64c10c11b1f5b078580bb44dde1058",
+      "importedSha256": "ef294a51b99d503567d619bffeb7e24624e9c7c8b78130348b86d09574330fd5",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/stairs/stairs-details.md",
+      "reviewedFile": "topics/stairs/stairs-details.md",
+      "group": "stairs",
+      "id": "stairs-details",
+      "route": "/lesson/basics/stairs/stairs-details.html",
+      "reviewedSha256": "e87199d5c1979556dcb54c2820300901c8e2c0a58768c7d81222eb9ef63cb33f",
+      "beforeSha256": "26d5ae96e5ed58fc247b002ee445833e325e9da82d5b6595ebe95bc4062fb8be",
+      "importedSha256": "977b669bf9287358a43d58e133d6ecc578218778463c06e14b778d0fd411487c",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/stairs/stairs-steps-ramps.md",
+      "reviewedFile": "topics/stairs/stairs-steps-ramps.md",
+      "group": "stairs",
+      "id": "stairs-steps-ramps",
+      "route": "/lesson/basics/stairs/stairs-steps-ramps.html",
+      "reviewedSha256": "6e1c8c290c4a575efe7ab2b7bdcfd3809fb5b8f0da1d091bfa8da58d5ed7cef5",
+      "beforeSha256": "97fdb9dc9469570cfa200cee7687fd999a4868fda8fdeb5321bbd4ac210ebd49",
+      "importedSha256": "af0dc0c91626c3bc4788583ec143a59adb3349d8e411ae7a6f7e362cf5845d07",
+      "supplements": [
+        "保留已有三维节点及其阅读提示",
+        "保留本小节自测与参考答案",
+        "保留已有参考资料链接"
+      ]
+    },
+    {
+      "source": "src/data/textbook/stairs/stairs-elevator.md",
+      "reviewedFile": "topics/stairs/stairs-elevator.md",
+      "group": "stairs",
+      "id": "stairs-elevator",
+      "route": "/lesson/basics/stairs/stairs-elevator.html",
+      "reviewedSha256": "a3cf199d12a8f9f8ef0dbd0d8299ea08b2d6205055a8acd09b5100f7bd952021",
+      "beforeSha256": "e5b73ba8cf04396b5c7fe6c2aefc226258b7d6313416d24b2e4333516d12069b",
+      "importedSha256": "dd7e5349f5328f02560d874f8119d51b7115eebd3a39ecee40d58878dada7a1c",
+      "supplements": []
+    },
+    {
+      "source": "src/data/textbook/roof/index.md",
+      "reviewedFile": "topics/roof/index.md",
+      "group": "roof",
+      "id": "roof-overview",
+      "route": "/lesson/basics/roof/roof-overview.html",
+      "reviewedSha256": "ee8dd284b8ebd35debf8920010db63e12935c55bbb89c95eaf567eac831f37fe",
+      "beforeSha256": "c6c65426171502ccc0f88992ad69d7355e5f7602e59c4729e53c16101d48f235",
+      "importedSha256": "9033b1021d3dc112e36ce8dddb33fcdd315db4e4a48e39b11582aef775000808",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/roof/roof-flat.md",
+      "reviewedFile": "topics/roof/roof-flat.md",
+      "group": "roof",
+      "id": "roof-flat",
+      "route": "/lesson/basics/roof/roof-flat.html",
+      "reviewedSha256": "6e1bf26f27fbd01faa75b6ae9ee5f098a2c10e7ffa92e17e82ac67734ce4c981",
+      "beforeSha256": "d379701bdaf0f9d1f712b0f727f84be3bc1dd2a34f8638de88c459c68fe8da8f",
+      "importedSha256": "980e9b79d26c6458b846908396779ea070813b13d80410b2c5c7c27f7dde1c1d",
+      "supplements": [
+        "保留已有三维节点及其阅读提示",
+        "保留本小节自测与参考答案",
+        "保留已有参考资料链接"
+      ]
+    },
+    {
+      "source": "src/data/textbook/roof/roof-slope.md",
+      "reviewedFile": "topics/roof/roof-slope.md",
+      "group": "roof",
+      "id": "roof-slope",
+      "route": "/lesson/basics/roof/roof-slope.html",
+      "reviewedSha256": "ef1ffd1e1d8d3b43f5bda0889786490bf4c085e92e7447b80ed460eb78fc3846",
+      "beforeSha256": "a5badacb511afd33c5df8deac48b5c288ab6da4b756ed3c20f03f3692ef562f2",
+      "importedSha256": "b1a18da8c899421fdb507d5261c5c23ef53374100d31f67fc88fc11bd7d03dee",
+      "supplements": [
+        "保留已有三维节点及其阅读提示"
+      ]
+    },
+    {
+      "source": "src/data/textbook/deformation-joint/roof-deformation-concept.md",
+      "reviewedFile": "topics/deformation-joint/roof-deformation-concept.md",
+      "group": "deformation-joint",
+      "id": "roof-deformation-concept",
+      "route": "/lesson/basics/deformation-joint/roof-deformation-concept.html",
+      "reviewedSha256": "54390bdc69c6fc2e1032f6ea6a410dd876a78b36df7a96ff8a11777f73a67ae0",
+      "beforeSha256": "2498b3867af101ecec0719e633e3b458cf98adca499c79b9e888a7c5a0af2f05",
+      "importedSha256": "44cb52a2d54436ce8ff9cdc048c6178eec50ce3792352a8d9f0a93d16d33a6d8",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/deformation-joint/roof-deformation-location.md",
+      "reviewedFile": "topics/deformation-joint/roof-deformation-location.md",
+      "group": "deformation-joint",
+      "id": "roof-deformation-location",
+      "route": "/lesson/basics/deformation-joint/roof-deformation-location.html",
+      "reviewedSha256": "d6e9d9d8fc21489a19fbd80117a3b01c93ab748cf0dea0328bc35218a0b0c9ad",
+      "beforeSha256": "8908ecdb96b9f707734b06c94abec830f42887869eb4b14657241e58ebf963d8",
+      "importedSha256": "077e9a5f73bbd2e99e9259bb5c6ea7497bb0550e34a8a439b26df3b5b5d01ca4",
+      "supplements": [
+        "保留本小节自测与参考答案"
+      ]
+    },
+    {
+      "source": "src/data/textbook/deformation-joint/roof-deformation-construction.md",
+      "reviewedFile": "topics/deformation-joint/roof-deformation-construction.md",
+      "group": "deformation-joint",
+      "id": "roof-deformation-construction",
+      "route": "/lesson/basics/deformation-joint/roof-deformation-construction.html",
+      "reviewedSha256": "7383726303c18969d5e6d559b5ed62fa6d2da8c232503a41b83219b13e36a183",
+      "beforeSha256": "5353443787089956b652706828d865033a374d36b8e83f80e2bc25e263afe4df",
+      "importedSha256": "a9bdfe112ca2098bf0e801936500dadcdafbc1f0f328b79e6c0521a3968548c9",
+      "supplements": [
+        "保留已有三维节点及其阅读提示"
+      ]
+    }
+  ]
+}

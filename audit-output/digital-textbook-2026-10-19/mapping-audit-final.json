@@ -1,0 +1,2329 @@
+{
+  "date": "2026-10-19",
+  "status": "reviewed-with-corrections",
+  "lessons": 54,
+  "illustratedLessons": 50,
+  "mappings": 85,
+  "nodes": 42,
+  "renderedVariants": 46,
+  "auditMethod": "子agent分区读取原图、原文及节点配置并对照实际模型截图；主代理复核全部42节点46方案对照图及发现，补拍柱帽底视、隔离排水构件确认名称。逐图位绑定最终正文与资产散列。",
+  "mediaCatalogSha256": "e1d271ef1396ec2e68a5f10c9c70403c6b458f46af99a6eb47f4d604c4ab529e",
+  "authoredPlanSha256": "f1f72910077241f04a96ddb52e142274ebb037a446aa6b67639af571c23cfec0",
+  "corrections": [
+    "预制楼梯支承图移出现场浇筑小节；错步图移出防滑踏口小节。",
+    "无梁楼板图移至无梁楼盖段，并通过底部视角确认柱帽。",
+    "撤下坡瓦屋面专节借用的平屋面檐沟图，86处缩减为85处。",
+    "挑梁三方案菜单按名称选择，图注明确(a)(b)(c)关系，避免字母顺序错配。",
+    "过梁图未表达两端支座，图注与观察问题改为实际局部剖面范围。",
+    "窗墙缝明确为木条、袋装矿棉及弹性胶的传统示例；不指认为发泡材料。",
+    "构造柱原图与模型墙体布置不同，明确为同类联系比较；屋架未含覆盖层、檩条的范围已注明。",
+    "修正有组织排水模型四个部件名称，取消旧卡无据尺寸和地面雨水口说法。",
+    "修正木挂瓦条屋面知识卡层序、岩棉内侧涂料位置、楼盖传力终点及墙脚无据通用数值。"
+  ],
+  "textOnlyLessons": [
+    {
+      "key": "introduction/intro-grading",
+      "title": "建筑物的分级",
+      "reason": "没有贴切的现有图模，不插入无关资产"
+    },
+    {
+      "key": "foundation/foundation-depth",
+      "title": "基础的埋置深度与影响因素",
+      "reason": "没有贴切的现有图模，不插入无关资产"
+    },
+    {
+      "key": "floor/floor-ceiling",
+      "title": "顶棚构造",
+      "reason": "没有贴切的现有图模，不插入无关资产"
+    },
+    {
+      "key": "stairs/stairs-elevator",
+      "title": "电梯及自动扶梯",
+      "reason": "没有贴切的现有图模，不插入无关资产"
+    }
+  ],
+  "entries": [
+    {
+      "key": "introduction/intro-course-guide",
+      "path": "introduction/intro-course-guide.html",
+      "source": "src/data/textbook/introduction/intro-course-guide.md",
+      "sourceSha256": "40cb4ee9bda59f5bb0584b3fdcfd79aa3da577166d1323777dc57077f4d1f42f",
+      "figureId": "figure-1",
+      "nodeId": "independent-foundation-01",
+      "heading": "基础与原理的学习顺序",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "b3e64e2f1987ab56dad4ec3ba9ab0269a3efcd0a8253abe5627fc34d49d774c3",
+      "image": "/images/foundation/independent-foundation-diagram.png",
+      "imageSha256": "8e84f42f43804bca0c65a0757665f188820bf365b5a53f4c8fe057bec18362ff",
+      "visualEvidence": "原图杯形、阶梯形、锥形三例均有对应模型方案；按方案名称识别柱与基础形体，不推定场地适用性。",
+      "modelEvidence": [
+        {
+          "variant": "cup-base",
+          "label": "杯形基础",
+          "modelAsset": "/models/foundation/independent-foundation/cup-base.glb",
+          "modelSha256": "cea5ece29c26d4cedc74accde638c27611d802723981aab6542eda4d3da17755",
+          "drawnPixels": 16656,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--cup-base-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--cup-base-model.png"
+        },
+        {
+          "variant": "stepped-base",
+          "label": "阶梯形基础",
+          "modelAsset": "/models/foundation/independent-foundation/stepped-base.glb",
+          "modelSha256": "f78fe6ad82673565eee16b12db50fd86a80d4f67a33d1c510b0d59a05e93ec44",
+          "drawnPixels": 17828,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--stepped-base-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--stepped-base-model.png"
+        },
+        {
+          "variant": "tapered-base",
+          "label": "锥形基础",
+          "modelAsset": "/models/foundation/independent-foundation/tapered-base.glb",
+          "modelSha256": "df301b6eab8f1b71e1e4f4c7bb98acf3b2d35e5eba639a04f687dac543661c95",
+          "drawnPixels": 17040,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--tapered-base-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--tapered-base-model.png"
+        }
+      ]
+    },
+    {
+      "key": "introduction/intro-course-guide",
+      "path": "introduction/intro-course-guide.html",
+      "source": "src/data/textbook/introduction/intro-course-guide.md",
+      "sourceSha256": "40cb4ee9bda59f5bb0584b3fdcfd79aa3da577166d1323777dc57077f4d1f42f",
+      "figureId": "figure-2",
+      "nodeId": "organized-drainage-01",
+      "heading": "从作用路径到图纸表达",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "353c5c4c3cb314ac8a54c6f9925da3c6fea511b9828875d6a6dd7f2fbc5060d4",
+      "image": "/images/roof/organized-drainage-diagram.png",
+      "imageSha256": "a2574f4d265ddab8d3dbc2a91beb418dbca0191e0918ab0331a720c4cc8ef763",
+      "visualEvidence": "屋面空心板、沟体、出口及下接管段形体对应；已隔离四个构件纠正旧名称，局部图不表示地面雨水口。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "有组织排水屋顶",
+          "modelAsset": "/models/roof/organized-drainage/organized-drainage.glb",
+          "modelSha256": "49ea9bdc072342a265851eb43e300f6338422eba871a298f5f890c79290c4f40",
+          "drawnPixels": 19344,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/organized-drainage-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/organized-drainage-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "introduction/intro-classification",
+      "path": "introduction/intro-classification.html",
+      "source": "src/data/textbook/introduction/intro-classification.md",
+      "sourceSha256": "57bbea004df550816df27e7b0c42b091ea6b7ad34ed9871b3ad0521d5c684d8c",
+      "figureId": "figure-1",
+      "nodeId": "roof-truss-timber-01",
+      "heading": "按结构与围护体系分类",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "3754f78cacc5fa47e2205526800db6986a8f210b70fab171a3488cfb8f38213b",
+      "image": "/images/roof/roof-truss-timber-diagram.png",
+      "imageSha256": "d66789cb38050e7a212e8a8e99b360ddf04e8e9a7e90e6afb2be0d65f59d0912",
+      "visualEvidence": "木屋架弦杆、腹杆及两端形体对应；仅一榀屋架，未表达檩条、覆盖层及完整屋面系统。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "屋架形式（木屋架）",
+          "modelAsset": "/models/roof/roof-trusses/timber.glb",
+          "modelSha256": "cdd619318b1b273f8d681cfb1c9a09d241f762bf0d481812dfc3232fc54584e5",
+          "drawnPixels": 9275,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/roof-truss-timber-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/roof-truss-timber-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "introduction/intro-composition",
+      "path": "introduction/intro-composition.html",
+      "source": "src/data/textbook/introduction/intro-composition.md",
+      "sourceSha256": "71a1996de06c4ee7e890760382eecfec51fa84f85e1662be33931301e9ceaf5d",
+      "figureId": "figure-1",
+      "nodeId": "cast-ribbed-floor-01",
+      "heading": "典型传力路径",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "5bba0a376657dd185513ae44798a413c7a8f07bedb444b089e4b29c19935def1",
+      "image": "/images/floor/cast-ribbed-floor.png",
+      "imageSha256": "4b735b32c08476d97581f002ffdc49183ba6f1f9c56d722255f7774af8b23a25",
+      "visualEvidence": "板、次梁、主梁及竖向支承对应；局部模型支承不等于整栋建筑传力终点。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "现浇肋梁楼板",
+          "modelAsset": "/models/floor/cast-ribbed-floor/cast-ribbed-floor.glb",
+          "modelSha256": "8dc7092f6dfd0d0862e15b215287b06cb70389f545a622f99983373473a72fe8",
+          "drawnPixels": 15607,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/cast-ribbed-floor-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/cast-ribbed-floor-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "introduction/intro-composition",
+      "path": "introduction/intro-composition.html",
+      "source": "src/data/textbook/introduction/intro-composition.md",
+      "sourceSha256": "71a1996de06c4ee7e890760382eecfec51fa84f85e1662be33931301e9ceaf5d",
+      "figureId": "figure-2",
+      "nodeId": "stair-composition-01",
+      "heading": "承载围护交通与设备系统",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "155c78ad8c3100530f2f3e24e48afc96c20e3005c514d89854b3efe25fe739d7",
+      "image": "/images/stairs/stair-composition-diagram.png",
+      "imageSha256": "9fa6e0c787132d869f9ff6392b1dd6c717293deb238f427c85cf5ea3ab3c2e06",
+      "visualEvidence": "多层双跑梯段、平台及防护位置对应；组成图不等同完整疏散方案。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "楼梯的组成",
+          "modelAsset": "/models/stairs/stair-composition/stair-composition.glb",
+          "modelSha256": "9542e74b14bd4f27f2f2eddf1f1fa7e83fa45607b7303dae7a7b9252763340b5",
+          "drawnPixels": 13327,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-composition-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-composition-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "introduction/intro-factors",
+      "path": "introduction/intro-factors.html",
+      "source": "src/data/textbook/introduction/intro-factors.md",
+      "sourceSha256": "e78d4245a3090b4de8a1377b3151a92417b583413ae758a31c5f397f8a0063e3",
+      "figureId": "figure-1",
+      "nodeId": "eaves-gutter-01",
+      "heading": "气候地形与地质条件",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "177087f5b6ac1bf1659a915a6170bb62454f761d7494da90e310e7188054037b",
+      "image": "/images/roof/eaves-gutter-diagram.png",
+      "imageSha256": "2b1262d6b54b3b623b2ec167dd27d907d30fd4cbab9693505e55661f2483ec47",
+      "visualEvidence": "原图与模型均为空心屋面板旁的外檐沟；已撤出坡瓦屋面专节，保留一般屋面水路说明。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "檐沟外排水",
+          "modelAsset": "/models/roof/eaves-gutter/eaves-gutter.glb",
+          "modelSha256": "3d4c6c77d640aedcfc62b8ba0e0308d80a437b1c2afbefbedb5f13bd0aab0de2",
+          "drawnPixels": 23802,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/eaves-gutter-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/eaves-gutter-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "introduction/intro-factors",
+      "path": "introduction/intro-factors.html",
+      "source": "src/data/textbook/introduction/intro-factors.md",
+      "sourceSha256": "e78d4245a3090b4de8a1377b3151a92417b583413ae758a31c5f397f8a0063e3",
+      "figureId": "figure-2",
+      "nodeId": "ramp-handrail-01",
+      "heading": "使用者与使用活动",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "5a696ba14badfb982f6fb78f04ecb13bb2f1c0c7d7ab0799b96df4822c8ea64e",
+      "image": "/images/stairs/ramp-handrail-diagram.png",
+      "imageSha256": "260ae7ec12b536d00ffd8f84f376b0deb3ee4cbb5ec4b241e282e157c78fd011",
+      "visualEvidence": "坡道边缘立柱与双层扶手形体对应；原图尺寸只按给定示例识读。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "坡道扶手",
+          "modelAsset": "/models/stairs/ramp-handrail/ramp-handrail.glb",
+          "modelSha256": "5f56eee924395bcc45876b356d6a586ce7a4990e1171e41cc072ab278d293f91",
+          "drawnPixels": 10327,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/ramp-handrail-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/ramp-handrail-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "introduction/intro-design-principles",
+      "path": "introduction/intro-design-principles.html",
+      "source": "src/data/textbook/introduction/intro-design-principles.md",
+      "sourceSha256": "c6cf3bbb3f4404173377dec4fdc7cc8be8e55a340ff042bb43a2f1318990145d",
+      "figureId": "figure-1",
+      "nodeId": "window-wall-gap-sealing-01",
+      "heading": "节点中的多项要求",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "f636e1a335450a328e06d103ca6d59f7fb02b1099e759cd9373f778e20b76d42",
+      "image": "/images/wall/window-wall-gap-sealing-diagram.png",
+      "imageSha256": "be52169fb463cab7dc2bdefd8e7dd56887f53628f2b3f82bd5e8a0e233726722",
+      "visualEvidence": "窗框、墙体及安装缝相对位置对应；图示为木条、袋装矿棉及弹性胶传统示例，已明确非发泡材料示例。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "封堵窗墙间缝隙做法",
+          "modelAsset": "/models/wall/window-wall-gap-sealing/window-wall-gap-sealing.glb",
+          "modelSha256": "114bbbd259df2b97a4e54f68ae82c30435030346e28f7d05e1a480abf1ba847a",
+          "drawnPixels": 28934,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/window-wall-gap-sealing-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/window-wall-gap-sealing-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "introduction/intro-drawing-standards",
+      "path": "introduction/intro-drawing-standards.html",
+      "source": "src/data/textbook/introduction/intro-drawing-standards.md",
+      "sourceSha256": "499bae6a80daaba37fb282c221d7ec2d0ce1587e8d3a3792c548abb8747faaa7",
+      "figureId": "figure-1",
+      "nodeId": "bottom-landing-entrance-01",
+      "heading": "轴线层高与净高",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "e60eaff44aae7aeeff0bffb3b9c5cecf9e46a72085e39e86db1cfe2252ef61fc",
+      "image": "/images/stairs/bottom-landing-entrance-diagram.png",
+      "imageSha256": "a9c3bead716e5cbc556b120375ec6a1fa5274ec37b9f1382d446f9de12b2628e",
+      "visualEvidence": "底层长短跑、半层平台及平台下入口对应；用于识别净空对象，不据示例尺寸作合规结论。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "底层中间平台下作出入口（底层长短跑）",
+          "modelAsset": "/models/stairs/bottom-landing-entrance/bottom-landing-entrance.glb",
+          "modelSha256": "0a8d137d715300f2d51effa993193daa71a2c02c3cf82026cf12365ea5598592",
+          "drawnPixels": 42551,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/bottom-landing-entrance-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/bottom-landing-entrance-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "principles/thermal",
+      "path": "principles/thermal.html",
+      "source": "src/data/textbook/principles/thermal.md",
+      "sourceSha256": "fcf31e44fd6dfad425397853f4f05d0fea4c646aba105ccb1deb7f770fecfa30",
+      "figureId": "figure-1",
+      "nodeId": "foam-insulation-01",
+      "heading": "保温层位置与节点连续性",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "0d4dca17fc551cc86b5e6b05100adf2a2a991ba56f1abc5a3c5b02531bf40ff9",
+      "image": "/images/wall/foam-insulation-diagram.png",
+      "imageSha256": "9cb7f850e254e57110030c030c1e4b0b7efd4839c3b7600b2e9b95954675c2f7",
+      "visualEvidence": "外墙基层、板状保温与外侧保护层对应；图形不证明整墙热工或防火性能。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "粘贴泡沫塑料保温板外保温",
+          "modelAsset": "/models/wall/foam-insulation/foam-insulation.glb",
+          "modelSha256": "c07f589ba4ee2fe2533089eef06f71c9826171af86cb52b9580ff35d4886f5ec",
+          "drawnPixels": 26459,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/foam-insulation-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/foam-insulation-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "principles/thermal",
+      "path": "principles/thermal.html",
+      "source": "src/data/textbook/principles/thermal.md",
+      "sourceSha256": "fcf31e44fd6dfad425397853f4f05d0fea4c646aba105ccb1deb7f770fecfa30",
+      "figureId": "figure-2",
+      "nodeId": "window-wall-gap-sealing-01",
+      "heading": "保温与空气 水分及防火",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "73dafff7976bc2d6812003f1b724cb33f8c0fb89ea75806e01be33b9de70528d",
+      "image": "/images/wall/window-wall-gap-sealing-diagram.png",
+      "imageSha256": "be52169fb463cab7dc2bdefd8e7dd56887f53628f2b3f82bd5e8a0e233726722",
+      "visualEvidence": "窗框、墙体及安装缝相对位置对应；图示为木条、袋装矿棉及弹性胶传统示例，已明确非发泡材料示例。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "封堵窗墙间缝隙做法",
+          "modelAsset": "/models/wall/window-wall-gap-sealing/window-wall-gap-sealing.glb",
+          "modelSha256": "114bbbd259df2b97a4e54f68ae82c30435030346e28f7d05e1a480abf1ba847a",
+          "drawnPixels": 28934,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/window-wall-gap-sealing-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/window-wall-gap-sealing-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "principles/waterproof",
+      "path": "principles/waterproof.html",
+      "source": "src/data/textbook/principles/waterproof.md",
+      "sourceSha256": "90bf12ea1c5531fe2f8f338fb6bd9985c20eb31550a3e512659ca091c250b3c1",
+      "figureId": "figure-1",
+      "nodeId": "coating-parapet-flashing-01",
+      "heading": "连续防水线与节点转换",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "f7130c74759472a2b6643197990bec0b85b9fec8e7436f4cd84ca75ef5a8b749",
+      "image": "/images/roof/coating-parapet-flashing-diagram.png",
+      "imageSha256": "7caaf6ac52f2cafda171470b44c70427893b95f09eb38fbd63bd037aab3f4cb2",
+      "visualEvidence": "屋面水平防水与女儿墙竖向上翻、收头形体对应；传统尺寸不作通用要求。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "涂膜防水屋面的女儿墙泛水",
+          "modelAsset": "/models/roof/coating-parapet-flashing/coating-parapet-flashing.glb",
+          "modelSha256": "bad19ab0b457b721657ddbd6a5a7d338b1918429178da6b4182d269229ff0f93",
+          "drawnPixels": 25353,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/coating-parapet-flashing-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/coating-parapet-flashing-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "principles/waterproof",
+      "path": "principles/waterproof.html",
+      "source": "src/data/textbook/principles/waterproof.md",
+      "sourceSha256": "90bf12ea1c5531fe2f8f338fb6bd9985c20eb31550a3e512659ca091c250b3c1",
+      "figureId": "figure-2",
+      "nodeId": "straight-rainwater-outlet-cast-iron-01",
+      "heading": "排水 阻水与保护的配合",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "56f38444f91f0184cec9f72e49cc8faa4ce82ffe32cb6bc242532bb079452571",
+      "image": "/images/roof/straight-rainwater-outlet-cast-iron-diagram.png",
+      "imageSha256": "dd0f471290856a79d879d1ccb00534fe70b4cc20009db1223b38f7f59dd2c298",
+      "visualEvidence": "铸铁水落口及球形拦污部位对应，原图显示防水接口；不表示整套排水能力计算。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "直管式水落口（铸铁水落口）",
+          "modelAsset": "/models/roof/straight-rainwater-outlet/cast-iron.glb",
+          "modelSha256": "f54c91cd013fc81cae7a9399f130c3762ba797c743f59185c7b62bfd0b31026c",
+          "drawnPixels": 15730,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/straight-rainwater-outlet-cast-iron-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/straight-rainwater-outlet-cast-iron-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "principles/insulation",
+      "path": "principles/insulation.html",
+      "source": "src/data/textbook/principles/insulation.md",
+      "sourceSha256": "aa162b030a1e12670ad3812d60ed511bba7a8d2c0dee4837441df0594aed05fe",
+      "figureId": "figure-1",
+      "nodeId": "water-storage-eaves-drainage-01",
+      "heading": "室内通风与特殊屋面",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "d9f2d269fe8d9d865d283bf9ecb4192977221426cabc72a87259f3b36e830b34",
+      "image": "/images/roof/water-storage-eaves-drainage-diagram.png",
+      "imageSha256": "5a418711f4436cba48d483530ff5a0faa2757329bb271f0713283327bdfad0fd",
+      "visualEvidence": "蓄水区、围边及檐沟排水部位对应；不从形体推定隔热效果或承载能力。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "蓄水屋面（檐沟式排水）",
+          "modelAsset": "/models/roof/water-storage-eaves-drainage/water-storage-eaves-drainage.glb",
+          "modelSha256": "54a8aed0bb4de336aa170189fc9f37f64975cc7fa9454a1ab4e62201456675fa",
+          "drawnPixels": 20854,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/water-storage-eaves-drainage-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/water-storage-eaves-drainage-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "principles/acoustic",
+      "path": "principles/acoustic.html",
+      "source": "src/data/textbook/principles/acoustic.md",
+      "sourceSha256": "552e06e6b1b71abec5575e722e753bdb7aad0ff108a95f03a49972f58439c61d",
+      "figureId": "figure-1",
+      "nodeId": "window-wall-gap-sealing-01",
+      "heading": "单层墙 双层墙与开口",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "50c2958a3b8ba5f3969e1b00d67ed04dc0d12f96e33fbefdbaa932b616e659d1",
+      "image": "/images/wall/window-wall-gap-sealing-diagram.png",
+      "imageSha256": "be52169fb463cab7dc2bdefd8e7dd56887f53628f2b3f82bd5e8a0e233726722",
+      "visualEvidence": "窗框、墙体及安装缝相对位置对应；图示为木条、袋装矿棉及弹性胶传统示例，已明确非发泡材料示例。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "封堵窗墙间缝隙做法",
+          "modelAsset": "/models/wall/window-wall-gap-sealing/window-wall-gap-sealing.glb",
+          "modelSha256": "114bbbd259df2b97a4e54f68ae82c30435030346e28f7d05e1a480abf1ba847a",
+          "drawnPixels": 28934,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/window-wall-gap-sealing-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/window-wall-gap-sealing-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "principles/fire",
+      "path": "principles/fire.html",
+      "source": "src/data/textbook/principles/fire.md",
+      "sourceSha256": "658c5d9d040a91634573ab2527d5dfb2cc2b82208c8b6636aec2eb1541fe9f70",
+      "figureId": "figure-1",
+      "nodeId": "rockwool-insulation-01",
+      "heading": "结构保护 外围护与竖井",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "9fe663d9de758098db2e341ff9c38988690dc9e4047d7dc1440e8017a175dc85",
+      "image": "/images/wall/rockwool-insulation-diagram.png",
+      "imageSha256": "0ea00499e560437361c27d9460b920f870130f56b2e98c20be54e9d609a3330a",
+      "visualEvidence": "墙体、找平、涂料、岩棉及抹面层对应；已纠正涂料位于岩棉内侧的文字位置，不据岩棉名称证明系统防火性能。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "粘贴岩棉防火保温板外保温",
+          "modelAsset": "/models/wall/rockwool-insulation/rockwool-insulation.glb",
+          "modelSha256": "261733449421aa402380d3ef0a10e5768a17e04488b2a23ff5825f02ff8d02a4",
+          "drawnPixels": 26744,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/rockwool-insulation-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/rockwool-insulation-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "principles/fire",
+      "path": "principles/fire.html",
+      "source": "src/data/textbook/principles/fire.md",
+      "sourceSha256": "658c5d9d040a91634573ab2527d5dfb2cc2b82208c8b6636aec2eb1541fe9f70",
+      "figureId": "figure-2",
+      "nodeId": "stair-composition-01",
+      "heading": "疏散路径与使用维护",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "9d6b019b1d1204f2835ad13429f8613a223324fe171cd0303f51d7971c16bc1e",
+      "image": "/images/stairs/stair-composition-diagram.png",
+      "imageSha256": "9fa6e0c787132d869f9ff6392b1dd6c717293deb238f427c85cf5ea3ab3c2e06",
+      "visualEvidence": "多层双跑梯段、平台及防护位置对应；组成图不等同完整疏散方案。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "楼梯的组成",
+          "modelAsset": "/models/stairs/stair-composition/stair-composition.glb",
+          "modelSha256": "9542e74b14bd4f27f2f2eddf1f1fa7e83fa45607b7303dae7a7b9252763340b5",
+          "drawnPixels": 13327,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-composition-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-composition-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "principles/moisture",
+      "path": "principles/moisture.html",
+      "source": "src/data/textbook/principles/moisture.md",
+      "sourceSha256": "ed276ce23e9ff9b9755aec6cdd31c52a6a324c734c0af580abc43d510792199c",
+      "figureId": "figure-1",
+      "nodeId": "plaster-plinth-01",
+      "heading": "墙脚与首层地面的防潮",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "1837f954493de926912773f1552ce8757091e09000b26fa30f55742dd52c2785",
+      "image": "/images/wall/plaster-plinth-diagram.png",
+      "imageSha256": "4c1007b9dbdfcabe7582e3b7aa12283cf63682ab8c556133cb4edac691e76a84",
+      "visualEvidence": "墙脚、室内外地坪、防潮位置及抹灰面对应；去除原图未给出的通用高度与厚度断言。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "抹灰勒脚构造做法",
+          "modelAsset": "/models/wall/plaster-plinth/plaster-plinth.glb",
+          "modelSha256": "d43bf770ad231e694f686f31d1be5f27baa3765344261e2e47b28e6b32586c5d",
+          "drawnPixels": 20139,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/plaster-plinth-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/plaster-plinth-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "principles/moisture",
+      "path": "principles/moisture.html",
+      "source": "src/data/textbook/principles/moisture.md",
+      "sourceSha256": "ed276ce23e9ff9b9755aec6cdd31c52a6a324c734c0af580abc43d510792199c",
+      "figureId": "figure-2",
+      "nodeId": "window-wall-gap-sealing-01",
+      "heading": "隔汽 气密与干燥路径",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "3d664308a92bfc5c8937d7e5e60d93ff3684967bf2eac305a92a0b9c94d046b0",
+      "image": "/images/wall/window-wall-gap-sealing-diagram.png",
+      "imageSha256": "be52169fb463cab7dc2bdefd8e7dd56887f53628f2b3f82bd5e8a0e233726722",
+      "visualEvidence": "窗框、墙体及安装缝相对位置对应；图示为木条、袋装矿棉及弹性胶传统示例，已明确非发泡材料示例。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "封堵窗墙间缝隙做法",
+          "modelAsset": "/models/wall/window-wall-gap-sealing/window-wall-gap-sealing.glb",
+          "modelSha256": "114bbbd259df2b97a4e54f68ae82c30435030346e28f7d05e1a480abf1ba847a",
+          "drawnPixels": 28934,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/window-wall-gap-sealing-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/window-wall-gap-sealing-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "practice/construction-brief",
+      "path": "practice/construction-brief.html",
+      "source": "src/data/textbook/practice/construction-brief.md",
+      "sourceSha256": "293344a8909ab4d6aa88ffa2572024fdbb2e92a120be71721ed2818c66ec27a5",
+      "figureId": "figure-1",
+      "nodeId": "foam-insulation-01",
+      "heading": "工作步骤",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "aa22a23ce005909dac39ae8482fafdfa1345b58f11891ac194c216548f36619d",
+      "image": "/images/wall/foam-insulation-diagram.png",
+      "imageSha256": "9cb7f850e254e57110030c030c1e4b0b7efd4839c3b7600b2e9b95954675c2f7",
+      "visualEvidence": "外墙基层、板状保温与外侧保护层对应；图形不证明整墙热工或防火性能。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "粘贴泡沫塑料保温板外保温",
+          "modelAsset": "/models/wall/foam-insulation/foam-insulation.glb",
+          "modelSha256": "c07f589ba4ee2fe2533089eef06f71c9826171af86cb52b9580ff35d4886f5ec",
+          "drawnPixels": 26459,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/foam-insulation-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/foam-insulation-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "practice/floor-layout",
+      "path": "practice/floor-layout.html",
+      "source": "src/data/textbook/practice/floor-layout.md",
+      "sourceSha256": "a3900de5f678130448f6b7596cf888a0c67ee1f620bd5bbbb7491cf65d900e5d",
+      "figureId": "figure-1",
+      "nodeId": "cast-ribbed-floor-01",
+      "heading": "工作步骤",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "3dc48e7627ba2d732570c0c0f70f16b2671a395d52768b857d0b5e943d520765",
+      "image": "/images/floor/cast-ribbed-floor.png",
+      "imageSha256": "4b735b32c08476d97581f002ffdc49183ba6f1f9c56d722255f7774af8b23a25",
+      "visualEvidence": "板、次梁、主梁及竖向支承对应；局部模型支承不等于整栋建筑传力终点。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "现浇肋梁楼板",
+          "modelAsset": "/models/floor/cast-ribbed-floor/cast-ribbed-floor.glb",
+          "modelSha256": "8dc7092f6dfd0d0862e15b215287b06cb70389f545a622f99983373473a72fe8",
+          "drawnPixels": 15607,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/cast-ribbed-floor-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/cast-ribbed-floor-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "practice/floor-layout",
+      "path": "practice/floor-layout.html",
+      "source": "src/data/textbook/practice/floor-layout.md",
+      "sourceSha256": "a3900de5f678130448f6b7596cf888a0c67ee1f620bd5bbbb7491cf65d900e5d",
+      "figureId": "figure-2",
+      "nodeId": "flat-slab-01",
+      "heading": "任务内容与条件",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "503dd8833f517847073eb33a658ee1c03f63beaecf7d7dcac62c1315fac1ef55",
+      "image": "/images/floor/flat-slab-diagram.png",
+      "imageSha256": "3f7a610842a091286f3e31d0c8d580bc4522779dcffab2f5b02748d84f83dd1e",
+      "visualEvidence": "板、柱及柱帽形体对应；已补拍仰视图确认板底四处柱帽，移至无梁楼盖段落。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "无梁楼板",
+          "modelAsset": "/models/floor/flat-slab/flat-slab.glb",
+          "modelSha256": "ca98c97640c615466d6fdcd73aff95aca4a6dded1999d0716990ac487fe42a3e",
+          "drawnPixels": 21967,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/flat-slab-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/flat-slab-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "practice/stairs-drawing",
+      "path": "practice/stairs-drawing.html",
+      "source": "src/data/textbook/practice/stairs-drawing.md",
+      "sourceSha256": "5952a9d0f83adf16d4c0a62a959b22101f40d1bb1113a0e4a65af754938a8fd3",
+      "figureId": "figure-1",
+      "nodeId": "stair-composition-01",
+      "heading": "任务内容与条件",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "92130673b70d60b0bd126b000da861f270276fc6f5431d5b9942f61d92a95070",
+      "image": "/images/stairs/stair-composition-diagram.png",
+      "imageSha256": "9fa6e0c787132d869f9ff6392b1dd6c717293deb238f427c85cf5ea3ab3c2e06",
+      "visualEvidence": "多层双跑梯段、平台及防护位置对应；组成图不等同完整疏散方案。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "楼梯的组成",
+          "modelAsset": "/models/stairs/stair-composition/stair-composition.glb",
+          "modelSha256": "9542e74b14bd4f27f2f2eddf1f1fa7e83fa45607b7303dae7a7b9252763340b5",
+          "drawnPixels": 13327,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-composition-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-composition-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "practice/stairs-drawing",
+      "path": "practice/stairs-drawing.html",
+      "source": "src/data/textbook/practice/stairs-drawing.md",
+      "sourceSha256": "5952a9d0f83adf16d4c0a62a959b22101f40d1bb1113a0e4a65af754938a8fd3",
+      "figureId": "figure-2",
+      "nodeId": "bottom-landing-entrance-01",
+      "heading": "工作步骤",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "67c7356d39848900b3f3e42d824cbdb2e13c800b801244e20e099d410eb31974",
+      "image": "/images/stairs/bottom-landing-entrance-diagram.png",
+      "imageSha256": "a9c3bead716e5cbc556b120375ec6a1fa5274ec37b9f1382d446f9de12b2628e",
+      "visualEvidence": "底层长短跑、半层平台及平台下入口对应；用于识别净空对象，不据示例尺寸作合规结论。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "底层中间平台下作出入口（底层长短跑）",
+          "modelAsset": "/models/stairs/bottom-landing-entrance/bottom-landing-entrance.glb",
+          "modelSha256": "0a8d137d715300f2d51effa993193daa71a2c02c3cf82026cf12365ea5598592",
+          "drawnPixels": 42551,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/bottom-landing-entrance-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/bottom-landing-entrance-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "practice/roof-drainage",
+      "path": "practice/roof-drainage.html",
+      "source": "src/data/textbook/practice/roof-drainage.md",
+      "sourceSha256": "242266eebf1b69dc3c43ddb8a15817c93a24fd414ab995c7e2a40a1f3b8d72bd",
+      "figureId": "figure-1",
+      "nodeId": "organized-drainage-01",
+      "heading": "工作步骤",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "295cee542da96927e2145207d624fc3b749cfdbfce629ed0f6c749a244bc6f1f",
+      "image": "/images/roof/organized-drainage-diagram.png",
+      "imageSha256": "a2574f4d265ddab8d3dbc2a91beb418dbca0191e0918ab0331a720c4cc8ef763",
+      "visualEvidence": "屋面空心板、沟体、出口及下接管段形体对应；已隔离四个构件纠正旧名称，局部图不表示地面雨水口。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "有组织排水屋顶",
+          "modelAsset": "/models/roof/organized-drainage/organized-drainage.glb",
+          "modelSha256": "49ea9bdc072342a265851eb43e300f6338422eba871a298f5f890c79290c4f40",
+          "drawnPixels": 19344,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/organized-drainage-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/organized-drainage-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "practice/roof-drainage",
+      "path": "practice/roof-drainage.html",
+      "source": "src/data/textbook/practice/roof-drainage.md",
+      "sourceSha256": "242266eebf1b69dc3c43ddb8a15817c93a24fd414ab995c7e2a40a1f3b8d72bd",
+      "figureId": "figure-2",
+      "nodeId": "straight-rainwater-outlet-65-01",
+      "heading": "提交物",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "afe913f93733b82efe50a28d12af92d9f56bcb8eae782c300ef1bedb4cbd631d",
+      "image": "/images/roof/straight-rainwater-outlet-65-diagram.png",
+      "imageSha256": "e7b4828d87f99a36aef87f7a6a029b0118053b4bf6e65aa080a612f13ab88bfb",
+      "visualEvidence": "65型出口、口部及下接管形体对应；图中型号和尺寸只对应该示例。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "直管式水落口（65 型水落口）",
+          "modelAsset": "/models/roof/straight-rainwater-outlet/type-65.glb",
+          "modelSha256": "6f4a8f74f87088f1bc3148e4ab06d46d003c4bd72bcd0d2b974ee2e3e3e2e004",
+          "drawnPixels": 14345,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/straight-rainwater-outlet-65-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/straight-rainwater-outlet-65-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "practice/envelope-detail",
+      "path": "practice/envelope-detail.html",
+      "source": "src/data/textbook/practice/envelope-detail.md",
+      "sourceSha256": "f916cf0a2584d6988735b538b68020c17edc0c88b3dc77993608feb209bd6c16",
+      "figureId": "figure-1",
+      "nodeId": "window-wall-gap-sealing-01",
+      "heading": "工作步骤",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "87cfb01c46366571d51a096943de219f19486ff69636398ec01d110264fd6efb",
+      "image": "/images/wall/window-wall-gap-sealing-diagram.png",
+      "imageSha256": "be52169fb463cab7dc2bdefd8e7dd56887f53628f2b3f82bd5e8a0e233726722",
+      "visualEvidence": "窗框、墙体及安装缝相对位置对应；图示为木条、袋装矿棉及弹性胶传统示例，已明确非发泡材料示例。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "封堵窗墙间缝隙做法",
+          "modelAsset": "/models/wall/window-wall-gap-sealing/window-wall-gap-sealing.glb",
+          "modelSha256": "114bbbd259df2b97a4e54f68ae82c30435030346e28f7d05e1a480abf1ba847a",
+          "drawnPixels": 28934,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/window-wall-gap-sealing-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/window-wall-gap-sealing-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "practice/envelope-detail",
+      "path": "practice/envelope-detail.html",
+      "source": "src/data/textbook/practice/envelope-detail.md",
+      "sourceSha256": "f916cf0a2584d6988735b538b68020c17edc0c88b3dc77993608feb209bd6c16",
+      "figureId": "figure-2",
+      "nodeId": "coating-parapet-flashing-01",
+      "heading": "任务内容与条件",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "5a396492444ab9e8a431a6fb1b40ea5c43c40e7060043f712e7c50993a84b638",
+      "image": "/images/roof/coating-parapet-flashing-diagram.png",
+      "imageSha256": "7caaf6ac52f2cafda171470b44c70427893b95f09eb38fbd63bd037aab3f4cb2",
+      "visualEvidence": "屋面水平防水与女儿墙竖向上翻、收头形体对应；传统尺寸不作通用要求。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "涂膜防水屋面的女儿墙泛水",
+          "modelAsset": "/models/roof/coating-parapet-flashing/coating-parapet-flashing.glb",
+          "modelSha256": "bad19ab0b457b721657ddbd6a5a7d338b1918429178da6b4182d269229ff0f93",
+          "drawnPixels": 25353,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/coating-parapet-flashing-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/coating-parapet-flashing-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "practice/integrated-design",
+      "path": "practice/integrated-design.html",
+      "source": "src/data/textbook/practice/integrated-design.md",
+      "sourceSha256": "71105afc2d0ca8b0a598757d35654247845e34b2d436183da8ddad62d4bb5cb7",
+      "figureId": "figure-1",
+      "nodeId": "stair-composition-01",
+      "heading": "任务内容与条件",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "3b942c10a95033b687f5de04b39a27151870bc93f760e6fbefbc30a7b70e0b15",
+      "image": "/images/stairs/stair-composition-diagram.png",
+      "imageSha256": "9fa6e0c787132d869f9ff6392b1dd6c717293deb238f427c85cf5ea3ab3c2e06",
+      "visualEvidence": "多层双跑梯段、平台及防护位置对应；组成图不等同完整疏散方案。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "楼梯的组成",
+          "modelAsset": "/models/stairs/stair-composition/stair-composition.glb",
+          "modelSha256": "9542e74b14bd4f27f2f2eddf1f1fa7e83fa45607b7303dae7a7b9252763340b5",
+          "drawnPixels": 13327,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-composition-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-composition-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "practice/integrated-design",
+      "path": "practice/integrated-design.html",
+      "source": "src/data/textbook/practice/integrated-design.md",
+      "sourceSha256": "71105afc2d0ca8b0a598757d35654247845e34b2d436183da8ddad62d4bb5cb7",
+      "figureId": "figure-2",
+      "nodeId": "organized-drainage-01",
+      "heading": "工作步骤",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "25b900e3ce6ec326c5bc420ca2a6a352cdb4a2299b9f994275f76a16a31c8391",
+      "image": "/images/roof/organized-drainage-diagram.png",
+      "imageSha256": "a2574f4d265ddab8d3dbc2a91beb418dbca0191e0918ab0331a720c4cc8ef763",
+      "visualEvidence": "屋面空心板、沟体、出口及下接管段形体对应；已隔离四个构件纠正旧名称，局部图不表示地面雨水口。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "有组织排水屋顶",
+          "modelAsset": "/models/roof/organized-drainage/organized-drainage.glb",
+          "modelSha256": "49ea9bdc072342a265851eb43e300f6338422eba871a298f5f890c79290c4f40",
+          "drawnPixels": 19344,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/organized-drainage-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/organized-drainage-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "practice/construction-survey",
+      "path": "practice/construction-survey.html",
+      "source": "src/data/textbook/practice/construction-survey.md",
+      "sourceSha256": "a11eb32f2011dda9bed01507c8ac4ed08d06b086c9b9efa907d58ab739c68302",
+      "figureId": "figure-1",
+      "nodeId": "apron-flashing-01",
+      "heading": "工作步骤",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "d605ba9adb6d4f4bb1a8c4cc37b0103ad0f8573f6a9e0884ba702d9e33599269",
+      "image": "/images/wall/apron-flashing-diagram.png",
+      "imageSha256": "65f2b0c6f539bfaa0dcbb02f2cd5d0dc6dd94c600e722728f7be85e3f572b575",
+      "visualEvidence": "墙根、散水分层和外排坡面对应；分层形体不证明任意场地排水设计成立。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "细石混凝土散水构造",
+          "modelAsset": "/models/wall/apron-flashing/apron-flashing.glb",
+          "modelSha256": "c9b5f93141aaf443ce746e9641094cecdf31530a12a4e33c354c3bfe125f2dc4",
+          "drawnPixels": 21572,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/apron-flashing-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/apron-flashing-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "practice/construction-survey",
+      "path": "practice/construction-survey.html",
+      "source": "src/data/textbook/practice/construction-survey.md",
+      "sourceSha256": "a11eb32f2011dda9bed01507c8ac4ed08d06b086c9b9efa907d58ab739c68302",
+      "figureId": "figure-2",
+      "nodeId": "stair-flight-flush-unburied-01",
+      "heading": "提交物",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "d5582f7c6d7e55ae0bfff9286203f647eb30abb403d1e0f4230c43676bff1c72",
+      "image": "/images/stairs/stair-flight-flush-unburied-01-diagram.png",
+      "imageSha256": "2de2866088fff4cbef9c616bb0c3912ac3fc6eca170b57d98bf04f0399ae07b6",
+      "visualEvidence": "带孔预制梯段、平台板与平台梁支承形体对应；已移至预制连接而非现浇段落。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "梯段与平台梁节点处理（梯段齐步不埋步）",
+          "modelAsset": "/models/stairs/stair-flight-platform/stair-flight-flush-unburied-01.glb",
+          "modelSha256": "e0dd9fe0facce1c568c0afdc36c4d3d5398e3cd2aa47b4641a8cd6e8d0b996d3",
+          "drawnPixels": 13532,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-flight-flush-unburied-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-flight-flush-unburied-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "foundation/foundation-overview",
+      "path": "basics/foundation/foundation-overview.html",
+      "source": "src/data/textbook/foundation/foundation-overview.md",
+      "sourceSha256": "faa9f1c2465925345158062db597b48a8e2c4cf51252384f313813d6e2041bd4",
+      "figureId": "figure-1",
+      "nodeId": "independent-foundation-01",
+      "heading": "基础、地基与持力层",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "dbb0a0be3df9d49c137edae29d7c81b1428b826a36010582f77e32dc0585a042",
+      "image": "/images/foundation/independent-foundation-diagram.png",
+      "imageSha256": "8e84f42f43804bca0c65a0757665f188820bf365b5a53f4c8fe057bec18362ff",
+      "visualEvidence": "原图杯形、阶梯形、锥形三例均有对应模型方案；按方案名称识别柱与基础形体，不推定场地适用性。",
+      "modelEvidence": [
+        {
+          "variant": "cup-base",
+          "label": "杯形基础",
+          "modelAsset": "/models/foundation/independent-foundation/cup-base.glb",
+          "modelSha256": "cea5ece29c26d4cedc74accde638c27611d802723981aab6542eda4d3da17755",
+          "drawnPixels": 16656,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--cup-base-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--cup-base-model.png"
+        },
+        {
+          "variant": "stepped-base",
+          "label": "阶梯形基础",
+          "modelAsset": "/models/foundation/independent-foundation/stepped-base.glb",
+          "modelSha256": "f78fe6ad82673565eee16b12db50fd86a80d4f67a33d1c510b0d59a05e93ec44",
+          "drawnPixels": 17828,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--stepped-base-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--stepped-base-model.png"
+        },
+        {
+          "variant": "tapered-base",
+          "label": "锥形基础",
+          "modelAsset": "/models/foundation/independent-foundation/tapered-base.glb",
+          "modelSha256": "df301b6eab8f1b71e1e4f4c7bb98acf3b2d35e5eba639a04f687dac543661c95",
+          "drawnPixels": 17040,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--tapered-base-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--tapered-base-model.png"
+        }
+      ]
+    },
+    {
+      "key": "foundation/foundation-design",
+      "path": "basics/foundation/foundation-design.html",
+      "source": "src/data/textbook/foundation/foundation-design.md",
+      "sourceSha256": "86a3ff39bfb01ab68e94516550d893cae35bfdf72a9f82be751306848061dfba",
+      "figureId": "figure-1",
+      "nodeId": "combined-foundation-beam-slab-01",
+      "heading": "承载、稳定、变形和耐久",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "8774fbbfde6de094e24a3269db0c74c13453b2f280f921e9c73d7f40cb266112",
+      "image": "/images/foundation/combined-foundation-beam-slab-diagram.png",
+      "imageSha256": "380a8a79f2d096b1490b63f09403a376a3439e2b874aae5c40900ce24cbf35b7",
+      "visualEvidence": "多柱、梁格与连续底板对应；改用梁板式基础中性术语，不混用联合与筏形分类。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "联合基础（梁板式基础）",
+          "modelAsset": "/models/foundation/combined-foundation/beam-slab.glb",
+          "modelSha256": "1c5f9f55c2df3cd56263799c5424c8cfd7d712ea6977d91b8a6cbb226049bff7",
+          "drawnPixels": 22359,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/combined-foundation-beam-slab-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/combined-foundation-beam-slab-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "foundation/foundation-types",
+      "path": "basics/foundation/foundation-types.html",
+      "source": "src/data/textbook/foundation/foundation-types.md",
+      "sourceSha256": "b0d44f394e0d3f18660b587b4476ecfb2933eea85091645ee8fe54bd31bed59c",
+      "figureId": "figure-1",
+      "nodeId": "independent-foundation-01",
+      "heading": "按构造形式认识浅基础",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "a908f32f619c5cbfa502c24b8b000ccfffd4621b571ae050668542eb136b956c",
+      "image": "/images/foundation/independent-foundation-diagram.png",
+      "imageSha256": "8e84f42f43804bca0c65a0757665f188820bf365b5a53f4c8fe057bec18362ff",
+      "visualEvidence": "原图杯形、阶梯形、锥形三例均有对应模型方案；按方案名称识别柱与基础形体，不推定场地适用性。",
+      "modelEvidence": [
+        {
+          "variant": "cup-base",
+          "label": "杯形基础",
+          "modelAsset": "/models/foundation/independent-foundation/cup-base.glb",
+          "modelSha256": "cea5ece29c26d4cedc74accde638c27611d802723981aab6542eda4d3da17755",
+          "drawnPixels": 16656,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--cup-base-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--cup-base-model.png"
+        },
+        {
+          "variant": "stepped-base",
+          "label": "阶梯形基础",
+          "modelAsset": "/models/foundation/independent-foundation/stepped-base.glb",
+          "modelSha256": "f78fe6ad82673565eee16b12db50fd86a80d4f67a33d1c510b0d59a05e93ec44",
+          "drawnPixels": 17828,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--stepped-base-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--stepped-base-model.png"
+        },
+        {
+          "variant": "tapered-base",
+          "label": "锥形基础",
+          "modelAsset": "/models/foundation/independent-foundation/tapered-base.glb",
+          "modelSha256": "df301b6eab8f1b71e1e4f4c7bb98acf3b2d35e5eba639a04f687dac543661c95",
+          "drawnPixels": 17040,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--tapered-base-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--tapered-base-model.png"
+        }
+      ]
+    },
+    {
+      "key": "foundation/foundation-types",
+      "path": "basics/foundation/foundation-types.html",
+      "source": "src/data/textbook/foundation/foundation-types.md",
+      "sourceSha256": "b0d44f394e0d3f18660b587b4476ecfb2933eea85091645ee8fe54bd31bed59c",
+      "figureId": "figure-2",
+      "nodeId": "pile-foundation-composition-01",
+      "heading": "桩基础与其他深基础",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "ac559571594e1d46168f12940610167adb32f0e929bf9b744ab5c6731c1efb4f",
+      "image": "/images/foundation/pile-foundation-composition-diagram.png",
+      "imageSha256": "dfab90d0155ca554df87ccb4d19c218238d0c7fc02138152d0e825c2c4c62b3b",
+      "visualEvidence": "原图左右柱下承台板和墙下承台梁两例在同一模型中均可辨认。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "桩基组成",
+          "modelAsset": "/models/foundation/pile-foundation-composition/pile-foundation-composition.glb",
+          "modelSha256": "fb8c35b27104101ded9590aa80f439213df1a982c3b23122d8af08067237ebfa",
+          "drawnPixels": 10893,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/pile-foundation-composition-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/pile-foundation-composition-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "foundation/foundation-underground",
+      "path": "basics/foundation/foundation-underground.html",
+      "source": "src/data/textbook/foundation/foundation-underground.md",
+      "sourceSha256": "4a763634773fb3675fd4df909365850c9df71e1f3d4ab8b14e684db970a79992",
+      "figureId": "figure-1",
+      "nodeId": "combined-foundation-box-01",
+      "heading": "箱形基础与地下室",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "4a5d1bbfb2d1237ff120f87a1a3bb9363e77591b77c38570a771b26776471be0",
+      "image": "/images/foundation/combined-foundation-box-diagram.png",
+      "imageSha256": "f9bb3bea2eb915b3093e8b8332e43d86bee8cc286c51d5ff8a46b5bab4a8f5ed",
+      "visualEvidence": "底板、箱壁分格、顶板及上部柱对应；可比较箱形构造和地下空间，不由图示确定抗浮条件。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "联合基础（箱形基础）",
+          "modelAsset": "/models/foundation/combined-foundation/box.glb",
+          "modelSha256": "05ece5e873e18b3b886bfa4b4287f33203d1118d0b89bfb81dbace7ea935329e",
+          "drawnPixels": 23570,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/combined-foundation-box-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/combined-foundation-box-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "foundation/foundation-settlement",
+      "path": "basics/foundation/foundation-settlement.html",
+      "source": "src/data/textbook/foundation/foundation-settlement.md",
+      "sourceSha256": "1d40b9de53c4e6c27cd441029037dec6dee9f494733fec95c52fbd6872a0ed51",
+      "figureId": "figure-1",
+      "nodeId": "high-low-roof-joint-01",
+      "heading": "预防与构造协调",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "0ca4e7a63ec594d9b53b57977fff514b94205825e2ad0968961c5060b5be4f77",
+      "image": "/images/roof/high-low-roof-joint-01-diagram.png",
+      "imageSha256": "65c889663c04d8bf86e7c99ab23e9aaeaf10bd63c507252c207e3251fc72005b",
+      "visualEvidence": "高低屋面、墙边缝与附加防水转折对应；局部图不证明设缝目的或基础断开范围。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "高低屋面变形缝（一）",
+          "modelAsset": "/models/roof/high-low-roof-joint/high-low-roof-joint-01.glb",
+          "modelSha256": "4311757decb99a543493560f994fbaa4e936c6f04aed3eabf43acfa64bb18584",
+          "drawnPixels": 26195,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/high-low-roof-joint-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/high-low-roof-joint-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "wall/index",
+      "path": "basics/wall/index.html",
+      "source": "src/data/textbook/walls/index.md",
+      "sourceSha256": "d9b9918058a174981ef351046404febab9464465d3014a197bc3087fc704c9d5",
+      "figureId": "figure-1",
+      "nodeId": "construction-column-01",
+      "heading": "用一张剖面组织知识",
+      "relationship": "同类构造比较，图与模型墙体布置不同，已在正文图注明确",
+      "verdict": "accepted",
+      "figureSha256": "e81ac6dbc02965656ffa6e49b8d8cbb8712d130dc8b139c45fde09107f08872a",
+      "image": "/images/wall/construction-column-diagram.png",
+      "imageSha256": "ad7da0f4e6fe944c3b2ab53cb3c2a34e0f6796189e77650c0115839bf3134cf5",
+      "visualEvidence": "原图为一字墙局部，模型为墙交接处立体示例；两处教材图注明确为同类联系比较，并非同一平面复刻。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "构造柱",
+          "modelAsset": "/models/wall/construction-column/construction-column.glb",
+          "modelSha256": "6913f7211410512d5a7269ff6e767c3bf3af889957bece2edc839d7c62babbd2",
+          "drawnPixels": 11353,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/construction-column-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/construction-column-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "wall/index",
+      "path": "basics/wall/index.html",
+      "source": "src/data/textbook/walls/index.md",
+      "sourceSha256": "d9b9918058a174981ef351046404febab9464465d3014a197bc3087fc704c9d5",
+      "figureId": "figure-2",
+      "nodeId": "plaster-plinth-01",
+      "heading": "本章学习目标",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "f4921d0d3d14532be7826ec350fcbedf98348f4c869b388a96a5c0f10cff2097",
+      "image": "/images/wall/plaster-plinth-diagram.png",
+      "imageSha256": "4c1007b9dbdfcabe7582e3b7aa12283cf63682ab8c556133cb4edac691e76a84",
+      "visualEvidence": "墙脚、室内外地坪、防潮位置及抹灰面对应；去除原图未给出的通用高度与厚度断言。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "抹灰勒脚构造做法",
+          "modelAsset": "/models/wall/plaster-plinth/plaster-plinth.glb",
+          "modelSha256": "d43bf770ad231e694f686f31d1be5f27baa3765344261e2e47b28e6b32586c5d",
+          "drawnPixels": 20139,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/plaster-plinth-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/plaster-plinth-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "wall/wall-role",
+      "path": "basics/wall/wall-role.html",
+      "source": "src/data/textbook/walls/wall-role.md",
+      "sourceSha256": "f03bc911b61c86932837a7291a48751bec3675601fdc09843c134c7079470f3e",
+      "figureId": "figure-1",
+      "nodeId": "foam-insulation-01",
+      "heading": "承重、围护与分隔",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "2595e6e299cdb0dbae2ac0afde96ae79aaea5baa01b1b2641cbd1c2a6031103c",
+      "image": "/images/wall/foam-insulation-diagram.png",
+      "imageSha256": "9cb7f850e254e57110030c030c1e4b0b7efd4839c3b7600b2e9b95954675c2f7",
+      "visualEvidence": "外墙基层、板状保温与外侧保护层对应；图形不证明整墙热工或防火性能。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "粘贴泡沫塑料保温板外保温",
+          "modelAsset": "/models/wall/foam-insulation/foam-insulation.glb",
+          "modelSha256": "c07f589ba4ee2fe2533089eef06f71c9826171af86cb52b9580ff35d4886f5ec",
+          "drawnPixels": 26459,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/foam-insulation-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/foam-insulation-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "wall/wall-types",
+      "path": "basics/wall/wall-types.html",
+      "source": "src/data/textbook/walls/wall-types.md",
+      "sourceSha256": "a97349f72a5ea966ca12b65e2d1d8cb291bc8c45624125926b5188b295eff693",
+      "figureId": "figure-1",
+      "nodeId": "hollow-block-forms-01",
+      "heading": "按材料与构造方式分类",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "94026c90aec36c22aee9fb2cd5707930fafaa6a122a64d9f83179a1ee90b2e4d",
+      "image": "/images/wall/hollow-block-forms-diagram.png",
+      "imageSha256": "7f75a100a57ec8a3ea3aae4777d78acd7663dd4d41982c24785666ea944496c8",
+      "visualEvidence": "原图四种孔型与模型四个块材逐一对应；孔型不等于承载与使用资格。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "空心砌块的常见形式",
+          "modelAsset": "/models/wall/hollow-block-forms/hollow-block-forms.glb",
+          "modelSha256": "0121c4decc66907b6591a77d770e423051f5b08833b2899f344787be9c27cee4",
+          "drawnPixels": 12527,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/hollow-block-forms-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/hollow-block-forms-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "wall/wall-masonry",
+      "path": "basics/wall/wall-masonry.html",
+      "source": "src/data/textbook/walls/wall-masonry.md",
+      "sourceSha256": "0474daf2eb4e6aa370a316b657b70937c971a82f9124bbeafbea921eb814ffde",
+      "figureId": "figure-1",
+      "nodeId": "hollow-block-forms-01",
+      "heading": "块材、砂浆和砌体性能",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "d05702c3e6919886dd653355b81df267ca0600d5e4d887b5fc91f26080022fee",
+      "image": "/images/wall/hollow-block-forms-diagram.png",
+      "imageSha256": "7f75a100a57ec8a3ea3aae4777d78acd7663dd4d41982c24785666ea944496c8",
+      "visualEvidence": "原图四种孔型与模型四个块材逐一对应；孔型不等于承载与使用资格。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "空心砌块的常见形式",
+          "modelAsset": "/models/wall/hollow-block-forms/hollow-block-forms.glb",
+          "modelSha256": "0121c4decc66907b6591a77d770e423051f5b08833b2899f344787be9c27cee4",
+          "drawnPixels": 12527,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/hollow-block-forms-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/hollow-block-forms-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "wall/wall-masonry",
+      "path": "basics/wall/wall-masonry.html",
+      "source": "src/data/textbook/walls/wall-masonry.md",
+      "sourceSha256": "0474daf2eb4e6aa370a316b657b70937c971a82f9124bbeafbea921eb814ffde",
+      "figureId": "figure-2",
+      "nodeId": "block-wall-core-column-01",
+      "heading": "圈梁、构造柱与芯柱",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "59eff98fe1dcd301a9c57d2af1598b1df7c6f36ada876be77d930237987c4acb",
+      "image": "/images/wall/block-wall-core-column-01.png",
+      "imageSha256": "d8d6a9ad943f50ecd30d641a15978bdb7b32aaea87795f8984e665a8fbd8dde5",
+      "visualEvidence": "原图L形、T形两例与模型对应，孔内芯柱和墙体交接可辨认；不扩展原图强度数值为通用条件。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "砌块墙墙芯柱构造",
+          "modelAsset": "/models/wall/block-wall-core-column/block-wall-core-column.glb",
+          "modelSha256": "d951fa93ab5c72935b724004b220a4ddabd43e4cdce8fbac91df0b825aebad99",
+          "drawnPixels": 18230,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/block-wall-core-column-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/block-wall-core-column-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "wall/wall-partition",
+      "path": "basics/wall/wall-partition.html",
+      "source": "src/data/textbook/walls/partitions.md",
+      "sourceSha256": "998df443165e5ad25acdb44a11a7b2218fc38708abc72d59359550be085b6fbb",
+      "figureId": "figure-1",
+      "nodeId": "hollow-block-forms-01",
+      "heading": "砌筑隔墙与框架填充墙",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "c32da53f33c9065d51387866e47f26f65a89206e931c660ab28b880246b16ba7",
+      "image": "/images/wall/hollow-block-forms-diagram.png",
+      "imageSha256": "7f75a100a57ec8a3ea3aae4777d78acd7663dd4d41982c24785666ea944496c8",
+      "visualEvidence": "原图四种孔型与模型四个块材逐一对应；孔型不等于承载与使用资格。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "空心砌块的常见形式",
+          "modelAsset": "/models/wall/hollow-block-forms/hollow-block-forms.glb",
+          "modelSha256": "0121c4decc66907b6591a77d770e423051f5b08833b2899f344787be9c27cee4",
+          "drawnPixels": 12527,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/hollow-block-forms-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/hollow-block-forms-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "wall/wall-design-requirements",
+      "path": "basics/wall/wall-design-requirements.html",
+      "source": "src/data/textbook/walls/wall-design-requirements.md",
+      "sourceSha256": "510b06be367698550592d568968f2783be315175f46f25fbc6171420ab9790f8",
+      "figureId": "figure-1",
+      "nodeId": "construction-column-01",
+      "heading": "整体性与抗震",
+      "relationship": "同类构造比较，图与模型墙体布置不同，已在正文图注明确",
+      "verdict": "accepted",
+      "figureSha256": "65aa21999d50279fb7fa7173562fae86c0dc9961dd4f645cb9a870ec3da93c6a",
+      "image": "/images/wall/construction-column-diagram.png",
+      "imageSha256": "ad7da0f4e6fe944c3b2ab53cb3c2a34e0f6796189e77650c0115839bf3134cf5",
+      "visualEvidence": "原图为一字墙局部，模型为墙交接处立体示例；两处教材图注明确为同类联系比较，并非同一平面复刻。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "构造柱",
+          "modelAsset": "/models/wall/construction-column/construction-column.glb",
+          "modelSha256": "6913f7211410512d5a7269ff6e767c3bf3af889957bece2edc839d7c62babbd2",
+          "drawnPixels": 11353,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/construction-column-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/construction-column-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "wall/wall-design-requirements",
+      "path": "basics/wall/wall-design-requirements.html",
+      "source": "src/data/textbook/walls/wall-design-requirements.md",
+      "sourceSha256": "510b06be367698550592d568968f2783be315175f46f25fbc6171420ab9790f8",
+      "figureId": "figure-2",
+      "nodeId": "rockwool-insulation-01",
+      "heading": "保温、隔热、气密与防结露",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "0ce49cbc409b0af3b222f4aab129facdb2b35005567780284ecc00e546666298",
+      "image": "/images/wall/rockwool-insulation-diagram.png",
+      "imageSha256": "0ea00499e560437361c27d9460b920f870130f56b2e98c20be54e9d609a3330a",
+      "visualEvidence": "墙体、找平、涂料、岩棉及抹面层对应；已纠正涂料位于岩棉内侧的文字位置，不据岩棉名称证明系统防火性能。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "粘贴岩棉防火保温板外保温",
+          "modelAsset": "/models/wall/rockwool-insulation/rockwool-insulation.glb",
+          "modelSha256": "261733449421aa402380d3ef0a10e5768a17e04488b2a23ff5825f02ff8d02a4",
+          "drawnPixels": 26744,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/rockwool-insulation-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/rockwool-insulation-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "wall/wall-details",
+      "path": "basics/wall/wall-details.html",
+      "source": "src/data/textbook/walls/wall-details.md",
+      "sourceSha256": "153b4e66b8083bc955adf5761b536435baa0055b41a249f15713224d83ba9c9e",
+      "figureId": "figure-1",
+      "nodeId": "plaster-plinth-01",
+      "heading": "墙脚防潮：先追踪水的路径",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "7deeb67ed777396fdc61cad9957614343037bed095edb019156aaa72affc2223",
+      "image": "/images/wall/plaster-plinth-diagram.png",
+      "imageSha256": "4c1007b9dbdfcabe7582e3b7aa12283cf63682ab8c556133cb4edac691e76a84",
+      "visualEvidence": "墙脚、室内外地坪、防潮位置及抹灰面对应；去除原图未给出的通用高度与厚度断言。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "抹灰勒脚构造做法",
+          "modelAsset": "/models/wall/plaster-plinth/plaster-plinth.glb",
+          "modelSha256": "d43bf770ad231e694f686f31d1be5f27baa3765344261e2e47b28e6b32586c5d",
+          "drawnPixels": 20139,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/plaster-plinth-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/plaster-plinth-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "wall/wall-details",
+      "path": "basics/wall/wall-details.html",
+      "source": "src/data/textbook/walls/wall-details.md",
+      "sourceSha256": "153b4e66b8083bc955adf5761b536435baa0055b41a249f15713224d83ba9c9e",
+      "figureId": "figure-2",
+      "nodeId": "apron-flashing-01",
+      "heading": "勒脚、散水与明沟",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "c70c5208924bfbe84f9ad28683e7e41ff04d0ab9312c935f91eeaea1901c08bb",
+      "image": "/images/wall/apron-flashing-diagram.png",
+      "imageSha256": "65f2b0c6f539bfaa0dcbb02f2cd5d0dc6dd94c600e722728f7be85e3f572b575",
+      "visualEvidence": "墙根、散水分层和外排坡面对应；分层形体不证明任意场地排水设计成立。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "细石混凝土散水构造",
+          "modelAsset": "/models/wall/apron-flashing/apron-flashing.glb",
+          "modelSha256": "c9b5f93141aaf443ce746e9641094cecdf31530a12a4e33c354c3bfe125f2dc4",
+          "drawnPixels": 21572,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/apron-flashing-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/apron-flashing-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "wall/wall-details",
+      "path": "basics/wall/wall-details.html",
+      "source": "src/data/textbook/walls/wall-details.md",
+      "sourceSha256": "153b4e66b8083bc955adf5761b536435baa0055b41a249f15713224d83ba9c9e",
+      "figureId": "figure-3",
+      "nodeId": "rc-lintel-flush-01",
+      "heading": "门窗洞口：传力、密封与排水",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "04bc631047f1f82b82794b657533cbb0581c14f2221a15d6931dc8aa64a6f6d1",
+      "image": "/images/wall/rc-lintel-flush-diagram.png",
+      "imageSha256": "e66e374e16280b445e037433cf19b907a4ff9000e475afc5e9de3c0b109efb1b",
+      "visualEvidence": "平墙过梁、上部墙体及窗框局部截面对应；两端支座未展示，已修正图注及观察问题。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "钢筋混凝土过梁（平墙过梁）",
+          "modelAsset": "/models/wall/rc-lintels/flush.glb",
+          "modelSha256": "1ce1c514ea6bfa86923117896a716d6f170850b1d56e3cc9f74754f622fd40f8",
+          "drawnPixels": 36093,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/rc-lintel-flush-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/rc-lintel-flush-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "wall/wall-finishes",
+      "path": "basics/wall/wall-finishes.html",
+      "source": "src/data/textbook/walls/wall-finishes.md",
+      "sourceSha256": "61ce0298e3b3201c8741663445c806f0c18eaad720becd8efc5cb97d312be2a8",
+      "figureId": "figure-1",
+      "nodeId": "plaster-plinth-01",
+      "heading": "抹灰类饰面与传统石渣饰面",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "cc9c6064dbe7bb890b359f40661ea6656d5f21b8bafe4eeb352af38c47c5969b",
+      "image": "/images/wall/plaster-plinth-diagram.png",
+      "imageSha256": "4c1007b9dbdfcabe7582e3b7aa12283cf63682ab8c556133cb4edac691e76a84",
+      "visualEvidence": "墙脚、室内外地坪、防潮位置及抹灰面对应；去除原图未给出的通用高度与厚度断言。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "抹灰勒脚构造做法",
+          "modelAsset": "/models/wall/plaster-plinth/plaster-plinth.glb",
+          "modelSha256": "d43bf770ad231e694f686f31d1be5f27baa3765344261e2e47b28e6b32586c5d",
+          "drawnPixels": 20139,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/plaster-plinth-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/plaster-plinth-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "wall/wall-finishes",
+      "path": "basics/wall/wall-finishes.html",
+      "source": "src/data/textbook/walls/wall-finishes.md",
+      "sourceSha256": "61ce0298e3b3201c8741663445c806f0c18eaad720becd8efc5cb97d312be2a8",
+      "figureId": "figure-2",
+      "nodeId": "faced-plinth-01",
+      "heading": "粘贴、湿挂与干挂饰面",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "5105ee0cd385d34c6717d4c8954b8879736489fc27999f1ea554a54ed95617fe",
+      "image": "/images/wall/faced-plinth-diagram.png",
+      "imageSha256": "09a64d67f08283ce5b96039809c599c3ea428127f845aef0203a9eeae95a1090",
+      "visualEvidence": "墙脚外侧贴面、地坪及防潮位置对应；去除原图未标注的固定高度和厚度断言。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "贴面勒脚构造做法",
+          "modelAsset": "/models/wall/faced-plinth/faced-plinth.glb",
+          "modelSha256": "42cd7638b9f6f63542ae46d3c30ed6463647e7e9843debe3c00aa3c5a425662c",
+          "drawnPixels": 20860,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/faced-plinth-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/faced-plinth-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "door-window/window-door-overview",
+      "path": "basics/door-window/window-door-overview.html",
+      "source": "src/data/textbook/door-window/window-door-overview.md",
+      "sourceSha256": "1ae45689cffa3d488cf0bacf376fba56a6c30a510a2d7cad241808ee16dd0131",
+      "figureId": "figure-1",
+      "nodeId": "rc-lintel-window-surround-01",
+      "heading": "门窗在建筑中的位置",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "1c844faddce9ddac9fcaa51cf8ed35c837b1958d6d223b75c38dd582785cecc9",
+      "image": "/images/wall/rc-lintel-window-surround-diagram.png",
+      "imageSha256": "bd0e643152a2b1da448a659480d11ce4b1da4a5beb63e402c0c93e2bd7542e01",
+      "visualEvidence": "带窗套过梁外伸轮廓与墙窗关系对应；图示局部不能替代两端支承和配筋设计。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "钢筋混凝土过梁（带窗套过梁）",
+          "modelAsset": "/models/wall/rc-lintels/window-surround.glb",
+          "modelSha256": "250e0e17b713444dae20ad9f447274e7bd668a7a4a180113f24051227f3726b5",
+          "drawnPixels": 34424,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/rc-lintel-window-surround-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/rc-lintel-window-surround-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "door-window/window-door-design",
+      "path": "basics/door-window/window-door-design.html",
+      "source": "src/data/textbook/door-window/window-door-design.md",
+      "sourceSha256": "a86018a9941c2269e42fc62845b2aefacacb1fce7c5c1e3f1dc6b36322365bff",
+      "figureId": "figure-1",
+      "nodeId": "window-wall-gap-sealing-01",
+      "heading": "框与洞口的可靠连接",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "0b7f215d4ae785a367c4eac90c2c963367d53909243fe7f45438eee22dd054f5",
+      "image": "/images/wall/window-wall-gap-sealing-diagram.png",
+      "imageSha256": "be52169fb463cab7dc2bdefd8e7dd56887f53628f2b3f82bd5e8a0e233726722",
+      "visualEvidence": "窗框、墙体及安装缝相对位置对应；图示为木条、袋装矿棉及弹性胶传统示例，已明确非发泡材料示例。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "封堵窗墙间缝隙做法",
+          "modelAsset": "/models/wall/window-wall-gap-sealing/window-wall-gap-sealing.glb",
+          "modelSha256": "114bbbd259df2b97a4e54f68ae82c30435030346e28f7d05e1a480abf1ba847a",
+          "drawnPixels": 28934,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/window-wall-gap-sealing-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/window-wall-gap-sealing-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "door-window/window-door-design",
+      "path": "basics/door-window/window-door-design.html",
+      "source": "src/data/textbook/door-window/window-door-design.md",
+      "sourceSha256": "a86018a9941c2269e42fc62845b2aefacacb1fce7c5c1e3f1dc6b36322365bff",
+      "figureId": "figure-2",
+      "nodeId": "rc-lintel-window-hood-01",
+      "heading": "缝隙、雨水与声音的处理",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "6eb4e925f04d086f58adb78f89425974f81827d8a428c871c0f4944b8d7f9964",
+      "image": "/images/wall/rc-lintel-window-hood-diagram.png",
+      "imageSha256": "4d7a684f8d08c902a9c4a31842735a4a4ad8d39db8edef835db9943141bf1f4e",
+      "visualEvidence": "带窗楣过梁外挑形体对应；外挑与排水可识读，防水固定仍需完整节点。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "钢筋混凝土过梁（带窗楣过梁）",
+          "modelAsset": "/models/wall/rc-lintels/window-hood.glb",
+          "modelSha256": "a7ba83acabb222e7fa0578c0074b954609658d6dd84f285dfa598a9126a54cd5",
+          "drawnPixels": 21079,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/rc-lintel-window-hood-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/rc-lintel-window-hood-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "floor/floor-overview",
+      "path": "basics/floor/floor-overview.html",
+      "source": "src/data/textbook/floor/floor-overview.md",
+      "sourceSha256": "5923538fa129cc5d6bb5f4889aba62bbe6eb44fc16e1e0c862359d2b2c28b060",
+      "figureId": "figure-1",
+      "nodeId": "cast-ribbed-floor-01",
+      "heading": "楼板层与地坪层",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "12a1f24e1ac65291b26ab6912e10c33a21905f6bbcebac79a900be3495fcb991",
+      "image": "/images/floor/cast-ribbed-floor.png",
+      "imageSha256": "4b735b32c08476d97581f002ffdc49183ba6f1f9c56d722255f7774af8b23a25",
+      "visualEvidence": "板、次梁、主梁及竖向支承对应；局部模型支承不等于整栋建筑传力终点。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "现浇肋梁楼板",
+          "modelAsset": "/models/floor/cast-ribbed-floor/cast-ribbed-floor.glb",
+          "modelSha256": "8dc7092f6dfd0d0862e15b215287b06cb70389f545a622f99983373473a72fe8",
+          "drawnPixels": 15607,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/cast-ribbed-floor-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/cast-ribbed-floor-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "floor/floor-rc-slab",
+      "path": "basics/floor/floor-rc-slab.html",
+      "source": "src/data/textbook/floor/floor-rc-slab.md",
+      "sourceSha256": "18b87a56da4f44a3cf7a9586b5d3ed507167ec8fd8b169f017bb70ca3f5e1b06",
+      "figureId": "figure-1",
+      "nodeId": "precast-hollow-slab-01",
+      "heading": "传统预制板的类型与布置",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "1c1094d0bceff13198fefc7de18b475bf6936243c9323323f779cda1d38cd22a",
+      "image": "/images/floor/precast-slab-hollow-diagram.png",
+      "imageSha256": "e159b7a20895fcd7a277e7d536425f8875bee45fbe52d46c426eb86cfbe8998e",
+      "visualEvidence": "板端孔洞、墙内梁、中梁和预制板位置对应；四项实际构件均可点选，不从孔洞外形推定预应力。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "预制钢筋混凝土板（空心板）",
+          "modelAsset": "/models/floor/precast-slabs/hollow.glb",
+          "modelSha256": "416ed4a1b2cd9057301d9de082b956e07f7ce5c543fbf55603c833e4f1face97",
+          "drawnPixels": 20550,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/precast-hollow-slab-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/precast-hollow-slab-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "floor/floor-rc-slab",
+      "path": "basics/floor/floor-rc-slab.html",
+      "source": "src/data/textbook/floor/floor-rc-slab.md",
+      "sourceSha256": "18b87a56da4f44a3cf7a9586b5d3ed507167ec8fd8b169f017bb70ca3f5e1b06",
+      "figureId": "figure-2",
+      "nodeId": "cast-ribbed-floor-01",
+      "heading": "板式、梁板式与无梁楼盖",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "801c89c6d74ffdf0fb2093e09f2b8dce959a0e691a376620dc70da2ed9069fa4",
+      "image": "/images/floor/cast-ribbed-floor.png",
+      "imageSha256": "4b735b32c08476d97581f002ffdc49183ba6f1f9c56d722255f7774af8b23a25",
+      "visualEvidence": "板、次梁、主梁及竖向支承对应；局部模型支承不等于整栋建筑传力终点。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "现浇肋梁楼板",
+          "modelAsset": "/models/floor/cast-ribbed-floor/cast-ribbed-floor.glb",
+          "modelSha256": "8dc7092f6dfd0d0862e15b215287b06cb70389f545a622f99983373473a72fe8",
+          "drawnPixels": 15607,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/cast-ribbed-floor-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/cast-ribbed-floor-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "floor/floor-rc-slab",
+      "path": "basics/floor/floor-rc-slab.html",
+      "source": "src/data/textbook/floor/floor-rc-slab.md",
+      "sourceSha256": "18b87a56da4f44a3cf7a9586b5d3ed507167ec8fd8b169f017bb70ca3f5e1b06",
+      "figureId": "figure-3",
+      "nodeId": "flat-slab-01",
+      "heading": "板式、梁板式与无梁楼盖",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "5f16dcbf18a04581a8d90386dab872bbb90d772a0e4b92e20ccd29efa30970a3",
+      "image": "/images/floor/flat-slab-diagram.png",
+      "imageSha256": "3f7a610842a091286f3e31d0c8d580bc4522779dcffab2f5b02748d84f83dd1e",
+      "visualEvidence": "板、柱及柱帽形体对应；已补拍仰视图确认板底四处柱帽，移至无梁楼盖段落。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "无梁楼板",
+          "modelAsset": "/models/floor/flat-slab/flat-slab.glb",
+          "modelSha256": "ca98c97640c615466d6fdcd73aff95aca4a6dded1999d0716990ac487fe42a3e",
+          "drawnPixels": 21967,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/flat-slab-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/flat-slab-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "floor/floor-ground-composition",
+      "path": "basics/floor/floor-ground-composition.html",
+      "source": "src/data/textbook/floor/floor-ground-composition.md",
+      "sourceSha256": "0d22596c2be8be9e94f03bea77b06e6c4757da678ff32a9cd3e96adbb9d0a4b5",
+      "figureId": "figure-1",
+      "nodeId": "ramp-floor-01",
+      "heading": "实铺地面的传力与基层",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "6dd4668c190273ae27fdaf7ccba18389a1e721785730b4aa21595dd06c603882",
+      "image": "/images/stairs/ramp-floor-01-diagram.png",
+      "imageSha256": "0cd0300f77f5361ded700c0cac4cfa42b4baf9316cc23db603007dd9a89cfb55",
+      "visualEvidence": "坡道面层条带、结合层、垫层及下部支承对应；原图给定坡向与厚度仅供示例识读。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "坡道地面构造做法（一）",
+          "modelAsset": "/models/stairs/ramp-floor/ramp-floor-01.glb",
+          "modelSha256": "fabc57504119b6e554a56b14b8795e829079df3b9b9893a521500de876fa2c95",
+          "drawnPixels": 21122,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/ramp-floor-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/ramp-floor-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "floor/floor-ground-composition",
+      "path": "basics/floor/floor-ground-composition.html",
+      "source": "src/data/textbook/floor/floor-ground-composition.md",
+      "sourceSha256": "0d22596c2be8be9e94f03bea77b06e6c4757da678ff32a9cd3e96adbb9d0a4b5",
+      "figureId": "figure-2",
+      "nodeId": "plaster-plinth-01",
+      "heading": "防潮、防水、保温与架空",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "ad3a5283ffc6113afb0430c7f119d1d1e1ecbfa8e7ecf011411bcf4ca3791d9f",
+      "image": "/images/wall/plaster-plinth-diagram.png",
+      "imageSha256": "4c1007b9dbdfcabe7582e3b7aa12283cf63682ab8c556133cb4edac691e76a84",
+      "visualEvidence": "墙脚、室内外地坪、防潮位置及抹灰面对应；去除原图未给出的通用高度与厚度断言。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "抹灰勒脚构造做法",
+          "modelAsset": "/models/wall/plaster-plinth/plaster-plinth.glb",
+          "modelSha256": "d43bf770ad231e694f686f31d1be5f27baa3765344261e2e47b28e6b32586c5d",
+          "drawnPixels": 20139,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/plaster-plinth-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/plaster-plinth-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "floor/floor-ground-layer",
+      "path": "basics/floor/floor-ground-layer.html",
+      "source": "src/data/textbook/floor/floor-ground-layer.md",
+      "sourceSha256": "559cc37e50f792d41a79f1bae371063855d27c7b27aa9bd9876977aa16f3e768",
+      "figureId": "figure-1",
+      "nodeId": "ramp-floor-01",
+      "heading": "块料、弹性及木质地面",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "640a3844d3d0cbbac183d7c1ab83e4b20b0ece2c78a7522a46da3b5c2fe6dd9b",
+      "image": "/images/stairs/ramp-floor-01-diagram.png",
+      "imageSha256": "0cd0300f77f5361ded700c0cac4cfa42b4baf9316cc23db603007dd9a89cfb55",
+      "visualEvidence": "坡道面层条带、结合层、垫层及下部支承对应；原图给定坡向与厚度仅供示例识读。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "坡道地面构造做法（一）",
+          "modelAsset": "/models/stairs/ramp-floor/ramp-floor-01.glb",
+          "modelSha256": "fabc57504119b6e554a56b14b8795e829079df3b9b9893a521500de876fa2c95",
+          "drawnPixels": 21122,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/ramp-floor-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/ramp-floor-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "floor/floor-balcony",
+      "path": "basics/floor/floor-balcony.html",
+      "source": "src/data/textbook/floor/floor-balcony.md",
+      "sourceSha256": "a2e0cbacd6633cf0153109bcaffe9d0a08187ec07b7902780639e65b152fe6b7",
+      "figureId": "figure-1",
+      "nodeId": "cantilever-slab-01",
+      "heading": "空间形式与结构形式分别判断",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "dcc986764a5e394823d8db67d579f764fbef66b53a0b1c26768a7b5af8e11d31",
+      "image": "/images/floor/cantilever-slab-diagram.png",
+      "imageSha256": "04147013630218ac57af7353c51e706bf8b3548e496c3647440157ef8bcf05e9",
+      "visualEvidence": "三种模型形体分别对应设置边梁、挑梁外露、L形卡口板；已去除菜单字母并写明原图(a)(b)(c)关系。",
+      "modelEvidence": [
+        {
+          "variant": "edge-beam",
+          "label": "设置边梁",
+          "modelAsset": "/models/floor/cantilever-slab/cantilever-slab-edge-beam.glb",
+          "modelSha256": "ab94cc7cc4445fd978afcf55876cb7ae9fbb9dce6a2d7d00ffe70c910270e293",
+          "drawnPixels": 18774,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-slab-01--edge-beam-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-slab-01--edge-beam-model.png"
+        },
+        {
+          "variant": "exposed-beam",
+          "label": "挑梁外露",
+          "modelAsset": "/models/floor/cantilever-slab/cantilever-slab-exposed-beam.glb",
+          "modelSha256": "dceafc137991e31fedbef022fd77cfb9bf7de8e255b5b3d190758ac764dc2936",
+          "drawnPixels": 18519,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-slab-01--exposed-beam-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-slab-01--exposed-beam-model.png"
+        },
+        {
+          "variant": "l-notch-board",
+          "label": "L形挑梁卡口板",
+          "modelAsset": "/models/floor/cantilever-slab/cantilever-slab-l-notch-board.glb",
+          "modelSha256": "a6806e39a16dfeeaca68c49b4ead7dc93c05be0ac8d8cf1020bc140516a24484",
+          "drawnPixels": 18747,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-slab-01--l-notch-board-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-slab-01--l-notch-board-model.png"
+        }
+      ]
+    },
+    {
+      "key": "floor/floor-balcony",
+      "path": "basics/floor/floor-balcony.html",
+      "source": "src/data/textbook/floor/floor-balcony.md",
+      "sourceSha256": "a2e0cbacd6633cf0153109bcaffe9d0a08187ec07b7902780639e65b152fe6b7",
+      "figureId": "figure-2",
+      "nodeId": "balcony-railing-weld-01",
+      "heading": "阳台排水、防水与防护",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "b195e9a80cccaf808f402a5c93e190c94af22defc8a83fbc5c0e22e99e0a185f",
+      "image": "/images/floor/balcony-railing-weld-diagram.png",
+      "imageSha256": "a18f2e91f75b1aa8c12c94318ffd536dd621e8d0106054f63741a822249c37b5",
+      "visualEvidence": "立柱、预埋件和板边连接形体对应；局部焊接节点不代表完整防护系统验算。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "栏杆与阳台板的连接（预埋件焊接）",
+          "modelAsset": "/models/floor/balcony-railing-weld/balcony-railing-weld.glb",
+          "modelSha256": "e447d3d7c7e53aeadefe0058dad8b44e8850a7131a03318cb3a53cb51bcef289",
+          "drawnPixels": 22106,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/balcony-railing-weld-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/balcony-railing-weld-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "floor/floor-balcony",
+      "path": "basics/floor/floor-balcony.html",
+      "source": "src/data/textbook/floor/floor-balcony.md",
+      "sourceSha256": "a2e0cbacd6633cf0153109bcaffe9d0a08187ec07b7902780639e65b152fe6b7",
+      "figureId": "figure-3",
+      "nodeId": "cantilever-canopy-slab-01",
+      "heading": "雨棚的支承与排水",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "850951505ae3bac33d9fbd4035fb22f53d41556dad3f436a35402d606cb4562a",
+      "image": "/images/floor/cantilever-canopy-slab-01-diagram.png",
+      "imageSha256": "938f207950f60a2b675e9ba4fd3b183c8e28fabdac1e5d980656617ddc3bac09",
+      "visualEvidence": "悬挑板、墙边连接及边缘形体对应；外观不能替代锚固、防水和承载判断。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "悬挑雨篷构造（悬挑板式）",
+          "modelAsset": "/models/floor/cantilever-canopy/cantilever-canopy-slab-01.glb",
+          "modelSha256": "b94f285ed141a0d9e3897ce2486bb1c77c9aaa34114cd37b71a66563a5f92686",
+          "drawnPixels": 21174,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-canopy-slab-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-canopy-slab-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "floor/finish-overview",
+      "path": "basics/floor/finish-overview.html",
+      "source": "src/data/textbook/floor/finish-overview.md",
+      "sourceSha256": "23ced3045d924284aae7bb4ed290dfd1113c15d1f98d70eee460aa6e2a133203",
+      "figureId": "figure-1",
+      "nodeId": "faced-plinth-01",
+      "heading": "实体基层、骨架基层与连接",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "a8726abaa19d553fda0843bc87bed08b65a547ba7858ecf3b6d2fa6d9f34825f",
+      "image": "/images/wall/faced-plinth-diagram.png",
+      "imageSha256": "09a64d67f08283ce5b96039809c599c3ea428127f845aef0203a9eeae95a1090",
+      "visualEvidence": "墙脚外侧贴面、地坪及防潮位置对应；去除原图未标注的固定高度和厚度断言。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "贴面勒脚构造做法",
+          "modelAsset": "/models/wall/faced-plinth/faced-plinth.glb",
+          "modelSha256": "42cd7638b9f6f63542ae46d3c30ed6463647e7e9843debe3c00aa3c5a425662c",
+          "drawnPixels": 20860,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/faced-plinth-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/faced-plinth-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "stairs/stairs-overview",
+      "path": "basics/stairs/stairs-overview.html",
+      "source": "src/data/textbook/stairs/stairs-overview.md",
+      "sourceSha256": "338134739ac549a18b9f398d9f33a0423b1af63c11f73ffa65901e969d262e9e",
+      "figureId": "figure-1",
+      "nodeId": "stair-composition-01",
+      "heading": "组成与形式",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "36c1b829805a9ab2ab2de6edd83bd6a7f8559c7348c93871952b679a86bf3460",
+      "image": "/images/stairs/stair-composition-diagram.png",
+      "imageSha256": "9fa6e0c787132d869f9ff6392b1dd6c717293deb238f427c85cf5ea3ab3c2e06",
+      "visualEvidence": "多层双跑梯段、平台及防护位置对应；组成图不等同完整疏散方案。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "楼梯的组成",
+          "modelAsset": "/models/stairs/stair-composition/stair-composition.glb",
+          "modelSha256": "9542e74b14bd4f27f2f2eddf1f1fa7e83fa45607b7303dae7a7b9252763340b5",
+          "drawnPixels": 13327,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-composition-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-composition-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "stairs/stairs-overview",
+      "path": "basics/stairs/stairs-overview.html",
+      "source": "src/data/textbook/stairs/stairs-overview.md",
+      "sourceSha256": "338134739ac549a18b9f398d9f33a0423b1af63c11f73ffa65901e969d262e9e",
+      "figureId": "figure-2",
+      "nodeId": "bottom-landing-entrance-01",
+      "heading": "净高检查与设计闭环",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "ccd615c26a87abb50c94c0af51f783d98ee14ec2b8f838d703e8ce20ca433cb2",
+      "image": "/images/stairs/bottom-landing-entrance-diagram.png",
+      "imageSha256": "a9c3bead716e5cbc556b120375ec6a1fa5274ec37b9f1382d446f9de12b2628e",
+      "visualEvidence": "底层长短跑、半层平台及平台下入口对应；用于识别净空对象，不据示例尺寸作合规结论。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "底层中间平台下作出入口（底层长短跑）",
+          "modelAsset": "/models/stairs/bottom-landing-entrance/bottom-landing-entrance.glb",
+          "modelSha256": "0a8d137d715300f2d51effa993193daa71a2c02c3cf82026cf12365ea5598592",
+          "drawnPixels": 42551,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/bottom-landing-entrance-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/bottom-landing-entrance-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "stairs/stairs-rc-structure",
+      "path": "basics/stairs/stairs-rc-structure.html",
+      "source": "src/data/textbook/stairs/stairs-rc-structure.md",
+      "sourceSha256": "d6bab0c6a3dcc9e27289ff6d70898c376d34673e80c6e4e6f7e16d3122d162a8",
+      "figureId": "figure-1",
+      "nodeId": "stair-flight-flush-unburied-01",
+      "heading": "预制楼梯与连接",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "92e2c1933ab40b85dcca93f2c1831110e9dfc242cc26f76a9057506520242e8e",
+      "image": "/images/stairs/stair-flight-flush-unburied-01-diagram.png",
+      "imageSha256": "2de2866088fff4cbef9c616bb0c3912ac3fc6eca170b57d98bf04f0399ae07b6",
+      "visualEvidence": "带孔预制梯段、平台板与平台梁支承形体对应；已移至预制连接而非现浇段落。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "梯段与平台梁节点处理（梯段齐步不埋步）",
+          "modelAsset": "/models/stairs/stair-flight-platform/stair-flight-flush-unburied-01.glb",
+          "modelSha256": "e0dd9fe0facce1c568c0afdc36c4d3d5398e3cd2aa47b4641a8cd6e8d0b996d3",
+          "drawnPixels": 13532,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-flight-flush-unburied-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-flight-flush-unburied-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "stairs/stairs-details",
+      "path": "basics/stairs/stairs-details.html",
+      "source": "src/data/textbook/stairs/stairs-details.md",
+      "sourceSha256": "30f4f20ff7051cdbfddf67f3fe3a28877b92eff2b7b60e751a9b4c22c4802368",
+      "figureId": "figure-1",
+      "nodeId": "stair-flight-flush-unburied-01",
+      "heading": "齐步、错步与平台节点",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "6aef08ca581155083bc45fc538d74bcd8a3d3d422d568fbf502704794bcbb9ab",
+      "image": "/images/stairs/stair-flight-flush-unburied-01-diagram.png",
+      "imageSha256": "2de2866088fff4cbef9c616bb0c3912ac3fc6eca170b57d98bf04f0399ae07b6",
+      "visualEvidence": "带孔预制梯段、平台板与平台梁支承形体对应；已移至预制连接而非现浇段落。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "梯段与平台梁节点处理（梯段齐步不埋步）",
+          "modelAsset": "/models/stairs/stair-flight-platform/stair-flight-flush-unburied-01.glb",
+          "modelSha256": "e0dd9fe0facce1c568c0afdc36c4d3d5398e3cd2aa47b4641a8cd6e8d0b996d3",
+          "drawnPixels": 13532,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-flight-flush-unburied-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-flight-flush-unburied-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "stairs/stairs-details",
+      "path": "basics/stairs/stairs-details.html",
+      "source": "src/data/textbook/stairs/stairs-details.md",
+      "sourceSha256": "30f4f20ff7051cdbfddf67f3fe3a28877b92eff2b7b60e751a9b4c22c4802368",
+      "figureId": "figure-2",
+      "nodeId": "stair-flight-offset-one-01",
+      "heading": "齐步、错步与平台节点",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "b56c5a23bb0e128cfb20c93d90187676810f3b2014406b85989b97dc353a6191",
+      "image": "/images/stairs/stair-flight-offset-one-01-diagram.png",
+      "imageSha256": "cb38b11d1abe55f040700655fd8d6b0e7d45687ac95107f900495176b7848d8f",
+      "visualEvidence": "预制梯段错一步与平台梁相对位置对应；已从防滑踏口段移至齐错步平台段。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "梯段与平台梁节点处理（梯段错一步）",
+          "modelAsset": "/models/stairs/stair-flight-platform/stair-flight-offset-one-01-v2.glb",
+          "modelSha256": "6df51bb731cf4d409848204a656ad0504de83ea708e41fa30afedebb891614d7",
+          "drawnPixels": 12080,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-flight-offset-one-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-flight-offset-one-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "stairs/stairs-steps-ramps",
+      "path": "basics/stairs/stairs-steps-ramps.html",
+      "source": "src/data/textbook/stairs/stairs-steps-ramps.md",
+      "sourceSha256": "975e1b2e615199ee656c717a364d53be2101f1e399b223da13ef5768c3f0017d",
+      "figureId": "figure-1",
+      "nodeId": "concrete-steps-01",
+      "heading": "台阶构造与不均匀变形",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "eb8d6acf5cf1759b0909c9e718cf2c9b200a274f018bd30e1eee282c1bb39b84",
+      "image": "/images/stairs/concrete-steps-diagram.png",
+      "imageSha256": "ae1f7fce6a26ba186adfcc53c8ee5fc1d13eaac512243f1291882bbc25272551",
+      "visualEvidence": "台阶、下部填土垫层与墙边关系对应；图中材料和尺度为示例，不推广为通用值。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "混凝土台阶",
+          "modelAsset": "/models/stairs/concrete-steps/concrete-steps.glb",
+          "modelSha256": "53475f8a42739d47e3ef69c8c8698577da0b6b59f593fc52a16fac4939d0ae0f",
+          "drawnPixels": 24804,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/concrete-steps-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/concrete-steps-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "stairs/stairs-steps-ramps",
+      "path": "basics/stairs/stairs-steps-ramps.html",
+      "source": "src/data/textbook/stairs/stairs-steps-ramps.md",
+      "sourceSha256": "975e1b2e615199ee656c717a364d53be2101f1e399b223da13ef5768c3f0017d",
+      "figureId": "figure-2",
+      "nodeId": "ramp-handrail-01",
+      "heading": "坡道的坡度、平台与防护",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "613be7914f5439dea6fd55a257d105fc5b0e49bdfbd5c183ebf16d41dd1de729",
+      "image": "/images/stairs/ramp-handrail-diagram.png",
+      "imageSha256": "260ae7ec12b536d00ffd8f84f376b0deb3ee4cbb5ec4b241e282e157c78fd011",
+      "visualEvidence": "坡道边缘立柱与双层扶手形体对应；原图尺寸只按给定示例识读。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "坡道扶手",
+          "modelAsset": "/models/stairs/ramp-handrail/ramp-handrail.glb",
+          "modelSha256": "5f56eee924395bcc45876b356d6a586ce7a4990e1171e41cc072ab278d293f91",
+          "drawnPixels": 10327,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/ramp-handrail-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/ramp-handrail-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "roof/roof-overview",
+      "path": "basics/roof/roof-overview.html",
+      "source": "src/data/textbook/roof/index.md",
+      "sourceSha256": "109799f25de1b8873ef79e1564432378f5038e008ab08d6579fa8f44bec01475",
+      "figureId": "figure-1",
+      "nodeId": "roof-truss-timber-01",
+      "heading": "屋顶的功能与构成",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "d999742c8d250d841c7199b39340ef5b1f39225d10c3dde3088a5da8145da0bf",
+      "image": "/images/roof/roof-truss-timber-diagram.png",
+      "imageSha256": "d66789cb38050e7a212e8a8e99b360ddf04e8e9a7e90e6afb2be0d65f59d0912",
+      "visualEvidence": "木屋架弦杆、腹杆及两端形体对应；仅一榀屋架，未表达檩条、覆盖层及完整屋面系统。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "屋架形式（木屋架）",
+          "modelAsset": "/models/roof/roof-trusses/timber.glb",
+          "modelSha256": "cdd619318b1b273f8d681cfb1c9a09d241f762bf0d481812dfc3232fc54584e5",
+          "drawnPixels": 9275,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/roof-truss-timber-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/roof-truss-timber-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "roof/roof-overview",
+      "path": "basics/roof/roof-overview.html",
+      "source": "src/data/textbook/roof/index.md",
+      "sourceSha256": "109799f25de1b8873ef79e1564432378f5038e008ab08d6579fa8f44bec01475",
+      "figureId": "figure-2",
+      "nodeId": "eaves-gutter-01",
+      "heading": "坡度、材料与水路",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "023cb5b7c3eab9ed5edeaca03593844b2ffd34d4d7e07d652b0d1222ca9fb73a",
+      "image": "/images/roof/eaves-gutter-diagram.png",
+      "imageSha256": "2b1262d6b54b3b623b2ec167dd27d907d30fd4cbab9693505e55661f2483ec47",
+      "visualEvidence": "原图与模型均为空心屋面板旁的外檐沟；已撤出坡瓦屋面专节，保留一般屋面水路说明。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "檐沟外排水",
+          "modelAsset": "/models/roof/eaves-gutter/eaves-gutter.glb",
+          "modelSha256": "3d4c6c77d640aedcfc62b8ba0e0308d80a437b1c2afbefbedb5f13bd0aab0de2",
+          "drawnPixels": 23802,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/eaves-gutter-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/eaves-gutter-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "roof/roof-flat",
+      "path": "basics/roof/roof-flat.html",
+      "source": "src/data/textbook/roof/roof-flat.md",
+      "sourceSha256": "0cc2bf81493f4707196914493d5f09da7413e2e263cec86b7050b6dcaa0e57e5",
+      "figureId": "figure-1",
+      "nodeId": "organized-drainage-01",
+      "heading": "无组织与有组织排水",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "8a51d595db1d848dddd7c9c40cd5407e97f43a73f4f7304ec2927f51a5729dd3",
+      "image": "/images/roof/organized-drainage-diagram.png",
+      "imageSha256": "a2574f4d265ddab8d3dbc2a91beb418dbca0191e0918ab0331a720c4cc8ef763",
+      "visualEvidence": "屋面空心板、沟体、出口及下接管段形体对应；已隔离四个构件纠正旧名称，局部图不表示地面雨水口。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "有组织排水屋顶",
+          "modelAsset": "/models/roof/organized-drainage/organized-drainage.glb",
+          "modelSha256": "49ea9bdc072342a265851eb43e300f6338422eba871a298f5f890c79290c4f40",
+          "drawnPixels": 19344,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/organized-drainage-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/organized-drainage-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "roof/roof-flat",
+      "path": "basics/roof/roof-flat.html",
+      "source": "src/data/textbook/roof/roof-flat.md",
+      "sourceSha256": "0cc2bf81493f4707196914493d5f09da7413e2e263cec86b7050b6dcaa0e57e5",
+      "figureId": "figure-2",
+      "nodeId": "coating-parapet-flashing-01",
+      "heading": "女儿墙、檐口与水落口",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "266a39faef3f98c7f116e60204b58d41014b60b06e74b7c0a580cb7e6671774f",
+      "image": "/images/roof/coating-parapet-flashing-diagram.png",
+      "imageSha256": "7caaf6ac52f2cafda171470b44c70427893b95f09eb38fbd63bd037aab3f4cb2",
+      "visualEvidence": "屋面水平防水与女儿墙竖向上翻、收头形体对应；传统尺寸不作通用要求。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "涂膜防水屋面的女儿墙泛水",
+          "modelAsset": "/models/roof/coating-parapet-flashing/coating-parapet-flashing.glb",
+          "modelSha256": "bad19ab0b457b721657ddbd6a5a7d338b1918429178da6b4182d269229ff0f93",
+          "drawnPixels": 25353,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/coating-parapet-flashing-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/coating-parapet-flashing-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "roof/roof-flat",
+      "path": "basics/roof/roof-flat.html",
+      "source": "src/data/textbook/roof/roof-flat.md",
+      "sourceSha256": "0cc2bf81493f4707196914493d5f09da7413e2e263cec86b7050b6dcaa0e57e5",
+      "figureId": "figure-3",
+      "nodeId": "vent-pipe-roof-01",
+      "heading": "贯穿设施、出入口与变形缝",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "f100e4f3768444ff14557867a0e56546c51c63f62294a26122f1e4db42d1e4d6",
+      "image": "/images/roof/vent-pipe-diagram.png",
+      "imageSha256": "87a01cef449a1f44ac1b2a05e603893b013b8ffb6ceca26878f0942e7e86e647",
+      "visualEvidence": "穿屋面管、管根泛水及上部帽部形体对应；需另核查固定、位移和收头密封。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "透气管出屋面",
+          "modelAsset": "/models/roof/vent-pipe/vent-pipe.glb",
+          "modelSha256": "f5c3b5484beb644c283c12d11063d129657359cd7e19dc23d0593c7a2442c2fd",
+          "drawnPixels": 15209,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/vent-pipe-roof-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/vent-pipe-roof-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "roof/roof-slope",
+      "path": "basics/roof/roof-slope.html",
+      "source": "src/data/textbook/roof/roof-slope.md",
+      "sourceSha256": "b1a18da8c899421fdb507d5261c5c23ef53374100d31f67fc88fc11bd7d03dee",
+      "figureId": "figure-1",
+      "nodeId": "roof-truss-steel-timber-01",
+      "heading": "坡面组织与承重体系",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "2cbe67df4a8a1c877f4f5baadf338c4505e04b5968a3a310ac68916c65dc7ac8",
+      "image": "/images/roof/roof-truss-steel-timber-diagram.png",
+      "imageSha256": "df98564bbb112d095e2535e1799ff9ff83220e1c286d5c07068901eb68cd6c10",
+      "visualEvidence": "钢木屋架杆件组合与原图对应；仅承重构件，支座与稳定需整体核查。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "屋架形式（钢木屋架）",
+          "modelAsset": "/models/roof/roof-trusses/steel-timber.glb",
+          "modelSha256": "fd7325eccaa4b2111531b76500b83a5e5f43c99a7dd4986c393c8121b4fc42ce",
+          "drawnPixels": 5775,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/roof-truss-steel-timber-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/roof-truss-steel-timber-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "roof/roof-slope",
+      "path": "basics/roof/roof-slope.html",
+      "source": "src/data/textbook/roof/roof-slope.md",
+      "sourceSha256": "b1a18da8c899421fdb507d5261c5c23ef53374100d31f67fc88fc11bd7d03dee",
+      "figureId": "figure-2",
+      "nodeId": "wood-batten-tile-roof-01",
+      "heading": "瓦屋面的基层、搭接与固定",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "11936053c102a8851131f3df6854484aa48575d49832f35df57ee48493421414",
+      "image": "/images/roof/wood-batten-tile-roof-01.png",
+      "imageSha256": "ab622a5c3b75dcaafd94e5e28a4f09acde2401b40753cfba1e03f64a33c54584",
+      "visualEvidence": "板—砂浆—防水—细石混凝土—顺水条—挂瓦条—瓦的实际层位与原图一致；已据图及GLB坐标纠正旧卡层序。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "木挂瓦条块瓦屋面构造",
+          "modelAsset": "/models/roof/wood-batten-tile-roof/wood-batten-tile-roof.glb",
+          "modelSha256": "1654dff64abf282e5c28af189a2a12dd8ed2325bf5c00e74b74f5cf1f6cc3152",
+          "drawnPixels": 15484,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/wood-batten-tile-roof-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/wood-batten-tile-roof-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "deformation-joint/roof-deformation-concept",
+      "path": "basics/deformation-joint/roof-deformation-concept.html",
+      "source": "src/data/textbook/deformation-joint/roof-deformation-concept.md",
+      "sourceSha256": "52247cbbf6933dba348aa997ff5c4a8fedb49e8284d560eef7524150c645912c",
+      "figureId": "figure-1",
+      "nodeId": "high-low-roof-joint-01",
+      "heading": "为什么需要允许建筑变形",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "31e3da468a1733332837edbad584abaa96aad42cacdaacf572b9c582ec50c0ff",
+      "image": "/images/roof/high-low-roof-joint-01-diagram.png",
+      "imageSha256": "65c889663c04d8bf86e7c99ab23e9aaeaf10bd63c507252c207e3251fc72005b",
+      "visualEvidence": "高低屋面、墙边缝与附加防水转折对应；局部图不证明设缝目的或基础断开范围。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "高低屋面变形缝（一）",
+          "modelAsset": "/models/roof/high-low-roof-joint/high-low-roof-joint-01.glb",
+          "modelSha256": "4311757decb99a543493560f994fbaa4e936c6f04aed3eabf43acfa64bb18584",
+          "drawnPixels": 26195,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/high-low-roof-joint-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/high-low-roof-joint-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "deformation-joint/roof-deformation-concept",
+      "path": "basics/deformation-joint/roof-deformation-concept.html",
+      "source": "src/data/textbook/deformation-joint/roof-deformation-concept.md",
+      "sourceSha256": "52247cbbf6933dba348aa997ff5c4a8fedb49e8284d560eef7524150c645912c",
+      "figureId": "figure-2",
+      "nodeId": "rigid-roof-transverse-joint-01",
+      "heading": "与分格缝、施工缝、后浇带的区别",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "301da4ec7c5e02a97c6797ac6fc35cf0c8c3567fb9a93da0947d5fe14d2c965d",
+      "image": "/images/roof/rigid-roof-transverse-joint-01-diagram.png",
+      "imageSha256": "0f5372cd9c3b8aed26f0079a0bc48a0c97d27e57c181ae432365271d29451bc6",
+      "visualEvidence": "刚性防水屋面局部分格及覆盖层对应；不当作贯通基础和主体的永久变形缝。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "刚性防水屋面横向分格缝（一）",
+          "modelAsset": "/models/roof/rigid-roof-joint/transverse-joint-01.glb",
+          "modelSha256": "b01b209e00ada37d8f937121402608d3f96155e767e8a91bc8f4babcf93b2c76",
+          "drawnPixels": 18653,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/rigid-roof-transverse-joint-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/rigid-roof-transverse-joint-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "deformation-joint/roof-deformation-location",
+      "path": "basics/deformation-joint/roof-deformation-location.html",
+      "source": "src/data/textbook/deformation-joint/roof-deformation-location.md",
+      "sourceSha256": "2d8be9b7fb6ed5191a1bcaed2e2423305fa50ca6212e6a20a315a683f21aa5f8",
+      "figureId": "figure-1",
+      "nodeId": "high-low-roof-joint-02",
+      "heading": "差异沉降与新旧建筑交接",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "a14470a37c616d565c7b44755cd3a0294ce21d340bc80b24f6dbd1efeb640504",
+      "image": "/images/roof/high-low-roof-joint-02-diagram.png",
+      "imageSha256": "417232d4ed4f6718a75c904acf7effe7b3d3cba4358b386f247b83ae1159f483",
+      "visualEvidence": "高低屋面盖板、缝与防水转折对应；图中数值不决定项目设缝宽度或间距。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "高低屋面变形缝（二）",
+          "modelAsset": "/models/roof/high-low-roof-joint/high-low-roof-joint-02.glb",
+          "modelSha256": "fe522b15935667405fc50707636605b6d87306418c39628ca0a3aa1675378440",
+          "drawnPixels": 28709,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/high-low-roof-joint-02--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/high-low-roof-joint-02--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "deformation-joint/roof-deformation-construction",
+      "path": "basics/deformation-joint/roof-deformation-construction.html",
+      "source": "src/data/textbook/deformation-joint/roof-deformation-construction.md",
+      "sourceSha256": "a9bdfe112ca2098bf0e801936500dadcdafbc1f0f328b79e6c0521a3968548c9",
+      "figureId": "figure-1",
+      "nodeId": "high-low-roof-joint-01",
+      "heading": "等高屋面与高低屋面",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "45dae454ad275e15e9f5cea17657c2f64efc2f0c79c83e2a057017d61a18ec56",
+      "image": "/images/roof/high-low-roof-joint-01-diagram.png",
+      "imageSha256": "65c889663c04d8bf86e7c99ab23e9aaeaf10bd63c507252c207e3251fc72005b",
+      "visualEvidence": "高低屋面、墙边缝与附加防水转折对应；局部图不证明设缝目的或基础断开范围。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "高低屋面变形缝（一）",
+          "modelAsset": "/models/roof/high-low-roof-joint/high-low-roof-joint-01.glb",
+          "modelSha256": "4311757decb99a543493560f994fbaa4e936c6f04aed3eabf43acfa64bb18584",
+          "drawnPixels": 26195,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/high-low-roof-joint-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/high-low-roof-joint-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "key": "deformation-joint/roof-deformation-construction",
+      "path": "basics/deformation-joint/roof-deformation-construction.html",
+      "source": "src/data/textbook/deformation-joint/roof-deformation-construction.md",
+      "sourceSha256": "a9bdfe112ca2098bf0e801936500dadcdafbc1f0f328b79e6c0521a3968548c9",
+      "figureId": "figure-2",
+      "nodeId": "high-low-roof-joint-02",
+      "heading": "读图与维护实例",
+      "relationship": "图示构造与模型实体对应，按图注限定的学习范围使用",
+      "verdict": "accepted",
+      "figureSha256": "eec5317eb0a35d97fe787fa5c0753ab15d1e9b9a142d8d65702f16873bfa5b3e",
+      "image": "/images/roof/high-low-roof-joint-02-diagram.png",
+      "imageSha256": "417232d4ed4f6718a75c904acf7effe7b3d3cba4358b386f247b83ae1159f483",
+      "visualEvidence": "高低屋面盖板、缝与防水转折对应；图中数值不决定项目设缝宽度或间距。",
+      "modelEvidence": [
+        {
+          "variant": "single",
+          "label": "高低屋面变形缝（二）",
+          "modelAsset": "/models/roof/high-low-roof-joint/high-low-roof-joint-02.glb",
+          "modelSha256": "fe522b15935667405fc50707636605b6d87306418c39628ca0a3aa1675378440",
+          "drawnPixels": 28709,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/high-low-roof-joint-02--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/high-low-roof-joint-02--single-model.png"
+        }
+      ]
+    }
+  ]
+}

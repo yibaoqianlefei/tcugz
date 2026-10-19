@@ -1,0 +1,647 @@
+{
+  "formatVersion": 1,
+  "date": "2026-10-16",
+  "integrationStatus": "文本交付包 未写入现有网站",
+  "basicCount": 7,
+  "principleCount": 6,
+  "learningOrder": [
+    "foundation",
+    "wall",
+    "door-window",
+    "floor",
+    "stairs",
+    "roof",
+    "deformation-joint"
+  ],
+  "existingHomeMenuOrder": [
+    "wall",
+    "door-window",
+    "foundation",
+    "floor",
+    "stairs",
+    "roof",
+    "deformation-joint"
+  ],
+  "parts": [
+    {
+      "order": 1,
+      "kind": "basics",
+      "file": "parts/01-基础与地基.md",
+      "title": "基础一 基础与地基"
+    },
+    {
+      "order": 2,
+      "kind": "basics",
+      "file": "parts/02-墙体.md",
+      "title": "基础二 墙体"
+    },
+    {
+      "order": 3,
+      "kind": "basics",
+      "file": "parts/03-门窗.md",
+      "title": "基础三 门窗"
+    },
+    {
+      "order": 4,
+      "kind": "basics",
+      "file": "parts/04-楼地层.md",
+      "title": "基础四 楼地层"
+    },
+    {
+      "order": 5,
+      "kind": "basics",
+      "file": "parts/05-楼梯.md",
+      "title": "基础五 楼梯"
+    },
+    {
+      "order": 6,
+      "kind": "basics",
+      "file": "parts/06-屋顶.md",
+      "title": "基础六 屋顶"
+    },
+    {
+      "order": 7,
+      "kind": "basics",
+      "file": "parts/07-变形缝.md",
+      "title": "基础七 变形缝"
+    },
+    {
+      "order": 8,
+      "kind": "principles",
+      "file": "parts/08-建筑保温.md",
+      "title": "原理一 建筑保温"
+    },
+    {
+      "order": 9,
+      "kind": "principles",
+      "file": "parts/09-建筑防水.md",
+      "title": "原理二 建筑防水"
+    },
+    {
+      "order": 10,
+      "kind": "principles",
+      "file": "parts/10-建筑隔热.md",
+      "title": "原理三 建筑隔热"
+    },
+    {
+      "order": 11,
+      "kind": "principles",
+      "file": "parts/11-建筑隔声.md",
+      "title": "原理四 建筑隔声"
+    },
+    {
+      "order": 12,
+      "kind": "principles",
+      "file": "parts/12-建筑防火.md",
+      "title": "原理五 建筑防火"
+    },
+    {
+      "order": 13,
+      "kind": "principles",
+      "file": "parts/13-建筑防潮.md",
+      "title": "原理六 建筑防潮"
+    }
+  ],
+  "articles": [
+    {
+      "group": "introduction",
+      "id": "intro-course-guide",
+      "title": "课程导读",
+      "route": "/lesson/introduction/intro-course-guide.html",
+      "articleMarkdown": "topics/introduction/intro-course-guide.md",
+      "futureSourceFile": "src/data/textbook/introduction/intro-course-guide.md",
+      "characters": 394,
+      "sha256": "9f50b8f193a8d338512d26e11c651af394acb3d61ddadc4fbf77930296510069"
+    },
+    {
+      "group": "introduction",
+      "id": "intro-classification",
+      "title": "建筑物的分类",
+      "route": "/lesson/introduction/intro-classification.html",
+      "articleMarkdown": "topics/introduction/intro-classification.md",
+      "futureSourceFile": "src/data/textbook/introduction/intro-classification.md",
+      "characters": 456,
+      "sha256": "09969dc9640bc10319e0ce0e98059dadf8ad7d32263895acaf5576a6e7f6af31"
+    },
+    {
+      "group": "introduction",
+      "id": "intro-grading",
+      "title": "建筑物的分级",
+      "route": "/lesson/introduction/intro-grading.html",
+      "articleMarkdown": "topics/introduction/intro-grading.md",
+      "futureSourceFile": "src/data/textbook/introduction/intro-grading.md",
+      "characters": 333,
+      "sha256": "7c67b224232399bdb776b925902590e368b2fa3e6c9a520fa74600d384aa2d00"
+    },
+    {
+      "group": "introduction",
+      "id": "intro-composition",
+      "title": "建筑物的构造组成",
+      "route": "/lesson/introduction/intro-composition.html",
+      "articleMarkdown": "topics/introduction/intro-composition.md",
+      "futureSourceFile": "src/data/textbook/introduction/intro-composition.md",
+      "characters": 513,
+      "sha256": "8e79f76a3e1200cf5ef2f814c717bd02398cf9e710a0cee05bdf0791ce246c63"
+    },
+    {
+      "group": "introduction",
+      "id": "intro-factors",
+      "title": "影响建筑物的因素",
+      "route": "/lesson/introduction/intro-factors.html",
+      "articleMarkdown": "topics/introduction/intro-factors.md",
+      "futureSourceFile": "src/data/textbook/introduction/intro-factors.md",
+      "characters": 409,
+      "sha256": "ac57c290ae3e3d66ea45c55f3647990f1531725704767dd338b0601239408389"
+    },
+    {
+      "group": "introduction",
+      "id": "intro-design-principles",
+      "title": "建筑构造的设计原则",
+      "route": "/lesson/introduction/intro-design-principles.html",
+      "articleMarkdown": "topics/introduction/intro-design-principles.md",
+      "futureSourceFile": "src/data/textbook/introduction/intro-design-principles.md",
+      "characters": 318,
+      "sha256": "6d7494f1012c9cb536922923731ce30d78cc95f17c97bd5a220d4ffe179370d4"
+    },
+    {
+      "group": "introduction",
+      "id": "intro-drawing-standards",
+      "title": "专题：制图标准与规范",
+      "route": "/lesson/introduction/intro-drawing-standards.html",
+      "articleMarkdown": "topics/introduction/intro-drawing-standards.md",
+      "futureSourceFile": "src/data/textbook/introduction/intro-drawing-standards.md",
+      "characters": 672,
+      "sha256": "1ab2209f0c33bf02da72505ef747111fb0e238c634b94aabf3fb7d3b6172f984"
+    },
+    {
+      "group": "principles",
+      "id": "thermal",
+      "title": "建筑保温",
+      "route": "/lesson/principles/thermal.html",
+      "articleMarkdown": "topics/principles/thermal.md",
+      "futureSourceFile": "src/data/textbook/principles/thermal.md",
+      "characters": 2143,
+      "sha256": "1d96deff513579963ef80ed6ab0e2f381074d242bae6f8b2ee288c99fcedbbb8"
+    },
+    {
+      "group": "principles",
+      "id": "waterproof",
+      "title": "建筑防水",
+      "route": "/lesson/principles/waterproof.html",
+      "articleMarkdown": "topics/principles/waterproof.md",
+      "futureSourceFile": "src/data/textbook/principles/waterproof.md",
+      "characters": 1890,
+      "sha256": "b7eca4fdefd31b91c69213eaefa029875c1408f5c58ec039139e8a0c37540276"
+    },
+    {
+      "group": "principles",
+      "id": "insulation",
+      "title": "建筑隔热",
+      "route": "/lesson/principles/insulation.html",
+      "articleMarkdown": "topics/principles/insulation.md",
+      "futureSourceFile": "src/data/textbook/principles/insulation.md",
+      "characters": 1714,
+      "sha256": "20d44b78a9243ffd88ba7ad246f574f9385b06b3fd9f454d59d733844d00094a"
+    },
+    {
+      "group": "principles",
+      "id": "acoustic",
+      "title": "建筑隔声",
+      "route": "/lesson/principles/acoustic.html",
+      "articleMarkdown": "topics/principles/acoustic.md",
+      "futureSourceFile": "src/data/textbook/principles/acoustic.md",
+      "characters": 1557,
+      "sha256": "8d891f92baf172dfbc315e6ae066a9d9467b608769b1873e47e980bb13733e30"
+    },
+    {
+      "group": "principles",
+      "id": "fire",
+      "title": "建筑防火",
+      "route": "/lesson/principles/fire.html",
+      "articleMarkdown": "topics/principles/fire.md",
+      "futureSourceFile": "src/data/textbook/principles/fire.md",
+      "characters": 1708,
+      "sha256": "e27e22f765be022176fbf4bbb0722875748310e78c7935c5082173f0486bcec9"
+    },
+    {
+      "group": "principles",
+      "id": "moisture",
+      "title": "建筑防潮",
+      "route": "/lesson/principles/moisture.html",
+      "articleMarkdown": "topics/principles/moisture.md",
+      "futureSourceFile": "src/data/textbook/principles/moisture.md",
+      "characters": 1832,
+      "sha256": "ed276ce23e9ff9b9755aec6cdd31c52a6a324c734c0af580abc43d510792199c"
+    },
+    {
+      "group": "practice",
+      "id": "construction-brief",
+      "title": "构造方案说明",
+      "route": "/lesson/practice/construction-brief.html",
+      "articleMarkdown": "topics/practice/construction-brief.md",
+      "futureSourceFile": "src/data/textbook/practice/construction-brief.md",
+      "characters": 222,
+      "sha256": "ac67d8aa156fe3039573e2fd20d5f8324b7fc698529e3185f34132ad8a9a5c99"
+    },
+    {
+      "group": "practice",
+      "id": "floor-layout",
+      "title": "楼面构造布置",
+      "route": "/lesson/practice/floor-layout.html",
+      "articleMarkdown": "topics/practice/floor-layout.md",
+      "futureSourceFile": "src/data/textbook/practice/floor-layout.md",
+      "characters": 196,
+      "sha256": "8e10e68f662377e5d8982a89953c5c2ff5f072164c6874a9dd05eb2252a81501"
+    },
+    {
+      "group": "practice",
+      "id": "stairs-drawing",
+      "title": "楼梯绘图",
+      "route": "/lesson/practice/stairs-drawing.html",
+      "articleMarkdown": "topics/practice/stairs-drawing.md",
+      "futureSourceFile": "src/data/textbook/practice/stairs-drawing.md",
+      "characters": 361,
+      "sha256": "5ec27576395e36b12ade99372194f5f348b5d673a3b4d54161e7b5e49bc50286"
+    },
+    {
+      "group": "practice",
+      "id": "roof-drainage",
+      "title": "屋顶排水设计",
+      "route": "/lesson/practice/roof-drainage.html",
+      "articleMarkdown": "topics/practice/roof-drainage.md",
+      "futureSourceFile": "src/data/textbook/practice/roof-drainage.md",
+      "characters": 208,
+      "sha256": "42c78e5cae7f88c30b5ec70d59207609f795a8dda7e3efabb67ff58afe2ac687"
+    },
+    {
+      "group": "practice",
+      "id": "envelope-detail",
+      "title": "外檐节点综合",
+      "route": "/lesson/practice/envelope-detail.html",
+      "articleMarkdown": "topics/practice/envelope-detail.md",
+      "futureSourceFile": "src/data/textbook/practice/envelope-detail.md",
+      "characters": 182,
+      "sha256": "320d491433293e04b8c4e0af8a3e87d0ffebe25c44fc9bde05bc08e7254cfdac"
+    },
+    {
+      "group": "practice",
+      "id": "integrated-design",
+      "title": "综合课程设计",
+      "route": "/lesson/practice/integrated-design.html",
+      "articleMarkdown": "topics/practice/integrated-design.md",
+      "futureSourceFile": "src/data/textbook/practice/integrated-design.md",
+      "characters": 205,
+      "sha256": "f61f7b594b585772fcd27a7e6da76eea801fa50be7c2259c76f5d3ea6b2a64b8"
+    },
+    {
+      "group": "practice",
+      "id": "construction-survey",
+      "title": "构造调研",
+      "route": "/lesson/practice/construction-survey.html",
+      "articleMarkdown": "topics/practice/construction-survey.md",
+      "futureSourceFile": "src/data/textbook/practice/construction-survey.md",
+      "characters": 204,
+      "sha256": "5a5b08e2e223a1b51dfbca57f91daa87852d87918790c9fc917379738dc91536"
+    },
+    {
+      "group": "foundation",
+      "id": "foundation-overview",
+      "title": "基础与地基概述",
+      "route": "/lesson/basics/foundation/foundation-overview.html",
+      "articleMarkdown": "topics/foundation/foundation-overview.md",
+      "futureSourceFile": "src/data/textbook/foundation/foundation-overview.md",
+      "characters": 1007,
+      "sha256": "bffca04263f70e43a898d09c0523896b949e6ff0aa3204bbbe8cf7e7625b5026"
+    },
+    {
+      "group": "foundation",
+      "id": "foundation-design",
+      "title": "基础与地基的设计要求",
+      "route": "/lesson/basics/foundation/foundation-design.html",
+      "articleMarkdown": "topics/foundation/foundation-design.md",
+      "futureSourceFile": "src/data/textbook/foundation/foundation-design.md",
+      "characters": 1043,
+      "sha256": "2b502df4b9e7b2612ae48a68a8f3de27a168ed993be0feee8c4c47f4dee4b7e0"
+    },
+    {
+      "group": "foundation",
+      "id": "foundation-types",
+      "title": "基础的分类",
+      "route": "/lesson/basics/foundation/foundation-types.html",
+      "articleMarkdown": "topics/foundation/foundation-types.md",
+      "futureSourceFile": "src/data/textbook/foundation/foundation-types.md",
+      "characters": 1430,
+      "sha256": "a08fc9125a05ff1865aebeda1495e12fe4b930cceef3f9ddb9a09ec46a387ba3"
+    },
+    {
+      "group": "foundation",
+      "id": "foundation-underground",
+      "title": "基础与地下结构的类型",
+      "route": "/lesson/basics/foundation/foundation-underground.html",
+      "articleMarkdown": "topics/foundation/foundation-underground.md",
+      "futureSourceFile": "src/data/textbook/foundation/foundation-underground.md",
+      "characters": 732,
+      "sha256": "f8258ac165a3187cdc34c89bdfe37471a8011deb7b02efd187e6c2451e671b35"
+    },
+    {
+      "group": "foundation",
+      "id": "foundation-depth",
+      "title": "基础的埋置深度与影响因素",
+      "route": "/lesson/basics/foundation/foundation-depth.html",
+      "articleMarkdown": "topics/foundation/foundation-depth.md",
+      "futureSourceFile": "src/data/textbook/foundation/foundation-depth.md",
+      "characters": 782,
+      "sha256": "716a97046988044d710a37b8833120b2d79b1848c6dd7d9767b90e2295a60521"
+    },
+    {
+      "group": "foundation",
+      "id": "foundation-settlement",
+      "title": "不均匀沉降",
+      "route": "/lesson/basics/foundation/foundation-settlement.html",
+      "articleMarkdown": "topics/foundation/foundation-settlement.md",
+      "futureSourceFile": "src/data/textbook/foundation/foundation-settlement.md",
+      "characters": 992,
+      "sha256": "73c708a44c0dfe5c77f779aa0b0bc6aef67db4e2f5cacf125cd81b90fd429091"
+    },
+    {
+      "group": "wall",
+      "id": "index",
+      "title": "墙体概述",
+      "route": "/lesson/basics/wall/index.html",
+      "articleMarkdown": "topics/walls/index.md",
+      "futureSourceFile": "src/data/textbook/walls/index.md",
+      "characters": 134,
+      "sha256": "26995237deaee006e6eb88adb401ffbcd18d4ea803afee9705ccce0e72df22b3"
+    },
+    {
+      "group": "wall",
+      "id": "wall-role",
+      "title": "墙体在建筑中的作用",
+      "route": "/lesson/basics/wall/wall-role.html",
+      "articleMarkdown": "topics/walls/wall-role.md",
+      "futureSourceFile": "src/data/textbook/walls/wall-role.md",
+      "characters": 584,
+      "sha256": "243307ee0b805e9a4b25c06570ccfc9d6cbb21f2a3be4991488319826a8d39cb"
+    },
+    {
+      "group": "wall",
+      "id": "wall-types",
+      "title": "墙体的类型",
+      "route": "/lesson/basics/wall/wall-types.html",
+      "articleMarkdown": "topics/walls/wall-types.md",
+      "futureSourceFile": "src/data/textbook/walls/wall-types.md",
+      "characters": 708,
+      "sha256": "d59a2caf51b7ea9e2b0a60287a1c56bea281105a06410836825f083834d4dd0c"
+    },
+    {
+      "group": "wall",
+      "id": "wall-masonry",
+      "title": "砌体结构",
+      "route": "/lesson/basics/wall/wall-masonry.html",
+      "articleMarkdown": "topics/walls/wall-masonry.md",
+      "futureSourceFile": "src/data/textbook/walls/wall-masonry.md",
+      "characters": 2230,
+      "sha256": "19e48b23c3af067af6487bf3cc979024bebd29fec2491740444faa43426acb34"
+    },
+    {
+      "group": "wall",
+      "id": "wall-partition",
+      "title": "隔墙",
+      "route": "/lesson/basics/wall/wall-partition.html",
+      "articleMarkdown": "topics/walls/partitions.md",
+      "futureSourceFile": "src/data/textbook/walls/partitions.md",
+      "characters": 1265,
+      "sha256": "a52e292f607b77fbae5f6fff84abf531e123610c400b537dd90737e5983dd5aa"
+    },
+    {
+      "group": "wall",
+      "id": "wall-design-requirements",
+      "title": "墙体的设计要求",
+      "route": "/lesson/basics/wall/wall-design-requirements.html",
+      "articleMarkdown": "topics/walls/wall-design-requirements.md",
+      "futureSourceFile": "src/data/textbook/walls/wall-design-requirements.md",
+      "characters": 1738,
+      "sha256": "1a8f066e797073fe6b715ca9f499cd8415114349453ce32c7d92285a14742b7f"
+    },
+    {
+      "group": "wall",
+      "id": "wall-details",
+      "title": "墙体细部构造",
+      "route": "/lesson/basics/wall/wall-details.html",
+      "articleMarkdown": "topics/walls/wall-details.md",
+      "futureSourceFile": "src/data/textbook/walls/wall-details.md",
+      "characters": 1782,
+      "sha256": "f87f7fae04163c8f86870e63b453b56606c6e62c1d4be5cc82b68fee9a99053e"
+    },
+    {
+      "group": "wall",
+      "id": "wall-finishes",
+      "title": "墙面装修",
+      "route": "/lesson/basics/wall/wall-finishes.html",
+      "articleMarkdown": "topics/walls/wall-finishes.md",
+      "futureSourceFile": "src/data/textbook/walls/wall-finishes.md",
+      "characters": 2343,
+      "sha256": "87ebfc8e37f71e7e26c09f94fe27557f4bb06422ad8a6d43bf0903a19f24c066"
+    },
+    {
+      "group": "door-window",
+      "id": "window-door-overview",
+      "title": "门窗的作用与分类",
+      "route": "/lesson/basics/door-window/window-door-overview.html",
+      "articleMarkdown": "topics/door-window/window-door-overview.md",
+      "futureSourceFile": "src/data/textbook/door-window/window-door-overview.md",
+      "characters": 2710,
+      "sha256": "5f8855c59ad34a0790dc65dae20697f19810333746347350d465eca21eb8a660"
+    },
+    {
+      "group": "door-window",
+      "id": "window-door-design",
+      "title": "门窗的设计要求",
+      "route": "/lesson/basics/door-window/window-door-design.html",
+      "articleMarkdown": "topics/door-window/window-door-design.md",
+      "futureSourceFile": "src/data/textbook/door-window/window-door-design.md",
+      "characters": 3534,
+      "sha256": "0fa40ac1c725dad6c3c0f84e7613f269fe62461ae9cf8f6aad8b6ccb21460e78"
+    },
+    {
+      "group": "floor",
+      "id": "floor-overview",
+      "title": "楼地层概述",
+      "route": "/lesson/basics/floor/floor-overview.html",
+      "articleMarkdown": "topics/floor/floor-overview.md",
+      "futureSourceFile": "src/data/textbook/floor/floor-overview.md",
+      "characters": 1385,
+      "sha256": "7787799992e2995559fd613c16454e8b971f9b776277fd0cd87eef1e546d0960"
+    },
+    {
+      "group": "floor",
+      "id": "floor-rc-slab",
+      "title": "钢筋混凝土楼板",
+      "route": "/lesson/basics/floor/floor-rc-slab.html",
+      "articleMarkdown": "topics/floor/floor-rc-slab.md",
+      "futureSourceFile": "src/data/textbook/floor/floor-rc-slab.md",
+      "characters": 2709,
+      "sha256": "9d8a1a338d782a237ad91ff5205fad72346e6fc12376829633cc8046cfe2825c"
+    },
+    {
+      "group": "floor",
+      "id": "floor-ground-composition",
+      "title": "地面的构造组成",
+      "route": "/lesson/basics/floor/floor-ground-composition.html",
+      "articleMarkdown": "topics/floor/floor-ground-composition.md",
+      "futureSourceFile": "src/data/textbook/floor/floor-ground-composition.md",
+      "characters": 970,
+      "sha256": "49e56dd745a9d35ca94e4ed1454813133ab223a978edf65df0166886b0f0540e"
+    },
+    {
+      "group": "floor",
+      "id": "floor-ground-layer",
+      "title": "地面层",
+      "route": "/lesson/basics/floor/floor-ground-layer.html",
+      "articleMarkdown": "topics/floor/floor-ground-layer.md",
+      "futureSourceFile": "src/data/textbook/floor/floor-ground-layer.md",
+      "characters": 1643,
+      "sha256": "551193a1ecb30fe857f06e50b610fbe2bb6983a28c3acce6ab082bbf18e1bdb2"
+    },
+    {
+      "group": "floor",
+      "id": "floor-balcony",
+      "title": "阳台及雨棚",
+      "route": "/lesson/basics/floor/floor-balcony.html",
+      "articleMarkdown": "topics/floor/floor-balcony.md",
+      "futureSourceFile": "src/data/textbook/floor/floor-balcony.md",
+      "characters": 1344,
+      "sha256": "fb6a59da379fb04c89f7b734cd87aee86bbc5cbc485b6c3f8678eee0b6c815f9"
+    },
+    {
+      "group": "floor",
+      "id": "finish-overview",
+      "title": "建筑装修概论",
+      "route": "/lesson/basics/floor/finish-overview.html",
+      "articleMarkdown": "topics/floor/finish-overview.md",
+      "futureSourceFile": "src/data/textbook/floor/finish-overview.md",
+      "characters": 947,
+      "sha256": "c77b2aa98d4ce7398b5e4602911f6e1610a289d2433b9389c4c446b9e7adc733"
+    },
+    {
+      "group": "floor",
+      "id": "floor-ceiling",
+      "title": "顶棚构造",
+      "route": "/lesson/basics/floor/floor-ceiling.html",
+      "articleMarkdown": "topics/floor/floor-ceiling.md",
+      "futureSourceFile": "src/data/textbook/floor/floor-ceiling.md",
+      "characters": 1213,
+      "sha256": "055be242f5bfc1337e6015de469e6b828feba2243072c327d90e8e3ea1828ece"
+    },
+    {
+      "group": "stairs",
+      "id": "stairs-overview",
+      "title": "楼梯的基本概念及设计要求",
+      "route": "/lesson/basics/stairs/stairs-overview.html",
+      "articleMarkdown": "topics/stairs/stairs-overview.md",
+      "futureSourceFile": "src/data/textbook/stairs/stairs-overview.md",
+      "characters": 4198,
+      "sha256": "3f9b72f1f258ab961f593b31f83d7fead053c4c0d107b5b3c90da4b04203b6dd"
+    },
+    {
+      "group": "stairs",
+      "id": "stairs-rc-structure",
+      "title": "钢筋混凝土楼梯构造",
+      "route": "/lesson/basics/stairs/stairs-rc-structure.html",
+      "articleMarkdown": "topics/stairs/stairs-rc-structure.md",
+      "futureSourceFile": "src/data/textbook/stairs/stairs-rc-structure.md",
+      "characters": 1403,
+      "sha256": "919eb69f2de04e283e7cf1fb58fbb927c9f915c32fb84dcbc781e7729ffe06e0"
+    },
+    {
+      "group": "stairs",
+      "id": "stairs-details",
+      "title": "楼梯的细部构造",
+      "route": "/lesson/basics/stairs/stairs-details.html",
+      "articleMarkdown": "topics/stairs/stairs-details.md",
+      "futureSourceFile": "src/data/textbook/stairs/stairs-details.md",
+      "characters": 1404,
+      "sha256": "e87199d5c1979556dcb54c2820300901c8e2c0a58768c7d81222eb9ef63cb33f"
+    },
+    {
+      "group": "stairs",
+      "id": "stairs-steps-ramps",
+      "title": "台阶与坡道",
+      "route": "/lesson/basics/stairs/stairs-steps-ramps.html",
+      "articleMarkdown": "topics/stairs/stairs-steps-ramps.md",
+      "futureSourceFile": "src/data/textbook/stairs/stairs-steps-ramps.md",
+      "characters": 1100,
+      "sha256": "6e1c8c290c4a575efe7ab2b7bdcfd3809fb5b8f0da1d091bfa8da58d5ed7cef5"
+    },
+    {
+      "group": "stairs",
+      "id": "stairs-elevator",
+      "title": "电梯及自动扶梯",
+      "route": "/lesson/basics/stairs/stairs-elevator.html",
+      "articleMarkdown": "topics/stairs/stairs-elevator.md",
+      "futureSourceFile": "src/data/textbook/stairs/stairs-elevator.md",
+      "characters": 1479,
+      "sha256": "a3cf199d12a8f9f8ef0dbd0d8299ea08b2d6205055a8acd09b5100f7bd952021"
+    },
+    {
+      "group": "roof",
+      "id": "roof-overview",
+      "title": "屋顶概述",
+      "route": "/lesson/basics/roof/roof-overview.html",
+      "articleMarkdown": "topics/roof/index.md",
+      "futureSourceFile": "src/data/textbook/roof/index.md",
+      "characters": 2018,
+      "sha256": "ee8dd284b8ebd35debf8920010db63e12935c55bbb89c95eaf567eac831f37fe"
+    },
+    {
+      "group": "roof",
+      "id": "roof-flat",
+      "title": "平屋面构造",
+      "route": "/lesson/basics/roof/roof-flat.html",
+      "articleMarkdown": "topics/roof/roof-flat.md",
+      "futureSourceFile": "src/data/textbook/roof/roof-flat.md",
+      "characters": 6701,
+      "sha256": "6e1bf26f27fbd01faa75b6ae9ee5f098a2c10e7ffa92e17e82ac67734ce4c981"
+    },
+    {
+      "group": "roof",
+      "id": "roof-slope",
+      "title": "坡屋面构造",
+      "route": "/lesson/basics/roof/roof-slope.html",
+      "articleMarkdown": "topics/roof/roof-slope.md",
+      "futureSourceFile": "src/data/textbook/roof/roof-slope.md",
+      "characters": 3551,
+      "sha256": "ef1ffd1e1d8d3b43f5bda0889786490bf4c085e92e7447b80ed460eb78fc3846"
+    },
+    {
+      "group": "deformation-joint",
+      "id": "roof-deformation-concept",
+      "title": "建筑变形缝的概念",
+      "route": "/lesson/basics/deformation-joint/roof-deformation-concept.html",
+      "articleMarkdown": "topics/deformation-joint/roof-deformation-concept.md",
+      "futureSourceFile": "src/data/textbook/deformation-joint/roof-deformation-concept.md",
+      "characters": 1502,
+      "sha256": "54390bdc69c6fc2e1032f6ea6a410dd876a78b36df7a96ff8a11777f73a67ae0"
+    },
+    {
+      "group": "deformation-joint",
+      "id": "roof-deformation-location",
+      "title": "变形缝的设置",
+      "route": "/lesson/basics/deformation-joint/roof-deformation-location.html",
+      "articleMarkdown": "topics/deformation-joint/roof-deformation-location.md",
+      "futureSourceFile": "src/data/textbook/deformation-joint/roof-deformation-location.md",
+      "characters": 1458,
+      "sha256": "d6e9d9d8fc21489a19fbd80117a3b01c93ab748cf0dea0328bc35218a0b0c9ad"
+    },
+    {
+      "group": "deformation-joint",
+      "id": "roof-deformation-construction",
+      "title": "变形缝的构造",
+      "route": "/lesson/basics/deformation-joint/roof-deformation-construction.html",
+      "articleMarkdown": "topics/deformation-joint/roof-deformation-construction.md",
+      "futureSourceFile": "src/data/textbook/deformation-joint/roof-deformation-construction.md",
+      "characters": 2630,
+      "sha256": "7383726303c18969d5e6d559b5ed62fa6d2da8c232503a41b83219b13e36a183"
+    }
+  ]
+}

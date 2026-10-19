@@ -1,0 +1,2114 @@
+{
+  "created_on": "2026-10-16",
+  "source": "建筑构造上册讲义-李峰.doc",
+  "source_sha256": "94b82def87058e630a616aab7b65b5d5703194c64227fcc122a1e385764ffecb",
+  "source_paragraph_file": "audit-output/textbook-audit-2026-10-11/paragraphs.json",
+  "allocation_reference": "audit-output/textbook-audit-2026-10-11/content-allocation.json",
+  "scope": "基础一、基础二初稿及墙面相关饰面内容；未修改网站文件；未声称现行规范数值核验",
+  "notes": [
+    "source_content_points保留原分配表知识点，须结合逐块rewrites、omissions及coverage理解实际覆盖",
+    "shared_or_partial表示共享装修概论只摘墙面相关内容，完整概论在楼地层",
+    "P2345–2350整体交楼地层，P2418地面做法交楼地层",
+    "未把历史规范、地区惯例或旧课堂速记作为当前通用参数",
+    "补充解释为连贯教学所需基础原理，无新增现行规范条款或设计数值"
+  ],
+  "sections": [
+    {
+      "section_id": "foundation-overview",
+      "title": "基础与地基概述",
+      "document": "网站文本/parts/01-基础与地基.md",
+      "target_public_path": "/lesson/basics/foundation/foundation-overview.html",
+      "source_ranges": [
+        "P1491–P1513",
+        "P1533–P1551"
+      ],
+      "allocation_ids": [
+        "B071",
+        "B073"
+      ],
+      "covered_points": [
+        "基础是建筑构件，地基是支承基础的地层",
+        "上部结构→基础→地基的传力关系",
+        "面积、作用、地基承载的概念联系",
+        "天然与人工地基的区别",
+        "土与岩的类型、固体颗粒/水/空气组成",
+        "不同土层状态影响承载与变形"
+      ],
+      "supplemental_explanations": [
+        "区分持力层与荷载影响范围内其他地层",
+        "平均基底压力仅作中心受力概念式，不能代替设计验算"
+      ],
+      "rewrites": [
+        "P1503将第一处地基改正为基础",
+        "P1495–1513不一致符号改为p=N/A概念式，补齐中心受力和作用范围条件",
+        "消除P1540五大类/六大类自相矛盾；保留常见地层类别",
+        "土三相解释包括饱和条件，不以土名直接推承载力"
+      ],
+      "omissions": [
+        null
+      ]
+    },
+    {
+      "section_id": "foundation-design",
+      "title": "基础与地基的设计要求",
+      "document": "网站文本/parts/01-基础与地基.md",
+      "target_public_path": "/lesson/basics/foundation/foundation-design.html",
+      "source_ranges": [
+        "P1514–P1532",
+        "P1557–P1574",
+        "P1575–P1604"
+      ],
+      "allocation_ids": [
+        "B072",
+        "B075",
+        "B076"
+      ],
+      "covered_points": [
+        "强度、稳定性、沉降控制、耐久与经济性",
+        "荷载、基础面积、地基条件之间的选型关系",
+        "地下水腐蚀与冻融对材料的影响",
+        "地形地貌、周边地下设施和建筑现状",
+        "钻孔、地质剖面、土层参数、地下水和腐蚀性",
+        "勘察报告对基础类型和埋深的建议",
+        "人工处理改善地基承载与变形",
+        "压实、夯实、碾压、振动的机理",
+        "换填用于软弱土层，范围和材料需设计"
+      ],
+      "supplemental_explanations": [
+        "地基承载、基础构件受力与稳定须分别理解",
+        "地基处理与桩基础、复合地基分清受力体系"
+      ],
+      "rewrites": [
+        "分别解释承载、稳定、总沉降及差异沉降；保留耐久与经济",
+        "保留地形、钻孔剖面、参数、地下水腐蚀及勘察建议，增加关联读图步骤",
+        "保留夯打碾压振动换填挤密排水机理，效果取决于土类设备及检测",
+        "P1578–1581把桩基不再一概归入土体加固"
+      ],
+      "omissions": [
+        "P1531基础造价百分比",
+        "P1586–1598旧夯重、落高、遍数、处理范围、深度及承载数值"
+      ]
+    },
+    {
+      "section_id": "foundation-types",
+      "title": "基础的分类",
+      "document": "网站文本/parts/01-基础与地基.md",
+      "target_public_path": "/lesson/basics/foundation/foundation-types.html",
+      "source_ranges": [
+        "P1605–P1621",
+        "P1662–P1676",
+        "P1677–P1686",
+        "P1691–P1693",
+        "P1694–P1717",
+        "P1718–P1723",
+        "P1724–P1732",
+        "P1733–P1743"
+      ],
+      "allocation_ids": [
+        "B077",
+        "B082",
+        "B083",
+        "B085",
+        "B086",
+        "B087",
+        "B088",
+        "B089"
+      ],
+      "covered_points": [
+        "桩端和桩侧传力、摩擦/端承的概念",
+        "按材料和施工方法分类",
+        "桩与承台共同传递荷载",
+        "按构造形式、材料、传力分类的不同维度",
+        "墙下与柱下条形基础",
+        "台阶、锥形、杯形独立基础及上部结构联系",
+        "柱下联合、条形和交叉条形基础",
+        "筏形板式/梁板式与基础面积连续化",
+        "低承载地基、荷载与整体刚度选型联系",
+        "基础形式与墙柱受力体系相联系",
+        "地基条件与扩大/连续基础的联系",
+        "按材料与是否配筋分类",
+        "扩展宽高比、材料抗拉能力与截面关系",
+        "传统刚性/柔性称呼与原文已提示的术语更新",
+        "传统砖基础阶梯放脚",
+        "两皮一收、二一间收与宽高比、材料用量",
+        "毛石、料石基础与台阶砌筑",
+        "材料强度和基底宽度影响构造",
+        "材料可塑性与截面形式选择",
+        "矩形、阶梯、梯形截面和工程量关系",
+        "毛石混凝土与普通混凝土的区别"
+      ],
+      "supplemental_explanations": [
+        "独立基础系梁与联合基础的区别",
+        "沉井等深基础只作概念介绍，不新增工法参数"
+      ],
+      "rewrites": [
+        "P1606、1608桩必须到岩层改为适宜土层或岩层",
+        "P1612–1613摩擦桩不等同挤实桩；区分侧阻端阻与施工效应",
+        "承台连接按作用与锚固解释，不推广P1621旧50mm及根数",
+        "保留墙下条基与柱下独立台阶锥杯形，独立基础可有系梁，不一概无连接",
+        "联合基础共同承柱与独立基础间系梁分开；保留条基井格筏板平板式梁板式",
+        "保留墙柱体系、地基和扩大/连续基础的因果联系，不称所有基础都仅是墙柱地下延伸",
+        "无筋扩展的宽高限制与材料抗拉联系；传统刚柔称谓仅供读旧资料",
+        "钢筋混凝土仍须验算弯剪冲切，不理解为不受限制",
+        "保留大放脚、两皮一收二一间收的传统砌筑原理；不推广为当前通用基础方案",
+        "保留毛石料石与砌筑截面、材料形状质量关系",
+        "保留混凝土可塑性、矩形台阶梯形与工程量关系，毛石须按要求置入"
+      ],
+      "omissions": [
+        "P1616将砂石增强体与承载桩混列",
+        "P1618爆扩工法和预制桩一律桩靴的旧概括",
+        "P1686筏板厚度不小于200mm通用值",
+        "P1725–1732可疑低石材强度及旧尺寸、三层以下适用结论",
+        "P1736旧混凝土等级",
+        "P1738–1741以高度直接选截面的通用数值"
+      ]
+    },
+    {
+      "section_id": "foundation-underground",
+      "title": "基础与地下结构的类型",
+      "document": "网站文本/parts/01-基础与地基.md",
+      "target_public_path": "/lesson/basics/foundation/foundation-underground.html",
+      "source_ranges": [
+        "P1687–P1690"
+      ],
+      "allocation_ids": [
+        "B084"
+      ],
+      "covered_points": [
+        "箱形基础底板、顶板和内外墙形成空间体系",
+        "地下空间可以具备使用功能",
+        "地下结构防水、防潮和受力要求需分别处理"
+      ],
+      "supplemental_explanations": [
+        "地下室不必然采用箱形基础",
+        "侧向土水压力、底板浮力及抗浮的基本关系",
+        "结构防水、附加防水、节点止水与保护的连续性"
+      ],
+      "rewrites": [
+        "保留上下板与纵横墙的箱体空间体系及使用功能",
+        "P1690两处顶板最小厚度自相矛盾，统一转为依受力、跨度、裂缝及施工设计"
+      ],
+      "omissions": [
+        "P1690底板、顶板、墙身旧通用厚度"
+      ]
+    },
+    {
+      "section_id": "foundation-depth",
+      "title": "基础的埋置深度与影响因素",
+      "document": "网站文本/parts/01-基础与地基.md",
+      "target_public_path": "/lesson/basics/foundation/foundation-depth.html",
+      "source_ranges": [
+        "P1622–P1635",
+        "P1636–P1644",
+        "P1645–P1654",
+        "P1655–P1661"
+      ],
+      "allocation_ids": [
+        "B078",
+        "B079",
+        "B080",
+        "B081"
+      ],
+      "covered_points": [
+        "室外地面到基础底面的距离",
+        "土层分布、持力层、软弱下卧层与埋深选择",
+        "工程开挖与经济性的联系",
+        "地下水位季节变化影响土和基础",
+        "地下水腐蚀、施工降水、浮力与耐水材料",
+        "结合水文地质条件选择埋深",
+        "冻结线、冻胀性、含水量和地下水影响",
+        "地域资料与计算决定防冻胀措施",
+        "埋深只是抗冻胀的一种手段",
+        "相邻基础高差、基坑开挖与原建筑稳定",
+        "上部竖向荷载与水平作用",
+        "地下室、设备层和地下设施对基础选择的影响"
+      ],
+      "supplemental_explanations": [
+        "基础埋深联系设计地面与基底标高",
+        "软弱下卧层、邻近开挖降水和防冻胀方案需共同考虑"
+      ],
+      "rewrites": [
+        "保留埋深定义、上弱下强及软弱下卧层等地层比较",
+        "水位变化按有效应力、土体性质、施工和浮力分析，不认定所有黏性土遇水必膨胀",
+        "冻胀按颗粒、水分、补给和冻结条件分析，补足换填排水保温等措施",
+        "保留邻近基础、作用、地下功能的影响，以开挖支护降水影响分析替代简单净距倍数"
+      ],
+      "omissions": [
+        "P1624–1626以5m和0.5m作普遍分类/最小值",
+        "P1631–1633土层厚度对应固定方案",
+        "P1638–1640水位上下200mm统一埋深",
+        "P1647城市旧冻深",
+        "P1648、1652所有细砂列非冻胀的绝对分类",
+        "P1653–1654冻结线下200mm统一结论",
+        "P1656以L=(1–2)H确定安全距离"
+      ]
+    },
+    {
+      "section_id": "foundation-settlement",
+      "title": "不均匀沉降",
+      "document": "网站文本/parts/01-基础与地基.md",
+      "target_public_path": "/lesson/basics/foundation/foundation-settlement.html",
+      "source_ranges": [
+        "P1552–P1556",
+        "P1744–P1744"
+      ],
+      "allocation_ids": [
+        "B074",
+        "B090"
+      ],
+      "covered_points": [
+        "土压缩引起基础沉降",
+        "沉降量与差异沉降均需控制",
+        "土抗剪能力与滑动稳定的关系",
+        "沉降缝与不均匀沉降预防的联系"
+      ],
+      "supplemental_explanations": [
+        "区分总沉降、差异沉降与相对变形",
+        "裂缝不凭外观单独归因",
+        "原稿沉降缝仅一行标题，补足与后章一致的概念并交叉链接"
+      ],
+      "rewrites": [
+        "压缩沉降、差异沉降、抗剪稳定分开，土体可能压缩并非要求完全不压缩",
+        "原稿仅标题，概念补充与变形缝章节链接；不冒充原段落已有详细内容"
+      ],
+      "omissions": [
+        null
+      ]
+    },
+    {
+      "section_id": "wall-role",
+      "title": "墙体在建筑中的作用",
+      "document": "网站文本/parts/02-墙体.md",
+      "target_public_path": "/lesson/basics/wall/wall-role.html",
+      "source_ranges": [
+        "P0495–P0497"
+      ],
+      "allocation_ids": [
+        "B024"
+      ],
+      "covered_points": [
+        "承重、围护、分隔三项功能",
+        "同一墙体随位置与结构体系承担不同作用"
+      ],
+      "supplemental_explanations": [
+        "非承重仍有自重、面外作用及连接要求",
+        "从平面、剖面、结构图确认墙体身份"
+      ],
+      "rewrites": [
+        "P0506与P0497结合解释非承重不等于不受力"
+      ],
+      "omissions": [
+        null
+      ]
+    },
+    {
+      "section_id": "wall-types",
+      "title": "墙体的类型",
+      "document": "网站文本/parts/02-墙体.md",
+      "target_public_path": "/lesson/basics/wall/wall-types.html",
+      "source_ranges": [
+        "P0498–P0522"
+      ],
+      "allocation_ids": [
+        "B025"
+      ],
+      "covered_points": [
+        "内外墙、窗间墙、窗下墙、纵横墙",
+        "承重与非承重墙",
+        "材料、实体/空体/组合构造",
+        "块材、现浇、预制板材施工分类"
+      ],
+      "supplemental_explanations": [
+        "隔墙与填充墙可重合",
+        "砌块孔洞不等于墙体空气间层"
+      ],
+      "rewrites": [
+        "取消施工法优劣的绝对断语，按工序和连接条件比较"
+      ],
+      "omissions": [
+        null
+      ]
+    },
+    {
+      "section_id": "wall-masonry",
+      "title": "砌体结构",
+      "document": "网站文本/parts/02-墙体.md",
+      "target_public_path": "/lesson/basics/wall/wall-masonry.html",
+      "source_ranges": [
+        "P0523–P0586",
+        "P0717–P0742",
+        "P0743–P0756",
+        "P0757–P0781",
+        "P0782–P0801",
+        "P0802–P0823",
+        "P1043–P1077",
+        "P1078–P1105"
+      ],
+      "allocation_ids": [
+        "B026",
+        "B032",
+        "B033",
+        "B034",
+        "B035",
+        "B036",
+        "B046",
+        "B047"
+      ],
+      "covered_points": [
+        "横墙承重、纵墙承重、纵横混合承重",
+        "框架、底部框架、内框架的比较",
+        "墙体连续对齐、布局均匀对称的整体性原则",
+        "传统砖墙优缺点、墙材改革背景",
+        "按原料、形状和工艺分砖",
+        "标准砖尺寸、材料强度等级符号与单位",
+        "承重与非承重砌块不能只靠外形判断",
+        "小型砌块规格与灰缝的模数协调",
+        "材料类别、密度与强度等级的区别",
+        "砂浆粘结、找平、填实三作用",
+        "水泥、混合、石灰砂浆的基础区别",
+        "砌体性能由块材、砂浆、砌筑共同决定",
+        "错缝搭接、避免通缝、砂浆饱满",
+        "丁、顺、灰缝、平砌/斗砌/立砌",
+        "全顺、一顺一丁、梅花丁、三顺一丁",
+        "砌块排块图、洞口及交接部位协调",
+        "墙厚习惯称谓和材料实际尺寸",
+        "洞口标志尺寸与灰缝的关系",
+        "圈梁提升整体性并联系墙体",
+        "封闭交圈、与洞口过梁协调及附加圈梁",
+        "位置、材料、配筋需要结合建筑条件",
+        "构造柱与圈梁共同加强砌体整体性",
+        "薄弱部位设置、马牙槎、拉结、施工顺序",
+        "芯柱与构造柱不同构造机理"
+      ],
+      "supplemental_explanations": [
+        "原支承方案中的预制楼板条件不得套用于所有现浇板",
+        "构造柱、芯柱、框架柱分清",
+        "材料净厚、习惯墙厚与饰面完成厚度分清"
+      ],
+      "rewrites": [
+        "保留三类墙承重布置的传力与空间适用比较",
+        "底部框架、内框架改为需专门设计的结构组合，不沿用旧层数适用结论",
+        "保留砖原料、形态、工艺分类，尺寸作传统普通砖例子",
+        "材料强度符号不推广为所有产品通用体系",
+        "砌块类别及承重身份须按产品判断，不沿用旧强度分级全集",
+        "390加10协调400仅为普通厚灰缝示例，区分薄灰缝系统",
+        "砌体强度不等于材料强度平均值",
+        "不同砂浆按强度、和易性、吸水及环境选择",
+        "保留丁顺与常见组砌，灰缝、搭接及出挑旧通用值不照搬",
+        "墙厚以净尺寸与习惯称呼区分；排块协调洞口及转角",
+        "不足错缝不作任意钢筋网片补救",
+        "纠正构造配筋一律无需计算、圈梁并不受弯等绝对说法",
+        "保留封闭交圈、过梁合并和附加圈梁的机理",
+        "构造柱与圈梁约束砌体，不称为可替代框架的内框架",
+        "芯柱与留槽后浇构造柱分开",
+        "保留先砌墙后浇柱、马牙槎、拉结与锚固连续性"
+      ],
+      "omissions": [
+        "P0731青红砖化学及强度断语",
+        "P0733单块重量与每立方块数",
+        "P0739旧等级全集与P0741–0742旧单位换算",
+        "P0770–0774旧砂浆试块及强度等级全集",
+        "P0781旧砌体强度数表",
+        "P0806–0808旧搭接、灰缝及砂浆最低值",
+        "P0822–0823固定洞口模数边界",
+        "P1058–1059与P1062旧尺寸、材料及配筋",
+        "P1067旧搭接倍数",
+        "P1069–1077旧设防表与配筋表",
+        "P1084–1089旧通用截面、钢筋、间距与锚入数值",
+        "P1093–1102旧布置层数表",
+        "P1105旧混凝土等级"
+      ]
+    },
+    {
+      "section_id": "wall-partition",
+      "title": "隔墙",
+      "document": "网站文本/parts/02-墙体.md",
+      "target_public_path": "/lesson/basics/wall/wall-partition.html",
+      "source_ranges": [
+        "P1110–P1133",
+        "P1134–P1142",
+        "P1143–P1158",
+        "P1159–P1167",
+        "P1168–P1184"
+      ],
+      "allocation_ids": [
+        "B049",
+        "B050",
+        "B051",
+        "B052",
+        "B053"
+      ],
+      "covered_points": [
+        "非承重内隔墙自重轻、可分隔、兼顾声火湿",
+        "块材、轻骨架、条板三种主要体系",
+        "半砖隔墙与周边主体连接及自身稳定",
+        "砌块隔墙的防潮、稳定、洞口和周边连接",
+        "框架填充墙与隔墙的用途区别",
+        "按产品规格选择墙厚",
+        "骨架—面层的构造逻辑",
+        "木骨架上下槛、墙筋、斜撑、板条抹灰",
+        "传统做法与当代材料取代的背景",
+        "沿顶沿地龙骨、竖龙骨与面层",
+        "面板规格与骨架排布协调",
+        "板材与骨架固定方式、轻质装配特点",
+        "不用骨架的条板安装逻辑",
+        "板—板、板—主体连接",
+        "加气条板、GRC、石膏空心板、复合板的区别"
+      ],
+      "supplemental_explanations": [
+        "填充墙顶部按刚性或柔性连接体系分别解释",
+        "临时安装楔块与永久连接分开",
+        "轻质隔墙的挂物、穿孔和完整声火系统"
+      ],
+      "rewrites": [
+        "保留块材、骨架、条板分类及稳定连接",
+        "P1130顶部斜砌木楔改为分系统处理，不作为通用做法",
+        "砌块墙厚按产品及任务选择，不推广天津地区旧值",
+        "墙根及洞口采用配套加强、防潮，不要求一律实心砖镶砌",
+        "保留木骨架上下槛、立筋、撑、板条面层与历史背景",
+        "保留轻钢沿顶沿地竖龙骨、面板固定和排板协调；补足穿孔、挂物和系统声火连续性",
+        "保留无贯通骨架条板、板间与主体连接及材料类别",
+        "碳化石灰板、泰柏板作历史产品提及；临时楔块不等同永久连接"
+      ],
+      "omissions": [
+        "P1124–1131旧强度、墙高墙长、拉结通用值",
+        "P1148–1157旧构件尺寸、间距及网片做法",
+        "P1160–1162旧钢厚及间距通用值",
+        "P1172–1179旧板材尺寸与粘结配方"
+      ]
+    },
+    {
+      "section_id": "wall-design-requirements",
+      "title": "墙体的设计要求",
+      "document": "网站文本/parts/02-墙体.md",
+      "target_public_path": "/lesson/basics/wall/wall-design-requirements.html",
+      "source_ranges": [
+        "P0587–P0612",
+        "P0613–P0652",
+        "P0653–P0671",
+        "P0672–P0698",
+        "P0699–P0716",
+        "P0951–P0993",
+        "P0994–P1021",
+        "P1022–P1042",
+        "P1106–P1109"
+      ],
+      "allocation_ids": [
+        "B027",
+        "B028",
+        "B029",
+        "B030",
+        "B031",
+        "B043",
+        "B044",
+        "B045",
+        "B048"
+      ],
+      "covered_points": [
+        "承载能力与材料、厚度、截面有关",
+        "稳定性与高厚比、支撑和墙体长度高度有关",
+        "增厚、壁柱、圈梁等措施的机理",
+        "气候分区决定热工策略",
+        "传导、空气渗透与水汽凝结",
+        "合理选材、复合墙、缝隙处理、隔汽策略",
+        "热桥与局部内表面温度降低",
+        "体形系数、传热系数、窗墙比、朝向与气密性",
+        "墙体热工性能与整栋建筑能耗的联系",
+        "空气传声与结构传声",
+        "墙体/门窗/楼地层不同隔声任务",
+        "缝隙封闭、质量、复合构造、布局的作用",
+        "燃烧性能、耐火性能、防火分隔",
+        "雨雪、地下水、室内用水",
+        "工业化与材料经济性",
+        "结构、热工、声学、防护综合要求",
+        "震级与烈度不是同一指标",
+        "设防、建筑类别与抗震构造措施的关系",
+        "历史地震与地区参数只能带日期使用",
+        "竖向/水平地震作用与典型损伤",
+        "规则性、整体性、屋盖自重、场地影响",
+        "多遇、设防、罕遇三个水准的性能目标",
+        "墙体均匀对齐、洞口相对齐",
+        "高度层数、高宽比、横墙间距、局部墙段尺寸的控制逻辑",
+        "隔震通过改变结构与基础之间的动力传递",
+        "变形缝内容转后章引用"
+      ],
+      "supplemental_explanations": [
+        "高厚比方向为有效高度除以相应厚度",
+        "隔汽位置须作温湿分析",
+        "不燃材料不等于完整墙体任意耐火性能"
+      ],
+      "rewrites": [
+        "P0600高厚比1/20改为有效高度/厚度及增大不利的方向",
+        "不保留P0612旧高度层数表、P0594统一240厚",
+        "五分区保留策略，不保留旧温度阈值和一概不考虑另一季节的断语",
+        "P0638保温材料阈值改为低导热和连续热阻机理",
+        "P0643隔汽层位置由温湿分析确定",
+        "保留体形系数、传热系数、窗墙比、朝向及气密性联系",
+        "保留空气与结构传声机制、密封和复合隔声，补足侧向传声及声桥",
+        "防火墙定义不沿用统一4h数值，按分隔任务及完整系统解释",
+        "震级、烈度及设防条件分开，建筑使用重要性作为设计条件",
+        "保留常见震害、规则性、连接、屋盖质量和场地影响",
+        "多遇—设防—罕遇目标用概念性文字，不将裂缝模式与波种一一对应",
+        "保留高度层数、高宽比、两向布置与局部墙段控制的原因",
+        "隔震保留改变动力传递的原理，不以柔性胶垫概括全部系统"
+      ],
+      "omissions": [
+        "P0657–0666历史节能阶段百分比",
+        "P0668体形系数通用限值",
+        "P0710–0711墙体重量及造价无条件百分比",
+        "P0955–0957地震感受与破坏的简单震级边界",
+        "P0958–0959历史地震例子",
+        "P0966–0974烈度/震级简表",
+        "P0979–0984城市旧参数及换算公式",
+        "P0985造价百分比",
+        "P0988–0993旧分类升降一度速记",
+        "P1024–1042未核实的旧通用限值表",
+        "P1106芝加哥大地震未获支持的事件归因",
+        "P1108造价太高仅用于重要建筑的绝对断语"
+      ]
+    },
+    {
+      "section_id": "wall-details",
+      "title": "墙体细部构造",
+      "document": "网站文本/parts/02-墙体.md",
+      "target_public_path": "/lesson/basics/wall/wall-details.html",
+      "source_ranges": [
+        "P0824–P0864",
+        "P0865–P0880",
+        "P0881–P0903",
+        "P0904–P0922",
+        "P0923–P0935",
+        "P0936–P0950"
+      ],
+      "allocation_ids": [
+        "B037",
+        "B038",
+        "B039",
+        "B040",
+        "B041",
+        "B042"
+      ],
+      "covered_points": [
+        "水分沿砌体毛细上升的路径",
+        "水平防潮层与地坪垫层关系",
+        "高差墙体水平与垂直防潮层闭合",
+        "砂浆、细石混凝土、传统油毡做法及局限",
+        "勒脚位置与水、碰撞、冻融风险",
+        "加固、防水、抹灰、贴面的选择",
+        "构造高度与立面整体关系",
+        "散水坡向、排水目的",
+        "散水与勒脚分离缝、分格缝、柔性密封",
+        "明沟有组织排水与外部排水系统",
+        "节点是不同材料方向构件的连接部位",
+        "过梁支承洞口上方墙体并传力至两侧",
+        "钢筋混凝土过梁与传统砖拱过梁",
+        "框墙密封、滴水阻断雨水",
+        "室外窗台向外排水、下口滴水和框下口防水",
+        "室内窗台满足清洁使用与美观",
+        "门垛位置与安装、稳定需要",
+        "壁柱对集中荷载和墙身稳定的作用",
+        "扶壁侧向支撑与壁柱区别"
+      ],
+      "supplemental_explanations": [
+        "墙脚—墙身—洞口—墙顶的读图顺序",
+        "地圈梁不能仅凭材料名称自动认定防潮闭合"
+      ],
+      "rewrites": [
+        "水平防潮位置由地坪层次与室外标高确定，高差处形成水平—垂直闭合",
+        "保留砂浆、混凝土、油毡机理与限制，不保留旧配方与固定尺寸",
+        "保留勒脚加固、防水、抹面、贴面及立面关系，取消固定配方",
+        "保留散水坡向、分离分格柔性密封和明沟排水路径",
+        "宽度坡度及缝宽按场地体系确定，不沿用原通用值",
+        "砌体拱作用需满足条件，过梁荷载不能统一限定为固定三角区",
+        "平拱保留历史原理，取消无条件适用跨度及尺寸",
+        "保留内外窗台职责、外坡滴水及框下防水，不沿用固定出挑和厚度",
+        "保留门垛、壁柱、扶壁任务，尺寸依受力及安装需要确定"
+      ],
+      "omissions": [
+        null
+      ]
+    },
+    {
+      "section_id": "wall-finishes",
+      "title": "墙面装修",
+      "document": "网站文本/parts/02-墙体.md",
+      "target_public_path": "/lesson/basics/wall/wall-finishes.html",
+      "source_ranges": [
+        "P2177–P2192",
+        "P2193–P2207",
+        "P2208–P2219",
+        "P2220–P2240",
+        "P2241–P2262",
+        "P2263–P2279",
+        "P2280–P2298",
+        "P2299–P2306",
+        "P2307–P2330",
+        "P2331–P2344",
+        "P2351–P2371",
+        "P2372–P2409",
+        "P2410–P2418",
+        "P2419–P2429"
+      ],
+      "allocation_ids": [
+        "B115",
+        "B116",
+        "B117",
+        "B118",
+        "B119",
+        "B120",
+        "B121",
+        "B122",
+        "B123",
+        "B124",
+        "B126",
+        "B127",
+        "B128",
+        "B129"
+      ],
+      "covered_points": [
+        "保护构件、改善使用性能与环境形象",
+        "饰面、基层和主体结构的关系",
+        "内外装修面对的环境差异",
+        "使用功能、材料性能、施工可行性与经济性",
+        "材料供应、技术条件和费用",
+        "设计要求转化为材料与构造选择",
+        "实体基层与骨架基层",
+        "承载、变形、平整度及附着牢固",
+        "基层缺陷导致开裂空鼓脱落的链条",
+        "按部位、材料、表面命名和构造工艺分类",
+        "抹灰、涂料、粘贴、钉挂的连接差别",
+        "室内墙面、地面、顶棚与室外墙面范围",
+        "外墙抹灰保护目的",
+        "水泥砂浆、水刷石、斩假石传统做法",
+        "底层、结合、面层的层次识读",
+        "分层施工的找平、粘结和抗裂目的",
+        "砖墙、加气混凝土、混凝土等基层处理差异",
+        "灰饼、冲筋与基层清理",
+        "中层找平、面层表面性能",
+        "分格与温度、接茬、材料胀缩",
+        "裂缝、空鼓、表面析白/色差的识别",
+        "成膜保护与装饰",
+        "基层找平、分层施工",
+        "有机/无机分类",
+        "面砖、石材等材料与重量尺寸影响连接",
+        "直接粘贴、加强连接、湿挂、干挂的区别",
+        "龙骨/连接件承担重力与防水接缝的职责",
+        "内墙面抹灰、涂料、粘贴、钉挂分类",
+        "护角、墙裙、踢脚与顶棚交接",
+        "室内外环境区别",
+        "设计从表面使用要求推导内部构造",
+        "图纸按层次表达材料、厚度、配比、做法",
+        "交接处强调差异、找平或第三材料过渡",
+        "内外墙抹灰各层职责及材料匹配",
+        "纸筋灰、混合灰、水泥砂浆与传统石渣饰面",
+        "命名和构造层次标注",
+        "垂直面饰面与水平地面结合层的差异",
+        "薄块材专用粘合与较重面材机械连接",
+        "面材、基层、粘结材料相容性",
+        "勾缝严密与外观",
+        "阳角护角、墙地踢脚、墙顶交接",
+        "不同材料交接与外墙抹灰分格"
+      ],
+      "supplemental_explanations": [
+        "饰面概论仅保留墙面适用的导入，链接楼地层装修概论",
+        "干挂重力传递、防水、防火与保温分别成立",
+        "湿区墙裙踢脚不能替代墙地防水"
+      ],
+      "rewrites": [
+        "仅概括墙面保护、使用与观感，不在墙章重复完整装修概论",
+        "墙面功能、材料、施工及经济选择融入导入，完整概论由楼地层负责",
+        "保留实体/骨架基层、承载刚度平整附着及失效关系",
+        "仅墙面室内外、材料和工艺类别；楼地面与顶棚由楼地层负责",
+        "保留水泥抹灰、水刷石、斩假石原理及层次",
+        "保留底灰职责、分层及各基层差异、灰饼冲筋",
+        "保留中面层、分格、裂缝空鼓色差析白，删除单因果及万能疏水剂处理",
+        "保留涂料成膜、基层及有机无机分类，补足配套与环境条件",
+        "保留轻小面材粘贴与重面材机械连接的区别，湿挂干挂传力及接缝分别解释",
+        "不以干挂自动代表节能或绝对无泛碱",
+        "内墙抹灰涂饰粘贴及机械固定，与护角墙裙踢脚顶棚交接结合",
+        "只以墙面说明由表及里设计、由基层向面层标注及交接，完整概论交楼地层",
+        "保留底中面灰职责、纸筋麻刀混合水泥灰、水刷石斩假石及颜料表面选择",
+        "仅P2410–2417墙面刷浆涂料和粘贴连接，P2418水平地面结合层交楼地层",
+        "保留清水勾缝、护角踢脚、过渡和外墙分格"
+      ],
+      "omissions": [
+        "P2251–2262旧配比、厚度、粒径及按季节固定斩剁时间",
+        "P2268–2272旧质量分级与总厚度",
+        "P2277原107胶和满钉网片通用做法",
+        "P2280–2281层厚配比",
+        "P2287骨料通用粒径",
+        "P2291–2294重复分级厚度",
+        "P2320–2324绑丝、钢筋网、灌浆层旧通用规格",
+        "P2377–2407与前文重复的旧层厚、配方和季节时间",
+        "P2421勾缝旧配比",
+        "P2424–2427护角踢脚高度及厕所地面固定高差"
+      ]
+    }
+  ],
+  "original_blocks": [
+    {
+      "allocation_id": "B024",
+      "block_id": "FH-022",
+      "source_range": "P0495–P0497",
+      "source_start": 495,
+      "source_end": 497,
+      "original_destination": "wall-role",
+      "destination_section": "wall-role",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "承重、围护、分隔三项功能",
+        "同一墙体随位置与结构体系承担不同作用"
+      ],
+      "rewrites": [
+        "P0506与P0497结合解释非承重不等于不受力"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B025",
+      "block_id": "FH-023",
+      "source_range": "P0498–P0522",
+      "source_start": 498,
+      "source_end": 522,
+      "original_destination": "wall-types",
+      "destination_section": "wall-types",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "内外墙、窗间墙、窗下墙、纵横墙",
+        "承重与非承重墙",
+        "材料、实体/空体/组合构造",
+        "块材、现浇、预制板材施工分类"
+      ],
+      "rewrites": [
+        "取消施工法优劣的绝对断语，按工序和连接条件比较"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B026",
+      "block_id": "FH-024",
+      "source_range": "P0523–P0586",
+      "source_start": 523,
+      "source_end": 586,
+      "original_destination": "wall-masonry",
+      "destination_section": "wall-masonry",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "横墙承重、纵墙承重、纵横混合承重",
+        "框架、底部框架、内框架的比较",
+        "墙体连续对齐、布局均匀对称的整体性原则"
+      ],
+      "rewrites": [
+        "保留三类墙承重布置的传力与空间适用比较",
+        "底部框架、内框架改为需专门设计的结构组合，不沿用旧层数适用结论"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B027",
+      "block_id": "FH-025",
+      "source_range": "P0587–P0612",
+      "source_start": 587,
+      "source_end": 612,
+      "original_destination": "wall-design-requirements",
+      "destination_section": "wall-design-requirements",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "承载能力与材料、厚度、截面有关",
+        "稳定性与高厚比、支撑和墙体长度高度有关",
+        "增厚、壁柱、圈梁等措施的机理"
+      ],
+      "rewrites": [
+        "P0600高厚比1/20改为有效高度/厚度及增大不利的方向",
+        "不保留P0612旧高度层数表、P0594统一240厚"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B028",
+      "block_id": "FH-026",
+      "source_range": "P0613–P0652",
+      "source_start": 613,
+      "source_end": 652,
+      "original_destination": "wall-design-requirements",
+      "destination_section": "wall-design-requirements",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "气候分区决定热工策略",
+        "传导、空气渗透与水汽凝结",
+        "合理选材、复合墙、缝隙处理、隔汽策略",
+        "热桥与局部内表面温度降低"
+      ],
+      "rewrites": [
+        "五分区保留策略，不保留旧温度阈值和一概不考虑另一季节的断语",
+        "P0638保温材料阈值改为低导热和连续热阻机理",
+        "P0643隔汽层位置由温湿分析确定"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B029",
+      "block_id": "FH-027",
+      "source_range": "P0653–P0671",
+      "source_start": 653,
+      "source_end": 671,
+      "original_destination": "wall-design-requirements",
+      "destination_section": "wall-design-requirements",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "体形系数、传热系数、窗墙比、朝向与气密性",
+        "墙体热工性能与整栋建筑能耗的联系"
+      ],
+      "rewrites": [
+        "保留体形系数、传热系数、窗墙比、朝向及气密性联系"
+      ],
+      "omissions": [
+        "P0657–0666历史节能阶段百分比",
+        "P0668体形系数通用限值"
+      ]
+    },
+    {
+      "allocation_id": "B030",
+      "block_id": "FH-028",
+      "source_range": "P0672–P0698",
+      "source_start": 672,
+      "source_end": 698,
+      "original_destination": "wall-design-requirements",
+      "destination_section": "wall-design-requirements",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "空气传声与结构传声",
+        "墙体/门窗/楼地层不同隔声任务",
+        "缝隙封闭、质量、复合构造、布局的作用"
+      ],
+      "rewrites": [
+        "保留空气与结构传声机制、密封和复合隔声，补足侧向传声及声桥"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B031",
+      "block_id": "FH-029",
+      "source_range": "P0699–P0716",
+      "source_start": 699,
+      "source_end": 716,
+      "original_destination": "wall-design-requirements",
+      "destination_section": "wall-design-requirements",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "燃烧性能、耐火性能、防火分隔",
+        "雨雪、地下水、室内用水",
+        "工业化与材料经济性",
+        "结构、热工、声学、防护综合要求"
+      ],
+      "rewrites": [
+        "防火墙定义不沿用统一4h数值，按分隔任务及完整系统解释"
+      ],
+      "omissions": [
+        "P0710–0711墙体重量及造价无条件百分比"
+      ]
+    },
+    {
+      "allocation_id": "B032",
+      "block_id": "FH-030",
+      "source_range": "P0717–P0742",
+      "source_start": 717,
+      "source_end": 742,
+      "original_destination": "wall-masonry",
+      "destination_section": "wall-masonry",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "传统砖墙优缺点、墙材改革背景",
+        "按原料、形状和工艺分砖",
+        "标准砖尺寸、材料强度等级符号与单位"
+      ],
+      "rewrites": [
+        "保留砖原料、形态、工艺分类，尺寸作传统普通砖例子",
+        "材料强度符号不推广为所有产品通用体系"
+      ],
+      "omissions": [
+        "P0731青红砖化学及强度断语",
+        "P0733单块重量与每立方块数",
+        "P0739旧等级全集与P0741–0742旧单位换算"
+      ]
+    },
+    {
+      "allocation_id": "B033",
+      "block_id": "FH-031",
+      "source_range": "P0743–P0756",
+      "source_start": 743,
+      "source_end": 756,
+      "original_destination": "wall-masonry",
+      "destination_section": "wall-masonry",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "承重与非承重砌块不能只靠外形判断",
+        "小型砌块规格与灰缝的模数协调",
+        "材料类别、密度与强度等级的区别"
+      ],
+      "rewrites": [
+        "砌块类别及承重身份须按产品判断，不沿用旧强度分级全集",
+        "390加10协调400仅为普通厚灰缝示例，区分薄灰缝系统"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B034",
+      "block_id": "FH-032",
+      "source_range": "P0757–P0781",
+      "source_start": 757,
+      "source_end": 781,
+      "original_destination": "wall-masonry",
+      "destination_section": "wall-masonry",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "砂浆粘结、找平、填实三作用",
+        "水泥、混合、石灰砂浆的基础区别",
+        "砌体性能由块材、砂浆、砌筑共同决定"
+      ],
+      "rewrites": [
+        "砌体强度不等于材料强度平均值",
+        "不同砂浆按强度、和易性、吸水及环境选择"
+      ],
+      "omissions": [
+        "P0770–0774旧砂浆试块及强度等级全集",
+        "P0781旧砌体强度数表"
+      ]
+    },
+    {
+      "allocation_id": "B035",
+      "block_id": "FH-033",
+      "source_range": "P0782–P0801",
+      "source_start": 782,
+      "source_end": 801,
+      "original_destination": "wall-masonry",
+      "destination_section": "wall-masonry",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "错缝搭接、避免通缝、砂浆饱满",
+        "丁、顺、灰缝、平砌/斗砌/立砌",
+        "全顺、一顺一丁、梅花丁、三顺一丁"
+      ],
+      "rewrites": [
+        "保留丁顺与常见组砌，灰缝、搭接及出挑旧通用值不照搬"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B036",
+      "block_id": "FH-034",
+      "source_range": "P0802–P0823",
+      "source_start": 802,
+      "source_end": 823,
+      "original_destination": "wall-masonry",
+      "destination_section": "wall-masonry",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "砌块排块图、洞口及交接部位协调",
+        "墙厚习惯称谓和材料实际尺寸",
+        "洞口标志尺寸与灰缝的关系"
+      ],
+      "rewrites": [
+        "墙厚以净尺寸与习惯称呼区分；排块协调洞口及转角",
+        "不足错缝不作任意钢筋网片补救"
+      ],
+      "omissions": [
+        "P0806–0808旧搭接、灰缝及砂浆最低值",
+        "P0822–0823固定洞口模数边界"
+      ]
+    },
+    {
+      "allocation_id": "B037",
+      "block_id": "FH-035",
+      "source_range": "P0824–P0864",
+      "source_start": 824,
+      "source_end": 864,
+      "original_destination": "wall-masonry",
+      "destination_section": "wall-details",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "水分沿砌体毛细上升的路径",
+        "水平防潮层与地坪垫层关系",
+        "高差墙体水平与垂直防潮层闭合",
+        "砂浆、细石混凝土、传统油毡做法及局限"
+      ],
+      "rewrites": [
+        "水平防潮位置由地坪层次与室外标高确定，高差处形成水平—垂直闭合",
+        "保留砂浆、混凝土、油毡机理与限制，不保留旧配方与固定尺寸"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B038",
+      "block_id": "FH-036",
+      "source_range": "P0865–P0880",
+      "source_start": 865,
+      "source_end": 880,
+      "original_destination": "wall-masonry",
+      "destination_section": "wall-details",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "勒脚位置与水、碰撞、冻融风险",
+        "加固、防水、抹灰、贴面的选择",
+        "构造高度与立面整体关系"
+      ],
+      "rewrites": [
+        "保留勒脚加固、防水、抹面、贴面及立面关系，取消固定配方"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B039",
+      "block_id": "FH-037",
+      "source_range": "P0881–P0903",
+      "source_start": 881,
+      "source_end": 903,
+      "original_destination": "wall-masonry",
+      "destination_section": "wall-details",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "散水坡向、排水目的",
+        "散水与勒脚分离缝、分格缝、柔性密封",
+        "明沟有组织排水与外部排水系统",
+        "节点是不同材料方向构件的连接部位"
+      ],
+      "rewrites": [
+        "保留散水坡向、分离分格柔性密封和明沟排水路径",
+        "宽度坡度及缝宽按场地体系确定，不沿用原通用值"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B040",
+      "block_id": "FH-038",
+      "source_range": "P0904–P0922",
+      "source_start": 904,
+      "source_end": 922,
+      "original_destination": "wall-masonry",
+      "destination_section": "wall-details",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "过梁支承洞口上方墙体并传力至两侧",
+        "钢筋混凝土过梁与传统砖拱过梁",
+        "框墙密封、滴水阻断雨水"
+      ],
+      "rewrites": [
+        "砌体拱作用需满足条件，过梁荷载不能统一限定为固定三角区",
+        "平拱保留历史原理，取消无条件适用跨度及尺寸"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B041",
+      "block_id": "FH-039",
+      "source_range": "P0923–P0935",
+      "source_start": 923,
+      "source_end": 935,
+      "original_destination": "wall-masonry",
+      "destination_section": "wall-details",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "室外窗台向外排水、下口滴水和框下口防水",
+        "室内窗台满足清洁使用与美观"
+      ],
+      "rewrites": [
+        "保留内外窗台职责、外坡滴水及框下防水，不沿用固定出挑和厚度"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B042",
+      "block_id": "FH-040",
+      "source_range": "P0936–P0950",
+      "source_start": 936,
+      "source_end": 950,
+      "original_destination": "wall-masonry",
+      "destination_section": "wall-details",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "门垛位置与安装、稳定需要",
+        "壁柱对集中荷载和墙身稳定的作用",
+        "扶壁侧向支撑与壁柱区别"
+      ],
+      "rewrites": [
+        "保留门垛、壁柱、扶壁任务，尺寸依受力及安装需要确定"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B043",
+      "block_id": "FH-041",
+      "source_range": "P0951–P0993",
+      "source_start": 951,
+      "source_end": 993,
+      "original_destination": "wall-design-requirements",
+      "destination_section": "wall-design-requirements",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "震级与烈度不是同一指标",
+        "设防、建筑类别与抗震构造措施的关系",
+        "历史地震与地区参数只能带日期使用"
+      ],
+      "rewrites": [
+        "震级、烈度及设防条件分开，建筑使用重要性作为设计条件"
+      ],
+      "omissions": [
+        "P0955–0957地震感受与破坏的简单震级边界",
+        "P0958–0959历史地震例子",
+        "P0966–0974烈度/震级简表",
+        "P0979–0984城市旧参数及换算公式",
+        "P0985造价百分比",
+        "P0988–0993旧分类升降一度速记"
+      ]
+    },
+    {
+      "allocation_id": "B044",
+      "block_id": "FH-042",
+      "source_range": "P0994–P1021",
+      "source_start": 994,
+      "source_end": 1021,
+      "original_destination": "wall-design-requirements",
+      "destination_section": "wall-design-requirements",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "竖向/水平地震作用与典型损伤",
+        "规则性、整体性、屋盖自重、场地影响",
+        "多遇、设防、罕遇三个水准的性能目标"
+      ],
+      "rewrites": [
+        "保留常见震害、规则性、连接、屋盖质量和场地影响",
+        "多遇—设防—罕遇目标用概念性文字，不将裂缝模式与波种一一对应"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B045",
+      "block_id": "FH-043",
+      "source_range": "P1022–P1042",
+      "source_start": 1022,
+      "source_end": 1042,
+      "original_destination": "wall-design-requirements",
+      "destination_section": "wall-design-requirements",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "墙体均匀对齐、洞口相对齐",
+        "高度层数、高宽比、横墙间距、局部墙段尺寸的控制逻辑"
+      ],
+      "rewrites": [
+        "保留高度层数、高宽比、两向布置与局部墙段控制的原因"
+      ],
+      "omissions": [
+        "P1024–1042未核实的旧通用限值表"
+      ]
+    },
+    {
+      "allocation_id": "B046",
+      "block_id": "FH-044",
+      "source_range": "P1043–P1077",
+      "source_start": 1043,
+      "source_end": 1077,
+      "original_destination": "wall-masonry",
+      "destination_section": "wall-masonry",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "圈梁提升整体性并联系墙体",
+        "封闭交圈、与洞口过梁协调及附加圈梁",
+        "位置、材料、配筋需要结合建筑条件"
+      ],
+      "rewrites": [
+        "纠正构造配筋一律无需计算、圈梁并不受弯等绝对说法",
+        "保留封闭交圈、过梁合并和附加圈梁的机理"
+      ],
+      "omissions": [
+        "P1058–1059与P1062旧尺寸、材料及配筋",
+        "P1067旧搭接倍数",
+        "P1069–1077旧设防表与配筋表"
+      ]
+    },
+    {
+      "allocation_id": "B047",
+      "block_id": "FH-045",
+      "source_range": "P1078–P1105",
+      "source_start": 1078,
+      "source_end": 1105,
+      "original_destination": "wall-masonry",
+      "destination_section": "wall-masonry",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "构造柱与圈梁共同加强砌体整体性",
+        "薄弱部位设置、马牙槎、拉结、施工顺序",
+        "芯柱与构造柱不同构造机理"
+      ],
+      "rewrites": [
+        "构造柱与圈梁约束砌体，不称为可替代框架的内框架",
+        "芯柱与留槽后浇构造柱分开",
+        "保留先砌墙后浇柱、马牙槎、拉结与锚固连续性"
+      ],
+      "omissions": [
+        "P1084–1089旧通用截面、钢筋、间距与锚入数值",
+        "P1093–1102旧布置层数表",
+        "P1105旧混凝土等级"
+      ]
+    },
+    {
+      "allocation_id": "B048",
+      "block_id": "FH-046",
+      "source_range": "P1106–P1109",
+      "source_start": 1106,
+      "source_end": 1109,
+      "original_destination": "wall-design-requirements",
+      "destination_section": "wall-design-requirements",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "隔震通过改变结构与基础之间的动力传递",
+        "变形缝内容转后章引用"
+      ],
+      "rewrites": [
+        "隔震保留改变动力传递的原理，不以柔性胶垫概括全部系统"
+      ],
+      "omissions": [
+        "P1106芝加哥大地震未获支持的事件归因",
+        "P1108造价太高仅用于重要建筑的绝对断语"
+      ]
+    },
+    {
+      "allocation_id": "B049",
+      "block_id": "FH-047",
+      "source_range": "P1110–P1133",
+      "source_start": 1110,
+      "source_end": 1133,
+      "original_destination": "wall-partition",
+      "destination_section": "wall-partition",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "非承重内隔墙自重轻、可分隔、兼顾声火湿",
+        "块材、轻骨架、条板三种主要体系",
+        "半砖隔墙与周边主体连接及自身稳定"
+      ],
+      "rewrites": [
+        "保留块材、骨架、条板分类及稳定连接",
+        "P1130顶部斜砌木楔改为分系统处理，不作为通用做法"
+      ],
+      "omissions": [
+        "P1124–1131旧强度、墙高墙长、拉结通用值"
+      ]
+    },
+    {
+      "allocation_id": "B050",
+      "block_id": "FH-048",
+      "source_range": "P1134–P1142",
+      "source_start": 1134,
+      "source_end": 1142,
+      "original_destination": "wall-partition",
+      "destination_section": "wall-partition",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "砌块隔墙的防潮、稳定、洞口和周边连接",
+        "框架填充墙与隔墙的用途区别",
+        "按产品规格选择墙厚"
+      ],
+      "rewrites": [
+        "砌块墙厚按产品及任务选择，不推广天津地区旧值",
+        "墙根及洞口采用配套加强、防潮，不要求一律实心砖镶砌"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B051",
+      "block_id": "FH-049",
+      "source_range": "P1143–P1158",
+      "source_start": 1143,
+      "source_end": 1158,
+      "original_destination": "wall-partition",
+      "destination_section": "wall-partition",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "骨架—面层的构造逻辑",
+        "木骨架上下槛、墙筋、斜撑、板条抹灰",
+        "传统做法与当代材料取代的背景"
+      ],
+      "rewrites": [
+        "保留木骨架上下槛、立筋、撑、板条面层与历史背景"
+      ],
+      "omissions": [
+        "P1148–1157旧构件尺寸、间距及网片做法"
+      ]
+    },
+    {
+      "allocation_id": "B052",
+      "block_id": "FH-050",
+      "source_range": "P1159–P1167",
+      "source_start": 1159,
+      "source_end": 1167,
+      "original_destination": "wall-partition",
+      "destination_section": "wall-partition",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "沿顶沿地龙骨、竖龙骨与面层",
+        "面板规格与骨架排布协调",
+        "板材与骨架固定方式、轻质装配特点"
+      ],
+      "rewrites": [
+        "保留轻钢沿顶沿地竖龙骨、面板固定和排板协调；补足穿孔、挂物和系统声火连续性"
+      ],
+      "omissions": [
+        "P1160–1162旧钢厚及间距通用值"
+      ]
+    },
+    {
+      "allocation_id": "B053",
+      "block_id": "FH-051",
+      "source_range": "P1168–P1184",
+      "source_start": 1168,
+      "source_end": 1184,
+      "original_destination": "wall-partition",
+      "destination_section": "wall-partition",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "不用骨架的条板安装逻辑",
+        "板—板、板—主体连接",
+        "加气条板、GRC、石膏空心板、复合板的区别"
+      ],
+      "rewrites": [
+        "保留无贯通骨架条板、板间与主体连接及材料类别",
+        "碳化石灰板、泰柏板作历史产品提及；临时楔块不等同永久连接"
+      ],
+      "omissions": [
+        "P1172–1179旧板材尺寸与粘结配方"
+      ]
+    },
+    {
+      "allocation_id": "B071",
+      "block_id": "FH-069",
+      "source_range": "P1491–P1513",
+      "source_start": 1491,
+      "source_end": 1513,
+      "original_destination": "foundation-overview",
+      "destination_section": "foundation-overview",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "基础是建筑构件，地基是支承基础的地层",
+        "上部结构→基础→地基的传力关系",
+        "面积、作用、地基承载的概念联系"
+      ],
+      "rewrites": [
+        "P1503将第一处地基改正为基础",
+        "P1495–1513不一致符号改为p=N/A概念式，补齐中心受力和作用范围条件"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B072",
+      "block_id": "FH-070",
+      "source_range": "P1514–P1532",
+      "source_start": 1514,
+      "source_end": 1532,
+      "original_destination": "foundation-design",
+      "destination_section": "foundation-design",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "强度、稳定性、沉降控制、耐久与经济性",
+        "荷载、基础面积、地基条件之间的选型关系",
+        "地下水腐蚀与冻融对材料的影响"
+      ],
+      "rewrites": [
+        "分别解释承载、稳定、总沉降及差异沉降；保留耐久与经济"
+      ],
+      "omissions": [
+        "P1531基础造价百分比"
+      ]
+    },
+    {
+      "allocation_id": "B073",
+      "block_id": "FH-071",
+      "source_range": "P1533–P1551",
+      "source_start": 1533,
+      "source_end": 1551,
+      "original_destination": "foundation-overview",
+      "destination_section": "foundation-overview",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "天然与人工地基的区别",
+        "土与岩的类型、固体颗粒/水/空气组成",
+        "不同土层状态影响承载与变形"
+      ],
+      "rewrites": [
+        "消除P1540五大类/六大类自相矛盾；保留常见地层类别",
+        "土三相解释包括饱和条件，不以土名直接推承载力"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B074",
+      "block_id": "FH-072",
+      "source_range": "P1552–P1556",
+      "source_start": 1552,
+      "source_end": 1556,
+      "original_destination": "foundation-settlement",
+      "destination_section": "foundation-settlement",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "土压缩引起基础沉降",
+        "沉降量与差异沉降均需控制",
+        "土抗剪能力与滑动稳定的关系"
+      ],
+      "rewrites": [
+        "压缩沉降、差异沉降、抗剪稳定分开，土体可能压缩并非要求完全不压缩"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B075",
+      "block_id": "FH-073",
+      "source_range": "P1557–P1574",
+      "source_start": 1557,
+      "source_end": 1574,
+      "original_destination": "foundation-design",
+      "destination_section": "foundation-design",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "地形地貌、周边地下设施和建筑现状",
+        "钻孔、地质剖面、土层参数、地下水和腐蚀性",
+        "勘察报告对基础类型和埋深的建议"
+      ],
+      "rewrites": [
+        "保留地形、钻孔剖面、参数、地下水腐蚀及勘察建议，增加关联读图步骤"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B076",
+      "block_id": "FH-074",
+      "source_range": "P1575–P1604",
+      "source_start": 1575,
+      "source_end": 1604,
+      "original_destination": "foundation-design",
+      "destination_section": "foundation-design",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "人工处理改善地基承载与变形",
+        "压实、夯实、碾压、振动的机理",
+        "换填用于软弱土层，范围和材料需设计"
+      ],
+      "rewrites": [
+        "保留夯打碾压振动换填挤密排水机理，效果取决于土类设备及检测",
+        "P1578–1581把桩基不再一概归入土体加固"
+      ],
+      "omissions": [
+        "P1586–1598旧夯重、落高、遍数、处理范围、深度及承载数值"
+      ]
+    },
+    {
+      "allocation_id": "B077",
+      "block_id": "FH-075",
+      "source_range": "P1605–P1621",
+      "source_start": 1605,
+      "source_end": 1621,
+      "original_destination": "foundation-types",
+      "destination_section": "foundation-types",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "桩端和桩侧传力、摩擦/端承的概念",
+        "按材料和施工方法分类",
+        "桩与承台共同传递荷载"
+      ],
+      "rewrites": [
+        "P1606、1608桩必须到岩层改为适宜土层或岩层",
+        "P1612–1613摩擦桩不等同挤实桩；区分侧阻端阻与施工效应",
+        "承台连接按作用与锚固解释，不推广P1621旧50mm及根数"
+      ],
+      "omissions": [
+        "P1616将砂石增强体与承载桩混列",
+        "P1618爆扩工法和预制桩一律桩靴的旧概括"
+      ]
+    },
+    {
+      "allocation_id": "B078",
+      "block_id": "FH-076",
+      "source_range": "P1622–P1635",
+      "source_start": 1622,
+      "source_end": 1635,
+      "original_destination": "foundation-depth",
+      "destination_section": "foundation-depth",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "室外地面到基础底面的距离",
+        "土层分布、持力层、软弱下卧层与埋深选择",
+        "工程开挖与经济性的联系"
+      ],
+      "rewrites": [
+        "保留埋深定义、上弱下强及软弱下卧层等地层比较"
+      ],
+      "omissions": [
+        "P1624–1626以5m和0.5m作普遍分类/最小值",
+        "P1631–1633土层厚度对应固定方案"
+      ]
+    },
+    {
+      "allocation_id": "B079",
+      "block_id": "FH-077",
+      "source_range": "P1636–P1644",
+      "source_start": 1636,
+      "source_end": 1644,
+      "original_destination": "foundation-depth",
+      "destination_section": "foundation-depth",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "地下水位季节变化影响土和基础",
+        "地下水腐蚀、施工降水、浮力与耐水材料",
+        "结合水文地质条件选择埋深"
+      ],
+      "rewrites": [
+        "水位变化按有效应力、土体性质、施工和浮力分析，不认定所有黏性土遇水必膨胀"
+      ],
+      "omissions": [
+        "P1638–1640水位上下200mm统一埋深"
+      ]
+    },
+    {
+      "allocation_id": "B080",
+      "block_id": "FH-078",
+      "source_range": "P1645–P1654",
+      "source_start": 1645,
+      "source_end": 1654,
+      "original_destination": "foundation-depth",
+      "destination_section": "foundation-depth",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "冻结线、冻胀性、含水量和地下水影响",
+        "地域资料与计算决定防冻胀措施",
+        "埋深只是抗冻胀的一种手段"
+      ],
+      "rewrites": [
+        "冻胀按颗粒、水分、补给和冻结条件分析，补足换填排水保温等措施"
+      ],
+      "omissions": [
+        "P1647城市旧冻深",
+        "P1648、1652所有细砂列非冻胀的绝对分类",
+        "P1653–1654冻结线下200mm统一结论"
+      ]
+    },
+    {
+      "allocation_id": "B081",
+      "block_id": "FH-079",
+      "source_range": "P1655–P1661",
+      "source_start": 1655,
+      "source_end": 1661,
+      "original_destination": "foundation-depth",
+      "destination_section": "foundation-depth",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "相邻基础高差、基坑开挖与原建筑稳定",
+        "上部竖向荷载与水平作用",
+        "地下室、设备层和地下设施对基础选择的影响"
+      ],
+      "rewrites": [
+        "保留邻近基础、作用、地下功能的影响，以开挖支护降水影响分析替代简单净距倍数"
+      ],
+      "omissions": [
+        "P1656以L=(1–2)H确定安全距离"
+      ]
+    },
+    {
+      "allocation_id": "B082",
+      "block_id": "FH-080",
+      "source_range": "P1662–P1676",
+      "source_start": 1662,
+      "source_end": 1676,
+      "original_destination": "foundation-types",
+      "destination_section": "foundation-types",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "按构造形式、材料、传力分类的不同维度",
+        "墙下与柱下条形基础",
+        "台阶、锥形、杯形独立基础及上部结构联系"
+      ],
+      "rewrites": [
+        "保留墙下条基与柱下独立台阶锥杯形，独立基础可有系梁，不一概无连接"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B083",
+      "block_id": "FH-081",
+      "source_range": "P1677–P1686",
+      "source_start": 1677,
+      "source_end": 1686,
+      "original_destination": "foundation-types",
+      "destination_section": "foundation-types",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "柱下联合、条形和交叉条形基础",
+        "筏形板式/梁板式与基础面积连续化",
+        "低承载地基、荷载与整体刚度选型联系"
+      ],
+      "rewrites": [
+        "联合基础共同承柱与独立基础间系梁分开；保留条基井格筏板平板式梁板式"
+      ],
+      "omissions": [
+        "P1686筏板厚度不小于200mm通用值"
+      ]
+    },
+    {
+      "allocation_id": "B084",
+      "block_id": "FH-082",
+      "source_range": "P1687–P1690",
+      "source_start": 1687,
+      "source_end": 1690,
+      "original_destination": "foundation-underground",
+      "destination_section": "foundation-underground",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "箱形基础底板、顶板和内外墙形成空间体系",
+        "地下空间可以具备使用功能",
+        "地下结构防水、防潮和受力要求需分别处理"
+      ],
+      "rewrites": [
+        "保留上下板与纵横墙的箱体空间体系及使用功能",
+        "P1690两处顶板最小厚度自相矛盾，统一转为依受力、跨度、裂缝及施工设计"
+      ],
+      "omissions": [
+        "P1690底板、顶板、墙身旧通用厚度"
+      ]
+    },
+    {
+      "allocation_id": "B085",
+      "block_id": "FH-083",
+      "source_range": "P1691–P1693",
+      "source_start": 1691,
+      "source_end": 1693,
+      "original_destination": "foundation-types",
+      "destination_section": "foundation-types",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "基础形式与墙柱受力体系相联系",
+        "地基条件与扩大/连续基础的联系"
+      ],
+      "rewrites": [
+        "保留墙柱体系、地基和扩大/连续基础的因果联系，不称所有基础都仅是墙柱地下延伸"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B086",
+      "block_id": "FH-084",
+      "source_range": "P1694–P1717",
+      "source_start": 1694,
+      "source_end": 1717,
+      "original_destination": "foundation-types",
+      "destination_section": "foundation-types",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "按材料与是否配筋分类",
+        "扩展宽高比、材料抗拉能力与截面关系",
+        "传统刚性/柔性称呼与原文已提示的术语更新"
+      ],
+      "rewrites": [
+        "无筋扩展的宽高限制与材料抗拉联系；传统刚柔称谓仅供读旧资料",
+        "钢筋混凝土仍须验算弯剪冲切，不理解为不受限制"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B087",
+      "block_id": "FH-085",
+      "source_range": "P1718–P1723",
+      "source_start": 1718,
+      "source_end": 1723,
+      "original_destination": "foundation-types",
+      "destination_section": "foundation-types",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "传统砖基础阶梯放脚",
+        "两皮一收、二一间收与宽高比、材料用量"
+      ],
+      "rewrites": [
+        "保留大放脚、两皮一收二一间收的传统砌筑原理；不推广为当前通用基础方案"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B088",
+      "block_id": "FH-086",
+      "source_range": "P1724–P1732",
+      "source_start": 1724,
+      "source_end": 1732,
+      "original_destination": "foundation-types",
+      "destination_section": "foundation-types",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "毛石、料石基础与台阶砌筑",
+        "材料强度和基底宽度影响构造"
+      ],
+      "rewrites": [
+        "保留毛石料石与砌筑截面、材料形状质量关系"
+      ],
+      "omissions": [
+        "P1725–1732可疑低石材强度及旧尺寸、三层以下适用结论"
+      ]
+    },
+    {
+      "allocation_id": "B089",
+      "block_id": "FH-087",
+      "source_range": "P1733–P1743",
+      "source_start": 1733,
+      "source_end": 1743,
+      "original_destination": "foundation-types",
+      "destination_section": "foundation-types",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "材料可塑性与截面形式选择",
+        "矩形、阶梯、梯形截面和工程量关系",
+        "毛石混凝土与普通混凝土的区别"
+      ],
+      "rewrites": [
+        "保留混凝土可塑性、矩形台阶梯形与工程量关系，毛石须按要求置入"
+      ],
+      "omissions": [
+        "P1736旧混凝土等级",
+        "P1738–1741以高度直接选截面的通用数值"
+      ]
+    },
+    {
+      "allocation_id": "B090",
+      "block_id": "FH-088",
+      "source_range": "P1744–P1744",
+      "source_start": 1744,
+      "source_end": 1744,
+      "original_destination": "foundation-settlement",
+      "destination_section": "foundation-settlement",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "沉降缝与不均匀沉降预防的联系"
+      ],
+      "rewrites": [
+        "原稿仅标题，概念补充与变形缝章节链接；不冒充原段落已有详细内容"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B115",
+      "block_id": "S025",
+      "source_range": "P2177–P2192",
+      "source_start": 2177,
+      "source_end": 2192,
+      "original_destination": "proposed:finish-overview",
+      "destination_section": "wall-finishes",
+      "coverage": "shared_or_partial",
+      "source_content_points": [
+        "保护构件、改善使用性能与环境形象",
+        "饰面、基层和主体结构的关系",
+        "内外装修面对的环境差异"
+      ],
+      "rewrites": [
+        "仅概括墙面保护、使用与观感，不在墙章重复完整装修概论"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B116",
+      "block_id": "S026",
+      "source_range": "P2193–P2207",
+      "source_start": 2193,
+      "source_end": 2207,
+      "original_destination": "proposed:finish-overview",
+      "destination_section": "wall-finishes",
+      "coverage": "shared_or_partial",
+      "source_content_points": [
+        "使用功能、材料性能、施工可行性与经济性",
+        "材料供应、技术条件和费用",
+        "设计要求转化为材料与构造选择"
+      ],
+      "rewrites": [
+        "墙面功能、材料、施工及经济选择融入导入，完整概论由楼地层负责"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B117",
+      "block_id": "S027",
+      "source_range": "P2208–P2219",
+      "source_start": 2208,
+      "source_end": 2219,
+      "original_destination": "proposed:finish-overview",
+      "destination_section": "wall-finishes",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "实体基层与骨架基层",
+        "承载、变形、平整度及附着牢固",
+        "基层缺陷导致开裂空鼓脱落的链条"
+      ],
+      "rewrites": [
+        "保留实体/骨架基层、承载刚度平整附着及失效关系"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B118",
+      "block_id": "S028",
+      "source_range": "P2220–P2240",
+      "source_start": 2220,
+      "source_end": 2240,
+      "original_destination": "proposed:finish-overview",
+      "destination_section": "wall-finishes",
+      "coverage": "shared_or_partial",
+      "source_content_points": [
+        "按部位、材料、表面命名和构造工艺分类",
+        "抹灰、涂料、粘贴、钉挂的连接差别",
+        "室内墙面、地面、顶棚与室外墙面范围"
+      ],
+      "rewrites": [
+        "仅墙面室内外、材料和工艺类别；楼地面与顶棚由楼地层负责"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B119",
+      "block_id": "S029",
+      "source_range": "P2241–P2262",
+      "source_start": 2241,
+      "source_end": 2262,
+      "original_destination": "proposed:wall-finishes",
+      "destination_section": "wall-finishes",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "外墙抹灰保护目的",
+        "水泥砂浆、水刷石、斩假石传统做法",
+        "底层、结合、面层的层次识读"
+      ],
+      "rewrites": [
+        "保留水泥抹灰、水刷石、斩假石原理及层次"
+      ],
+      "omissions": [
+        "P2251–2262旧配比、厚度、粒径及按季节固定斩剁时间"
+      ]
+    },
+    {
+      "allocation_id": "B120",
+      "block_id": "S030",
+      "source_range": "P2263–P2279",
+      "source_start": 2263,
+      "source_end": 2279,
+      "original_destination": "proposed:wall-finishes",
+      "destination_section": "wall-finishes",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "分层施工的找平、粘结和抗裂目的",
+        "砖墙、加气混凝土、混凝土等基层处理差异",
+        "灰饼、冲筋与基层清理"
+      ],
+      "rewrites": [
+        "保留底灰职责、分层及各基层差异、灰饼冲筋"
+      ],
+      "omissions": [
+        "P2268–2272旧质量分级与总厚度",
+        "P2277原107胶和满钉网片通用做法"
+      ]
+    },
+    {
+      "allocation_id": "B121",
+      "block_id": "S031",
+      "source_range": "P2280–P2298",
+      "source_start": 2280,
+      "source_end": 2298,
+      "original_destination": "proposed:wall-finishes",
+      "destination_section": "wall-finishes",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "中层找平、面层表面性能",
+        "分格与温度、接茬、材料胀缩",
+        "裂缝、空鼓、表面析白/色差的识别"
+      ],
+      "rewrites": [
+        "保留中面层、分格、裂缝空鼓色差析白，删除单因果及万能疏水剂处理"
+      ],
+      "omissions": [
+        "P2280–2281层厚配比",
+        "P2287骨料通用粒径",
+        "P2291–2294重复分级厚度"
+      ]
+    },
+    {
+      "allocation_id": "B122",
+      "block_id": "S032",
+      "source_range": "P2299–P2306",
+      "source_start": 2299,
+      "source_end": 2306,
+      "original_destination": "proposed:wall-finishes",
+      "destination_section": "wall-finishes",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "成膜保护与装饰",
+        "基层找平、分层施工",
+        "有机/无机分类"
+      ],
+      "rewrites": [
+        "保留涂料成膜、基层及有机无机分类，补足配套与环境条件"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B123",
+      "block_id": "S033",
+      "source_range": "P2307–P2330",
+      "source_start": 2307,
+      "source_end": 2330,
+      "original_destination": "proposed:wall-finishes",
+      "destination_section": "wall-finishes",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "面砖、石材等材料与重量尺寸影响连接",
+        "直接粘贴、加强连接、湿挂、干挂的区别",
+        "龙骨/连接件承担重力与防水接缝的职责"
+      ],
+      "rewrites": [
+        "保留轻小面材粘贴与重面材机械连接的区别，湿挂干挂传力及接缝分别解释",
+        "不以干挂自动代表节能或绝对无泛碱"
+      ],
+      "omissions": [
+        "P2320–2324绑丝、钢筋网、灌浆层旧通用规格"
+      ]
+    },
+    {
+      "allocation_id": "B124",
+      "block_id": "S034",
+      "source_range": "P2331–P2344",
+      "source_start": 2331,
+      "source_end": 2344,
+      "original_destination": "proposed:wall-finishes",
+      "destination_section": "wall-finishes",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "内墙面抹灰、涂料、粘贴、钉挂分类",
+        "护角、墙裙、踢脚与顶棚交接",
+        "室内外环境区别"
+      ],
+      "rewrites": [
+        "内墙抹灰涂饰粘贴及机械固定，与护角墙裙踢脚顶棚交接结合"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B125",
+      "block_id": "S035",
+      "source_range": "P2345–P2350",
+      "source_start": 2345,
+      "source_end": 2350,
+      "original_destination": "proposed:floor-ceiling",
+      "destination_section": "floor-ceiling",
+      "coverage": "transferred",
+      "source_content_points": [
+        "吊杆、预埋件与主体承重连接",
+        "吊顶属于骨架基层装饰系统",
+        "连接选择与实际支承条件"
+      ],
+      "rewrites": [
+        "吊顶连接整体交由基础四楼地层，墙章不重复"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B126",
+      "block_id": "S036",
+      "source_range": "P2351–P2371",
+      "source_start": 2351,
+      "source_end": 2371,
+      "original_destination": "proposed:finish-overview",
+      "destination_section": "wall-finishes",
+      "coverage": "shared_or_partial",
+      "source_content_points": [
+        "设计从表面使用要求推导内部构造",
+        "图纸按层次表达材料、厚度、配比、做法",
+        "交接处强调差异、找平或第三材料过渡"
+      ],
+      "rewrites": [
+        "只以墙面说明由表及里设计、由基层向面层标注及交接，完整概论交楼地层"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B127",
+      "block_id": "S037",
+      "source_range": "P2372–P2409",
+      "source_start": 2372,
+      "source_end": 2409,
+      "original_destination": "proposed:wall-finishes",
+      "destination_section": "wall-finishes",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "内外墙抹灰各层职责及材料匹配",
+        "纸筋灰、混合灰、水泥砂浆与传统石渣饰面",
+        "命名和构造层次标注"
+      ],
+      "rewrites": [
+        "保留底中面灰职责、纸筋麻刀混合水泥灰、水刷石斩假石及颜料表面选择"
+      ],
+      "omissions": [
+        "P2377–2407与前文重复的旧层厚、配方和季节时间"
+      ]
+    },
+    {
+      "allocation_id": "B128",
+      "block_id": "S038",
+      "source_range": "P2410–P2418",
+      "source_start": 2410,
+      "source_end": 2418,
+      "original_destination": "proposed:wall-finishes",
+      "destination_section": "wall-finishes",
+      "coverage": "shared_or_partial",
+      "source_content_points": [
+        "垂直面饰面与水平地面结合层的差异",
+        "薄块材专用粘合与较重面材机械连接",
+        "面材、基层、粘结材料相容性"
+      ],
+      "rewrites": [
+        "仅P2410–2417墙面刷浆涂料和粘贴连接，P2418水平地面结合层交楼地层"
+      ],
+      "omissions": []
+    },
+    {
+      "allocation_id": "B129",
+      "block_id": "S039",
+      "source_range": "P2419–P2429",
+      "source_start": 2419,
+      "source_end": 2429,
+      "original_destination": "proposed:wall-finishes",
+      "destination_section": "wall-finishes",
+      "coverage": "substantive_points_retained_with_rewrite",
+      "source_content_points": [
+        "勾缝严密与外观",
+        "阳角护角、墙地踢脚、墙顶交接",
+        "不同材料交接与外墙抹灰分格"
+      ],
+      "rewrites": [
+        "保留清水勾缝、护角踢脚、过渡和外墙分格"
+      ],
+      "omissions": [
+        "P2421勾缝旧配比",
+        "P2424–2427护角踢脚高度及厕所地面固定高差"
+      ]
+    }
+  ],
+  "transferred_blocks": [
+    {
+      "allocation_id": "B125",
+      "block_id": "S035",
+      "source_range": "P2345–P2350",
+      "source_start": 2345,
+      "source_end": 2350,
+      "original_destination": "proposed:floor-ceiling",
+      "destination_section": "floor-ceiling",
+      "coverage": "transferred",
+      "source_content_points": [
+        "吊杆、预埋件与主体承重连接",
+        "吊顶属于骨架基层装饰系统",
+        "连接选择与实际支承条件"
+      ],
+      "rewrites": [
+        "吊顶连接整体交由基础四楼地层，墙章不重复"
+      ],
+      "omissions": []
+    }
+  ],
+  "external_normative_citations": []
+}

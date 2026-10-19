@@ -12,6 +12,9 @@
 *.ico   binary
 *.woff  binary
 *.woff2 binary
+*.pdf   binary
+*.docx  binary
+*.zip   binary
 
 # 锁文件与快照：不参与 diff 统计与语言识别
 package-lock.json  -diff linguist-generated
@@ -19,3 +22,11 @@ pnpm-lock.yaml     -diff linguist-generated
 
 # 审计产出的截图不参与语言统计
 audit-output/**    linguist-generated
+
+# 审定版与审计快照使用字节级 SHA-256，保留已核验的原始换行。
+deliverables/** -text whitespace=cr-at-eol
+audit-output/digital-textbook-2026-10-19/** -text whitespace=cr-at-eol
+audit-output/textbook-import-2026-10-18/** -text whitespace=cr-at-eol
+src/data/textbook/** -text whitespace=cr-at-eol
+src/data/lessonMedia.json -text
+scripts/lib/lesson-media-catalog.mjs -text

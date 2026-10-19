@@ -34,7 +34,7 @@ for (const path of documents) {
   const title = strip(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1] ?? path);
   const empty = /<section class="empty"/.test(html);
   const body = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1] ?? '';
-  const clean = body.replace(/<(header|nav|footer)\b[^>]*>[\s\S]*?<\/\1>/gi, '').replace(/<div class="page-next">[\s\S]*$/i, '');
+  const clean = body.replace(/<!-- textbook-enhancement:start -->[\s\S]*?<!-- textbook-enhancement:end -->/g, '').replace(/<aside\b[^>]*>[\s\S]*?<\/aside>/gi, '').replace(/<(header|nav|footer)\b[^>]*>[\s\S]*?<\/\1>/gi, '').replace(/<div class="page-next">[\s\S]*$/i, '');
   sources.push({ id: `course:${path}`, kind: 'course', title, route: `/lesson/${path}`, empty, text: empty ? '该章节正文尚未提供。' : strip(clean).slice(0, 12000) });
 }
 const corpus: CompanionCorpus = {

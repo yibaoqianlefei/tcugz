@@ -1,0 +1,694 @@
+{
+  "pdfPageCount": 75,
+  "sourceSegments": 834,
+  "missingDocxSegments": [],
+  "missingPdfSegments": [],
+  "unsupportedFontCharacters": [],
+  "docxNativeRender": {
+    "status": "unavailable",
+    "reason": "Packaged render_docx.py failed because LibreOffice soffice.exe was not found; no bundled LibreOffice or registered Word renderer is available on this host.",
+    "checksCompleted": "DOCX OOXML structural and full text segment comparison only"
+  },
+  "pdfRender": "all pages rasterized from the final PDF with PDFium at 108 dpi",
+  "pageImages": [
+    {
+      "page": 1,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-001.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 165
+    },
+    {
+      "page": 2,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-002.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 185
+    },
+    {
+      "page": 3,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-003.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1107
+    },
+    {
+      "page": 4,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-004.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1142
+    },
+    {
+      "page": 5,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-005.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 998
+    },
+    {
+      "page": 6,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-006.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1174
+    },
+    {
+      "page": 7,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-007.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1041
+    },
+    {
+      "page": 8,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-008.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1193
+    },
+    {
+      "page": 9,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-009.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1132
+    },
+    {
+      "page": 10,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-010.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1143
+    },
+    {
+      "page": 11,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-011.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 417
+    },
+    {
+      "page": 12,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-012.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1024
+    },
+    {
+      "page": 13,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-013.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1219
+    },
+    {
+      "page": 14,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-014.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1292
+    },
+    {
+      "page": 15,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-015.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1121
+    },
+    {
+      "page": 16,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-016.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1139
+    },
+    {
+      "page": 17,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-017.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1137
+    },
+    {
+      "page": 18,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-018.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1182
+    },
+    {
+      "page": 19,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-019.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1154
+    },
+    {
+      "page": 20,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-020.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1166
+    },
+    {
+      "page": 21,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-021.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 271
+    },
+    {
+      "page": 22,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-022.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1162
+    },
+    {
+      "page": 23,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-023.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1283
+    },
+    {
+      "page": 24,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-024.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1212
+    },
+    {
+      "page": 25,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-025.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1187
+    },
+    {
+      "page": 26,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-026.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1220
+    },
+    {
+      "page": 27,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-027.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 187
+    },
+    {
+      "page": 28,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-028.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1098
+    },
+    {
+      "page": 29,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-029.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1105
+    },
+    {
+      "page": 30,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-030.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1233
+    },
+    {
+      "page": 31,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-031.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1236
+    },
+    {
+      "page": 32,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-032.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1077
+    },
+    {
+      "page": 33,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-033.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1210
+    },
+    {
+      "page": 34,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-034.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1092
+    },
+    {
+      "page": 35,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-035.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1062
+    },
+    {
+      "page": 36,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-036.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1049
+    },
+    {
+      "page": 37,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-037.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1145
+    },
+    {
+      "page": 38,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-038.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1238
+    },
+    {
+      "page": 39,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-039.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1522
+    },
+    {
+      "page": 40,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-040.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1221
+    },
+    {
+      "page": 41,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-041.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1036
+    },
+    {
+      "page": 42,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-042.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1148
+    },
+    {
+      "page": 43,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-043.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1088
+    },
+    {
+      "page": 44,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-044.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1191
+    },
+    {
+      "page": 45,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-045.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 137
+    },
+    {
+      "page": 46,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-046.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1153
+    },
+    {
+      "page": 47,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-047.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1256
+    },
+    {
+      "page": 48,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-048.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1282
+    },
+    {
+      "page": 49,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-049.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1347
+    },
+    {
+      "page": 50,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-050.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1232
+    },
+    {
+      "page": 51,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-051.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1221
+    },
+    {
+      "page": 52,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-052.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1285
+    },
+    {
+      "page": 53,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-053.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1246
+    },
+    {
+      "page": 54,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-054.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1211
+    },
+    {
+      "page": 55,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-055.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1036
+    },
+    {
+      "page": 56,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-056.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1077
+    },
+    {
+      "page": 57,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-057.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1100
+    },
+    {
+      "page": 58,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-058.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1051
+    },
+    {
+      "page": 59,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-059.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1208
+    },
+    {
+      "page": 60,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-060.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1160
+    },
+    {
+      "page": 61,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-061.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1205
+    },
+    {
+      "page": 62,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-062.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 757
+    },
+    {
+      "page": 63,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-063.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1022
+    },
+    {
+      "page": 64,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-064.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 698
+    },
+    {
+      "page": 65,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-065.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1030
+    },
+    {
+      "page": 66,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-066.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 602
+    },
+    {
+      "page": 67,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-067.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1037
+    },
+    {
+      "page": 68,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-068.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 384
+    },
+    {
+      "page": 69,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-069.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1042
+    },
+    {
+      "page": 70,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-070.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 594
+    },
+    {
+      "page": 71,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-071.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 981
+    },
+    {
+      "page": 72,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-072.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 624
+    },
+    {
+      "page": 73,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-073.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 1004
+    },
+    {
+      "page": 74,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-074.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 689
+    },
+    {
+      "page": 75,
+      "image": "D:\\vscode project\\建筑构造交互教材\\deliverables\\教材拆分_2026-10-16\\work\\pdf-pages\\page-075.png",
+      "pixels": [
+        893,
+        1263
+      ],
+      "textCharacters": 536
+    }
+  ],
+  "sha256": {
+    "建筑构造教材_基础7部分与原理6部分.docx": "c65f9a0263958ba167cd4b7bbc499e5cbbb52bfd2b3cb8ce70b233f854781ee4",
+    "建筑构造教材_基础7部分与原理6部分.pdf": "6bbeeca8b9390dbe9aa900b5601c483bba148520899329daf52f179de6798574"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "round": 1,
+  "kind": "交叉内容审查；仅审查未改正文",
+  "date": "2026-10-16",
+  "reviewed_files": [
+    "网站文本/parts/08-建筑保温.md",
+    "网站文本/parts/09-建筑防水.md",
+    "网站文本/parts/10-建筑隔热.md",
+    "网站文本/parts/11-建筑隔声.md",
+    "网站文本/parts/12-建筑防火.md",
+    "网站文本/parts/13-建筑防潮.md",
+    "网站文本/导学与绪论.md",
+    "网站文本/实践任务.md"
+  ],
+  "comparison_files": ["网站文本/parts/01-基础与地基.md", "网站文本/parts/02-墙体.md", "网站文本/parts/03-门窗.md", "网站文本/parts/04-楼地层.md", "网站文本/parts/05-楼梯.md", "网站文本/parts/06-屋顶.md", "网站文本/parts/07-变形缝.md"],
+  "blocking_findings": 0,
+  "conclusion": "在本轮范围内，六专题、导学与实践未发现需阻断合订的物理原理或数值错误。交叉引用比较发现一条基础正文中的标签与专题目标错配，详见finding。此结论不是全部工程规范条文与项目数值的合规审查。",
+  "findings": [
+    {
+      "severity": "medium",
+      "file": "网站文本/parts/04-楼地层.md",
+      "heading": "楼地层概述／性能要求如何落实到层次",
+      "issue": "正文“进一步机理可与隔声、防水及保温联读”中的“保温”链接为 /lesson/principles/insulation.html，该地址实际对应建筑隔热。虽然两专题相关，标签与实际目标不符，会把读者带到另一专题。此项位于对照基础章节，非本轮主体审查八文件。",
+      "fix": "把该处“保温”链接改为 /lesson/principles/thermal.html；若希望保留隔热入口，则应将标签明确改为隔热或同时列出两者。",
+      "source": ["scripts/lib/textbook-catalog.mjs 的 principles 将 thermal 定义为建筑保温、insulation 定义为建筑隔热", "网站文本/parts/08-建筑保温.md 标题与内容", "网站文本/parts/10-建筑隔热.md 标题与内容", "该处位于04-楼地层.md 第19行（本轮读取时）"]
+    }
+  ],
+  "checks": [
+    {
+      "topic": "保温公式与条件",
+      "result": "R=d/λ及U=1/R总均限定一维稳态及相应边界；0.080/0.040=2.0，单位自洽。示例明确非工程推荐厚度。已区分材料参数、整构件评价、热桥和空气渗漏。"
+    },
+    {
+      "topic": "防水与屋面系统",
+      "result": "区分排水、阻水、保护及不同水作用；卷材、涂膜、结构防水、瓦和金属板机制无明显冲突。旧屋面四级与年限没有沿用为当前要求。基层含水按材料条件判断，与基础六一致。"
+    },
+    {
+      "topic": "隔热、蓄热与通风",
+      "result": "已说明保温不能直接控制透玻璃太阳得热；蓄热不等于消除热量；通风效果依赖室外温湿度和通路，种植蓄水需荷载与防水条件。与屋顶应用章节未发现相反结论。"
+    },
+    {
+      "topic": "隔声与指标方向",
+      "result": "空气声、结构激励、吸声与隔声区分合理；浮筑层声桥、侧向传声、实验室与现场差异均作条件说明。空气声阻隔评价较高与撞击声压级较低的方向正确，未给无依据隔声dB增量。"
+    },
+    {
+      "topic": "防火与安全通路",
+      "result": "材料燃烧性能与构件耐火性能分开；承载、完整、隔热判据按对象处理；封堵考虑活动；普通电梯及消防电梯不误作普遍人员疏散替代。GB 55037-2022、GB 55038-2025名称和年份可由官方公告核对。"
+    },
+    {
+      "topic": "防潮与结露",
+      "result": "区分毛细、液态水、扩散和空气携湿；水蒸气分压力与空气压差不混同。表面露点判断、层间含水和干燥路径、隔汽和气密区别正确，未把隔汽固定在任何气候的同一侧。与基础墙脚和屋面讨论相容。"
+    },
+    {
+      "topic": "导学数值与尺寸概念",
+      "result": "基本模数M=100mm、3M=300mm、M/2=50mm与原稿P0438-P0446相符；1200-10=1190仅作为设定接口算例，已说明不能普遍减缝。层高、净高、相对/绝对高程及尺寸协调未见明显混淆。"
+    },
+    {
+      "topic": "实践旧题的适用条件",
+      "result": "2800mm层高、600mm室外高差、2400×5400mm轴线和240mm墙厚来自旧题，并明确仅检验空间可行性、不预设符合现行用途要求；未把旧住宅条件直接当合规方案。绘图比例均作为表达选择，未强设唯一尺度。"
+    },
+    {
+      "topic": "内部课程链接",
+      "result": "本轮八个主体审查文件共18条/lesson内部链接逐项检查，目标均存在于public/lesson。另检查基础部分与专题的标题目标配对，发现上述一条保温/隔热错配。"
+    }
+  ],
+  "primary_sources_consulted": [
+    {
+      "title": "住房城乡建设部《住宅项目规范》发布公告",
+      "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2025/art_66adac27fa2144bb86f98fe4c297efd6.html",
+      "scope": "核对GB 55038-2025名称、实施及标准衔接；未据公告冒充住宅全部条文已核查"
+    },
+    {
+      "title": "住房城乡建设部《建筑防火通用规范》发布公告",
+      "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_770016.html",
+      "scope": "核对GB 55037-2022及与相关标准的衔接"
+    },
+    {
+      "title": "北京市政府收录住建部《建筑环境通用规范》发布公告",
+      "url": "https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/202204/t20220412_2674315.html",
+      "scope": "核对GB 55016-2021标准名称、编号及实施"
+    },
+    {
+      "title": "美国能源部：Moisture Performance of High-R Wall Systems",
+      "url": "https://www.energy.gov/cmei/buildings/moisture-performance-high-r-wall-systems",
+      "scope": "辅助核对施工水、漏水、水汽及毛细迁移与隔汽、气密和排水协同的基本物理，不引入美国规范作为中国工程要求"
+    },
+    {
+      "title": "美国能源部：Energy-Efficient Home Improvement Credit Insulation and Air-Sealing Essentials",
+      "url": "https://www.energy.gov/cmei/buildings/articles/energy-efficient-home-improvement-credit-insulation-and-air-sealing",
+      "scope": "仅辅助核对保温材料厚度与热阻、完整围护及接口气密的原理，不采用其美国税务和限值"
+    },
+    {
+      "title": "加拿大国家研究委员会：IBANA-Calc",
+      "url": "https://nrc.canada.ca/en/research-development/products-services/software-applications/ibana-calc-software-calculate-effect-sound-insulation-against-aircraft-noise",
+      "scope": "辅助核对组合围护由不同构件隔声和声源频谱共同评价，未把单构件性能直接等同房间综合效果"
+    },
+    {
+      "title": "原稿提取段P0419-P0494与P4091-P4257",
+      "url": "audit-output/textbook-audit-2026-10-11/paragraphs.json",
+      "scope": "核对导学模数、三种尺寸与实践旧题条件来源；不把旧稿规范性表述当作当前标准"
+    }
+  ],
+  "limitations": [
+    "本轮未独立逐条审定所有工程标准全文，也未对具体项目进行防火、节能、防水或声环境合规设计。",
+    "未把现行标准发布公告等同所有条文内容。",
+    "本轮比较了基础各部分相关段落，不替代这些章节各自的逐段来源覆盖审查。",
+    "未改动任何主体正文，修复由主编完成。"
+  ]
+}

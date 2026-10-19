@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import { mkdir, readFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
+import { articles } from '../scripts/lib/textbook-catalog.mjs';
 
 const base = (process.argv[2] ?? 'http://127.0.0.1:5177/').replace(/\/?$/, '/');
-const output = 'audit-output/textbook-content-2026-10-12';
+const output = process.env.TEXTBOOK_BROWSER_OUTPUT ?? 'audit-output/textbook-content-2026-10-12';
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE } : {}) });
 const page = await browser.newPage({ viewport: { width: 1440, height: 960 } });
@@ -56,9 +57,16 @@ try {
     const target = iframe.contentDocument.querySelector(id);
     const top = iframe.getBoundingClientRect().top + target.getBoundingClientRect().top;
     const headerBottom = document.querySelector(".site-subpage-topbar").getBoundingClientRect().bottom;
-    return Math.abs(top - headerBottom - 24) < 12;
+    // Shorter reviewed lessons can reach the document bottom before the target
+    // can align beneath the sticky header. Validate the browser's real clamp.
+    const desiredScroll = window.scrollY + top - headerBottom - 24;
+    const maxScroll = Math.max(0, document.scrollingElement.scrollHeight - window.innerHeight);
+    const expectedScroll = Math.max(0, Math.min(desiredScroll, maxScroll));
+    return Math.abs(window.scrollY - expectedScroll) < 12
+      && top >= headerBottom - 12 && top < window.innerHeight;
   }, tocTarget);
   assert(page.url().endsWith('#/lesson/introduction/intro-course-guide.html'), 'index scroll stays on same route');
+  await frame.locator('.lesson-chapter-list summary').click();
   await frame.locator('.chapter-nav a[href$="intro-classification.html"]').click();
   frame = await ready('introduction/intro-classification.html');
   assert.equal(await frame.locator('h1').innerText(), '建筑物的分类');
@@ -70,7 +78,7 @@ try {
   await frame.locator('.chapter-card[href$="wall-details.html"]').click();
   frame = await ready('basics/wall/wall-details.html');
   assert((await frame.locator('.article').innerText()).includes('防潮'));
-  await frame.locator('.article a[href^="/#/node/"]').first().click();
+  await frame.locator('.article a[href^="/#/node/"]:not([data-lesson-figure])').first().click();
   await page.waitForURL(/#\/node\//);
 
   await page.goto(`${base}#/games`);
@@ -100,8 +108,29 @@ try {
     frame = await ready('basics/deformation-joint/index.html');
     assert.equal(await frame.locator('.chapter-card').count(), 3);
   }
+  // The reviewed edition substantially expands several lessons. Check every
+  // article in the narrowest supported reader, including the comparison table.
+  await page.setViewportSize({ width: 320, height: 844 });
+  for (const article of articles) {
+    frame = await navigate(article.path);
+    await checkOverflow();
+    assert.equal(await frame.locator('h1').innerText(), article.title);
+    assert((await frame.locator('.article').innerText()).length >= 300, `readable reviewed article: ${article.path}`);
+    assert(await frame.locator('.article-toc a').count() >= 3, `working article index: ${article.path}`);
+    await page.waitForFunction(() => {
+      const iframe = document.querySelector('.curriculum-frame');
+      return parseInt(iframe.style.height) + 2 >= iframe.contentDocument.body.getBoundingClientRect().height;
+    });
+  }
+  frame = await navigate('basics/deformation-joint/roof-deformation-concept.html');
+  await frame.locator('.article-table').scrollIntoViewIfNeeded();
+  await page.screenshot({ path: `${output}/deformation-table-mobile-320.png` });
+  await page.setViewportSize({ width: 1440, height: 960 });
+  frame = await navigate('basics/stairs/stairs-overview.html');
+  await frame.getByRole('heading', { name: '双跑楼梯的几何计算示例' }).scrollIntoViewIfNeeded();
+  await page.screenshot({ path: `${output}/stairs-reviewed-example-desktop.png` });
   assert.deepEqual(errors, [], 'no browser runtime errors during reading');
-  console.log(`Textbook browser checks passed: ${documents.length} readers return content, homepage/chapter/model/practice links, in-page index, desktop and 390/320px mobile layouts.`);
+  console.log(`Textbook browser checks passed: ${documents.length} readers return content, homepage/chapter/model/practice links, in-page index, desktop and 390/320px layouts, all ${articles.length} reviewed articles readable at 320px.`);
 } finally {
   await browser.close();
 }

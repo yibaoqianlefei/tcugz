@@ -1,0 +1,1571 @@
+{
+  "complete": true,
+  "nodes": [
+    {
+      "nodeId": "independent-foundation-01",
+      "nodeTitle": "独立式基础三种形式",
+      "image": "/images/foundation/independent-foundation-diagram.png",
+      "imageSha256": "8e84f42f43804bca0c65a0757665f188820bf365b5a53f4c8fe057bec18362ff",
+      "partNames": [
+        "锥形基础"
+      ],
+      "uses": [
+        {
+          "key": "introduction/intro-course-guide",
+          "figure": "figure-1",
+          "heading": "基础与原理的学习顺序"
+        },
+        {
+          "key": "foundation/foundation-overview",
+          "figure": "figure-1",
+          "heading": "基础、地基与持力层"
+        },
+        {
+          "key": "foundation/foundation-types",
+          "figure": "figure-1",
+          "heading": "按构造形式认识浅基础"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "cup-base",
+          "label": "杯形基础",
+          "modelAsset": "/models/foundation/independent-foundation/cup-base.glb",
+          "modelSha256": "cea5ece29c26d4cedc74accde638c27611d802723981aab6542eda4d3da17755",
+          "drawnPixels": 16656,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--cup-base-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--cup-base-model.png"
+        },
+        {
+          "variant": "stepped-base",
+          "label": "阶梯形基础",
+          "modelAsset": "/models/foundation/independent-foundation/stepped-base.glb",
+          "modelSha256": "f78fe6ad82673565eee16b12db50fd86a80d4f67a33d1c510b0d59a05e93ec44",
+          "drawnPixels": 17828,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--stepped-base-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--stepped-base-model.png"
+        },
+        {
+          "variant": "tapered-base",
+          "label": "锥形基础",
+          "modelAsset": "/models/foundation/independent-foundation/tapered-base.glb",
+          "modelSha256": "df301b6eab8f1b71e1e4f4c7bb98acf3b2d35e5eba639a04f687dac543661c95",
+          "drawnPixels": 17040,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--tapered-base-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/independent-foundation-01--tapered-base-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "organized-drainage-01",
+      "nodeTitle": "有组织排水屋顶",
+      "image": "/images/roof/organized-drainage-diagram.png",
+      "imageSha256": "a2574f4d265ddab8d3dbc2a91beb418dbca0191e0918ab0331a720c4cc8ef763",
+      "partNames": [
+        "檐沟及墙体支承",
+        "水落斗与落水管",
+        "预制空心屋面板",
+        "屋面及檐沟表层"
+      ],
+      "uses": [
+        {
+          "key": "introduction/intro-course-guide",
+          "figure": "figure-2",
+          "heading": "从作用路径到图纸表达"
+        },
+        {
+          "key": "practice/roof-drainage",
+          "figure": "figure-1",
+          "heading": "工作步骤"
+        },
+        {
+          "key": "practice/integrated-design",
+          "figure": "figure-2",
+          "heading": "工作步骤"
+        },
+        {
+          "key": "roof/roof-flat",
+          "figure": "figure-1",
+          "heading": "无组织与有组织排水"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "有组织排水屋顶",
+          "modelAsset": "/models/roof/organized-drainage/organized-drainage.glb",
+          "modelSha256": "49ea9bdc072342a265851eb43e300f6338422eba871a298f5f890c79290c4f40",
+          "drawnPixels": 19344,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/organized-drainage-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/organized-drainage-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "roof-truss-timber-01",
+      "nodeTitle": "屋架形式（木屋架）",
+      "image": "/images/roof/roof-truss-timber-diagram.png",
+      "imageSha256": "d66789cb38050e7a212e8a8e99b360ddf04e8e9a7e90e6afb2be0d65f59d0912",
+      "partNames": [
+        "木屋架"
+      ],
+      "uses": [
+        {
+          "key": "introduction/intro-classification",
+          "figure": "figure-1",
+          "heading": "按结构与围护体系分类"
+        },
+        {
+          "key": "roof/roof-overview",
+          "figure": "figure-1",
+          "heading": "屋顶的功能与构成"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "屋架形式（木屋架）",
+          "modelAsset": "/models/roof/roof-trusses/timber.glb",
+          "modelSha256": "cdd619318b1b273f8d681cfb1c9a09d241f762bf0d481812dfc3232fc54584e5",
+          "drawnPixels": 9275,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/roof-truss-timber-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/roof-truss-timber-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "cast-ribbed-floor-01",
+      "nodeTitle": "现浇肋梁楼板",
+      "image": "/images/floor/cast-ribbed-floor.png",
+      "imageSha256": "4b735b32c08476d97581f002ffdc49183ba6f1f9c56d722255f7774af8b23a25",
+      "partNames": [
+        "柱",
+        "主梁",
+        "肋梁（次梁）",
+        "现浇板"
+      ],
+      "uses": [
+        {
+          "key": "introduction/intro-composition",
+          "figure": "figure-1",
+          "heading": "典型传力路径"
+        },
+        {
+          "key": "practice/floor-layout",
+          "figure": "figure-1",
+          "heading": "工作步骤"
+        },
+        {
+          "key": "floor/floor-overview",
+          "figure": "figure-1",
+          "heading": "楼板层与地坪层"
+        },
+        {
+          "key": "floor/floor-rc-slab",
+          "figure": "figure-2",
+          "heading": "板式、梁板式与无梁楼盖"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "现浇肋梁楼板",
+          "modelAsset": "/models/floor/cast-ribbed-floor/cast-ribbed-floor.glb",
+          "modelSha256": "8dc7092f6dfd0d0862e15b215287b06cb70389f545a622f99983373473a72fe8",
+          "drawnPixels": 15607,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/cast-ribbed-floor-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/cast-ribbed-floor-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "stair-composition-01",
+      "nodeTitle": "楼梯的组成",
+      "image": "/images/stairs/stair-composition-diagram.png",
+      "imageSha256": "9fa6e0c787132d869f9ff6392b1dd6c717293deb238f427c85cf5ea3ab3c2e06",
+      "partNames": [
+        "中间平台",
+        "梯段",
+        "楼层平台",
+        "栏杆",
+        "顶层水平栏杆"
+      ],
+      "uses": [
+        {
+          "key": "introduction/intro-composition",
+          "figure": "figure-2",
+          "heading": "承载围护交通与设备系统"
+        },
+        {
+          "key": "principles/fire",
+          "figure": "figure-2",
+          "heading": "疏散路径与使用维护"
+        },
+        {
+          "key": "practice/stairs-drawing",
+          "figure": "figure-1",
+          "heading": "任务内容与条件"
+        },
+        {
+          "key": "practice/integrated-design",
+          "figure": "figure-1",
+          "heading": "任务内容与条件"
+        },
+        {
+          "key": "stairs/stairs-overview",
+          "figure": "figure-1",
+          "heading": "组成与形式"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "楼梯的组成",
+          "modelAsset": "/models/stairs/stair-composition/stair-composition.glb",
+          "modelSha256": "9542e74b14bd4f27f2f2eddf1f1fa7e83fa45607b7303dae7a7b9252763340b5",
+          "drawnPixels": 13327,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-composition-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-composition-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "eaves-gutter-01",
+      "nodeTitle": "檐沟外排水",
+      "image": "/images/roof/eaves-gutter-diagram.png",
+      "imageSha256": "2b1262d6b54b3b623b2ec167dd27d907d30fd4cbab9693505e55661f2483ec47",
+      "partNames": [
+        "屋面顶",
+        "檐沟",
+        "檐沟分水",
+        "排水口",
+        "墙体",
+        "圈梁"
+      ],
+      "uses": [
+        {
+          "key": "introduction/intro-factors",
+          "figure": "figure-1",
+          "heading": "气候地形与地质条件"
+        },
+        {
+          "key": "roof/roof-overview",
+          "figure": "figure-2",
+          "heading": "坡度、材料与水路"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "檐沟外排水",
+          "modelAsset": "/models/roof/eaves-gutter/eaves-gutter.glb",
+          "modelSha256": "3d4c6c77d640aedcfc62b8ba0e0308d80a437b1c2afbefbedb5f13bd0aab0de2",
+          "drawnPixels": 23802,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/eaves-gutter-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/eaves-gutter-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "ramp-handrail-01",
+      "nodeTitle": "坡道扶手",
+      "image": "/images/stairs/ramp-handrail-diagram.png",
+      "imageSha256": "260ae7ec12b536d00ffd8f84f376b0deb3ee4cbb5ec4b241e282e157c78fd011",
+      "partNames": [
+        "坡道扶手",
+        "坡道"
+      ],
+      "uses": [
+        {
+          "key": "introduction/intro-factors",
+          "figure": "figure-2",
+          "heading": "使用者与使用活动"
+        },
+        {
+          "key": "stairs/stairs-steps-ramps",
+          "figure": "figure-2",
+          "heading": "坡道的坡度、平台与防护"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "坡道扶手",
+          "modelAsset": "/models/stairs/ramp-handrail/ramp-handrail.glb",
+          "modelSha256": "5f56eee924395bcc45876b356d6a586ce7a4990e1171e41cc072ab278d293f91",
+          "drawnPixels": 10327,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/ramp-handrail-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/ramp-handrail-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "window-wall-gap-sealing-01",
+      "nodeTitle": "封堵窗墙间缝隙做法",
+      "image": "/images/wall/window-wall-gap-sealing-diagram.png",
+      "imageSha256": "be52169fb463cab7dc2bdefd8e7dd56887f53628f2b3f82bd5e8a0e233726722",
+      "partNames": [
+        "外墙",
+        "窗框",
+        "袋装矿棉",
+        "弹性密封胶",
+        "左木条",
+        "右木条"
+      ],
+      "uses": [
+        {
+          "key": "introduction/intro-design-principles",
+          "figure": "figure-1",
+          "heading": "节点中的多项要求"
+        },
+        {
+          "key": "principles/thermal",
+          "figure": "figure-2",
+          "heading": "保温与空气 水分及防火"
+        },
+        {
+          "key": "principles/acoustic",
+          "figure": "figure-1",
+          "heading": "单层墙 双层墙与开口"
+        },
+        {
+          "key": "principles/moisture",
+          "figure": "figure-2",
+          "heading": "隔汽 气密与干燥路径"
+        },
+        {
+          "key": "practice/envelope-detail",
+          "figure": "figure-1",
+          "heading": "工作步骤"
+        },
+        {
+          "key": "door-window/window-door-design",
+          "figure": "figure-1",
+          "heading": "框与洞口的可靠连接"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "封堵窗墙间缝隙做法",
+          "modelAsset": "/models/wall/window-wall-gap-sealing/window-wall-gap-sealing.glb",
+          "modelSha256": "114bbbd259df2b97a4e54f68ae82c30435030346e28f7d05e1a480abf1ba847a",
+          "drawnPixels": 28934,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/window-wall-gap-sealing-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/window-wall-gap-sealing-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "bottom-landing-entrance-01",
+      "nodeTitle": "底层中间平台下作出入口（底层长短跑）",
+      "image": "/images/stairs/bottom-landing-entrance-diagram.png",
+      "imageSha256": "a9c3bead716e5cbc556b120375ec6a1fa5274ec37b9f1382d446f9de12b2628e",
+      "partNames": [],
+      "uses": [
+        {
+          "key": "introduction/intro-drawing-standards",
+          "figure": "figure-1",
+          "heading": "轴线层高与净高"
+        },
+        {
+          "key": "practice/stairs-drawing",
+          "figure": "figure-2",
+          "heading": "工作步骤"
+        },
+        {
+          "key": "stairs/stairs-overview",
+          "figure": "figure-2",
+          "heading": "净高检查与设计闭环"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "底层中间平台下作出入口（底层长短跑）",
+          "modelAsset": "/models/stairs/bottom-landing-entrance/bottom-landing-entrance.glb",
+          "modelSha256": "0a8d137d715300f2d51effa993193daa71a2c02c3cf82026cf12365ea5598592",
+          "drawnPixels": 42551,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/bottom-landing-entrance-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/bottom-landing-entrance-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "foam-insulation-01",
+      "nodeTitle": "粘贴泡沫塑料保温板外保温",
+      "image": "/images/wall/foam-insulation-diagram.png",
+      "imageSha256": "9cb7f850e254e57110030c030c1e4b0b7efd4839c3b7600b2e9b95954675c2f7",
+      "partNames": [
+        "饰面层",
+        "抹面层",
+        "增强网",
+        "锚栓",
+        "泡沫塑料保温板",
+        "胶粘剂",
+        "基层墙体"
+      ],
+      "uses": [
+        {
+          "key": "principles/thermal",
+          "figure": "figure-1",
+          "heading": "保温层位置与节点连续性"
+        },
+        {
+          "key": "practice/construction-brief",
+          "figure": "figure-1",
+          "heading": "工作步骤"
+        },
+        {
+          "key": "wall/wall-role",
+          "figure": "figure-1",
+          "heading": "承重、围护与分隔"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "粘贴泡沫塑料保温板外保温",
+          "modelAsset": "/models/wall/foam-insulation/foam-insulation.glb",
+          "modelSha256": "c07f589ba4ee2fe2533089eef06f71c9826171af86cb52b9580ff35d4886f5ec",
+          "drawnPixels": 26459,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/foam-insulation-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/foam-insulation-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "coating-parapet-flashing-01",
+      "nodeTitle": "涂膜防水屋面的女儿墙泛水",
+      "image": "/images/roof/coating-parapet-flashing-diagram.png",
+      "imageSha256": "7caaf6ac52f2cafda171470b44c70427893b95f09eb38fbd63bd037aab3f4cb2",
+      "partNames": [
+        "屋面结构板",
+        "女儿墙墙体",
+        "屋面找平基层",
+        "防水油膏嵌缝",
+        "水泥砂浆抹灰",
+        "附加卷材",
+        "涂膜防水层",
+        "压条",
+        "水泥钉",
+        "外侧抹灰"
+      ],
+      "uses": [
+        {
+          "key": "principles/waterproof",
+          "figure": "figure-1",
+          "heading": "连续防水线与节点转换"
+        },
+        {
+          "key": "practice/envelope-detail",
+          "figure": "figure-2",
+          "heading": "任务内容与条件"
+        },
+        {
+          "key": "roof/roof-flat",
+          "figure": "figure-2",
+          "heading": "女儿墙、檐口与水落口"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "涂膜防水屋面的女儿墙泛水",
+          "modelAsset": "/models/roof/coating-parapet-flashing/coating-parapet-flashing.glb",
+          "modelSha256": "bad19ab0b457b721657ddbd6a5a7d338b1918429178da6b4182d269229ff0f93",
+          "drawnPixels": 25353,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/coating-parapet-flashing-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/coating-parapet-flashing-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "straight-rainwater-outlet-cast-iron-01",
+      "nodeTitle": "直管式水落口（铸铁水落口）",
+      "image": "/images/roof/straight-rainwater-outlet-cast-iron-diagram.png",
+      "imageSha256": "dd0f471290856a79d879d1ccb00534fe70b4cc20009db1223b38f7f59dd2c298",
+      "partNames": [
+        "钢筋混凝土屋面板",
+        "1∶2.5 水泥砂浆",
+        "防水卷材",
+        "屋面面层",
+        "油膏嵌缝",
+        "铸铁水落口",
+        "镀锌钢丝球"
+      ],
+      "uses": [
+        {
+          "key": "principles/waterproof",
+          "figure": "figure-2",
+          "heading": "排水 阻水与保护的配合"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "直管式水落口（铸铁水落口）",
+          "modelAsset": "/models/roof/straight-rainwater-outlet/cast-iron.glb",
+          "modelSha256": "f54c91cd013fc81cae7a9399f130c3762ba797c743f59185c7b62bfd0b31026c",
+          "drawnPixels": 15730,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/straight-rainwater-outlet-cast-iron-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/straight-rainwater-outlet-cast-iron-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "water-storage-eaves-drainage-01",
+      "nodeTitle": "蓄水屋面（檐沟式排水）",
+      "image": "/images/roof/water-storage-eaves-drainage-diagram.png",
+      "imageSha256": "5a418711f4436cba48d483530ff5a0faa2757329bb271f0713283327bdfad0fd",
+      "partNames": [
+        "承托及挡水墙",
+        "屋面空心板",
+        "沥青麻丝嵌缝",
+        "找平层",
+        "蓄水区防水层",
+        "防水保护层",
+        "蓄水层",
+        "泛水保护砂浆",
+        "泛水收头",
+        "溢水孔",
+        "泄水孔",
+        "檐沟",
+        "檐沟衬层",
+        "水落管"
+      ],
+      "uses": [
+        {
+          "key": "principles/insulation",
+          "figure": "figure-1",
+          "heading": "室内通风与特殊屋面"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "蓄水屋面（檐沟式排水）",
+          "modelAsset": "/models/roof/water-storage-eaves-drainage/water-storage-eaves-drainage.glb",
+          "modelSha256": "54a8aed0bb4de336aa170189fc9f37f64975cc7fa9454a1ab4e62201456675fa",
+          "drawnPixels": 20854,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/water-storage-eaves-drainage-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/water-storage-eaves-drainage-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "rockwool-insulation-01",
+      "nodeTitle": "粘贴岩棉防火保温板外保温",
+      "image": "/images/wall/rockwool-insulation-diagram.png",
+      "imageSha256": "0ea00499e560437361c27d9460b920f870130f56b2e98c20be54e9d609a3330a",
+      "partNames": [
+        "饰面层",
+        "抹面层",
+        "防水层",
+        "锚栓",
+        "岩棉防火保温板",
+        "找平层",
+        "基层墙体"
+      ],
+      "uses": [
+        {
+          "key": "principles/fire",
+          "figure": "figure-1",
+          "heading": "结构保护 外围护与竖井"
+        },
+        {
+          "key": "wall/wall-design-requirements",
+          "figure": "figure-2",
+          "heading": "保温、隔热、气密与防结露"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "粘贴岩棉防火保温板外保温",
+          "modelAsset": "/models/wall/rockwool-insulation/rockwool-insulation.glb",
+          "modelSha256": "261733449421aa402380d3ef0a10e5768a17e04488b2a23ff5825f02ff8d02a4",
+          "drawnPixels": 26744,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/rockwool-insulation-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/rockwool-insulation-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "plaster-plinth-01",
+      "nodeTitle": "抹灰勒脚构造做法",
+      "image": "/images/wall/plaster-plinth-diagram.png",
+      "imageSha256": "4c1007b9dbdfcabe7582e3b7aa12283cf63682ab8c556133cb4edac691e76a84",
+      "partNames": [
+        "回填土",
+        "垫层",
+        "防潮层",
+        "抹灰层",
+        "墙体"
+      ],
+      "uses": [
+        {
+          "key": "principles/moisture",
+          "figure": "figure-1",
+          "heading": "墙脚与首层地面的防潮"
+        },
+        {
+          "key": "wall/index",
+          "figure": "figure-2",
+          "heading": "本章学习目标"
+        },
+        {
+          "key": "wall/wall-details",
+          "figure": "figure-1",
+          "heading": "墙脚防潮：先追踪水的路径"
+        },
+        {
+          "key": "wall/wall-finishes",
+          "figure": "figure-1",
+          "heading": "抹灰类饰面与传统石渣饰面"
+        },
+        {
+          "key": "floor/floor-ground-composition",
+          "figure": "figure-2",
+          "heading": "防潮、防水、保温与架空"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "抹灰勒脚构造做法",
+          "modelAsset": "/models/wall/plaster-plinth/plaster-plinth.glb",
+          "modelSha256": "d43bf770ad231e694f686f31d1be5f27baa3765344261e2e47b28e6b32586c5d",
+          "drawnPixels": 20139,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/plaster-plinth-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/plaster-plinth-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "flat-slab-01",
+      "nodeTitle": "无梁楼板",
+      "image": "/images/floor/flat-slab-diagram.png",
+      "imageSha256": "3f7a610842a091286f3e31d0c8d580bc4522779dcffab2f5b02748d84f83dd1e",
+      "partNames": [
+        "无梁楼板"
+      ],
+      "uses": [
+        {
+          "key": "practice/floor-layout",
+          "figure": "figure-2",
+          "heading": "任务内容与条件"
+        },
+        {
+          "key": "floor/floor-rc-slab",
+          "figure": "figure-3",
+          "heading": "板式、梁板式与无梁楼盖"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "无梁楼板",
+          "modelAsset": "/models/floor/flat-slab/flat-slab.glb",
+          "modelSha256": "ca98c97640c615466d6fdcd73aff95aca4a6dded1999d0716990ac487fe42a3e",
+          "drawnPixels": 21967,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/flat-slab-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/flat-slab-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "straight-rainwater-outlet-65-01",
+      "nodeTitle": "直管式水落口（65 型水落口）",
+      "image": "/images/roof/straight-rainwater-outlet-65-diagram.png",
+      "imageSha256": "e7b4828d87f99a36aef87f7a6a029b0118053b4bf6e65aa080a612f13ab88bfb",
+      "partNames": [
+        "钢筋混凝土屋面板",
+        "1∶2.5 水泥砂浆",
+        "防水卷材",
+        "屋面面层",
+        "油膏嵌缝",
+        "定型铸铁水落口",
+        "65 型铸铁进水罩"
+      ],
+      "uses": [
+        {
+          "key": "practice/roof-drainage",
+          "figure": "figure-2",
+          "heading": "提交物"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "直管式水落口（65 型水落口）",
+          "modelAsset": "/models/roof/straight-rainwater-outlet/type-65.glb",
+          "modelSha256": "6f4a8f74f87088f1bc3148e4ab06d46d003c4bd72bcd0d2b974ee2e3e3e2e004",
+          "drawnPixels": 14345,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/straight-rainwater-outlet-65-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/straight-rainwater-outlet-65-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "apron-flashing-01",
+      "nodeTitle": "细石混凝土散水构造",
+      "image": "/images/wall/apron-flashing-diagram.png",
+      "imageSha256": "65f2b0c6f539bfaa0dcbb02f2cd5d0dc6dd94c600e722728f7be85e3f572b575",
+      "partNames": [
+        "细石混凝土面层",
+        "饰面层",
+        "防水层",
+        "钢筋混凝土墙体",
+        "聚乙烯泡沫塑料",
+        "密封膏嵌缝",
+        "保温层",
+        "卵石灌浆垫层",
+        "素土夯实"
+      ],
+      "uses": [
+        {
+          "key": "practice/construction-survey",
+          "figure": "figure-1",
+          "heading": "工作步骤"
+        },
+        {
+          "key": "wall/wall-details",
+          "figure": "figure-2",
+          "heading": "勒脚、散水与明沟"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "细石混凝土散水构造",
+          "modelAsset": "/models/wall/apron-flashing/apron-flashing.glb",
+          "modelSha256": "c9b5f93141aaf443ce746e9641094cecdf31530a12a4e33c354c3bfe125f2dc4",
+          "drawnPixels": 21572,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/apron-flashing-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/apron-flashing-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "stair-flight-flush-unburied-01",
+      "nodeTitle": "梯段与平台梁节点处理（梯段齐步不埋步）",
+      "image": "/images/stairs/stair-flight-flush-unburied-01-diagram.png",
+      "imageSha256": "2de2866088fff4cbef9c616bb0c3912ac3fc6eca170b57d98bf04f0399ae07b6",
+      "partNames": [
+        "梯段",
+        "下平台梁-平肩凹口",
+        "下平台板",
+        "上平台梁-梁腹对齐",
+        "上平台板"
+      ],
+      "uses": [
+        {
+          "key": "practice/construction-survey",
+          "figure": "figure-2",
+          "heading": "提交物"
+        },
+        {
+          "key": "stairs/stairs-rc-structure",
+          "figure": "figure-1",
+          "heading": "预制楼梯与连接"
+        },
+        {
+          "key": "stairs/stairs-details",
+          "figure": "figure-1",
+          "heading": "齐步、错步与平台节点"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "梯段与平台梁节点处理（梯段齐步不埋步）",
+          "modelAsset": "/models/stairs/stair-flight-platform/stair-flight-flush-unburied-01.glb",
+          "modelSha256": "e0dd9fe0facce1c568c0afdc36c4d3d5398e3cd2aa47b4641a8cd6e8d0b996d3",
+          "drawnPixels": 13532,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-flight-flush-unburied-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-flight-flush-unburied-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "combined-foundation-beam-slab-01",
+      "nodeTitle": "联合基础（梁板式基础）",
+      "image": "/images/foundation/combined-foundation-beam-slab-diagram.png",
+      "imageSha256": "380a8a79f2d096b1490b63f09403a376a3439e2b874aae5c40900ce24cbf35b7",
+      "partNames": [
+        "基础底板",
+        "基础梁",
+        "柱"
+      ],
+      "uses": [
+        {
+          "key": "foundation/foundation-design",
+          "figure": "figure-1",
+          "heading": "承载、稳定、变形和耐久"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "联合基础（梁板式基础）",
+          "modelAsset": "/models/foundation/combined-foundation/beam-slab.glb",
+          "modelSha256": "1c5f9f55c2df3cd56263799c5424c8cfd7d712ea6977d91b8a6cbb226049bff7",
+          "drawnPixels": 22359,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/combined-foundation-beam-slab-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/combined-foundation-beam-slab-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "pile-foundation-composition-01",
+      "nodeTitle": "桩基组成",
+      "image": "/images/foundation/pile-foundation-composition-diagram.png",
+      "imageSha256": "dfab90d0155ca554df87ccb4d19c218238d0c7fc02138152d0e825c2c4c62b3b",
+      "partNames": [
+        "桩",
+        "斜顶承台板",
+        "墙下承台梁",
+        "柱",
+        "墙体"
+      ],
+      "uses": [
+        {
+          "key": "foundation/foundation-types",
+          "figure": "figure-2",
+          "heading": "桩基础与其他深基础"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "桩基组成",
+          "modelAsset": "/models/foundation/pile-foundation-composition/pile-foundation-composition.glb",
+          "modelSha256": "fb8c35b27104101ded9590aa80f439213df1a982c3b23122d8af08067237ebfa",
+          "drawnPixels": 10893,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/pile-foundation-composition-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/pile-foundation-composition-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "combined-foundation-box-01",
+      "nodeTitle": "联合基础（箱形基础）",
+      "image": "/images/foundation/combined-foundation-box-diagram.png",
+      "imageSha256": "f9bb3bea2eb915b3093e8b8332e43d86bee8cc286c51d5ff8a46b5bab4a8f5ed",
+      "partNames": [
+        "箱形基础底板",
+        "箱形基础内外墙",
+        "箱形基础顶板及梁",
+        "柱"
+      ],
+      "uses": [
+        {
+          "key": "foundation/foundation-underground",
+          "figure": "figure-1",
+          "heading": "箱形基础与地下室"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "联合基础（箱形基础）",
+          "modelAsset": "/models/foundation/combined-foundation/box.glb",
+          "modelSha256": "05ece5e873e18b3b886bfa4b4287f33203d1118d0b89bfb81dbace7ea935329e",
+          "drawnPixels": 23570,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/combined-foundation-box-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/combined-foundation-box-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "high-low-roof-joint-01",
+      "nodeTitle": "高低屋面变形缝（一）",
+      "image": "/images/roof/high-low-roof-joint-01-diagram.png",
+      "imageSha256": "65c889663c04d8bf86e7c99ab23e9aaeaf10bd63c507252c207e3251fc72005b",
+      "partNames": [
+        "高墙",
+        "砖砌矮墙",
+        "低屋面结构板",
+        "低屋面找平层",
+        "砂浆圆弧基层",
+        "低屋面防水层",
+        "跨缝附加卷材",
+        "水泥钉",
+        "墙槽柔性封口",
+        "高墙抹灰"
+      ],
+      "uses": [
+        {
+          "key": "foundation/foundation-settlement",
+          "figure": "figure-1",
+          "heading": "预防与构造协调"
+        },
+        {
+          "key": "deformation-joint/roof-deformation-concept",
+          "figure": "figure-1",
+          "heading": "为什么需要允许建筑变形"
+        },
+        {
+          "key": "deformation-joint/roof-deformation-construction",
+          "figure": "figure-1",
+          "heading": "等高屋面与高低屋面"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "高低屋面变形缝（一）",
+          "modelAsset": "/models/roof/high-low-roof-joint/high-low-roof-joint-01.glb",
+          "modelSha256": "4311757decb99a543493560f994fbaa4e936c6f04aed3eabf43acfa64bb18584",
+          "drawnPixels": 26195,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/high-low-roof-joint-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/high-low-roof-joint-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "construction-column-01",
+      "nodeTitle": "构造柱",
+      "image": "/images/wall/construction-column-diagram.png",
+      "imageSha256": "ad7da0f4e6fe944c3b2ab53cb3c2a34e0f6796189e77650c0115839bf3134cf5",
+      "partNames": [
+        "钢筋",
+        "箍筋",
+        "混凝土柱子",
+        "楼板",
+        "马牙槎（马牙槎）",
+        "墙体",
+        "圈梁"
+      ],
+      "uses": [
+        {
+          "key": "wall/index",
+          "figure": "figure-1",
+          "heading": "用一张剖面组织知识"
+        },
+        {
+          "key": "wall/wall-design-requirements",
+          "figure": "figure-1",
+          "heading": "整体性与抗震"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "构造柱",
+          "modelAsset": "/models/wall/construction-column/construction-column.glb",
+          "modelSha256": "6913f7211410512d5a7269ff6e767c3bf3af889957bece2edc839d7c62babbd2",
+          "drawnPixels": 11353,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/construction-column-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/construction-column-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "hollow-block-forms-01",
+      "nodeTitle": "空心砌块的常见形式",
+      "image": "/images/wall/hollow-block-forms-diagram.png",
+      "imageSha256": "7f75a100a57ec8a3ea3aae4777d78acd7663dd4d41982c24785666ea944496c8",
+      "partNames": [
+        "多排扁孔",
+        "单排双孔",
+        "单排圆孔",
+        "单排组合孔"
+      ],
+      "uses": [
+        {
+          "key": "wall/wall-types",
+          "figure": "figure-1",
+          "heading": "按材料与构造方式分类"
+        },
+        {
+          "key": "wall/wall-masonry",
+          "figure": "figure-1",
+          "heading": "块材、砂浆和砌体性能"
+        },
+        {
+          "key": "wall/wall-partition",
+          "figure": "figure-1",
+          "heading": "砌筑隔墙与框架填充墙"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "空心砌块的常见形式",
+          "modelAsset": "/models/wall/hollow-block-forms/hollow-block-forms.glb",
+          "modelSha256": "0121c4decc66907b6591a77d770e423051f5b08833b2899f344787be9c27cee4",
+          "drawnPixels": 12527,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/hollow-block-forms-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/hollow-block-forms-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "block-wall-core-column-01",
+      "nodeTitle": "砌块墙墙芯柱构造",
+      "image": "/images/wall/block-wall-core-column-01.png",
+      "imageSha256": "d8d6a9ad943f50ecd30d641a15978bdb7b32aaea87795f8984e665a8fbd8dde5",
+      "partNames": [
+        "砌块墙体",
+        "芯柱纵筋",
+        "芯柱混凝土"
+      ],
+      "uses": [
+        {
+          "key": "wall/wall-masonry",
+          "figure": "figure-2",
+          "heading": "圈梁、构造柱与芯柱"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "砌块墙墙芯柱构造",
+          "modelAsset": "/models/wall/block-wall-core-column/block-wall-core-column.glb",
+          "modelSha256": "d951fa93ab5c72935b724004b220a4ddabd43e4cdce8fbac91df0b825aebad99",
+          "drawnPixels": 18230,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/block-wall-core-column-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/block-wall-core-column-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "rc-lintel-flush-01",
+      "nodeTitle": "钢筋混凝土过梁（平墙过梁）",
+      "image": "/images/wall/rc-lintel-flush-diagram.png",
+      "imageSha256": "e66e374e16280b445e037433cf19b907a4ff9000e475afc5e9de3c0b109efb1b",
+      "partNames": [
+        "平墙过梁",
+        "外围包覆层",
+        "墙"
+      ],
+      "uses": [
+        {
+          "key": "wall/wall-details",
+          "figure": "figure-3",
+          "heading": "门窗洞口：传力、密封与排水"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "钢筋混凝土过梁（平墙过梁）",
+          "modelAsset": "/models/wall/rc-lintels/flush.glb",
+          "modelSha256": "1ce1c514ea6bfa86923117896a716d6f170850b1d56e3cc9f74754f622fd40f8",
+          "drawnPixels": 36093,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/rc-lintel-flush-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/rc-lintel-flush-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "faced-plinth-01",
+      "nodeTitle": "贴面勒脚构造做法",
+      "image": "/images/wall/faced-plinth-diagram.png",
+      "imageSha256": "09a64d67f08283ce5b96039809c599c3ea428127f845aef0203a9eeae95a1090",
+      "partNames": [
+        "回填土",
+        "垫层",
+        "防潮层",
+        "贴面层",
+        "墙体"
+      ],
+      "uses": [
+        {
+          "key": "wall/wall-finishes",
+          "figure": "figure-2",
+          "heading": "粘贴、湿挂与干挂饰面"
+        },
+        {
+          "key": "floor/finish-overview",
+          "figure": "figure-1",
+          "heading": "实体基层、骨架基层与连接"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "贴面勒脚构造做法",
+          "modelAsset": "/models/wall/faced-plinth/faced-plinth.glb",
+          "modelSha256": "42cd7638b9f6f63542ae46d3c30ed6463647e7e9843debe3c00aa3c5a425662c",
+          "drawnPixels": 20860,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/faced-plinth-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/faced-plinth-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "rc-lintel-window-surround-01",
+      "nodeTitle": "钢筋混凝土过梁（带窗套过梁）",
+      "image": "/images/wall/rc-lintel-window-surround-diagram.png",
+      "imageSha256": "bd0e643152a2b1da448a659480d11ce4b1da4a5beb63e402c0c93e2bd7542e01",
+      "partNames": [
+        "带窗套过梁",
+        "外围包覆层",
+        "墙"
+      ],
+      "uses": [
+        {
+          "key": "door-window/window-door-overview",
+          "figure": "figure-1",
+          "heading": "门窗在建筑中的位置"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "钢筋混凝土过梁（带窗套过梁）",
+          "modelAsset": "/models/wall/rc-lintels/window-surround.glb",
+          "modelSha256": "250e0e17b713444dae20ad9f447274e7bd668a7a4a180113f24051227f3726b5",
+          "drawnPixels": 34424,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/rc-lintel-window-surround-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/rc-lintel-window-surround-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "rc-lintel-window-hood-01",
+      "nodeTitle": "钢筋混凝土过梁（带窗楣过梁）",
+      "image": "/images/wall/rc-lintel-window-hood-diagram.png",
+      "imageSha256": "4d7a684f8d08c902a9c4a31842735a4a4ad8d39db8edef835db9943141bf1f4e",
+      "partNames": [
+        "带窗楣过梁",
+        "外围包覆层",
+        "墙"
+      ],
+      "uses": [
+        {
+          "key": "door-window/window-door-design",
+          "figure": "figure-2",
+          "heading": "缝隙、雨水与声音的处理"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "钢筋混凝土过梁（带窗楣过梁）",
+          "modelAsset": "/models/wall/rc-lintels/window-hood.glb",
+          "modelSha256": "a7ba83acabb222e7fa0578c0074b954609658d6dd84f285dfa598a9126a54cd5",
+          "drawnPixels": 21079,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/rc-lintel-window-hood-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/rc-lintel-window-hood-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "precast-hollow-slab-01",
+      "nodeTitle": "预制钢筋混凝土板（空心板）",
+      "image": "/images/floor/precast-slab-hollow-diagram.png",
+      "imageSha256": "e159b7a20895fcd7a277e7d536425f8875bee45fbe52d46c426eb86cfbe8998e",
+      "partNames": [
+        "墙",
+        "墙内梁",
+        "中梁",
+        "空心板"
+      ],
+      "uses": [
+        {
+          "key": "floor/floor-rc-slab",
+          "figure": "figure-1",
+          "heading": "传统预制板的类型与布置"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "预制钢筋混凝土板（空心板）",
+          "modelAsset": "/models/floor/precast-slabs/hollow.glb",
+          "modelSha256": "416ed4a1b2cd9057301d9de082b956e07f7ce5c543fbf55603c833e4f1face97",
+          "drawnPixels": 20550,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/precast-hollow-slab-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/precast-hollow-slab-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "ramp-floor-01",
+      "nodeTitle": "坡道地面构造做法（一）",
+      "image": "/images/stairs/ramp-floor-01-diagram.png",
+      "imageSha256": "0cd0300f77f5361ded700c0cac4cfa42b4baf9316cc23db603007dd9a89cfb55",
+      "partNames": [
+        "素土夯实",
+        "C15混凝土层",
+        "干硬性水泥砂浆粘结层",
+        "水泥方砖面层",
+        "砖缝填充与洒水封缝"
+      ],
+      "uses": [
+        {
+          "key": "floor/floor-ground-composition",
+          "figure": "figure-1",
+          "heading": "实铺地面的传力与基层"
+        },
+        {
+          "key": "floor/floor-ground-layer",
+          "figure": "figure-1",
+          "heading": "块料、弹性及木质地面"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "坡道地面构造做法（一）",
+          "modelAsset": "/models/stairs/ramp-floor/ramp-floor-01.glb",
+          "modelSha256": "fabc57504119b6e554a56b14b8795e829079df3b9b9893a521500de876fa2c95",
+          "drawnPixels": 21122,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/ramp-floor-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/ramp-floor-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "cantilever-slab-01",
+      "nodeTitle": "挑梁搭板三种构造",
+      "image": "/images/floor/cantilever-slab-diagram.png",
+      "imageSha256": "04147013630218ac57af7353c51e706bf8b3548e496c3647440157ef8bcf05e9",
+      "partNames": [
+        "L形挑梁卡口板构造"
+      ],
+      "uses": [
+        {
+          "key": "floor/floor-balcony",
+          "figure": "figure-1",
+          "heading": "空间形式与结构形式分别判断"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "edge-beam",
+          "label": "设置边梁",
+          "modelAsset": "/models/floor/cantilever-slab/cantilever-slab-edge-beam.glb",
+          "modelSha256": "ab94cc7cc4445fd978afcf55876cb7ae9fbb9dce6a2d7d00ffe70c910270e293",
+          "drawnPixels": 18774,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-slab-01--edge-beam-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-slab-01--edge-beam-model.png"
+        },
+        {
+          "variant": "exposed-beam",
+          "label": "挑梁外露",
+          "modelAsset": "/models/floor/cantilever-slab/cantilever-slab-exposed-beam.glb",
+          "modelSha256": "dceafc137991e31fedbef022fd77cfb9bf7de8e255b5b3d190758ac764dc2936",
+          "drawnPixels": 18519,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-slab-01--exposed-beam-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-slab-01--exposed-beam-model.png"
+        },
+        {
+          "variant": "l-notch-board",
+          "label": "L形挑梁卡口板",
+          "modelAsset": "/models/floor/cantilever-slab/cantilever-slab-l-notch-board.glb",
+          "modelSha256": "a6806e39a16dfeeaca68c49b4ead7dc93c05be0ac8d8cf1020bc140516a24484",
+          "drawnPixels": 18747,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-slab-01--l-notch-board-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-slab-01--l-notch-board-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "balcony-railing-weld-01",
+      "nodeTitle": "栏杆与阳台板的连接（预埋件焊接）",
+      "image": "/images/floor/balcony-railing-weld-diagram.png",
+      "imageSha256": "a18f2e91f75b1aa8c12c94318ffd536dd621e8d0106054f63741a822249c37b5",
+      "partNames": [
+        "阳台板",
+        "现浇挡水带",
+        "预埋件锚脚",
+        "预埋钢板",
+        "通长联系钢筋",
+        "栏杆脚",
+        "板边饰面包覆"
+      ],
+      "uses": [
+        {
+          "key": "floor/floor-balcony",
+          "figure": "figure-2",
+          "heading": "阳台排水、防水与防护"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "栏杆与阳台板的连接（预埋件焊接）",
+          "modelAsset": "/models/floor/balcony-railing-weld/balcony-railing-weld.glb",
+          "modelSha256": "e447d3d7c7e53aeadefe0058dad8b44e8850a7131a03318cb3a53cb51bcef289",
+          "drawnPixels": 22106,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/balcony-railing-weld-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/balcony-railing-weld-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "cantilever-canopy-slab-01",
+      "nodeTitle": "悬挑雨篷构造（悬挑板式）",
+      "image": "/images/floor/cantilever-canopy-slab-01-diagram.png",
+      "imageSha256": "938f207950f60a2b675e9ba4fd3b183c8e28fabdac1e5d980656617ddc3bac09",
+      "partNames": [
+        "墙体",
+        "过梁与悬挑板",
+        "防水砂浆抹面",
+        "板底抹灰与檐口滴水槽",
+        "墙面抹灰"
+      ],
+      "uses": [
+        {
+          "key": "floor/floor-balcony",
+          "figure": "figure-3",
+          "heading": "雨棚的支承与排水"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "悬挑雨篷构造（悬挑板式）",
+          "modelAsset": "/models/floor/cantilever-canopy/cantilever-canopy-slab-01.glb",
+          "modelSha256": "b94f285ed141a0d9e3897ce2486bb1c77c9aaa34114cd37b71a66563a5f92686",
+          "drawnPixels": 21174,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-canopy-slab-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/cantilever-canopy-slab-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "stair-flight-offset-one-01",
+      "nodeTitle": "梯段与平台梁节点处理（梯段错一步）",
+      "image": "/images/stairs/stair-flight-offset-one-01-diagram.png",
+      "imageSha256": "cb38b11d1abe55f040700655fd8d6b0e7d45687ac95107f900495176b7848d8f",
+      "partNames": [
+        "梯段",
+        "下平台梁-斜肩L形承托",
+        "下平台板",
+        "上平台梁-斜肩L形承托",
+        "上平台板"
+      ],
+      "uses": [
+        {
+          "key": "stairs/stairs-details",
+          "figure": "figure-2",
+          "heading": "齐步、错步与平台节点"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "梯段与平台梁节点处理（梯段错一步）",
+          "modelAsset": "/models/stairs/stair-flight-platform/stair-flight-offset-one-01-v2.glb",
+          "modelSha256": "6df51bb731cf4d409848204a656ad0504de83ea708e41fa30afedebb891614d7",
+          "drawnPixels": 12080,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-flight-offset-one-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/stair-flight-offset-one-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "concrete-steps-01",
+      "nodeTitle": "混凝土台阶",
+      "image": "/images/stairs/concrete-steps-diagram.png",
+      "imageSha256": "ae1f7fce6a26ba186adfcc53c8ee5fc1d13eaac512243f1291882bbc25272551",
+      "partNames": [
+        "面层",
+        "混凝土台阶",
+        "碎石垫层",
+        "素土夯实",
+        "墙柱"
+      ],
+      "uses": [
+        {
+          "key": "stairs/stairs-steps-ramps",
+          "figure": "figure-1",
+          "heading": "台阶构造与不均匀变形"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "混凝土台阶",
+          "modelAsset": "/models/stairs/concrete-steps/concrete-steps.glb",
+          "modelSha256": "53475f8a42739d47e3ef69c8c8698577da0b6b59f593fc52a16fac4939d0ae0f",
+          "drawnPixels": 24804,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/concrete-steps-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/concrete-steps-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "vent-pipe-roof-01",
+      "nodeTitle": "透气管出屋面",
+      "image": "/images/roof/vent-pipe-diagram.png",
+      "imageSha256": "87a01cef449a1f44ac1b2a05e603893b013b8ffb6ceca26878f0942e7e86e647",
+      "partNames": [
+        "钢筋混凝土屋面板",
+        "水泥砂浆找平层",
+        "一布四涂防水层",
+        "屋面隔离层",
+        "细石混凝土屋面层",
+        "管根分隔缝密封料",
+        "透气管",
+        "防水油膏",
+        "管根伞形罩",
+        "螺栓抱箍",
+        "球形镀锌钢丝罩"
+      ],
+      "uses": [
+        {
+          "key": "roof/roof-flat",
+          "figure": "figure-3",
+          "heading": "贯穿设施、出入口与变形缝"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "透气管出屋面",
+          "modelAsset": "/models/roof/vent-pipe/vent-pipe.glb",
+          "modelSha256": "f5c3b5484beb644c283c12d11063d129657359cd7e19dc23d0593c7a2442c2fd",
+          "drawnPixels": 15209,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/vent-pipe-roof-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/vent-pipe-roof-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "roof-truss-steel-timber-01",
+      "nodeTitle": "屋架形式（钢木屋架）",
+      "image": "/images/roof/roof-truss-steel-timber-diagram.png",
+      "imageSha256": "df98564bbb112d095e2535e1799ff9ff83220e1c286d5c07068901eb68cd6c10",
+      "partNames": [
+        "钢木屋架"
+      ],
+      "uses": [
+        {
+          "key": "roof/roof-slope",
+          "figure": "figure-1",
+          "heading": "坡面组织与承重体系"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "屋架形式（钢木屋架）",
+          "modelAsset": "/models/roof/roof-trusses/steel-timber.glb",
+          "modelSha256": "fd7325eccaa4b2111531b76500b83a5e5f43c99a7dd4986c393c8121b4fc42ce",
+          "drawnPixels": 5775,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/roof-truss-steel-timber-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/roof-truss-steel-timber-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "wood-batten-tile-roof-01",
+      "nodeTitle": "木挂瓦条块瓦屋面构造",
+      "image": "/images/roof/wood-batten-tile-roof-01.png",
+      "imageSha256": "ab622a5c3b75dcaafd94e5e28a4f09acde2401b40753cfba1e03f64a33c54584",
+      "partNames": [
+        "结构层",
+        "找平层（水泥砂浆）",
+        "防水层",
+        "找平层（细石混凝土）",
+        "顺水条",
+        "挂瓦条",
+        "块瓦面层"
+      ],
+      "uses": [
+        {
+          "key": "roof/roof-slope",
+          "figure": "figure-2",
+          "heading": "瓦屋面的基层、搭接与固定"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "木挂瓦条块瓦屋面构造",
+          "modelAsset": "/models/roof/wood-batten-tile-roof/wood-batten-tile-roof.glb",
+          "modelSha256": "1654dff64abf282e5c28af189a2a12dd8ed2325bf5c00e74b74f5cf1f6cc3152",
+          "drawnPixels": 15484,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/wood-batten-tile-roof-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/wood-batten-tile-roof-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "rigid-roof-transverse-joint-01",
+      "nodeTitle": "刚性防水屋面横向分格缝（一）",
+      "image": "/images/roof/rigid-roof-transverse-joint-01-diagram.png",
+      "imageSha256": "0f5372cd9c3b8aed26f0079a0bc48a0c97d27e57c181ae432365271d29451bc6",
+      "partNames": [
+        "承重支座",
+        "支承座浆",
+        "空心屋面板",
+        "水泥砂浆找平层",
+        "纸筋灰隔离层",
+        "细石混凝土刚性层",
+        "浸沥青木丝板缝底填充",
+        "缝口防水油膏",
+        "二布三油"
+      ],
+      "uses": [
+        {
+          "key": "deformation-joint/roof-deformation-concept",
+          "figure": "figure-2",
+          "heading": "与分格缝、施工缝、后浇带的区别"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "刚性防水屋面横向分格缝（一）",
+          "modelAsset": "/models/roof/rigid-roof-joint/transverse-joint-01.glb",
+          "modelSha256": "b01b209e00ada37d8f937121402608d3f96155e767e8a91bc8f4babcf93b2c76",
+          "drawnPixels": 18653,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/rigid-roof-transverse-joint-01--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/rigid-roof-transverse-joint-01--single-model.png"
+        }
+      ]
+    },
+    {
+      "nodeId": "high-low-roof-joint-02",
+      "nodeTitle": "高低屋面变形缝（二）",
+      "image": "/images/roof/high-low-roof-joint-02-diagram.png",
+      "imageSha256": "417232d4ed4f6718a75c904acf7effe7b3d3cba4358b386f247b83ae1159f483",
+      "partNames": [
+        "高墙",
+        "砖砌矮墙",
+        "低屋面结构板",
+        "下找平层",
+        "上找平层",
+        "砂浆圆弧基层",
+        "低屋面防水层",
+        "沥青麻丝填缝",
+        "镀锌薄钢板",
+        "水泥钉",
+        "钢筋混凝土盖板",
+        "盖板面层"
+      ],
+      "uses": [
+        {
+          "key": "deformation-joint/roof-deformation-location",
+          "figure": "figure-1",
+          "heading": "差异沉降与新旧建筑交接"
+        },
+        {
+          "key": "deformation-joint/roof-deformation-construction",
+          "figure": "figure-2",
+          "heading": "读图与维护实例"
+        }
+      ],
+      "snapshots": [
+        {
+          "variant": "single",
+          "label": "高低屋面变形缝（二）",
+          "modelAsset": "/models/roof/high-low-roof-joint/high-low-roof-joint-02.glb",
+          "modelSha256": "fe522b15935667405fc50707636605b6d87306418c39628ca0a3aa1675378440",
+          "drawnPixels": 28709,
+          "pair": "audit-output/digital-textbook-2026-10-19/model-pairs/high-low-roof-joint-02--single-pair.png",
+          "model": "audit-output/digital-textbook-2026-10-19/model-pairs/high-low-roof-joint-02--single-model.png"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

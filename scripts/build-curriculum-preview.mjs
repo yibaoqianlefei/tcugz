@@ -15,10 +15,29 @@ const homeSectionUrl = id => `${home.split('#')[0]}#${id === 'basics' ? 'modules
 const moduleUrl = id => id === 'wall' ? '/previews/wall-v1.html' : `${base}/basics/${id}/index.html`;
 const topicUrl = (id, topic) => `${base}/${id}/${topic}.html`;
 const chapterUrl = (id, topic) => `${base}/basics/${id}/${topic}.html`;
+const mediaCatalog = JSON.parse(await readFile('src/data/lessonMedia.json', 'utf8'));
+const enhancement = html => `<!-- textbook-enhancement:start -->${html}<!-- textbook-enhancement:end -->`;
 
-function renderMarkdown(markdown) {
+function figureMarkup(figure) {
+  return enhancement(`<figure class="lesson-figure" id="${figure.id}" data-textbook-enhancement="figure" data-node-id="${esc(figure.nodeId)}">
+    <div class="lesson-figure-heading"><span class="lesson-figure-number">FIG. ${figure.number}</span><span>图文对照${figure.hasModel ? ' · 三维可交互' : ''}</span></div>
+    <a class="lesson-figure-image" href="${esc(figure.image)}" target="_blank" rel="noopener" data-lesson-figure="${figure.id}" data-lesson-view="diagram" aria-label="放大图 ${figure.number}：${esc(figure.title)}"><img src="${esc(figure.image)}" alt="${esc(figure.imageAlt)}" loading="lazy" decoding="async"><span class="lesson-image-hint">＋ 放大图解</span></a>
+    <figcaption><strong>图 ${figure.number} · ${esc(figure.title)}</strong><p>${esc(figure.caption)}</p></figcaption>
+    <div class="lesson-figure-observation"><span>观察重点</span><ol>${figure.focus.map(focus => `<li>${esc(focus)}</li>`).join('')}</ol></div>
+    <div class="lesson-figure-footer"><span>图中尺寸与材料按示例条件识读</span><div><a href="${esc(figure.image)}" target="_blank" rel="noopener" data-lesson-figure="${figure.id}" data-lesson-view="diagram">图解研读 ↗</a>${figure.hasModel ? `<a class="lesson-model-link" href="/#/node/${figure.nodeId}" data-lesson-figure="${figure.id}" data-lesson-view="model"><span aria-hidden="true">◇</span> 转动三维模型</a>` : ''}</div></div>
+  </figure>`);
+}
+
+function lessonCover(lesson) {
+  const figure = lesson.figures[0];
+  if (!figure) return '';
+  return enhancement(`<figure class="lesson-cover" data-textbook-enhancement="cover"><a href="${esc(figure.image)}" target="_blank" rel="noopener" data-lesson-figure="${figure.id}" data-lesson-view="diagram" aria-label="打开本节图解：${esc(figure.title)}"><span class="lesson-cover-label">CONSTRUCTION STUDY <span>图 ${figure.number}</span></span><img src="${esc(figure.image)}" alt="${esc(figure.imageAlt)}" fetchpriority="high"><span class="lesson-cover-caption"><strong>${esc(figure.title)}</strong><span>打开图模研读 ↗</span></span></a></figure>`);
+}
+
+function renderMarkdown(markdown, lesson) {
   const ast = unified().use(remarkParse).use(remarkGfm).parse(markdown);
   const headings = [];
+  const plainText = node => node.value ?? (node.children ?? []).map(plainText).join('');
   const inline = node => {
     if (node.type === 'text') return esc(node.value);
     if (node.type === 'strong') return `<strong>${node.children.map(inline).join('')}</strong>`;
@@ -38,22 +57,59 @@ function renderMarkdown(markdown) {
       headings.push({ id, title, depth: node.depth });
       return `<h${node.depth} id="${id}">${title}</h${node.depth}>`;
     }
-    if (node.type === 'paragraph') return `<p>${node.children.map(inline).join('')}</p>`;
+    if (node.type === 'paragraph') {
+      const isAnswer = /^参考答案[：:]/.test(plainText(node));
+      // The answer label is carried by the summary, so drop it from the revealed body.
+      let body = node.children;
+      if (isAnswer) {
+        const first = body[0];
+        const stripped = first?.type === 'text' ? first.value.replace(/^参考答案[：:]\s*/, '') : null;
+        if (stripped !== null && stripped !== first.value) body = [{ ...first, value: stripped }, ...body.slice(1)];
+        else if (first?.type === 'strong' && /^参考答案[：:]?$/.test(plainText(first))) {
+          const next = body[1];
+          body = next?.type === 'text' ? [{ ...next, value: next.value.replace(/^[：:]\s*/, '') }, ...body.slice(2)] : body.slice(1);
+        }
+      }
+      const paragraph = `<p>${body.map(inline).join('')}</p>`;
+      return isAnswer ? `<details class="lesson-answer"><summary>${esc(plainText(node).match(/^参考答案[：:]/)[0])}${enhancement('先独立作答，展开核对')}</summary>${paragraph}</details>` : paragraph;
+    }
     if (node.type === 'list') return `<${node.ordered ? 'ol' : 'ul'}${node.ordered && node.start !== 1 ? ` start="${node.start}"` : ''}>${node.children.map(block).join('')}</${node.ordered ? 'ol' : 'ul'}>`;
     if (node.type === 'listItem') return `<li>${node.children.map(child => child.type === 'paragraph' ? child.children.map(inline).join('') : block(child)).join('')}</li>`;
     if (node.type === 'table') return `<div class="article-table"><table><thead>${node.children.slice(0, 1).map(row => `<tr>${row.children.map(cell => `<th scope="col">${cell.children.map(inline).join('')}</th>`).join('')}</tr>`).join('')}</thead><tbody>${node.children.slice(1).map(row => `<tr>${row.children.map(cell => `<td>${cell.children.map(inline).join('')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
-    if (node.type === 'blockquote') return `<blockquote>${node.children.map(block).join('')}</blockquote>`;
+    if (node.type === 'blockquote') {
+      // `> [!要点] …` authors a teaching callout; a plain quote keeps its default look.
+      const lead = node.children[0];
+      const label = lead?.type === 'paragraph' ? plainText(lead).match(/^\[!([^\]]{1,8})\]/)?.[1] : null;
+      if (label) {
+        const opening = lead.children.map(inline).join('').replace(/^\[![^\]]{1,8}\]\s*/, '');
+        const tone = /易错|错误|注意|警示/.test(label) ? 'warn' : /要点|关键|重点/.test(label) ? 'key' : 'note';
+        const rest = [opening ? `<p>${opening}</p>` : '', ...node.children.slice(1).map(block)].join('');
+        return `<aside class="lesson-callout lesson-callout--${tone}"><p class="lesson-callout-label">${esc(label)}</p>${rest}</aside>`;
+      }
+      return `<blockquote>${node.children.map(block).join('')}</blockquote>`;
+    }
     if (node.type === 'code') return `<pre><code>${esc(node.value)}</code></pre>`;
     if (node.type === 'thematicBreak') return '<hr>';
     throw new Error(`Unsupported article block: ${node.type}`);
   };
-  const html = ast.children.filter((node, index) => !(index === 0 && node.type === 'heading' && node.depth === 1)).map(block).join('\n');
+  let pending = [];
+  const pieces = [];
+  for (const [index, node] of ast.children.entries()) {
+    if (index === 0 && node.type === 'heading' && node.depth === 1) continue;
+    if (node.type === 'heading' && pending.length) { pieces.push(...pending.map(figureMarkup)); pending = []; }
+    pieces.push(block(node));
+    if (node.type === 'heading') pending = lesson.figures.filter(figure => figure.sectionId === headings.at(-1).id);
+    else if (pending.length) { pieces.push(...pending.map(figureMarkup)); pending = []; }
+  }
+  pieces.push(...pending.map(figureMarkup));
+  const html = pieces.join('\n');
   const toc = `<nav class="article-toc" aria-label="本节内容"><strong>本节内容</strong>${headings.filter(item => item.depth === 2).map(item => `<a href="#${item.id}">${item.title}</a>`).join('')}</nav>`;
-  return `${toc}<article class="article">${html}</article>`;
+  return { toc, article: `<article class="article">${html}</article>`, sectionCount: headings.filter(item => item.depth === 2).length };
 }
 
-function shell({ title, category, parentUrl, parentLabel, body, kind = 'article', breadcrumb = '建筑构造 / 学习首页' }) {
-  return `<!doctype html>\n<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)} · 建筑构造</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/previews/curriculum.css"></head>\n<body class="course-page course-page--${kind}"><div class="layout"><div class="page"><header class="topbar"><a class="course-brand" href="${home}"><img src="/brand/logo.svg" width="40" height="40" alt="" aria-hidden="true"><span>${esc(breadcrumb)}</span></a><a class="back" href="${parentUrl}"><span class="back-icon" aria-hidden="true">←</span><span>${esc(parentLabel)}</span></a></header><main class="content"><div class="page-head"><span class="eyebrow">${esc(category)}</span><h1>${esc(title)}</h1></div>${body}</main></div></div><script type="module" src="/styles/directory-motion-entry.js"></script></body></html>`;
+function shell({ title, category, parentUrl, parentLabel, body, cover = '', summary = '', metadata = '', kind = 'article', breadcrumb = '建筑构造 / 学习首页' }) {
+  const head = `<div class="page-head"><span class="eyebrow">${esc(category)}</span><h1>${esc(title)}</h1>${summary ? `<p class="intro">${esc(summary)}</p>` : ''}${metadata}</div>`;
+  return `<!doctype html>\n<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)} · 建筑构造</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/previews/curriculum.css"></head>\n<body class="course-page course-page--${kind}"><div class="layout"><div class="page"><header class="topbar"><a class="course-brand" href="${home}"><img src="/brand/logo.svg" width="40" height="40" alt="" aria-hidden="true"><span>${esc(breadcrumb)}</span></a><a class="back" href="${parentUrl}"><span class="back-icon" aria-hidden="true">←</span><span>${esc(parentLabel)}</span></a></header><main class="content">${kind === 'article' ? `<div class="lesson-opening${cover ? ' lesson-opening--illustrated' : ''}">${head}${cover}</div>` : head}${body}</main></div></div><script type="module" src="/styles/directory-motion-entry.js"></script></body></html>`;
 }
 
 function homeSectionRedirect(id, title) {
@@ -167,7 +223,17 @@ async function articleBody(id, group, topic, index, url) {
   if (!source) throw new Error(`Unregistered textbook article: ${id}/${topic.id}`);
   const markdown = await readFile(source, 'utf8');
   if (markdown.trim().length < 300) throw new Error(`Textbook article is too short: ${source}`);
-  return `<p class="intro">${esc(topic.description)}</p><div class="article-layout"><div class="article-column">${renderMarkdown(markdown)}<nav class="page-next" aria-label="前后章节">${index > 0 ? `<a href="${url(group.topics[index - 1].id)}" rel="prev"><span class="page-next-label">← 上一节</span><span>${esc(group.topics[index - 1].title)}</span></a>` : '<span></span>'}${index < group.topics.length - 1 ? `<a href="${url(group.topics[index + 1].id)}" rel="next"><span class="page-next-label">下一节 →</span><span>${esc(group.topics[index + 1].title)}</span></a>` : ''}</nav></div><nav class="chapter-nav" aria-label="${esc(group.title)}章节"><strong>${esc(group.title)}目录</strong><p class="chapter-nav-intro">本章 ${group.topics.length} 节，选择一节继续阅读。</p>${group.topics.map((item, itemIndex) => `<a href="${url(item.id)}"${item.id === topic.id ? ' aria-current="page"' : ''}><span class="chapter-nav-number" aria-hidden="true">${String(itemIndex + 1).padStart(2, '0')}</span><span>${esc(item.title)}</span></a>`).join('')}</nav></div>`;
+  const lesson = mediaCatalog[`${id}/${topic.id}`];
+  if (!lesson) throw new Error(`Missing digital lesson: ${id}/${topic.id}`);
+  const rendered = renderMarkdown(markdown, lesson);
+  const guide = enhancement(`<section class="lesson-reading-guide" data-textbook-enhancement="guide"><span class="lesson-guide-label">本节研读</span><p>${esc(lesson.intro)}</p><div class="lesson-study-steps"><span><b>01</b> 读作用与条件</span><span><b>02</b> 看图与空间</span><span><b>03</b> 检查连接</span></div></section>`);
+  const figureIndex = lesson.figures.length ? `<div class="lesson-figure-index"><strong>本节图解 <span>${String(lesson.figures.length).padStart(2, '0')}</span></strong>${lesson.figures.map(figure => `<a href="#${figure.id}"><img src="${esc(figure.image)}" alt="" loading="lazy"><span><small>图 ${figure.number}</small>${esc(figure.title)}</span></a>`).join('')}</div>` : '';
+  return {
+    cover: lessonCover(lesson),
+    summary: topic.description,
+    metadata: enhancement(`<div class="lesson-metadata"><span>约 ${lesson.readingMinutes} 分钟</span><span>${rendered.sectionCount} 个小节</span>${lesson.figures.length ? `<a href="#figure-1">${lesson.figures.length} 幅图解 · 关联模型 ↗</a>` : '<span>概念与方法</span>'}</div>`),
+    body: `<div class="article-layout"><aside class="lesson-sidebar"><div class="lesson-sidebar-inner"><details class="lesson-outline" open><summary>本节阅读导航<span>${String(rendered.sectionCount).padStart(2, '0')}</span></summary>${rendered.toc}</details>${figureIndex}<details class="lesson-chapter-list"><summary>${esc(group.title)}目录 <span>${String(group.topics.length).padStart(2, '0')}</span></summary><nav class="chapter-nav" aria-label="${esc(group.title)}章节">${group.topics.map((item, itemIndex) => `<a href="${url(item.id)}"${item.id === topic.id ? ' aria-current="page"' : ''}><span class="chapter-nav-number" aria-hidden="true">${String(itemIndex + 1).padStart(2, '0')}</span><span>${esc(item.title)}</span></a>`).join('')}</nav></details></div></aside><div class="article-column">${guide}${rendered.article}<nav class="page-next" aria-label="前后章节">${index > 0 ? `<a href="${url(group.topics[index - 1].id)}" rel="prev"><span class="page-next-label">← 上一节</span><span>${esc(group.topics[index - 1].title)}</span></a>` : '<span></span>'}${index < group.topics.length - 1 ? `<a href="${url(group.topics[index + 1].id)}" rel="next"><span class="page-next-label">下一节 →</span><span>${esc(group.topics[index + 1].title)}</span></a>` : ''}</nav></div></div>`,
+  };
 }
 
 // React and standalone lessons consume the same authored design tokens.
@@ -187,7 +253,7 @@ for (const [id, group] of Object.entries(groups)) {
       parentUrl: onHomepage ? homeSectionUrl(id) : topicUrl(id, 'index'),
       parentLabel: onHomepage ? `返回首页 · ${group.title}` : `返回${group.title}目录`,
       breadcrumb: onHomepage ? `建筑构造 / ${group.title}` : undefined,
-      body: await articleBody(id, group, topic, index, item => topicUrl(id, item)),
+      ...await articleBody(id, group, topic, index, item => topicUrl(id, item)),
     }));
   }
 }
@@ -198,7 +264,7 @@ for (const [id, module] of Object.entries(modules)) {
     await save(moduleUrl(id), renderModuleDirectory({ id, module: { ...module, topics: await directoryTopics(id, module.topics) }, design }));
   }
   for (const [index, topic] of module.topics.entries()) {
-    await save(chapterUrl(id, topic.id), shell({ title: topic.title, category: `构造基础 / ${module.title} / ${String(index + 1).padStart(2, '0')}`, parentUrl: moduleUrl(id), parentLabel: `返回${module.title}目录`, body: await articleBody(id, module, topic, index, item => chapterUrl(id, item)) }));
+    await save(chapterUrl(id, topic.id), shell({ title: topic.title, category: `构造基础 / ${module.title} / ${String(index + 1).padStart(2, '0')}`, parentUrl: moduleUrl(id), parentLabel: `返回${module.title}目录`, ...await articleBody(id, module, topic, index, item => chapterUrl(id, item)) }));
   }
 }
 console.log('Textbook articles and directories generated.');

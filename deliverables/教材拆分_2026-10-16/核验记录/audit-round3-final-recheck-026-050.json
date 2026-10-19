@@ -1,0 +1,45 @@
+{
+  "round": "3-final-recheck",
+  "artifact": "建筑构造教材_基础7部分与原理6部分.pdf",
+  "pdf_sha256": "06caa4db3bd41ead6b639b49ef21dc919c44b614f8cddebffe119d2be286270a",
+  "pdf_sha256_verified_by_reviewer": true,
+  "range": [26, 50],
+  "changed_pages_reviewed": [26, 33, 34, 36, 37, 38, 39, 42, 43, 45, 46, 47, 48, 49, 50],
+  "pages_inspected_this_pass": 15,
+  "method": "15张变化页均逐张view_image(detail=original)复看。重点复核逗号等标点行首修复，并重新检查裁切、重叠、缺字黑块、标题随文、公式和页脚。未改正文或PDF生成程序。",
+  "unchanged_pages": {
+    "pages": [27, 28, 29, 30, 31, 32, 35, 40, 41, 44],
+    "basis": "主agent说明这些PNG字节不变，沿用work/audit-round3-visual-026-050.json逐张原图审计结果；本轮未重复打开未变页。"
+  },
+  "result": "pass_with_minor_typographic_finding",
+  "blocker_count": 0,
+  "findings": [
+    {
+      "severity": "P3",
+      "page": 38,
+      "location": "踏步、坡度与级数：解释独立踏面数量的段落最后两行",
+      "issue": "开引号出现在“将级数与踏面数统一后，平剖面才不会出现“”所在行末，下一行从“平面少一步、剖面多一级”开始。逗号行首已修复，但开引号仍有一处行末禁则残项。",
+      "impact": "轻微排版问题，无文字丢失，不影响公式和技术含义。",
+      "suggested_fix": "若继续完善中文禁则，可将开引号、开括号等纳入禁止行末集合，使开引号与其后首字同行；不需要改正文。"
+    }
+  ],
+  "page_results": [
+    {"page": 26, "status": "pass", "note": "原逗号行首已收回前行；题目与页脚正常。"},
+    {"page": 33, "status": "pass", "note": "块料木地面、阳台起始及跨页续段无裁切。"},
+    {"page": 34, "status": "pass", "note": "阳台排水、防护与雨棚段落正常。"},
+    {"page": 36, "status": "pass", "note": "吊顶与自测完整；标点调整未造成拥挤。"},
+    {"page": 37, "status": "pass", "note": "楼梯章开头、分号和逗号换行正常。"},
+    {"page": 38, "status": "minor_finding", "note": "公式、文字、边界正常；一处开引号留行末，详见P3。"},
+    {"page": 39, "status": "pass", "note": "楼梯算例重排后更紧凑，各算式和最后段完整。"},
+    {"page": 42, "status": "pass", "note": "栏杆扶手和台阶小节无孤立标题。"},
+    {"page": 43, "status": "pass", "note": "台阶坡道和电梯接口的标点、公式完整。"},
+    {"page": 45, "status": "pass", "note": "自测4题句首逗号已修复；章末留白正常。"},
+    {"page": 46, "status": "pass", "note": "屋顶章导入和分类重排正常。"},
+    {"page": 47, "status": "pass", "note": "坡度示例与标准公告段无逗号行首；正文边界正常。"},
+    {"page": 48, "status": "pass", "note": "排水与卷材类别重排正常；无字形故障。"},
+    {"page": 49, "status": "pass", "note": "卷材工艺和保护层正文完整，页底未裁切。"},
+    {"page": 50, "status": "pass", "note": "传统刚性防水及节点正文正常，无标点挤压。"}
+  ],
+  "artifact_boundary": "结论只针对指定SHA256的PDF实际渲染PNG，未声称完成DOCX原生Word渲染。正文834段比对通过属于主agent提供的文本完整性证据，非本报告的视觉检查替代。",
+  "conclusion": "逗号行首修复有效；15张变化页未出现裁切、重叠、缺字黑块、标题孤立或异常空页。剩余1项轻微开引号行末禁则，已报主agent。"
+}
