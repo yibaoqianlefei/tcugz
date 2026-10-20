@@ -123,6 +123,10 @@ try {
     HTMLCanvasElement.prototype.getContext = function(type, ...args) { return type.startsWith('webgl') ? null : getContext.call(this, type, ...args); };
   });
   await fallbackPage.goto(`${base}#/lesson/introduction/intro-course-guide.html`);
+  await fallbackPage.waitForFunction(() => {
+    const iframe = document.querySelector('.curriculum-frame');
+    return iframe?.contentDocument?.readyState === 'complete' && parseInt(iframe.style.height) > 300;
+  });
   await fallbackPage.frameLocator('.curriculum-frame').locator('.lesson-cover a').click();
   await fallbackPage.getByRole('tab', { name: '三维模型' }).click();
   await fallbackPage.getByText('当前设备无法开启三维视图', { exact: true }).waitFor();
