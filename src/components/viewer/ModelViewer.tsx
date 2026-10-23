@@ -12,8 +12,11 @@ import { writeVariantIdentity, makeScopedKey, parseScopedKey, matchesVariantScop
 import { computeExplodedPosition } from "../../utils/explodeLayout";
 import type { ResolvedVariantExplodeConfig, ResolvedExplodeComponent } from "../../utils/explodeLayout";
 import { isInteractionAllowed } from "../../utils/interactionGates";
+import { applyComponentHighlight } from '../../utils/componentHighlight';
+import { createModelXRay } from '../../utils/modelXRay';
 import { collectOutlineSources, createFeatureEdges, separateOpaqueSurfaceDepth } from "../../utils/modelOutlines";
 import { getNodeAutoRotationAngle, getNodeOrbitRotationSpeed } from "../../utils/nodeRotation";
+import { CAMERA_REFIT_SECONDS, CAMERA_RESIZE_SETTLE_MS, NODE_CAMERA_FOV, NODE_MAX_POLAR_ANGLE } from '../../utils/viewerCamera';
 
 /* ═══════════════════════════════════════════════════════════════
    Material highlight — original-state cache + dual-channel restore
@@ -63,6 +66,8 @@ import {
 let _controls: OrbitControlsImpl | null = null;
 /** Drag detection: suppress click after pointer moved > threshold. */
 const CLICK_MOVE_THRESHOLD = 5; // px
+// Keep initialization dependencies stable when display toggles re-render all variants.
+const MULTI_MODEL_NON_INTERACTIVE = ['其余'];
 let _pointerDownX = 0;
 let _pointerDownY = 0;
 let _pointerMaxDist = 0;
@@ -120,10 +125,11 @@ function RendererSetup({ showShadows }: { showShadows: boolean }) {
 }
 
 /* ── Model component (auto-center + highlight + animation) ──── */
-function SceneModel({ modelPath, modelScale = 2.5, modelGroups, knowledgeObjectNames, noAnimation = false, nonInteractive, outlineExcluded, noGlobalRef = false, onReady, variantId, variantIndex, variantLabel, variantTitle, skipAutoLayout = false }: { modelPath: string; modelScale?: number; modelGroups?: Record<string, string>; knowledgeObjectNames?: readonly string[]; noAnimation?: boolean; nonInteractive?: string[]; outlineExcluded?: string[]; /** If true, skip setting the global model scene ref (parent handles it). */ noGlobalRef?: boolean; /** Called when model is loaded + centered, with the scene group. */ onReady?: (scene: THREE.Group) => void; /** Phase 3: variant identity for multi-model isolation. */ variantId?: string; variantIndex?: number; variantLabel?: string; variantTitle?: string; /** Phase 6: when true, skip auto-size and auto-center. Parent (MultiModelGroup) handles layout via DisplayScale+CenterOffset. */ skipAutoLayout?: boolean }) {
+function SceneModel({ modelPath, modelScale = 2.5, modelGroups, knowledgeObjectNames, noAnimation = false, nonInteractive, outlineExcluded, noGlobalRef = false, onReady, variantId, variantIndex, variantLabel, variantTitle, skipAutoLayout = false, xrayEnabled = false }: { modelPath: string; modelScale?: number; modelGroups?: Record<string, string>; knowledgeObjectNames?: readonly string[]; noAnimation?: boolean; nonInteractive?: string[]; outlineExcluded?: string[]; /** If true, skip setting the global model scene ref (parent handles it). */ noGlobalRef?: boolean; /** Called when model is loaded + centered, with the scene group. */ onReady?: (scene: THREE.Group) => void; /** Phase 3: variant identity for multi-model isolation. */ variantId?: string; variantIndex?: number; variantLabel?: string; variantTitle?: string; /** Phase 6: when true, skip auto-size and auto-center. Parent (MultiModelGroup) handles layout via DisplayScale+CenterOffset. */ skipAutoLayout?: boolean; xrayEnabled?: boolean }) {
   const { scene: sourceScene, animations } = useGLTF(modelPath, true);
   /** Deep-clone with material isolation — each SceneModel owns independent materials. */
   const scene = useMemo(() => cloneSceneWithMaterials(sourceScene), [sourceScene]);
+  const xray = useMemo(() => createModelXRay(scene), [scene]);
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
   const actionRef = useRef<THREE.AnimationAction | null>(null);
   const clipRef = useRef<THREE.AnimationClip | null>(null);
@@ -460,25 +466,7 @@ function SceneModel({ modelPath, modelScale = 2.5, modelGroups, knowledgeObjectN
         const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
         mats.forEach((m) => {
           restoreMaterial(m);
-          if (mode === "clear") return;
-
-          if (mode === "hover") {
-            if (hasEmissive(m)) {
-              m.emissive.set("#ffffff");
-              m.emissiveIntensity = 1.25;
-            } else if (hasColor(m)) {
-              m.color.lerp(new THREE.Color("#8fd8ff"), 0.35);
-            }
-          } else if (mode === "selected") {
-            if (hasEmissive(m)) {
-              m.emissive.set("#d4a843");
-              m.emissiveIntensity = 1.15;
-            } else if (hasColor(m)) {
-              m.color.lerp(new THREE.Color("#d4a843"), 0.55);
-            }
-          }
-
-          m.needsUpdate = true;
+          applyComponentHighlight(m, mode);
         });
       });
     },
@@ -527,6 +515,16 @@ function SceneModel({ modelPath, modelScale = 2.5, modelGroups, knowledgeObjectN
     prevHovered.current = hoveredObject;
     prevSelected.current = selectedObject;
   }, [highlightEnabled, hoveredObject, selectedObject, hoveredVariantId, selectedVariantId, variantId, setGroupHighlight, setAllMeshesHighlight]);
+
+  useEffect(() => {
+    xray.update(xrayEnabled, mesh => {
+      if (!highlightEnabled) return 'clear';
+      const name = resolveName(mesh.name);
+      const matches = (key: string | null) => Boolean(key && matchesVariantScope(key, variantId ?? null) && resolveName(parseScopedKey(key).objectName) === name);
+      return matches(selectedObject) ? 'selected' : matches(hoveredObject) ? 'hover' : 'clear';
+    });
+    return () => xray.restore();
+  }, [xray, xrayEnabled, highlightEnabled, resolveName, variantId, selectedObject, hoveredObject]);
 
   // ── Picking (Phase 3: variant-scoped) ──
   const findNamedMesh = (obj: THREE.Object3D): string | null => {
@@ -802,7 +800,7 @@ function CameraTracker({
   // size, and coalesce continuous window-resize events into one transition.
   useEffect(() => {
     if (suspendResponsiveFit) return;
-    const timer = window.setTimeout(() => setSettledSize({ width: size.width, height: size.height }), 100);
+    const timer = window.setTimeout(() => setSettledSize({ width: size.width, height: size.height }), CAMERA_RESIZE_SETTLE_MS);
     return () => window.clearTimeout(timer);
   }, [size.width, size.height, suspendResponsiveFit]);
 
@@ -987,8 +985,8 @@ function CameraTracker({
     }
     const controls = _controls;
     if (!controls) return;
-    transition.elapsed = Math.min(0.28, transition.elapsed + Math.min(delta, 0.05));
-    const t = transition.elapsed / 0.28;
+    transition.elapsed = Math.min(CAMERA_REFIT_SECONDS, transition.elapsed + Math.min(delta, 0.05));
+    const t = transition.elapsed / CAMERA_REFIT_SECONDS;
     const eased = t * t * (3 - 2 * t);
     const distance = THREE.MathUtils.lerp(transition.from, transition.to, eased);
     const direction = directionRef.current.copy(camera.position).sub(controls.target);
@@ -1030,7 +1028,7 @@ const EDGE_GAP_RATIO = 0.38;   // wider inter-model spacing
 const EDGE_GAP_MIN = 0.28;     // raised proportionally
 const EDGE_GAP_MAX = 1.00;     // raised proportionally
 
-function MultiModelGroup({ models, explodeConfigs, knowledgeNamesByVariant, nodeId, onAllReady, autoRotate }: { models: ModelEntry[]; explodeConfigs?: ExplodeVariantConfig[]; knowledgeNamesByVariant?: Record<string, string[]>; nodeId?: string; onAllReady?: () => void; autoRotate?: boolean }) {
+function MultiModelGroup({ models, explodeConfigs, knowledgeNamesByVariant, nodeId, onAllReady, autoRotate, xrayEnabled }: { models: ModelEntry[]; explodeConfigs?: ExplodeVariantConfig[]; knowledgeNamesByVariant?: Record<string, string[]>; nodeId?: string; onAllReady?: () => void; autoRotate?: boolean; xrayEnabled?: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   const readyRef = useRef(new Map<string, THREE.Group>());
   const [readyCount, setReadyCount] = useState(0);
@@ -1490,7 +1488,7 @@ function MultiModelGroup({ models, explodeConfigs, knowledgeNamesByVariant, node
                   modelPath={m.src}
                   modelScale={m.scale ?? 2.5}
                   noAnimation={true}
-                  nonInteractive={["其余"]}
+                  nonInteractive={MULTI_MODEL_NON_INTERACTIVE}
                   noGlobalRef
                   skipAutoLayout
                   onReady={handleModelReady(m.id)}
@@ -1499,6 +1497,7 @@ function MultiModelGroup({ models, explodeConfigs, knowledgeNamesByVariant, node
                   variantLabel={m.label}
                   variantTitle={m.title}
                   knowledgeObjectNames={knowledgeNamesByVariant?.[m.id]}
+                  xrayEnabled={xrayEnabled}
                 />
               </group>
             </group>
@@ -1518,6 +1517,7 @@ export default function ModelViewer({
   modelPaths,
   modelScale = 2.5,
   showShadows = false,
+  xrayEnabled = false,
   layoutKey = 0,
   modelGroups,
   noAnimation = false,
@@ -1532,6 +1532,7 @@ export default function ModelViewer({
   modelPath?: string;
   modelPaths?: ModelEntry[];
   showShadows?: boolean;
+  xrayEnabled?: boolean;
   layoutKey?: number;
   modelScale?: number;
   modelGroups?: Record<string, string>;
@@ -1595,9 +1596,9 @@ export default function ModelViewer({
   }, []);
 
   return (
-    <div ref={containerRef} className="flex-1 min-w-0 h-full relative bg-[#f5f5f7]">
+    <div ref={containerRef} data-xray={xrayEnabled} className="flex-1 min-w-0 h-full relative bg-[#f5f5f7]">
       <Canvas
-        camera={{ near: 0.5, far: 50, position: [0, 0, 8], fov: 40 }}
+        camera={{ near: 0.5, far: 50, position: [0, 0, 8], fov: NODE_CAMERA_FOV }}
         dpr={[1, 1.5]} shadows
         gl={{ antialias: true, alpha: false }}
         onPointerDown={(e) => {
@@ -1627,9 +1628,9 @@ export default function ModelViewer({
         {showShadows && <ShadowPlane />}
         <Suspense fallback={<LoadingFallback />}>
           {isMulti ? (
-            <MultiModelGroup models={modelPaths!} explodeConfigs={explodeConfigs} knowledgeNamesByVariant={knowledgeNamesByVariant} nodeId={nodeId} onAllReady={handleSceneReady} autoRotate={autoRotate} />
+            <MultiModelGroup models={modelPaths!} explodeConfigs={explodeConfigs} knowledgeNamesByVariant={knowledgeNamesByVariant} nodeId={nodeId} onAllReady={handleSceneReady} autoRotate={autoRotate} xrayEnabled={xrayEnabled} />
           ) : modelPath ? (
-            <SceneModel modelPath={modelPath} modelScale={modelScale} modelGroups={modelGroups} noAnimation={noAnimation} nonInteractive={nonInteractive} outlineExcluded={outlineExcluded} onReady={handleSceneReady} />
+            <SceneModel modelPath={modelPath} modelScale={modelScale} modelGroups={modelGroups} noAnimation={noAnimation} nonInteractive={nonInteractive} outlineExcluded={outlineExcluded} onReady={handleSceneReady} xrayEnabled={xrayEnabled} />
           ) : null}
         </Suspense>
         <OrbitControls
@@ -1646,7 +1647,7 @@ export default function ModelViewer({
           autoRotateSpeed={getNodeOrbitRotationSpeed(1 / 60)}
           enableDamping dampingFactor={0.08}
           minDistance={1} maxDistance={40}
-          maxPolarAngle={Math.PI / 2.2}
+          maxPolarAngle={NODE_MAX_POLAR_ANGLE}
           enablePan
           onStart={handleControlsStart}
           onEnd={handleControlsEnd}

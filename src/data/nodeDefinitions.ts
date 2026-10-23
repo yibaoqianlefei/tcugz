@@ -73,6 +73,7 @@ import { timberTrussLayers, reinforcedConcreteTrussLayers, steelTimberTrussLayer
 import { passiveSolarWallLayers, getLayerInfo as getPassiveSolarWallLayer } from "./passiveSolarWallLayers";
 import { windowWallGapSealingLayers, getLayerInfo as getWindowWallGapSealingLayer } from "./windowWallGapSealingLayers";
 import { flatSlabLayers, getLayerInfo as getFlatSlabLayer } from "./flatSlabLayers";
+import { profiledSteelCompositeSlabLayers, getLayerInfo as getProfiledSteelCompositeSlabLayer } from "./profiledSteelCompositeSlabLayers";
 import { precastFlatSlabLayers, precastHollowSlabLayers, precastUprightChannelSlabLayers, precastInvertedChannelSlabLayers, precastSlabLayerConfig } from "./precastSlabLayers";
 import { pileFoundationLayers, getLayerInfo as getPileFoundationLayer } from "./pileFoundationLayers";
 import { flushLintelLayers, windowSurroundLintelLayers, windowHoodLintelLayers, rcLintelLayerConfig } from "./rcLintelLayers";
@@ -812,6 +813,18 @@ export const nodeDefinitions: NodeDefinition[] = [
   },
 
   /* ── Floor nodes ─────────────────────────────────────────── */
+  {
+    id: "profiled-steel-composite-slab-01",
+    title: "压型钢板组合楼板",
+    description: "对照钢梁、压型钢板、抗剪栓钉与混凝土的组合关系，支持分解动画、构件点选和图纸对照。",
+    category: "楼地层",
+    thumbnail: assetPath("images/floor/profiled-steel-composite-slab-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/floor/profiled-steel-composite-slab/profiled-steel-composite-slab.glb"), scale: 2.5 },
+    diagram: { path: assetPath("images/floor/profiled-steel-composite-slab-diagram.png"), subtitle: "图3-3 · 压型钢板组合楼板" },
+    layerConfig: { layers: profiledSteelCompositeSlabLayers, getLayerInfo: getProfiledSteelCompositeSlabLayer },
+    textbookLinks: [{ moduleId: "floor", chapterId: "floor-rc-slab" }],
+  },
   {
     id: "precast-flat-slab-01",
     title: "预制钢筋混凝土板（平板）",

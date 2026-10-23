@@ -102,7 +102,7 @@ group("Rotate control is whitelisted + a live runtime capability");
     "whitelist includes rotate");
   assert(RUNTIME_CAPABILITIES.includes("rotate"),
     "rotate is a live runtime capability");
-  assert(visible.length === 4, `surface is exactly 4 groups (got ${visible.length})`);
+  assert(visible.length === 5, `surface is exactly 5 groups (got ${visible.length})`);
 }
 
 /* ═══════════════════════════════════════════════════════════════

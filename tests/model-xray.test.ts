@@ -1,0 +1,61 @@
+import assert from 'node:assert/strict';
+import { BoxGeometry, EdgesGeometry, Group, LineBasicMaterial, LineSegments, Mesh, MeshStandardMaterial } from 'three';
+import { createModelXRay } from '../src/utils/modelXRay';
+import { cloneSceneWithMaterials } from '../src/utils/variantIdentity';
+import { useNodeStore } from '../src/store/nodeStore';
+
+const source = new Group();
+const geometry = new BoxGeometry();
+const opaque = new MeshStandardMaterial({ color: '#cbb89c' });
+const glass = new MeshStandardMaterial({ color: '#dfe9f0', opacity: .08, transparent: true, depthWrite: false, alphaTest: .15 });
+const outer = new Mesh(geometry, [opaque, glass]); outer.name = '外墙'; outer.castShadow = true;
+source.add(outer);
+const root = cloneSceneWithMaterials(source);
+const second = cloneSceneWithMaterials(source);
+const mesh = root.children[0] as Mesh;
+const [material, glazed] = mesh.material as MeshStandardMaterial[];
+const xray = createModelXRay(root);
+// Outlines are added after controller creation by node initialization.
+const edgeMaterial = new LineBasicMaterial({ opacity: .7, depthWrite: false });
+const edges = new LineSegments(new EdgesGeometry(geometry), edgeMaterial); edges.renderOrder = 1;
+mesh.add(edges);
+const proxy = new Mesh(geometry, new MeshStandardMaterial()); proxy.userData._isProxy = true; proxy.visible = false; mesh.add(proxy);
+const hitbox = new Group(); hitbox.name = '外墙_hitbox'; const hitChild = new Mesh(geometry, new MeshStandardMaterial()); hitbox.add(hitChild); root.add(hitbox);
+const background = new Mesh(geometry, new MeshStandardMaterial()); background.name = '其余'; root.add(background);
+const construction = new Mesh(geometry, new MeshStandardMaterial()); construction.visible = false; construction.scale.set(0, 0, 0); root.add(construction);
+const snapshot = (m: MeshStandardMaterial | LineBasicMaterial) => ({ opacity: m.opacity, transparent: m.transparent, depthWrite: m.depthWrite, depthTest: m.depthTest, forceSinglePass: m.forceSinglePass, alphaTest: m.alphaTest });
+const originals = [material, glazed, edgeMaterial].map(snapshot);
+let disposed = 0;
+material.addEventListener('dispose', () => disposed++);
+for (let i = 0; i < 4; i++) {
+  xray.update(true);
+  assert.equal(material.opacity, .18); assert.equal(material.transparent, true); assert.equal(material.depthWrite, false);
+  assert.equal(glazed.opacity, .08, 'already transparent source glass never becomes more opaque');
+  assert.equal(glazed.alphaTest, .15); assert.equal(mesh.castShadow, false);
+  assert.equal(edgeMaterial.opacity, .24); assert.equal(edgeMaterial.depthTest, false); assert.equal(edges.renderOrder, 2);
+  assert.equal((background.material as MeshStandardMaterial).opacity, .18, 'noninteractive construction shells also become transparent');
+  assert.equal((proxy.material as MeshStandardMaterial).opacity, 1); assert.equal(proxy.visible, false);
+  assert.equal((hitChild.material as MeshStandardMaterial).opacity, 1, 'hitbox descendants excluded');
+  assert.equal(construction.visible, false); assert.equal(construction.scale.lengthSq(), 0, 'no fabricated construction stage visibility');
+  xray.update(true, object => object === mesh ? 'selected' : 'clear');
+  assert.equal(material.opacity, .8); assert.equal(glazed.opacity, .08);
+  xray.update(true, object => object === mesh ? 'hover' : 'clear'); assert.equal(material.opacity, .5);
+  material.emissive.set('#d4a843'); material.emissiveIntensity = 1.15;
+  xray.update(false);
+  assert.deepEqual([material, glazed, edgeMaterial].map(snapshot), originals, 'all modified material fields restore exactly across repeated toggles');
+  assert.equal(mesh.castShadow, true); assert.equal(edges.renderOrder, 1);
+  assert.equal(material.emissive.getHexString(), 'd4a843', 'disabling transparency leaves the active component highlight intact');
+}
+assert.equal(opaque.opacity, 1); assert.equal(opaque.transparent, false, 'cached GLTF source never mutated');
+assert.equal(((second.children[0] as Mesh).material as MeshStandardMaterial[])[0].opacity, 1, 'other instance untouched');
+xray.restore(); assert.equal(disposed, 0, 'controller never disposes owned or source resources');
+
+useNodeStore.getState().resetNodeInteractionState();
+useNodeStore.getState().setAnimationProgress(.5);
+useNodeStore.getState().setExplodeProgress(.7);
+useNodeStore.getState().setSelectedObject('variant-a::外墙');
+useNodeStore.getState().setXrayEnabled(true);
+assert.equal(useNodeStore.getState().animationProgress, .5); assert.equal(useNodeStore.getState().explodeProgress, .7);
+assert.equal(useNodeStore.getState().selectedObject, 'variant-a::外墙');
+useNodeStore.getState().resetNodeInteractionState(); assert.equal(useNodeStore.getState().xrayEnabled, false, 'node/R reset restores solid display');
+console.log('PASS model X-ray: real owned opaque/glass/multi-material surfaces, outlines, shadow and original-field restoration, hidden/proxy filtering, selection independence and reset.');

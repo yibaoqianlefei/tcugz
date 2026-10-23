@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { containsLesson, filterLessonNavigation, lessonCount, lessonNavigation } from '../src/components/textbook/lessonNavigation';
+import type { LessonNavigationItem } from '../src/components/textbook/lessonNavigation';
+
+const flatten = (items: LessonNavigationItem[]): LessonNavigationItem[] => items.flatMap(item => item.children ? flatten(item.children) : [item]);
+const leaves = flatten(lessonNavigation);
+const media = Object.values(JSON.parse(readFileSync('src/data/lessonMedia.json', 'utf8'))) as Array<{ path: string; title: string }>;
+assert.equal(lessonCount, 54);
+assert.equal(leaves.length, 54);
+assert.equal(new Set(leaves.map(item => item.path)).size, 54);
+assert.deepEqual(leaves.map(item => item.path).sort(), media.map(item => item.path).sort(), 'directory matches every audited lesson and contains no directory aliases');
+for (const lesson of media) assert.equal(leaves.find(item => item.path === lesson.path)?.title, lesson.title);
+assert.equal(lessonNavigation.find(item => item.id === 'basics')?.children?.length, 7);
+assert.equal(lessonNavigation.find(item => item.id === 'principles')?.children?.length, 6);
+const stairs = 'basics/stairs/stairs-rc-structure.html';
+assert(containsLesson(lessonNavigation[1], stairs));
+assert(!containsLesson(lessonNavigation[0], stairs));
+const before = leaves.find(item => item.path === stairs)!;
+const after = flatten(filterLessonNavigation(lessonNavigation, '钢筋混凝土楼梯')).find(item => item.path === stairs)!;
+assert(after && after.number === before.number, 'search preserves the original chapter sequence number');
+assert.deepEqual(filterLessonNavigation(lessonNavigation, '没有这个教学章节'), []);
+assert.equal(flatten(filterLessonNavigation(lessonNavigation, '构造基础')).length, flatten(lessonNavigation[1].children!).length);
+assert.equal(flatten(filterLessonNavigation(lessonNavigation, '  ')).length, 54);
+console.log('Book directory checks passed: 54 unique audited lessons, 7 foundation chapters, 6 principles, search and stable sequence numbers.');

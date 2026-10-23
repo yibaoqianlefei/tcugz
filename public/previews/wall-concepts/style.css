@@ -1,5 +1,5 @@
 :root {
-  --paper:#f8f8f5; --ink:#1c2544; --body:#58637d; --accent:#43558e;
+  --paper:#ffffff; --ink:#1c2544; --body:#58637d; --accent:#43558e;
   --rule:#d9dee7; --surface:#eef0f5;
   --art-primary:#43558e; --art-secondary:#e34b36; --art-line:#222222;
   color:var(--ink); background:var(--paper);

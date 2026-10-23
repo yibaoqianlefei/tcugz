@@ -1,5 +1,5 @@
 import { useState, useEffect, useLayoutEffect, useMemo, useCallback } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { getNodeDefinition } from "./data/nodeDefinitions";
 import { useNodeStore } from "./store/nodeStore";
 import { animControls } from "./components/viewer/animationController";
@@ -15,6 +15,7 @@ import ControlBar from "./components/viewer/ControlBar";
 import { resolveVisibleControls } from "./utils/nodeDetailControls";
 import { useNodePanelLayout } from "./components/viewer/useNodePanelLayout";
 import { Images, Maximize2, X } from "lucide-react";
+import { nodeReturnTarget } from './utils/lessonNodeNavigation';
 
 /**
  * Responsive construction education layout with adjustable desktop panels.
@@ -28,6 +29,8 @@ export default function NodeDetail() {
 
 function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
   const node = getNodeDefinition(nodeId);
+  const location = useLocation();
+  const returnTarget = nodeReturnTarget(location.pathname, location.search, location.state);
   useEffect(() => { document.title = `${node?.title ?? '未找到该节点'} · 建筑构造`; }, [node]);
   const animationProgress = useNodeStore((s) => s.animationProgress);
   const setAnimationProgress = useNodeStore((s) => s.setAnimationProgress);
@@ -45,6 +48,8 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
   //    on node switch / R. ──
   const autoRotate = useNodeStore((s) => s.autoRotate);
   const setAutoRotate = useNodeStore((s) => s.setAutoRotate);
+  const xrayEnabled = useNodeStore((s) => s.xrayEnabled);
+  const setXrayEnabled = useNodeStore((s) => s.setXrayEnabled);
   const { setContainer, preset: layoutPreset, isResizing, selectPreset, adjust: adjustPanel, beginDrag } = useNodePanelLayout();
   const [diagramOpen, setDiagramOpen] = useState(false);
   const [mobileTab, setMobileTab] = useState<"diagram" | "model" | "knowledge">("model");
@@ -202,7 +207,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
     return (
       <div className="node-detail-page flex flex-col bg-canvas overflow-hidden items-center justify-center">
         <p className="text-muted text-lg">节点不存在</p>
-        <Link to="/library" className="text-primary text-sm mt-3 hover:underline">返回构造节点</Link>
+        <Link to={returnTarget.to} state={returnTarget.state} className="text-primary text-sm mt-3 hover:underline">{returnTarget.label}</Link>
       </div>
     );
   }
@@ -213,7 +218,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
       <div className="node-detail-page flex flex-col bg-canvas overflow-hidden items-center justify-center">
         <p className="text-muted text-lg">该节点正在开发中</p>
         <p className="text-muted-soft text-sm mt-1">{node.description}</p>
-        <Link to="/library" className="text-primary text-sm mt-3 hover:underline">返回构造节点</Link>
+        <Link to={returnTarget.to} state={returnTarget.state} className="text-primary text-sm mt-3 hover:underline">{returnTarget.label}</Link>
       </div>
     );
   }
@@ -226,8 +231,8 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
       {/* ── Header ── */}
       <header className="node-detail-header flex-shrink-0 flex items-center justify-between gap-3 min-h-12 px-4 md:px-5 bg-canvas border-b border-hairline z-20">
         <div className="flex items-center gap-2 text-sm min-w-0">
-          <Link to="/library" className="text-muted-soft hover:text-primary transition-colors">
-            构造节点
+          <Link to={returnTarget.to} state={returnTarget.state} className="text-muted-soft hover:text-primary transition-colors">
+            {returnTarget.label === '返回教材章节' ? '教材章节' : '构造节点'}
           </Link>
           <span className="text-muted-soft">›</span>
           <h1 className="node-detail-heading text-ink font-medium truncate">{node.title}</h1>
@@ -279,10 +284,11 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
                           刷新页面
                         </button>
                         <Link
-                          to="/library"
+                          to={returnTarget.to}
+                          state={returnTarget.state}
                           className="site-button site-button--secondary"
                         >
-                          返回构造节点
+                          {returnTarget.label}
                         </Link>
                       </div>
                       {import.meta.env.DEV && (
@@ -308,6 +314,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
                     knowledgeNamesByVariant={knowledgeNamesByVariant}
                     nodeId={nodeId}
                     autoRotate={autoRotate}
+                    xrayEnabled={xrayEnabled}
                   />
                 </ErrorBoundary>
               ) : (
@@ -318,7 +325,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
 
               {/* ── Bottom control bar — same shell for single- and multi-model.
                      Renders ONLY the NODE_DETAIL_PRIMARY_CONTROLS whitelist
-                     (explode | rotate | link | lighting).  Section / Camera Lock
+                     (explode | rotate | xray | link | lighting).  Section / Camera Lock
                      / axis / reverse stay as runtime-only capabilities — the
                      runtimes are inert while their store flags are off. ── */}
               <ControlBar
@@ -330,6 +337,9 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
                 onExpand={handleExpand}
                 autoRotate={autoRotate}
                 onToggleAutoRotate={() => setAutoRotate(!autoRotate)}
+                xrayEnabled={xrayEnabled}
+                xrayDisabled={!hasModel}
+                onToggleXray={() => setXrayEnabled(!xrayEnabled)}
                 linkageEnabled={linkageEnabled}
                 onToggleLinkage={() => setLinkageEnabled(!linkageEnabled)}
                 showShadows={showShadows}

@@ -9,6 +9,7 @@ import { makeScopedKey, parseScopedKey } from "../../utils/variantIdentity";
 import { resolveComponentKnowledge } from "../../utils/resolveComponentKnowledge";
 import VariantLabelBar from "./VariantLabelBar";
 import VariantComparisonOverview from "./VariantComparisonOverview";
+import '../../styles/model-ui.css';
 
 /* ═══════════════════════════════════════════════════════════════
    Pure helpers — no component state dependencies
@@ -435,20 +436,9 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
                   <motion.li key={layer.objectName} layout={!isResizing}>
                     <button
                       onClick={() => handleToggle(layer.objectName)}
-                      className={`w-full text-left px-3 py-2.5 rounded-lg border transition-colors duration-200
-                        ${isExpanded
-                          ? "bg-primary/5 border-primary/35 rounded-b-none border-b-0"
-                          : "bg-white border-hairline hover:border-primary/35 hover:bg-surface-soft/60"
-                        }`}
+                      className={`model-knowledge-header${isExpanded ? ' is-active' : ''}`}
                     >
-                      <div className="flex items-center gap-2">
-                        <span
-                          className={`w-2 h-2 rounded-full flex-shrink-0 ${isExpanded ? "bg-primary" : "bg-muted-soft"}`}
-                        />
-                        <span className={`text-sm font-medium break-words line-clamp-2 ${isExpanded ? "text-primary" : "text-body"}`}>
-                          {layer.objectName}
-                        </span>
-                      </div>
+                      <div className="model-component-name">{layer.objectName}</div>
                       <div className="ml-4 flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-muted mt-0.5">
                         <span>{layer.thickness}</span>
                         <span>{layer.material}</span>

@@ -2,7 +2,7 @@
   --module-blue: #43558e;
   --module-ink: #20283e;
   --module-clay: #b68970;
-  background: #f8f8f5;
+  background: #ffffff;
   color: var(--module-ink);
 }
 
@@ -148,7 +148,7 @@
   width: 106px;
   height: 133px;
   border: 1px solid #d5d6d8;
-  background: #f8f8f5;
+  background: #ffffff;
 }
 
 .variant-modules .module-model img {
@@ -229,7 +229,7 @@
   padding: 21px 23px;
   border: 1px solid #d9dce4;
   border-radius: 0;
-  background: #f8f8f5;
+  background: #ffffff;
   color: var(--module-ink);
   text-decoration: none;
   transition: background-color 160ms ease, border-color 160ms ease;

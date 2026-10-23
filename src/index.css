@@ -331,6 +331,7 @@
   .node-fit-button span { display: none; }
 }
 /* Course documents keep their own stylesheet inside the frame. */
+.lesson-reader-topbar .site-container { max-width: 1800px; padding-inline: clamp(20px, 2.5vw, 48px); }
 .curriculum-frame { display: block; width: 100%; min-height: calc(100dvh - var(--ui-topbar-height)); border: 0; background: var(--ui-canvas); }
 
 /* Mobile workbench uses the same dock reservation as the other templates. */

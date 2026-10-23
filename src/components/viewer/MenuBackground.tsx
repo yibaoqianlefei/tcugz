@@ -253,9 +253,8 @@ function MenuBackground({
   return (
     <>
       <RendererSetup showShadows={showShadows} />
-      {/* 与 index.css 的 --color-canvas 保持一致（Three.js 无法直接消费 CSS 变量，
-          此值需与 token 手工同步；原值 #faf9f5 是 token 改动前的旧值）。 */}
-      <color attach="background" args={["#faf9f6"]} />
+      {/* Three.js 背景色与 site-tokens.css 的 --ui-canvas 同步。 */}
+      <color attach="background" args={["#ffffff"]} />
 
       <ambientLight intensity={1.2} color="#ffffff" />
       <ShadowLight showShadows={showShadows} />

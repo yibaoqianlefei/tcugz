@@ -20,6 +20,7 @@ type Store = {
   //    consumed by OrbitControls.autoRotate (single-model) AND the multi-model
   //    self-rotation useFrame through the SAME prop) ──
   autoRotate: boolean;
+  xrayEnabled: boolean;
   // ── Manual camera re-fit (R reset) ──
   /** Monotonic token; CameraTracker re-fits whenever it changes. */
   refitToken: number;
@@ -44,6 +45,7 @@ type Store = {
   selectVariant: (variantId: string | null, keepObject?: string | null) => void;
   setLinkageEnabled: (v: boolean) => void;
   setAutoRotate: (v: boolean) => void;
+  setXrayEnabled: (v: boolean) => void;
   resetNodeInteractionState: () => void;
   /** Ask CameraTracker to re-run the initial camera fit (R reset).
    *  Only bumps a token — CameraTracker consumes it and re-fits. */
@@ -61,6 +63,7 @@ export const useNodeStore = create<Store>((set) => ({
   activeExplodeVariantId: null,
   linkageEnabled: true,
   autoRotate: true, // product default: models auto-rotate on load (existing setting)
+  xrayEnabled: false,
   refitToken: 0,
 
   setSelectedObject: (name) => set({ selectedObject: name }),
@@ -81,6 +84,7 @@ export const useNodeStore = create<Store>((set) => ({
     }),
   setLinkageEnabled: (v) => set({ linkageEnabled: v }),
   setAutoRotate: (v) => set({ autoRotate: v }),
+  setXrayEnabled: (v) => set({ xrayEnabled: v }),
   resetNodeInteractionState: () =>
     set({
       selectedObject: null,
@@ -95,6 +99,7 @@ export const useNodeStore = create<Store>((set) => ({
       // rotating), so R reset AND node switch restore it — the next node never
       // inherits a stale rotation toggle.
       autoRotate: true,
+      xrayEnabled: false,
     }),
   requestCameraRefit: () =>
     set((s) => ({ refitToken: s.refitToken + 1 })),

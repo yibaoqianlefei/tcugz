@@ -1,4 +1,4 @@
-:root { --paper:#f8f8f5; --ink:#1c2544; --body:#58637c; --muted:#77839a; --line:#dce1e9; --accent:#43558e; --brick:#b68970; font-family:"Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif; color:var(--ink); background:var(--paper); }
+:root { --paper:#ffffff; --ink:#1c2544; --body:#58637c; --muted:#77839a; --line:#dce1e9; --accent:#43558e; --brick:#b68970; font-family:"Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif; color:var(--ink); background:var(--paper); }
 * { box-sizing:border-box; }
 body { margin:0; }
 img { max-width:100%; }

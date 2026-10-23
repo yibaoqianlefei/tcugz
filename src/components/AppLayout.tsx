@@ -4,6 +4,7 @@ import { ErrorBoundary } from "./ErrorBoundary";
 import LearningHomePage from "../pages/LearningHomePage";
 import SiteHeader from "./SiteHeader";
 import CompanionWidget from "./companion/CompanionWidget";
+import { nodeReturnTarget } from '../utils/lessonNodeNavigation';
 
 /**
  * Root-level error fallback — shown when any (eager or lazy) route throws
@@ -51,13 +52,12 @@ function AppLayout() {
   const isHome = pathname === "/";
   const isAuth = pathname === "/auth";
   const isLesson = pathname.startsWith('/lesson/');
-  const libraryReturnTo = typeof state?.libraryReturnTo === 'string' && /^\/library(?:\?|$)/.test(state.libraryReturnTo) ? state.libraryReturnTo : '/library';
-  const parent = pathname.startsWith('/curriculum/cases/')
+  const parent: { to: string; label: string; state?: unknown } = pathname.startsWith('/curriculum/cases/')
     ? { to: '/curriculum/cases', label: '返回案例应用' }
     : pathname.startsWith('/games/')
     ? { to: '/games', label: '返回作业训练' }
     : pathname.startsWith('/node/')
-    ? { to: libraryReturnTo, label: '返回构造节点' }
+    ? nodeReturnTarget(pathname, search, state)
     : pathname.startsWith('/textbook/')
       ? { to: pathname.includes('/introduction') ? '/?section=introduction' : '/?section=modules', label: '返回学习首页' }
       : { to: '/', label: '返回学习首页' };
@@ -114,7 +114,7 @@ function AppLayout() {
   return (
     <div className={`site-app${isHome ? ' site-app--home' : ''}${pathname.startsWith('/node/') ? ' site-app--node' : ''}`}>
       {!isHome && !isAuth && !isLesson && (
-        <SiteHeader to={parent.to} label={parent.label} breadcrumb={pathname === '/library' || pathname.startsWith('/node/') ? '建筑构造 / 构造节点' : undefined} />
+        <SiteHeader to={parent.to} label={parent.label} state={parent.state} breadcrumb={pathname === '/library' || pathname.startsWith('/node/') ? '建筑构造 / 构造节点' : undefined} />
       )}
       <div style={{ display: isHome ? undefined : 'none' }} aria-hidden={!isHome} inert={!isHome}>
         <LearningHomePage active={isHome} />

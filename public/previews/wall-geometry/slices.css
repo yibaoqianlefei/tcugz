@@ -1,5 +1,5 @@
 .variant-slices {
-  background: #f8f8f5;
+  background: #ffffff;
   color: #17213d;
 }
 
@@ -108,7 +108,7 @@
   height: 7px;
   border: 1px solid #43558e;
   border-radius: 50%;
-  background: #f8f8f5;
+  background: #ffffff;
 }
 
 .variant-slices .slices-section-line span {

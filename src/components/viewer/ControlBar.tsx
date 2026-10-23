@@ -10,17 +10,24 @@
  * debug controls can never appear here regardless of node type or debug flags.
  *
  * Visible surface:
- *   [收起] [爆炸滑块] [展开] | [旋转] | [联动] | [光照]
+ *   [收起] [爆炸滑块] [展开] | [旋转] | [透视] | [联动] | [光照]
  *
  * Layout is anchored to the CENTRAL 3D viewport (parent is `relative`), not
  * the browser window, and sized by content so it never spans the whole canvas.
  */
 
 import type { ReactNode } from "react";
-import { ChevronsLeft, ChevronsRight, Link2, Rotate3d, Sun } from "lucide-react";
+import { ChevronsLeft, ChevronsRight, Link2, Rotate3d, ScanEye, Sun } from "lucide-react";
 import type { NodeDetailControl } from "../../utils/nodeDetailControls";
+import '../../styles/model-ui.css';
 
 export interface ControlBarProps {
+  placement?: 'overlay' | 'flow';
+  leadingControls?: ReactNode;
+  rotationDisabled?: boolean;
+  xrayEnabled?: boolean;
+  xrayDisabled?: boolean;
+  onToggleXray?: () => void;
   /** Whitelisted groups to render (NODE_DETAIL_PRIMARY_CONTROLS). */
   visible: readonly NodeDetailControl[];
   /** Explode group — disabled when the node has no interactive explode. */
@@ -39,14 +46,12 @@ export interface ControlBarProps {
 }
 
 const BTN =
-  "site-tool-button node-control-button flex items-center justify-center " +
-  "transition-colors duration-200 relative shrink-0 " +
-  "disabled:opacity-30 disabled:cursor-not-allowed";
+  "site-tool-button node-control-button model-control-button";
 
 const ACTIVE = "is-active";
 
 function Divider() {
-  return <div className="w-px h-6 lg:h-7 bg-hairline shrink-0" aria-hidden="true" />;
+  return <div className="model-control-divider" aria-hidden="true" />;
 }
 
 export default function ControlBar(props: ControlBarProps) {
@@ -63,15 +68,23 @@ export default function ControlBar(props: ControlBarProps) {
     onToggleLinkage,
     showShadows,
     onToggleLighting,
+    placement = 'overlay',
+    rotationDisabled = false,
+    leadingControls,
+    xrayEnabled = false,
+    xrayDisabled = false,
+    onToggleXray,
   } = props;
 
   // Build the visible groups, then join them with dividers so no group ever
   // leaves an empty divider behind when it is not in the whitelist.
-  const groups: ReactNode[] = [];
+  const groups: Array<{ id: string; element: ReactNode }> = [];
+  const addGroup = (id: string, element: ReactNode) => groups.push({ id, element });
+  if (leadingControls) addGroup('leading', leadingControls);
 
   if (visible.includes("explode")) {
-    groups.push(
-      <div key="explode" className="flex items-center gap-1 sm:gap-1.5 min-w-0">
+    addGroup('explode',
+      <div key="explode" className="model-explode-controls">
         <button
           type="button"
           onClick={onCollapse}
@@ -91,20 +104,9 @@ export default function ControlBar(props: ControlBarProps) {
           onChange={(e) => onSliderChange(Number(e.target.value))}
           disabled={explodeDisabled}
           aria-label="爆炸程度"
+          aria-valuetext={`已展开 ${Math.round(sliderValue * 100)}%`}
           title="爆炸程度"
-          className="node-explode-slider h-6 py-1 bg-hairline rounded-full appearance-none cursor-pointer
-            accent-primary min-w-0
-            disabled:opacity-30 disabled:cursor-not-allowed
-            [&::-webkit-slider-thumb]:appearance-none
-            [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5
-            sm:[&::-webkit-slider-thumb]:w-4 sm:[&::-webkit-slider-thumb]:h-4
-            [&::-webkit-slider-thumb]:rounded-full
-            [&::-webkit-slider-thumb]:bg-white
-            [&::-webkit-slider-thumb]:border-2
-            [&::-webkit-slider-thumb]:border-primary/30
-            [&::-webkit-slider-thumb]:shadow-sm
-            [&::-webkit-slider-thumb]:hover:border-primary
-            [&::-webkit-slider-thumb]:transition-colors"
+          className="node-explode-slider model-explode-slider"
           style={{ touchAction: "none" }}
         />
         <button
@@ -122,13 +124,14 @@ export default function ControlBar(props: ControlBarProps) {
   }
 
   if (visible.includes("rotate")) {
-    groups.push(
+    addGroup('rotate',
       <button
         key="rotate"
         type="button"
         onClick={onToggleAutoRotate}
+        disabled={rotationDisabled}
         aria-pressed={autoRotate}
-        className={`${BTN} ${autoRotate ? ACTIVE : "border border-transparent"}`}
+        className={`${BTN} ${autoRotate ? ACTIVE : ""}`}
         title={autoRotate ? "暂停旋转" : "开启旋转"}
         aria-label={autoRotate ? "暂停旋转" : "开启旋转"}
       >
@@ -137,8 +140,18 @@ export default function ControlBar(props: ControlBarProps) {
     );
   }
 
+  if (visible.includes("xray")) {
+    addGroup('xray',
+      <button key="xray" type="button" onClick={onToggleXray} disabled={xrayDisabled || !onToggleXray}
+        aria-pressed={xrayEnabled} className={`${BTN} ${xrayEnabled ? ACTIVE : ''}`}
+        title={xrayEnabled ? '关闭透视' : '开启透视'} aria-label={xrayEnabled ? '关闭透视' : '开启透视'}>
+        <ScanEye size={18} className="lg:size-5" strokeWidth={1.5} />
+      </button>,
+    );
+  }
+
   if (visible.includes("link")) {
-    groups.push(
+    addGroup('link',
       <button
         key="link"
         type="button"
@@ -154,7 +167,7 @@ export default function ControlBar(props: ControlBarProps) {
   }
 
   if (visible.includes("lighting")) {
-    groups.push(
+    addGroup('lighting',
       <button
         key="lighting"
         type="button"
@@ -173,16 +186,13 @@ export default function ControlBar(props: ControlBarProps) {
     <div
       role="toolbar"
       aria-label="模型控制栏"
-      className="node-control-bar absolute bottom-5 left-1/2 -translate-x-1/2 z-10
-        flex items-center gap-1.5 sm:gap-2 lg:gap-3
-        px-3 sm:px-4 lg:px-5 py-2.5 lg:py-3
-        bg-canvas border border-hairline rounded-[var(--ui-radius-panel)] shadow-sm"
+      className={`model-control-bar model-control-bar--${placement}${placement === 'overlay' ? ' node-control-bar' : ''}${leadingControls ? ' model-control-bar--with-leading' : ''}`}
       onPointerDown={(e) => e.stopPropagation()}
     >
-      {groups.map((group, i) => (
-        <div key={`grp-${i}`} className={`flex items-center gap-1.5 sm:gap-2 lg:gap-3 ${i === 0 ? "min-w-0" : "shrink-0"}`}>
+      {groups.map(({ id, element }, i) => (
+        <div key={id} className={`model-control-group model-control-group--${id}`}>
           {i > 0 && <Divider />}
-          {group}
+          {element}
         </div>
       ))}
     </div>

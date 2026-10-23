@@ -3,7 +3,7 @@
   --line-blue: #43558e;
   --line-muted: #777d88;
   --line-rule: #dcdedb;
-  --line-paper: #f8f8f5;
+  --line-paper: #ffffff;
   color: var(--line-ink);
   background: var(--line-paper);
 }

@@ -78,7 +78,7 @@ try {
   await frame.locator('.chapter-card[href$="wall-details.html"]').click();
   frame = await ready('basics/wall/wall-details.html');
   assert((await frame.locator('.article').innerText()).includes('防潮'));
-  await frame.locator('.article a[href^="/#/node/"]:not([data-lesson-figure])').first().click();
+  await frame.locator('.article a[href^="/#/node/"]:not([data-lesson-figure]):not(.lesson-model-placeholder)').first().click();
   await page.waitForURL(/#\/node\//);
 
   await page.goto(`${base}#/games`);

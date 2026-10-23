@@ -30,8 +30,9 @@
  *      multi: explodeProgress)
  *   2. rotate — Rotate3d; toggles the `autoRotate` store field (single-source
  *      rotation control chain shared by single- and multi-model).
- *   3. link    — knowledge-panel linkage toggle.
- *   4. lighting— sun; toggles the shadow/lighting setup.
+ *   3. xray    — transparent construction view, independent of explosion.
+ *   4. link    — knowledge-panel linkage toggle.
+ *   5. lighting— sun; toggles the shadow/lighting setup.
  *
  * The reset protocol (R key / resetNodeInteractionState / requestCameraRefit)
  * is NOT a visible control: the R button UI was removed, but the R keyboard
@@ -40,6 +41,7 @@
 export const NODE_DETAIL_PRIMARY_CONTROLS = [
   "explode",
   "rotate",
+  "xray",
   "link",
   "lighting",
 ] as const;
@@ -51,6 +53,7 @@ export type NodeDetailControl = (typeof NODE_DETAIL_PRIMARY_CONTROLS)[number];
 export const RUNTIME_CAPABILITIES = [
   "explode",      // both single-model AnimationMixer + multi-model explode
   "rotate",       // autoRotate toggle — OrbitControls (single) / self-rotation (multi)
+  "xray",         // transparent construction view at every explode progress
   "link",         // linkage toggle
   "lighting",     // shadow/lighting toggle
 ] as const;

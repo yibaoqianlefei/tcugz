@@ -1,7 +1,7 @@
 /* Single source for the application, homepage and generated course documents.
    build:pages copies this file to public/styles/site-tokens.css. */
 :root {
-  --ui-canvas: #f8f8f5;
+  --ui-canvas: #ffffff;
   --ui-surface: #ffffff;
   --ui-soft: #eef1f8;
   --ui-ink: #1c2544;
@@ -24,6 +24,7 @@
   --ui-reading-max: 760px;
   --ui-gutter: clamp(24px, 4.7vw, 84px);
   --ui-topbar-height: 76px;
+  --ui-topbar-gutter: 24px;
   --ui-control-height: 44px;
   --ui-radius-control: 8px;
   --ui-radius-panel: 14px;
@@ -39,9 +40,21 @@
   --ui-space-16: 64px;
 }
 
+/* Shared by the application and same-origin textbook documents. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ui-red) transparent;
+}
+*::-webkit-scrollbar { width: 6px; height: 6px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: var(--ui-red); border-radius: 999px; }
+*::-webkit-scrollbar-thumb:hover { background: var(--ui-danger); }
+input[type="range"] { accent-color: var(--ui-red); }
+
 @media (max-width: 760px) {
   :root {
     --ui-gutter: 20px;
     --ui-topbar-height: 64px;
+    --ui-topbar-gutter: 20px;
   }
 }
