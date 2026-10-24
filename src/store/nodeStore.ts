@@ -21,6 +21,8 @@ type Store = {
   //    self-rotation useFrame through the SAME prop) ──
   autoRotate: boolean;
   xrayEnabled: boolean;
+  /** Component isolation: when on, selecting a component hides every other one. */
+  isolateSelection: boolean;
   // ── Manual camera re-fit (R reset) ──
   /** Monotonic token; CameraTracker re-fits whenever it changes. */
   refitToken: number;
@@ -46,6 +48,7 @@ type Store = {
   setLinkageEnabled: (v: boolean) => void;
   setAutoRotate: (v: boolean) => void;
   setXrayEnabled: (v: boolean) => void;
+  setIsolateSelection: (v: boolean) => void;
   resetNodeInteractionState: () => void;
   /** Ask CameraTracker to re-run the initial camera fit (R reset).
    *  Only bumps a token — CameraTracker consumes it and re-fits. */
@@ -64,6 +67,7 @@ export const useNodeStore = create<Store>((set) => ({
   linkageEnabled: true,
   autoRotate: true, // product default: models auto-rotate on load (existing setting)
   xrayEnabled: false,
+  isolateSelection: false,
   refitToken: 0,
 
   setSelectedObject: (name) => set({ selectedObject: name }),
@@ -85,6 +89,7 @@ export const useNodeStore = create<Store>((set) => ({
   setLinkageEnabled: (v) => set({ linkageEnabled: v }),
   setAutoRotate: (v) => set({ autoRotate: v }),
   setXrayEnabled: (v) => set({ xrayEnabled: v }),
+  setIsolateSelection: (v) => set({ isolateSelection: v }),
   resetNodeInteractionState: () =>
     set({
       selectedObject: null,
@@ -100,6 +105,7 @@ export const useNodeStore = create<Store>((set) => ({
       // inherits a stale rotation toggle.
       autoRotate: true,
       xrayEnabled: false,
+      isolateSelection: false,
     }),
   requestCameraRefit: () =>
     set((s) => ({ refitToken: s.refitToken + 1 })),

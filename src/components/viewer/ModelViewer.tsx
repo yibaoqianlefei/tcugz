@@ -13,6 +13,7 @@ import { computeExplodedPosition } from "../../utils/explodeLayout";
 import type { ResolvedVariantExplodeConfig, ResolvedExplodeComponent } from "../../utils/explodeLayout";
 import { isInteractionAllowed } from "../../utils/interactionGates";
 import { applyComponentHighlight } from '../../utils/componentHighlight';
+import { applyComponentIsolation, clearComponentIsolation, createIsolationState } from '../../utils/isolateComponent';
 import { createModelXRay } from '../../utils/modelXRay';
 import { collectOutlineSources, createFeatureEdges, separateOpaqueSurfaceDepth } from "../../utils/modelOutlines";
 import { getNodeAutoRotationAngle, getNodeOrbitRotationSpeed } from "../../utils/nodeRotation";
@@ -525,6 +526,24 @@ function SceneModel({ modelPath, modelScale = 2.5, modelGroups, knowledgeObjectN
     });
     return () => xray.restore();
   }, [xray, xrayEnabled, highlightEnabled, resolveName, variantId, selectedObject, hoveredObject]);
+
+  // ── Component isolation (独立展示) ──
+  // Each SceneModel owns one variant. The variant holding the selected component
+  // keeps just that component; sibling variants hide everything so the isolated
+  // part is the only geometry on screen.
+  const isolateSelection = useNodeStore((s) => s.isolateSelection);
+  const isolationState = useRef(createIsolationState());
+  useEffect(() => {
+    if (!scene) return;
+    const scoped = isolateSelection ? selectedObject : null;
+    const target = !scoped
+      ? ({ kind: 'all' } as const)
+      : matchesVariantScope(scoped, variantId ?? null)
+        ? ({ kind: 'only', name: resolveName(parseScopedKey(scoped).objectName) } as const)
+        : ({ kind: 'none' } as const);
+    applyComponentIsolation(scene, target, resolveName, isolationState.current);
+  }, [scene, isolateSelection, selectedObject, resolveName, variantId]);
+  useEffect(() => () => clearComponentIsolation(isolationState.current), []);
 
   // ── Picking (Phase 3: variant-scoped) ──
   const findNamedMesh = (obj: THREE.Object3D): string | null => {

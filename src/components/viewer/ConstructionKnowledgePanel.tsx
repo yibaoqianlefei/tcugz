@@ -46,6 +46,30 @@ function findMatchingLayer(
    Component
    ═══════════════════════════════════════════════════════════════ */
 
+/** Shared switch: isolate the selected component in the node viewer. */
+function IsolationSwitch({ on, onToggle }: { on: boolean; onToggle: () => void }) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={on}
+      aria-label="独立展示：只显示选中的构件"
+      onClick={onToggle}
+      className={`flex flex-shrink-0 items-center gap-2 rounded-full border px-2 py-1 text-xs transition-colors ${on ? 'border-primary/40 bg-primary/10 text-ink' : 'border-hairline bg-surface-card text-muted hover:border-primary/30'}`}
+    >
+      <span
+        aria-hidden="true"
+        className={`relative inline-block h-3.5 w-6 flex-shrink-0 rounded-full transition-colors ${on ? 'bg-primary' : 'bg-hairline'}`}
+      >
+        <span
+          className={`absolute top-0.5 h-2.5 w-2.5 rounded-full bg-white transition-all ${on ? 'left-3' : 'left-0.5'}`}
+        />
+      </span>
+      <span>独立展示</span>
+    </button>
+  );
+}
+
 export default function ConstructionKnowledgePanel({ isResizing = false }: { isResizing?: boolean }) {
   const { nodeId } = useParams<{ nodeId: string }>();
   const node = getNodeDefinition(nodeId);
@@ -56,6 +80,8 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
   const selectedVariantId = useNodeStore((s) => s.selectedVariantId);
   const setSelectedVariantId = useNodeStore((s) => s.setSelectedVariantId);
   const linkageEnabled = useNodeStore((s) => s.linkageEnabled);
+  const isolateSelection = useNodeStore((s) => s.isolateSelection);
+  const setIsolateSelection = useNodeStore((s) => s.setIsolateSelection);
 
   // ── Manual expand state (used when linkage is OFF, normal nodes only) ──
   const [manualState, setManualState] = useState<{
@@ -154,11 +180,14 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
     <div className="node-knowledge flex flex-col min-w-0 min-h-0 bg-canvas border-l border-hairline overflow-y-auto">
       {/* ── Node Info Header ── */}
       <div className="flex-shrink-0 px-4 py-4 border-b border-hairline">
-        <div className="flex items-center gap-2 mb-2">
-          <span className="w-1 h-5 bg-primary rounded-full flex-shrink-0" />
-          <h2 className="text-base font-medium text-ink tracking-tight leading-snug">
-            {node?.title ?? "未知节点"}
-          </h2>
+        <div className="flex items-start justify-between gap-2 mb-2">
+          <div className="flex min-w-0 items-center gap-2">
+            <span className="w-1 h-5 bg-primary rounded-full flex-shrink-0" />
+            <h2 className="text-base font-medium text-ink tracking-tight leading-snug">
+              {node?.title ?? "未知节点"}
+            </h2>
+          </div>
+          <IsolationSwitch on={isolateSelection} onToggle={() => setIsolateSelection(!isolateSelection)} />
         </div>
         {node?.description && (
           <p className="text-[13px] text-muted leading-[1.6]">{node.description}</p>
@@ -185,6 +214,9 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
                 <h3 className="text-sm font-medium text-ink">{activeVariant.title}</h3>
                 {activeVariant.description && (
                   <p className="mt-1 text-xs leading-relaxed text-muted">{activeVariant.description}</p>
+                )}
+                {isolateSelection && (
+                  <p className="mt-1 text-xs text-muted-soft">已开启独立展示：点击下方知识条目只显示该构件，再次点击取消</p>
                 )}
               </div>
               {!!activeVariant.differenceSummary?.length && (
@@ -415,11 +447,13 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
          ═══════════════════════════════════════════════════════ */}
       {!isMultiModel && (
         <div className="flex-1 px-4 py-4">
-          <h3 className="text-sm font-medium text-ink mb-0.5">
-            构件列表
-          </h3>
+          <div className="flex items-start justify-between gap-2 mb-0.5">
+            <h3 className="text-sm font-medium text-ink">
+              构件列表
+            </h3>
+          </div>
           <p className="text-xs text-muted mb-3">
-            点击构件展开查看详情
+            {isolateSelection ? '独立展示已开启：点击构件只显示该构件，再次点击取消' : '点击构件展开查看详情'}
           </p>
 
           {layers.length === 0 ? (
