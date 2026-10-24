@@ -36,7 +36,8 @@
     "test:homepage-training": "node tests/homepage-training-browser.mjs",
     "test:cases:browser": "node tests/case-study-browser.mjs",
     "test:outlines": "node --import tsx tests/model-outlines.test.ts",
-    "test:composite-slab": "node --import tsx tests/profiled-steel-composite-slab.test.ts"
+    "test:composite-slab": "node --import tsx tests/profiled-steel-composite-slab.test.ts",
+    "test:curved-stair": "node --import tsx tests/curved-stair.test.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",

@@ -26,6 +26,7 @@ import { rockwoolInsulationLayers, getLayerInfo as getRockwoolInsulationLayer } 
 import { concreteStepsLayers, getLayerInfo as getConcreteStepsLayer } from "./concreteStepsLayers";
 import { plasterPlinthLayers, getLayerInfo as getPlasterPlinthLayer } from "./plasterPlinthLayers";
 import { stairCompositionLayers, getLayerInfo as getStairCompositionLayer } from "./stairCompositionLayers";
+import { curvedStairLayers, getLayerInfo as getCurvedStairLayer } from "./curvedStairLayers";
 import { facedPlinthLayers, getLayerInfo as getFacedPlinthLayer } from "./facedPlinthLayers";
 import { stonePlinthLayers, getLayerInfo as getStonePlinthLayer } from "./stonePlinthLayers";
 import { rcElevatedStepsLayers, getLayerInfo as getRcElevatedStepsLayer } from "./rcElevatedStepsLayers";
@@ -1329,6 +1330,18 @@ export const nodeDefinitions: NodeDefinition[] = [
   },
 
   /* ── Stairs nodes ────────────────────────────────────────── */
+  {
+    id: "curved-stair-01",
+    title: "圆弧形楼梯构造",
+    description: "对照圆弧形梯段的承重部分、结合层、木制面层、防滑条、地毯棍及弧形扶手，支持分解动画、构件点选和图纸对照。扶手几何已随模型提供，其水曲柳扶手、25×3 通长扁钢与 25 长木螺钉做法见图纸扶手剖面。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/curved-stair-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/stairs/curved-stair/curved-stair.glb"), scale: 1 },
+    diagram: { path: assetPath("images/stairs/curved-stair-diagram.png"), subtitle: "图5-38 · 圆弧形楼梯构造实例（单位：mm）" },
+    layerConfig: { layers: curvedStairLayers, getLayerInfo: getCurvedStairLayer },
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-details" }],
+  },
   {
     id: "stair-flight-offset-multiple-01",
     title: "梯段与平台梁节点处理（梯段错多步）",
