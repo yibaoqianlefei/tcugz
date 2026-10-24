@@ -1,5 +1,4 @@
 import { chromium } from 'playwright';
-import { mkdirSync } from 'fs';
 
 const DEV = process.env.DEV_URL || 'http://localhost:5200';
 

@@ -6,7 +6,7 @@
  */
 import { execSync } from "child_process";
 import { readdirSync, statSync, renameSync, existsSync, unlinkSync } from "fs";
-import { join, extname, resolve } from "path";
+import { join, extname } from "path";
 
 const MODELS_DIR = join(process.cwd(), "public", "models");
 const SIZE_LIMIT = 1 * 1024 * 1024; // 1 MB

@@ -67,10 +67,6 @@ export const savoyeTopics: CaseTopic[] = [
   },
 ];
 
-export function getSavoyeTopic(id: string | null | undefined) {
-  return savoyeTopics.find(topic => topic.id === id) ?? savoyeTopics[0];
-}
-
 export const farnsworth = {
   id: 'farnsworth-house', title: '法恩斯沃斯住宅', english: 'FARNSWORTH HOUSE',
   location: '美国 · 普莱诺', period: '1949–1951', architects: '路德维希·密斯·凡德罗',
