@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" aria-hidden="true" focusable="false">
-  <rect data-primitive="module-rectangle-1" x="30" y="175" width="360" height="76" fill="var(--art-secondary, #ff754d)" fill-opacity="0.42" />
-  <rect data-primitive="module-rectangle-2" x="210" y="265" width="360" height="76" fill="var(--art-primary, #244be8)" />
-  <rect data-primitive="module-rectangle-outline" x="30" y="355" width="360" height="76" fill="none" stroke="var(--art-line, #43558e)" stroke-width="1.2" />
-</svg>

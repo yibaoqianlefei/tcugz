@@ -8,7 +8,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--ui-font
 a{color:inherit;text-decoration:none}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .main{min-width:0}
-.topbar{position:sticky;top:0;z-index:20;height:var(--ui-topbar-height);padding:0 max(var(--ui-gutter),calc((100% - var(--ui-page-max))/2 + var(--ui-gutter)));display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar{position:sticky;top:0;z-index:20;height:var(--ui-topbar-height);padding:0 var(--ui-topbar-gutter) 0 max(var(--ui-gutter),calc((100% - var(--ui-page-max))/2 + var(--ui-gutter)));display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line);background:var(--paper)}
 .wall-brand{display:inline-flex;align-items:center;gap:10px;min-width:0}
 .wall-brand img{display:block;flex:none}
 .crumb{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;color:var(--muted)}
