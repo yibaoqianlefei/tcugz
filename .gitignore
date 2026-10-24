@@ -32,6 +32,11 @@ presentation/
 # 本地检查截图和临时发布文件
 tmp/
 audit-output/**/*.png
+# 根目录验证截图（before/after、screenshot-* 等），只用于本地核对
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
 
 # 本地研究下载和教材渲染工作文件；正式教材与审计记录保留
 _research/
