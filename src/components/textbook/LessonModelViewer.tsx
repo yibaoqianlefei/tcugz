@@ -3,7 +3,7 @@ import { Canvas, type ThreeEvent, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei';
 import { DRACOLoader, GLTFLoader, MeshoptDecoder, type OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import * as THREE from 'three';
-import { Boxes, Minus, MoreHorizontal, Pause, Play, Plus, RotateCcw, ScanEye } from 'lucide-react';
+import { Minus, Pause, Play, Plus, RotateCcw } from 'lucide-react';
 import { getNodeDefinition, type NodeDefinition, type NodeModelVariant } from '../../data/nodeDefinitions';
 import { ErrorBoundary } from '../ErrorBoundary';
 import StudioEnvironment from '../viewer/StudioEnvironment';
@@ -231,7 +231,6 @@ function ViewerSession({ initialZoom, node, variant, inline = false, autoRotate,
   const [loaded, setLoaded] = useState<{ key: string; model: LessonModel }>();
   const [error, setError] = useState('');
   const [selected, setSelected] = useState('');
-  const [partsOpen, setPartsOpen] = useState(false);
   const partsId = useId();
   const [hovered, setHovered] = useState('');
   const [progress, setProgress] = useState(0);
@@ -275,7 +274,7 @@ function ViewerSession({ initialZoom, node, variant, inline = false, autoRotate,
     else if (inner.bottom > outer.bottom) panel.scrollTop += inner.bottom - outer.bottom;
     if (inner.left < outer.left) panel.scrollLeft += inner.left - outer.left;
     else if (inner.right > outer.right) panel.scrollLeft += inner.right - outer.right;
-  }, [selected, partsOpen]);
+  }, [selected]);
 
   useEffect(() => {
     if (!path || !supported) return;
@@ -318,6 +317,7 @@ function ViewerSession({ initialZoom, node, variant, inline = false, autoRotate,
 
   const act = (action: ViewCommand['action']) => setCommand(previous => ({ id: previous.id + 1, action }));
   const play = (value: number) => { if (model?.hasTimeline) { setSelected(''); setHovered(''); } setDirection(value); };
+
   const restart = () => { setError(''); setSelected(''); setHovered(''); setProgress(0); setDirection(0); setRetry(value => value + 1); };
   if (!path) return <div className="lesson-model-fallback" role="status">此节点暂未提供三维模型，可继续阅读本节正文。</div>;
   if (!supported) return <div className="lesson-model-fallback" role="status"><strong>当前设备无法开启三维视图</strong><p>可继续阅读正文与观察提示，或使用支持三维显示的浏览器打开本节。</p></div>;
@@ -334,7 +334,9 @@ function ViewerSession({ initialZoom, node, variant, inline = false, autoRotate,
       {error ? fallback : model ? <ErrorBoundary resetKey={requestKey} onError={reportError} fallback={fallback}>
         <Canvas className="lesson-model-canvas" frameloop={direction || (autoRotate && rendered) ? 'always' : 'demand'} dpr={[1, 1.5]} camera={{ fov: NODE_CAMERA_FOV, position: [4, 3, 6] }} gl={{ antialias: true, alpha: inline }} onPointerMissed={pickEnabled ? () => pickPart('') : undefined} fallback={<span>需要支持三维显示的浏览器；可继续阅读本节正文。</span>}
           onCreated={({ gl }) => {
-            gl.domElement.setAttribute('aria-label', `${node.title}，可拖动旋转，使用下方按钮缩放、复位或暂停自动旋转`);
+            gl.domElement.setAttribute('aria-label', inline
+              ? `${node.title}，可拖动旋转，下方可暂停旋转或调整展开程度`
+              : `${node.title}，可拖动旋转，使用下方按钮缩放、复位或暂停自动旋转`);
             gl.domElement.addEventListener('webglcontextlost', event => { event.preventDefault(); reportError(); }, { once: true });
           }}>
           {!inline && <color attach="background" args={['#eef1f8']} />}
@@ -354,17 +356,6 @@ function ViewerSession({ initialZoom, node, variant, inline = false, autoRotate,
       {inline ? <div className="lesson-inline-controls" role="toolbar" aria-label="模型控制栏">
         <button type="button" className="model-control-button" disabled={!rendered} onClick={onToggleAutoRotate} aria-pressed={autoRotate} aria-label={autoRotate ? '暂停旋转' : '开启旋转'} title={autoRotate ? '暂停旋转' : '开启旋转'}>{autoRotate ? <Pause size={18} /> : <Play size={18} />}</button>
         {model?.canExplode && <input type="range" className="model-explode-slider lesson-inline-slider" min={0} max={1} step={0.001} value={progress} disabled={!rendered} aria-label="爆炸程度" aria-valuetext={`已展开 ${Math.round(progress * 100)}%`} title="爆炸程度" onChange={event => { setDirection(0); updateProgress(Number(event.target.value)); }} />}
-        <details className="lesson-inline-tools" onKeyDown={event => { if (event.key === 'Escape') { event.currentTarget.open = false; event.currentTarget.querySelector('summary')?.focus(); } }}>
-          <summary className="model-control-button" aria-label="更多模型操作" title="更多模型操作"><MoreHorizontal size={18} /></summary>
-          <div className="lesson-inline-tools-panel" role="group" aria-label="模型辅助操作">
-            <button type="button" className="site-tool-button" disabled={!rendered} onClick={() => act('fit')} aria-label="复位视角"><RotateCcw size={16} />复位</button>
-            <button type="button" className="site-tool-button" disabled={!rendered} onClick={onToggleXray} aria-pressed={xrayEnabled} aria-label={xrayEnabled ? '关闭透视' : '开启透视'}><ScanEye size={16} />透视</button>
-            <button type="button" className="site-tool-button" disabled={!rendered} onClick={() => act('far')} aria-label="缩小模型"><Minus size={16} />缩小</button>
-            <button type="button" className="site-tool-button" disabled={!rendered} onClick={() => act('near')} aria-label="放大模型"><Plus size={16} />放大</button>
-            {model?.canExplode && <><button type="button" className="site-tool-button" disabled={!rendered} onClick={() => play(-1)} aria-label="收起爆炸">收起爆炸</button><button type="button" className="site-tool-button" disabled={!rendered} onClick={() => play(1)} aria-label="播放爆炸">播放爆炸</button></>}
-            <button type="button" className="site-tool-button lesson-inline-parts-toggle" disabled={!rendered} aria-controls={partsId} aria-expanded={partsOpen} onClick={event => { setPartsOpen(value => !value); const tools = event.currentTarget.closest('details'); tools?.removeAttribute('open'); tools?.querySelector('summary')?.focus(); }}><Boxes size={16} />{partsOpen ? '收起构件名称' : '构件名称'}</button>
-          </div>
-        </details>
       </div> : <ControlBar placement="flow" leadingControls={<div className="lesson-model-controls model-leading-controls" role="group" aria-label="模型视图控制">
       <button type="button" className="model-control-button" disabled={!rendered} onClick={() => act('fit')} aria-label="复位视角" title="复位视角"><RotateCcw size={17} /></button>
       <button type="button" className="model-control-button" disabled={!rendered} onClick={() => act('far')} aria-label="缩小模型" title="缩小模型"><Minus size={17} /></button>
@@ -376,7 +367,7 @@ function ViewerSession({ initialZoom, node, variant, inline = false, autoRotate,
         linkageEnabled={false} onToggleLinkage={ignoreControl} showShadows={false} onToggleLighting={ignoreControl} />}
     </div>}
     </div>
-    <aside id={partsId} ref={knowledgePanel} hidden={inline && !partsOpen} className="lesson-knowledge-panel" aria-label="构件知识卡片" aria-busy={!model}>
+    <aside id={partsId} ref={knowledgePanel} className="lesson-knowledge-panel" aria-label="构件知识卡片" aria-busy={!model}>
       {model ? <ul>{model.parts.map(part => <li key={part.id}><button type="button" data-part-id={part.id} data-visible={visibleParts.has(part.id)}
         className={`model-knowledge-header model-component-name lesson-model-part lesson-knowledge-card${pickEnabled && selected === part.id ? ' is-selected is-active' : ''}${hoverEnabled && hovered === part.id ? ' is-hovered' : ''}`}
         aria-pressed={pickEnabled && selected === part.id} disabled={!pickEnabled || !visibleParts.has(part.id)}

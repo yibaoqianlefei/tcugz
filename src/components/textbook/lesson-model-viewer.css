@@ -84,25 +84,16 @@
 .lesson-model-shell--inline .lesson-model-presenting{background:var(--paper,var(--ui-canvas));}
 .lesson-inline-model-slot{margin:0;background:transparent;border-radius:0;min-height:calc(var(--lesson-inline-stage-height) + 56px);overflow:visible}
 [data-models-embedded=true] .lesson-model-mount,.lesson-model-placeholder,.lesson-model-idle{min-height:calc(var(--lesson-inline-stage-height,380px) + 56px)}
+/* 阅读页只保留旋转与爆炸两项控制，构件名称常驻在模型下方。 */
 .lesson-inline-controls{position:relative;display:flex;align-items:center;justify-content:center;gap:14px;width:min(100%,460px);min-height:44px;margin-inline:auto;padding:0;box-sizing:border-box}
 .lesson-inline-slider{width:auto!important;flex:1;min-width:44px;height:44px!important;padding:0;border-radius:0;background:transparent}
 .lesson-inline-slider::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:color-mix(in srgb,var(--ui-red) 22%,var(--ui-surface))}
 .lesson-inline-slider::-webkit-slider-thumb{width:18px;height:18px;margin-top:-7px}
 .lesson-inline-slider::-moz-range-track{height:4px;border-radius:2px;background:color-mix(in srgb,var(--ui-red) 22%,var(--ui-surface))}
 .lesson-inline-slider::-moz-range-thumb{width:14px;height:14px}
-.lesson-inline-tools{position:static;flex:none}
-.lesson-inline-tools>summary{list-style:none;cursor:pointer}
-.lesson-inline-tools>summary::-webkit-details-marker{display:none}
-.lesson-inline-tools-panel{position:absolute;z-index:8;right:0;bottom:calc(100% + 10px);display:grid;grid-template-columns:1fr 1fr;gap:6px;width:230px;max-width:calc(100vw - 40px);padding:10px;border:1px solid var(--ui-line);border-radius:var(--ui-radius-panel);background:var(--ui-surface);box-shadow:var(--ui-shadow-panel);box-sizing:border-box}
-.lesson-inline-tools:not([open])>.lesson-inline-tools-panel{display:none}
-.lesson-inline-tools-panel .site-tool-button{display:inline-flex;align-items:center;justify-content:center;min-height:40px;gap:6px;padding:6px;border:1px solid var(--ui-line);border-radius:var(--ui-radius-control);background:var(--ui-canvas);color:var(--ui-muted);font:12px/1.5 var(--ui-font);white-space:nowrap;cursor:pointer}
-.lesson-inline-tools-panel .site-tool-button:hover:not(:disabled),.lesson-inline-tools-panel .site-tool-button[aria-pressed=true]{color:var(--ui-blue);background:var(--ui-soft);border-color:var(--ui-line-strong)}
-.lesson-inline-tools-panel .site-tool-button:disabled{opacity:.4;cursor:default}
-.lesson-inline-parts-toggle{grid-column:1/-1}
 .lesson-model-shell--inline .lesson-knowledge-panel{width:100%;max-width:760px;max-height:180px!important;align-self:center;padding:10px 0 0;border-left:0;border-top:1px solid var(--ui-line)}
 .lesson-model-shell--inline .lesson-knowledge-panel ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
 .lesson-model-shell--inline .lesson-knowledge-card{font-size:12px}
-.lesson-knowledge-panel[hidden]{display:none!important}
 .lesson-inline-selected{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);max-width:90%;padding:4px 9px;border:1px solid var(--ui-line);border-radius:6px;background:var(--ui-surface);color:var(--ui-blue);font-size:12px;line-height:1.6;text-align:center;pointer-events:none}
-@media(max-width:760px){.lesson-inline-controls{gap:10px}.lesson-inline-tools-panel .site-tool-button{min-height:44px}}
+@media(max-width:760px){.lesson-inline-controls{gap:10px}}
 @media(max-width:600px){.lesson-model-shell--inline .lesson-knowledge-panel ul{grid-template-columns:repeat(2,minmax(0,1fr))}.lesson-inline-model-slot{margin-inline:0}}

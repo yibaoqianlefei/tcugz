@@ -93,9 +93,6 @@ try {
   const slot = frame.locator('[data-lesson-model]').first();
   await slot.locator('.lesson-model-stage[data-rendered="true"]').waitFor();
   await slot.getByRole('button', { name: '暂停旋转', exact: true }).click();
-  await slot.getByLabel('更多模型操作', { exact: true }).click();
-  await slot.getByRole('button', { name: '开启透视', exact: true }).click();
-  await slot.getByLabel('更多模型操作', { exact: true }).click();
   await page.evaluate(() => { window.bookReaderCanvas = document.querySelector('.curriculum-frame').contentDocument.querySelector('canvas'); });
   await page.locator('.book-directory-edge-trigger').click();
   await page.waitForTimeout(500);
@@ -103,18 +100,14 @@ try {
   assert(await page.locator('.book-toc--sidebar .site-brand-mark').isVisible(), 'collapsed rail keeps its brand mark');
   assert(await page.locator('.book-toc--sidebar nav').isHidden(), 'collapsed navigation is removed from keyboard order');
   assert(await page.evaluate(() => window.bookReaderCanvas === document.querySelector('.curriculum-frame').contentDocument.querySelector('canvas')), 'model canvas is not remounted');
-  assert.equal(await slot.locator('button[aria-label="关闭透视"]').getAttribute('aria-pressed'), 'true');
-  assert(await slot.locator('.lesson-knowledge-panel').isHidden(), 'inline component names are optional');
-  await slot.getByLabel('更多模型操作', { exact: true }).click();
-  await slot.getByRole('button', { name: '构件名称', exact: true }).click();
-  await slot.locator('.lesson-knowledge-panel').waitFor();
+  // 阅读页只保留旋转与爆炸，构件名称常驻在模型下方。
+  assert.equal(await slot.getByLabel('更多模型操作', { exact: true }).count(), 0, 'reading page no longer hides controls behind a more menu');
+  assert(await slot.locator('.lesson-knowledge-panel').isVisible(), 'component names stay visible under the model');
   const card = slot.locator('.lesson-knowledge-card:enabled').first();
   await card.click();
   assert.equal(await card.getAttribute('aria-pressed'), 'true');
   assert.equal(await slot.locator('.lesson-inline-selected').innerText(), await card.innerText());
-  assert.equal(await slot.locator('.lesson-knowledge-card *').count(), 0, 'optional cards remain name-only');
-  await slot.getByLabel('更多模型操作', { exact: true }).click();
-  await slot.getByRole('button', { name: '收起构件名称', exact: true }).click();
+  assert.equal(await slot.locator('.lesson-knowledge-card *').count(), 0, 'component cards remain name-only');
   await page.locator('.book-directory-edge-trigger').click();
   await page.screenshot({ path: `${output}/model-with-directory.png` });
 
@@ -142,23 +135,19 @@ try {
     await page.keyboard.press('End');
     await page.waitForTimeout(500);
     assert.equal(await slider.inputValue(), '1');
-    await inline.getByLabel('更多模型操作', { exact: true }).click();
-    const menu = await inline.locator('.lesson-inline-tools-panel').boundingBox();
     const square = await inline.locator('.lesson-model-stage').boundingBox();
     assert(Math.abs(square.width - square.height) < 1, 'inline canvas uses a square observation area');
-    assert(menu.x >= 0 && menu.x + menu.width <= width + 1, 'auxiliary panel fits narrow screen');
-    await inline.getByRole('button', { name: '开启透视', exact: true }).click();
-    assert.equal(await inline.locator('.lesson-model-viewer').getAttribute('data-xray'), 'true');
-    await inline.getByLabel('更多模型操作', { exact: true }).press('Escape');
+    const names = await inline.locator('.lesson-knowledge-panel').boundingBox();
+    assert(names.y >= square.y + square.height - 1, 'component names sit under the model');
+    assert(names.x >= 0 && names.x + names.width <= width + 1, 'component names fit narrow screen');
+    assert.equal(await inline.getByLabel('更多模型操作', { exact: true }).count(), 0, 'narrow reading page keeps only rotate and explode');
     await page.screenshot({ path: `${output}/minimal-model-${width}.png` });
     await ready('basics/stairs/stairs-rc-structure.html');
     await page.evaluate(() => { const f = document.querySelector('.curriculum-frame'), e = f.contentDocument.querySelector('[data-lesson-model]'); scrollTo(0, scrollY + f.getBoundingClientRect().top + e.getBoundingClientRect().top - 90); });
     const staticModel = page.frameLocator('.curriculum-frame').locator('[data-lesson-model]').first();
     await staticModel.locator('.lesson-model-stage[data-rendered="true"]').waitFor();
     assert.equal(await staticModel.getByRole('slider', { name: '爆炸程度' }).count(), 0, 'static model does not show an unusable explode slider');
-    await staticModel.getByLabel('更多模型操作', { exact: true }).click();
-    const staticMenu = await staticModel.locator('.lesson-inline-tools-panel').boundingBox();
-    assert(staticMenu.x >= 0 && staticMenu.x + staticMenu.width <= width + 1, 'static model menu also fits narrow screen');
+    assert.equal(await staticModel.getByLabel('更多模型操作', { exact: true }).count(), 0, 'static model has no auxiliary menu either');
   }
   assert.equal(errors.length, 0, JSON.stringify(errors));
   await writeFile(`${output}/result.json`, JSON.stringify({ results, errors }, null, 2));
