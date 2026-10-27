@@ -344,9 +344,43 @@
   .node-fit-button { width: 44px; height: 44px; padding: 0; }
   .node-viewport { flex-direction: column; }
   .node-viewport > div:not(.node-control-bar) { min-height: 0; height: auto; }
-  .node-control-bar { position: relative; left: auto; bottom: auto; transform: none; translate: none; flex: none; display: flex; flex-wrap: wrap; justify-content: center; width: 272px; max-width: calc(100% - 24px); gap: 6px 10px; margin: 8px auto 12px; padding: 8px 10px; border-radius: var(--ui-radius-panel); }
-  .node-control-bar > div:first-child { flex: 1 0 100%; justify-content: center; }
-  .node-control-bar > div { gap: 8px; }
-  .node-control-bar > div:nth-child(2) > div:first-child { display: none; }
   .node-explode-slider { width: 128px; height: 32px; }
+}
+
+/* 触屏工作台（手机全部宽度 + 触屏平板）：控制栏进入文档流，画布让出空间，
+   绝不像桌面那样浮在模型上。选择器必须压过 model-ui.css 的
+   .model-control-bar--overlay，所以带上 .node-viewport 前缀。 */
+@media (max-width: 760px), (pointer: coarse) and (max-width: 1024px) {
+  .node-viewport { flex-direction: column; }
+  .node-viewport > div:not(.node-control-bar) { min-height: 0; height: auto; }
+  .node-viewport > .model-control-bar.node-control-bar { position: relative; inset: auto; left: auto; right: auto; top: auto; bottom: auto; transform: none; translate: none; z-index: 1; flex: none; display: flex; flex-wrap: wrap; justify-content: center; width: 300px; max-width: calc(100% - 16px); gap: 6px; margin: 6px auto 10px; padding: 6px 8px; border-radius: var(--ui-radius-panel); }
+  .node-viewport > .model-control-bar.node-control-bar > div:first-child { flex: 1 0 100%; justify-content: center; }
+  .node-viewport > .model-control-bar.node-control-bar > div { gap: 6px; }
+  .node-viewport > .model-control-bar.node-control-bar > .model-control-divider { display: none; }
+  .node-viewport > .model-control-bar.node-control-bar > div:nth-child(2) > div:first-child { display: none; }
+  .node-control-bar .model-control-button { width: 44px; height: 44px; min-width: 44px; min-height: 44px; }
+  .node-explode-slider { width: 128px; height: 32px; }
+}
+
+/* 短屏与手机横屏：控制栏压成单行（可横向滑动），页面改为可滚动，
+   画布保留 220px 的可观察高度，而不是被压成一条缝。 */
+@media (max-width: 1024px) and (max-height: 540px) {
+  .node-detail-page, html[data-companion-dock="true"] .node-detail-page { height: auto; min-height: calc(100dvh - var(--ui-topbar-height)); }
+  .node-detail-grid { flex: none; }
+  .node-viewport { position: relative; inset: auto; min-height: 0; max-height: 280px; }
+  .node-viewport > div:not(.node-control-bar) { height: 220px; min-height: 220px; flex: none; }
+  .node-knowledge { max-height: 280px; overflow: auto; }
+  .node-mobile-tabs { height: 34px; }
+  .node-mobile-tabs button { font-size: 12px; }
+  .node-viewport { flex-direction: column; }
+  .node-viewport > .model-control-bar.node-control-bar {
+    display: flex; flex-wrap: nowrap; justify-content: flex-start;
+    width: auto; max-width: none; margin: 4px 8px 6px; padding: 4px 6px; gap: 6px;
+    overflow-x: auto; overflow-y: hidden; scrollbar-width: none;
+  }
+  .node-viewport > .model-control-bar.node-control-bar::-webkit-scrollbar { display: none; }
+  .node-viewport > .model-control-bar.node-control-bar > div,
+  .node-viewport > .model-control-bar.node-control-bar > div:first-child { flex: none; }
+  .node-explode-slider { width: 64px; height: 40px; flex: none; }
+  .node-control-bar .model-control-button { width: 40px; height: 40px; min-width: 40px; min-height: 40px; }
 }
