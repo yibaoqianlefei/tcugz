@@ -384,3 +384,26 @@
   .node-explode-slider { width: 64px; height: 40px; flex: none; }
   .node-control-bar .model-control-button { width: 40px; height: 40px; min-width: 40px; min-height: 40px; }
 }
+
+/* 手机触控目标与字号下限：文字链补足 44px 热区，装饰性小字保持原样。 */
+@media (max-width: 760px) {
+  .site-subpage-brand { min-height: 44px; min-width: 44px; }
+  .book-toc-edge-toggle.book-directory-edge-trigger { min-width: 44px; }
+  .showcase-top a,
+  .case-experience-header a,
+  .case-study-links a,
+  .practice-preview-continue,
+  .lesson-model-idle button { display: inline-flex; align-items: center; min-height: 44px; }
+  .case-study-sources a { display: flex; align-items: center; min-height: 44px; }
+  .node-mobile-tabs { height: 46px; }
+  .node-mobile-tabs button { min-height: 44px; }
+  .node-detail-page a.text-muted-soft { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 4px; margin-inline: -4px; }
+  .practice-preview-feedback button { min-width: 44px; min-height: 44px; }
+  /* 滑块视觉轨道不变，热区从 32px 提高到 44px。 */
+  .node-viewport .model-explode-slider { height: 44px; background: transparent; }
+  .model-explode-slider::-webkit-slider-runnable-track { height: 6px; border-radius: 999px; background: color-mix(in srgb, var(--ui-red) 22%, var(--ui-surface)); }
+  .model-explode-slider::-moz-range-track { height: 6px; border-radius: 999px; background: color-mix(in srgb, var(--ui-red) 22%, var(--ui-surface)); }
+  .app .module-card .directory-card-kicker { font-size: 12px; }
+  .app .module-card .directory-card-description { font-size: 13px; }
+  .app .library-category-count { font-size: 12px; }
+}
