@@ -1,0 +1,1 @@
+var e=`/tcugz/draco/`;export{e as t};
