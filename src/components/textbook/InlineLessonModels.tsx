@@ -65,7 +65,7 @@ export default function InlineLessonModels({ doc, lesson, paused }: { doc: Docum
 
   return slots.map(({ figure, mount }) => createPortal(
     active === figure.id && !paused
-      ? <ErrorBoundary resetKey={figure.nodeId} fallback={<div className="lesson-model-idle" role="alert"><strong>模型界面暂时无法加载</strong><span>可继续阅读正文，刷新页面后重试模型。</span><button type="button" onClick={() => window.location.reload()}>刷新页面重试</button></div>}><Suspense fallback={<div className="lesson-model-idle" role="status">正在准备三维构造…</div>}><LessonModelViewer key={figure.nodeId} nodeId={figure.nodeId} inline /></Suspense></ErrorBoundary>
+      ? <ErrorBoundary resetKey={figure.nodeId} fallback={<div className="lesson-model-idle" role="alert"><strong>模型界面暂时无法加载</strong><span>可继续阅读正文，刷新页面后重试模型。</span><button type="button" onClick={() => window.location.reload()}>刷新页面重试</button></div>}><Suspense fallback={<div className="lesson-model-idle" role="status">正在准备三维构造…</div>}><LessonModelViewer key={figure.nodeId} nodeId={figure.nodeId} initialZoom={figure.initialZoom} inline /></Suspense></ErrorBoundary>
       : <div className="lesson-model-idle" data-model-idle><span className="lesson-model-idle-symbol" aria-hidden="true">◇</span><strong>{figure.nodeTitle}</strong><span>{paused ? '模型已在展开视图中打开' : '阅读到这里，直接观察三维构造'}</span><button type="button" disabled={paused} onClick={() => activate(figure.id, mount)}>在此观察模型</button></div>,
     mount, figure.id,
   ));

@@ -14,6 +14,7 @@ import { applyComponentHighlight } from '../../utils/componentHighlight';
 import { createModelXRay } from '../../utils/modelXRay';
 import { isSizeChangeSignificant } from '../../utils/cameraFit';
 import { CAMERA_RESIZE_SETTLE_MS, NODE_CAMERA_FOV, NODE_MAX_POLAR_ANGLE } from '../../utils/viewerCamera';
+import { DRACO_DECODER_PATH } from '../../utils/modelDecoders';
 import { advanceLessonCameraTransition, computeLessonCameraFit, LESSON_DEFAULT_VIEW_DIRECTION, type LessonCameraTransition } from './lessonCamera';
 import { prepareLessonModel, disposeLessonScene, pickLessonPart, type LessonModel } from './lessonModelRuntime';
 import './lesson-model-viewer.css';
@@ -30,8 +31,8 @@ function clearViewInertia(controls: OrbitControlsImpl) {
   controls.enableDamping = damping;
 }
 
-function ModelScene({ model, selected, hovered, hoverEnabled, pickEnabled, progress, direction, command, xrayEnabled, onSelect, onHover, onPose, onProgress, onReady, onRenderError }: {
-  model: LessonModel; selected: string; hovered: string; progress: number; direction: number; command: ViewCommand;
+function ModelScene({ initialZoom, model, selected, hovered, hoverEnabled, pickEnabled, progress, direction, command, xrayEnabled, onSelect, onHover, onPose, onProgress, onReady, onRenderError }: {
+  initialZoom: number; model: LessonModel; selected: string; hovered: string; progress: number; direction: number; command: ViewCommand;
   hoverEnabled: boolean; pickEnabled: boolean;
   xrayEnabled: boolean;
   onSelect: (id: string) => void; onHover: (id: string) => void; onPose: (ids: Set<string>) => void;
@@ -136,7 +137,7 @@ function ModelScene({ model, selected, hovered, hoverEnabled, pickEnabled, progr
     if (!previous) {
       clearViewInertia(controls);
       controls.target.copy(fit.center);
-      camera.position.copy(fit.center).addScaledVector(LESSON_DEFAULT_VIEW_DIRECTION, fit.distance);
+      camera.position.copy(fit.center).addScaledVector(LESSON_DEFAULT_VIEW_DIRECTION, fit.distance / initialZoom);
       controls.update();
       framing.current = { bounds: viewBounds, fitDistance: fit.distance, width, height };
       rendering.current.fitted = true;
@@ -145,12 +146,12 @@ function ModelScene({ model, selected, hovered, hoverEnabled, pickEnabled, progr
       const distance = camera.position.distanceTo(controls.target);
       // Keep the user's relative zoom when switching assembly/explosion fit.
       // A narrower resized viewport may pull back to the safe default distance.
-      const nextDistance = resized ? Math.max(distance, fit.distance) : fit.distance * distance / previous.fitDistance;
+      const nextDistance = resized ? Math.max(distance, fit.distance / initialZoom) : fit.distance * distance / previous.fitDistance;
       transition.current = { fromTarget: controls.target.clone(), toTarget: fit.center, fromDistance: distance, toDistance: nextDistance, fromFitDistance: previous.fitDistance, toFitDistance: fit.distance, elapsed: 0 };
       framing.current = { ...previous, bounds: viewBounds, width, height };
     }
     invalidate();
-  }, [model, viewBounds, camera, controls, size.width, size.height, settledSize, invalidate]);
+  }, [model, viewBounds, camera, controls, size.width, size.height, settledSize, invalidate, initialZoom]);
 
   useLayoutEffect(() => {
     if (!(camera instanceof THREE.PerspectiveCamera) || !controls || size.width < 1 || size.height < 1) return;
@@ -164,7 +165,7 @@ function ModelScene({ model, selected, hovered, hoverEnabled, pickEnabled, progr
     const spherical = new THREE.Spherical().setFromVector3(offset);
     if (command.action === 'fit') {
       const fit = computeLessonCameraFit(viewBounds, camera, size.width, size.height);
-      spherical.setFromVector3(LESSON_DEFAULT_VIEW_DIRECTION.clone().multiplyScalar(fit.distance));
+      spherical.setFromVector3(LESSON_DEFAULT_VIEW_DIRECTION.clone().multiplyScalar(fit.distance / initialZoom));
       controls.target.copy(fit.center);
       framing.current = { bounds: viewBounds, fitDistance: fit.distance, width: size.width, height: size.height };
     }
@@ -175,7 +176,7 @@ function ModelScene({ model, selected, hovered, hoverEnabled, pickEnabled, progr
     camera.position.copy(controls.target).add(new THREE.Vector3().setFromSpherical(spherical));
     controls.update();
     invalidate();
-  }, [command, model, viewBounds, camera, controls, size.width, size.height, invalidate]);
+  }, [command, model, viewBounds, camera, controls, size.width, size.height, invalidate, initialZoom]);
 
   useLayoutEffect(() => {
     model.meshes.forEach(({ mesh, partId, visible }) => {
@@ -223,7 +224,7 @@ function browserHasWebGL() {
   } catch { return false; }
 }
 
-function ViewerSession({ node, variant, inline = false, autoRotate, onToggleAutoRotate, xrayEnabled, onToggleXray }: { node: NodeDefinition; variant?: NodeModelVariant; inline?: boolean; autoRotate: boolean; onToggleAutoRotate: () => void; xrayEnabled: boolean; onToggleXray: () => void }) {
+function ViewerSession({ initialZoom, node, variant, inline = false, autoRotate, onToggleAutoRotate, xrayEnabled, onToggleXray }: { initialZoom: number; node: NodeDefinition; variant?: NodeModelVariant; inline?: boolean; autoRotate: boolean; onToggleAutoRotate: () => void; xrayEnabled: boolean; onToggleXray: () => void }) {
   const path = variant?.model.path ?? node.model?.path;
   const [supported] = useState(browserHasWebGL);
   const [retry, setRetry] = useState(0);
@@ -284,7 +285,7 @@ function ViewerSession({ node, variant, inline = false, autoRotate, onToggleAuto
     const draco = new DRACOLoader();
     // Same decoder version as the existing node viewer; this loader and all
     // decoded assets remain private, so retry never clears its shared cache.
-    draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.5/');
+    draco.setDecoderPath(DRACO_DECODER_PATH);
     const loader = new GLTFLoader().setDRACOLoader(draco).setMeshoptDecoder(MeshoptDecoder);
     const timeout = window.setTimeout(() => {
       if (cancelled) return;
@@ -341,7 +342,7 @@ function ViewerSession({ node, variant, inline = false, autoRotate, onToggleAuto
           <StudioEnvironment />
           <directionalLight position={[8, 12, 6]} intensity={2} color="#fffdf7" />
           <directionalLight position={[-5, 4, -3]} intensity={0.65} color="#dce8ee" />
-          <ModelScene model={model} selected={selected} hovered={hovered} hoverEnabled={hoverEnabled} pickEnabled={pickEnabled} progress={progress} direction={direction} command={command} xrayEnabled={xrayEnabled} onSelect={pickPart} onHover={hoverPart} onPose={updatePose} onProgress={updateProgress} onReady={markRendered} onRenderError={reportError} />
+          <ModelScene initialZoom={initialZoom} model={model} selected={selected} hovered={hovered} hoverEnabled={hoverEnabled} pickEnabled={pickEnabled} progress={progress} direction={direction} command={command} xrayEnabled={xrayEnabled} onSelect={pickPart} onHover={hoverPart} onPose={updatePose} onProgress={updateProgress} onReady={markRendered} onRenderError={reportError} />
           <OrbitControls makeDefault enablePan={false} enableZoom={!inline} enableDamping dampingFactor={0.08} maxPolarAngle={NODE_MAX_POLAR_ANGLE} autoRotate={autoRotate && rendered} autoRotateSpeed={getNodeOrbitRotationSpeed(1 / 60)} />
         </Canvas>
       </ErrorBoundary> : <div className="lesson-model-loading" role="status"><span aria-hidden="true" />正在准备三维构造…</div>}
@@ -386,7 +387,7 @@ function ViewerSession({ node, variant, inline = false, autoRotate, onToggleAuto
   </div>;
 }
 
-export default function LessonModelViewer({ nodeId, inline = false }: { nodeId: string; inline?: boolean }) {
+export default function LessonModelViewer({ nodeId, inline = false, initialZoom = 1 }: { nodeId: string; inline?: boolean; initialZoom?: number }) {
   const node = getNodeDefinition(nodeId);
   const [variantId, setVariantId] = useState('');
   const [autoRotate, setAutoRotate] = useState(true);
@@ -399,6 +400,6 @@ export default function LessonModelViewer({ nodeId, inline = false }: { nodeId: 
       <label>方案 <select value={variant?.id} onChange={event => setVariantId(event.target.value)}>{variants.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
       {variant?.description && <details className="lesson-model-variant-info" name="lesson-model-tools"><summary>方案说明</summary><p>{variant.description}</p></details>}
     </div>}
-    <ViewerSession key={`${nodeId}:${variant?.id ?? 'single'}`} node={node} variant={variant} inline={inline} autoRotate={autoRotate} onToggleAutoRotate={() => setAutoRotate(value => !value)} xrayEnabled={xrayEnabled} onToggleXray={() => setXrayEnabled(value => !value)} />
+    <ViewerSession key={`${nodeId}:${variant?.id ?? 'single'}`} initialZoom={initialZoom} node={node} variant={variant} inline={inline} autoRotate={autoRotate} onToggleAutoRotate={() => setAutoRotate(value => !value)} xrayEnabled={xrayEnabled} onToggleXray={() => setXrayEnabled(value => !value)} />
   </div>;
 }
