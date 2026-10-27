@@ -7,6 +7,7 @@ import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import type { TrainingPart } from '../../data/training';
 import { createTrainingScene, applyTrainingPresentation } from '../../utils/trainingScene';
 import { ErrorBoundary } from '../ErrorBoundary';
+import { DRACO_DECODER_PATH } from '../../utils/modelDecoders';
 import './training-model.css';
 
 interface ModelProps {
@@ -31,7 +32,7 @@ interface SceneModelProps extends ModelProps {
 }
 function SceneModel(props: SceneModelProps) {
   const { path, onReady, selected, hidden, placements, separated, fitToken, fitPadding = 1.45 } = props;
-  const { scene } = useGLTF(props.path, true);
+  const { scene } = useGLTF(props.path, DRACO_DECODER_PATH);
   const model = useMemo(() => createTrainingScene(scene, props.parts, props.groups), [scene, props.parts, props.groups]);
   const camera = useThree(state => state.camera);
   const controls = useThree(state => state.controls) as OrbitControlsImpl | null;

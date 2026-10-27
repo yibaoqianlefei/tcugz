@@ -4,6 +4,7 @@ import { useGLTF, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { fitHomeSceneScale } from "../../utils/homeSceneFit";
+import { DRACO_DECODER_PATH } from "../../utils/modelDecoders";
 
 /* ── Error Boundary (class component for GLB load failures) ── */
 interface ErrorBoundaryProps {
@@ -59,7 +60,7 @@ function SceneModel({
   onReady?: () => void;
   onBounds: (bounds: THREE.Box3) => void;
 }) {
-  const { scene } = useGLTF(modelPath, true); // Draco enabled
+  const { scene } = useGLTF(modelPath, DRACO_DECODER_PATH); // Draco (self-hosted decoder)
 
   const fixed = useMemo(() => {
     if (!scene) return null;

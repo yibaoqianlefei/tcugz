@@ -10,6 +10,7 @@ import { getNodeDefinition } from '../data/nodeDefinitions';
 import { useCompanionStore } from '../store/companionStore';
 import { collectOutlineSources, createFeatureEdges, separateOpaqueSurfaceDepth } from '../utils/modelOutlines';
 import { fitHomepageModelOrbit } from '../utils/homepageModelFit';
+import { DRACO_DECODER_PATH } from '../utils/modelDecoders';
 import { getNodeOrbitRotationSpeed } from '../utils/nodeRotation';
 
 const featuredNodeId = 'water-storage-eaves-drainage-01';
@@ -47,7 +48,7 @@ function Model({ path, onReady, outlineExcluded }: {
   onReady: (path: string) => void;
   outlineExcluded?: readonly string[];
 }) {
-  const { scene } = useGLTF(path, true);
+  const { scene } = useGLTF(path, DRACO_DECODER_PATH);
   const { model, outlines, materials } = useMemo(() => {
     const model = scene.clone(true);
     const outlines: Array<{ geometry: THREE.BufferGeometry; material: THREE.LineBasicMaterial }> = [];
