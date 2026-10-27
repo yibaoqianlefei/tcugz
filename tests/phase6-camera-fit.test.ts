@@ -80,7 +80,8 @@ group("Fit is deferred until ALL variants are loaded + laid out");
   assert(shouldSkipFit(3, false) === true, "3 variants not ready → skip final fit");
   assert(shouldSkipFit(3, true) === false, "3 variants ready → allow fit");
   assert(shouldSkipFit(1, false) === true, "1 variant not ready → skip");
-  assert(shouldSkipFit(0, false) === false, "single-model (variantCount 0) → no variant gate");
+  assert(shouldSkipFit(0, false) === true, "single-model also waits for its complete initial pose");
+  assert(shouldSkipFit(0, true) === false, "single-model ready → allow fit");
 }
 
 group("Initial fit runs exactly once; rotation/render/variant switch never re-fit");

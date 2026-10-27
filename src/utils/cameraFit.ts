@@ -41,8 +41,7 @@ export const CAMERA_COMPOSITION_FRACTION = 0.12;
    Visible-geometry world AABB
    ═══════════════════════════════════════════════════════════════ */
 
-const _fitV1 = new THREE.Vector3();
-const _fitV2 = new THREE.Vector3();
+const _fitBox = new THREE.Box3();
 
 /**
  * Union world AABB of the VISIBLE geometry under `root`.
@@ -73,13 +72,32 @@ export function computeVisibleGeometryWorldBox(root: THREE.Object3D): THREE.Box3
     if (geo.boundingBox === null) geo.computeBoundingBox();
     const bb = geo.boundingBox;
     if (!bb) return;
-    _fitV1.copy(bb.min).applyMatrix4(child.matrixWorld);
-    _fitV2.copy(bb.max).applyMatrix4(child.matrixWorld);
-    box.expandByPoint(_fitV1);
-    box.expandByPoint(_fitV2);
+    // Transform all eight corners: min/max alone lose extents after rotation.
+    box.union(_fitBox.copy(bb).applyMatrix4(child.matrixWorld));
   });
   if (box.isEmpty()) box.setFromObject(root);
   return box;
+}
+
+/** Actual radial extent, rather than the empty corners of a world AABB.
+ * Important for round stairs: a diagonal-of-box radius wastes ~30% of the
+ * viewport. Cached at the initial pose and refreshed only as animation moves.
+ */
+export function computeVisibleGeometryOrbitRadius(root: THREE.Object3D, center: THREE.Vector3): number {
+  const point = new THREE.Vector3();
+  let radiusSquared = 0;
+  root.updateMatrixWorld(true);
+  root.traverse(child => {
+    if (!(child instanceof THREE.Mesh) || child.userData._isProxy || isHitboxName(child.name)) return;
+    if (child.name === '__dev_pivot_marker' || child.name === '__dev_geo_marker') return;
+    const position = child.geometry.getAttribute('position');
+    if (!position) return;
+    for (let i = 0; i < position.count; i++) {
+      point.fromBufferAttribute(position, i).applyMatrix4(child.matrixWorld).sub(center);
+      radiusSquared = Math.max(radiusSquared, point.x * point.x + point.z * point.z);
+    }
+  });
+  return Math.sqrt(radiusSquared);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -188,16 +206,56 @@ export function computeCameraFitTargets(input: CameraFitInput): CameraFitResult 
   };
 }
 
+/** Fit a single model's complete yaw envelope, including near-face depth.
+ * Camera distance, rather than scene scale, determines the viewport occupancy.
+ * The cylinder is invariant under automatic orbit, so rotation cannot pump zoom.
+ */
+export function computeSingleModelCameraFit(input: CameraFitInput & { horizontalRadius?: number; bottomInset?: number }): CameraFitResult {
+  const result = computeCameraFitTargets({ ...input, compositionFraction: 0 });
+  const direction = input.cameraPosition.clone().sub(input.controlsTarget);
+  if (direction.lengthSq() < 1e-9) direction.set(0, 0, 1);
+  direction.normalize();
+  const right = new THREE.Vector3().crossVectors(new THREE.Vector3(0, 1, 0), direction);
+  if (right.lengthSq() < 1e-9) right.set(1, 0, 0);
+  right.normalize();
+  const up = new THREE.Vector3().crossVectors(direction, right).normalize();
+  const tanVertical = Math.tan(THREE.MathUtils.degToRad(input.verticalFovDeg) / 2);
+  const tanHorizontal = tanVertical * result.aspect;
+  const centerOffset = Math.min(input.bottomInset ?? 0, input.canvasHeight * .25) / Math.max(1, input.canvasHeight);
+  const usableTanVertical = tanVertical * (1 - centerOffset);
+  const radius = input.horizontalRadius ?? Math.hypot(input.boxSize.x, input.boxSize.z) / 2;
+  const support = new THREE.Vector3();
+  const verticalAxis = up.clone().addScaledVector(direction, tanVertical * centerOffset);
+  let distance = .01;
+  // Exact support of a vertical cylinder: continuous yaw coverage without
+  // angular sampling, so automatic rotation cannot introduce distance jitter.
+  const extent = () => radius * Math.hypot(support.x, support.z) + input.boxSize.y * Math.abs(support.y) / 2;
+  for (const sign of [-1, 1]) {
+    support.copy(direction).addScaledVector(right, sign * input.padding / tanHorizontal);
+    distance = Math.max(distance, extent());
+    support.copy(direction).addScaledVector(verticalAxis, sign * input.padding / usableTanVertical);
+    distance = Math.max(distance, extent());
+  }
+  result.finalDistance = distance;
+  result.fitDistance = result.finalDistance / input.padding;
+  result.controlsTarget.copy(input.boxCenter).addScaledVector(up, -result.finalDistance * tanVertical * centerOffset);
+  result.finalCameraPosition.copy(result.controlsTarget).addScaledVector(direction, result.finalDistance);
+  result.near = Math.max(result.finalDistance / 100, .005);
+  result.far = Math.max(result.finalDistance * 20, 100);
+  return result;
+}
+
 /* ═══════════════════════════════════════════════════════════════
    Gating rules
    ═══════════════════════════════════════════════════════════════ */
 
 /**
- * True when the fit must be deferred because not every variant is loaded
- * AND laid out.  A multi-model node must NEVER fit on 1 or 2 models.
+ * Every node waits for a complete initial pose and layout. Multi-model
+ * scenes additionally aggregate readiness before reporting sceneReady.
  */
 export function shouldSkipFit(variantCount: number, sceneReady: boolean): boolean {
-  return variantCount > 0 && !sceneReady;
+  void variantCount;
+  return !sceneReady;
 }
 
 /**
