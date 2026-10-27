@@ -27,6 +27,9 @@ import { concreteStepsLayers, getLayerInfo as getConcreteStepsLayer } from "./co
 import { plasterPlinthLayers, getLayerInfo as getPlasterPlinthLayer } from "./plasterPlinthLayers";
 import { stairCompositionLayers, getLayerInfo as getStairCompositionLayer } from "./stairCompositionLayers";
 import { curvedStairLayers, getLayerInfo as getCurvedStairLayer } from "./curvedStairLayers";
+import { spiralStairLayers, getLayerInfo as getSpiralStairLayer } from "./spiralStairLayers";
+import { doglegStairLayers, getLayerInfo as getDoglegStairLayer } from "./doglegStairLayers";
+import { escalatorLayers, getLayerInfo as getEscalatorLayer } from "./escalatorLayers";
 import { facedPlinthLayers, getLayerInfo as getFacedPlinthLayer } from "./facedPlinthLayers";
 import { stonePlinthLayers, getLayerInfo as getStonePlinthLayer } from "./stonePlinthLayers";
 import { rcElevatedStepsLayers, getLayerInfo as getRcElevatedStepsLayer } from "./rcElevatedStepsLayers";
@@ -43,6 +46,10 @@ import { bottomLandingEntranceStraightLayers, getLayerInfo as getBottomLandingEn
 import { hollowBlockFormsLayers, getLayerInfo as getHollowBlockFormsLayer } from "./hollowBlockFormsLayers";
 import { independentFoundationLayers, getLayerInfo as getIndependentFoundationLayer } from "./independentFoundationLayers";
 import { rampHandrailLayers, getLayerInfo as getRampHandrailLayer } from "./rampHandrailLayers";
+import { handrailWallEndPlateLayers, getLayerInfo as getHandrailWallEndPlateLayer } from "./handrailWallEndPlateLayers";
+import { handrailWallBentBracketLayers, getLayerInfo as getHandrailWallBentBracketLayer } from "./handrailWallBentBracketLayers";
+import { handrailBrickWallForkedBarLayers, getLayerInfo as getHandrailBrickWallForkedBarLayer } from "./handrailBrickWallForkedBarLayers";
+import { handrailBrickWallWoodPadLayers, getLayerInfo as getHandrailBrickWallWoodPadLayer } from "./handrailBrickWallWoodPadLayers";
 import { roofAccessHatchLayers, getLayerInfo as getRoofAccessHatchLayer } from "./roofAccessHatchLayers";
 import { ventPipeLayers, getLayerInfo as getVentPipeLayer } from "./ventPipeLayers";
 import { rigidRoofTransverseJointLayers, getLayerInfo as getRigidRoofTransverseJointLayer } from "./rigidRoofTransverseJointLayers";
@@ -70,6 +77,7 @@ import { straightRainwaterOutlet65Layers, getLayerInfo as getStraightRainwaterOu
 import { straightRainwaterOutletCastIronLayers, getLayerInfo as getStraightRainwaterOutletCastIronLayer } from "./straightRainwaterOutletCastIronLayers";
 import { slabFoundationLayers, beamSlabFoundationLayers, boxFoundationLayers, columnCrossFoundationLayers, columnStripFoundationLayers, foundationLayerConfig } from "./combinedFoundationLayers";
 import { coatingParapetFlashingLayers, getLayerInfo as getCoatingParapetFlashingLayer } from "./coatingParapetFlashingLayers";
+import { coatingHighLowRoofFlashingLayers, getLayerInfo as getCoatingHighLowRoofFlashingLayer } from "./coatingHighLowRoofFlashingLayers";
 import { timberTrussLayers, reinforcedConcreteTrussLayers, steelTimberTrussLayers, roofTrussLayerConfig } from "./roofTrussLayers";
 import { passiveSolarWallLayers, getLayerInfo as getPassiveSolarWallLayer } from "./passiveSolarWallLayers";
 import { windowWallGapSealingLayers, getLayerInfo as getWindowWallGapSealingLayer } from "./windowWallGapSealingLayers";
@@ -121,6 +129,12 @@ export interface NodeModelConfig {
   nonInteractive?: string[];
   /** Dense components whose authored geometry renders without extra edge lines. */
   outlineExcluded?: string[];
+  /**
+   * 首屏视线方向（模型局部坐标，由模型指向相机）。省略时沿用查看器默认的正面视角。
+   * 仅对"整面构件会把连接部位挡在后面"的剖面型细部指定，避免首屏只看得到一个面；
+   * 只影响第一次取景，用户旋转后不再干预。
+   */
+  initialView?: readonly [number, number, number];
 }
 
 export interface NodeDiagramConfig {
@@ -323,6 +337,30 @@ export const nodeDefinitions: NodeDefinition[] = [
     layerConfig: {
       layers: coatingParapetFlashingLayers,
       getLayerInfo: getCoatingParapetFlashingLayer,
+    },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
+  },
+  {
+    id: "coating-high-low-roof-flashing-01",
+    title: "涂膜防水屋面高低屋面的泛水",
+    description: "高低屋面交界处的泛水做法（图 6-41）：防水卷材沿低屋面铺至混凝土矮墙后上翻，在交界处形成 U 形跨缝段，泛水高度 ≥250；U 形段外侧由镀锌薄钢板盖缝罩住，钢板另一端勾入高侧墙体凹槽并用嵌缝油膏封堵；卷材上端由压条与水泥钉收头在水泥砂浆抹灰面上。支持构件点选、分解动画与图纸对照。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/coating-high-low-roof-flashing-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/coating-high-low-roof-flashing/coating-high-low-roof-flashing.glb"),
+      scale: 2.5,
+      // 首屏从左前方 20° 俯角看：正对剖切面时墙体把泛水节点挡在一条线上，
+      // 换成 3/4 视角后矮墙、防水卷材的 U 形跨缝段与盖缝钢板同时可见。
+      initialView: [-0.539, 0.342, 0.770],
+    },
+    diagram: {
+      path: assetPath("images/roof/coating-high-low-roof-flashing-diagram.png"),
+      subtitle: "图6-41 · 涂膜防水屋面高低屋面的泛水（单位：mm）",
+    },
+    layerConfig: {
+      layers: coatingHighLowRoofFlashingLayers,
+      getLayerInfo: getCoatingHighLowRoofFlashingLayer,
     },
     textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
   },
@@ -821,7 +859,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     category: "楼地层",
     thumbnail: assetPath("images/floor/profiled-steel-composite-slab-diagram.png"),
     status: "available",
-    model: { path: assetPath("models/floor/profiled-steel-composite-slab/profiled-steel-composite-slab.glb"), scale: 2.5 },
+    model: { path: assetPath("models/floor/profiled-steel-composite-slab/profiled-steel-composite-slab.glb"), scale: 2.5, initialView: [0.956, 0.142, 0.256] },
     diagram: { path: assetPath("images/floor/profiled-steel-composite-slab-diagram.png"), subtitle: "图3-3 · 压型钢板组合楼板" },
     layerConfig: { layers: profiledSteelCompositeSlabLayers, getLayerInfo: getProfiledSteelCompositeSlabLayer },
     textbookLinks: [{ moduleId: "floor", chapterId: "floor-rc-slab" }],
@@ -1097,6 +1135,8 @@ export const nodeDefinitions: NodeDefinition[] = [
     model: {
       path: assetPath("models/wall/passive-solar-wall/passive-solar-wall.glb"),
       scale: 2.5,
+      // 首屏右偏 45°：外围护墙占比 67% → 38%，可辨构件由 5 个增到 7 个。
+      initialView: [0.700, 0.142, 0.700],
     },
     diagram: {
       path: assetPath("images/wall/passive-solar-wall-diagram.png"),
@@ -1229,6 +1269,8 @@ export const nodeDefinitions: NodeDefinition[] = [
     model: {
       path: assetPath("models/wall/foam-insulation/foam-insulation.glb"),
       scale: 2,
+      // 首屏改从背面 165° 看：基层墙体占比 76% → 47%，保温板与饰面层不再被墙挡死。
+      initialView: [0.256, 0.142, -0.956],
     },
     diagram: {
       path: assetPath("images/wall/foam-insulation-diagram.png"),
@@ -1250,6 +1292,8 @@ export const nodeDefinitions: NodeDefinition[] = [
     model: {
       path: assetPath("models/wall/rockwool-insulation/rockwool-insulation.glb"),
       scale: 2,
+      // 首屏改从背面 165° 看：基层墙体占比 73% → 46%，岩棉板与砂浆找平层同时可见。
+      initialView: [0.256, 0.142, -0.956],
     },
     diagram: {
       path: assetPath("images/wall/rockwool-insulation-diagram.png"),
@@ -1331,6 +1375,18 @@ export const nodeDefinitions: NodeDefinition[] = [
 
   /* ── Stairs nodes ────────────────────────────────────────── */
   {
+    id: "escalator-01",
+    title: "自动扶梯构造",
+    description: "对照扶手、工作梯级、梳齿与端部盖板、围裙板及侧盖板、外包装、固定护栏和上下层楼板，支持构件点选、分解动画及平面、立面、剖面图对照。图纸包含多组示意参数，应按对应图组识读。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/escalator-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/stairs/escalator/escalator.glb"), scale: 1 },
+    diagram: { path: assetPath("images/stairs/escalator-diagram.png"), subtitle: "图5-45 · 自动扶梯的平面、立面及剖面示意图（单位：mm）" },
+    layerConfig: { layers: escalatorLayers, getLayerInfo: getEscalatorLayer },
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-details" }],
+  },
+  {
     id: "curved-stair-01",
     title: "圆弧形楼梯构造",
     description: "对照圆弧形梯段的承重部分、结合层、木制面层、防滑条、地毯棍及弧形扶手，支持分解动画、构件点选和图纸对照。扶手几何已随模型提供，其水曲柳扶手、25×3 通长扁钢与 25 长木螺钉做法见图纸扶手剖面。",
@@ -1340,6 +1396,58 @@ export const nodeDefinitions: NodeDefinition[] = [
     model: { path: assetPath("models/stairs/curved-stair/curved-stair.glb"), scale: 1 },
     diagram: { path: assetPath("images/stairs/curved-stair-diagram.png"), subtitle: "图5-38 · 圆弧形楼梯构造实例（单位：mm）" },
     layerConfig: { layers: curvedStairLayers, getLayerInfo: getCurvedStairLayer },
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-details" }],
+  },
+  {
+    id: "spiral-stair-01",
+    title: "螺旋形楼梯构造",
+    description: "以 φ159 中心钢套管为轴的螺旋楼梯实例：24 级扇形木踏板逐级升高 175（24×175=4200），外弧半径 R=950、踏步外端宽约 503，整段随 1.5 圈螺旋上升；踏步由 3 厚压花钢板与 L50×50×5 角钢框承托，栏杆立杆穿过踏板处用 38×38 钢套管、法兰盘与螺帽固定，上接螺旋矩形管扶手。支持构件点选、分解动画与图纸对照；分解时中心套管与钢承板保持原位，木踏板、法兰组件与扶手依次上移。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/spiral-stair-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/spiral-stair/spiral-stair.glb"),
+      scale: 2.5,
+      // 套管由 5 385 段围成、顶点全按面拆开，特征边算法会把每条三角形边
+      // 都当成开边画线，细管径上这些线互相重叠，最终把管身盖成一根黑柱
+      // （实测管心像素正好等于描边色 #383c44）。排除描边后按金属材质正常着色。
+      outlineExcluded: ["中心空心套管"],
+    },
+    diagram: {
+      path: assetPath("images/stairs/spiral-stair-diagram.png"),
+      subtitle: "图5-39 · 螺旋形楼梯构造实例（单位：mm）",
+    },
+    layerConfig: { layers: spiralStairLayers, getLayerInfo: getSpiralStairLayer },
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-details" }],
+  },
+  {
+    id: "dogleg-stair-01",
+    title: "折行双跑楼梯构造",
+    description: "折行双跑楼梯实例（图 5-37，层高 2 800）：两跑梯段在休息平台处转折，结构斜板上依次做结合找平层、30 厚水磨石面层与 60×9 陶瓷锦砖防滑条；临空一侧为 25×25 方钢栏杆配板式木扶手，靠墙一侧为硬木扶手，20×20 方钢支架按 600 间距用预埋钢件固定在墙体上。支持构件点选、分解动画与图纸对照；分解时墙体与靠墙扶手分别外移，可观察预埋件的埋入位置。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/dogleg-stair-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/dogleg-stair/dogleg-stair.glb"),
+      scale: 2.5,
+      // 首屏从左前方 22° 俯角看：正视（8.18°）时墙体占掉画面左侧、
+      // 两跑梯段与休息平台互相遮挡；抬高并用 -35° 方位后，
+      // 两跑梯段、平台、支承柱与两侧扶手同时可见。
+      initialView: [-0.532, 0.375, 0.759],
+      // 该网格在 GLB 中名为「临空栏杆与板式木扶手.001」，three 的 sanitizeNodeName
+      // 会把“.001”变成“001”，多图元时再追加“_1”，运行时名称成了
+      // “临空栏杆与板式木扶手001(_1)”，与卡片名不同 → 点选和独立展示会失效。
+      // 这里把两个图元的运行时名称映射回组件名（与其它节点的 groups 用法一致）。
+      groups: {
+        "临空栏杆与板式木扶手001": "临空栏杆与板式木扶手",
+        "临空栏杆与板式木扶手001_1": "临空栏杆与板式木扶手",
+      },
+    },
+    diagram: {
+      path: assetPath("images/stairs/dogleg-stair-diagram.png"),
+      subtitle: "图5-37 · 折行双跑楼梯构造实例（单位：mm）",
+    },
+    layerConfig: { layers: doglegStairLayers, getLayerInfo: getDoglegStairLayer },
     textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-details" }],
   },
   {
@@ -1353,6 +1461,8 @@ export const nodeDefinitions: NodeDefinition[] = [
       path: assetPath("models/stairs/stair-flight-platform/stair-flight-offset-multiple-01.glb"),
       scale: 2.5,
       noAnimation: true,
+      // 首屏右偏 90° 沿梯段方向看：梯段占比 66% → 51%，端部与平台梁的错步关系更清楚。
+      initialView: [0.990, 0.142, 0.000],
       nonInteractive: ["无需标注"],
     },
     diagram: {
@@ -1618,6 +1728,106 @@ export const nodeDefinitions: NodeDefinition[] = [
       layers: rampHandrailLayers,
       getLayerInfo: getRampHandrailLayer,
     },
+  },
+
+  {
+    id: "handrail-wall-end-plate-01",
+    title: "扶手与墙面的连接（混凝土预埋板端部连接）",
+    description:
+      "靠墙扶手端部的固定节点：混凝土墙内预埋带弯钩锚脚的钢板，伸出扁钢与木扶手端部连接。支持构件点选、分解动画与剖面对照；分解时墙体保持原位，抹面层、预埋件与扶手端部依次外移。所配图纸为该图组中的端部连接局部图。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/handrail-wall-end-plate-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/handrail-wall-end-plate/handrail-wall-end-plate.glb"),
+      scale: 3.5,
+      // 首屏改从背面 165° 看：整面墙占比 72% → 50%，预埋件与扶手端部同时可见。
+      initialView: [0.256, 0.142, -0.956],
+    },
+    diagram: {
+      path: assetPath("images/stairs/handrail-wall-end-plate-diagram.png"),
+      subtitle: "图5-32（d）· 扶手与墙面连接 · 混凝土预埋板端部连接",
+    },
+    layerConfig: {
+      layers: handrailWallEndPlateLayers,
+      getLayerInfo: getHandrailWallEndPlateLayer,
+    },
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-details" }],
+  },
+
+  {
+    id: "handrail-wall-bent-bracket-01",
+    title: "扶手与墙面的连接（混凝土预埋板弯管托架）",
+    description:
+      "靠墙扶手的弯管托架固定节点：混凝土墙内预埋带弯钩锚脚的钢板，DN25 镀铬连续弯管焊在钢板上，立管插入木扶手底面。支持构件点选、分解动画与剖面对照；分解时墙体保持原位，抹面层、预埋件、弯管与扶手依次外移。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/handrail-wall-bent-bracket-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/handrail-wall-bent-bracket/handrail-wall-bent-bracket.glb"),
+      scale: 3.5,
+      // 首屏右偏 30°：整面墙占比 74% → 38%，弯管托架与扶手底面同时可见。
+      initialView: [0.495, 0.142, 0.857],
+    },
+    diagram: {
+      path: assetPath("images/stairs/handrail-wall-bent-bracket-diagram.png"),
+      subtitle: "图5-32（b）· 扶手与墙面连接 · 混凝土预埋板弯管托架",
+    },
+    layerConfig: {
+      layers: handrailWallBentBracketLayers,
+      getLayerInfo: getHandrailWallBentBracketLayer,
+    },
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-details" }],
+  },
+
+  {
+    id: "handrail-brick-wall-forked-bar-01",
+    title: "扶手与墙面的连接（砖墙入墙分叉扁钢）",
+    description:
+      "靠墙扶手端部在砖墙上的固定节点：砖墙留 120×120×60 洞并用细石混凝土填实，分叉扁钢末端埋入洞内锚固、直段穿出抹面层插入木扶手端部。支持构件点选、分解动画与剖面对照；分解时砖墙保持原位，其余构件依次外移。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/handrail-brick-wall-forked-bar-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/handrail-brick-wall-forked-bar/handrail-brick-wall-forked-bar.glb"),
+      scale: 3.5,
+      // 首屏改从背面 165° 看：砖墙占比 70% → 49%，入墙扁钢与洞内混凝土同时可见。
+      initialView: [0.256, 0.142, -0.956],
+    },
+    diagram: {
+      path: assetPath("images/stairs/handrail-brick-wall-forked-bar-diagram.png"),
+      subtitle: "图5-32（c）· 扶手与墙面连接 · 砖墙入墙分叉扁钢",
+    },
+    layerConfig: {
+      layers: handrailBrickWallForkedBarLayers,
+      getLayerInfo: getHandrailBrickWallForkedBarLayer,
+    },
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-details" }],
+  },
+
+  {
+    id: "handrail-brick-wall-wood-pad-bracket-01",
+    title: "扶手与墙面的连接（砖墙弯管托架与木垫块）",
+    description:
+      "靠墙扶手的螺栓夹持式固定节点：砖墙留 120×120×60 洞并用细石混凝土填实，弯脚 M10 螺栓埋入洞内，另一端穿过 φ50 木垫块与 DN25 镀铬弯管托架用螺母夹紧，立管插入木扶手底面。支持构件点选、分解动画与剖面对照。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/handrail-brick-wall-wood-pad-bracket-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/handrail-brick-wall-wood-pad-bracket/handrail-brick-wall-wood-pad-bracket.glb"),
+      scale: 3.5,
+      // 首屏右偏 30°：砖墙占比 78% → 46%，螺栓、木垫块与托架同时可见。
+      initialView: [0.495, 0.142, 0.857],
+    },
+    diagram: {
+      path: assetPath("images/stairs/handrail-brick-wall-wood-pad-bracket-diagram.png"),
+      subtitle: "图5-32（a）· 扶手与墙面连接 · 砖墙弯管托架与木垫块",
+    },
+    layerConfig: {
+      layers: handrailBrickWallWoodPadLayers,
+      getLayerInfo: getHandrailBrickWallWoodPadLayer,
+    },
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-details" }],
   },
 
   {

@@ -32,12 +32,16 @@
     "test:rc-lintels": "node --import tsx tests/rc-lintels.test.ts",
     "test:training": "node --import tsx tests/training.test.ts",
     "test:training:browser": "node tests/training-browser.mjs",
-    "test": "npx tsx tests/resolveNodeModelSources.test.ts && npx tsx tests/explodeLayout.test.ts && npx tsx tests/explodeRuntime.test.ts && npx tsx tests/phase6-multi-model-rotation.test.ts && npx tsx tests/phase6-camera-fit.test.ts && npx tsx tests/home-menu.test.ts && npx tsx tests/home-scene-fit.test.ts && npx tsx tests/homepage-model-fit.test.ts && npx tsx tests/nodeDetail-controls.test.ts && npx tsx tests/rotation-toggle.test.ts && npm run test:rotation-speed && npx tsx tests/interaction-fixes.test.ts && npm run test:animation && npm run test:outlines && npx tsx tests/node-definition-contract.test.ts && npx tsx tests/node-assets.test.ts && npx tsx tests/node-behavior-archetypes.test.ts && npm run test:training",
+    "test": "npx tsx tests/resolveNodeModelSources.test.ts && npx tsx tests/explodeLayout.test.ts && npx tsx tests/explodeRuntime.test.ts && npx tsx tests/phase6-multi-model-rotation.test.ts && node --import tsx tests/single-model-camera-fit.test.ts && node --import tsx tests/single-model-camera-follow.test.ts && npx tsx tests/phase6-camera-fit.test.ts && npx tsx tests/home-menu.test.ts && npx tsx tests/home-scene-fit.test.ts && npx tsx tests/homepage-model-fit.test.ts && npx tsx tests/nodeDetail-controls.test.ts && npx tsx tests/rotation-toggle.test.ts && npm run test:rotation-speed && npx tsx tests/interaction-fixes.test.ts && npm run test:animation && npm run test:outlines && npx tsx tests/node-definition-contract.test.ts && npx tsx tests/node-assets.test.ts && npx tsx tests/node-behavior-archetypes.test.ts && npm run test:training",
     "test:homepage-training": "node tests/homepage-training-browser.mjs",
     "test:cases:browser": "node tests/case-study-browser.mjs",
     "test:outlines": "node --import tsx tests/model-outlines.test.ts",
     "test:composite-slab": "node --import tsx tests/profiled-steel-composite-slab.test.ts",
-    "test:curved-stair": "node --import tsx tests/curved-stair.test.ts"
+    "test:curved-stair": "node --import tsx tests/curved-stair.test.ts",
+    "test:spiral-stair": "node --import tsx tests/spiral-stair.test.ts",
+    "test:dogleg-stair": "node --import tsx tests/dogleg-stair.test.ts",
+    "test:coating-high-low-roof-flashing": "node --import tsx tests/coating-high-low-roof-flashing.test.ts",
+    "test:handrail-wall-connections": "node --import tsx tests/handrail-wall-connections.test.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
