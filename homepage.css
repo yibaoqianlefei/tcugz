@@ -244,3 +244,39 @@ body[data-preview-page] { margin: 0; background: var(--ui-canvas); }
   .app .feature-slide .hero-lead-heading { font-size: 20px; }
   .app .feature-slide .hero-lead-detail { font-size: 18px; }
 }
+
+/* 手机首屏：压缩 hero，让 3D 模型落在第一屏内；课程分区改两列，缩短总高度。 */
+@media (max-width: 760px) {
+  .app .hero-slide { padding: 18px 20px 20px; gap: 16px; }
+  .app .hero-copy .eyebrow { font-size: 12px; }
+  .app .hero-copy .hero-headline { margin: 8px 0 10px; font-size: clamp(25px, 7vw, 34px); line-height: 1.24; }
+  .app .hero-copy .lead { margin-top: 0; transform: none; }
+  .app .hero-lead-heading { font-size: 17px; }
+  .app .hero-lead-detail { margin-top: 8px; font-size: 15px; line-height: 1.6; }
+  .app .hero-copy .hero-actions { margin-top: 18px; }
+  .app .hero-actions { gap: 10px; }
+  .app .hero-right { max-height: none; }
+  .app .node-model-root { height: auto; min-height: 0; }
+  .app .node-model-heading-space { height: 24px; flex: 0 0 24px; }
+  .app .node-model-stage { height: 260px; }
+  .app .curriculum-section { padding-top: 40px; }
+  /* 课程卡片在手机上保持单列，但收紧字号与间距，减少整页长度。 */
+  .app .module-card { --directory-padding: 16px; }
+  .app .module-card .directory-card-top { margin-bottom: 10px; }
+  .app .module-card .directory-card-title { font-size: 16px; line-height: 1.45; }
+  .app .module-card .directory-card-description { font-size: 12px; line-height: 1.65; -webkit-line-clamp: 2; }
+  .app .module-card .directory-card-footer { min-height: 44px; padding-block: 8px; }
+  .app .module-card .directory-card-arrow { width: 26px; height: 26px; }
+}
+
+@media (max-width: 520px) {
+  .app .hero-slide { padding: 14px 18px 18px; gap: 14px; }
+  .app .hero-copy .hero-headline { font-size: clamp(23px, 7.4vw, 31px); }
+  .app .node-model-heading-space { height: 16px; flex: 0 0 16px; }
+  .app .node-model-stage { height: 230px; }
+  .app .module-grid, .app .directory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 374px) {
+  .app .module-grid, .app .directory-grid { grid-template-columns: minmax(0, 1fr); }
+}
