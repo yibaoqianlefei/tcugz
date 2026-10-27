@@ -119,7 +119,7 @@ group("Runtime capability list contains no abandoned capabilities");
     assert(!(RUNTIME_CAPABILITIES as readonly string[]).includes(dep),
       `runtime capabilities exclude ${dep}`);
   }
-  // All five visible groups are supported.
+  // All six visible groups are supported.
   for (const live of NODE_DETAIL_PRIMARY_CONTROLS) {
     assert((RUNTIME_CAPABILITIES as readonly string[]).includes(live),
       `runtime capability includes ${live}`);
@@ -132,11 +132,11 @@ group("Runtime capability list contains no abandoned capabilities");
    Visible-controls whitelist (unchanged contract)
    ═══════════════════════════════════════════════════════════════ */
 
-group("Single-model visible surface = explode | rotate | xray | link | lighting (exactly)");
+group("Single-model visible surface = explode | rotate | xray | isolate | link | lighting (exactly)");
 {
   const visible = resolveVisibleControls();
   const asSet = new Set(visible);
-  assert(visible.length === 5, `whitelist has exactly 5 entries (got ${visible.length})`);
+  assert(visible.length === 6, `whitelist has exactly 6 entries (got ${visible.length})`);
   assert(
     NODE_DETAIL_PRIMARY_CONTROLS.every(
       (c) => asSet.has(c) && isControlVisible(c),
@@ -145,8 +145,8 @@ group("Single-model visible surface = explode | rotate | xray | link | lighting 
   );
   assert(
     asSet.has("explode") && asSet.has("rotate") &&
-      asSet.has("xray") && asSet.has("link") && asSet.has("lighting"),
-    "contains explode/rotate/xray/link/lighting",
+      asSet.has("xray") && asSet.has("isolate") && asSet.has("link") && asSet.has("lighting"),
+    "contains explode/rotate/xray/isolate/link/lighting",
   );
   assert(!asSet.has("reset"), "reset is NOT a visible control (R button UI removed)");
   assert(asSet.size === visible.length, "whitelist has no duplicate entries");
@@ -160,7 +160,7 @@ group("Multi-model visible surface is identical (variant count cannot widen it)"
     multi.length === single.length && multi.every((c, i) => c === single[i]),
     "multi-model surface identical to single-model surface",
   );
-  assert(multi.length === 5, "multi-model shares the same 5 visible controls");
+  assert(multi.length === 6, "multi-model shares the same 6 visible controls");
 }
 
 group("Deprecated controls are never part of the visible surface");
@@ -179,9 +179,9 @@ group("visibleControls and runtimeCapabilities are independent");
     assert((RUNTIME_CAPABILITIES as readonly string[]).includes(c),
       `runtime supports ${c} under the hood`);
   }
-  // …and the reverse is exactly the live five (nothing deprecated leaks).
+  // …and the reverse is exactly the live six (nothing deprecated leaks).
   const leak = RUNTIME_CAPABILITIES.filter((c) => visible.has(c));
-  assert(leak.length === 5, `only the 5 whitelisted controls are capabilities (${leak.join(",")})`);
+  assert(leak.length === 6, `only the 6 whitelisted controls are capabilities (${leak.join(",")})`);
   const extra = RUNTIME_CAPABILITIES.filter((c) => !visible.has(c));
   assert(extra.length === 0, `no runtime capability is hidden from the surface (extra: ${extra.join(",")})`);
 }
@@ -195,7 +195,7 @@ group("No config → minimal defaults; debug flag cannot widen the surface");
     noConfig.join(",") === debugOff.join(",") && noConfig.join(",") === debugOn.join(","),
     "no config / debug off / debug on all return the same minimal default",
   );
-  assert(noConfig.length === 5, "default fallback is the 5-group surface");
+  assert(noConfig.length === 6, "default fallback is the 6-group surface");
 }
 
 group("Control-bar surface does not grow with variant count");

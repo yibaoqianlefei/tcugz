@@ -10,14 +10,14 @@
  * debug controls can never appear here regardless of node type or debug flags.
  *
  * Visible surface:
- *   [收起] [爆炸滑块] [展开] | [旋转] | [透视] | [联动] | [光照]
+ *   [收起] [爆炸滑块] [展开] | [旋转] | [透视] | [独立展示] | [联动] | [光照]
  *
  * Layout is anchored to the CENTRAL 3D viewport (parent is `relative`), not
  * the browser window, and sized by content so it never spans the whole canvas.
  */
 
 import type { ReactNode } from "react";
-import { ChevronsLeft, ChevronsRight, Link2, Rotate3d, ScanEye, Sun } from "lucide-react";
+import { BoxSelect, ChevronsLeft, ChevronsRight, Link2, Rotate3d, ScanEye, Sun } from "lucide-react";
 import type { NodeDetailControl } from "../../utils/nodeDetailControls";
 import '../../styles/model-ui.css';
 
@@ -28,6 +28,8 @@ export interface ControlBarProps {
   xrayEnabled?: boolean;
   xrayDisabled?: boolean;
   onToggleXray?: () => void;
+  isolateSelection?: boolean;
+  onToggleIsolation?: () => void;
   /** Whitelisted groups to render (NODE_DETAIL_PRIMARY_CONTROLS). */
   visible: readonly NodeDetailControl[];
   /** Explode group — disabled when the node has no interactive explode. */
@@ -74,6 +76,8 @@ export default function ControlBar(props: ControlBarProps) {
     xrayEnabled = false,
     xrayDisabled = false,
     onToggleXray,
+    isolateSelection = false,
+    onToggleIsolation,
   } = props;
 
   // Build the visible groups, then join them with dividers so no group ever
@@ -146,6 +150,19 @@ export default function ControlBar(props: ControlBarProps) {
         aria-pressed={xrayEnabled} className={`${BTN} ${xrayEnabled ? ACTIVE : ''}`}
         title={xrayEnabled ? '关闭透视' : '开启透视'} aria-label={xrayEnabled ? '关闭透视' : '开启透视'}>
         <ScanEye size={18} className="lg:size-5" strokeWidth={1.5} />
+      </button>,
+    );
+  }
+
+  if (visible.includes("isolate")) {
+    addGroup('isolate',
+      <button key="isolate" type="button" role="switch"
+        aria-checked={isolateSelection}
+        aria-label="独立展示：只显示选中的构件"
+        title={isolateSelection ? '关闭独立展示' : '独立展示：只显示选中的构件'}
+        disabled={!onToggleIsolation} onClick={onToggleIsolation}
+        className={`${BTN} ${isolateSelection ? ACTIVE : ''}`}>
+        <BoxSelect size={18} className="lg:size-5" strokeWidth={1.5} />
       </button>,
     );
   }

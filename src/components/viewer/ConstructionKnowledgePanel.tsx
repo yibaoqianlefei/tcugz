@@ -46,30 +46,6 @@ function findMatchingLayer(
    Component
    ═══════════════════════════════════════════════════════════════ */
 
-/** Shared switch: isolate the selected component in the node viewer. */
-function IsolationSwitch({ on, onToggle }: { on: boolean; onToggle: () => void }) {
-  return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={on}
-      aria-label="独立展示：只显示选中的构件"
-      onClick={onToggle}
-      className={`flex flex-shrink-0 items-center gap-2 rounded-full border px-2 py-1 text-xs transition-colors ${on ? 'border-primary/40 bg-primary/10 text-ink' : 'border-hairline bg-surface-card text-muted hover:border-primary/30'}`}
-    >
-      <span
-        aria-hidden="true"
-        className={`relative inline-block h-3.5 w-6 flex-shrink-0 rounded-full transition-colors ${on ? 'bg-primary' : 'bg-hairline'}`}
-      >
-        <span
-          className={`absolute top-0.5 h-2.5 w-2.5 rounded-full bg-white transition-all ${on ? 'left-3' : 'left-0.5'}`}
-        />
-      </span>
-      <span>独立展示</span>
-    </button>
-  );
-}
-
 export default function ConstructionKnowledgePanel({ isResizing = false }: { isResizing?: boolean }) {
   const { nodeId } = useParams<{ nodeId: string }>();
   const node = getNodeDefinition(nodeId);
@@ -81,7 +57,6 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
   const setSelectedVariantId = useNodeStore((s) => s.setSelectedVariantId);
   const linkageEnabled = useNodeStore((s) => s.linkageEnabled);
   const isolateSelection = useNodeStore((s) => s.isolateSelection);
-  const setIsolateSelection = useNodeStore((s) => s.setIsolateSelection);
 
   // ── Manual expand state (used when linkage is OFF, normal nodes only) ──
   const [manualState, setManualState] = useState<{
@@ -187,7 +162,6 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
               {node?.title ?? "未知节点"}
             </h2>
           </div>
-          <IsolationSwitch on={isolateSelection} onToggle={() => setIsolateSelection(!isolateSelection)} />
         </div>
         {node?.description && (
           <p className="text-[13px] text-muted leading-[1.6]">{node.description}</p>

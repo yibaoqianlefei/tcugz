@@ -50,6 +50,8 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
   const setAutoRotate = useNodeStore((s) => s.setAutoRotate);
   const xrayEnabled = useNodeStore((s) => s.xrayEnabled);
   const setXrayEnabled = useNodeStore((s) => s.setXrayEnabled);
+  const isolateSelection = useNodeStore((s) => s.isolateSelection);
+  const setIsolateSelection = useNodeStore((s) => s.setIsolateSelection);
   const { setContainer, preset: layoutPreset, isResizing, selectPreset, adjust: adjustPanel, beginDrag } = useNodePanelLayout();
   const [diagramOpen, setDiagramOpen] = useState(false);
   const [mobileTab, setMobileTab] = useState<"diagram" | "model" | "knowledge">("model");
@@ -310,6 +312,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
                     noAnimation={node.model?.noAnimation}
                     nonInteractive={node.model?.nonInteractive}
                     outlineExcluded={node.model?.outlineExcluded}
+                    initialView={node.model?.initialView}
                     explodeConfigs={explodeConfigs}
                     knowledgeNamesByVariant={knowledgeNamesByVariant}
                     nodeId={nodeId}
@@ -325,7 +328,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
 
               {/* ── Bottom control bar — same shell for single- and multi-model.
                      Renders ONLY the NODE_DETAIL_PRIMARY_CONTROLS whitelist
-                     (explode | rotate | xray | link | lighting).  Section / Camera Lock
+                     (explode | rotate | xray | isolate | link | lighting).  Section / Camera Lock
                      / axis / reverse stay as runtime-only capabilities — the
                      runtimes are inert while their store flags are off. ── */}
               <ControlBar
@@ -340,6 +343,8 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
                 xrayEnabled={xrayEnabled}
                 xrayDisabled={!hasModel}
                 onToggleXray={() => setXrayEnabled(!xrayEnabled)}
+                isolateSelection={isolateSelection}
+                onToggleIsolation={hasModel ? () => setIsolateSelection(!isolateSelection) : undefined}
                 linkageEnabled={linkageEnabled}
                 onToggleLinkage={() => setLinkageEnabled(!linkageEnabled)}
                 showShadows={showShadows}
