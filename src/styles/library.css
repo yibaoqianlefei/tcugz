@@ -106,4 +106,18 @@
   .library-category-count, .library-node-preview img { transition: none; }
   .library-node-card:hover .library-node-preview img { transform: none; }
 }
-@media (max-width: 600px) { .library-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 600px) {
+  /* 手机上保持两列：单列 85 张卡片会把页面拉长到 35 000 px。 */
+  .library-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .library-grid .library-node-card { --directory-padding: 12px; }
+  .library-node-card .directory-card-top { margin-bottom: 8px; }
+  .library-node-card .directory-card-number { font-size: 18px; }
+  .library-node-card .directory-card-kicker { font-size: 10px; padding-left: 8px; }
+  .library-node-preview { aspect-ratio: 4 / 3; margin-bottom: 10px; }
+  .library-node-preview img { padding: 8px; }
+  .library-node-copy { padding-bottom: 10px; }
+  .library-node-copy .directory-card-title { font-size: 15px; line-height: 1.45; }
+  .library-node-copy .directory-card-description { display: none; }
+  .library-node-card .directory-card-footer { min-height: 38px; padding-block: 8px; font-size: 11px; }
+  .library-node-card .directory-card-arrow { width: 22px; height: 22px; }
+}
