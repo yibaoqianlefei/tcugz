@@ -32,6 +32,10 @@ presentation/
 # 本地检查截图和临时发布文件
 tmp/
 audit-output/**/*.png
+# 审计证据只保留文字记录（*.md）；截图、逐帧数据与原始 JSON 体积过大，仅留本地
+audit-output/**/*
+!audit-output/**/
+!audit-output/**/*.md
 # 根目录验证截图（before/after、screenshot-* 等），只用于本地核对
 /*.png
 /*.jpg
