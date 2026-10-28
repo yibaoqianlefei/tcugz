@@ -41,7 +41,11 @@
     "test:spiral-stair": "node --import tsx tests/spiral-stair.test.ts",
     "test:dogleg-stair": "node --import tsx tests/dogleg-stair.test.ts",
     "test:coating-high-low-roof-flashing": "node --import tsx tests/coating-high-low-roof-flashing.test.ts",
-    "test:handrail-wall-connections": "node --import tsx tests/handrail-wall-connections.test.ts"
+    "test:handrail-wall-connections": "node --import tsx tests/handrail-wall-connections.test.ts",
+    "test:stair-start": "node --import tsx tests/stair-start.test.ts",
+    "test:elevator-composition": "node --import tsx tests/elevator-composition.test.ts",
+    "test:wall-bearing-layout": "node --import tsx tests/wall-bearing-layout.test.ts",
+    "test:frame-structure-layout": "node --import tsx tests/frame-structure-layout.test.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",

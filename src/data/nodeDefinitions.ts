@@ -30,6 +30,10 @@ import { curvedStairLayers, getLayerInfo as getCurvedStairLayer } from "./curved
 import { spiralStairLayers, getLayerInfo as getSpiralStairLayer } from "./spiralStairLayers";
 import { doglegStairLayers, getLayerInfo as getDoglegStairLayer } from "./doglegStairLayers";
 import { escalatorLayers, getLayerInfo as getEscalatorLayer } from "./escalatorLayers";
+import { elevatorCompositionLayers, getLayerInfo as getElevatorCompositionLayer } from "./elevatorCompositionLayers";
+import { roundedStairStartLayers, straightStairStartLayers, stairStartLayerConfig } from "./stairStartLayers";
+import { semiFrameBearingLayers, transverseWallBearingLayers, twoWayWallBearingLayers, longitudinalWallBearingLayers, wallBearingLayoutConfig } from "./wallBearingLayoutLayers";
+import { frameStructureLayoutLayers, getFrameStructureLayoutLayer } from "./frameStructureLayoutLayers";
 import { facedPlinthLayers, getLayerInfo as getFacedPlinthLayer } from "./facedPlinthLayers";
 import { stonePlinthLayers, getLayerInfo as getStonePlinthLayer } from "./stonePlinthLayers";
 import { rcElevatedStepsLayers, getLayerInfo as getRcElevatedStepsLayer } from "./rcElevatedStepsLayers";
@@ -1069,6 +1073,66 @@ export const nodeDefinitions: NodeDefinition[] = [
 
   /* ── Wall nodes ─────────────────────────────────────────── */
   {
+    id: "frame-structure-layout-01",
+    title: "框架结构布置",
+    description: "对照图 2-7 的框架柱、框架梁与柱网，观察两向梁柱骨架的空间布置。支持旋转、构件点选、独立展示与平面图对照；源模型仅包含梁柱，为静态布置示意。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/frame-structure-layout-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/wall/frame-structure-layout/frame-structure-layout.glb"), scale: 1, noAnimation: true, initialView: [1, 0.9, 1.3] },
+    diagram: { path: assetPath("images/wall/frame-structure-layout-diagram.png"), subtitle: "图 2-7 · 框架结构布置示意图" },
+    layerConfig: { layers: frameStructureLayoutLayers, getLayerInfo: getFrameStructureLayoutLayer },
+    textbookLinks: [{ moduleId: "wall", chapterId: "wall-role" }],
+  },
+  {
+    id: "wall-bearing-semi-frame-01",
+    title: "墙体承重结构布置方案（半框架承重）",
+    description: "对照外纵墙、山墙与内部梁柱的布置，观察楼板与墙、梁、柱的连接位置。支持旋转、构件点选、独立展示与平面图对照；源模型为静态布置示意。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/bearing-layout-semi-frame-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/wall/bearing-layout/semi-frame.glb"), scale: 1, noAnimation: true, initialView: [1, 0.9, 1.3] },
+    diagram: { path: assetPath("images/wall/bearing-layout-semi-frame-diagram.png"), subtitle: "墙体承重结构布置方案 · 半框架承重（平面示意）" },
+    layerConfig: wallBearingLayoutConfig(semiFrameBearingLayers),
+    textbookLinks: [{ moduleId: "wall", chapterId: "wall-masonry" }],
+  },
+  {
+    id: "wall-bearing-transverse-01",
+    title: "墙体承重结构布置方案（横墙承重）",
+    description: "对照横墙、通道附近梁与楼板的布置，观察板端与横墙的支承位置。支持旋转、构件点选、独立展示与平面图对照；源模型为静态布置示意。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/bearing-layout-transverse-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/wall/bearing-layout/transverse.glb"), scale: 1, noAnimation: true, initialView: [1, 0.9, 1.3] },
+    diagram: { path: assetPath("images/wall/bearing-layout-transverse-diagram.png"), subtitle: "墙体承重结构布置方案 · 横墙承重（平面示意）" },
+    layerConfig: wallBearingLayoutConfig(transverseWallBearingLayers),
+    textbookLinks: [{ moduleId: "wall", chapterId: "wall-masonry" }],
+  },
+  {
+    id: "wall-bearing-two-way-01",
+    title: "墙体承重结构布置方案（纵横墙承重）",
+    description: "对照纵横墙、局部梁与不同房间楼板排列，观察分区支承的布置关系。支持旋转、构件点选、独立展示与平面图对照；源模型为静态布置示意。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/bearing-layout-two-way-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/wall/bearing-layout/two-way.glb"), scale: 1, noAnimation: true, initialView: [1, 0.9, 1.3] },
+    diagram: { path: assetPath("images/wall/bearing-layout-two-way-diagram.png"), subtitle: "墙体承重结构布置方案 · 纵横墙承重（平面示意）" },
+    layerConfig: wallBearingLayoutConfig(twoWayWallBearingLayers),
+    textbookLinks: [{ moduleId: "wall", chapterId: "wall-masonry" }],
+  },
+  {
+    id: "wall-bearing-longitudinal-01",
+    title: "墙体承重结构布置方案（纵墙承重）",
+    description: "对照外纵墙、内纵墙、横墙与楼板的布置，观察楼板与纵向墙体的支承位置。支持旋转、构件点选、独立展示与平面图对照；源模型为静态布置示意。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/bearing-layout-longitudinal-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/wall/bearing-layout/longitudinal.glb"), scale: 1, noAnimation: true, initialView: [1, 0.9, 1.3] },
+    diagram: { path: assetPath("images/wall/bearing-layout-longitudinal-diagram.png"), subtitle: "墙体承重结构布置方案 · 纵墙承重（平面示意）" },
+    layerConfig: wallBearingLayoutConfig(longitudinalWallBearingLayers),
+    textbookLinks: [{ moduleId: "wall", chapterId: "wall-masonry" }],
+  },
+  {
     id: "rc-lintel-flush-01",
     title: "钢筋混凝土过梁（平墙过梁）",
     description: "观察平墙过梁、外围包覆层与上部墙体的连接，比较与墙身齐平的截面轮廓，支持构件点选、旋转观察与剖面对照。",
@@ -1374,6 +1438,46 @@ export const nodeDefinitions: NodeDefinition[] = [
   },
 
   /* ── Stairs nodes ────────────────────────────────────────── */
+  {
+    id: "elevator-composition-01",
+    title: "电梯构造组成",
+    description: "对照图 5-44 中的井道平面、纵剖面与固定详图，观察轿厢、层门、平台、导轨、对重、曳引轮组、机房和底坑的空间关系。支持构件点选、独立展示、四秒构件展开与图纸对照；动画用于分离观察，不是电梯真实运行模拟，配图尺寸为所示设备的实例。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/elevator-composition-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/stairs/elevator-composition/elevator-composition-9a0264d4.glb"),
+      scale: 1,
+      initialView: [-0.5, 0.18, 1],
+    },
+    diagram: { path: assetPath("images/stairs/elevator-composition-diagram.png"), subtitle: "图5-44 · 电梯构造组成（单位：mm，设备示例）" },
+    layerConfig: { layers: elevatorCompositionLayers, getLayerInfo: getElevatorCompositionLayer },
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-elevator" }],
+  },
+  {
+    id: "stair-start-rounded-return-handrail-01",
+    title: "楼梯起步处理（圆头踏步与连续回弯扶手）",
+    description: "对照圆头起步踏步与连续回弯扶手的立体、平面示意，观察首级踏步、起始立杆与扶手回弯的关系。支持旋转、构件点选、独立展示和图纸对照；源文件未附带分解动画，扶手与栏杆合并为一组。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/stair-start-rounded-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/stairs/stair-start/stair-start-rounded.glb"), scale: 1, noAnimation: true, initialView: [-0.64, 0.43, -0.64] },
+    diagram: { path: assetPath("images/stairs/stair-start-rounded-diagram.png"), subtitle: "楼梯起步处理 · 圆头踏步与连续回弯扶手（立体及平面示意）" },
+    layerConfig: stairStartLayerConfig(roundedStairStartLayers),
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-details" }],
+  },
+  {
+    id: "stair-start-straight-folded-handrail-01",
+    title: "楼梯起步处理（直边踏步与下折回接扶手）",
+    description: "对照直边起步踏步与下折回接扶手的立体、平面示意，观察扶手端部折转、起始立杆和踏步外缘的关系。支持旋转、构件点选、独立展示和图纸对照；源文件未附带分解动画，扶手与栏杆合并为一组。",
+    category: "楼梯",
+    thumbnail: assetPath("images/stairs/stair-start-straight-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/stairs/stair-start/stair-start-straight.glb"), scale: 1, noAnimation: true, initialView: [-0.64, 0.43, -0.64] },
+    diagram: { path: assetPath("images/stairs/stair-start-straight-diagram.png"), subtitle: "楼梯起步处理 · 直边踏步与下折回接扶手（立体及平面示意）" },
+    layerConfig: stairStartLayerConfig(straightStairStartLayers),
+    textbookLinks: [{ moduleId: "stairs", chapterId: "stairs-details" }],
+  },
   {
     id: "escalator-01",
     title: "自动扶梯构造",
