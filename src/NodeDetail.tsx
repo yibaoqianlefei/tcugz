@@ -12,10 +12,18 @@ import { resolveNodeModelSources } from "./utils/resolveNodeModelSources";
 import { resolveVariantExplodeConfig } from "./utils/explodeLayout";
 import type { ExplodeVariantConfig } from "./components/viewer/ModelViewer";
 import ControlBar from "./components/viewer/ControlBar";
+import ComponentKnowledgeSheet from "./components/viewer/ComponentKnowledgeSheet";
 import { resolveVisibleControls } from "./utils/nodeDetailControls";
 import { useNodePanelLayout } from "./components/viewer/useNodePanelLayout";
 import { Images, Maximize2, X } from "lucide-react";
 import { nodeReturnTarget } from './utils/lessonNodeNavigation';
+
+/**
+ * EXPERIMENT: one node opts into the mobile component-knowledge sheet so the
+ * card can be read without leaving the model. Remove this constant and the
+ * guarded render to roll the experiment back.
+ */
+const SHEET_EXPERIMENT_NODE = "wall-bearing-two-way-01";
 
 /**
  * Responsive construction education layout with adjustable desktop panels.
@@ -325,6 +333,8 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
                   <p className="text-muted-soft text-sm">模型数据缺失</p>
                 </div>
               )}
+
+              {nodeId === SHEET_EXPERIMENT_NODE && <ComponentKnowledgeSheet nodeId={nodeId} />}
 
               {/* ── Bottom control bar — same shell for single- and multi-model.
                      Renders ONLY the NODE_DETAIL_PRIMARY_CONTROLS whitelist

@@ -1,0 +1,282 @@
+/* EXPERIMENT: mobile component knowledge sheet (single node).
+   Sits in the workbench column above the control bar, so the canvas keeps
+   its own height and is only pushed, never covered. Hidden from 768px up. */
+
+.node-sheet {
+  display: none;
+}
+
+.node-sheet-slot {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  /* 外层槽位负责整体展开/收起：关闭时先把高度收到 0，再卸载组件。 */
+  .node-sheet-slot {
+    display: grid;
+    grid-template-rows: 1fr;
+    flex: none;
+    transition: grid-template-rows 280ms cubic-bezier(.4, 0, .2, 1);
+  }
+
+  .node-sheet-slot[data-open="false"] {
+    grid-template-rows: 0fr;
+  }
+
+  /* 首次出现（挂载）时也从 0 高度滑出，而不是直接出现。 */
+  .node-sheet-slot[data-open="true"] {
+    animation: node-sheet-slot-in 280ms cubic-bezier(.4, 0, .2, 1);
+  }
+
+  @keyframes node-sheet-slot-in {
+    from { grid-template-rows: 0fr; }
+    to { grid-template-rows: 1fr; }
+  }
+
+  .node-sheet-slot-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .node-sheet {
+    display: block;
+    flex: none;
+    margin: 0 8px 8px;
+    padding: 0;
+    border: 1px solid var(--ui-line);
+    border-radius: var(--ui-radius-panel);
+    background: var(--ui-surface);
+    box-shadow: 0 -4px 18px rgb(28 37 68 / 8%);
+    animation: node-sheet-in 200ms ease;
+  }
+
+  @keyframes node-sheet-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .node-sheet-head {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    border-bottom: 1px solid var(--ui-line);
+  }
+
+  .node-sheet-toggle {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 6px 4px 6px 14px;
+    border: 0;
+    background: transparent;
+    color: var(--ui-ink);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .node-sheet-grip {
+    flex: none;
+    width: 22px;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--ui-line-strong);
+  }
+
+  .node-sheet-title {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .node-sheet-title strong {
+    font-size: 15px;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .node-sheet-chevron {
+    flex: none;
+    margin-left: auto;
+    color: var(--ui-blue);
+    transition: transform var(--ui-motion);
+  }
+
+  .node-sheet[data-mode="half"] .node-sheet-chevron {
+    transform: rotate(180deg);
+  }
+
+  .node-sheet-close {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    min-height: 44px;
+    border: 0;
+    border-left: 1px solid var(--ui-line);
+    background: transparent;
+    color: var(--ui-muted);
+    cursor: pointer;
+  }
+
+  /* 两段内容各占一个可折叠行：展开/收起时行高在 0fr ↔ 1fr 之间过渡，
+     卡片高度平滑变化，画布（flex 子项）跟着一起被推挤，不再瞬间跳。 */
+  .node-sheet-row {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 280ms cubic-bezier(.4, 0, .2, 1);
+  }
+
+  .node-sheet-row[data-open="true"] {
+    grid-template-rows: 1fr;
+  }
+
+  .node-sheet-row-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .node-sheet-row-inner > * {
+    opacity: 0;
+    transition: opacity 180ms ease;
+  }
+
+  .node-sheet-row[data-open="true"] .node-sheet-row-inner > * {
+    opacity: 1;
+    transition: opacity 240ms ease 60ms;
+  }
+
+  .node-sheet-summary {
+    margin: 0;
+    padding: 8px 14px 10px;
+    color: var(--ui-text);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .node-sheet-body {
+    max-height: min(30vh, 220px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0 14px 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .node-sheet-fields {
+    margin: 0 0 10px;
+    padding: 10px 0 0;
+    border-top: 1px solid var(--ui-line);
+    display: grid;
+    gap: 8px;
+  }
+
+  .node-sheet-fields > div {
+    display: grid;
+    grid-template-columns: 68px minmax(0, 1fr);
+    gap: 8px;
+    align-items: baseline;
+  }
+
+  .node-sheet-fields dt {
+    color: var(--ui-muted);
+    font-size: 12px;
+  }
+
+  .node-sheet-fields dd {
+    margin: 0;
+    color: var(--ui-ink);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .node-sheet-fields .node-sheet-detail {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .node-sheet-list-label {
+    margin: 4px 0 8px;
+    color: var(--ui-muted);
+    font-size: 12px;
+  }
+
+  .node-sheet-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 6px;
+  }
+
+  .node-sheet-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 10px;
+    border: 1px solid var(--ui-line);
+    border-radius: var(--ui-radius-control);
+    background: var(--ui-surface);
+    color: var(--ui-ink);
+    font: inherit;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .node-sheet-item span {
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .node-sheet-item em {
+    flex: none;
+    max-width: 46%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--ui-muted);
+    font-size: 11px;
+    font-style: normal;
+  }
+
+  .node-sheet-item[aria-pressed="true"] {
+    border-color: var(--ui-blue);
+    background: color-mix(in srgb, var(--ui-blue) 8%, var(--ui-surface));
+    color: var(--ui-blue);
+    font-weight: 600;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .node-sheet,
+  .node-sheet-slot,
+  .node-sheet-row,
+  .node-sheet-row-inner > *,
+  .node-sheet-chevron {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* 横屏与短屏：模型本身已经很矮，peek 只留名称，避免把画布挤没。 */
+@media (max-width: 767px) and (max-height: 540px) {
+  .node-sheet-summary { display: none; }
+  .node-sheet[data-mode="half"] .node-sheet-body { max-height: 40vh; }
+}
+
+/* 320px 级窄屏：画布只剩 300px 上下，抽屉放不下，本次实验先不启用。 */
+@media (max-width: 360px) {
+  .node-sheet-slot { display: none; }
+}
