@@ -76,4 +76,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
   .section-top p{font-size:12px;margin:0}
   .chapter-grid{grid-template-columns:1fr}
   .section-note{font-size:12px;margin-top:18px}
+  /* 每张卡都写着同一句“学习小节”，窄屏上只剩编号，标题直接接管。 */
+  .chapter-card .directory-card-kicker{display:none}
+  .chapter-card .directory-card-top{margin-bottom:6px}
 }
