@@ -2,15 +2,19 @@ import { useEffect, useState } from "react";
 import { ChevronUp, X } from "lucide-react";
 import { useNodeStore } from "../../store/nodeStore";
 import { getNodeDefinition, type NodeLayerInfo } from "../../data/nodeDefinitions";
-import { parseScopedKey } from "../../utils/variantIdentity";
+import { makeScopedKey, parseScopedKey } from "../../utils/variantIdentity";
+import { resolveComponentKnowledge } from "../../utils/resolveComponentKnowledge";
 import "../../styles/node-knowledge-sheet.css";
 
 /**
- * EXPERIMENT (mobile only, single node): reveal the selected component's
- * knowledge card without leaving the 3D model.
+ * Mobile component knowledge sheet: read the selected component's card without
+ * leaving the 3D model.
  *
- * peek — one line name + summary, canvas keeps almost all of its height.
- * half — full card fields plus the component list, canvas stays visible above.
+ * peek — one line name + summary, the canvas keeps almost all of its height.
+ * half — full card fields plus the component list, the canvas stays visible.
+ *
+ * Works for single-model nodes (layerConfig) and for multi-variant nodes
+ * (variant.componentKnowledge); nodes without either show nothing.
  */
 
 function normalizeName(value: string): string {
@@ -53,19 +57,37 @@ function pumpCanvasResize(durationMs = 360) {
 }
 
 const CLOSE_MS = 320;
+/** The sheet is a phone-only affordance: 361–767px, matching the stylesheet. */
+const SHEET_QUERY = "(min-width: 361px) and (max-width: 767px)";
+
+function useSheetViewport() {
+  const [matches, setMatches] = useState(() =>
+    typeof window !== "undefined" && window.matchMedia(SHEET_QUERY).matches,
+  );
+  useEffect(() => {
+    const query = window.matchMedia(SHEET_QUERY);
+    const update = () => setMatches(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+  return matches;
+}
+
+type SheetItem = { key: string; name: string; material?: string };
+type SheetField = { label: string; value: string; block?: boolean };
 
 export default function ComponentKnowledgeSheet({ nodeId }: { nodeId: string }) {
   const selectedObject = useNodeStore((s) => s.selectedObject);
-  const objectName = selectedObject ? parseScopedKey(selectedObject).objectName : "";
-  if (!objectName) return null;
-  // Keyed by selection: picking another component remounts the card in peek.
-  return <SheetBody key={objectName} nodeId={nodeId} objectName={objectName} />;
+  const enabled = useSheetViewport();
+  if (!enabled || !selectedObject) return null;
+  return <SheetBody nodeId={nodeId} selectedObject={selectedObject} />;
 }
 
-function SheetBody({ nodeId, objectName }: { nodeId: string; objectName: string }) {
+function SheetBody({ nodeId, selectedObject }: { nodeId: string; selectedObject: string }) {
   const node = getNodeDefinition(nodeId);
   const setSelectedObject = useNodeStore((s) => s.setSelectedObject);
-  const [open, setOpen] = useState(true);
+  const selectedVariantId = useNodeStore((s) => s.selectedVariantId);
   const [leaving, setLeaving] = useState(false);
   const [mode, setMode] = useState<"peek" | "half">("peek");
 
@@ -74,18 +96,50 @@ function SheetBody({ nodeId, objectName }: { nodeId: string; objectName: string 
     pumpCanvasResize(380);
   }, [mode]);
 
-  const layers = (node?.layerConfig?.layers ?? []).slice().sort((a, b) => (b.order ?? 0) - (a.order ?? 0));
-  const layer = findLayer(layers, objectName);
-  if (!open) return null;
+  const { objectName } = parseScopedKey(selectedObject);
+  if (!node) return null;
+  const resolved = resolveComponentKnowledge({ node, selectedObject, selectedVariantId });
+  const variant = node.variants?.find((item) => item.id === (resolved?.variantId ?? null));
+  const layers = variant ? [] : (node.layerConfig?.layers ?? []).slice().sort((a, b) => (b.order ?? 0) - (a.order ?? 0));
+  const layer = variant ? undefined : findLayer(layers, objectName);
 
-  const title = layer?.name ?? objectName;
-  const summary = firstSentence(layer?.description);
+  if (!variant && !layers.length) return null;
+
+  let title: string;
+  let summary: string;
+  const fields: SheetField[] = [];
+  let items: SheetItem[];
+
+  if (variant) {
+    const component = resolved?.component;
+    const knowledge = variant.componentKnowledge ?? [];
+    title = component?.title ?? objectName;
+    summary = component?.description ?? "";
+    if (component?.category) fields.push({ label: "类别", value: component.category });
+    if (component?.material) fields.push({ label: "材料", value: component.material });
+    if (component?.construction) fields.push({ label: "构造做法", value: component.construction });
+    if (component?.description) fields.push({ label: "说明", value: component.description, block: true });
+    items = knowledge.map((item) => ({
+      key: makeScopedKey(variant.id, item.objectName),
+      name: item.title || item.objectName,
+      material: item.material,
+    }));
+  } else {
+    title = layer?.name ?? objectName;
+    summary = layer?.description ?? "";
+    if (layer?.thickness) fields.push({ label: "厚度 / 尺寸", value: layer.thickness });
+    if (layer?.material) fields.push({ label: "材料", value: layer.material });
+    if (layer?.description) fields.push({ label: "说明", value: layer.description, block: true });
+    items = layers.map((item) => ({ key: item.objectName, name: item.name, material: item.material }));
+  }
+
   const close = () => {
     setLeaving(true);
     pumpCanvasResize(CLOSE_MS + 120);
     window.setTimeout(() => {
-      setOpen(false);
-      setSelectedObject(null);
+      // Only clear the selection we closed, in case another part was picked
+      // while the card was collapsing.
+      if (useNodeStore.getState().selectedObject === selectedObject) setSelectedObject(null);
     }, CLOSE_MS);
   };
 
@@ -104,6 +158,7 @@ function SheetBody({ nodeId, objectName }: { nodeId: string; objectName: string 
               <span className="node-sheet-grip" aria-hidden="true" />
               <span className="node-sheet-title" id="node-sheet-title">
                 <strong>{title}</strong>
+                {variant && <em>{variant.label} · {variant.title}</em>}
               </span>
               <ChevronUp className="node-sheet-chevron" size={18} aria-hidden="true" />
             </button>
@@ -114,47 +169,35 @@ function SheetBody({ nodeId, objectName }: { nodeId: string; objectName: string 
 
           <div className="node-sheet-row" data-open={mode === "peek"}>
             <div className="node-sheet-row-inner">
-              <p className="node-sheet-summary">{summary || "已选中该构件"}</p>
+              <p className="node-sheet-summary">{firstSentence(summary) || "已选中该构件"}</p>
             </div>
           </div>
 
           <div className="node-sheet-row" data-open={mode === "half"}>
             <div className="node-sheet-row-inner">
               <div className="node-sheet-body" id="node-sheet-body" inert={mode !== "half"}>
-                {layer && (
+                {fields.length > 0 && (
                   <dl className="node-sheet-fields">
-                    {layer.thickness && (
-                      <div>
-                        <dt>厚度 / 尺寸</dt>
-                        <dd>{layer.thickness}</dd>
+                    {fields.map((field) => (
+                      <div key={field.label} className={field.block ? "node-sheet-detail" : undefined}>
+                        <dt>{field.label}</dt>
+                        <dd>{field.value}</dd>
                       </div>
-                    )}
-                    {layer.material && (
-                      <div>
-                        <dt>材料</dt>
-                        <dd>{layer.material}</dd>
-                      </div>
-                    )}
-                    {layer.description && (
-                      <div className="node-sheet-detail">
-                        <dt>说明</dt>
-                        <dd>{layer.description}</dd>
-                      </div>
-                    )}
+                    ))}
                   </dl>
                 )}
 
                 <p className="node-sheet-list-label">构件列表 · 点选可在模型上切换</p>
                 <ul className="node-sheet-list">
-                  {layers.map((item) => {
-                    const active = item.objectName === layer?.objectName;
+                  {items.map((item) => {
+                    const active = item.key === selectedObject;
                     return (
-                      <li key={item.objectName}>
+                      <li key={item.key}>
                         <button
                           type="button"
                           className="node-sheet-item"
                           aria-pressed={active}
-                          onClick={() => setSelectedObject(item.objectName)}
+                          onClick={() => setSelectedObject(item.key)}
                         >
                           <span>{item.name}</span>
                           {item.material && <em>{item.material}</em>}

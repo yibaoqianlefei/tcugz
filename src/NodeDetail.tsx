@@ -19,13 +19,6 @@ import { Images, Maximize2, X } from "lucide-react";
 import { nodeReturnTarget } from './utils/lessonNodeNavigation';
 
 /**
- * EXPERIMENT: one node opts into the mobile component-knowledge sheet so the
- * card can be read without leaving the model. Remove this constant and the
- * guarded render to roll the experiment back.
- */
-const SHEET_EXPERIMENT_NODE = "wall-bearing-two-way-01";
-
-/**
  * Responsive construction education layout with adjustable desktop panels.
  *
  * 所有节点配置统一来自 src/data/nodeDefinitions.ts（单一配置源）。
@@ -334,7 +327,7 @@ function NodeDetailContent({ nodeId }: { nodeId: string | undefined }) {
                 </div>
               )}
 
-              {nodeId === SHEET_EXPERIMENT_NODE && <ComponentKnowledgeSheet nodeId={nodeId} />}
+              {nodeId && <ComponentKnowledgeSheet nodeId={nodeId} />}
 
               {/* ── Bottom control bar — same shell for single- and multi-model.
                      Renders ONLY the NODE_DETAIL_PRIMARY_CONTROLS whitelist

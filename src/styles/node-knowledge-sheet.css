@@ -109,6 +109,18 @@
     transition: transform var(--ui-motion);
   }
 
+  /* 变体节点在标题后补「A · 密实材料垫层」，超长时省略。 */
+  .node-sheet-title em {
+    flex: none;
+    max-width: 42%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--ui-muted);
+    font-size: 11px;
+    font-style: normal;
+  }
+
   .node-sheet[data-mode="half"] .node-sheet-chevron {
     transform: rotate(180deg);
   }
