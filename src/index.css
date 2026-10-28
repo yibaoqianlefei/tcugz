@@ -404,9 +404,16 @@
   .node-viewport .model-explode-slider { height: 44px; background: transparent; }
   .model-explode-slider::-webkit-slider-runnable-track { height: 6px; border-radius: 999px; background: color-mix(in srgb, var(--ui-red) 22%, var(--ui-surface)); }
   .model-explode-slider::-moz-range-track { height: 6px; border-radius: 999px; background: color-mix(in srgb, var(--ui-red) 22%, var(--ui-surface)); }
+  /* Chrome 把圆点顶端对齐轨道顶端，不补偿就会垂在轨道下方；上提 (滑块 − 轨道) / 2。 */
+  .node-viewport .model-explode-slider::-webkit-slider-thumb { margin-top: -7px; }
   .app .module-card .directory-card-kicker { font-size: 12px; }
   .app .module-card .directory-card-description { font-size: 13px; }
   .app .library-category-count { font-size: 12px; }
+}
+
+/* 640px 以上圆点由 20px 缩到 16px，垂直补偿量随之变为 (6 − 16) / 2。 */
+@media (min-width: 640px) and (max-width: 760px), (min-width: 640px) and (pointer: coarse) {
+  .node-viewport .model-explode-slider::-webkit-slider-thumb { margin-top: -5px; }
 }
 
 /* 触屏上的次级工具按钮同样给足 44px（横屏手机、触屏平板的桌面宽度布局）。 */
