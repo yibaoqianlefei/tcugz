@@ -160,6 +160,9 @@
   .directory-grid .directory-card { min-height: 0; }
   .directory-card-top { margin-bottom: 14px; }
   .directory-card-title { font-size: 21px; }
+  /* 手机上目录卡片只留编号、标题与关键词：解释段落是文字量最大的一块，先在窄屏隐藏。 */
+  .directory-card-description { display: none; }
+  .directory-card-tags { margin: 10px 0 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .directory-grid .directory-card,
