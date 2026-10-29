@@ -45,7 +45,7 @@
 .library-node-card .directory-card-number { font-size: 24px; }
 .library-node-card .directory-card-kicker { font-size: 11px; }
 .library-node-preview { display: grid; place-items: center; overflow: hidden; aspect-ratio: 16 / 9; margin-bottom: 14px; border-radius: 3px; background: var(--ui-soft); }
-.library-node-preview img { display: block; width: 100%; height: 100%; padding: 12px; object-fit: contain; mix-blend-mode: multiply; transition: transform 600ms cubic-bezier(.16,1,.3,1); }
+.library-node-preview img { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform 600ms cubic-bezier(.16,1,.3,1); }
 .library-node-copy { flex: 1; display: flex; flex-direction: column; padding-bottom: 18px; }
 .library-node-copy .directory-card-title { min-height: 3em; font-size: 18px; line-height: 1.5; }
 .library-node-copy .directory-card-description { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 13px; line-height: 1.75; }
@@ -114,7 +114,6 @@
   .library-node-card .directory-card-number { font-size: 18px; }
   .library-node-card .directory-card-kicker { font-size: 10px; padding-left: 8px; }
   .library-node-preview { aspect-ratio: 4 / 3; margin-bottom: 10px; }
-  .library-node-preview img { padding: 8px; }
   .library-node-copy { padding-bottom: 10px; }
   .library-node-copy .directory-card-title { font-size: 15px; line-height: 1.45; }
   .library-node-copy .directory-card-description { display: none; }

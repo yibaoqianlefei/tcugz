@@ -1,0 +1,3651 @@
+{
+  "version": "glb-studio-v2",
+  "renders": {
+    "roof-truss-timber-01": {
+      "id": "roof-truss-timber-01",
+      "title": "屋架形式（木屋架）",
+      "category": "屋顶",
+      "source": "/models/roof/roof-trusses/timber.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/roof-truss-timber-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "cdd619318b1b273f8d681cfb1c9a09d241f762bf0d481812dfc3232fc54584e5",
+      "bytes": 23378,
+      "foreground": {
+        "left": 66,
+        "top": 147,
+        "right": 893,
+        "bottom": 393,
+        "pixels": 57902
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.26566851965081106,
+        0.1707869054898071,
+        0.9488161416100395
+      ],
+      "meshes": 1,
+      "triangles": 114
+    },
+    "roof-truss-reinforced-concrete-01": {
+      "id": "roof-truss-reinforced-concrete-01",
+      "title": "屋架形式（钢筋混凝土屋架）",
+      "category": "屋顶",
+      "source": "/models/roof/roof-trusses/reinforced-concrete.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/roof-truss-reinforced-concrete-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "6aa0f068013ef05063c4cf6f674dd348b362e89dfddb86fa9ab7824541399291",
+      "bytes": 21690,
+      "foreground": {
+        "left": 66,
+        "top": 164,
+        "right": 893,
+        "bottom": 375,
+        "pixels": 37297
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.26566851965081106,
+        0.1707869054898071,
+        0.9488161416100395
+      ],
+      "meshes": 1,
+      "triangles": 4064
+    },
+    "roof-truss-steel-timber-01": {
+      "id": "roof-truss-steel-timber-01",
+      "title": "屋架形式（钢木屋架）",
+      "category": "屋顶",
+      "source": "/models/roof/roof-trusses/steel-timber.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/roof-truss-steel-timber-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "4befbd0d1e1e46057f2f43428b8334ca58b372a4cbaefc8858e2df8758ecefb2",
+      "bytes": 21882,
+      "foreground": {
+        "left": 66,
+        "top": 149,
+        "right": 893,
+        "bottom": 390,
+        "pixels": 28557
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.26566851965081106,
+        0.1707869054898071,
+        0.9488161416100395
+      ],
+      "meshes": 2,
+      "triangles": 2140
+    },
+    "coating-parapet-flashing-01": {
+      "id": "coating-parapet-flashing-01",
+      "title": "涂膜防水屋面的女儿墙泛水",
+      "category": "屋顶",
+      "source": "/models/roof/coating-parapet-flashing/coating-parapet-flashing.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/coating-parapet-flashing-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "bad19ab0b457b721657ddbd6a5a7d338b1918429178da6b4182d269229ff0f93",
+      "bytes": 13852,
+      "foreground": {
+        "left": 247,
+        "top": 37,
+        "right": 712,
+        "bottom": 502,
+        "pixels": 135970
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 11,
+          "triangles": 1620
+        },
+        {
+          "time": 4,
+          "meshes": 11,
+          "triangles": 1620
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 11,
+      "triangles": 1620
+    },
+    "coating-high-low-roof-flashing-01": {
+      "id": "coating-high-low-roof-flashing-01",
+      "title": "涂膜防水屋面高低屋面的泛水",
+      "category": "屋顶",
+      "source": "/models/roof/coating-high-low-roof-flashing/coating-high-low-roof-flashing.glb",
+      "variant": null,
+      "initialView": [
+        -0.539,
+        0.342,
+        0.77
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/coating-high-low-roof-flashing-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "4e83571be9ee47ef7d6701f0d36356a020e19792f0a6442a351ad501c19c677b",
+      "bytes": 10820,
+      "foreground": {
+        "left": 309,
+        "top": 37,
+        "right": 650,
+        "bottom": 503,
+        "pixels": 94318
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 11,
+          "triangles": 2008
+        },
+        {
+          "time": 4,
+          "meshes": 11,
+          "triangles": 2008
+        }
+      ],
+      "direction": [
+        -0.5235505140823716,
+        0.40803996456451164,
+        0.7479293058319594
+      ],
+      "meshes": 11,
+      "triangles": 2008
+    },
+    "straight-rainwater-outlet-65-01": {
+      "id": "straight-rainwater-outlet-65-01",
+      "title": "直管式水落口（65 型水落口）",
+      "category": "屋顶",
+      "source": "/models/roof/straight-rainwater-outlet/type-65.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/straight-rainwater-outlet-65-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "dab3d94715527da34316e5495228c02a538d724e6a4dc5fb0aca1b5c59e39bc9",
+      "bytes": 27442,
+      "foreground": {
+        "left": 199,
+        "top": 37,
+        "right": 760,
+        "bottom": 503,
+        "pixels": 156706
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 7,
+          "triangles": 13136
+        },
+        {
+          "time": 4,
+          "meshes": 7,
+          "triangles": 13136
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 7,
+      "triangles": 13136
+    },
+    "straight-rainwater-outlet-cast-iron-01": {
+      "id": "straight-rainwater-outlet-cast-iron-01",
+      "title": "直管式水落口（铸铁水落口）",
+      "category": "屋顶",
+      "source": "/models/roof/straight-rainwater-outlet/cast-iron.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [
+        "镀锌钢丝球"
+      ],
+      "path": "images/node-renders/straight-rainwater-outlet-cast-iron-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "160fe93cd50de39527a507272e7e2adc0cd478bd5ee897a5fbea1956c9b9ef23",
+      "bytes": 39234,
+      "foreground": {
+        "left": 132,
+        "top": 37,
+        "right": 827,
+        "bottom": 503,
+        "pixels": 250728
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 7,
+          "triangles": 35472
+        },
+        {
+          "time": 4,
+          "meshes": 7,
+          "triangles": 35472
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 7,
+      "triangles": 35472
+    },
+    "free-fall-ring-beam-eaves-01": {
+      "id": "free-fall-ring-beam-eaves-01",
+      "title": "自由落水檐口（圈梁带挑檐板）",
+      "category": "屋顶",
+      "source": "/models/roof/free-fall-eaves/free-fall-ring-beam-eaves-01-v2.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/free-fall-ring-beam-eaves-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "5bdc963d2bd06a784873381cb37ab8d2a5155d379446b4d741c01da0523a2a4b",
+      "bytes": 27444,
+      "foreground": {
+        "left": 129,
+        "top": 37,
+        "right": 830,
+        "bottom": 503,
+        "pixels": 170929
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 9,
+          "triangles": 1492
+        },
+        {
+          "time": 4,
+          "meshes": 9,
+          "triangles": 1492
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 9,
+      "triangles": 1492
+    },
+    "free-fall-waterproof-eaves-01": {
+      "id": "free-fall-waterproof-eaves-01",
+      "title": "自由落水檐口（防水层直接悬挑）",
+      "category": "屋顶",
+      "source": "/models/roof/free-fall-eaves/free-fall-waterproof-eaves-01.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/free-fall-waterproof-eaves-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "4ce7d9bc0f180a8330b98e4d12ecb6ccc883fd2e942c051b345fbad50274aa98",
+      "bytes": 23914,
+      "foreground": {
+        "left": 159,
+        "top": 37,
+        "right": 800,
+        "bottom": 502,
+        "pixels": 159166
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 7,
+          "triangles": 2732
+        },
+        {
+          "time": 4,
+          "meshes": 7,
+          "triangles": 2732
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 7,
+      "triangles": 2732
+    },
+    "water-storage-parapet-drainage-01": {
+      "id": "water-storage-parapet-drainage-01",
+      "title": "蓄水屋面（女儿墙外排水）",
+      "category": "屋顶",
+      "source": "/models/roof/water-storage-parapet-drainage/water-storage-parapet-drainage.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/water-storage-parapet-drainage-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "1478e89674864f09d1abe47908bd553a65f3e3c2a279ffa17be2bb4566c15085",
+      "bytes": 22540,
+      "foreground": {
+        "left": 227,
+        "top": 37,
+        "right": 732,
+        "bottom": 502,
+        "pixels": 148313
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 12,
+          "triangles": 1738
+        },
+        {
+          "time": 4,
+          "meshes": 12,
+          "triangles": 1738
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 12,
+      "triangles": 1738
+    },
+    "water-storage-eaves-drainage-01": {
+      "id": "water-storage-eaves-drainage-01",
+      "title": "蓄水屋面（檐沟式排水）",
+      "category": "屋顶",
+      "source": "/models/roof/water-storage-eaves-drainage/water-storage-eaves-drainage.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/water-storage-eaves-drainage-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "5dd15f5cd51f1e96c732dcff0b82a7a94750a63d6b24259cce1900b68603b179",
+      "bytes": 26432,
+      "foreground": {
+        "left": 159,
+        "top": 37,
+        "right": 800,
+        "bottom": 502,
+        "pixels": 171932
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 14,
+          "triangles": 1992
+        },
+        {
+          "time": 4,
+          "meshes": 14,
+          "triangles": 1992
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 14,
+      "triangles": 1992
+    },
+    "flat-roof-01": {
+      "id": "flat-roof-01",
+      "title": "平屋面构造",
+      "category": "屋顶",
+      "source": "/models/roof/flat-roof/flat-roof.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {
+        "40厚细石混凝土毛面001": "40厚细石混凝土毛面",
+        "40厚细石混凝土毛面001_1": "40厚细石混凝土毛面",
+        "40厚细石混凝土毛面001_2": "40厚细石混凝土毛面",
+        "钢筋混凝土屋面002": "钢筋混凝土屋面"
+      },
+      "outlineExcluded": [],
+      "path": "images/node-renders/flat-roof-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "d3d00894831e72ce567e0eefa24e7ca26c6a93b6f459f7efe48854fceb9852fb",
+      "bytes": 33328,
+      "foreground": {
+        "left": 66,
+        "top": 61,
+        "right": 894,
+        "bottom": 478,
+        "pixels": 236541
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 12,
+          "triangles": 8284
+        },
+        {
+          "time": 4,
+          "meshes": 12,
+          "triangles": 8284
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 12,
+      "triangles": 8284
+    },
+    "sloped-roof-01": {
+      "id": "sloped-roof-01",
+      "title": "坡屋顶构造",
+      "category": "屋顶",
+      "source": "/models/roof/sloped-roof/sloped-roof.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {
+        "钢筋混凝土屋面板001": "钢筋混凝土屋面板"
+      },
+      "outlineExcluded": [],
+      "path": "images/node-renders/sloped-roof-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "2dedc7988de5a981d51bac9016b6fe5a569bb8fd0bb5f0257075c6f83a56a2fd",
+      "bytes": 28574,
+      "foreground": {
+        "left": 222,
+        "top": 37,
+        "right": 737,
+        "bottom": 502,
+        "pixels": 135979
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 11,
+          "triangles": 9080
+        },
+        {
+          "time": 4,
+          "meshes": 11,
+          "triangles": 9080
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 11,
+      "triangles": 9080
+    },
+    "steel-batten-tile-roof-01": {
+      "id": "steel-batten-tile-roof-01",
+      "title": "钢挂瓦条块瓦屋面构造",
+      "category": "屋顶",
+      "source": "/models/roof/steel-batten-tile-roof/steel-batten-tile-roof.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/steel-batten-tile-roof-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "a800abdc1aec8a028f4c57b5a0695f793ccff8739ee6e564f60786fbc3eded52",
+      "bytes": 31536,
+      "foreground": {
+        "left": 66,
+        "top": 137,
+        "right": 893,
+        "bottom": 402,
+        "pixels": 137070
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 7,
+          "triangles": 608
+        },
+        {
+          "time": 4,
+          "meshes": 7,
+          "triangles": 608
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 7,
+      "triangles": 608
+    },
+    "mortar-bed-tile-roof-01": {
+      "id": "mortar-bed-tile-roof-01",
+      "title": "砂浆卧瓦块瓦屋面构造",
+      "category": "屋顶",
+      "source": "/models/roof/mortar-bed-tile-roof/mortar-bed-tile-roof.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/mortar-bed-tile-roof-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "6b034fc360d682f710d246b3c63ce6ca54520cf47a1b1f9a055643274892b689",
+      "bytes": 30262,
+      "foreground": {
+        "left": 66,
+        "top": 141,
+        "right": 893,
+        "bottom": 398,
+        "pixels": 130293
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 6,
+          "triangles": 512
+        },
+        {
+          "time": 4,
+          "meshes": 6,
+          "triangles": 512
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 6,
+      "triangles": 512
+    },
+    "wood-batten-tile-roof-01": {
+      "id": "wood-batten-tile-roof-01",
+      "title": "木挂瓦条块瓦屋面构造",
+      "category": "屋顶",
+      "source": "/models/roof/wood-batten-tile-roof/wood-batten-tile-roof.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/wood-batten-tile-roof-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "dfec4a783b915247e2de7733588fe2ff61ea3a2ad2441be069a0baf6ff44f27b",
+      "bytes": 35544,
+      "foreground": {
+        "left": 66,
+        "top": 131,
+        "right": 893,
+        "bottom": 408,
+        "pixels": 150306
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 7,
+          "triangles": 720
+        },
+        {
+          "time": 4,
+          "meshes": 7,
+          "triangles": 720
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 7,
+      "triangles": 720
+    },
+    "roof-drainage-01": {
+      "id": "roof-drainage-01",
+      "title": "无组织排水屋顶",
+      "category": "屋顶",
+      "source": "/models/roof/roof-drainage/roof-drainage.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/roof-drainage-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "f666c5ea1ad9f261b1209defc4d978efbd0cef43eaba600d951dca12ca81a176",
+      "bytes": 22736,
+      "foreground": {
+        "left": 136,
+        "top": 37,
+        "right": 823,
+        "bottom": 502,
+        "pixels": 167854
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 6,
+          "triangles": 742
+        },
+        {
+          "time": 4,
+          "meshes": 6,
+          "triangles": 742
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 6,
+      "triangles": 742
+    },
+    "organized-drainage-01": {
+      "id": "organized-drainage-01",
+      "title": "有组织排水屋顶",
+      "category": "屋顶",
+      "source": "/models/roof/organized-drainage/organized-drainage.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/organized-drainage-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "c3a2df18dbfd8ad0a582ec03f7db02dbd7050fc3fa5d60a2cca0af980cd1e578",
+      "bytes": 26234,
+      "foreground": {
+        "left": 129,
+        "top": 37,
+        "right": 830,
+        "bottom": 503,
+        "pixels": 182798
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 5,
+          "triangles": 1444
+        },
+        {
+          "time": 4,
+          "meshes": 5,
+          "triangles": 1444
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 5,
+      "triangles": 1444
+    },
+    "eaves-gutter-01": {
+      "id": "eaves-gutter-01",
+      "title": "檐沟外排水",
+      "category": "屋顶",
+      "source": "/models/roof/eaves-gutter/eaves-gutter.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/eaves-gutter-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "ccd7d74cf021c73d1b39770f71e3f768823e2cd560404e41de04d220559ed5d7",
+      "bytes": 21058,
+      "foreground": {
+        "left": 174,
+        "top": 37,
+        "right": 785,
+        "bottom": 502,
+        "pixels": 180414
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 8,
+          "triangles": 1451
+        },
+        {
+          "time": 4,
+          "meshes": 8,
+          "triangles": 1451
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 8,
+      "triangles": 1451
+    },
+    "roof-access-hatch-01": {
+      "id": "roof-access-hatch-01",
+      "title": "屋面检修口",
+      "category": "屋顶",
+      "source": "/models/roof/roof-access-hatch/roof-access-hatch.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/roof-access-hatch-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "3ddd181a6fa1158fdff7773146bd9a215f8d0da3450d25e7d64efcd5f46fd43d",
+      "bytes": 29232,
+      "foreground": {
+        "left": 66,
+        "top": 59,
+        "right": 894,
+        "bottom": 480,
+        "pixels": 199390
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 14,
+          "triangles": 2858
+        },
+        {
+          "time": 4,
+          "meshes": 14,
+          "triangles": 2858
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 14,
+      "triangles": 2858
+    },
+    "vent-pipe-roof-01": {
+      "id": "vent-pipe-roof-01",
+      "title": "透气管出屋面",
+      "category": "屋顶",
+      "source": "/models/roof/vent-pipe/vent-pipe.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [
+        "球形镀锌钢丝罩"
+      ],
+      "path": "images/node-renders/vent-pipe-roof-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "1c3d6366e8960349b379f9486f21786c343c1f751740fefa0e2d2b5ef23979d9",
+      "bytes": 18922,
+      "foreground": {
+        "left": 256,
+        "top": 37,
+        "right": 703,
+        "bottom": 502,
+        "pixels": 79604
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 12,
+          "triangles": 60004
+        },
+        {
+          "time": 4,
+          "meshes": 12,
+          "triangles": 60004
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 12,
+      "triangles": 60004
+    },
+    "rigid-roof-transverse-joint-01": {
+      "id": "rigid-roof-transverse-joint-01",
+      "title": "刚性防水屋面横向分格缝（一）",
+      "category": "屋顶",
+      "source": "/models/roof/rigid-roof-joint/transverse-joint-01.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/rigid-roof-transverse-joint-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "2043603a249cd2b583dcc8317bc1fc4795875af840548f3507479a53709155f8",
+      "bytes": 27260,
+      "foreground": {
+        "left": 66,
+        "top": 53,
+        "right": 893,
+        "bottom": 486,
+        "pixels": 214734
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 10,
+          "triangles": 1912
+        },
+        {
+          "time": 4,
+          "meshes": 10,
+          "triangles": 1912
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 10,
+      "triangles": 1912
+    },
+    "rigid-roof-transverse-joint-02": {
+      "id": "rigid-roof-transverse-joint-02",
+      "title": "刚性防水屋面横向分格缝（二）",
+      "category": "屋顶",
+      "source": "/models/roof/rigid-roof-joint/transverse-joint-02.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/rigid-roof-transverse-joint-02.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "cdbadac3b5d352bc9b33ebda812d8edcb49a3892e7d2a06595102701eb270eeb",
+      "bytes": 29750,
+      "foreground": {
+        "left": 66,
+        "top": 53,
+        "right": 893,
+        "bottom": 486,
+        "pixels": 217765
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 9,
+          "triangles": 1792
+        },
+        {
+          "time": 4,
+          "meshes": 9,
+          "triangles": 1792
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 9,
+      "triangles": 1792
+    },
+    "rigid-roof-ridge-joint-01": {
+      "id": "rigid-roof-ridge-joint-01",
+      "title": "刚性防水屋面屋脊分格缝（一）",
+      "category": "屋顶",
+      "source": "/models/roof/rigid-roof-joint/ridge-joint-01.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/rigid-roof-ridge-joint-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "1f83dfb14d3b9c66d1228b379862fe99ac8da00bb7cc018ec3bd462f88bda59f",
+      "bytes": 24926,
+      "foreground": {
+        "left": 65,
+        "top": 95,
+        "right": 894,
+        "bottom": 444,
+        "pixels": 180972
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 9,
+          "triangles": 1872
+        },
+        {
+          "time": 4,
+          "meshes": 9,
+          "triangles": 1872
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 9,
+      "triangles": 1872
+    },
+    "rigid-roof-ridge-joint-02": {
+      "id": "rigid-roof-ridge-joint-02",
+      "title": "刚性防水屋面屋脊分格缝（二）",
+      "category": "屋顶",
+      "source": "/models/roof/rigid-roof-joint/ridge-joint-02.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/rigid-roof-ridge-joint-02.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "07bba7ee54e1bbadefd065e68191a60dd9faf81c2b42857c5d11f459732ff549",
+      "bytes": 28612,
+      "foreground": {
+        "left": 65,
+        "top": 93,
+        "right": 894,
+        "bottom": 446,
+        "pixels": 187960
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 7,
+          "triangles": 1796
+        },
+        {
+          "time": 4,
+          "meshes": 7,
+          "triangles": 1796
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 7,
+      "triangles": 1796
+    },
+    "high-low-roof-joint-01": {
+      "id": "high-low-roof-joint-01",
+      "title": "高低屋面变形缝（一）",
+      "category": "屋顶",
+      "source": "/models/roof/high-low-roof-joint/high-low-roof-joint-01.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {
+        "低屋面找层": "低屋面找平层"
+      },
+      "outlineExcluded": [],
+      "path": "images/node-renders/high-low-roof-joint-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "82c3a401a167a68ebeec9a339d5a9608de2652bc4d0b42f877b44a8f95303451",
+      "bytes": 23208,
+      "foreground": {
+        "left": 190,
+        "top": 37,
+        "right": 769,
+        "bottom": 503,
+        "pixels": 178967
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 10,
+          "triangles": 4318
+        },
+        {
+          "time": 4,
+          "meshes": 10,
+          "triangles": 4318
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 10,
+      "triangles": 4318
+    },
+    "high-low-roof-joint-02": {
+      "id": "high-low-roof-joint-02",
+      "title": "高低屋面变形缝（二）",
+      "category": "屋顶",
+      "source": "/models/roof/high-low-roof-joint/high-low-roof-joint-02.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/high-low-roof-joint-02.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "a9b9aeabdb32183a77845d4fdd00bfa7207182d84374ed7daff22e1e64889dde",
+      "bytes": 20898,
+      "foreground": {
+        "left": 205,
+        "top": 37,
+        "right": 754,
+        "bottom": 502,
+        "pixels": 176281
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 12,
+          "triangles": 1074
+        },
+        {
+          "time": 4,
+          "meshes": 12,
+          "triangles": 1074
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 12,
+      "triangles": 1074
+    },
+    "profiled-steel-composite-slab-01": {
+      "id": "profiled-steel-composite-slab-01",
+      "title": "压型钢板组合楼板",
+      "category": "楼地层",
+      "source": "/models/floor/profiled-steel-composite-slab/profiled-steel-composite-slab.glb",
+      "variant": null,
+      "initialView": [
+        0.956,
+        0.142,
+        0.256
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/profiled-steel-composite-slab-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "37a18bfd6bcdca5c3e30f462413baa1884dc5af948200acee13bccc608ce9aec",
+      "bytes": 19524,
+      "foreground": {
+        "left": 181,
+        "top": 37,
+        "right": 778,
+        "bottom": 502,
+        "pixels": 147034
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 4,
+          "triangles": 4868
+        },
+        {
+          "time": 4,
+          "meshes": 4,
+          "triangles": 4868
+        }
+      ],
+      "direction": [
+        0.8892320014510744,
+        0.3905956710550219,
+        0.2381207033174425
+      ],
+      "meshes": 4,
+      "triangles": 4868
+    },
+    "precast-flat-slab-01": {
+      "id": "precast-flat-slab-01",
+      "title": "预制钢筋混凝土板（平板）",
+      "category": "楼地层",
+      "source": "/models/floor/precast-slabs/flat.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/precast-flat-slab-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "145937ba93c912aafb0758fdb800dd4ec1dbf31755c759f65bb1cb0573029c3b",
+      "bytes": 25008,
+      "foreground": {
+        "left": 88,
+        "top": 37,
+        "right": 871,
+        "bottom": 502,
+        "pixels": 198128
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 4,
+      "triangles": 72
+    },
+    "precast-hollow-slab-01": {
+      "id": "precast-hollow-slab-01",
+      "title": "预制钢筋混凝土板（空心板）",
+      "category": "楼地层",
+      "source": "/models/floor/precast-slabs/hollow.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/precast-hollow-slab-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "b023bb127fcc92d3390aab6b0ab72a1a2c9a788ff8dd3cf15cf57c0a1323ff07",
+      "bytes": 27608,
+      "foreground": {
+        "left": 90,
+        "top": 37,
+        "right": 869,
+        "bottom": 502,
+        "pixels": 216574
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 4,
+      "triangles": 1260
+    },
+    "precast-upright-channel-slab-01": {
+      "id": "precast-upright-channel-slab-01",
+      "title": "预制钢筋混凝土板（正放槽形板）",
+      "category": "楼地层",
+      "source": "/models/floor/precast-slabs/channel-upright.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/precast-upright-channel-slab-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "1b2d19b036a47b9deb4c0441592961c5088036b945a39436fc8993de3fbf4e6a",
+      "bytes": 30340,
+      "foreground": {
+        "left": 98,
+        "top": 37,
+        "right": 861,
+        "bottom": 502,
+        "pixels": 196999
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 3,
+      "triangles": 136
+    },
+    "precast-inverted-channel-slab-01": {
+      "id": "precast-inverted-channel-slab-01",
+      "title": "预制钢筋混凝土板（倒放槽形板）",
+      "category": "楼地层",
+      "source": "/models/floor/precast-slabs/channel-inverted.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/precast-inverted-channel-slab-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "9574ca26da62efdd6da482827f1fcada927df76ab457b0f365f86a585733c208",
+      "bytes": 32880,
+      "foreground": {
+        "left": 80,
+        "top": 37,
+        "right": 879,
+        "bottom": 502,
+        "pixels": 218625
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 5,
+      "triangles": 168
+    },
+    "flat-slab-01": {
+      "id": "flat-slab-01",
+      "title": "无梁楼板",
+      "category": "楼地层",
+      "source": "/models/floor/flat-slab/flat-slab.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/flat-slab-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "7bc7c8bbe22ff74d5e2b137db39d52d0bcdc61a3bd790ea1ae9b862f2e01355d",
+      "bytes": 14888,
+      "foreground": {
+        "left": 148,
+        "top": 37,
+        "right": 811,
+        "bottom": 502,
+        "pixels": 128127
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 1,
+      "triangles": 5352
+    },
+    "cantilever-canopy-slab-01": {
+      "id": "cantilever-canopy-slab-01",
+      "title": "悬挑雨篷构造（悬挑板式）",
+      "category": "楼地层",
+      "source": "/models/floor/cantilever-canopy/cantilever-canopy-slab-01.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/cantilever-canopy-slab-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "b94f285ed141a0d9e3897ce2486bb1c77c9aaa34114cd37b71a66563a5f92686",
+      "bytes": 17818,
+      "foreground": {
+        "left": 232,
+        "top": 37,
+        "right": 727,
+        "bottom": 502,
+        "pixels": 117260
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 5,
+          "triangles": 196
+        },
+        {
+          "time": 4,
+          "meshes": 5,
+          "triangles": 196
+        }
+      ],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 5,
+      "triangles": 196
+    },
+    "cantilever-canopy-raised-eaves-01": {
+      "id": "cantilever-canopy-raised-eaves-01",
+      "title": "悬挑雨篷构造（外檐加高）",
+      "category": "楼地层",
+      "source": "/models/floor/cantilever-canopy/cantilever-canopy-raised-eaves-01-v2.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/cantilever-canopy-raised-eaves-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "06365fea5001dd9ad448cee9b2d2a6026056f4e72132bbcf867d9e777da49ccf",
+      "bytes": 19332,
+      "foreground": {
+        "left": 232,
+        "top": 37,
+        "right": 727,
+        "bottom": 502,
+        "pixels": 120994
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 7,
+          "triangles": 414
+        },
+        {
+          "time": 4,
+          "meshes": 7,
+          "triangles": 414
+        }
+      ],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 7,
+      "triangles": 414
+    },
+    "balcony-railing-weld-01": {
+      "id": "balcony-railing-weld-01",
+      "title": "栏杆与阳台板的连接（预埋件焊接）",
+      "category": "楼地层",
+      "source": "/models/floor/balcony-railing-weld/balcony-railing-weld.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/balcony-railing-weld-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "702833aba295328708b25e6ea1379be3b608c2fdf302e509eea98b1072767346",
+      "bytes": 14642,
+      "foreground": {
+        "left": 296,
+        "top": 37,
+        "right": 664,
+        "bottom": 502,
+        "pixels": 101735
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 7,
+          "triangles": 1100
+        },
+        {
+          "time": 4,
+          "meshes": 7,
+          "triangles": 1100
+        }
+      ],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 7,
+      "triangles": 1100
+    },
+    "balcony-railing-mortise-01": {
+      "id": "balcony-railing-mortise-01",
+      "title": "栏杆与阳台板的连接（榫接坐浆）",
+      "category": "楼地层",
+      "source": "/models/floor/balcony-railing-mortise/balcony-railing-mortise.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/balcony-railing-mortise-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "ca3d23ccc93077f45a55701307f57c04212db467225b98dcb8d7e6550c3529cf",
+      "bytes": 13460,
+      "foreground": {
+        "left": 292,
+        "top": 37,
+        "right": 667,
+        "bottom": 502,
+        "pixels": 105902
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 5,
+          "triangles": 528
+        },
+        {
+          "time": 4,
+          "meshes": 5,
+          "triangles": 528
+        }
+      ],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 5,
+      "triangles": 528
+    },
+    "balcony-railing-dowel-01": {
+      "id": "balcony-railing-dowel-01",
+      "title": "栏杆与阳台板的连接（插筋连接）",
+      "category": "楼地层",
+      "source": "/models/floor/balcony-railing-dowel/balcony-railing-dowel.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/balcony-railing-dowel-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "05b21525bb939d943c2114fbe0269194158e100858022e20051910386cafe9c3",
+      "bytes": 12790,
+      "foreground": {
+        "left": 302,
+        "top": 37,
+        "right": 657,
+        "bottom": 502,
+        "pixels": 105127
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 6,
+          "triangles": 1212
+        },
+        {
+          "time": 4,
+          "meshes": 6,
+          "triangles": 1212
+        }
+      ],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 6,
+      "triangles": 1212
+    },
+    "cast-ribbed-floor-01": {
+      "id": "cast-ribbed-floor-01",
+      "title": "现浇肋梁楼板",
+      "category": "楼地层",
+      "source": "/models/floor/cast-ribbed-floor/cast-ribbed-floor.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/cast-ribbed-floor-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "2ea271b898c10578c05c2b9de7be767dfd636b972e61cda74f090f5123162ea3",
+      "bytes": 31806,
+      "foreground": {
+        "left": 140,
+        "top": 37,
+        "right": 819,
+        "bottom": 502,
+        "pixels": 165461
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 6,
+      "triangles": 400
+    },
+    "frame-structure-layout-01": {
+      "id": "frame-structure-layout-01",
+      "title": "框架结构布置",
+      "category": "墙体",
+      "source": "/models/wall/frame-structure-layout/frame-structure-layout.glb",
+      "variant": null,
+      "initialView": [
+        1,
+        0.9,
+        1.3
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/frame-structure-layout-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "7c7395b504fb5704ad1717ba7bedaf891c19b4e94aea6e5a5961c4ec0aceae8a",
+      "bytes": 59050,
+      "foreground": {
+        "left": 66,
+        "top": 54,
+        "right": 894,
+        "bottom": 485,
+        "pixels": 80799
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5345224838248488,
+        0.48107023544236394,
+        0.6948792289723035
+      ],
+      "meshes": 2,
+      "triangles": 876
+    },
+    "wall-bearing-semi-frame-01": {
+      "id": "wall-bearing-semi-frame-01",
+      "title": "墙体承重结构布置方案（半框架承重）",
+      "category": "墙体",
+      "source": "/models/wall/bearing-layout/semi-frame.glb",
+      "variant": null,
+      "initialView": [
+        1,
+        0.9,
+        1.3
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/wall-bearing-semi-frame-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "6a98c675a30b96f80129e3623bbacd3074cc05a2ff0bb1970823295430397374",
+      "bytes": 39208,
+      "foreground": {
+        "left": 96,
+        "top": 37,
+        "right": 863,
+        "bottom": 502,
+        "pixels": 210855
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5345224838248488,
+        0.48107023544236394,
+        0.6948792289723035
+      ],
+      "meshes": 5,
+      "triangles": 884
+    },
+    "wall-bearing-transverse-01": {
+      "id": "wall-bearing-transverse-01",
+      "title": "墙体承重结构布置方案（横墙承重）",
+      "category": "墙体",
+      "source": "/models/wall/bearing-layout/transverse.glb",
+      "variant": null,
+      "initialView": [
+        1,
+        0.9,
+        1.3
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/wall-bearing-transverse-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "43ba1c50f8a73db334f53db295d94ed028ca0387e51982a107f21764f6b25131",
+      "bytes": 37060,
+      "foreground": {
+        "left": 96,
+        "top": 37,
+        "right": 863,
+        "bottom": 502,
+        "pixels": 218304
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5345224838248488,
+        0.48107023544236394,
+        0.6948792289723035
+      ],
+      "meshes": 3,
+      "triangles": 614
+    },
+    "wall-bearing-two-way-01": {
+      "id": "wall-bearing-two-way-01",
+      "title": "墙体承重结构布置方案（纵横墙承重）",
+      "category": "墙体",
+      "source": "/models/wall/bearing-layout/two-way.glb",
+      "variant": null,
+      "initialView": [
+        1,
+        0.9,
+        1.3
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/wall-bearing-two-way-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "b973214240fef0ef50794e54ad0e8b4db690c8f1b94b78f2059b622f37981600",
+      "bytes": 38332,
+      "foreground": {
+        "left": 97,
+        "top": 37,
+        "right": 863,
+        "bottom": 502,
+        "pixels": 219290
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5345224838248488,
+        0.48107023544236394,
+        0.6948792289723035
+      ],
+      "meshes": 3,
+      "triangles": 736
+    },
+    "wall-bearing-longitudinal-01": {
+      "id": "wall-bearing-longitudinal-01",
+      "title": "墙体承重结构布置方案（纵墙承重）",
+      "category": "墙体",
+      "source": "/models/wall/bearing-layout/longitudinal.glb",
+      "variant": null,
+      "initialView": [
+        1,
+        0.9,
+        1.3
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/wall-bearing-longitudinal-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "44f2be2e7e111a93b5def8930a97fbfa3e2e4841942b8a4a3d4726f8c68bcfdd",
+      "bytes": 31888,
+      "foreground": {
+        "left": 96,
+        "top": 37,
+        "right": 863,
+        "bottom": 502,
+        "pixels": 215350
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5345224838248488,
+        0.48107023544236394,
+        0.6948792289723035
+      ],
+      "meshes": 2,
+      "triangles": 480
+    },
+    "rc-lintel-flush-01": {
+      "id": "rc-lintel-flush-01",
+      "title": "钢筋混凝土过梁（平墙过梁）",
+      "category": "墙体",
+      "source": "/models/wall/rc-lintels/flush.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/rc-lintel-flush-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "1ce1c514ea6bfa86923117896a716d6f170850b1d56e3cc9f74754f622fd40f8",
+      "bytes": 19592,
+      "foreground": {
+        "left": 268,
+        "top": 37,
+        "right": 691,
+        "bottom": 502,
+        "pixels": 169784
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 3,
+      "triangles": 60
+    },
+    "rc-lintel-window-surround-01": {
+      "id": "rc-lintel-window-surround-01",
+      "title": "钢筋混凝土过梁（带窗套过梁）",
+      "category": "墙体",
+      "source": "/models/wall/rc-lintels/window-surround.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/rc-lintel-window-surround-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "250e0e17b713444dae20ad9f447274e7bd668a7a4a180113f24051227f3726b5",
+      "bytes": 21600,
+      "foreground": {
+        "left": 241,
+        "top": 37,
+        "right": 718,
+        "bottom": 502,
+        "pixels": 177381
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 3,
+      "triangles": 84
+    },
+    "rc-lintel-window-hood-01": {
+      "id": "rc-lintel-window-hood-01",
+      "title": "钢筋混凝土过梁（带窗楣过梁）",
+      "category": "墙体",
+      "source": "/models/wall/rc-lintels/window-hood.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/rc-lintel-window-hood-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "a7ba83acabb222e7fa0578c0074b954609658d6dd84f285dfa598a9126a54cd5",
+      "bytes": 26114,
+      "foreground": {
+        "left": 154,
+        "top": 37,
+        "right": 805,
+        "bottom": 502,
+        "pixels": 191386
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 4,
+      "triangles": 84
+    },
+    "window-wall-gap-sealing-01": {
+      "id": "window-wall-gap-sealing-01",
+      "title": "封堵窗墙间缝隙做法",
+      "category": "墙体",
+      "source": "/models/wall/window-wall-gap-sealing/window-wall-gap-sealing.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/window-wall-gap-sealing-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "114bbbd259df2b97a4e54f68ae82c30435030346e28f7d05e1a480abf1ba847a",
+      "bytes": 18476,
+      "foreground": {
+        "left": 165,
+        "top": 37,
+        "right": 794,
+        "bottom": 502,
+        "pixels": 224308
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 6,
+          "triangles": 88
+        },
+        {
+          "time": 4,
+          "meshes": 6,
+          "triangles": 88
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 6,
+      "triangles": 88
+    },
+    "passive-solar-wall-01": {
+      "id": "passive-solar-wall-01",
+      "title": "被动式太阳房墙体构造",
+      "category": "墙体",
+      "source": "/models/wall/passive-solar-wall/passive-solar-wall.glb",
+      "variant": null,
+      "initialView": [
+        0.7,
+        0.142,
+        0.7
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/passive-solar-wall-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "23c5e5880d3a9806f1146d7491879d59073797cef9358ea2ab9ae34d61f74eb3",
+      "bytes": 16856,
+      "foreground": {
+        "left": 291,
+        "top": 37,
+        "right": 668,
+        "bottom": 502,
+        "pixels": 123060
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 14,
+          "triangles": 472
+        },
+        {
+          "time": 4,
+          "meshes": 14,
+          "triangles": 472
+        }
+      ],
+      "direction": [
+        0.6509364127334727,
+        0.39059387239862875,
+        0.6509364127334727
+      ],
+      "meshes": 14,
+      "triangles": 472
+    },
+    "construction-column-01": {
+      "id": "construction-column-01",
+      "title": "构造柱",
+      "category": "墙体",
+      "source": "/models/wall/construction-column/construction-column.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {
+        "01": "马牙槎",
+        "02": "马牙槎",
+        "03": "马牙槎",
+        "04": "马牙槎"
+      },
+      "outlineExcluded": [],
+      "path": "images/node-renders/construction-column-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "6913f7211410512d5a7269ff6e767c3bf3af889957bece2edc839d7c62babbd2",
+      "bytes": 32486,
+      "foreground": {
+        "left": 292,
+        "top": 37,
+        "right": 667,
+        "bottom": 502,
+        "pixels": 88781
+      },
+      "poseTime": 4,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 3,
+          "triangles": 30114
+        },
+        {
+          "time": 4,
+          "meshes": 10,
+          "triangles": 30810
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 10,
+      "triangles": 30810
+    },
+    "block-wall-core-column-01": {
+      "id": "block-wall-core-column-01",
+      "title": "砌块墙墙芯柱构造",
+      "category": "墙体",
+      "source": "/models/wall/block-wall-core-column/block-wall-core-column.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/block-wall-core-column-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "29ba71b0b828106411fe37993e4fc5ba7e8b18b9dbe79bbc29ce997fcb0cebd2",
+      "bytes": 30312,
+      "foreground": {
+        "left": 173,
+        "top": 37,
+        "right": 786,
+        "bottom": 502,
+        "pixels": 175861
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 3,
+      "triangles": 9110
+    },
+    "hollow-block-forms-01": {
+      "id": "hollow-block-forms-01",
+      "title": "空心砌块的常见形式",
+      "category": "墙体",
+      "source": "/models/wall/hollow-block-forms/hollow-block-forms.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/hollow-block-forms-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "9f5b986b408bf59fefad58910758b813935aff876a6e314bbc5f79eb76429562",
+      "bytes": 28564,
+      "foreground": {
+        "left": 131,
+        "top": 37,
+        "right": 828,
+        "bottom": 502,
+        "pixels": 114450
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 4,
+      "triangles": 944
+    },
+    "apron-flashing-01": {
+      "id": "apron-flashing-01",
+      "title": "细石混凝土散水构造",
+      "category": "墙体",
+      "source": "/models/wall/apron-flashing/apron-flashing.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/apron-flashing-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "64fbd8a0bd8eb0a1ba8a2a09e5117d22b41ee1e393168042e3fb577a6283c936",
+      "bytes": 25472,
+      "foreground": {
+        "left": 227,
+        "top": 37,
+        "right": 732,
+        "bottom": 502,
+        "pixels": 141766
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 11,
+          "triangles": 4022
+        },
+        {
+          "time": 4,
+          "meshes": 11,
+          "triangles": 4022
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 11,
+      "triangles": 4022
+    },
+    "stone-apron-01": {
+      "id": "stone-apron-01",
+      "title": "块石散水构造",
+      "category": "墙体",
+      "source": "/models/wall/stone-apron/stone-apron.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {
+        "120厚块石,1：2.5水泥砂浆灌缝.001": "120厚块石,1：25水泥砂浆灌缝",
+        "120厚块石,1：25水泥砂浆灌缝001": "120厚块石,1：25水泥砂浆灌缝",
+        "120厚块石,1：25水泥砂浆灌缝": "120厚块石,1：25水泥砂浆灌缝"
+      },
+      "outlineExcluded": [],
+      "path": "images/node-renders/stone-apron-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "fd170e3b61ea6d21547be11dc109ce186313b1eb95ea0d31e272aad3c1b21513",
+      "bytes": 27828,
+      "foreground": {
+        "left": 220,
+        "top": 37,
+        "right": 739,
+        "bottom": 502,
+        "pixels": 147217
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 12,
+          "triangles": 290
+        },
+        {
+          "time": 4,
+          "meshes": 12,
+          "triangles": 290
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 12,
+      "triangles": 290
+    },
+    "foam-insulation-01": {
+      "id": "foam-insulation-01",
+      "title": "粘贴泡沫塑料保温板外保温",
+      "category": "墙体",
+      "source": "/models/wall/foam-insulation/foam-insulation.glb",
+      "variant": null,
+      "initialView": [
+        0.256,
+        0.142,
+        -0.956
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/foam-insulation-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "b2f83a8e0c1416f9a293d4c865be26c243e73d899d91cb18e7a69b84f84db965",
+      "bytes": 6828,
+      "foreground": {
+        "left": 389,
+        "top": 37,
+        "right": 570,
+        "bottom": 503,
+        "pixels": 71804
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 7,
+          "triangles": 2716
+        },
+        {
+          "time": 4,
+          "meshes": 7,
+          "triangles": 2716
+        }
+      ],
+      "direction": [
+        0.2381207033174425,
+        0.3905956710550219,
+        -0.8892320014510744
+      ],
+      "meshes": 7,
+      "triangles": 2716
+    },
+    "rockwool-insulation-01": {
+      "id": "rockwool-insulation-01",
+      "title": "粘贴岩棉防火保温板外保温",
+      "category": "墙体",
+      "source": "/models/wall/rockwool-insulation/rockwool-insulation.glb",
+      "variant": null,
+      "initialView": [
+        0.256,
+        0.142,
+        -0.956
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/rockwool-insulation-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "0cbc6996a90fa5059533bee55607b9113eefcd369d11602d12d55ba4c3c1b283",
+      "bytes": 7526,
+      "foreground": {
+        "left": 387,
+        "top": 37,
+        "right": 572,
+        "bottom": 503,
+        "pixels": 73061
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 9,
+          "triangles": 2982
+        },
+        {
+          "time": 4,
+          "meshes": 9,
+          "triangles": 2982
+        }
+      ],
+      "direction": [
+        0.2381207033174425,
+        0.3905956710550219,
+        -0.8892320014510744
+      ],
+      "meshes": 9,
+      "triangles": 2982
+    },
+    "faced-plinth-01": {
+      "id": "faced-plinth-01",
+      "title": "贴面勒脚构造做法",
+      "category": "墙体",
+      "source": "/models/wall/faced-plinth/faced-plinth.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/faced-plinth-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "42cd7638b9f6f63542ae46d3c30ed6463647e7e9843debe3c00aa3c5a425662c",
+      "bytes": 40702,
+      "foreground": {
+        "left": 140,
+        "top": 37,
+        "right": 819,
+        "bottom": 502,
+        "pixels": 201582
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 6,
+      "triangles": 140
+    },
+    "stone-plinth-01": {
+      "id": "stone-plinth-01",
+      "title": "石砌勒脚构造做法",
+      "category": "墙体",
+      "source": "/models/wall/stone-plinth/stone-plinth.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/stone-plinth-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "9be7bfaa86884d3d6160c83b7bb90bd327df978d36a471fae7374707037f17b0",
+      "bytes": 43084,
+      "foreground": {
+        "left": 129,
+        "top": 37,
+        "right": 830,
+        "bottom": 502,
+        "pixels": 207890
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 5,
+      "triangles": 112
+    },
+    "plaster-plinth-01": {
+      "id": "plaster-plinth-01",
+      "title": "抹灰勒脚构造做法",
+      "category": "墙体",
+      "source": "/models/wall/plaster-plinth/plaster-plinth.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/plaster-plinth-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "eec9b4440c21de63b6ffc8320a529fe5ddd327e02c07bb9ea60b20bd21cee37a",
+      "bytes": 40198,
+      "foreground": {
+        "left": 129,
+        "top": 37,
+        "right": 830,
+        "bottom": 502,
+        "pixels": 204898
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 6,
+      "triangles": 164
+    },
+    "elevator-composition-01": {
+      "id": "elevator-composition-01",
+      "title": "电梯构造组成",
+      "category": "楼梯",
+      "source": "/models/stairs/elevator-composition/elevator-composition-9a0264d4.glb",
+      "variant": null,
+      "initialView": [
+        -0.5,
+        0.18,
+        1
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/elevator-composition-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "9a0264d4c986de06edefb0b758b59f68d986c2210493ed85a57776246f70b1f9",
+      "bytes": 12096,
+      "foreground": {
+        "left": 414,
+        "top": 37,
+        "right": 545,
+        "bottom": 502,
+        "pixels": 46593
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 21,
+          "triangles": 29442
+        },
+        {
+          "time": 4,
+          "meshes": 21,
+          "triangles": 29442
+        }
+      ],
+      "direction": [
+        -0.41152397740778635,
+        0.3914589123935984,
+        0.8230479548155727
+      ],
+      "meshes": 21,
+      "triangles": 29442
+    },
+    "stair-start-rounded-return-handrail-01": {
+      "id": "stair-start-rounded-return-handrail-01",
+      "title": "楼梯起步处理（圆头踏步与连续回弯扶手）",
+      "category": "楼梯",
+      "source": "/models/stairs/stair-start/stair-start-rounded.glb",
+      "variant": null,
+      "initialView": [
+        -0.64,
+        0.43,
+        -0.64
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/stair-start-rounded-return-handrail-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "95b01a2460cb6b5f9c7b373d2e51fc676d292303981e99347b55c359ea1dccff",
+      "bytes": 18712,
+      "foreground": {
+        "left": 290,
+        "top": 37,
+        "right": 669,
+        "bottom": 503,
+        "pixels": 69587
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        -0.638692020665069,
+        0.4291212013843432,
+        -0.638692020665069
+      ],
+      "meshes": 3,
+      "triangles": 5634
+    },
+    "stair-start-straight-folded-handrail-01": {
+      "id": "stair-start-straight-folded-handrail-01",
+      "title": "楼梯起步处理（直边踏步与下折回接扶手）",
+      "category": "楼梯",
+      "source": "/models/stairs/stair-start/stair-start-straight.glb",
+      "variant": null,
+      "initialView": [
+        -0.64,
+        0.43,
+        -0.64
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/stair-start-straight-folded-handrail-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "42f1dfbbe1e2379ead75761e496d37b3156ee70bbdb5a8d1001cb75273aaa52a",
+      "bytes": 17710,
+      "foreground": {
+        "left": 290,
+        "top": 37,
+        "right": 669,
+        "bottom": 502,
+        "pixels": 68708
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        -0.638692020665069,
+        0.4291212013843432,
+        -0.638692020665069
+      ],
+      "meshes": 4,
+      "triangles": 200
+    },
+    "escalator-01": {
+      "id": "escalator-01",
+      "title": "自动扶梯构造",
+      "category": "楼梯",
+      "source": "/models/stairs/escalator/escalator.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/escalator-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "f3600149f07039ede62ec565af89ba1be378f37b0c376b7950cc9fc327c0f0b7",
+      "bytes": 33136,
+      "foreground": {
+        "left": 66,
+        "top": 68,
+        "right": 893,
+        "bottom": 471,
+        "pixels": 167050
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 12,
+          "triangles": 84040
+        },
+        {
+          "time": 4,
+          "meshes": 12,
+          "triangles": 84040
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 12,
+      "triangles": 84040
+    },
+    "curved-stair-01": {
+      "id": "curved-stair-01",
+      "title": "圆弧形楼梯构造",
+      "category": "楼梯",
+      "source": "/models/stairs/curved-stair/curved-stair.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/curved-stair-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "3d6b7f9771209795276b228986ab8ab1af34e8012728fba94ac7732644b09c9a",
+      "bytes": 35718,
+      "foreground": {
+        "left": 278,
+        "top": 37,
+        "right": 681,
+        "bottom": 503,
+        "pixels": 80605
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 10,
+          "triangles": 68758
+        },
+        {
+          "time": 4,
+          "meshes": 10,
+          "triangles": 68758
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 10,
+      "triangles": 68758
+    },
+    "spiral-stair-01": {
+      "id": "spiral-stair-01",
+      "title": "螺旋形楼梯构造",
+      "category": "楼梯",
+      "source": "/models/stairs/spiral-stair/spiral-stair.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [
+        "中心空心套管"
+      ],
+      "path": "images/node-renders/spiral-stair-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "b9caff5dfa3e654516cae550f77afb3e444f6e91089f8d682f9aa46af9daedd1",
+      "bytes": 25796,
+      "foreground": {
+        "left": 387,
+        "top": 37,
+        "right": 572,
+        "bottom": 502,
+        "pixels": 35558
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 6,
+          "triangles": 231808
+        },
+        {
+          "time": 4,
+          "meshes": 6,
+          "triangles": 231808
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 6,
+      "triangles": 231808
+    },
+    "dogleg-stair-01": {
+      "id": "dogleg-stair-01",
+      "title": "折行双跑楼梯构造",
+      "category": "楼梯",
+      "source": "/models/stairs/dogleg-stair/dogleg-stair.glb",
+      "variant": null,
+      "initialView": [
+        -0.532,
+        0.375,
+        0.759
+      ],
+      "groups": {
+        "临空栏杆与板式木扶手001": "临空栏杆与板式木扶手",
+        "临空栏杆与板式木扶手001_1": "临空栏杆与板式木扶手"
+      },
+      "outlineExcluded": [],
+      "path": "images/node-renders/dogleg-stair-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "7d256bca5dc1e730391345aeeb555816e715007871f86ff3d0d84e524dcf619a",
+      "bytes": 39746,
+      "foreground": {
+        "left": 177,
+        "top": 37,
+        "right": 782,
+        "bottom": 502,
+        "pixels": 178617
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 11,
+          "triangles": 95824
+        },
+        {
+          "time": 4,
+          "meshes": 11,
+          "triangles": 95824
+        }
+      ],
+      "direction": [
+        -0.52281196722847,
+        0.4126905654064159,
+        0.7458915096361065
+      ],
+      "meshes": 11,
+      "triangles": 95824
+    },
+    "stair-flight-offset-multiple-01": {
+      "id": "stair-flight-offset-multiple-01",
+      "title": "梯段与平台梁节点处理（梯段错多步）",
+      "category": "楼梯",
+      "source": "/models/stairs/stair-flight-platform/stair-flight-offset-multiple-01.glb",
+      "variant": null,
+      "initialView": [
+        0.99,
+        0.142,
+        0
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/stair-flight-offset-multiple-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "954b0eaf367f9e45c1dfefd492dce38ace6f237fee951cbed218c67da425ed5d",
+      "bytes": 26670,
+      "foreground": {
+        "left": 66,
+        "top": 76,
+        "right": 893,
+        "bottom": 463,
+        "pixels": 158660
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 5,
+      "triangles": 1644
+    },
+    "stair-flight-flush-unburied-01": {
+      "id": "stair-flight-flush-unburied-01",
+      "title": "梯段与平台梁节点处理（梯段齐步不埋步）",
+      "category": "楼梯",
+      "source": "/models/stairs/stair-flight-platform/stair-flight-flush-unburied-01.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/stair-flight-flush-unburied-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "e0dd9fe0facce1c568c0afdc36c4d3d5398e3cd2aa47b4641a8cd6e8d0b996d3",
+      "bytes": 28234,
+      "foreground": {
+        "left": 127,
+        "top": 37,
+        "right": 832,
+        "bottom": 502,
+        "pixels": 119842
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 7,
+      "triangles": 2272
+    },
+    "stair-flight-flush-buried-01": {
+      "id": "stair-flight-flush-buried-01",
+      "title": "梯段与平台梁节点处理（梯段齐步并埋步）",
+      "category": "楼梯",
+      "source": "/models/stairs/stair-flight-platform/stair-flight-flush-buried-01.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {
+        "无需标注001": "无需标注",
+        "无需标注001_1": "无需标注"
+      },
+      "outlineExcluded": [],
+      "path": "images/node-renders/stair-flight-flush-buried-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "35486de796721dc1135dcb63ed4ce22090ba94d728cdda0c96470f3bfcbc73b8",
+      "bytes": 28116,
+      "foreground": {
+        "left": 108,
+        "top": 37,
+        "right": 851,
+        "bottom": 503,
+        "pixels": 108588
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 7,
+      "triangles": 1340
+    },
+    "concrete-steps-01": {
+      "id": "concrete-steps-01",
+      "title": "混凝土台阶",
+      "category": "楼梯",
+      "source": "/models/stairs/concrete-steps/concrete-steps.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/concrete-steps-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "53475f8a42739d47e3ef69c8c8698577da0b6b59f593fc52a16fac4939d0ae0f",
+      "bytes": 49512,
+      "foreground": {
+        "left": 66,
+        "top": 41,
+        "right": 894,
+        "bottom": 498,
+        "pixels": 270292
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 5,
+          "triangles": 200
+        },
+        {
+          "time": 4,
+          "meshes": 5,
+          "triangles": 200
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 5,
+      "triangles": 200
+    },
+    "bottom-landing-entrance-01": {
+      "id": "bottom-landing-entrance-01",
+      "title": "底层中间平台下作出入口（底层长短跑）",
+      "category": "楼梯",
+      "source": "/models/stairs/bottom-landing-entrance/bottom-landing-entrance.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/bottom-landing-entrance-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "b378b98b5fd53fc6a946eb710fd943f30e18e93b4bed9444eb215c63eb1e22f6",
+      "bytes": 25280,
+      "foreground": {
+        "left": 263,
+        "top": 37,
+        "right": 696,
+        "bottom": 502,
+        "pixels": 135590
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 3,
+      "triangles": 956
+    },
+    "bottom-landing-entrance-02": {
+      "id": "bottom-landing-entrance-02",
+      "title": "底层中间平台下作出入口（局部降低地坪）",
+      "category": "楼梯",
+      "source": "/models/stairs/bottom-landing-entrance/bottom-landing-entrance-lowered-floor.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/bottom-landing-entrance-02.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "61b98f8bbea6c7b1b1b8ba769a54fab67be47d10f9f2e5fb26b585cd1a60ba6f",
+      "bytes": 24076,
+      "foreground": {
+        "left": 277,
+        "top": 37,
+        "right": 682,
+        "bottom": 502,
+        "pixels": 127487
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 3,
+      "triangles": 1016
+    },
+    "bottom-landing-entrance-03": {
+      "id": "bottom-landing-entrance-03",
+      "title": "底层中间平台下作出入口（底层长短跑并局部降低地坪）",
+      "category": "楼梯",
+      "source": "/models/stairs/bottom-landing-entrance/bottom-landing-entrance-combined.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/bottom-landing-entrance-03.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "4c5df0d8743f21ac4b6244b8f7f9f4ca7a277f7ffd891eb4b5f682f575dbea22",
+      "bytes": 23926,
+      "foreground": {
+        "left": 267,
+        "top": 37,
+        "right": 692,
+        "bottom": 502,
+        "pixels": 134020
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 2,
+      "triangles": 1016
+    },
+    "bottom-landing-entrance-04": {
+      "id": "bottom-landing-entrance-04",
+      "title": "底层中间平台下作出入口（底层直跑）",
+      "category": "楼梯",
+      "source": "/models/stairs/bottom-landing-entrance/bottom-landing-entrance-straight.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/bottom-landing-entrance-04.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "a16d2a0f7b56f741a51cbc547d7928ef297270497ace476be415dcf31fce68aa",
+      "bytes": 25486,
+      "foreground": {
+        "left": 238,
+        "top": 37,
+        "right": 721,
+        "bottom": 502,
+        "pixels": 140266
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 3,
+      "triangles": 878
+    },
+    "ramp-handrail-01": {
+      "id": "ramp-handrail-01",
+      "title": "坡道扶手",
+      "category": "楼梯",
+      "source": "/models/stairs/ramp-handrail/ramp-handrail.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/ramp-handrail-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "43cc2acedb870d0d23f66ba3dbd1a866cb2f3b4ef787232cf6c8895b6c3624a6",
+      "bytes": 25624,
+      "foreground": {
+        "left": 66,
+        "top": 106,
+        "right": 893,
+        "bottom": 433,
+        "pixels": 80224
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 3,
+          "triangles": 7232
+        },
+        {
+          "time": 4,
+          "meshes": 3,
+          "triangles": 7232
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 3,
+      "triangles": 7232
+    },
+    "handrail-wall-end-plate-01": {
+      "id": "handrail-wall-end-plate-01",
+      "title": "扶手与墙面的连接（混凝土预埋板端部连接）",
+      "category": "楼梯",
+      "source": "/models/stairs/handrail-wall-end-plate/handrail-wall-end-plate.glb",
+      "variant": null,
+      "initialView": [
+        0.256,
+        0.142,
+        -0.956
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/handrail-wall-end-plate-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "a244c4948a4d53f44bb015032699d1c37c7f7d916ed9f4085ab56d4cfd32604f",
+      "bytes": 13550,
+      "foreground": {
+        "left": 254,
+        "top": 37,
+        "right": 705,
+        "bottom": 503,
+        "pixels": 125455
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 4,
+          "triangles": 14124
+        },
+        {
+          "time": 4,
+          "meshes": 4,
+          "triangles": 14124
+        }
+      ],
+      "direction": [
+        0.2381207033174425,
+        0.3905956710550219,
+        -0.8892320014510744
+      ],
+      "meshes": 4,
+      "triangles": 14124
+    },
+    "handrail-wall-bent-bracket-01": {
+      "id": "handrail-wall-bent-bracket-01",
+      "title": "扶手与墙面的连接（混凝土预埋板弯管托架）",
+      "category": "楼梯",
+      "source": "/models/stairs/handrail-wall-bent-bracket/handrail-wall-bent-bracket.glb",
+      "variant": null,
+      "initialView": [
+        0.495,
+        0.142,
+        0.857
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/handrail-wall-bent-bracket-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "a5b49310301c5a5671449ffeaa7a1fb6cb7b16f7be24824ee5ba5ec3d361dd90",
+      "bytes": 18312,
+      "foreground": {
+        "left": 231,
+        "top": 37,
+        "right": 727,
+        "bottom": 502,
+        "pixels": 151829
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 5,
+          "triangles": 27660
+        },
+        {
+          "time": 4,
+          "meshes": 5,
+          "triangles": 27660
+        }
+      ],
+      "direction": [
+        0.4604282350490905,
+        0.39059566423829767,
+        0.7971454493678194
+      ],
+      "meshes": 5,
+      "triangles": 27660
+    },
+    "handrail-brick-wall-forked-bar-01": {
+      "id": "handrail-brick-wall-forked-bar-01",
+      "title": "扶手与墙面的连接（砖墙入墙分叉扁钢）",
+      "category": "楼梯",
+      "source": "/models/stairs/handrail-brick-wall-forked-bar/handrail-brick-wall-forked-bar.glb",
+      "variant": null,
+      "initialView": [
+        0.256,
+        0.142,
+        -0.956
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/handrail-brick-wall-forked-bar-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "0e02ed8f1d3b73704f97e9681de5e3f305d6e580b9acf969daa5018c9b26a6fa",
+      "bytes": 19770,
+      "foreground": {
+        "left": 254,
+        "top": 37,
+        "right": 705,
+        "bottom": 503,
+        "pixels": 126839
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 5,
+          "triangles": 360
+        },
+        {
+          "time": 4,
+          "meshes": 5,
+          "triangles": 360
+        }
+      ],
+      "direction": [
+        0.2381207033174425,
+        0.3905956710550219,
+        -0.8892320014510744
+      ],
+      "meshes": 5,
+      "triangles": 360
+    },
+    "handrail-brick-wall-wood-pad-bracket-01": {
+      "id": "handrail-brick-wall-wood-pad-bracket-01",
+      "title": "扶手与墙面的连接（砖墙弯管托架与木垫块）",
+      "category": "楼梯",
+      "source": "/models/stairs/handrail-brick-wall-wood-pad-bracket/handrail-brick-wall-wood-pad-bracket.glb",
+      "variant": null,
+      "initialView": [
+        0.495,
+        0.142,
+        0.857
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/handrail-brick-wall-wood-pad-bracket-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "f5243eb810be9b80868fab76fb298db5f68fc4101a4ee3f2055f9f08ebeb498b",
+      "bytes": 24928,
+      "foreground": {
+        "left": 230,
+        "top": 37,
+        "right": 728,
+        "bottom": 502,
+        "pixels": 147988
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 8,
+          "triangles": 22240
+        },
+        {
+          "time": 4,
+          "meshes": 8,
+          "triangles": 22240
+        }
+      ],
+      "direction": [
+        0.4604282350490905,
+        0.39059566423829767,
+        0.7971454493678194
+      ],
+      "meshes": 8,
+      "triangles": 22240
+    },
+    "ramp-floor-01": {
+      "id": "ramp-floor-01",
+      "title": "坡道地面构造做法（一）",
+      "category": "楼梯",
+      "source": "/models/stairs/ramp-floor/ramp-floor-01.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/ramp-floor-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "6bbd433162843a5cdeb8ed6f9e90c3c3ce233baa5b825fb2b797bd796d4395b8",
+      "bytes": 38550,
+      "foreground": {
+        "left": 66,
+        "top": 74,
+        "right": 894,
+        "bottom": 465,
+        "pixels": 203352
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 5,
+          "triangles": 284
+        },
+        {
+          "time": 4,
+          "meshes": 5,
+          "triangles": 284
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 5,
+      "triangles": 284
+    },
+    "ramp-floor-02": {
+      "id": "ramp-floor-02",
+      "title": "坡道地面构造做法（二）",
+      "category": "楼梯",
+      "source": "/models/stairs/ramp-floor/ramp-floor-02.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/ramp-floor-02.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "805e0519cca1e7d0a5d6217c152cb399aa3449ab0491f28cc6860fe46f5ac15c",
+      "bytes": 26674,
+      "foreground": {
+        "left": 66,
+        "top": 80,
+        "right": 894,
+        "bottom": 460,
+        "pixels": 194981
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 4,
+          "triangles": 104
+        },
+        {
+          "time": 4,
+          "meshes": 4,
+          "triangles": 104
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 4,
+      "triangles": 104
+    },
+    "wall-damp-proof-course": {
+      "id": "wall-damp-proof-course",
+      "title": "墙身防潮层的位置",
+      "category": "墙体",
+      "source": "/models/wall/wall-damp-proof/damp-proof-a-v2.glb",
+      "variant": "dense-base",
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/wall-damp-proof-course.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "1d1076b2987e2e8f67df6d8b3e05abb8a505be489a5f31044251eaec00c63d7d",
+      "bytes": 34202,
+      "foreground": {
+        "left": 166,
+        "top": 37,
+        "right": 793,
+        "bottom": 502,
+        "pixels": 193403
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 4,
+      "triangles": 124
+    },
+    "cantilever-slab-01": {
+      "id": "cantilever-slab-01",
+      "title": "挑梁搭板三种构造",
+      "category": "楼地层",
+      "source": "/models/floor/cantilever-slab/cantilever-slab-edge-beam.glb",
+      "variant": "edge-beam",
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/cantilever-slab-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "16c0ef180d66d093f07a78c80ed3bd8dfd8fab0e96a1461eab5af555607eb68a",
+      "bytes": 13954,
+      "foreground": {
+        "left": 296,
+        "top": 37,
+        "right": 663,
+        "bottom": 502,
+        "pixels": 98755
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 2,
+      "triangles": 1636
+    },
+    "pile-foundation-composition-01": {
+      "id": "pile-foundation-composition-01",
+      "title": "桩基组成",
+      "category": "基础",
+      "source": "/models/foundation/pile-foundation-composition/pile-foundation-composition.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/pile-foundation-composition-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "4f76b97ac6795d2a8d70b9140da0ae25ef24660def9018cbe60d214227fddf2a",
+      "bytes": 17830,
+      "foreground": {
+        "left": 189,
+        "top": 37,
+        "right": 770,
+        "bottom": 503,
+        "pixels": 79219
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 5,
+      "triangles": 5804
+    },
+    "combined-foundation-slab-01": {
+      "id": "combined-foundation-slab-01",
+      "title": "联合基础（板式基础）",
+      "category": "基础",
+      "source": "/models/foundation/combined-foundation/slab.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/combined-foundation-slab-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "31d22affb08dd8a29c680c655119723e5a951f0e4707f4f02e4d1480d94f6f1a",
+      "bytes": 17478,
+      "foreground": {
+        "left": 85,
+        "top": 37,
+        "right": 874,
+        "bottom": 502,
+        "pixels": 183527
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 2,
+      "triangles": 120
+    },
+    "combined-foundation-beam-slab-01": {
+      "id": "combined-foundation-beam-slab-01",
+      "title": "联合基础（梁板式基础）",
+      "category": "基础",
+      "source": "/models/foundation/combined-foundation/beam-slab.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/combined-foundation-beam-slab-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "1c5f9f55c2df3cd56263799c5424c8cfd7d712ea6977d91b8a6cbb226049bff7",
+      "bytes": 23060,
+      "foreground": {
+        "left": 169,
+        "top": 37,
+        "right": 790,
+        "bottom": 502,
+        "pixels": 142175
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 3,
+      "triangles": 264
+    },
+    "combined-foundation-box-01": {
+      "id": "combined-foundation-box-01",
+      "title": "联合基础（箱形基础）",
+      "category": "基础",
+      "source": "/models/foundation/combined-foundation/box.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/combined-foundation-box-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "a8e3cc3bb64725cb79ee078fa14b67eafb623d31d968b0d7a9fa12abb3e90bb1",
+      "bytes": 21138,
+      "foreground": {
+        "left": 176,
+        "top": 37,
+        "right": 783,
+        "bottom": 502,
+        "pixels": 163792
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 4,
+      "triangles": 720
+    },
+    "combined-foundation-column-cross-01": {
+      "id": "combined-foundation-column-cross-01",
+      "title": "联合基础（柱下十字交叉基础）",
+      "category": "基础",
+      "source": "/models/foundation/combined-foundation/column-cross.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/combined-foundation-column-cross-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "c10e7221311046f2253fb99163a87715f4642db801cde5a658eab46ed4e47600",
+      "bytes": 48408,
+      "foreground": {
+        "left": 65,
+        "top": 45,
+        "right": 893,
+        "bottom": 494,
+        "pixels": 142357
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 2,
+      "triangles": 772
+    },
+    "combined-foundation-column-strip-01": {
+      "id": "combined-foundation-column-strip-01",
+      "title": "联合基础（柱下条形基础）",
+      "category": "基础",
+      "source": "/models/foundation/combined-foundation/column-strip.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/combined-foundation-column-strip-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "096eab02cba7e47e46e23cd27738d6f51771f37ef0a97a0a9f8f53a660909cac",
+      "bytes": 37484,
+      "foreground": {
+        "left": 66,
+        "top": 46,
+        "right": 893,
+        "bottom": 493,
+        "pixels": 112010
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 2,
+      "triangles": 332
+    },
+    "independent-foundation-01": {
+      "id": "independent-foundation-01",
+      "title": "独立式基础三种形式",
+      "category": "基础",
+      "source": "/models/foundation/independent-foundation/cup-base.glb",
+      "variant": "cup-base",
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/independent-foundation-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "cea5ece29c26d4cedc74accde638c27611d802723981aab6542eda4d3da17755",
+      "bytes": 18382,
+      "foreground": {
+        "left": 174,
+        "top": 37,
+        "right": 786,
+        "bottom": 502,
+        "pixels": 133033
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5608074261085645,
+        0.4822943864533655,
+        0.6729689113302775
+      ],
+      "meshes": 1,
+      "triangles": 88
+    },
+    "stair-flight-offset-one-01": {
+      "id": "stair-flight-offset-one-01",
+      "title": "梯段与平台梁节点处理（梯段错一步）",
+      "category": "楼梯",
+      "source": "/models/stairs/stair-flight-platform/stair-flight-offset-one-01-v2.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {
+        "无需标注001": "无需标注",
+        "无需标注001_1": "无需标注"
+      },
+      "outlineExcluded": [],
+      "path": "images/node-renders/stair-flight-offset-one-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "d93c164768d362cc1ec9e01f775a650bfba47729119968a0212e0f87c03a207e",
+      "bytes": 29856,
+      "foreground": {
+        "left": 101,
+        "top": 37,
+        "right": 858,
+        "bottom": 502,
+        "pixels": 117522
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 7,
+      "triangles": 2816
+    },
+    "rc-elevated-steps-01": {
+      "id": "rc-elevated-steps-01",
+      "title": "钢筋混凝土架空台阶",
+      "category": "楼梯",
+      "source": "/models/stairs/rc-elevated-steps/rc-elevated-steps.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/rc-elevated-steps-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "16eb61e077d44a11fd746aaa85599275fee640b5b75f23799d3272ac4f4ff02d",
+      "bytes": 33256,
+      "foreground": {
+        "left": 65,
+        "top": 45,
+        "right": 893,
+        "bottom": 494,
+        "pixels": 238561
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 8,
+          "triangles": 376
+        },
+        {
+          "time": 4,
+          "meshes": 8,
+          "triangles": 376
+        }
+      ],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 8,
+      "triangles": 376
+    },
+    "stair-composition-01": {
+      "id": "stair-composition-01",
+      "title": "楼梯的组成",
+      "category": "楼梯",
+      "source": "/models/stairs/stair-composition/stair-composition.glb",
+      "variant": null,
+      "initialView": null,
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/stair-composition-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "38e24d2889f6c1e730f7e3c38091017677b42829008f75c87da3e40e7766513d",
+      "bytes": 20948,
+      "foreground": {
+        "left": 322,
+        "top": 37,
+        "right": 637,
+        "bottom": 502,
+        "pixels": 126626
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.5488212999484517,
+        0.329292779969071,
+        0.7683498199278325
+      ],
+      "meshes": 6,
+      "triangles": 1608
+    }
+  }
+}

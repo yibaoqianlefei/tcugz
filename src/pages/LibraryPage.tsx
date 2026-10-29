@@ -3,6 +3,7 @@ import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { Search, X } from 'lucide-react';
 import { nodesIndex } from '../data/nodesIndex';
 import { initDirectoryMotion } from '../ui/directoryMotion.js';
+import { getNodeRenderPreview } from '../utils/nodeRenderPreview';
 
 const libraryNodes = nodesIndex.filter(node => node.category !== '案例');
 const categories = [
@@ -15,10 +16,11 @@ const categories = [
 
 function NodeCard({ node, returnTo }: { node: typeof libraryNodes[number]; returnTo: string }) {
   const number = String(libraryNodes.indexOf(node) + 1).padStart(2, '0');
+  const preview = getNodeRenderPreview(node.id);
   return <Link to={`/node/${node.id}`} state={{ libraryReturnTo: returnTo }} className="directory-card library-node-card" aria-label={`查看${node.title}`}>
-    <span className="directory-card-top"><span className="directory-card-number">{number}</span><span className="directory-card-kicker">{node.category} · {node.thumbnail ? '图模对照' : '三维观察'}</span></span>
+    <span className="directory-card-top"><span className="directory-card-number">{number}</span><span className="directory-card-kicker">{node.category} · {preview ? '模型预览' : '内容准备中'}</span></span>
     <div className="library-node-preview">
-      {node.thumbnail ? <img src={node.thumbnail} alt={`${node.title}构造图`} loading="lazy" /> : <div className="library-node-placeholder" aria-hidden="true"><span /><span /><span>三维模型</span></div>}
+      {preview ? <img src={preview} alt={`${node.title}模型渲染图`} width={960} height={540} loading="lazy" decoding="async" /> : <div className="library-node-placeholder" aria-hidden="true"><span /><span /><span>内容准备中</span></div>}
     </div>
     <div className="library-node-copy"><h3 className="directory-card-title">{node.title}</h3><p className="directory-card-description">{node.description}</p></div>
     <span className="directory-card-footer"><span>{node.status === 'development' ? '查看节点状态' : '打开节点'}</span><span className="directory-card-arrow" aria-hidden="true">→</span></span>
