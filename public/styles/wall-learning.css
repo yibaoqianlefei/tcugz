@@ -1,4 +1,4 @@
-/* Wall chapter pilot. Selectors leave other chapter layouts unchanged. */
+/* Shared course and node learning pattern, derived from the wall chapter. */
 .wall-learning-outcome{border-top:1px solid var(--ui-line,#d8deeb);margin-top:16px;padding-top:14px}
 .wall-learning-outcome strong,.wall-model-question>span{font-size:12px;letter-spacing:.05em;color:var(--ui-blue,#44558f)}
 .wall-learning-outcome p{margin:5px 0 8px!important;color:var(--ui-ink,#202945)}
