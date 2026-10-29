@@ -501,7 +501,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     id: "flat-roof-01",
     title: "平屋面构造",
     description:
-      "上人平屋面，八层构造：保护层、隔气层(卷材)、防水层、隔气层(冷底子油)、找平层、找坡层、保温层、结构层。",
+      "平屋面局部八层实例，自上而下为细石混凝土保护层、350号干铺卷材、SBS防水层、冷底子油基层处理剂、找平层、找坡层、保温板、结构板。干铺卷材的设计用途需确认，不以该模型证明隔汽或上人适用性。",
     category: "屋顶",
     thumbnail: null,
     status: "available",
@@ -526,7 +526,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     id: "sloped-roof-01",
     title: "坡屋顶构造",
     description:
-      "坡屋顶（斜屋顶）构造层次：彩色水泥瓦→挂瓦条→顺水条→保温层→隔气层→防水层→找平层→结构层。",
+      "坡屋顶局部九层实例，自外向内为彩色水泥瓦、挂瓦条、顺水条、细石混凝土层、保温板、SBS防水层、冷底子油基层处理剂、找平层、结构板。层位按原模型识读，不由薄涂层名称推定隔汽性能。",
     category: "屋顶",
     thumbnail: null,
     status: "available",
@@ -1993,6 +1993,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     thumbnail: null,
     status: "available",
     presentationMode: "variants",
+    diagram: { path: assetPath("images/learning/wall-paths.svg"), subtitle: "砌筑墙体墙身防潮层位置 · 教学原理示意，非施工详图" },
     /** layerConfig required by ConstructionKnowledgePanel. */
     layerConfig: {
       layers: plasterPlinthLayers as NodeLayerInfo[],
@@ -2034,9 +2035,9 @@ export const nodeDefinitions: NodeDefinition[] = [
             title: "密实垫层主体",
             category: "垫层",
             material: "C15混凝土",
-            construction: "浇筑密实，振捣均匀，养护不少于7天",
+            construction: "本例为混凝土垫层；浇筑、养护与材料参数按实际系统和设计确定",
             description:
-              "密实垫层是防潮构造的基础层。采用低水灰比的C15混凝土浇筑，密实度高、透水性低，能有效阻止地下水汽上升。垫层厚度通常不小于80mm，与室内地面面层共同构成完整的水平防潮体系。",
+              "本例用混凝土垫层说明密实材料与墙脚防潮层的相邻关系，C15、80mm等为示例卡片记录，不是通用最低要求。密实程度有助于控制液态水的迁移，但不能将普通混凝土垫层直接等同完整防水或隔汽层；仍须检查墙身防潮与地面防护的连续连接。",
             images: [
               { src: assetPath("images/wall/plaster-plinth-diagram.png"), alt: "密实垫层构造示意", caption: "密实垫层防潮体系示意" },
             ],
@@ -2049,7 +2050,7 @@ export const nodeDefinitions: NodeDefinition[] = [
             material: "防水砂浆",
             construction: "20mm厚防水砂浆，分两遍涂抹",
             description:
-              "水平防潮层直接设置在垫层之上。防水砂浆由水泥、砂和防水剂按比例配制，分两次涂抹以确保均匀覆盖。防潮层须连续无间断，搭接宽度≥100mm。",
+              "本方案将水平防潮层与室内地面附近的密实垫层协调，观察墙内阻断与地面防护的接续。砂浆层的接茬与卷材搭接不是同一种连接，不应统一套用一个搭接宽度；材料、标高、施工和连接要求按实际防潮系统核对。",
             tables: [
               {
                 title: "防水砂浆配比",
@@ -2102,7 +2103,7 @@ export const nodeDefinitions: NodeDefinition[] = [
             material: "级配碎石",
             construction: "分层铺设，每层≤100mm，碾压密实",
             description:
-              "透水垫层采用级配碎石或砂砾铺设。与密实垫层不同，透水垫层本身不具备阻水能力，地下水汽可通过孔隙上升。因此防潮层的设置位置需要高于透水垫层的毛细水上升高度，通常设置在室内地面标高以上。",
+              "本方案以透水垫层说明地面层不能直接视作墙脚的阻水边界。观察防潮层与地面、垫层的位置，沿墙内孔隙及墙侧分别追踪可能的受潮路径。标高应结合实际层次与水分作用确定，不统一写成必须高于室内完成面。",
             relatedNodeIds: ["stone-apron-01"],
           },
           {
@@ -2110,9 +2111,9 @@ export const nodeDefinitions: NodeDefinition[] = [
             title: "抬高防潮层",
             category: "防潮",
             material: "SBS改性沥青防水卷材",
-            construction: "热熔法铺贴，搭接≥100mm，卷材延伸至墙体",
+            construction: "卷材与墙身、地面防护接续；铺贴及搭接按所选材料系统确定",
             description:
-              "由于垫层透水，防潮层必须抬高至透水垫层毛细水影响范围之上。采用SBS改性沥青卷材，热熔法施工，与墙体防潮层形成连续防水屏障。这一做法有效阻断了透水垫层中的毛细水上升路径。",
+              "本方案通过防潮层与透水垫层、地面层的位置关系说明阻水边界。应沿墙身和地面检查连续接续，避免水分绕过防护；不能把示例中的抬高位置或卷材名称当作所有墙脚的统一做法，铺贴与连接按实际材料系统确定。",
             tables: [
               {
                 title: "SBS卷材性能指标",
