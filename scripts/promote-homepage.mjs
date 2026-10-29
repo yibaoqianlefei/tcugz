@@ -1,12 +1,14 @@
 import { copyFile, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 import { formalizeCourse } from './lib/course-paths.mjs';
+import { chapterSelection } from './lib/chapter-selection.mjs';
 
 const project = process.cwd();
 const previewRoot = join(project, 'public', 'previews', 'curriculum');
 const formalRoot = join(project, 'public', 'curriculum');
 const lessonRoot = join(project, 'public', 'lesson');
 const siteBase = process.env.VITE_BASE_URL ?? '/';
+const selection = chapterSelection();
 if (!siteBase.startsWith('/') || !siteBase.endsWith('/')) throw new Error('VITE_BASE_URL must start and end with /');
 
 function formalize(html) {
@@ -23,7 +25,7 @@ async function walk(directory) {
   return output;
 }
 
-const sources = await walk(previewRoot);
+const sources = (await walk(previewRoot)).filter(path => !selection.scoped || selection.paths.has(relative(previewRoot, path).replaceAll('\\', '/')));
 for (const source of sources) {
   const html = formalize(await readFile(source, 'utf8'));
   for (const targetRoot of [formalRoot, lessonRoot]) {
@@ -32,6 +34,10 @@ for (const source of sources) {
     await writeFile(destination, html, 'utf8');
   }
 }
+if (selection.scoped) {
+  if (sources.length !== selection.paths.size) throw new Error('Selected article count mismatch');
+  console.log(`${sources.length} selected articles synced; other pages and route manifests preserved.`);
+} else {
 await mkdir(join(formalRoot, 'wall'), { recursive: true });
 // One wall-directory template feeds preview, formal page and lesson iframe.
 // Keep the cover and stylesheet relative so a Pages subpath also works.
@@ -73,3 +79,4 @@ for (const path of documents) {
 legacyRoutes['/textbook/roof/index'] = '/lesson/basics/roof/roof-overview.html';
 await writeFile(join(project, 'src', 'data', 'curriculumDocuments.json'), JSON.stringify({ documents, legacyRoutes }, null, 2) + '\n');
 console.log('Formal curriculum pages generated.');
+}

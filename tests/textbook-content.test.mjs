@@ -25,7 +25,7 @@ for (const article of articles) {
   assert(ast.children.filter(node => node.type === 'heading' && node.depth === 2).length >= 3, `organized sections: ${article.source}`);
   if (article.group === 'practice') assert(/提交物/.test(markdown) && /自评/.test(markdown), `usable task: ${article.source}`);
   else assert(/自测|练习/.test(markdown) && /参考答案/.test(markdown), `self-check and answers: ${article.source}`);
-  assert(!/P\d{4}|暂无内容|TODO|待编写/.test(markdown), `student prose has no internal placeholders: ${article.source}`);
+  assert(!/\bP\d{4}\b|暂无内容|TODO|待编写/.test(markdown), `student prose has no internal placeholders: ${article.source}`);
   walk(ast, node => {
     if (node.type !== 'link') return;
     if (node.url.startsWith('/lesson/')) assert(documents.has(node.url.slice('/lesson/'.length).split('#')[0]), `cross-reference exists: ${article.source} → ${node.url}`);

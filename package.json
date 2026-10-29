@@ -7,11 +7,13 @@
     "dev": "vite",
     "build": "npm run build:pages && tsc -b && vite build",
     "build:pages": "node --import tsx scripts/build-lesson-media.ts && node scripts/build-curriculum-preview.mjs && node scripts/promote-homepage.mjs && npm run build:companion",
+    "build:pages:wall": "node --import tsx scripts/build-lesson-media.ts --wall-only && node scripts/build-curriculum-preview.mjs --wall-only && node scripts/promote-homepage.mjs --wall-only && node --import tsx scripts/build-companion-corpus.ts --wall-only",
     "build:companion": "node --import tsx scripts/build-companion-corpus.ts",
     "test:companion": "node --import tsx tests/companion.test.ts",
     "test:textbook": "node --import tsx tests/textbook-content.test.mjs",
+    "test:textbook:wall": "node --import tsx tests/wall-curriculum.test.mjs",
     "test:textbook:browser": "node tests/textbook-content-browser.mjs",
-    "test:textbook:digital": "node tests/digital-textbook.test.mjs",
+    "test:textbook:digital": "npm run test:curriculum",
     "test:textbook:digital:browser": "node tests/digital-textbook-browser.mjs",
     "test:ui:browser": "node tests/site-ui-browser.mjs",
     "test:companion:browser": "node tests/companion-browser.mjs",
@@ -45,7 +47,11 @@
     "test:stair-start": "node --import tsx tests/stair-start.test.ts",
     "test:elevator-composition": "node --import tsx tests/elevator-composition.test.ts",
     "test:wall-bearing-layout": "node --import tsx tests/wall-bearing-layout.test.ts",
-    "test:frame-structure-layout": "node --import tsx tests/frame-structure-layout.test.ts"
+    "test:frame-structure-layout": "node --import tsx tests/frame-structure-layout.test.ts",
+    "test:viewport-camera-motion": "node --import tsx tests/viewport-camera-motion.test.ts",
+    "build:pages:chapters": "node scripts/build-learning-batch.mjs",
+    "test:curriculum": "node --import tsx tests/curriculum-learning.test.mjs && node --import tsx tests/wall-curriculum.test.mjs",
+    "test:textbook:digital:archive": "node tests/digital-textbook.test.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",

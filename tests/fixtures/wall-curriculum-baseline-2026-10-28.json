@@ -1,0 +1,556 @@
+{
+  "date": "2026-10-28",
+  "scope": "wall",
+  "articles": [
+    {
+      "key": "introduction/intro-course-guide",
+      "path": "introduction/intro-course-guide.html",
+      "source": "src/data/textbook/introduction/intro-course-guide.md",
+      "sourceSha256": "40cb4ee9bda59f5bb0584b3fdcfd79aa3da577166d1323777dc57077f4d1f42f",
+      "htmlSha256": "29d7527670998118c42159ce00a523501acb3ae1cdd54f4748b13781d128d983",
+      "mediaSha256": "9ab6d0a2242e8db0115f1c9a5665e47d97650ed7516dde41aaec387705bbfe5f"
+    },
+    {
+      "key": "introduction/intro-classification",
+      "path": "introduction/intro-classification.html",
+      "source": "src/data/textbook/introduction/intro-classification.md",
+      "sourceSha256": "57bbea004df550816df27e7b0c42b091ea6b7ad34ed9871b3ad0521d5c684d8c",
+      "htmlSha256": "f6aef01b472fecc811059200e0e949f2dabf9179285ddb8d2860b4e579b37a96",
+      "mediaSha256": "bc1741323055c11b7c4704dfcd472fb9e2a2f958d9dc34bf267ec4ba38b699fb"
+    },
+    {
+      "key": "introduction/intro-grading",
+      "path": "introduction/intro-grading.html",
+      "source": "src/data/textbook/introduction/intro-grading.md",
+      "sourceSha256": "262850bb37dded628127b4f6d62e42a1b8b3c6a45e260b6518bdf1789760654d",
+      "htmlSha256": "cc918b3c5fe9d863dbb60070e61091b11081771926eedfd7ec9077648fe4b43c",
+      "mediaSha256": "c7efcceeea213a312dfc2285beabbc040562e2c83ad0ad77d080a81123f0a250"
+    },
+    {
+      "key": "introduction/intro-composition",
+      "path": "introduction/intro-composition.html",
+      "source": "src/data/textbook/introduction/intro-composition.md",
+      "sourceSha256": "71a1996de06c4ee7e890760382eecfec51fa84f85e1662be33931301e9ceaf5d",
+      "htmlSha256": "6f1cd78af7329e4d185d56155f5d3980835f62a74bf882d293326ae56cf34084",
+      "mediaSha256": "b55e9995a0ab7eb2266ae65277df1d7802ed7eb2744dc3f254b4bdafd0052219"
+    },
+    {
+      "key": "introduction/intro-factors",
+      "path": "introduction/intro-factors.html",
+      "source": "src/data/textbook/introduction/intro-factors.md",
+      "sourceSha256": "e78d4245a3090b4de8a1377b3151a92417b583413ae758a31c5f397f8a0063e3",
+      "htmlSha256": "dd634d53331f453b2a31876ba1c0033c823426dcd95e5006066a4f5bad46fdd7",
+      "mediaSha256": "0eca799e300ba6427300735cde78ef6fea5837d3b2bedc9444cf51a0ccec0698"
+    },
+    {
+      "key": "introduction/intro-design-principles",
+      "path": "introduction/intro-design-principles.html",
+      "source": "src/data/textbook/introduction/intro-design-principles.md",
+      "sourceSha256": "c6cf3bbb3f4404173377dec4fdc7cc8be8e55a340ff042bb43a2f1318990145d",
+      "htmlSha256": "75fe4efa871638bcbe4d3c26ee58fadb80e289b1be0469d9e2f00c1126f7e8c3",
+      "mediaSha256": "019f4817613c7a019114c8a0dde6930b4a51eac14d8b93a572fdf01018598084"
+    },
+    {
+      "key": "introduction/intro-drawing-standards",
+      "path": "introduction/intro-drawing-standards.html",
+      "source": "src/data/textbook/introduction/intro-drawing-standards.md",
+      "sourceSha256": "499bae6a80daaba37fb282c221d7ec2d0ce1587e8d3a3792c548abb8747faaa7",
+      "htmlSha256": "a46945a98794c32b36b6a520385606825e594d7ad21919a34117aaaf7cde5f13",
+      "mediaSha256": "9e1a3df9feec5cfcb2f3b2e9ad2724254a1349c5f1bd9eefc815c3e28a6afb69"
+    },
+    {
+      "key": "principles/thermal",
+      "path": "principles/thermal.html",
+      "source": "src/data/textbook/principles/thermal.md",
+      "sourceSha256": "fcf31e44fd6dfad425397853f4f05d0fea4c646aba105ccb1deb7f770fecfa30",
+      "htmlSha256": "832b4919cb83331f0079ed38ae86ad8abbed7ea79479feb6efcfb64062a30cf2",
+      "mediaSha256": "07a18873ffcade5adf3b4f2a6e3c074f522d82db55801285a1a20c19629fbe27"
+    },
+    {
+      "key": "principles/waterproof",
+      "path": "principles/waterproof.html",
+      "source": "src/data/textbook/principles/waterproof.md",
+      "sourceSha256": "90bf12ea1c5531fe2f8f338fb6bd9985c20eb31550a3e512659ca091c250b3c1",
+      "htmlSha256": "0ac90b269995de491cc2b92b1a05157f722e35dfe1e059e5c2f5703625b6dab3",
+      "mediaSha256": "0d52e9c713798bd4333233c8eeed221fa2e6ff00289bd34e5f77dcfa8241fa47"
+    },
+    {
+      "key": "principles/insulation",
+      "path": "principles/insulation.html",
+      "source": "src/data/textbook/principles/insulation.md",
+      "sourceSha256": "aa162b030a1e12670ad3812d60ed511bba7a8d2c0dee4837441df0594aed05fe",
+      "htmlSha256": "ceffaebf308d07ad1b35235725ed539f9b04d2873fdea3941a93b6b04932f4bd",
+      "mediaSha256": "8f2b0d09728cbaa5c7d053055bf72f7ca4d59e0fa224e025accf28cd297bf1bf"
+    },
+    {
+      "key": "principles/acoustic",
+      "path": "principles/acoustic.html",
+      "source": "src/data/textbook/principles/acoustic.md",
+      "sourceSha256": "552e06e6b1b71abec5575e722e753bdb7aad0ff108a95f03a49972f58439c61d",
+      "htmlSha256": "dc7f98de69c7be981d586dd6b55f41a8061dd6710b7f99058b51be637b4700d3",
+      "mediaSha256": "8f18d46abe4b636f182d7ef4a79f316de3f227eba50562bdad1202dafe5dfdf5"
+    },
+    {
+      "key": "principles/fire",
+      "path": "principles/fire.html",
+      "source": "src/data/textbook/principles/fire.md",
+      "sourceSha256": "658c5d9d040a91634573ab2527d5dfb2cc2b82208c8b6636aec2eb1541fe9f70",
+      "htmlSha256": "b20917a0856129c2776c9177defdc30bb00ff127c6606f4ab845db3442662b42",
+      "mediaSha256": "69fbf9defb2f4ba4e7b9dbaf00bb2fec2372ad8befa2dca2a593e947a3b569ba"
+    },
+    {
+      "key": "principles/moisture",
+      "path": "principles/moisture.html",
+      "source": "src/data/textbook/principles/moisture.md",
+      "sourceSha256": "ed276ce23e9ff9b9755aec6cdd31c52a6a324c734c0af580abc43d510792199c",
+      "htmlSha256": "cb919ba3ee2d297f99e7af1e9c37f476fdb2f88ce564f2bf7325f143375a6eab",
+      "mediaSha256": "c77404e1a8b0934f33b016030fd592ba95441e81acfa14b591dfab279af92660"
+    },
+    {
+      "key": "practice/construction-brief",
+      "path": "practice/construction-brief.html",
+      "source": "src/data/textbook/practice/construction-brief.md",
+      "sourceSha256": "293344a8909ab4d6aa88ffa2572024fdbb2e92a120be71721ed2818c66ec27a5",
+      "htmlSha256": "da2d6a16a8578ea499b643a633463571e1feecbd1007f2ef0ebc462e55702811",
+      "mediaSha256": "e2d7907a5af3b0595923ff94e257ce3b673b77458e446694d9bff0436912a1e0"
+    },
+    {
+      "key": "practice/floor-layout",
+      "path": "practice/floor-layout.html",
+      "source": "src/data/textbook/practice/floor-layout.md",
+      "sourceSha256": "a3900de5f678130448f6b7596cf888a0c67ee1f620bd5bbbb7491cf65d900e5d",
+      "htmlSha256": "d76eab38e5ed074bc92a941e2db1aa668534d8fce8f5fe4f20a8be88f0572c4f",
+      "mediaSha256": "46c6dea8beb1aea299ceaec27d19e60a3b3441158e7ce388962a92c5ca87b440"
+    },
+    {
+      "key": "practice/stairs-drawing",
+      "path": "practice/stairs-drawing.html",
+      "source": "src/data/textbook/practice/stairs-drawing.md",
+      "sourceSha256": "5952a9d0f83adf16d4c0a62a959b22101f40d1bb1113a0e4a65af754938a8fd3",
+      "htmlSha256": "6d6a7c7e977175ba8d80b7b1ad4b22870600a4e757398c6f2b270eb5ae247787",
+      "mediaSha256": "2222e6fe112f51eb252a60d10e5fe902e2db55113d822015651e33ea5d576787"
+    },
+    {
+      "key": "practice/roof-drainage",
+      "path": "practice/roof-drainage.html",
+      "source": "src/data/textbook/practice/roof-drainage.md",
+      "sourceSha256": "242266eebf1b69dc3c43ddb8a15817c93a24fd414ab995c7e2a40a1f3b8d72bd",
+      "htmlSha256": "5ae782370d792f60c67f1217e37ebeb75bcaad1d2ee87ceace5502a130f24093",
+      "mediaSha256": "2c230cccf36b13d9c14d0754fb4071631fa3c1bca833000d2d9519c83ddac48d"
+    },
+    {
+      "key": "practice/envelope-detail",
+      "path": "practice/envelope-detail.html",
+      "source": "src/data/textbook/practice/envelope-detail.md",
+      "sourceSha256": "f916cf0a2584d6988735b538b68020c17edc0c88b3dc77993608feb209bd6c16",
+      "htmlSha256": "f66963bddc8e6d711886c917eb7efc218c1b34014c33547a50c0983aa83bbe41",
+      "mediaSha256": "670a95bcdf687944b93689da9385260666018b7113b3a6a99668a8df7d9fbf5f"
+    },
+    {
+      "key": "practice/integrated-design",
+      "path": "practice/integrated-design.html",
+      "source": "src/data/textbook/practice/integrated-design.md",
+      "sourceSha256": "71105afc2d0ca8b0a598757d35654247845e34b2d436183da8ddad62d4bb5cb7",
+      "htmlSha256": "afd6393f9b686861838524c43ea7128d62e22f5ae2e4ce878c20c5435ffe148e",
+      "mediaSha256": "c478d6e54826f73be7ac097e28aeef82c22b18c94551367dccb570ea2e1ed1ab"
+    },
+    {
+      "key": "practice/construction-survey",
+      "path": "practice/construction-survey.html",
+      "source": "src/data/textbook/practice/construction-survey.md",
+      "sourceSha256": "a11eb32f2011dda9bed01507c8ac4ed08d06b086c9b9efa907d58ab739c68302",
+      "htmlSha256": "37837f19f20e0c8d828d9a2050c11b9ce0090d29e4a1a9505ab30d0a91ec13aa",
+      "mediaSha256": "06c3b63378eedf1191650ce35a7ab8852dc252376fd4f2d68bf0ece8d27e6801"
+    },
+    {
+      "key": "foundation/foundation-overview",
+      "path": "basics/foundation/foundation-overview.html",
+      "source": "src/data/textbook/foundation/foundation-overview.md",
+      "sourceSha256": "faa9f1c2465925345158062db597b48a8e2c4cf51252384f313813d6e2041bd4",
+      "htmlSha256": "9a530d02dc709f9d3d581b42088b2e562a32978304baa52f41fc94f358f6f77d",
+      "mediaSha256": "f63d520b3eea8fc06f611aaa402d29719f499d3258aabe30b4b7e2902de2d984"
+    },
+    {
+      "key": "foundation/foundation-design",
+      "path": "basics/foundation/foundation-design.html",
+      "source": "src/data/textbook/foundation/foundation-design.md",
+      "sourceSha256": "86a3ff39bfb01ab68e94516550d893cae35bfdf72a9f82be751306848061dfba",
+      "htmlSha256": "9c08d777eb52ada2a4b18bdd3dbdf1081941d8dfdcd9ec0c89824dab56aef762",
+      "mediaSha256": "56e30750dfac5de805baaebeb74dac10a3e48be88d842f2afb7ae84933c9e0de"
+    },
+    {
+      "key": "foundation/foundation-types",
+      "path": "basics/foundation/foundation-types.html",
+      "source": "src/data/textbook/foundation/foundation-types.md",
+      "sourceSha256": "b0d44f394e0d3f18660b587b4476ecfb2933eea85091645ee8fe54bd31bed59c",
+      "htmlSha256": "3a8664a83c0fc07a4c0bbd0cd343c8529dcfdafb04c46e24a15268189c128bde",
+      "mediaSha256": "609ea96c169400ad8bd3ccff3a80e0d4c09eba8e850a97cf7fcefde914ae585f"
+    },
+    {
+      "key": "foundation/foundation-underground",
+      "path": "basics/foundation/foundation-underground.html",
+      "source": "src/data/textbook/foundation/foundation-underground.md",
+      "sourceSha256": "4a763634773fb3675fd4df909365850c9df71e1f3d4ab8b14e684db970a79992",
+      "htmlSha256": "06c5dc5063e3ccd6c69c5315a73babd6e762e6778a832c47167e793c05bd7474",
+      "mediaSha256": "9a164171e257a581b6ca5ca06d45f6cb910a47337066251f96dd1bd584d2dfaf"
+    },
+    {
+      "key": "foundation/foundation-depth",
+      "path": "basics/foundation/foundation-depth.html",
+      "source": "src/data/textbook/foundation/foundation-depth.md",
+      "sourceSha256": "6d065012838aa15acef4f340a7dabcf1b9c01ecdda4250c5bd6347210680fae1",
+      "htmlSha256": "fa2f9c0eb57b03a301d62c2d57aa0e185d23974415dc10e5cd124e2ed03704cb",
+      "mediaSha256": "6fb6d265daf8bb81ab214a9ff7eccb41bb6b4868782e6e0f7670e028f190fbab"
+    },
+    {
+      "key": "foundation/foundation-settlement",
+      "path": "basics/foundation/foundation-settlement.html",
+      "source": "src/data/textbook/foundation/foundation-settlement.md",
+      "sourceSha256": "1d40b9de53c4e6c27cd441029037dec6dee9f494733fec95c52fbd6872a0ed51",
+      "htmlSha256": "2a7c1f6bd48bff78c5c5b389f58894048da8717d5b84be6763dc50feaeafca86",
+      "mediaSha256": "15b1fb186eabc28bdfffc3b00c44d9123db4ff841d156e22b5777a4c8d1aff10"
+    },
+    {
+      "key": "wall/index",
+      "path": "basics/wall/index.html",
+      "source": "src/data/textbook/walls/index.md",
+      "sourceSha256": "d9b9918058a174981ef351046404febab9464465d3014a197bc3087fc704c9d5",
+      "htmlSha256": "5098d174554248142eb0e90c98e34b146ea2b112a943b75ad05b120978c8cf04",
+      "mediaSha256": "8e51f7f15209abe2cc5f0584c25cc8276294dfa611a63237fa05a9825b8f3dac"
+    },
+    {
+      "key": "wall/wall-role",
+      "path": "basics/wall/wall-role.html",
+      "source": "src/data/textbook/walls/wall-role.md",
+      "sourceSha256": "f03bc911b61c86932837a7291a48751bec3675601fdc09843c134c7079470f3e",
+      "htmlSha256": "5348505a0d7e2e9292db510f4c095d75fd899a97b33cb7f2f279eb28dc0ce700",
+      "mediaSha256": "2ce4b92bcb14616ca300fe13461fb20df85da738cbdbf17fd5430913f33dfb7f"
+    },
+    {
+      "key": "wall/wall-types",
+      "path": "basics/wall/wall-types.html",
+      "source": "src/data/textbook/walls/wall-types.md",
+      "sourceSha256": "a97349f72a5ea966ca12b65e2d1d8cb291bc8c45624125926b5188b295eff693",
+      "htmlSha256": "b1f7a3974ba9e0ecf0a602553122ef939acf8cbf25bdc4b57224fc2697ad7999",
+      "mediaSha256": "de0a9950636d5b2f92b9b73a365cfe7fa09a79646352e03314e56ea019f06b5f"
+    },
+    {
+      "key": "wall/wall-masonry",
+      "path": "basics/wall/wall-masonry.html",
+      "source": "src/data/textbook/walls/wall-masonry.md",
+      "sourceSha256": "0474daf2eb4e6aa370a316b657b70937c971a82f9124bbeafbea921eb814ffde",
+      "htmlSha256": "984924ae8cc787184d76bea57da26f8dc9145c3f61d6c257ea6fdd86ab2ced10",
+      "mediaSha256": "9029fe1387b06ae8e63d3555393559b07c68db07620de87581cbb1baf0e824b2"
+    },
+    {
+      "key": "wall/wall-partition",
+      "path": "basics/wall/wall-partition.html",
+      "source": "src/data/textbook/walls/partitions.md",
+      "sourceSha256": "998df443165e5ad25acdb44a11a7b2218fc38708abc72d59359550be085b6fbb",
+      "htmlSha256": "b3e2dc80abcd4e2b98a0a4195e57ffedae679c38e404d4518d06402f9e227342",
+      "mediaSha256": "98d09269e0cc33787ce37d5dc01669b50aa57a12266ece941030417ffefa2a5f"
+    },
+    {
+      "key": "wall/wall-design-requirements",
+      "path": "basics/wall/wall-design-requirements.html",
+      "source": "src/data/textbook/walls/wall-design-requirements.md",
+      "sourceSha256": "510b06be367698550592d568968f2783be315175f46f25fbc6171420ab9790f8",
+      "htmlSha256": "f0564321fb3b65ec7a9d2343a4b437cfcad064607b54db628adbddff2c647148",
+      "mediaSha256": "df0234add8aab4ea8c12c056db2f8803e4f10ec6650481855e8bfd22d75f3d8f"
+    },
+    {
+      "key": "wall/wall-details",
+      "path": "basics/wall/wall-details.html",
+      "source": "src/data/textbook/walls/wall-details.md",
+      "sourceSha256": "153b4e66b8083bc955adf5761b536435baa0055b41a249f15713224d83ba9c9e",
+      "htmlSha256": "38f14dfd1306255878fc0946a4cd48e6f0137299adeae032bc58216801c733e8",
+      "mediaSha256": "4256bf5661f26ce7de0efb3819b0a00621f9eafa02ea008aee560ed4f56a2e23"
+    },
+    {
+      "key": "wall/wall-finishes",
+      "path": "basics/wall/wall-finishes.html",
+      "source": "src/data/textbook/walls/wall-finishes.md",
+      "sourceSha256": "61ce0298e3b3201c8741663445c806f0c18eaad720becd8efc5cb97d312be2a8",
+      "htmlSha256": "c8b4c986885ad580cbee4f5049fcae0a143f5656f10ea6236c88dc1418254bf5",
+      "mediaSha256": "bc9ad80ec69986ead1d5c428e43e58aefae386c19308329d4384c324a5665886"
+    },
+    {
+      "key": "door-window/window-door-overview",
+      "path": "basics/door-window/window-door-overview.html",
+      "source": "src/data/textbook/door-window/window-door-overview.md",
+      "sourceSha256": "1ae45689cffa3d488cf0bacf376fba56a6c30a510a2d7cad241808ee16dd0131",
+      "htmlSha256": "bf3c60627d6a61d1aff8b47bbbb65ee8aa3d4b2c9777fcbcf89705f040ff6b44",
+      "mediaSha256": "574846d05a82d36df817b34dd453d3453156ada1b5b71eda044b9725f4a0d8bb"
+    },
+    {
+      "key": "door-window/window-door-design",
+      "path": "basics/door-window/window-door-design.html",
+      "source": "src/data/textbook/door-window/window-door-design.md",
+      "sourceSha256": "a86018a9941c2269e42fc62845b2aefacacb1fce7c5c1e3f1dc6b36322365bff",
+      "htmlSha256": "aff53668485f961b3e1c84d603468e8e12decf449e40b3d43b88463dd754d769",
+      "mediaSha256": "83a45b1226b289db760be4a02a63f79c8326d374fe91bdbb13f56abad2ac3fa2"
+    },
+    {
+      "key": "floor/floor-overview",
+      "path": "basics/floor/floor-overview.html",
+      "source": "src/data/textbook/floor/floor-overview.md",
+      "sourceSha256": "5923538fa129cc5d6bb5f4889aba62bbe6eb44fc16e1e0c862359d2b2c28b060",
+      "htmlSha256": "26b253c403c3d3d98d7fa1eb89515763bc18aac54f4eea5ee12b9d2c31da2282",
+      "mediaSha256": "92a46ae736377e357e25d43d9dff12e8cd041473791c33ad14eabbf3f0b1d1fa"
+    },
+    {
+      "key": "floor/floor-rc-slab",
+      "path": "basics/floor/floor-rc-slab.html",
+      "source": "src/data/textbook/floor/floor-rc-slab.md",
+      "sourceSha256": "18b87a56da4f44a3cf7a9586b5d3ed507167ec8fd8b169f017bb70ca3f5e1b06",
+      "htmlSha256": "77bdd62b37eeefe05fd292df3708ee817750c1f31b30179613904f2ce4031dee",
+      "mediaSha256": "85a5ad666be75b3a6aa4f784f68d8d2d9465ad6ed8f220a725624b9295c6eda5"
+    },
+    {
+      "key": "floor/floor-ground-composition",
+      "path": "basics/floor/floor-ground-composition.html",
+      "source": "src/data/textbook/floor/floor-ground-composition.md",
+      "sourceSha256": "0d22596c2be8be9e94f03bea77b06e6c4757da678ff32a9cd3e96adbb9d0a4b5",
+      "htmlSha256": "2e7c9da3ccbb0f6e57f79c5f1ce954635ccf9d4540abb5ec3a120b15d3147bda",
+      "mediaSha256": "39f080a4e38fbdee8044d2af140f5200ecf123c85009f0d87cd26f384337d708"
+    },
+    {
+      "key": "floor/floor-ground-layer",
+      "path": "basics/floor/floor-ground-layer.html",
+      "source": "src/data/textbook/floor/floor-ground-layer.md",
+      "sourceSha256": "559cc37e50f792d41a79f1bae371063855d27c7b27aa9bd9876977aa16f3e768",
+      "htmlSha256": "5417b99f9db10d4f6368ae482a862645c1db57471c10cf6812496687e1a8ea9d",
+      "mediaSha256": "ecbf2d375973b245abfeac485d5a31990336f2263e40f7f0f2be3837941daa26"
+    },
+    {
+      "key": "floor/floor-balcony",
+      "path": "basics/floor/floor-balcony.html",
+      "source": "src/data/textbook/floor/floor-balcony.md",
+      "sourceSha256": "a2e0cbacd6633cf0153109bcaffe9d0a08187ec07b7902780639e65b152fe6b7",
+      "htmlSha256": "92ddb197a402ff980c2da39381f5315e88fef1141be5427f95ed0ea3cde8fd7c",
+      "mediaSha256": "983e722fc5a59d581faa3fc1351b6c5114eb2378b89670441b17e06970167b4b"
+    },
+    {
+      "key": "floor/finish-overview",
+      "path": "basics/floor/finish-overview.html",
+      "source": "src/data/textbook/floor/finish-overview.md",
+      "sourceSha256": "23ced3045d924284aae7bb4ed290dfd1113c15d1f98d70eee460aa6e2a133203",
+      "htmlSha256": "f2a463ad4f4ff4dcd91bc7a9ba5da6b779b41df0f3437e010f33fb50d54e5454",
+      "mediaSha256": "a7b9668f78bdcd8a7b8992e58e02e913d033c4befd4a7c0d0540436108958fd9"
+    },
+    {
+      "key": "floor/floor-ceiling",
+      "path": "basics/floor/floor-ceiling.html",
+      "source": "src/data/textbook/floor/floor-ceiling.md",
+      "sourceSha256": "1fcbd6e7c1e640416b709f852853d78abad4dfe7f4dfd74d02c5de6dfa4fb6be",
+      "htmlSha256": "bdef538922354e7d9c13499b09394475e40be9c07ab24fb3dfa53f8f0b98debe",
+      "mediaSha256": "6502bde1bc02bad6e301e0157c67aa313568a0fff4c01a62599cae9cf78370c0"
+    },
+    {
+      "key": "stairs/stairs-overview",
+      "path": "basics/stairs/stairs-overview.html",
+      "source": "src/data/textbook/stairs/stairs-overview.md",
+      "sourceSha256": "338134739ac549a18b9f398d9f33a0423b1af63c11f73ffa65901e969d262e9e",
+      "htmlSha256": "6a62c80d3f9d4d85cbc3202979444ad6a4d3a58fce94585ca4e2a3c33ce31177",
+      "mediaSha256": "97b795864e3585de769846d31c26a2b294041da5d2be88852c08ffaa46288000"
+    },
+    {
+      "key": "stairs/stairs-rc-structure",
+      "path": "basics/stairs/stairs-rc-structure.html",
+      "source": "src/data/textbook/stairs/stairs-rc-structure.md",
+      "sourceSha256": "d6bab0c6a3dcc9e27289ff6d70898c376d34673e80c6e4e6f7e16d3122d162a8",
+      "htmlSha256": "8ab1711ecde31aceb571bcf8c4b342086a6c04a78ae947dfa3b4a772a6361b7d",
+      "mediaSha256": "02066cb573be60651b6aee85f31266d320d7017294be81cbbf43d96a64e11a56"
+    },
+    {
+      "key": "stairs/stairs-details",
+      "path": "basics/stairs/stairs-details.html",
+      "source": "src/data/textbook/stairs/stairs-details.md",
+      "sourceSha256": "30f4f20ff7051cdbfddf67f3fe3a28877b92eff2b7b60e751a9b4c22c4802368",
+      "htmlSha256": "9d350abc3c5ac4c0f0df522da0524e748a90ac20e57aab0d1dc7f2f7fdac108b",
+      "mediaSha256": "a91fda44aef403b733af7bf34ae2be71fa70d99d7ba8d1c6ab11c5377949163c"
+    },
+    {
+      "key": "stairs/stairs-steps-ramps",
+      "path": "basics/stairs/stairs-steps-ramps.html",
+      "source": "src/data/textbook/stairs/stairs-steps-ramps.md",
+      "sourceSha256": "975e1b2e615199ee656c717a364d53be2101f1e399b223da13ef5768c3f0017d",
+      "htmlSha256": "d91302c2596791f32acde97209a4fdf6e266783844994c8aa7c8e658f5c8cca7",
+      "mediaSha256": "ac1c36281d4bdee89b5fd52a12a599dca74f85c4d01e9cf8f547d202aba69a0b"
+    },
+    {
+      "key": "stairs/stairs-elevator",
+      "path": "basics/stairs/stairs-elevator.html",
+      "source": "src/data/textbook/stairs/stairs-elevator.md",
+      "sourceSha256": "dd7e5349f5328f02560d874f8119d51b7115eebd3a39ecee40d58878dada7a1c",
+      "htmlSha256": "df620eeb93005a59e12e522a761a0440a70fe716afd3ff6deed32107321898d8",
+      "mediaSha256": "e9bd2766a8e1bb034da434dd3f57e0500cdfb8302db6603642cde7aaa2b8d42c"
+    },
+    {
+      "key": "roof/roof-overview",
+      "path": "basics/roof/roof-overview.html",
+      "source": "src/data/textbook/roof/index.md",
+      "sourceSha256": "109799f25de1b8873ef79e1564432378f5038e008ab08d6579fa8f44bec01475",
+      "htmlSha256": "cd74d3e1bb6880792a0a91e91b8b4193308f283300ea83a6dbd3402bacab936d",
+      "mediaSha256": "963de02f04b711c2061e77e1d85a9d5331d485130f4387a28401ce48daebb7b3"
+    },
+    {
+      "key": "roof/roof-flat",
+      "path": "basics/roof/roof-flat.html",
+      "source": "src/data/textbook/roof/roof-flat.md",
+      "sourceSha256": "0cc2bf81493f4707196914493d5f09da7413e2e263cec86b7050b6dcaa0e57e5",
+      "htmlSha256": "feb6ffb11f3a4b38b9b7fc10e093322ac5fe741c03547a58c3ee3fc7be2c8617",
+      "mediaSha256": "b8b867e49d3d534ea0723b1ed81f8f25d3ff813708b26ff9e81a4df5aef5d398"
+    },
+    {
+      "key": "roof/roof-slope",
+      "path": "basics/roof/roof-slope.html",
+      "source": "src/data/textbook/roof/roof-slope.md",
+      "sourceSha256": "b1a18da8c899421fdb507d5261c5c23ef53374100d31f67fc88fc11bd7d03dee",
+      "htmlSha256": "ceab7d557fc679d86bbed635543d9b855d08a706f8012106f3fbdc2741021920",
+      "mediaSha256": "cc75511a0c0445050e93111f39ff2cbf6cfa4622d767a1ad0aeb76806a359971"
+    },
+    {
+      "key": "deformation-joint/roof-deformation-concept",
+      "path": "basics/deformation-joint/roof-deformation-concept.html",
+      "source": "src/data/textbook/deformation-joint/roof-deformation-concept.md",
+      "sourceSha256": "52247cbbf6933dba348aa997ff5c4a8fedb49e8284d560eef7524150c645912c",
+      "htmlSha256": "7606b450119a5653898450d943aba30f502817a308f8118a846e9ad112c8cf4b",
+      "mediaSha256": "69381cfa1d445fdc7f4c7343ffb2c5dd5e223013e91e83147c0b015cdcb1b5ae"
+    },
+    {
+      "key": "deformation-joint/roof-deformation-location",
+      "path": "basics/deformation-joint/roof-deformation-location.html",
+      "source": "src/data/textbook/deformation-joint/roof-deformation-location.md",
+      "sourceSha256": "2d8be9b7fb6ed5191a1bcaed2e2423305fa50ca6212e6a20a315a683f21aa5f8",
+      "htmlSha256": "703dfe76f0f671b3fa02d3eb1fa904d35c84a87a1795fbdba19f9255213fc9b6",
+      "mediaSha256": "d9f45c8f5355c020385efbb02ab5abba9652752ba7ea755d1f4b8667dfea831e"
+    },
+    {
+      "key": "deformation-joint/roof-deformation-construction",
+      "path": "basics/deformation-joint/roof-deformation-construction.html",
+      "source": "src/data/textbook/deformation-joint/roof-deformation-construction.md",
+      "sourceSha256": "a9bdfe112ca2098bf0e801936500dadcdafbc1f0f328b79e6c0521a3968548c9",
+      "htmlSha256": "6e77a876aff3acf8cb268648414f331ca76b639a479728c9bc815b677eddb3e6",
+      "mediaSha256": "1d3b74fe1877b1d3da9bf7b69fe69b32df7eb28e09b628e29c120ad1a78eb720"
+    }
+  ],
+  "models": [
+    {
+      "nodeId": "frame-structure-layout-01",
+      "path": "/models/wall/frame-structure-layout/frame-structure-layout.glb",
+      "sha256": "7c7395b504fb5704ad1717ba7bedaf891c19b4e94aea6e5a5961c4ec0aceae8a"
+    },
+    {
+      "nodeId": "wall-bearing-semi-frame-01",
+      "path": "/models/wall/bearing-layout/semi-frame.glb",
+      "sha256": "6a98c675a30b96f80129e3623bbacd3074cc05a2ff0bb1970823295430397374"
+    },
+    {
+      "nodeId": "wall-bearing-transverse-01",
+      "path": "/models/wall/bearing-layout/transverse.glb",
+      "sha256": "43ba1c50f8a73db334f53db295d94ed028ca0387e51982a107f21764f6b25131"
+    },
+    {
+      "nodeId": "wall-bearing-two-way-01",
+      "path": "/models/wall/bearing-layout/two-way.glb",
+      "sha256": "b973214240fef0ef50794e54ad0e8b4db690c8f1b94b78f2059b622f37981600"
+    },
+    {
+      "nodeId": "wall-bearing-longitudinal-01",
+      "path": "/models/wall/bearing-layout/longitudinal.glb",
+      "sha256": "44f2be2e7e111a93b5def8930a97fbfa3e2e4841942b8a4a3d4726f8c68bcfdd"
+    },
+    {
+      "nodeId": "rc-lintel-flush-01",
+      "path": "/models/wall/rc-lintels/flush.glb",
+      "sha256": "1ce1c514ea6bfa86923117896a716d6f170850b1d56e3cc9f74754f622fd40f8"
+    },
+    {
+      "nodeId": "rc-lintel-window-surround-01",
+      "path": "/models/wall/rc-lintels/window-surround.glb",
+      "sha256": "250e0e17b713444dae20ad9f447274e7bd668a7a4a180113f24051227f3726b5"
+    },
+    {
+      "nodeId": "rc-lintel-window-hood-01",
+      "path": "/models/wall/rc-lintels/window-hood.glb",
+      "sha256": "a7ba83acabb222e7fa0578c0074b954609658d6dd84f285dfa598a9126a54cd5"
+    },
+    {
+      "nodeId": "window-wall-gap-sealing-01",
+      "path": "/models/wall/window-wall-gap-sealing/window-wall-gap-sealing.glb",
+      "sha256": "114bbbd259df2b97a4e54f68ae82c30435030346e28f7d05e1a480abf1ba847a"
+    },
+    {
+      "nodeId": "passive-solar-wall-01",
+      "path": "/models/wall/passive-solar-wall/passive-solar-wall.glb",
+      "sha256": "23c5e5880d3a9806f1146d7491879d59073797cef9358ea2ab9ae34d61f74eb3"
+    },
+    {
+      "nodeId": "construction-column-01",
+      "path": "/models/wall/construction-column/construction-column.glb",
+      "sha256": "6913f7211410512d5a7269ff6e767c3bf3af889957bece2edc839d7c62babbd2"
+    },
+    {
+      "nodeId": "block-wall-core-column-01",
+      "path": "/models/wall/block-wall-core-column/block-wall-core-column.glb",
+      "sha256": "29ba71b0b828106411fe37993e4fc5ba7e8b18b9dbe79bbc29ce997fcb0cebd2"
+    },
+    {
+      "nodeId": "hollow-block-forms-01",
+      "path": "/models/wall/hollow-block-forms/hollow-block-forms.glb",
+      "sha256": "9f5b986b408bf59fefad58910758b813935aff876a6e314bbc5f79eb76429562"
+    },
+    {
+      "nodeId": "apron-flashing-01",
+      "path": "/models/wall/apron-flashing/apron-flashing.glb",
+      "sha256": "64fbd8a0bd8eb0a1ba8a2a09e5117d22b41ee1e393168042e3fb577a6283c936"
+    },
+    {
+      "nodeId": "stone-apron-01",
+      "path": "/models/wall/stone-apron/stone-apron.glb",
+      "sha256": "fd170e3b61ea6d21547be11dc109ce186313b1eb95ea0d31e272aad3c1b21513"
+    },
+    {
+      "nodeId": "foam-insulation-01",
+      "path": "/models/wall/foam-insulation/foam-insulation.glb",
+      "sha256": "b2f83a8e0c1416f9a293d4c865be26c243e73d899d91cb18e7a69b84f84db965"
+    },
+    {
+      "nodeId": "rockwool-insulation-01",
+      "path": "/models/wall/rockwool-insulation/rockwool-insulation.glb",
+      "sha256": "0cbc6996a90fa5059533bee55607b9113eefcd369d11602d12d55ba4c3c1b283"
+    },
+    {
+      "nodeId": "faced-plinth-01",
+      "path": "/models/wall/faced-plinth/faced-plinth.glb",
+      "sha256": "42cd7638b9f6f63542ae46d3c30ed6463647e7e9843debe3c00aa3c5a425662c"
+    },
+    {
+      "nodeId": "stone-plinth-01",
+      "path": "/models/wall/stone-plinth/stone-plinth.glb",
+      "sha256": "9be7bfaa86884d3d6160c83b7bb90bd327df978d36a471fae7374707037f17b0"
+    },
+    {
+      "nodeId": "plaster-plinth-01",
+      "path": "/models/wall/plaster-plinth/plaster-plinth.glb",
+      "sha256": "eec9b4440c21de63b6ffc8320a529fe5ddd327e02c07bb9ea60b20bd21cee37a"
+    }
+  ],
+  "variantAssets": [
+    {
+      "path": "public/models/wall/wall-damp-proof/damp-proof-a-v2.glb",
+      "sha256": "1d1076b2987e2e8f67df6d8b3e05abb8a505be489a5f31044251eaec00c63d7d"
+    },
+    {
+      "path": "public/models/wall/wall-damp-proof/damp-proof-b-v2.glb",
+      "sha256": "b95b46351c1659a3938a12d2ce54d4970488e536f1ddc0f52aa43007fefc8046"
+    },
+    {
+      "path": "public/models/wall/wall-damp-proof/damp-proof-c-v2.glb",
+      "sha256": "f557d1098210d8cca66f5ae45d5dee2d37d819a9feb87d98fd155f89ced3c1bb"
+    }
+  ],
+  "outsideWallKnowledgeSha256": "2c91f7d095e4580d840b201dad6311747e4498f5ba4f4410fe7890980c62ec8b",
+  "trainingSha256": "6ad96d7afcb7d8bdeb8a29c2aa1950263d25f90ce90f3643971af8033a0f6192"
+}
