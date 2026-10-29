@@ -1,0 +1,432 @@
+{
+  "introduction/intro-course-guide.html": {
+    "figure-1": {
+      "nodeId": "independent-foundation-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "organized-drainage-01",
+      "knowledgeId": null
+    }
+  },
+  "introduction/intro-classification.html": {
+    "figure-1": {
+      "nodeId": "roof-truss-timber-01",
+      "knowledgeId": null
+    }
+  },
+  "introduction/intro-grading.html": {},
+  "introduction/intro-composition.html": {
+    "figure-1": {
+      "nodeId": "cast-ribbed-floor-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "stair-composition-01",
+      "knowledgeId": null
+    }
+  },
+  "introduction/intro-factors.html": {
+    "figure-1": {
+      "nodeId": "eaves-gutter-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "ramp-handrail-01",
+      "knowledgeId": null
+    }
+  },
+  "introduction/intro-design-principles.html": {
+    "figure-1": {
+      "nodeId": "window-wall-gap-sealing-01",
+      "knowledgeId": null
+    }
+  },
+  "introduction/intro-drawing-standards.html": {
+    "figure-1": {
+      "nodeId": "bottom-landing-entrance-01",
+      "knowledgeId": null
+    }
+  },
+  "principles/thermal.html": {
+    "figure-1": {
+      "nodeId": "foam-insulation-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "window-wall-gap-sealing-01",
+      "knowledgeId": null
+    }
+  },
+  "principles/waterproof.html": {
+    "figure-1": {
+      "nodeId": "coating-parapet-flashing-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "straight-rainwater-outlet-cast-iron-01",
+      "knowledgeId": null
+    }
+  },
+  "principles/insulation.html": {
+    "figure-1": {
+      "nodeId": "water-storage-eaves-drainage-01",
+      "knowledgeId": null
+    }
+  },
+  "principles/acoustic.html": {
+    "figure-1": {
+      "nodeId": "window-wall-gap-sealing-01",
+      "knowledgeId": null
+    }
+  },
+  "principles/fire.html": {
+    "figure-1": {
+      "nodeId": "rockwool-insulation-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "stair-composition-01",
+      "knowledgeId": null
+    }
+  },
+  "principles/moisture.html": {
+    "figure-1": {
+      "nodeId": "plaster-plinth-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "window-wall-gap-sealing-01",
+      "knowledgeId": null
+    }
+  },
+  "practice/construction-brief.html": {
+    "figure-1": {
+      "nodeId": "foam-insulation-01",
+      "knowledgeId": null
+    }
+  },
+  "practice/floor-layout.html": {
+    "figure-1": {
+      "nodeId": "cast-ribbed-floor-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "flat-slab-01",
+      "knowledgeId": null
+    }
+  },
+  "practice/stairs-drawing.html": {
+    "figure-1": {
+      "nodeId": "stair-composition-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "bottom-landing-entrance-01",
+      "knowledgeId": null
+    }
+  },
+  "practice/roof-drainage.html": {
+    "figure-1": {
+      "nodeId": "organized-drainage-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "straight-rainwater-outlet-65-01",
+      "knowledgeId": null
+    }
+  },
+  "practice/envelope-detail.html": {
+    "figure-1": {
+      "nodeId": "window-wall-gap-sealing-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "coating-parapet-flashing-01",
+      "knowledgeId": null
+    }
+  },
+  "practice/integrated-design.html": {
+    "figure-1": {
+      "nodeId": "stair-composition-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "organized-drainage-01",
+      "knowledgeId": null
+    }
+  },
+  "practice/construction-survey.html": {
+    "figure-1": {
+      "nodeId": "apron-flashing-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "stair-flight-flush-unburied-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/foundation/foundation-overview.html": {
+    "figure-1": {
+      "nodeId": "independent-foundation-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/foundation/foundation-design.html": {
+    "figure-1": {
+      "nodeId": "combined-foundation-beam-slab-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/foundation/foundation-types.html": {
+    "figure-1": {
+      "nodeId": "independent-foundation-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "pile-foundation-composition-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/foundation/foundation-underground.html": {
+    "figure-1": {
+      "nodeId": "combined-foundation-box-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/foundation/foundation-depth.html": {},
+  "basics/foundation/foundation-settlement.html": {
+    "figure-1": {
+      "nodeId": "high-low-roof-joint-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/wall/index.html": {},
+  "basics/wall/wall-role.html": {
+    "figure-1": {
+      "nodeId": "frame-structure-layout-01",
+      "knowledgeId": "wall.roles"
+    }
+  },
+  "basics/wall/wall-types.html": {
+    "figure-1": {
+      "nodeId": "hollow-block-forms-01",
+      "knowledgeId": "wall.materials"
+    }
+  },
+  "basics/wall/wall-masonry.html": {
+    "figure-1": {
+      "nodeId": "wall-bearing-transverse-01",
+      "knowledgeId": "wall.bearing"
+    },
+    "figure-2": {
+      "nodeId": "construction-column-01",
+      "knowledgeId": "wall.integrity"
+    }
+  },
+  "basics/wall/wall-partition.html": {},
+  "basics/wall/wall-design-requirements.html": {
+    "figure-1": {
+      "nodeId": "foam-insulation-01",
+      "knowledgeId": "wall.thermal"
+    },
+    "figure-2": {
+      "nodeId": "passive-solar-wall-01",
+      "knowledgeId": "wall.solar"
+    }
+  },
+  "basics/wall/wall-details.html": {
+    "figure-1": {
+      "nodeId": "wall-damp-proof-course",
+      "knowledgeId": "wall.damp"
+    },
+    "figure-2": {
+      "nodeId": "apron-flashing-01",
+      "knowledgeId": "wall.surface-water"
+    },
+    "figure-3": {
+      "nodeId": "rc-lintel-flush-01",
+      "knowledgeId": "wall.opening-support"
+    },
+    "figure-4": {
+      "nodeId": "window-wall-gap-sealing-01",
+      "knowledgeId": "wall.window-joint"
+    }
+  },
+  "basics/wall/wall-finishes.html": {
+    "figure-1": {
+      "nodeId": "plaster-plinth-01",
+      "knowledgeId": "wall.finishes"
+    }
+  },
+  "basics/door-window/window-door-overview.html": {
+    "figure-1": {
+      "nodeId": "rc-lintel-window-surround-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/door-window/window-door-design.html": {
+    "figure-1": {
+      "nodeId": "window-wall-gap-sealing-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "rc-lintel-window-hood-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/floor/floor-overview.html": {
+    "figure-1": {
+      "nodeId": "cast-ribbed-floor-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/floor/floor-rc-slab.html": {
+    "figure-1": {
+      "nodeId": "precast-hollow-slab-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "cast-ribbed-floor-01",
+      "knowledgeId": null
+    },
+    "figure-3": {
+      "nodeId": "flat-slab-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/floor/floor-ground-composition.html": {
+    "figure-1": {
+      "nodeId": "ramp-floor-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "plaster-plinth-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/floor/floor-ground-layer.html": {
+    "figure-1": {
+      "nodeId": "ramp-floor-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/floor/floor-balcony.html": {
+    "figure-1": {
+      "nodeId": "cantilever-slab-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "balcony-railing-weld-01",
+      "knowledgeId": null
+    },
+    "figure-3": {
+      "nodeId": "cantilever-canopy-slab-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/floor/finish-overview.html": {
+    "figure-1": {
+      "nodeId": "faced-plinth-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/floor/floor-ceiling.html": {},
+  "basics/stairs/stairs-overview.html": {
+    "figure-1": {
+      "nodeId": "stair-composition-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "bottom-landing-entrance-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/stairs/stairs-rc-structure.html": {
+    "figure-1": {
+      "nodeId": "stair-flight-flush-unburied-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/stairs/stairs-details.html": {
+    "figure-1": {
+      "nodeId": "stair-flight-flush-unburied-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "stair-flight-offset-one-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/stairs/stairs-steps-ramps.html": {
+    "figure-1": {
+      "nodeId": "concrete-steps-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "ramp-handrail-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/stairs/stairs-elevator.html": {},
+  "basics/roof/roof-overview.html": {
+    "figure-1": {
+      "nodeId": "roof-truss-timber-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "eaves-gutter-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/roof/roof-flat.html": {
+    "figure-1": {
+      "nodeId": "organized-drainage-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "coating-parapet-flashing-01",
+      "knowledgeId": null
+    },
+    "figure-3": {
+      "nodeId": "vent-pipe-roof-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/roof/roof-slope.html": {
+    "figure-1": {
+      "nodeId": "roof-truss-steel-timber-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "wood-batten-tile-roof-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/deformation-joint/roof-deformation-concept.html": {
+    "figure-1": {
+      "nodeId": "high-low-roof-joint-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "rigid-roof-transverse-joint-01",
+      "knowledgeId": null
+    }
+  },
+  "basics/deformation-joint/roof-deformation-location.html": {
+    "figure-1": {
+      "nodeId": "high-low-roof-joint-02",
+      "knowledgeId": null
+    }
+  },
+  "basics/deformation-joint/roof-deformation-construction.html": {
+    "figure-1": {
+      "nodeId": "high-low-roof-joint-01",
+      "knowledgeId": null
+    },
+    "figure-2": {
+      "nodeId": "high-low-roof-joint-02",
+      "knowledgeId": null
+    }
+  }
+}

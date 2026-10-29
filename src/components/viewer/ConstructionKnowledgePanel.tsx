@@ -9,6 +9,7 @@ import { makeScopedKey, parseScopedKey } from "../../utils/variantIdentity";
 import { resolveComponentKnowledge } from "../../utils/resolveComponentKnowledge";
 import VariantLabelBar from "./VariantLabelBar";
 import VariantComparisonOverview from "./VariantComparisonOverview";
+import NodeLearningContextPanel from "./NodeLearningContextPanel";
 import '../../styles/model-ui.css';
 
 /* ═══════════════════════════════════════════════════════════════
@@ -175,6 +176,7 @@ export default function ConstructionKnowledgePanel({ isResizing = false }: { isR
         )}
       </div>
 
+      <NodeLearningContextPanel nodeId={nodeId} />
       {isMultiModel && node?.variants && <VariantLabelBar variants={node.variants} />}
 
       {/* ═══════════════════════════════════════════════════════

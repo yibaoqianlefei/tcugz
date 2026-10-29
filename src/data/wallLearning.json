@@ -1,0 +1,1626 @@
+{
+  "edition": "knowledge-2026-10-29",
+  "lessons": {
+    "wall/index": {
+      "key": "wall/index",
+      "title": "墙体概述",
+      "path": "basics/wall/index.html",
+      "intro": "从一片带窗外墙出发：先确认支承，再追踪水与热，最后解释洞口、墙脚和饰面为何要这样连接。",
+      "edition": "knowledge-2026-10-29",
+      "learning": {
+        "prerequisiteIds": [],
+        "diagrams": [
+          "wall-paths"
+        ],
+        "relatedPrinciples": [],
+        "applications": [
+          "practice/envelope-detail"
+        ],
+        "outcome": "用一张带窗外墙剖面，串起身份、材料、连接、性能与维护。",
+        "prerequisite": "先回顾建筑物的构造组成。",
+        "next": "wall/wall-role",
+        "units": [
+          {
+            "prerequisiteIds": [
+              "introduction.composition"
+            ],
+            "conceptIds": [
+              "systems",
+              "moisture",
+              "connections"
+            ],
+            "relatedPrinciples": [],
+            "applications": [],
+            "diagramIds": [
+              "wall-paths"
+            ],
+            "id": "wall.overview",
+            "lesson": "wall/index",
+            "anchor": "用一张剖面组织知识",
+            "title": "把一面外墙读成连续系统",
+            "question": "墙脚受潮、洞口支承与保温中断为什么需要在同一张剖面核对？",
+            "principle": "同一面墙同时承接结构作用和环境边界；分开画出传力、防潮、防雨及保温路线，再检查它们在接口处是否相容。",
+            "observe": [
+              "在防潮图中辨认室内垫层、室外地面和贯穿墙厚的水平防潮层。",
+              "另画带窗外墙草图，补出图中没有表示的洞口承托、雨水排离与保温接续，并把已知和待查内容分开。"
+            ],
+            "conclusion": "局部图解释墙身防潮的位置；全章草图才把结构、热湿与接口串起来，不能让一张局部图替代完整系统。",
+            "boundary": "本图只表达砌筑墙体防潮层位置，不表达楼板传力、洞口、保温或材料配方。",
+            "models": [],
+            "assessment": {
+              "question": "墙脚饰面起皮时，应按什么顺序查因，为什么不能直接重做面层？",
+              "criteria": [
+                "区分地表水、毛细水、渗漏及结露线索。",
+                "核对水平防潮层与高差侧连接，再查基层和面层。",
+                "说明局部示意不能证明整面墙的构造完整性。"
+              ]
+            },
+            "sectionId": "section-3"
+          }
+        ],
+        "intro": "从一片带窗外墙出发：先确认支承，再追踪水与热，最后解释洞口、墙脚和饰面为何要这样连接。",
+        "kind": "reading"
+      },
+      "readingMinutes": 5,
+      "figures": []
+    },
+    "wall/wall-role": {
+      "key": "wall/wall-role",
+      "title": "墙体在建筑中的作用",
+      "path": "basics/wall/wall-role.html",
+      "intro": "先用梁柱骨架找承重路径，再把围护和分隔的作用放回同一空间，避免凭内外位置判断受力。",
+      "edition": "knowledge-2026-10-29",
+      "learning": {
+        "prerequisiteIds": [],
+        "diagrams": [],
+        "relatedPrinciples": [],
+        "applications": [
+          "practice/envelope-detail"
+        ],
+        "outcome": "根据支承关系区分承重、围护与分隔，并解释非承重墙的必要连接。",
+        "prerequisite": "墙体概述：先分清部位与结构身份。",
+        "next": "wall/wall-types",
+        "units": [
+          {
+            "prerequisiteIds": [
+              "wall.overview"
+            ],
+            "conceptIds": [
+              "loads",
+              "systems"
+            ],
+            "relatedPrinciples": [],
+            "applications": [
+              "practice/envelope-detail"
+            ],
+            "diagramIds": [],
+            "id": "wall.roles",
+            "lesson": "wall/wall-role",
+            "anchor": "从结构体系判断墙的身份",
+            "title": "先找到楼板的支承，再给墙定身份",
+            "question": "外墙是否一定承重，内墙是否一定不承重？",
+            "principle": "位置说明它分隔哪里，结构角色说明作用传给谁。框架中梁柱构成承重骨架；砌体承重体系中，楼板可把作用传给相应墙段。二者都需要可靠连接。",
+            "observe": [
+              "点选框架梁，再点选框架柱，说明梁端作用继续向哪里传递。",
+              "框架模型没有填充墙。把填充墙作为另一条自重和面外作用路径补画到草图中。"
+            ],
+            "conclusion": "能指出梁柱的位置，还要能解释围护墙为什么仍需与主体连接；“非承重”不是“不受力”。",
+            "boundary": "梁柱模型不含楼板、填充墙、基础或连接配筋，不能用它验证整栋建筑的承载与抗侧性能。",
+            "models": [
+              {
+                "nodeId": "frame-structure-layout-01",
+                "objects": [
+                  "框架梁",
+                  "框架柱"
+                ],
+                "difference": "从两向梁追到柱，识别框架骨架。",
+                "role": "core",
+                "primary": true,
+                "title": "框架结构布置"
+              }
+            ],
+            "assessment": {
+              "question": "框架外墙受风后，为什么仍需连接主体？画出你能确认与需要补查的传递环节。",
+              "criteria": [
+                "梁柱构成承重骨架，位置不决定墙的承重身份。",
+                "墙承受自重及面外作用，需要连接和支承。",
+                "模型未含填充墙和连接，不以梁柱外观证明连接可靠。"
+              ]
+            },
+            "sectionId": "section-2"
+          }
+        ],
+        "intro": "先用梁柱骨架找承重路径，再把围护和分隔的作用放回同一空间，避免凭内外位置判断受力。",
+        "kind": "reading"
+      },
+      "readingMinutes": 3,
+      "figures": [
+        {
+          "id": "model-wall-roles",
+          "number": "01",
+          "nodeId": "frame-structure-layout-01",
+          "nodeTitle": "框架结构布置",
+          "knowledgeId": "wall.roles",
+          "anchor": "从结构体系判断墙的身份",
+          "title": "先找到楼板的支承，再给墙定身份",
+          "caption": "位置说明它分隔哪里，结构角色说明作用传给谁。框架中梁柱构成承重骨架；砌体承重体系中，楼板可把作用传给相应墙段。二者都需要可靠连接。梁柱模型不含楼板、填充墙、基础或连接配筋，不能用它验证整栋建筑的承载与抗侧性能。",
+          "focus": [
+            "点选框架梁，再点选框架柱，说明梁端作用继续向哪里传递。",
+            "框架模型没有填充墙。把填充墙作为另一条自重和面外作用路径补画到草图中。"
+          ],
+          "imageAlt": "先找到楼板的支承，再给墙定身份的构造示意",
+          "image": "/images/wall/frame-structure-layout-diagram.png",
+          "hasModel": true,
+          "sectionId": "section-2",
+          "sectionTitle": "从结构体系判断墙的身份",
+          "layerCount": 2
+        }
+      ]
+    },
+    "wall/wall-types": {
+      "key": "wall/wall-types",
+      "title": "墙体的类型",
+      "path": "basics/wall/wall-types.html",
+      "intro": "先描述块材孔型，再描述墙体组合与结构角色；每一个分类词都应回答不同的问题。",
+      "edition": "knowledge-2026-10-29",
+      "learning": {
+        "prerequisiteIds": [],
+        "diagrams": [],
+        "relatedPrinciples": [],
+        "applications": [
+          "practice/envelope-detail"
+        ],
+        "outcome": "用位置、受力、材料和组合方式分别描述同一片墙。",
+        "prerequisite": "墙体在建筑中的作用：结构身份与位置并不等价。",
+        "next": "wall/wall-masonry",
+        "units": [
+          {
+            "prerequisiteIds": [
+              "wall.roles"
+            ],
+            "conceptIds": [
+              "layers"
+            ],
+            "relatedPrinciples": [],
+            "applications": [
+              "practice/envelope-detail"
+            ],
+            "diagramIds": [],
+            "id": "wall.materials",
+            "lesson": "wall/wall-types",
+            "anchor": "按材料与构造方式分类",
+            "title": "砌块有孔，不等于整墙有空气间层",
+            "question": "孔型、墙体构造和承重身份能否互相替代？",
+            "principle": "孔型是块材内部的几何特征；墙体构造还包含灰缝、连接和可能的附加层；承重身份由完整体系确定。三种描述应分别给出。",
+            "observe": [
+              "逐组点选四类砌块，观察孔洞与壁肋的位置。",
+              "设想上下两皮叠砌，指出需要灌芯时孔道连续为什么比表面孔数更重要。"
+            ],
+            "conclusion": "先描述块材，再描述墙的组合与作用；模型没有产品强度试验，不能由孔型直接判定用途。",
+            "boundary": "模型只展示砌块形式，不展示实际组砌、灰缝质量或产品性能。",
+            "models": [
+              {
+                "nodeId": "hollow-block-forms-01",
+                "objects": [
+                  "多排扁孔",
+                  "单排双孔",
+                  "单排圆孔",
+                  "单排组合孔"
+                ],
+                "difference": "比较孔洞和壁肋，而非按孔数排列性能高低。",
+                "role": "core",
+                "primary": true,
+                "title": "空心砌块的常见形式"
+              }
+            ],
+            "assessment": {
+              "question": "两种孔型不同的砌块，能否仅凭孔数判断墙的承重和保温性能？",
+              "criteria": [
+                "区分块材孔型、整墙组合和结构角色。",
+                "需结合产品性能、组砌与结构设计。",
+                "灌芯时还需核对孔道连续与施工条件。"
+              ]
+            },
+            "sectionId": "section-2"
+          }
+        ],
+        "intro": "先描述块材孔型，再描述墙体组合与结构角色；每一个分类词都应回答不同的问题。",
+        "kind": "reading"
+      },
+      "readingMinutes": 4,
+      "figures": [
+        {
+          "id": "model-wall-materials",
+          "number": "01",
+          "nodeId": "hollow-block-forms-01",
+          "nodeTitle": "空心砌块的常见形式",
+          "knowledgeId": "wall.materials",
+          "anchor": "按材料与构造方式分类",
+          "title": "砌块有孔，不等于整墙有空气间层",
+          "caption": "孔型是块材内部的几何特征；墙体构造还包含灰缝、连接和可能的附加层；承重身份由完整体系确定。三种描述应分别给出。模型只展示砌块形式，不展示实际组砌、灰缝质量或产品性能。",
+          "focus": [
+            "逐组点选四类砌块，观察孔洞与壁肋的位置。",
+            "设想上下两皮叠砌，指出需要灌芯时孔道连续为什么比表面孔数更重要。"
+          ],
+          "imageAlt": "砌块有孔，不等于整墙有空气间层的构造示意",
+          "image": "/images/wall/hollow-block-forms-diagram.png",
+          "hasModel": true,
+          "sectionId": "section-2",
+          "sectionTitle": "按材料与构造方式分类",
+          "layerCount": 4
+        }
+      ]
+    },
+    "wall/wall-masonry": {
+      "key": "wall/wall-masonry",
+      "title": "砌体结构",
+      "path": "basics/wall/wall-masonry.html",
+      "intro": "先看整栋布置中的支承，再缩小到砌体交接。四种承重方案与两种竖向增强构造围绕同一条传力路线比较。",
+      "edition": "knowledge-2026-10-29",
+      "learning": {
+        "prerequisiteIds": [],
+        "diagrams": [
+          "masonry-bond"
+        ],
+        "relatedPrinciples": [],
+        "applications": [
+          "practice/envelope-detail"
+        ],
+        "outcome": "从楼板支承解释四种布置，再用错缝、圈梁、构造柱和芯柱解释整体联系。",
+        "prerequisite": "墙体类型：分清方向、材料和受力三个维度。",
+        "next": "wall/wall-partition",
+        "units": [
+          {
+            "prerequisiteIds": [
+              "wall.materials"
+            ],
+            "conceptIds": [
+              "loads",
+              "systems"
+            ],
+            "relatedPrinciples": [],
+            "applications": [
+              "practice/envelope-detail"
+            ],
+            "diagramIds": [
+              "masonry-bond"
+            ],
+            "id": "wall.bearing",
+            "lesson": "wall/wall-masonry",
+            "anchor": "承重墙布置与传力",
+            "title": "同一问题：楼板把作用交给哪些支承",
+            "question": "为什么横墙、纵墙、纵横墙和半框架布置会形成不同空间？",
+            "principle": "楼板支承、墙段连续与房间分隔共同约束布置。改变支承方向或用内部梁柱替换部分墙段，会改变传力路线与空间组织；围墙外形相似并不表示体系相同。",
+            "observe": [
+              "在横墙承重模型中点选楼板与墙体，找到板端邻接的横墙。",
+              "比较其余三种方案，分别画出“板—墙”或“板—梁—柱/墙”的路线，并注明图外还需接到基础。"
+            ],
+            "conclusion": "比较的是支承关系和空间分隔，不是外观优劣。纵横墙承重也不表示每一块楼板都是双向板。",
+            "boundary": "这些是单层布置示意，墙段和楼板多为合并网格；不展示结构计算、完整连接或抗震验算。",
+            "models": [
+              {
+                "nodeId": "wall-bearing-transverse-01",
+                "objects": [
+                  "楼板",
+                  "墙体",
+                  "横向梁"
+                ],
+                "difference": "横墙重复分隔，观察板端与横向墙段及通道梁的关系。",
+                "role": "core",
+                "primary": true,
+                "title": "墙体承重结构布置方案（横墙承重）"
+              },
+              {
+                "nodeId": "wall-bearing-longitudinal-01",
+                "objects": [
+                  "楼板",
+                  "墙体"
+                ],
+                "difference": "转向外纵墙与内纵墙，比较板端支承和横向空间。",
+                "role": "comparison",
+                "primary": true,
+                "title": "墙体承重结构布置方案（纵墙承重）"
+              },
+              {
+                "nodeId": "wall-bearing-two-way-01",
+                "objects": [
+                  "楼板",
+                  "墙体",
+                  "横向梁"
+                ],
+                "difference": "按房间分别读板的排列方向，不能给整栋建筑只画一种箭头。",
+                "role": "comparison",
+                "primary": true,
+                "title": "墙体承重结构布置方案（纵横墙承重）"
+              },
+              {
+                "nodeId": "wall-bearing-semi-frame-01",
+                "objects": [
+                  "楼板",
+                  "横向梁",
+                  "柱",
+                  "墙体"
+                ],
+                "difference": "识别内部柱列与横向梁，再观察外围墙体；区别于完全梁柱骨架。",
+                "role": "comparison",
+                "primary": true,
+                "title": "墙体承重结构布置方案（半框架承重）"
+              }
+            ],
+            "assessment": {
+              "question": "把横墙方案改成半框架时，画出支承路线和可改变的空间边界。",
+              "criteria": [
+                "分别画板—墙与板—梁—柱或墙的路径。",
+                "说明内部柱列替换部分墙段后的空间变化。",
+                "完整路线还需接到基础，模型不能替代验算。"
+              ]
+            },
+            "sectionId": "section-1"
+          },
+          {
+            "prerequisiteIds": [
+              "wall.bearing"
+            ],
+            "conceptIds": [
+              "loads",
+              "connections"
+            ],
+            "relatedPrinciples": [],
+            "applications": [
+              "practice/envelope-detail"
+            ],
+            "diagramIds": [],
+            "id": "wall.integrity",
+            "lesson": "wall/wall-masonry",
+            "anchor": "圈梁、构造柱与芯柱",
+            "title": "把墙的水平联系与竖向联系接起来",
+            "question": "构造柱与芯柱在哪里形成联系，为什么都不能代替承重墙？",
+            "principle": "圈梁沿水平方向联系墙段，构造柱在墙交接或边界形成竖向约束；芯柱利用砌块孔道形成竖向增强。它们通过连续连接改善整体工作，任务与框架承重骨架不同。",
+            "observe": [
+              "在构造柱模型中依次点选墙体、马牙槎、钢筋、圈梁，解释相邻构件怎样形成联系。",
+              "进入芯柱模型，观察增强构件从墙外预留截面转到砌块孔道内部后的施工条件变化。"
+            ],
+            "conclusion": "用“位置—连接—施工顺序”比较两者，再说明为什么不能先拆墙、后以加柱补救。",
+            "boundary": "构造柱模型与所配局部原图的墙体布置不同；图示钢筋与混凝土标号是本例记录，不是全站通用配筋。",
+            "models": [
+              {
+                "nodeId": "construction-column-01",
+                "objects": [
+                  "墙体",
+                  "马牙槎",
+                  "钢筋",
+                  "圈梁"
+                ],
+                "difference": "墙交接处的柱身、咬合和水平联系。",
+                "role": "core",
+                "primary": true,
+                "title": "构造柱"
+              },
+              {
+                "nodeId": "block-wall-core-column-01",
+                "objects": [
+                  "砌块墙体",
+                  "2Φ12通长筋",
+                  "灌C15细石混凝土"
+                ],
+                "difference": "孔道内的钢筋与灌芯，核对孔道连续和灌注条件。",
+                "role": "comparison",
+                "primary": true,
+                "title": "砌块墙墙芯柱构造"
+              }
+            ],
+            "assessment": {
+              "question": "构造柱与芯柱如何形成竖向联系，为什么不能因此拆除相邻承重墙？",
+              "criteria": [
+                "比较墙交接截面与砌块孔道内增强的位置。",
+                "把竖向增强接到水平联系并说明施工条件。",
+                "增强构件不能替代承重墙的完整作用。"
+              ]
+            },
+            "sectionId": "section-4"
+          }
+        ],
+        "intro": "先看整栋布置中的支承，再缩小到砌体交接。四种承重方案与两种竖向增强构造围绕同一条传力路线比较。",
+        "kind": "reading"
+      },
+      "readingMinutes": 8,
+      "figures": [
+        {
+          "id": "model-wall-bearing",
+          "number": "01",
+          "nodeId": "wall-bearing-transverse-01",
+          "nodeTitle": "墙体承重结构布置方案（横墙承重）",
+          "knowledgeId": "wall.bearing",
+          "anchor": "承重墙布置与传力",
+          "title": "同一问题：楼板把作用交给哪些支承",
+          "caption": "楼板支承、墙段连续与房间分隔共同约束布置。改变支承方向或用内部梁柱替换部分墙段，会改变传力路线与空间组织；围墙外形相似并不表示体系相同。这些是单层布置示意，墙段和楼板多为合并网格；不展示结构计算、完整连接或抗震验算。",
+          "focus": [
+            "在横墙承重模型中点选楼板与墙体，找到板端邻接的横墙。",
+            "比较其余三种方案，分别画出“板—墙”或“板—梁—柱/墙”的路线，并注明图外还需接到基础。"
+          ],
+          "imageAlt": "同一问题：楼板把作用交给哪些支承的构造示意",
+          "image": "/images/wall/bearing-layout-transverse-diagram.png",
+          "hasModel": true,
+          "sectionId": "section-1",
+          "sectionTitle": "承重墙布置与传力",
+          "layerCount": 3
+        },
+        {
+          "id": "model-wall-integrity",
+          "number": "02",
+          "nodeId": "construction-column-01",
+          "nodeTitle": "构造柱",
+          "knowledgeId": "wall.integrity",
+          "anchor": "圈梁、构造柱与芯柱",
+          "title": "把墙的水平联系与竖向联系接起来",
+          "caption": "圈梁沿水平方向联系墙段，构造柱在墙交接或边界形成竖向约束；芯柱利用砌块孔道形成竖向增强。它们通过连续连接改善整体工作，任务与框架承重骨架不同。构造柱模型与所配局部原图的墙体布置不同；图示钢筋与混凝土标号是本例记录，不是全站通用配筋。",
+          "focus": [
+            "在构造柱模型中依次点选墙体、马牙槎、钢筋、圈梁，解释相邻构件怎样形成联系。",
+            "进入芯柱模型，观察增强构件从墙外预留截面转到砌块孔道内部后的施工条件变化。"
+          ],
+          "imageAlt": "把墙的水平联系与竖向联系接起来的构造示意",
+          "image": "/images/wall/construction-column-diagram.png",
+          "hasModel": true,
+          "sectionId": "section-4",
+          "sectionTitle": "圈梁、构造柱与芯柱",
+          "layerCount": 7
+        }
+      ]
+    },
+    "wall/wall-partition": {
+      "key": "wall/wall-partition",
+      "title": "隔墙",
+      "path": "basics/wall/wall-partition.html",
+      "intro": "本节用轻骨架示意补足模型库的表达范围，按支承、变形、密封和穿透四处接口检查隔墙。",
+      "edition": "knowledge-2026-10-29",
+      "learning": {
+        "prerequisiteIds": [],
+        "diagrams": [
+          "partition"
+        ],
+        "relatedPrinciples": [],
+        "applications": [
+          "practice/envelope-detail"
+        ],
+        "outcome": "解释隔墙的自重支承、面外连接、顶部变形和声火边界。",
+        "prerequisite": "砌体结构：有自重支承与连接，不等于承担楼盖荷载。",
+        "next": "wall/wall-design-requirements",
+        "units": [
+          {
+            "prerequisiteIds": [
+              "wall.integrity"
+            ],
+            "conceptIds": [
+              "layers",
+              "connections",
+              "sound",
+              "fire"
+            ],
+            "relatedPrinciples": [],
+            "applications": [],
+            "diagramIds": [
+              "partition"
+            ],
+            "id": "wall.partition",
+            "lesson": "wall/wall-partition",
+            "anchor": "轻骨架隔墙",
+            "title": "从面板边缘找到连续支承",
+            "question": "面板固定牢固，是否就说明轻骨架隔墙的支承和分隔性能完整？",
+            "principle": "面板把相应作用交给骨架，骨架经沿顶、沿地和边框连接到基层；板边、板缝和腔内材料还影响完整系统的工作。",
+            "observe": [
+              "在局部揭板立面中沿板边查找竖向龙骨，再辨认沿顶和沿地龙骨。",
+              "在水平横剖面中按一侧面板—腔体及龙骨—另一侧面板的次序读层次，检查板缝对应的支承。"
+            ],
+            "conclusion": "把面板、骨架、填充与周边连接一起解释；单独填满吸声材料不等于达到隔声或耐火要求。",
+            "boundary": "图不表示滑移节点、螺钉间距、管线穿透、额定隔声量或耐火极限；这些内容需按具体系统另查设计和试验依据。",
+            "models": [],
+            "assessment": {
+              "question": "说明图中板缝为什么要对应支承，并列出判断隔声及防火仍缺少的两类证据。",
+              "criteria": [
+                "在横剖面定位板边与龙骨的关系。",
+                "说明面板层数、接缝及周边连接属于系统条件。",
+                "提出完整系统性能依据和实际穿透封堵设计，不能由示意图推定等级。"
+              ]
+            },
+            "sectionId": "section-3"
+          }
+        ],
+        "intro": "本节用轻骨架示意补足模型库的表达范围，按支承、变形、密封和穿透四处接口检查隔墙。",
+        "kind": "reading"
+      },
+      "readingMinutes": 5,
+      "figures": []
+    },
+    "wall/wall-design-requirements": {
+      "key": "wall/wall-design-requirements",
+      "title": "墙体的设计要求",
+      "path": "basics/wall/wall-design-requirements.html",
+      "intro": "保温系统用来理解层次与固定；太阳能墙用来讨论工况与孔口。两种模型分别回答不同问题，不混为一种外墙做法。",
+      "edition": "knowledge-2026-10-29",
+      "learning": {
+        "prerequisiteIds": [],
+        "diagrams": [],
+        "relatedPrinciples": [],
+        "applications": [
+          "practice/envelope-detail"
+        ],
+        "outcome": "在同一墙身与洞口追踪结构、热湿、声火和维护要求，说明各层分工。",
+        "prerequisite": "隔墙：性能来自完整系统及周边连接。",
+        "next": "wall/wall-details",
+        "units": [
+          {
+            "prerequisiteIds": [
+              "wall.partition"
+            ],
+            "conceptIds": [
+              "heat",
+              "connections"
+            ],
+            "relatedPrinciples": [
+              "principles/thermal"
+            ],
+            "applications": [
+              "practice/envelope-detail"
+            ],
+            "diagramIds": [],
+            "id": "wall.thermal",
+            "lesson": "wall/wall-design-requirements",
+            "anchor": "保温、隔热、气密与防结露",
+            "title": "保温、固定和外侧保护各做什么",
+            "question": "把保温板贴满墙面，是否就得到完整的外墙性能？",
+            "principle": "保温层减小实体传热，连接把附加层作用交给基层，外侧保护应适应水和变形。洞口、梁柱和穿透处仍要保持相应边界连续，气密与防结露需要另外判断。",
+            "observe": [
+              "点选保温板与基层墙体，再找胶粘、锚固和保护层的相邻位置。",
+              "对比岩棉做法，记录固定、找平及保护层的差异；再在纸上把这套层次接到窗洞四周。"
+            ],
+            "conclusion": "能解释层的分工，比只背从外到内的名称更重要；材料名称不能替代完整系统性能评价。",
+            "boundary": "局部墙身模型不含完整洞口热桥，也不提供热工、声学或耐火试验结果。",
+            "models": [
+              {
+                "nodeId": "foam-insulation-01",
+                "objects": [
+                  "保温板",
+                  "胶粘剂",
+                  "锚栓加固",
+                  "基层墙体"
+                ],
+                "difference": "辨认粘贴、锚固、增强及饰面之间的任务。",
+                "role": "core",
+                "primary": true,
+                "title": "粘贴泡沫塑料保温板外保温"
+              },
+              {
+                "nodeId": "rockwool-insulation-01",
+                "objects": [
+                  "锚栓",
+                  "基层墙体"
+                ],
+                "difference": "对照卡片中的保温、找平和外侧保护，图示厚度仅对应本例。",
+                "role": "comparison",
+                "primary": true,
+                "title": "粘贴岩棉防火保温板外保温"
+              }
+            ],
+            "assessment": {
+              "question": "保温层在窗洞处中断时，加厚墙面保温能否解决所有问题？",
+              "criteria": [
+                "分清保温、固定和保护的任务。",
+                "指出洞口热桥和边界接续仍需处理。",
+                "需热工及系统依据，不能从材料名直接推断性能。"
+              ]
+            },
+            "sectionId": "section-3"
+          },
+          {
+            "prerequisiteIds": [
+              "wall.thermal"
+            ],
+            "conceptIds": [
+              "solar",
+              "heat"
+            ],
+            "relatedPrinciples": [],
+            "applications": [
+              "practice/envelope-detail"
+            ],
+            "diagramIds": [],
+            "id": "wall.solar",
+            "lesson": "wall/wall-design-requirements",
+            "anchor": "有条件的被动太阳能墙",
+            "title": "太阳得热与通风要说明运行条件",
+            "question": "同一套玻璃、间层和孔口，为何不能在各季节采用同一运行方式？",
+            "principle": "玻璃侧日射、间层空气、蓄热或传热界面与室内连接共同影响热交换。日照、室内外温度和孔口开闭变化，可能改变热量及空气流动方向。",
+            "observe": [
+              "定位外侧玻璃、空气间层和外围护墙，画出它们的相邻次序。",
+              "找到上下孔口，分别说明有日照与无日照时还需哪些温度、控制及防倒流信息。"
+            ],
+            "conclusion": "模型帮助定位气流界面；不能只按对象名称中的“进风”“出风”推断所有工况下的流向。",
+            "boundary": "模型不模拟温度场、气流或季节切换，不把特殊太阳能墙直接当成普通外保温。",
+            "models": [
+              {
+                "nodeId": "passive-solar-wall-01",
+                "objects": [
+                  "外侧玻璃",
+                  "空气间层",
+                  "外围护墙",
+                  "上部进风口",
+                  "下部出风口"
+                ],
+                "difference": "从层次与孔口建立有条件的热交换路径。",
+                "role": "core",
+                "primary": true,
+                "title": "被动式太阳房墙体构造"
+              }
+            ],
+            "assessment": {
+              "question": "无日照时上下孔口仍保持原状态，判断热交换方向还需要什么信息？",
+              "criteria": [
+                "辨认玻璃、间层、墙及孔口的关系。",
+                "补查温度、日射和控制条件。",
+                "不能按对象名推定所有工况气流或以静态模型代替模拟。"
+              ]
+            },
+            "sectionId": "section-4"
+          }
+        ],
+        "intro": "保温系统用来理解层次与固定；太阳能墙用来讨论工况与孔口。两种模型分别回答不同问题，不混为一种外墙做法。",
+        "kind": "reading"
+      },
+      "readingMinutes": 8,
+      "figures": [
+        {
+          "id": "model-wall-thermal",
+          "number": "01",
+          "nodeId": "foam-insulation-01",
+          "nodeTitle": "粘贴泡沫塑料保温板外保温",
+          "knowledgeId": "wall.thermal",
+          "anchor": "保温、隔热、气密与防结露",
+          "title": "保温、固定和外侧保护各做什么",
+          "caption": "保温层减小实体传热，连接把附加层作用交给基层，外侧保护应适应水和变形。洞口、梁柱和穿透处仍要保持相应边界连续，气密与防结露需要另外判断。局部墙身模型不含完整洞口热桥，也不提供热工、声学或耐火试验结果。",
+          "focus": [
+            "点选保温板与基层墙体，再找胶粘、锚固和保护层的相邻位置。",
+            "对比岩棉做法，记录固定、找平及保护层的差异；再在纸上把这套层次接到窗洞四周。"
+          ],
+          "imageAlt": "保温、固定和外侧保护各做什么的构造示意",
+          "image": "/images/wall/foam-insulation-diagram.png",
+          "hasModel": true,
+          "sectionId": "section-3",
+          "sectionTitle": "保温、隔热、气密与防结露",
+          "layerCount": 7
+        },
+        {
+          "id": "model-wall-solar",
+          "number": "02",
+          "nodeId": "passive-solar-wall-01",
+          "nodeTitle": "被动式太阳房墙体构造",
+          "knowledgeId": "wall.solar",
+          "anchor": "有条件的被动太阳能墙",
+          "title": "太阳得热与通风要说明运行条件",
+          "caption": "玻璃侧日射、间层空气、蓄热或传热界面与室内连接共同影响热交换。日照、室内外温度和孔口开闭变化，可能改变热量及空气流动方向。模型不模拟温度场、气流或季节切换，不把特殊太阳能墙直接当成普通外保温。",
+          "focus": [
+            "定位外侧玻璃、空气间层和外围护墙，画出它们的相邻次序。",
+            "找到上下孔口，分别说明有日照与无日照时还需哪些温度、控制及防倒流信息。"
+          ],
+          "imageAlt": "太阳得热与通风要说明运行条件的构造示意",
+          "image": "/images/wall/passive-solar-wall-diagram.png",
+          "hasModel": true,
+          "sectionId": "section-4",
+          "sectionTitle": "有条件的被动太阳能墙",
+          "layerCount": 9
+        }
+      ]
+    },
+    "wall/wall-details": {
+      "key": "wall/wall-details",
+      "title": "墙体细部构造",
+      "path": "basics/wall/wall-details.html",
+      "intro": "从地面水分走向洞口：每一处节点都要说明水从哪里来、作用传给谁、连接怎样连续。多种做法围绕同一个问题比较。",
+      "edition": "knowledge-2026-10-29",
+      "learning": {
+        "prerequisiteIds": [],
+        "diagrams": [
+          "wall-paths"
+        ],
+        "relatedPrinciples": [],
+        "applications": [
+          "practice/envelope-detail"
+        ],
+        "outcome": "把墙脚防潮、散水排水、洞口承托与安装缝接成连续路径。",
+        "prerequisite": "墙体设计要求：先说明作用，再选择接口措施。",
+        "next": "wall/wall-finishes",
+        "units": [
+          {
+            "prerequisiteIds": [
+              "wall.integrity"
+            ],
+            "conceptIds": [
+              "moisture"
+            ],
+            "relatedPrinciples": [
+              "principles/moisture",
+              "principles/waterproof"
+            ],
+            "applications": [
+              "practice/envelope-detail"
+            ],
+            "diagramIds": [
+              "wall-paths"
+            ],
+            "id": "wall.damp",
+            "lesson": "wall/wall-details",
+            "anchor": "墙脚防潮：先追踪水的路径",
+            "title": "三个场景，同一条连续防潮线",
+            "question": "改变垫层透水性或地面高差，水会从哪里绕过原防潮层？",
+            "principle": "防潮层要切断墙内毛细水并与地面防护相接。密实与透水垫层提供的边界条件不同；有高差时还要检查侧向绕水，不能只重复一道水平线。",
+            "observe": [
+              "依次选择密实垫层、透水垫层和地面高差三个方案，比较防潮层与地面的位置。",
+              "在高差方案中定位竖向连接，沿墙内与墙侧各画一条可能的受潮路径。"
+            ],
+            "conclusion": "先解释水的来源与路径，再解释防潮层位置。散水和勒脚不能代替这条墙内防潮线。",
+            "boundary": "三维方案部分构件为合并网格，应按方案知识条目观察，不能要求逐层点选；尺寸和材料记录属于实例。",
+            "models": [
+              {
+                "nodeId": "wall-damp-proof-course",
+                "objects": [],
+                "difference": "通过方案选择切换工况；比较垫层条件和高差连接。",
+                "role": "core",
+                "primary": true,
+                "title": "墙身防潮层的位置"
+              }
+            ],
+            "assessment": {
+              "question": "相邻室内地面有高差时，画出水平防潮与邻土侧竖向防潮如何接续。",
+              "criteria": [
+                "水平防潮连续贯穿需要阻断的墙厚。",
+                "高侧邻土墙面设竖向防潮并与相应水平层连续。",
+                "墙身防潮与地表排水分工不同，实例标高不通用。"
+              ]
+            },
+            "sectionId": "section-1"
+          },
+          {
+            "prerequisiteIds": [
+              "wall.damp"
+            ],
+            "conceptIds": [
+              "water",
+              "movement"
+            ],
+            "relatedPrinciples": [
+              "principles/moisture",
+              "principles/waterproof"
+            ],
+            "applications": [
+              "practice/envelope-detail"
+            ],
+            "diagramIds": [],
+            "id": "wall.surface-water",
+            "lesson": "wall/wall-details",
+            "anchor": "勒脚、散水与明沟",
+            "title": "排走地表水，也要允许墙边变形",
+            "question": "散水向外找坡后，为什么墙边的缝还需单独处理？",
+            "principle": "散水减少墙脚的受水机会，分离缝协调主体与地面构造的相对变形，柔性填缝维持接口阻水；坡向、出口和接缝共同决定路径是否连续。",
+            "observe": [
+              "点选墙边的密封膏与聚乙烯泡沫塑料，区分表面封闭和缝内填充。",
+              "比较块石散水与细石混凝土散水，说明面层和垫层改变后仍应保留哪些水路与变形任务。"
+            ],
+            "conclusion": "“把缝填死”和“把水排走”不是同一任务；比较材料时应保持墙脚接口这个共同观察对象。",
+            "boundary": "本例坡度、厚度及材料强度只作读图记录，场地出口和整圈散水的分格未完整呈现。",
+            "models": [
+              {
+                "nodeId": "apron-flashing-01",
+                "objects": [
+                  "密封膏嵌缝",
+                  "聚乙烯泡沫塑料"
+                ],
+                "difference": "细石混凝土面层与墙边分离缝。",
+                "role": "core",
+                "primary": true,
+                "title": "细石混凝土散水构造"
+              },
+              {
+                "nodeId": "stone-apron-01",
+                "objects": [
+                  "密封膏嵌缝",
+                  "聚乙烯泡沫塑料"
+                ],
+                "difference": "面层和垫层形式改变，继续核对坡向及墙边接口。",
+                "role": "comparison",
+                "primary": true,
+                "title": "块石散水构造"
+              }
+            ],
+            "assessment": {
+              "question": "墙边散水向外找坡后，为什么仍要处理墙边接缝？",
+              "criteria": [
+                "坡向和出口负责排水。",
+                "分离缝协调相对变形。",
+                "柔性填缝与表面封闭共同控制接缝进水，不能刚性填死。"
+              ]
+            },
+            "sectionId": "section-2"
+          },
+          {
+            "prerequisiteIds": [
+              "wall.roles"
+            ],
+            "conceptIds": [
+              "loads",
+              "water"
+            ],
+            "relatedPrinciples": [],
+            "applications": [
+              "practice/envelope-detail"
+            ],
+            "diagramIds": [],
+            "id": "wall.opening-support",
+            "lesson": "wall/wall-details",
+            "anchor": "门窗洞口：传力、密封与排水",
+            "title": "过梁承托与洞口外形分别比较",
+            "question": "平墙、带窗套和带窗楣的外形差异，能否直接证明支承充分？",
+            "principle": "过梁承担洞口上方相应作用，窗套和窗楣改变洞口周边的外形与界面。结构支承、表面排水和窗框密封需要分别说明，再在同一详图中协调。",
+            "observe": [
+              "点选过梁主体、包覆层和上部墙体，辨认沿墙厚方向的局部截面。",
+              "比较窗套与窗楣的凸出位置，再列出确认跨度、两端支座及配筋仍需要的图纸。"
+            ],
+            "conclusion": "模型能说明局部几何，不能由窗套或窗楣外观推断过梁的承载能力，也不能把窗框当成过梁支座。",
+            "boundary": "三种模型均未完整表达跨洞方向的两端支座及配筋。",
+            "models": [
+              {
+                "nodeId": "rc-lintel-flush-01",
+                "objects": [
+                  "平墙过梁",
+                  "外围包覆层",
+                  "墙"
+                ],
+                "difference": "先识别齐墙截面，区分主体和外围包覆。",
+                "role": "core",
+                "primary": true,
+                "title": "钢筋混凝土过梁（平墙过梁）"
+              },
+              {
+                "nodeId": "rc-lintel-window-surround-01",
+                "objects": [
+                  "带窗套过梁",
+                  "外围包覆层",
+                  "墙"
+                ],
+                "difference": "观察外围向窗套延伸的轮廓。",
+                "role": "comparison",
+                "primary": true,
+                "title": "钢筋混凝土过梁（带窗套过梁）"
+              },
+              {
+                "nodeId": "rc-lintel-window-hood-01",
+                "objects": [
+                  "带窗楣过梁",
+                  "外围包覆层",
+                  "墙"
+                ],
+                "difference": "观察外挑窗楣，联系上口遮雨与下口排水。",
+                "role": "comparison",
+                "primary": true,
+                "title": "钢筋混凝土过梁（带窗楣过梁）"
+              }
+            ],
+            "assessment": {
+              "question": "带窗楣过梁的外观能否证明支承充分？应补哪一方向的图纸？",
+              "criteria": [
+                "窗楣外形不等于承载证明。",
+                "需跨洞方向跨度、两端支座和配筋图。",
+                "窗周排水与密封另行协调，窗框不是过梁支座。"
+              ]
+            },
+            "sectionId": "section-3"
+          },
+          {
+            "prerequisiteIds": [
+              "wall.opening-support"
+            ],
+            "conceptIds": [
+              "connections",
+              "water"
+            ],
+            "relatedPrinciples": [],
+            "applications": [
+              "practice/envelope-detail"
+            ],
+            "diagramIds": [],
+            "id": "wall.window-joint",
+            "lesson": "wall/wall-details",
+            "anchor": "安装缝的四项任务",
+            "title": "填缝与密封，不能代替可靠固定",
+            "question": "窗墙缝填满后，还缺哪些构造信息才能说明接口完整？",
+            "principle": "固定传递门窗作用，填缝处理间隙，密封控制水与空气通路，排水把已进入界面的水引向室外。几项任务可相互配合，但不能互相替代。",
+            "observe": [
+              "点选窗框、外墙、袋装矿棉和弹性密封胶，找出不同材料的位置。",
+              "在草图中补出本模型没有独立表示的固定点和下口排水去向，再核对墙身保温的接续。"
+            ],
+            "conclusion": "用“作用—路径—接口”说明填塞与胶封的分工，而非把所有材料统称为防水层。",
+            "boundary": "这是传统安装缝局部示例，木条不应被当成适用于任意现代门窗系统的固定方案。",
+            "models": [
+              {
+                "nodeId": "window-wall-gap-sealing-01",
+                "objects": [
+                  "窗框",
+                  "外墙",
+                  "袋装矿棉",
+                  "弹性密封胶"
+                ],
+                "difference": "观察缝内填充与两侧密封，补全固定和排水。",
+                "role": "core",
+                "primary": true,
+                "title": "封堵窗墙间缝隙做法"
+              }
+            ],
+            "assessment": {
+              "question": "安装缝已经填满矿棉并封胶，为什么仍需查固定点和排水？",
+              "criteria": [
+                "填充、密封、固定、排水各有任务。",
+                "自重、风和启闭作用需要可靠传递到基层。",
+                "下口水要有室外出口，不能把矿棉当密封胶。"
+              ]
+            },
+            "sectionId": "section-4"
+          }
+        ],
+        "intro": "从地面水分走向洞口：每一处节点都要说明水从哪里来、作用传给谁、连接怎样连续。多种做法围绕同一个问题比较。",
+        "kind": "reading"
+      },
+      "readingMinutes": 8,
+      "figures": [
+        {
+          "id": "model-wall-damp",
+          "number": "01",
+          "nodeId": "wall-damp-proof-course",
+          "nodeTitle": "墙身防潮层的位置",
+          "knowledgeId": "wall.damp",
+          "anchor": "墙脚防潮：先追踪水的路径",
+          "title": "三个场景，同一条连续防潮线",
+          "caption": "防潮层要切断墙内毛细水并与地面防护相接。密实与透水垫层提供的边界条件不同；有高差时还要检查侧向绕水，不能只重复一道水平线。三维方案部分构件为合并网格，应按方案知识条目观察，不能要求逐层点选；尺寸和材料记录属于实例。",
+          "focus": [
+            "依次选择密实垫层、透水垫层和地面高差三个方案，比较防潮层与地面的位置。",
+            "在高差方案中定位竖向连接，沿墙内与墙侧各画一条可能的受潮路径。"
+          ],
+          "imageAlt": "三个场景，同一条连续防潮线的构造示意",
+          "image": "/images/learning/wall-paths.svg",
+          "hasModel": true,
+          "sectionId": "section-1",
+          "sectionTitle": "墙脚防潮：先追踪水的路径",
+          "layerCount": 5
+        },
+        {
+          "id": "model-wall-surface-water",
+          "number": "02",
+          "nodeId": "apron-flashing-01",
+          "nodeTitle": "细石混凝土散水构造",
+          "knowledgeId": "wall.surface-water",
+          "anchor": "勒脚、散水与明沟",
+          "title": "排走地表水，也要允许墙边变形",
+          "caption": "散水减少墙脚的受水机会，分离缝协调主体与地面构造的相对变形，柔性填缝维持接口阻水；坡向、出口和接缝共同决定路径是否连续。本例坡度、厚度及材料强度只作读图记录，场地出口和整圈散水的分格未完整呈现。",
+          "focus": [
+            "点选墙边的密封膏与聚乙烯泡沫塑料，区分表面封闭和缝内填充。",
+            "比较块石散水与细石混凝土散水，说明面层和垫层改变后仍应保留哪些水路与变形任务。"
+          ],
+          "imageAlt": "排走地表水，也要允许墙边变形的构造示意",
+          "image": "/images/wall/apron-flashing-diagram.png",
+          "hasModel": true,
+          "sectionId": "section-2",
+          "sectionTitle": "勒脚、散水与明沟",
+          "layerCount": 9
+        },
+        {
+          "id": "model-wall-opening-support",
+          "number": "03",
+          "nodeId": "rc-lintel-flush-01",
+          "nodeTitle": "钢筋混凝土过梁（平墙过梁）",
+          "knowledgeId": "wall.opening-support",
+          "anchor": "门窗洞口：传力、密封与排水",
+          "title": "过梁承托与洞口外形分别比较",
+          "caption": "过梁承担洞口上方相应作用，窗套和窗楣改变洞口周边的外形与界面。结构支承、表面排水和窗框密封需要分别说明，再在同一详图中协调。三种模型均未完整表达跨洞方向的两端支座及配筋。",
+          "focus": [
+            "点选过梁主体、包覆层和上部墙体，辨认沿墙厚方向的局部截面。",
+            "比较窗套与窗楣的凸出位置，再列出确认跨度、两端支座及配筋仍需要的图纸。"
+          ],
+          "imageAlt": "过梁承托与洞口外形分别比较的构造示意",
+          "image": "/images/wall/rc-lintel-flush-diagram.png",
+          "hasModel": true,
+          "sectionId": "section-3",
+          "sectionTitle": "门窗洞口：传力、密封与排水",
+          "layerCount": 3
+        },
+        {
+          "id": "model-wall-window-joint",
+          "number": "04",
+          "nodeId": "window-wall-gap-sealing-01",
+          "nodeTitle": "封堵窗墙间缝隙做法",
+          "knowledgeId": "wall.window-joint",
+          "anchor": "安装缝的四项任务",
+          "title": "填缝与密封，不能代替可靠固定",
+          "caption": "固定传递门窗作用，填缝处理间隙，密封控制水与空气通路，排水把已进入界面的水引向室外。几项任务可相互配合，但不能互相替代。这是传统安装缝局部示例，木条不应被当成适用于任意现代门窗系统的固定方案。",
+          "focus": [
+            "点选窗框、外墙、袋装矿棉和弹性密封胶，找出不同材料的位置。",
+            "在草图中补出本模型没有独立表示的固定点和下口排水去向，再核对墙身保温的接续。"
+          ],
+          "imageAlt": "填缝与密封，不能代替可靠固定的构造示意",
+          "image": "/images/wall/window-wall-gap-sealing-diagram.png",
+          "hasModel": true,
+          "sectionId": "section-4",
+          "sectionTitle": "安装缝的四项任务",
+          "layerCount": 6
+        }
+      ]
+    },
+    "wall/wall-finishes": {
+      "key": "wall/wall-finishes",
+      "title": "墙面装修",
+      "path": "basics/wall/wall-finishes.html",
+      "intro": "保留饰面分类与施工知识，再用三种勒脚检验“面材更换不等于系统任务消失”，完成本章综合解释。",
+      "edition": "knowledge-2026-10-29",
+      "learning": {
+        "prerequisiteIds": [],
+        "diagrams": [],
+        "relatedPrinciples": [],
+        "applications": [
+          "practice/envelope-detail"
+        ],
+        "outcome": "从基层、连接与面层解释墙面缺陷，并把表面保护与墙身防潮分开。",
+        "prerequisite": "墙体细部：明确墙脚与洞口的水路及活动接口。",
+        "next": "wall/index",
+        "units": [
+          {
+            "prerequisiteIds": [
+              "wall.surface-water",
+              "wall.window-joint"
+            ],
+            "conceptIds": [
+              "layers",
+              "maintenance"
+            ],
+            "relatedPrinciples": [],
+            "applications": [
+              "practice/envelope-detail"
+            ],
+            "diagramIds": [],
+            "id": "wall.finishes",
+            "lesson": "wall/wall-finishes",
+            "anchor": "用勒脚比较饰面与墙身防潮",
+            "title": "同一个墙脚，面层改变后哪些任务保留",
+            "question": "换成石材或贴面，是否就可以取消墙脚防潮？",
+            "principle": "饰面保护可见表面，基层与连接承担附加层的自重和变形，墙身及地面的防潮线控制内部水分路径。面材更换并不取消另外两项任务。",
+            "observe": [
+              "比较抹灰、贴面和石砌勒脚，先找墙体与外侧可见层，再找相邻地面和防潮构造。",
+              "说明各模型明确表示了什么连接，哪些重型面材锚固或干挂构造不能从这些模型推出。"
+            ],
+            "conclusion": "从材料名称转向“面层—连接—基层—防潮”的关系；修补起皮前先判断水源和基层是否仍在变化。",
+            "boundary": "贴面勒脚不代表通用干挂系统；石砌模型未单独显示的防潮层不能解释为可以取消。",
+            "models": [
+              {
+                "nodeId": "plaster-plinth-01",
+                "objects": [
+                  "抹灰",
+                  "墙体",
+                  "防潮层"
+                ],
+                "difference": "区分外侧抹灰保护与墙内水平防潮。",
+                "role": "core",
+                "primary": true,
+                "title": "抹灰勒脚构造做法"
+              },
+              {
+                "nodeId": "faced-plinth-01",
+                "objects": [
+                  "贴面",
+                  "墙体",
+                  "防潮层"
+                ],
+                "difference": "改变面层后，继续检查基层和防潮接续。",
+                "role": "comparison",
+                "primary": true,
+                "title": "贴面勒脚构造做法"
+              },
+              {
+                "nodeId": "stone-plinth-01",
+                "objects": [
+                  "石砌",
+                  "墙体"
+                ],
+                "difference": "比较石砌层与上部墙体，不把未表示的层次当成无需设置。",
+                "role": "comparison",
+                "primary": true,
+                "title": "石砌勒脚构造做法"
+              }
+            ],
+            "assessment": {
+              "question": "把抹灰勒脚改为石材后，列出保留和需要重新核对的构造任务。",
+              "criteria": [
+                "保留防潮和表面排水任务。",
+                "按面材自重与变形重查连接和基层。",
+                "局部石砌模型未表示的防潮层不等于可以取消。"
+              ]
+            },
+            "sectionId": "section-6"
+          }
+        ],
+        "intro": "保留饰面分类与施工知识，再用三种勒脚检验“面材更换不等于系统任务消失”，完成本章综合解释。",
+        "kind": "reading"
+      },
+      "readingMinutes": 7,
+      "figures": [
+        {
+          "id": "model-wall-finishes",
+          "number": "01",
+          "nodeId": "plaster-plinth-01",
+          "nodeTitle": "抹灰勒脚构造做法",
+          "knowledgeId": "wall.finishes",
+          "anchor": "用勒脚比较饰面与墙身防潮",
+          "title": "同一个墙脚，面层改变后哪些任务保留",
+          "caption": "饰面保护可见表面，基层与连接承担附加层的自重和变形，墙身及地面的防潮线控制内部水分路径。面材更换并不取消另外两项任务。贴面勒脚不代表通用干挂系统；石砌模型未单独显示的防潮层不能解释为可以取消。",
+          "focus": [
+            "比较抹灰、贴面和石砌勒脚，先找墙体与外侧可见层，再找相邻地面和防潮构造。",
+            "说明各模型明确表示了什么连接，哪些重型面材锚固或干挂构造不能从这些模型推出。"
+          ],
+          "imageAlt": "同一个墙脚，面层改变后哪些任务保留的构造示意",
+          "image": "/images/wall/plaster-plinth-diagram.png",
+          "hasModel": true,
+          "sectionId": "section-6",
+          "sectionTitle": "用勒脚比较饰面与墙身防潮",
+          "layerCount": 5
+        }
+      ]
+    }
+  },
+  "nodes": {
+    "frame-structure-layout-01": {
+      "lessonKey": "wall/wall-role",
+      "lessonTitle": "墙体在建筑中的作用",
+      "lessonPath": "basics/wall/wall-role.html",
+      "figureId": "model-wall-roles",
+      "knowledgeId": "wall.roles",
+      "question": "外墙是否一定承重，内墙是否一定不承重？",
+      "principle": "位置说明它分隔哪里，结构角色说明作用传给谁。框架中梁柱构成承重骨架；砌体承重体系中，楼板可把作用传给相应墙段。二者都需要可靠连接。",
+      "task": "从两向梁追到柱，识别框架骨架。",
+      "objects": [
+        "框架梁",
+        "框架柱"
+      ],
+      "boundary": "梁柱模型不含楼板、填充墙、基础或连接配筋，不能用它验证整栋建筑的承载与抗侧性能。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "wall-bearing-transverse-01": {
+      "lessonKey": "wall/wall-masonry",
+      "lessonTitle": "砌体结构",
+      "lessonPath": "basics/wall/wall-masonry.html",
+      "figureId": "model-wall-bearing",
+      "knowledgeId": "wall.bearing",
+      "question": "为什么横墙、纵墙、纵横墙和半框架布置会形成不同空间？",
+      "principle": "楼板支承、墙段连续与房间分隔共同约束布置。改变支承方向或用内部梁柱替换部分墙段，会改变传力路线与空间组织；围墙外形相似并不表示体系相同。",
+      "task": "横墙重复分隔，观察板端与横向墙段及通道梁的关系。",
+      "objects": [
+        "楼板",
+        "墙体",
+        "横向梁"
+      ],
+      "boundary": "这些是单层布置示意，墙段和楼板多为合并网格；不展示结构计算、完整连接或抗震验算。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "passive-solar-wall-01": {
+      "lessonKey": "wall/wall-design-requirements",
+      "lessonTitle": "墙体的设计要求",
+      "lessonPath": "basics/wall/wall-design-requirements.html",
+      "figureId": "model-wall-solar",
+      "knowledgeId": "wall.solar",
+      "question": "同一套玻璃、间层和孔口，为何不能在各季节采用同一运行方式？",
+      "principle": "玻璃侧日射、间层空气、蓄热或传热界面与室内连接共同影响热交换。日照、室内外温度和孔口开闭变化，可能改变热量及空气流动方向。",
+      "task": "从层次与孔口建立有条件的热交换路径。",
+      "objects": [
+        "外侧玻璃",
+        "空气间层",
+        "外围护墙",
+        "上部进风口",
+        "下部出风口"
+      ],
+      "boundary": "模型不模拟温度场、气流或季节切换，不把特殊太阳能墙直接当成普通外保温。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "window-wall-gap-sealing-01": {
+      "lessonKey": "wall/wall-details",
+      "lessonTitle": "墙体细部构造",
+      "lessonPath": "basics/wall/wall-details.html",
+      "figureId": "model-wall-window-joint",
+      "knowledgeId": "wall.window-joint",
+      "question": "窗墙缝填满后，还缺哪些构造信息才能说明接口完整？",
+      "principle": "固定传递门窗作用，填缝处理间隙，密封控制水与空气通路，排水把已进入界面的水引向室外。几项任务可相互配合，但不能互相替代。",
+      "task": "观察缝内填充与两侧密封，补全固定和排水。",
+      "objects": [
+        "窗框",
+        "外墙",
+        "袋装矿棉",
+        "弹性密封胶"
+      ],
+      "boundary": "这是传统安装缝局部示例，木条不应被当成适用于任意现代门窗系统的固定方案。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "foam-insulation-01": {
+      "lessonKey": "wall/wall-design-requirements",
+      "lessonTitle": "墙体的设计要求",
+      "lessonPath": "basics/wall/wall-design-requirements.html",
+      "figureId": "model-wall-thermal",
+      "knowledgeId": "wall.thermal",
+      "question": "把保温板贴满墙面，是否就得到完整的外墙性能？",
+      "principle": "保温层减小实体传热，连接把附加层作用交给基层，外侧保护应适应水和变形。洞口、梁柱和穿透处仍要保持相应边界连续，气密与防结露需要另外判断。",
+      "task": "辨认粘贴、锚固、增强及饰面之间的任务。",
+      "objects": [
+        "保温板",
+        "胶粘剂",
+        "锚栓加固",
+        "基层墙体"
+      ],
+      "boundary": "局部墙身模型不含完整洞口热桥，也不提供热工、声学或耐火试验结果。",
+      "primary": true,
+      "relatedPrinciples": [
+        "principles/thermal"
+      ],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "rockwool-insulation-01": {
+      "lessonKey": "wall/wall-design-requirements",
+      "lessonTitle": "墙体的设计要求",
+      "lessonPath": "basics/wall/wall-design-requirements.html",
+      "figureId": "model-wall-thermal",
+      "knowledgeId": "wall.thermal",
+      "question": "把保温板贴满墙面，是否就得到完整的外墙性能？",
+      "principle": "保温层减小实体传热，连接把附加层作用交给基层，外侧保护应适应水和变形。洞口、梁柱和穿透处仍要保持相应边界连续，气密与防结露需要另外判断。",
+      "task": "对照卡片中的保温、找平和外侧保护，图示厚度仅对应本例。",
+      "objects": [
+        "锚栓",
+        "基层墙体"
+      ],
+      "boundary": "局部墙身模型不含完整洞口热桥，也不提供热工、声学或耐火试验结果。",
+      "primary": true,
+      "relatedPrinciples": [
+        "principles/thermal"
+      ],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "wall-damp-proof-course": {
+      "lessonKey": "wall/wall-details",
+      "lessonTitle": "墙体细部构造",
+      "lessonPath": "basics/wall/wall-details.html",
+      "figureId": "model-wall-damp",
+      "knowledgeId": "wall.damp",
+      "question": "改变垫层透水性或地面高差，水会从哪里绕过原防潮层？",
+      "principle": "防潮层要切断墙内毛细水并与地面防护相接。密实与透水垫层提供的边界条件不同；有高差时还要检查侧向绕水，不能只重复一道水平线。",
+      "task": "通过方案选择切换工况；比较垫层条件和高差连接。",
+      "objects": [],
+      "boundary": "三维方案部分构件为合并网格，应按方案知识条目观察，不能要求逐层点选；尺寸和材料记录属于实例。",
+      "primary": true,
+      "relatedPrinciples": [
+        "principles/moisture",
+        "principles/waterproof"
+      ],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "hollow-block-forms-01": {
+      "lessonKey": "wall/wall-types",
+      "lessonTitle": "墙体的类型",
+      "lessonPath": "basics/wall/wall-types.html",
+      "figureId": "model-wall-materials",
+      "knowledgeId": "wall.materials",
+      "question": "孔型、墙体构造和承重身份能否互相替代？",
+      "principle": "孔型是块材内部的几何特征；墙体构造还包含灰缝、连接和可能的附加层；承重身份由完整体系确定。三种描述应分别给出。",
+      "task": "比较孔洞和壁肋，而非按孔数排列性能高低。",
+      "objects": [
+        "多排扁孔",
+        "单排双孔",
+        "单排圆孔",
+        "单排组合孔"
+      ],
+      "boundary": "模型只展示砌块形式，不展示实际组砌、灰缝质量或产品性能。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "wall-bearing-longitudinal-01": {
+      "lessonKey": "wall/wall-masonry",
+      "lessonTitle": "砌体结构",
+      "lessonPath": "basics/wall/wall-masonry.html",
+      "figureId": "model-wall-bearing",
+      "knowledgeId": "wall.bearing",
+      "question": "为什么横墙、纵墙、纵横墙和半框架布置会形成不同空间？",
+      "principle": "楼板支承、墙段连续与房间分隔共同约束布置。改变支承方向或用内部梁柱替换部分墙段，会改变传力路线与空间组织；围墙外形相似并不表示体系相同。",
+      "task": "转向外纵墙与内纵墙，比较板端支承和横向空间。",
+      "objects": [
+        "楼板",
+        "墙体"
+      ],
+      "boundary": "这些是单层布置示意，墙段和楼板多为合并网格；不展示结构计算、完整连接或抗震验算。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "wall-bearing-two-way-01": {
+      "lessonKey": "wall/wall-masonry",
+      "lessonTitle": "砌体结构",
+      "lessonPath": "basics/wall/wall-masonry.html",
+      "figureId": "model-wall-bearing",
+      "knowledgeId": "wall.bearing",
+      "question": "为什么横墙、纵墙、纵横墙和半框架布置会形成不同空间？",
+      "principle": "楼板支承、墙段连续与房间分隔共同约束布置。改变支承方向或用内部梁柱替换部分墙段，会改变传力路线与空间组织；围墙外形相似并不表示体系相同。",
+      "task": "按房间分别读板的排列方向，不能给整栋建筑只画一种箭头。",
+      "objects": [
+        "楼板",
+        "墙体",
+        "横向梁"
+      ],
+      "boundary": "这些是单层布置示意，墙段和楼板多为合并网格；不展示结构计算、完整连接或抗震验算。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "wall-bearing-semi-frame-01": {
+      "lessonKey": "wall/wall-masonry",
+      "lessonTitle": "砌体结构",
+      "lessonPath": "basics/wall/wall-masonry.html",
+      "figureId": "model-wall-bearing",
+      "knowledgeId": "wall.bearing",
+      "question": "为什么横墙、纵墙、纵横墙和半框架布置会形成不同空间？",
+      "principle": "楼板支承、墙段连续与房间分隔共同约束布置。改变支承方向或用内部梁柱替换部分墙段，会改变传力路线与空间组织；围墙外形相似并不表示体系相同。",
+      "task": "识别内部柱列与横向梁，再观察外围墙体；区别于完全梁柱骨架。",
+      "objects": [
+        "楼板",
+        "横向梁",
+        "柱",
+        "墙体"
+      ],
+      "boundary": "这些是单层布置示意，墙段和楼板多为合并网格；不展示结构计算、完整连接或抗震验算。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "construction-column-01": {
+      "lessonKey": "wall/wall-masonry",
+      "lessonTitle": "砌体结构",
+      "lessonPath": "basics/wall/wall-masonry.html",
+      "figureId": "model-wall-integrity",
+      "knowledgeId": "wall.integrity",
+      "question": "构造柱与芯柱在哪里形成联系，为什么都不能代替承重墙？",
+      "principle": "圈梁沿水平方向联系墙段，构造柱在墙交接或边界形成竖向约束；芯柱利用砌块孔道形成竖向增强。它们通过连续连接改善整体工作，任务与框架承重骨架不同。",
+      "task": "墙交接处的柱身、咬合和水平联系。",
+      "objects": [
+        "墙体",
+        "马牙槎",
+        "钢筋",
+        "圈梁"
+      ],
+      "boundary": "构造柱模型与所配局部原图的墙体布置不同；图示钢筋与混凝土标号是本例记录，不是全站通用配筋。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "block-wall-core-column-01": {
+      "lessonKey": "wall/wall-masonry",
+      "lessonTitle": "砌体结构",
+      "lessonPath": "basics/wall/wall-masonry.html",
+      "figureId": "model-wall-integrity",
+      "knowledgeId": "wall.integrity",
+      "question": "构造柱与芯柱在哪里形成联系，为什么都不能代替承重墙？",
+      "principle": "圈梁沿水平方向联系墙段，构造柱在墙交接或边界形成竖向约束；芯柱利用砌块孔道形成竖向增强。它们通过连续连接改善整体工作，任务与框架承重骨架不同。",
+      "task": "孔道内的钢筋与灌芯，核对孔道连续和灌注条件。",
+      "objects": [
+        "砌块墙体",
+        "2Φ12通长筋",
+        "灌C15细石混凝土"
+      ],
+      "boundary": "构造柱模型与所配局部原图的墙体布置不同；图示钢筋与混凝土标号是本例记录，不是全站通用配筋。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "apron-flashing-01": {
+      "lessonKey": "wall/wall-details",
+      "lessonTitle": "墙体细部构造",
+      "lessonPath": "basics/wall/wall-details.html",
+      "figureId": "model-wall-surface-water",
+      "knowledgeId": "wall.surface-water",
+      "question": "散水向外找坡后，为什么墙边的缝还需单独处理？",
+      "principle": "散水减少墙脚的受水机会，分离缝协调主体与地面构造的相对变形，柔性填缝维持接口阻水；坡向、出口和接缝共同决定路径是否连续。",
+      "task": "细石混凝土面层与墙边分离缝。",
+      "objects": [
+        "密封膏嵌缝",
+        "聚乙烯泡沫塑料"
+      ],
+      "boundary": "本例坡度、厚度及材料强度只作读图记录，场地出口和整圈散水的分格未完整呈现。",
+      "primary": true,
+      "relatedPrinciples": [
+        "principles/moisture",
+        "principles/waterproof"
+      ],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "stone-apron-01": {
+      "lessonKey": "wall/wall-details",
+      "lessonTitle": "墙体细部构造",
+      "lessonPath": "basics/wall/wall-details.html",
+      "figureId": "model-wall-surface-water",
+      "knowledgeId": "wall.surface-water",
+      "question": "散水向外找坡后，为什么墙边的缝还需单独处理？",
+      "principle": "散水减少墙脚的受水机会，分离缝协调主体与地面构造的相对变形，柔性填缝维持接口阻水；坡向、出口和接缝共同决定路径是否连续。",
+      "task": "面层和垫层形式改变，继续核对坡向及墙边接口。",
+      "objects": [
+        "密封膏嵌缝",
+        "聚乙烯泡沫塑料"
+      ],
+      "boundary": "本例坡度、厚度及材料强度只作读图记录，场地出口和整圈散水的分格未完整呈现。",
+      "primary": true,
+      "relatedPrinciples": [
+        "principles/moisture",
+        "principles/waterproof"
+      ],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "rc-lintel-flush-01": {
+      "lessonKey": "wall/wall-details",
+      "lessonTitle": "墙体细部构造",
+      "lessonPath": "basics/wall/wall-details.html",
+      "figureId": "model-wall-opening-support",
+      "knowledgeId": "wall.opening-support",
+      "question": "平墙、带窗套和带窗楣的外形差异，能否直接证明支承充分？",
+      "principle": "过梁承担洞口上方相应作用，窗套和窗楣改变洞口周边的外形与界面。结构支承、表面排水和窗框密封需要分别说明，再在同一详图中协调。",
+      "task": "先识别齐墙截面，区分主体和外围包覆。",
+      "objects": [
+        "平墙过梁",
+        "外围包覆层",
+        "墙"
+      ],
+      "boundary": "三种模型均未完整表达跨洞方向的两端支座及配筋。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "rc-lintel-window-surround-01": {
+      "lessonKey": "wall/wall-details",
+      "lessonTitle": "墙体细部构造",
+      "lessonPath": "basics/wall/wall-details.html",
+      "figureId": "model-wall-opening-support",
+      "knowledgeId": "wall.opening-support",
+      "question": "平墙、带窗套和带窗楣的外形差异，能否直接证明支承充分？",
+      "principle": "过梁承担洞口上方相应作用，窗套和窗楣改变洞口周边的外形与界面。结构支承、表面排水和窗框密封需要分别说明，再在同一详图中协调。",
+      "task": "观察外围向窗套延伸的轮廓。",
+      "objects": [
+        "带窗套过梁",
+        "外围包覆层",
+        "墙"
+      ],
+      "boundary": "三种模型均未完整表达跨洞方向的两端支座及配筋。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "rc-lintel-window-hood-01": {
+      "lessonKey": "wall/wall-details",
+      "lessonTitle": "墙体细部构造",
+      "lessonPath": "basics/wall/wall-details.html",
+      "figureId": "model-wall-opening-support",
+      "knowledgeId": "wall.opening-support",
+      "question": "平墙、带窗套和带窗楣的外形差异，能否直接证明支承充分？",
+      "principle": "过梁承担洞口上方相应作用，窗套和窗楣改变洞口周边的外形与界面。结构支承、表面排水和窗框密封需要分别说明，再在同一详图中协调。",
+      "task": "观察外挑窗楣，联系上口遮雨与下口排水。",
+      "objects": [
+        "带窗楣过梁",
+        "外围包覆层",
+        "墙"
+      ],
+      "boundary": "三种模型均未完整表达跨洞方向的两端支座及配筋。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "plaster-plinth-01": {
+      "lessonKey": "wall/wall-finishes",
+      "lessonTitle": "墙面装修",
+      "lessonPath": "basics/wall/wall-finishes.html",
+      "figureId": "model-wall-finishes",
+      "knowledgeId": "wall.finishes",
+      "question": "换成石材或贴面，是否就可以取消墙脚防潮？",
+      "principle": "饰面保护可见表面，基层与连接承担附加层的自重和变形，墙身及地面的防潮线控制内部水分路径。面材更换并不取消另外两项任务。",
+      "task": "区分外侧抹灰保护与墙内水平防潮。",
+      "objects": [
+        "抹灰",
+        "墙体",
+        "防潮层"
+      ],
+      "boundary": "贴面勒脚不代表通用干挂系统；石砌模型未单独显示的防潮层不能解释为可以取消。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "faced-plinth-01": {
+      "lessonKey": "wall/wall-finishes",
+      "lessonTitle": "墙面装修",
+      "lessonPath": "basics/wall/wall-finishes.html",
+      "figureId": "model-wall-finishes",
+      "knowledgeId": "wall.finishes",
+      "question": "换成石材或贴面，是否就可以取消墙脚防潮？",
+      "principle": "饰面保护可见表面，基层与连接承担附加层的自重和变形，墙身及地面的防潮线控制内部水分路径。面材更换并不取消另外两项任务。",
+      "task": "改变面层后，继续检查基层和防潮接续。",
+      "objects": [
+        "贴面",
+        "墙体",
+        "防潮层"
+      ],
+      "boundary": "贴面勒脚不代表通用干挂系统；石砌模型未单独显示的防潮层不能解释为可以取消。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "stone-plinth-01": {
+      "lessonKey": "wall/wall-finishes",
+      "lessonTitle": "墙面装修",
+      "lessonPath": "basics/wall/wall-finishes.html",
+      "figureId": "model-wall-finishes",
+      "knowledgeId": "wall.finishes",
+      "question": "换成石材或贴面，是否就可以取消墙脚防潮？",
+      "principle": "饰面保护可见表面，基层与连接承担附加层的自重和变形，墙身及地面的防潮线控制内部水分路径。面材更换并不取消另外两项任务。",
+      "task": "比较石砌层与上部墙体，不把未表示的层次当成无需设置。",
+      "objects": [
+        "石砌",
+        "墙体"
+      ],
+      "boundary": "贴面勒脚不代表通用干挂系统；石砌模型未单独显示的防潮层不能解释为可以取消。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    }
+  }
+}

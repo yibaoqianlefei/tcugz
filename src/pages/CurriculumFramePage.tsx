@@ -9,6 +9,7 @@ import { lessonMedia } from '../components/textbook/lessonMedia';
 import InlineLessonModels from '../components/textbook/InlineLessonModels';
 import BookNavigation from '../components/textbook/BookNavigation';
 import { lessonNodeRoute, recalledLessonVisit, rememberLessonVisit, validLessonVisit } from '../utils/lessonNodeNavigation';
+import { resolveLearningUnit } from '../utils/curriculumLearning';
 
 const siteBase = import.meta.env.BASE_URL;
 const documents = new Set(curriculum.documents);
@@ -56,6 +57,14 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
   const lesson = Object.values(lessonMedia).find(item => item.path === documentPath);
   const source = `${siteBase}lesson/${documentPath}`;
   const sectionLinks = useMemo(() => [...readerDocument?.querySelectorAll<HTMLElement>('.article h2[id]') ?? []].map(section => ({ id: section.id, title: section.textContent?.trim() ?? '' })), [readerDocument]);
+  useEffect(() => {
+    if (!readerDocument || !loaded.current) return;
+    const query = new URLSearchParams(location.search);
+    const unit = resolveLearningUnit(documentPath, query.get('unit'), query.get('model'));
+    if (!unit) return;
+    const id = window.requestAnimationFrame(() => scrollReaderTo(frame.current, `unit-${unit.id}`));
+    return () => window.cancelAnimationFrame(id);
+  }, [documentPath, location.search, readerDocument]);
   const closeDirectory = useCallback(() => {
     setDirectoryOpen(false);
     window.requestAnimationFrame(() => directoryTrigger.current?.focus({ preventScroll: true }));
@@ -163,7 +172,9 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
     // The iframe must have its full height before restoring a reading position.
     window.scrollTo({ top: 0, behavior: 'instant' });
     const requestedFigure = restore?.figureId ?? new URLSearchParams(location.search).get('model');
-    const returnFigure = lesson?.figures.find(figure => figure.id === requestedFigure);
+    const requestedUnit = restore?.unitId ?? new URLSearchParams(location.search).get('unit');
+    const returnUnit = resolveLearningUnit(documentPath, requestedUnit, requestedFigure);
+    const returnFigure = lesson?.figures.find(figure => figure.id === requestedFigure || figure.knowledgeId === returnUnit?.id);
     let restoreFrame = 0;
     void doc.fonts.ready.then(() => {
       if (disposed) return;
@@ -171,6 +182,7 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
         if (disposed) return;
         resize();
         if (restore?.viewportWidth === window.innerWidth) window.scrollTo({ top: restore.scrollTop, behavior: 'instant' });
+        else if (returnUnit) scrollReaderTo(iframe, `unit-${returnUnit.id}`, true);
         else if (returnFigure) scrollReaderTo(iframe, returnFigure.id, true);
         if (returnFigure) doc.querySelector<HTMLAnchorElement>(`#${returnFigure.id} .lesson-model-link`)?.focus({ preventScroll: true });
       });
@@ -221,7 +233,9 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
       if (url.origin !== window.location.origin || url.pathname !== siteBase || !nodeId || !lesson) continue;
       const figure = anchor.closest<HTMLElement>('.lesson-figure');
       const figureId = lesson.figures.find(item => item.id === figure?.id && item.nodeId === nodeId)?.id;
-      anchor.href = `${siteBase}#${lessonNodeRoute(nodeId, documentPath, figureId)}`;
+      const unitId = anchor.closest<HTMLElement>('[data-knowledge-unit]')?.dataset.knowledgeUnit
+        ?? new URLSearchParams(url.hash.split('?')[1]).get('unit') ?? undefined;
+      anchor.href = `${siteBase}#${lessonNodeRoute(nodeId, documentPath, figureId, unitId)}`;
     }
     const followLink = (event: MouseEvent) => {
       const anchor = (event.target as Element | null)?.closest?.('a[href]') as HTMLAnchorElement | null;
@@ -240,15 +254,17 @@ function CourseDocument({ documentPath }: { documentPath: string }) {
       }
       if (url.pathname.startsWith(coursePrefix)) {
         event.preventDefault();
-        navigate(`/lesson/${url.pathname.slice(coursePrefix.length)}`);
+        navigate(`/lesson/${url.pathname.slice(coursePrefix.length)}${url.search}`);
       } else if (url.hash.startsWith('#/') && url.pathname === siteBase) {
         event.preventDefault();
         const nodeId = url.hash.match(/^#\/node\/([^/?#]+)/)?.[1];
         if (nodeId && lesson) {
           const figureId = lesson.figures.find(item => item.id === anchor.closest('.lesson-figure')?.id && item.nodeId === nodeId)?.id;
-          const visit = { path: documentPath, scrollTop: window.scrollY, viewportWidth: window.innerWidth, directoryOpen: document.querySelector('.book-reader-shell')?.getAttribute('data-directory-open') === 'true', figureId, openDetails: readingDetails.flatMap((details, index) => details.open ? [index] : []) };
+          const unitId = anchor.closest<HTMLElement>('[data-knowledge-unit]')?.dataset.knowledgeUnit
+            ?? new URLSearchParams(url.hash.split('?')[1]).get('unit') ?? undefined;
+          const visit = { path: documentPath, scrollTop: window.scrollY, viewportWidth: window.innerWidth, directoryOpen: document.querySelector('.book-reader-shell')?.getAttribute('data-directory-open') === 'true', figureId, unitId, openDetails: readingDetails.flatMap((details, index) => details.open ? [index] : []) };
           rememberLessonVisit(location.key, visit);
-          navigate(lessonNodeRoute(nodeId, documentPath, figureId), { state: { lessonVisit: visit } });
+          navigate(lessonNodeRoute(nodeId, documentPath, figureId, unitId), { state: { lessonVisit: visit } });
         } else navigate(url.hash.slice(1));
       }
     };

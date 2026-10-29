@@ -20,6 +20,7 @@ import { getNodeAutoRotationAngle, getNodeOrbitRotationSpeed } from "../../utils
 import { CAMERA_REFIT_SECONDS, CAMERA_RESIZE_SETTLE_MS, NODE_CAMERA_FOV, NODE_MAX_POLAR_ANGLE, SINGLE_MODEL_FIT_PADDING } from '../../utils/viewerCamera';
 import { DRACO_DECODER_PATH } from '../../utils/modelDecoders';
 import { cameraFollowTarget, captureCameraDistanceRatio, didCameraGestureChange, stepCameraFollowDistance } from '../../utils/singleModelCameraFollow';
+import { compensateViewportDistance, stepViewportDistance } from '../../utils/viewportCameraMotion';
 
 /* ═══════════════════════════════════════════════════════════════
    Material highlight — original-state cache + dual-channel restore
@@ -73,6 +74,10 @@ import {
 let _controls: OrbitControlsImpl | null = null;
 /** Drag detection: suppress click after pointer moved > threshold. */
 const CLICK_MOVE_THRESHOLD = 5; // px
+// ResizeObserver already follows the sheet's flex layout. The default scroll
+// debounce delays those measurements; global resize pumps clear WebGL buffers
+// after a render and can leave several consecutive blank frames on phones.
+const CANVAS_RESIZE = { scroll: false, debounce: 0 };
 // Keep initialization dependencies stable when display toggles re-render all variants.
 const MULTI_MODEL_NON_INTERACTIVE = ['其余'];
 let _pointerDownX = 0;
@@ -776,7 +781,10 @@ function applyCameraFraming(
   controls.update();
 }
 
-type CameraDistanceTransition = { from: number; to: number; elapsed: number; interactionVersion: number };
+type CameraDistanceTransition = {
+  from: number; to: number; elapsed: number; interactionVersion: number;
+  fromTarget: THREE.Vector3; toTarget: THREE.Vector3;
+};
 
 function prepareDistanceTransition(
   camera: THREE.PerspectiveCamera,
@@ -787,17 +795,14 @@ function prepareDistanceTransition(
   far: number,
   interactionVersion: number,
 ): CameraDistanceTransition | null {
-  if (target) {
-    camera.position.add(target.clone().sub(controls.target));
-    controls.target.copy(target);
-  }
   const currentDistance = camera.position.distanceTo(controls.target);
   camera.near = near;
   camera.far = far;
   camera.updateProjectionMatrix();
   controls.update();
-  return Math.abs(currentDistance - distance) > 0.02
-    ? { from: currentDistance, to: distance, elapsed: 0, interactionVersion }
+  return Math.abs(currentDistance - distance) > 0.02 || (target && target.distanceTo(controls.target) > 1e-5)
+    ? { from: currentDistance, to: distance, elapsed: 0, interactionVersion,
+      fromTarget: controls.target.clone(), toTarget: (target ?? controls.target).clone() }
     : null;
 }
 
@@ -835,6 +840,12 @@ function CameraTracker({
   const followBoxRef = useRef(new THREE.Box3());
   const followCenterRef = useRef(new THREE.Vector3());
   const orbitRadiusRef = useRef<{ progress: number; radius: number } | null>(null);
+  const liveHeightRef = useRef<number | null>(null);
+  const lastViewportChangeRef = useRef(-Infinity);
+  // Phone/tablet controls already reserve their own flex row below the canvas.
+  const controlsInset = typeof window !== "undefined" && window.matchMedia(
+    "(max-width: 760px), (pointer: coarse) and (max-width: 1024px)",
+  ).matches ? 0 : 80;
   // User zoom is relative to the current pose's fitted distance. Animation
   // pull-back is calculated separately and disappears again on collapse.
   const distancePreferenceRef = useRef({ ratio: 1, interactionVersion: _cameraInteractionVersion });
@@ -937,7 +948,7 @@ function CameraTracker({
         boxSize,
         boxCenter,
         horizontalRadius: firstFit ? group.userData._orbitRadius : computeVisibleGeometryOrbitRadius(scene, boxCenter),
-        bottomInset: 80,
+        bottomInset: controlsInset,
         canvasWidth: viewportWidth,
         canvasHeight: viewportHeight,
         verticalFovDeg: perspectiveCam.fov,
@@ -949,10 +960,12 @@ function CameraTracker({
       if (firstFit) {
         distancePreferenceRef.current = { ratio: 1, interactionVersion: _cameraInteractionVersion };
         orbitRadiusRef.current = null;
+        liveHeightRef.current = viewportHeight;
         applyCameraFraming(perspectiveCam, controls, result);
       } else {
-        animateDistance(cameraFollowTarget(result.finalDistance, distancePreferenceRef.current.ratio), result.controlsTarget,
-          result.near, result.far);
+        // The live follow below already owns single-model resizing. Starting
+        // a second delayed fit here used to cause a second zoom/target jump.
+        distanceTransitionRef.current = null;
       }
       if (firstFit) onFramed();
       fittedKeyRef.current = fitKey;
@@ -1030,7 +1043,7 @@ function CameraTracker({
       finalDistance: result.finalDistance,
       cameraFitPadding: CAMERA_FIT_PADDING,
     });
-  }, [sceneReady, variantCount, fitKey, layoutKey, containerWidth, size.width, size.height, settledSize, camera, gl, refitToken, suspendResponsiveFit, onFramed, initialView]);
+  }, [sceneReady, variantCount, fitKey, layoutKey, containerWidth, size.width, size.height, settledSize, camera, gl, refitToken, suspendResponsiveFit, onFramed, initialView, controlsInset]);
 
   // Resize only the camera distance, preserving the live orbit direction.
   // This keeps auto-rotation running and avoids a release-frame zoom jump.
@@ -1049,6 +1062,7 @@ function CameraTracker({
     const distance = THREE.MathUtils.lerp(transition.from, transition.to, eased);
     const direction = directionRef.current.copy(camera.position).sub(controls.target);
     if (direction.lengthSq() < 1e-9) direction.set(0, 0, 1);
+    controls.target.lerpVectors(transition.fromTarget, transition.toTarget, eased);
     camera.position.copy(controls.target).addScaledVector(direction.normalize(), distance);
     controls.update();
     if (t >= 1) distanceTransitionRef.current = null;
@@ -1057,12 +1071,21 @@ function CameraTracker({
   // Single-model framing follows both directions of the animation, including
   // the settling frames after playback stops. Actual user gestures update a
   // separate zoom preference; selection clicks do not change it.
-  useFrame((_, delta) => {
+  useFrame(({ clock }, delta) => {
     if (variantCount !== 0 || fittedKeyRef.current !== fitKey) return;
+    const previousHeight = liveHeightRef.current;
+    liveHeightRef.current = size.height;
+    const heightChanged = previousHeight !== null && Math.abs(previousHeight - size.height) > .01;
+    if (heightChanged) lastViewportChangeRef.current = clock.elapsedTime;
     if (_isUserDragging || distanceTransitionRef.current || suspendResponsiveFit) return;
     const controls = _controls;
     const scene = getModelScene();
     if (!controls || !scene) return;
+    if (previousHeight && heightChanged) {
+      const offset = directionRef.current.copy(camera.position).sub(controls.target);
+      const distance = compensateViewportDistance(offset.length(), previousHeight, size.height);
+      camera.position.copy(controls.target).addScaledVector(offset.normalize(), distance);
+    }
     const box = followBoxRef.current;
     box.copy(computeVisibleGeometryWorldBox(scene));
     box.getCenter(followCenterRef.current);
@@ -1076,7 +1099,7 @@ function CameraTracker({
     const boundsFit = computeSingleModelCameraFit({
       boxSize: box.getSize(new THREE.Vector3()), boxCenter: followCenterRef.current,
       horizontalRadius: orbitRadiusRef.current.radius,
-      bottomInset: 80,
+      bottomInset: controlsInset,
       canvasWidth: size.width, canvasHeight: size.height,
       verticalFovDeg: (camera as THREE.PerspectiveCamera).fov,
       cameraPosition: camera.position, controlsTarget: controls.target,
@@ -1093,7 +1116,9 @@ function CameraTracker({
     const shift = boundsFit.controlsTarget.clone().sub(controls.target).multiplyScalar(alpha);
     controls.target.add(shift);
     camera.position.add(shift);
-    const nextDistance = stepCameraFollowDistance(currentDistance,
+    const distanceStep = clock.elapsedTime - lastViewportChangeRef.current < .6
+      ? stepViewportDistance : stepCameraFollowDistance;
+    const nextDistance = distanceStep(currentDistance,
       cameraFollowTarget(boundsFit.finalDistance, preference.ratio), delta);
     if (direction.lengthSq() < 1e-9) direction.set(0, 0, 1);
     camera.position.copy(controls.target).addScaledVector(direction.normalize(), nextDistance);
@@ -1695,6 +1720,7 @@ export default function ModelViewer({
     <div ref={containerRef} data-xray={xrayEnabled} className="flex-1 min-w-0 h-full relative bg-[#f5f5f7]">
       {!cameraReady && <div role="status" className="absolute inset-0 grid place-items-center text-sm text-muted">正在准备模型视图…</div>}
       <Canvas
+        resize={CANVAS_RESIZE}
         data-camera-ready={cameraReady}
         style={{ opacity: cameraReady ? 1 : 0, pointerEvents: cameraReady ? "auto" : "none" }}
         camera={{ near: 0.5, far: 50, position: [0, 0, 8], fov: NODE_CAMERA_FOV }}

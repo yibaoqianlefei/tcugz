@@ -1,0 +1,155 @@
+{
+  "wall-paths": {
+    "id": "wall-paths",
+    "title": "砌筑墙体：防潮层的位置与连续性",
+    "scope": "砌筑墙体墙身防潮；两个独立局部剖面分别说明室内外地面与相邻室内地面高差。",
+    "exclusions": [
+      "不表示地面防潮、地下防水、基础、散水、洞口或保温系统。",
+      "色带厚度及图形比例不提供施工参数。"
+    ],
+    "sources": [
+      {
+        "standard": "GB 55031—2022 民用建筑通用规范",
+        "clause": "6.2.3第1款",
+        "pages": "正文16页；政府公开PDF20页",
+        "url": "https://sjw.nanjing.gov.cn/gdzsj/zcfg/gfxwj/202402/P020240228546256431161.pdf",
+        "statusUrl": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2024/art_17339_767703.html",
+        "appliesTo": "室外地面以上、室内地面垫层处连续水平防潮；室内高差范围邻土侧附加防潮。全部条文强制，2023-03-01实施。"
+      },
+      {
+        "standard": "GB/T 50001—2017 房屋建筑制图统一标准",
+        "clause": "4.0.1～4.0.2、7.3.1、9.1.2",
+        "pages": "正文13、22、28页；官方PDF19、28、34页",
+        "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2018/art_17339_234638.html",
+        "appliesTo": "图线层次、引出线及小范围材料标识的教学表达；本图不按比例"
+      }
+    ],
+    "geometry": "检查A水平层贯穿墙厚且位于垫层范围并高于室外地面；B竖向层位于高侧邻土面并接续两道水平层。",
+    "path": "/images/learning/wall-paths.svg",
+    "checkedOn": "2026-10-29",
+    "status": "reviewed",
+    "reviews": [
+      {
+        "round": 1,
+        "result": "核对官方公告或出版社现行目录，明确效力、适用对象及通用规范优先关系。"
+      },
+      {
+        "round": 2,
+        "result": "阅读记录所列原文页与相关图线条款，确定可绘制范围。"
+      },
+      {
+        "round": 3,
+        "result": "检查A水平层贯穿墙厚且位于垫层范围并高于室外地面；B竖向层位于高侧邻土面并接续两道水平层。"
+      },
+      {
+        "round": 4,
+        "result": "SVG渲染、教材图注与网页桌面及手机表现复核；验证记录见本版审计截图。"
+      }
+    ]
+  },
+  "masonry-bond": {
+    "id": "masonry-bond",
+    "title": "烧结普通砖砌体：相邻皮竖缝比较",
+    "scope": "烧结普通砖局部立面，上下皮竖缝错开与连续竖缝反例。",
+    "exclusions": [
+      "不表示墙厚方向搭砌、转角、墙端或交接。",
+      "半砖错缝仅为本图示例，不是所有块材的通用最低搭砌值。",
+      "240∶53外形比例来自教材砖面实例；灰缝可读表达不等于施工尺寸。"
+    ],
+    "sources": [
+      {
+        "standard": "GB 55007—2021 砌体结构通用规范",
+        "clause": "5.1.3",
+        "pages": "正文13页；锡林郭勒盟住建局公开PDF16页",
+        "url": "https://www.tpsq.gov.cn/eportal/attachDir/jsj/2024/09/2024091911062927540.pdf",
+        "statusUrl": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761188.html",
+        "appliesTo": "砌体交接及上下错缝原则，2022-01-01实施，通用规范优先。"
+      },
+      {
+        "standard": "GB 50203—2011 砌体结构工程施工质量验收规范",
+        "clause": "5.3.1",
+        "pages": "正文16页",
+        "url": "https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web3162/site/attach/0/ce650cb7f5db41ceadf49a8f43375c35.pdf",
+        "statusUrl": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=60862&isEnterprise=Y",
+        "appliesTo": "砖砌体组砌补充核对，不将已被通用规范替代的条文当作独立最高依据。"
+      },
+      {
+        "standard": "GB/T 50001—2017 房屋建筑制图统一标准",
+        "clause": "4.0.1～4.0.2、7.3.1、9.1.2",
+        "pages": "正文13、22、28页；官方PDF19、28、34页",
+        "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2018/art_17339_234638.html",
+        "appliesTo": "图线层次、引出线及小范围材料标识的教学表达；本图不按比例"
+      }
+    ],
+    "geometry": "检查两栏灰缝带、左相邻皮半砖错开、右连续竖缝、两侧截断符号和图外延续；不加入通用最小搭砌数值。",
+    "path": "/images/learning/masonry-bond.svg",
+    "checkedOn": "2026-10-29",
+    "status": "reviewed",
+    "reviews": [
+      {
+        "round": 1,
+        "result": "核对官方公告或出版社现行目录，明确效力、适用对象及通用规范优先关系。"
+      },
+      {
+        "round": 2,
+        "result": "阅读记录所列原文页与相关图线条款，确定可绘制范围。"
+      },
+      {
+        "round": 3,
+        "result": "检查两栏灰缝带、左相邻皮半砖错开、右连续竖缝、两侧截断符号和图外延续；不加入通用最小搭砌数值。"
+      },
+      {
+        "round": 4,
+        "result": "SVG渲染、教材图注与网页桌面及手机表现复核；验证记录见本版审计截图。"
+      }
+    ]
+  },
+  "partition": {
+    "id": "partition",
+    "title": "轻钢龙骨纸面石膏板隔墙：组成与支承",
+    "scope": "近侧面板局部省略的立面与从上向下看的水平横剖面。",
+    "exclusions": [
+      "不表示顶部滑移缝、管线穿透、锚固或螺钉间距。",
+      "无产品规格、额定隔声量或耐火极限。"
+    ],
+    "sources": [
+      {
+        "standard": "GB 50210—2018 建筑装饰装修工程质量验收标准",
+        "clause": "8.3.1～8.3.3、8.3.5～8.3.6、8.3.9",
+        "pages": "正文42～43页；济南政府PDF53～54页",
+        "url": "https://jncc.jinan.gov.cn/attach/0/9d0c7e1be25747879ba1fe1771616ebc.pdf",
+        "statusUrl": "https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&bookID=105532",
+        "appliesTo": "材料按设计、周边龙骨连接、面板固定、板缝及腔内填充要求。龙骨形状和示意尺度不指定产品。"
+      },
+      {
+        "standard": "GB/T 50001—2017 房屋建筑制图统一标准",
+        "clause": "4.0.1～4.0.2、7.3.1、9.1.2",
+        "pages": "正文13、22、28页；官方PDF19、28、34页",
+        "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2018/art_17339_234638.html",
+        "appliesTo": "图线层次、引出线及小范围材料标识的教学表达；本图不按比例"
+      }
+    ],
+    "geometry": "检查沿顶沿地与立筋连续、板缝落在竖龙骨翼缘、双侧面板及腔内填充层次；删除填充矩形边线造成的C形龙骨闭口假象。",
+    "path": "/images/learning/partition.svg",
+    "checkedOn": "2026-10-29",
+    "status": "reviewed",
+    "reviews": [
+      {
+        "round": 1,
+        "result": "核对官方公告或出版社现行目录，明确效力、适用对象及通用规范优先关系。"
+      },
+      {
+        "round": 2,
+        "result": "阅读记录所列原文页与相关图线条款，确定可绘制范围。"
+      },
+      {
+        "round": 3,
+        "result": "检查沿顶沿地与立筋连续、板缝落在竖龙骨翼缘、双侧面板及腔内填充层次；删除填充矩形边线造成的C形龙骨闭口假象。"
+      },
+      {
+        "round": 4,
+        "result": "SVG渲染、教材图注与网页桌面及手机表现复核；验证记录见本版审计截图。"
+      }
+    ]
+  }
+}

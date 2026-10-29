@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc" data-edition="standards-review-2026-10-28">
+<title id="title">砌筑墙体：防潮层的位置与连续性</title>
+<desc id="desc">两个独立局部剖面。A中墙身水平防潮层贯穿墙厚，位于室内地面垫层范围并高于室外地面；B中高、低地面对应的墙身水平防潮层由高侧邻土墙面的竖向防潮层连接。只表达墙身防潮位置，不表示地面防潮、地下防水、基础或散水的完整设计。</desc>
+<metadata>{"id":"wall-paths","title":"砌筑墙体：防潮层的位置与连续性","scope":"砌筑墙体墙身防潮；两个独立局部剖面分别说明室内外地面与相邻室内地面高差。","exclusions":["不表示地面防潮、地下防水、基础、散水、洞口或保温系统。","色带厚度及图形比例不提供施工参数。"],"sources":[{"standard":"GB 55031—2022 民用建筑通用规范","clause":"6.2.3第1款","pages":"正文16页；政府公开PDF20页","url":"https://sjw.nanjing.gov.cn/gdzsj/zcfg/gfxwj/202402/P020240228546256431161.pdf","statusUrl":"https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2024/art_17339_767703.html","appliesTo":"室外地面以上、室内地面垫层处连续水平防潮；室内高差范围邻土侧附加防潮。全部条文强制，2023-03-01实施。"},{"standard":"GB/T 50001—2017 房屋建筑制图统一标准","clause":"4.0.1～4.0.2、7.3.1、9.1.2","pages":"正文13、22、28页；官方PDF19、28、34页","url":"https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2018/art_17339_234638.html","appliesTo":"图线层次、引出线及小范围材料标识的教学表达；本图不按比例"}],"geometry":"检查A水平层贯穿墙厚且位于垫层范围并高于室外地面；B竖向层位于高侧邻土面并接续两道水平层。","path":"/images/learning/wall-paths.svg","checkedOn":"2026-10-29","status":"reviewed","reviews":[{"round":1,"result":"核对官方公告或出版社现行目录，明确效力、适用对象及通用规范优先关系。"},{"round":2,"result":"阅读记录所列原文页与相关图线条款，确定可绘制范围。"},{"round":3,"result":"检查A水平层贯穿墙厚且位于垫层范围并高于室外地面；B竖向层位于高侧邻土面并接续两道水平层。"},{"round":4,"result":"SVG渲染、教材图注与网页桌面及手机表现复核；验证记录见本版审计截图。"}]}</metadata>
+<defs><style>
+text{font-family:'Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#202945}
+.title{font-size:29px;font-weight:700}.subtitle{font-size:18px;fill:#59657d}
+.panel-title{font-size:22px;font-weight:700;fill:#44558f}.label{font-size:18px}
+.note{font-size:18px;fill:#45516b}.foot{font-size:17px;fill:#59657d}
+.cut{fill:none;stroke:#283141;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.edge{fill:none;stroke:#485366;stroke-width:1.4}.leader{fill:none;stroke:#59657d;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.dpc{fill:#e54c36;stroke:none}.soil{fill:#f1eee5}.cushion{fill:#e5e9f0;stroke:#485366;stroke-width:1.4}
+</style></defs>
+<rect width="1200" height="820" fill="#fafaf7"/>
+<text x="36" y="48" class="title">砌筑墙体：防潮层的位置与连续性</text>
+<text x="36" y="82" class="subtitle">墙身防潮位置示意 · 不按比例 · A、B 是两种不同条件</text>
+<path d="M38 115h42" stroke="#e54c36" stroke-width="6"/>
+<text x="94" y="121" class="label">墙身防潮层（加色识读，厚度不按比例）</text>
+<rect x="24" y="150" width="560" height="512" rx="4" fill="#fff" stroke="#d9dfeb"/>
+<rect x="616" y="150" width="560" height="512" rx="4" fill="#fff" stroke="#d9dfeb"/>
+<text x="44" y="187" class="panel-title">A　外墙与室内地面</text>
+<text x="636" y="187" class="panel-title">B　室内相邻地面有高差</text>
+<g transform="translate(40 204)" data-panel="external-ground">
+<path d="M35 280H215V345H35Z" class="soil"/>
+<rect x="295" y="252" width="190" height="93" class="soil"/>
+<rect x="295" y="180" width="190" height="12" fill="#f9f9f7" stroke="#485366" stroke-width="1.4" data-role="floor-finish"/>
+<rect x="295" y="192" width="190" height="60" class="cushion" data-role="cushion"/>
+<rect x="215" y="35" width="80" height="310" fill="#d4dbe6" data-role="masonry-wall"/>
+<path d="M215 35V345M295 35V345" class="cut"/>
+<path d="M215 35h18l7-6 10 12 10-12 7 6h28M215 345h18l7-6 10 12 10-12 7 6h28" class="cut"/>
+<path d="M35 280H215" class="edge" data-role="outdoor-ground"/>
+<rect x="215" y="219" width="80" height="6" class="dpc" data-role="horizontal-dpc"/>
+<text x="42" y="171" class="label">室外</text><text x="378" y="89" class="label">室内</text>
+<text x="65" y="57" class="label">砌筑墙体</text>
+<path d="M158 64h42l30 30" class="leader"/><circle cx="230" cy="94" r="2.5" fill="#59657d"/>
+<text x="350" y="143" class="label">地面面层</text>
+<path d="M392 151v34" class="leader"/><circle cx="392" cy="185" r="2.5" fill="#59657d"/>
+<text x="397" y="264" class="label">垫层</text>
+<path d="M386 257l-22-22" class="leader"/><circle cx="364" cy="235" r="2.5" fill="#59657d"/>
+<text x="36" y="209" class="label">水平防潮层</text>
+<path d="M155 222h86" class="leader"/><circle cx="241" cy="222" r="2.5" fill="#59657d"/>
+<text x="35" y="316" class="label">室外地面</text>
+<path d="M138 307l27-27" class="leader"/><circle cx="165" cy="280" r="2.5" fill="#59657d"/>
+<text x="105" y="341" class="note">土</text><text x="393" y="324" class="note">土</text>
+</g>
+<text x="44" y="596" class="note">水平防潮层贯穿墙厚；位置在室内垫层处，</text>
+<text x="44" y="628" class="note">并高于室外地面。图中未指定标高数值。</text>
+<g transform="translate(632 204)" data-panel="different-indoor-levels">
+<rect x="35" y="332" width="180" height="13" class="soil"/>
+<rect x="295" y="202" width="190" height="143" class="soil" data-role="high-side-soil"/>
+<rect x="35" y="260" width="180" height="12" fill="#f9f9f7" stroke="#485366" stroke-width="1.4" data-role="low-floor-finish"/>
+<rect x="35" y="272" width="180" height="60" class="cushion" data-role="low-cushion"/>
+<rect x="295" y="130" width="190" height="12" fill="#f9f9f7" stroke="#485366" stroke-width="1.4" data-role="high-floor-finish"/>
+<rect x="295" y="142" width="190" height="60" class="cushion" data-role="high-cushion"/>
+<rect x="215" y="35" width="80" height="310" fill="#d4dbe6" data-role="masonry-wall"/>
+<path d="M215 35V345M295 35V345" class="cut"/>
+<path d="M215 35h18l7-6 10 12 10-12 7 6h28M215 345h18l7-6 10 12 10-12 7 6h28" class="cut"/>
+<rect x="215" y="169" width="80" height="6" class="dpc" data-role="high-horizontal-dpc"/>
+<rect x="215" y="299" width="80" height="6" class="dpc" data-role="low-horizontal-dpc"/>
+<rect x="292" y="169" width="6" height="136" class="dpc" data-role="vertical-dpc"/>
+<text x="35" y="242" class="label">低侧地面</text><text x="361" y="109" class="label">高侧地面</text>
+<text x="39" y="154" class="label">高侧水平防潮层</text>
+<path d="M187 172h50" class="leader"/><circle cx="237" cy="172" r="2.5" fill="#59657d"/>
+<text x="39" y="353" class="label">低侧水平防潮层</text>
+<path d="M183 343l41-41" class="leader"/><circle cx="224" cy="302" r="2.5" fill="#59657d"/>
+<text x="357" y="229" class="note">高侧填土</text>
+<text x="357" y="273" class="label">竖向防潮层</text><text x="357" y="302" class="note">设在邻土墙面</text>
+<path d="M345 279h-29l-21-21" class="leader"/><circle cx="295" cy="258" r="2.5" fill="#59657d"/>
+</g>
+<text x="636" y="596" class="note">在高差处邻土一侧增加防潮层，</text>
+<text x="636" y="628" class="note">把高、低两处墙身水平防潮层连续连接。</text>
+<path d="M36 694h1128" stroke="#d9dfeb"/>
+<text x="36" y="729" class="note">图示边界：只解释墙身防潮层位置；未展开基础、地面自身防潮、地下防水及散水做法。</text>
+<text x="36" y="762" class="foot">条文依据：GB 55031—2022 第 6.2.3 条第 1 款。灰色块配合文字区分部件，不表示材料配方。</text>
+<text x="36" y="794" class="foot">构造线与辅助线分级；引出线采用细实线。标准原文及核对记录见教材图下注释。</text>
+</svg>

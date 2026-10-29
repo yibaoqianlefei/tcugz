@@ -1,4 +1,4 @@
-/* EXPERIMENT: mobile component knowledge sheet (single node).
+/* Mobile component knowledge sheet.
    Sits in the workbench column above the control bar, so the canvas keeps
    its own height and is only pushed, never covered. Hidden from 768px up. */
 
@@ -11,26 +11,12 @@
 }
 
 @media (max-width: 767px) {
-  /* 外层槽位负责整体展开/收起：关闭时先把高度收到 0，再卸载组件。 */
+  /* Presence owns the height in both directions, including deselection from
+     the canvas / Escape. The viewer observes its own actual size. */
   .node-sheet-slot {
-    display: grid;
-    grid-template-rows: 1fr;
+    display: block;
     flex: none;
-    transition: grid-template-rows 280ms cubic-bezier(.4, 0, .2, 1);
-  }
-
-  .node-sheet-slot[data-open="false"] {
-    grid-template-rows: 0fr;
-  }
-
-  /* 首次出现（挂载）时也从 0 高度滑出，而不是直接出现。 */
-  .node-sheet-slot[data-open="true"] {
-    animation: node-sheet-slot-in 280ms cubic-bezier(.4, 0, .2, 1);
-  }
-
-  @keyframes node-sheet-slot-in {
-    from { grid-template-rows: 0fr; }
-    to { grid-template-rows: 1fr; }
+    overflow: hidden;
   }
 
   .node-sheet-slot-inner {
@@ -47,12 +33,6 @@
     border-radius: var(--ui-radius-panel);
     background: var(--ui-surface);
     box-shadow: 0 -4px 18px rgb(28 37 68 / 8%);
-    animation: node-sheet-in 200ms ease;
-  }
-
-  @keyframes node-sheet-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
   }
 
   .node-sheet-head {
@@ -64,6 +44,7 @@
 
   .node-sheet-toggle {
     flex: 1;
+    min-width: 0;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -143,7 +124,7 @@
   .node-sheet-row {
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows 280ms cubic-bezier(.4, 0, .2, 1);
+    transition: grid-template-rows 420ms cubic-bezier(.22, 1, .36, 1);
   }
 
   .node-sheet-row[data-open="true"] {
@@ -171,11 +152,29 @@
     color: var(--ui-text);
     font-size: 13px;
     line-height: 1.55;
+    /* A one-line sentence and a long paragraph reserve the same two lines.
+       Only opening/closing changes the canvas, never selecting another part. */
+    height: calc(2 * 1.55em + 18px);
+    box-sizing: border-box;
+  }
+
+  .node-sheet-summary > span {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    overflow-wrap: anywhere;
   }
 
   .node-sheet-body {
-    max-height: min(30vh, 220px);
+    height: min(30vh, 220px);
+    height: min(30svh, 220px);
+    box-sizing: border-box;
     overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+    overflow-wrap: anywhere;
     overscroll-behavior: contain;
     padding: 0 14px 12px;
     -webkit-overflow-scrolling: touch;
@@ -285,7 +284,11 @@
 /* 横屏与短屏：模型本身已经很矮，peek 只留名称，避免把画布挤没。 */
 @media (max-width: 767px) and (max-height: 540px) {
   .node-sheet-summary { display: none; }
-  .node-sheet[data-mode="half"] .node-sheet-body { max-height: 40vh; }
+  .node-sheet[data-mode="half"] .node-sheet-body { height: 40vh; height: 40svh; }
+  /* The short-screen canvas has a 220px minimum; the sheet must not inherit
+     that minimum, otherwise closing leaves an empty 220px slot behind. */
+  .node-detail-grid .node-viewport > .node-sheet-slot { min-height: 0; height: auto; }
+  .node-viewport:has(.node-sheet-slot) { max-height: none; }
 }
 
 /* 320px 级窄屏：画布只剩 300px 上下，抽屉放不下，本次实验先不启用。 */

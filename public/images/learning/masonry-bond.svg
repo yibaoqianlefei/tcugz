@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">烧结普通砖砌体：相邻皮竖缝比较</title>
+  <desc id="desc">两栏均为烧结普通砖砌体的局部立面，砖面长高比采用教材240比53。左栏是相邻皮竖缝交错的半砖错缝排列示例；右栏是连续竖缝反例，不采用。砖块之间保留灰缝带。左右折断线表示砌体在图外延续，不是墙端。本图只表达GB 55007—2021第5.1.3条的上下错缝原则，未表达墙厚方向搭砌、墙端及交接构造，不标最小搭砌值和灰缝厚度，也不能据此判定整墙合格。</desc>
+  <metadata>{"id":"masonry-bond","title":"烧结普通砖砌体：相邻皮竖缝比较","scope":"烧结普通砖局部立面，上下皮竖缝错开与连续竖缝反例。","exclusions":["不表示墙厚方向搭砌、转角、墙端或交接。","半砖错缝仅为本图示例，不是所有块材的通用最低搭砌值。","240∶53外形比例来自教材砖面实例；灰缝可读表达不等于施工尺寸。"],"sources":[{"standard":"GB 55007—2021 砌体结构通用规范","clause":"5.1.3","pages":"正文13页；锡林郭勒盟住建局公开PDF16页","url":"https://www.tpsq.gov.cn/eportal/attachDir/jsj/2024/09/2024091911062927540.pdf","statusUrl":"https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761188.html","appliesTo":"砌体交接及上下错缝原则，2022-01-01实施，通用规范优先。"},{"standard":"GB 50203—2011 砌体结构工程施工质量验收规范","clause":"5.3.1","pages":"正文16页","url":"https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web3162/site/attach/0/ce650cb7f5db41ceadf49a8f43375c35.pdf","statusUrl":"https://ebook.chinabuilding.com.cn/zbooklib/book/detail/show?SiteID=1&amp;bookID=60862&amp;isEnterprise=Y","appliesTo":"砖砌体组砌补充核对，不将已被通用规范替代的条文当作独立最高依据。"},{"standard":"GB/T 50001—2017 房屋建筑制图统一标准","clause":"4.0.1～4.0.2、7.3.1、9.1.2","pages":"正文13、22、28页；官方PDF19、28、34页","url":"https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2018/art_17339_234638.html","appliesTo":"图线层次、引出线及小范围材料标识的教学表达；本图不按比例"}],"geometry":"检查两栏灰缝带、左相邻皮半砖错开、右连续竖缝、两侧截断符号和图外延续；不加入通用最小搭砌数值。","path":"/images/learning/masonry-bond.svg","checkedOn":"2026-10-29","status":"reviewed","reviews":[{"round":1,"result":"核对官方公告或出版社现行目录，明确效力、适用对象及通用规范优先关系。"},{"round":2,"result":"阅读记录所列原文页与相关图线条款，确定可绘制范围。"},{"round":3,"result":"检查两栏灰缝带、左相邻皮半砖错开、右连续竖缝、两侧截断符号和图外延续；不加入通用最小搭砌数值。"},{"round":4,"result":"SVG渲染、教材图注与网页桌面及手机表现复核；验证记录见本版审计截图。"}]}</metadata>
+  <defs>
+    <clipPath id="staggered-crop"><rect x="64" y="210" width="480" height="257.6"/></clipPath>
+    <clipPath id="aligned-crop"><rect x="656" y="210" width="480" height="257.6"/></clipPath>
+  </defs>
+  <rect width="1200" height="700" fill="#fafaf7"/>
+  <g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#202945">
+    <text x="48" y="57" font-size="34" font-weight="700">烧结普通砖砌体：相邻皮竖缝比较</text>
+    <text x="48" y="94" font-size="20" fill="#59657a">观察局部立面中的竖缝位置；半砖错缝仅为本图选用的排列示例。</text>
+    <path d="M48 117 H1152" stroke="#cdd3de" stroke-width="1.5"/>
+    <rect x="64" y="147" width="5" height="25" rx="2.5" fill="#44558f"/>
+    <text x="83" y="169" font-size="26" font-weight="700" fill="#44558f">半砖错缝示例</text>
+    <rect x="656" y="147" width="5" height="25" rx="2.5" fill="#df4a35"/>
+    <text x="675" y="169" font-size="26" font-weight="700" fill="#be3c2b">连续竖缝反例（不采用）</text>
+
+    <g data-panel="staggered">
+      <rect x="64" y="210" width="480" height="257.6" fill="#f2f3ef"/>
+      <g clip-path="url(#staggered-crop)" fill="#e1e6ee" stroke="#697487" stroke-width="1.3">
+      <rect data-role="brick" data-row="0" x="29" y="210.0" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="0" x="204" y="210.0" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="0" x="379" y="210.0" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="1" x="-58.5" y="254.1" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="1" x="116.5" y="254.1" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="1" x="291.5" y="254.1" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="1" x="466.5" y="254.1" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="2" x="29" y="298.2" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="2" x="204" y="298.2" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="2" x="379" y="298.2" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="3" x="-58.5" y="342.3" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="3" x="116.5" y="342.3" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="3" x="291.5" y="342.3" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="3" x="466.5" y="342.3" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="4" x="29" y="386.4" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="4" x="204" y="386.4" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="4" x="379" y="386.4" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="5" x="-58.5" y="430.5" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="5" x="116.5" y="430.5" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="5" x="291.5" y="430.5" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="5" x="466.5" y="430.5" width="168" height="37.1"/>
+      </g>
+      <g fill="none" stroke-linejoin="miter">
+        <path d="M64 203 V318 l-6 6 12 12 -12 12 6 6 V475" stroke="#fafaf7" stroke-width="7"/>
+        <path d="M544 203 V318 l-6 6 12 12 -12 12 6 6 V475" stroke="#fafaf7" stroke-width="7"/>
+        <path d="M64 203 V318 l-6 6 12 12 -12 12 6 6 V475" stroke="#48515f" stroke-width="1.8"/>
+        <path d="M544 203 V318 l-6 6 12 12 -12 12 6 6 V475" stroke="#48515f" stroke-width="1.8"/>
+      </g>
+    </g>
+    <g data-panel="aligned">
+      <rect x="656" y="210" width="480" height="257.6" fill="#f2f3ef"/>
+      <g clip-path="url(#aligned-crop)" fill="#e1e6ee" stroke="#697487" stroke-width="1.3">
+      <rect data-role="brick" data-row="0" x="621" y="210.0" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="0" x="796" y="210.0" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="0" x="971" y="210.0" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="1" x="621" y="254.1" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="1" x="796" y="254.1" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="1" x="971" y="254.1" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="2" x="621" y="298.2" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="2" x="796" y="298.2" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="2" x="971" y="298.2" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="3" x="621" y="342.3" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="3" x="796" y="342.3" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="3" x="971" y="342.3" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="4" x="621" y="386.4" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="4" x="796" y="386.4" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="4" x="971" y="386.4" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="5" x="621" y="430.5" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="5" x="796" y="430.5" width="168" height="37.1"/>
+      <rect data-role="brick" data-row="5" x="971" y="430.5" width="168" height="37.1"/>
+      </g>
+      <path d="M792.5 210 V467.6 M967.5 210 V467.6" fill="none" stroke="#df4a35" stroke-width="2.8"/>
+      <g fill="none" stroke-linejoin="miter">
+        <path d="M656 203 V318 l-6 6 12 12 -12 12 6 6 V475" stroke="#fafaf7" stroke-width="7"/>
+        <path d="M1136 203 V318 l-6 6 12 12 -12 12 6 6 V475" stroke="#fafaf7" stroke-width="7"/>
+        <path d="M656 203 V318 l-6 6 12 12 -12 12 6 6 V475" stroke="#48515f" stroke-width="1.8"/>
+        <path d="M1136 203 V318 l-6 6 12 12 -12 12 6 6 V475" stroke="#48515f" stroke-width="1.8"/>
+      </g>
+    </g>
+    <text x="64" y="510" font-size="22" fill="#44558f">相邻皮竖缝交错，不上下贯通。</text>
+    <text x="656" y="510" font-size="22" fill="#be3c2b">红线标出多皮连续的竖缝位置。</text>
+    <text x="64" y="543" font-size="20" fill="#59657a">示例不等于全部块材的最低搭砌要求。</text>
+    <text x="656" y="543" font-size="20" fill="#59657a">用于识别反例，不据此推算承载力。</text>
+
+    <path d="M48 571 H1152" stroke="#cdd3de" stroke-width="1.5"/>
+    <text x="48" y="608" font-size="20">局部截断：两侧折断线表示砌体在图外延续，并非墙端。</text>
+    <text x="48" y="642" font-size="20">表达范围：未示墙厚方向搭砌、墙端及交接构造；仅凭此立面不能判定整墙合格。</text>
+    <text x="48" y="676" font-size="19" fill="#59657a">依据：GB 55007—2021 第 5.1.3 条的组砌原则。教学示意，不提供施工尺寸。</text>
+  </g>
+</svg>

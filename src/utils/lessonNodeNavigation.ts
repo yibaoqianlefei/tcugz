@@ -1,4 +1,5 @@
 import catalog from '../data/lessonMedia.json';
+import { getNodeLearningContexts, resolveLearningUnit } from './curriculumLearning';
 
 const lessons = Object.values(catalog);
 
@@ -8,6 +9,7 @@ export interface LessonVisit {
   viewportWidth: number;
   directoryOpen: boolean;
   figureId?: string;
+  unitId?: string;
   openDetails?: number[];
 }
 
@@ -36,9 +38,10 @@ export function recalledLessonVisit(key: string, path: string) {
   return validLessonVisit(visit, path);
 }
 
-export function lessonNodeRoute(nodeId: string, path: string, figureId?: string) {
+export function lessonNodeRoute(nodeId: string, path: string, figureId?: string, unitId?: string) {
   const query = new URLSearchParams({ lesson: path });
   if (figureId) query.set('figure', figureId);
+  if (unitId) query.set('unit', unitId);
   return `/node/${nodeId}?${query}`;
 }
 
@@ -50,10 +53,14 @@ export function nodeReturnTarget(pathname: string, search: string, state?: unkno
   const figureId = query.get('figure');
   const nodeId = pathname.match(/^\/node\/([^/]+)$/)?.[1];
   const figure = lesson?.figures.find(item => item.id === figureId && item.nodeId === nodeId);
-  if (lesson && (!figureId || figure)) {
+  const unit = lesson ? resolveLearningUnit(lesson.path, query.get('unit'), figureId) : undefined;
+  const contexts = getNodeLearningContexts(nodeId).filter(context => context.lessonPath === lesson?.path);
+  const association = contexts.find(context => (!query.get('unit') || context.knowledgeId === query.get('unit'))
+    && (!figureId || figure || context.knowledgeId === unit?.id));
+  if (lesson && association) {
     const visit = validLessonVisit(routeState?.lessonVisit, lesson.path);
     return {
-      to: `/lesson/${lesson.path}${figure ? `?model=${figure.id}` : ''}`,
+      to: `/lesson/${lesson.path}?unit=${encodeURIComponent(association.knowledgeId)}`,
       label: '返回教材章节',
       state: visit ? { lessonRestore: visit } : undefined,
     };

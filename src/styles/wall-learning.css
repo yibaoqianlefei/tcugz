@@ -1,0 +1,54 @@
+/* Shared course and node learning pattern, derived from the wall chapter. */
+.wall-learning-outcome{border-top:1px solid var(--ui-line,#d8deeb);margin-top:16px;padding-top:14px}
+.wall-learning-outcome strong,.wall-model-question>span{font-size:12px;letter-spacing:.05em;color:var(--ui-blue,#44558f)}
+.wall-learning-outcome p{margin:5px 0 8px!important;color:var(--ui-ink,#202945)}
+.wall-learning-outcome small{font-size:13px;color:var(--ui-muted,#64718d)}
+.wall-learning-diagram{display:block;margin:24px 0;outline-offset:4px}
+.wall-learning-diagram img{display:block;width:100%;height:auto;max-width:900px;border:1px solid var(--ui-line,#d8deeb);border-radius:8px}
+.wall-diagram-action{display:block;margin-top:7px;font-size:12px;line-height:1.8;color:var(--ui-blue,#44558f);text-align:right}
+.wall-model-question{margin:18px 0 4px;padding:16px 18px;border-left:3px solid var(--ui-blue,#44558f);background:var(--ui-canvas,#fafaf7);text-align:left}
+.wall-model-question p{margin:5px 0 8px!important;font-weight:600;font-size:17px!important;color:var(--ui-ink,#202945)}
+.wall-model-question ol{padding-left:1.4em;margin:0;font-size:14px;line-height:1.85;color:var(--ui-text,#4c5972)}
+.wall-model-question li+li{margin-top:4px}
+.wall-model-explanation{text-align:left;margin:14px 0 26px;font-size:14px;line-height:1.8}
+.wall-model-explanation>strong{font-size:13px;color:var(--ui-blue,#44558f)}
+.wall-model-explanation p{margin:6px 0 10px!important;font-size:14px!important}
+.wall-model-explanation details{margin-top:10px;border:1px solid var(--ui-line,#d8deeb);border-radius:8px;padding:10px 14px}
+.wall-model-explanation summary{cursor:pointer;color:var(--ui-blue,#44558f);font-weight:500;min-height:24px}
+.wall-model-comparison ul{list-style:none;margin:8px 0 0;padding:0}
+.wall-model-comparison li{padding:10px 0;border-top:1px solid var(--ui-line,#d8deeb)}
+.wall-model-comparison a{font-weight:600;font-size:14px}
+.wall-model-comparison p{color:var(--ui-muted,#64718d)}
+.wall-node-learning{flex:none;margin:0 16px;padding:14px 0;border-bottom:1px solid var(--ui-line,#d8deeb);font-size:13px;line-height:1.7;color:var(--ui-text,#4c5972)}
+.wall-node-learning>small{color:var(--ui-muted,#64718d);font-size:11px;letter-spacing:.04em}
+.wall-node-learning>p{margin:5px 0 8px;color:var(--ui-ink,#202945);font-weight:550}
+.wall-node-learning>a{display:inline-block;color:var(--ui-blue,#44558f);font-size:13px;text-underline-offset:4px;text-decoration:underline}
+.wall-node-learning details{margin-top:8px}
+.wall-node-learning summary{cursor:pointer;color:var(--ui-muted,#64718d)}
+.wall-node-learning details p{margin:6px 0;font-size:12px}
+.wall-sheet-course{display:block;min-height:36px;align-content:center;color:var(--ui-blue,#44558f);font-size:12px;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:767px){.wall-model-question{padding:12px 14px}.wall-model-question p{font-size:16px!important}.wall-model-explanation summary{min-height:36px;display:list-item;align-content:center}.wall-model-comparison a{display:block;padding:6px 0}.wall-node-learning>a{min-height:44px;align-content:center}}
+/* Shared learning pattern, retaining the wall chapter's quiet blue/red palette. */
+.knowledge-unit{margin:28px 0 36px;scroll-margin-top:100px}
+.knowledge-unit h3{font-size:19px;line-height:1.6;margin:5px 0 8px;color:var(--ui-ink,#202945)}
+.knowledge-principle{font-size:16px!important;line-height:1.95!important;margin:14px 0!important}
+.knowledge-observe{font-size:14px;line-height:1.9;padding:0 4px}
+.knowledge-observe>strong{font-size:13px;color:var(--ui-blue,#44558f)}
+.knowledge-observe ol{padding-left:1.5em;margin:8px 0 14px}
+.knowledge-observe li+li{margin-top:6px}
+.knowledge-unit .lesson-figure{margin:18px 0}
+.knowledge-assessment ul{padding-left:1.3em}
+.knowledge-assessment>strong{font-size:12px;color:var(--ui-muted,#64718d)}
+.learning-legacy-anchor{display:block;scroll-margin-top:100px}
+.teaching-diagram{margin:24px 0;max-width:100%;min-width:0}
+.teaching-diagram .wall-learning-diagram{margin:0}
+.diagram-evidence{font-size:13px;line-height:1.85;text-align:left;color:var(--ui-muted,#64718d);padding:12px 2px}
+.diagram-evidence>strong{font-size:14px;color:var(--ui-ink,#202945)}
+.article .diagram-evidence p{font-size:13px;line-height:1.85;margin:6px 0}
+.diagram-evidence details{padding:10px 0;border-top:1px solid var(--ui-line,#d8deeb)}
+.diagram-evidence summary{cursor:pointer;color:var(--ui-blue,#44558f);min-height:30px;align-content:center}
+.diagram-evidence a{overflow-wrap:anywhere}
+.diagram-evidence ul{padding-left:1.4em;margin:8px 0}
+.diagram-evidence li+li{margin-top:10px}
+@media(max-width:767px){.knowledge-unit h3{font-size:18px}.knowledge-principle{font-size:15px!important}.knowledge-unit{margin:24px 0 30px}.diagram-evidence summary{min-height:44px}.knowledge-observe ol{padding-left:1.4em}}
+@media(prefers-reduced-motion:no-preference){.knowledge-unit details summary{transition:color .2s ease}.knowledge-unit details summary:hover{color:var(--ui-ink,#202945)}}
