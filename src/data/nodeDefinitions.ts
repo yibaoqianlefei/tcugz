@@ -610,7 +610,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     id: "roof-drainage-01",
     title: "无组织排水屋顶",
     description:
-      "无组织排水屋面构造节点，包含防水层、保温层、结构层等关键构件。",
+      "观察屋面外挑檐口、表层及下部组合构造，追踪雨水自由离开屋面的路线；原配图未提供完整材料层序。",
     category: "屋顶",
     thumbnail: assetPath("images/roof/roof-drainage-diagram.png"),
     status: "available",
@@ -654,7 +654,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     id: "eaves-gutter-01",
     title: "檐沟外排水",
     description:
-      "屋顶檐沟有组织排水节点，六层构件：屋面顶→檐沟→檐沟分水→排水口→墙体→圈梁。",
+      "辨认屋面顶、檐沟、檐沟分水、排水口、墙体与圈梁六类构件，分别追踪汇水路线和支承关系；具体尺寸及性能需结合设计核查。",
     category: "屋顶",
     thumbnail: assetPath("images/roof/eaves-gutter-diagram.png"),
     status: "available",
@@ -1326,7 +1326,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     id: "foam-insulation-01",
     title: "粘贴泡沫塑料保温板外保温",
     description:
-      "EPS/XPS板外保温系统，七层构造：饰面层→抹面层→增强网→锚栓→保温板→胶粘剂→基层墙体。",
+      "泡沫塑料板外保温示例，辨认饰面、抹面、增强、锚固、保温、粘结与基层七类构件；具体品种及性能按配套资料核查。",
     category: "墙体",
     thumbnail: assetPath("images/wall/foam-insulation-diagram.png"),
     status: "available",

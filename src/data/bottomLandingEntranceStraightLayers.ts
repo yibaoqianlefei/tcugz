@@ -10,18 +10,17 @@ export interface LayerInfo {
 /**
  * 底层中间平台下作出入口（底层直跑）— 楼梯底层平台出入口构造。
  * 底层采用直行单跑楼梯，从底层地坪直达楼层，中间不设休息平台，
- * 从根上避免"中间平台下空间不足"的问题；入口设于梯段一侧，
- * 入口处雨篷底面标高应保证净高≥2m。常用于南方地区住宅建筑。
+ * 用于比较改变底层梯段走向对入口空间的影响；仍需核查级数、净高和通行路线。
  */
 export const bottomLandingEntranceStraightLayers: LayerInfo[] = [
   {
     objectName: "基础",
-    name: "基础 / 地基",
+    name: "基础",
     order: 1,
     thickness: "—",
     material: "混凝土基础",
     description:
-      "直跑梯段底部的基础支承，支承梯段与平台的自重及使用荷载，埋置于底层地坪以下，保证梯段端部稳固。",
+      "直跑梯段下端的基础支承，将端部传来的荷载传给地基。基础与地基是不同对象，具体承载能力及沉降需由地基条件和结构设计核查。",
   },
   {
     objectName: "底层地坪",
@@ -30,16 +29,16 @@ export const bottomLandingEntranceStraightLayers: LayerInfo[] = [
     thickness: "—",
     material: "地坪 / 面层",
     description:
-      "底层楼梯起步处的地坪。直跑楼梯自底层地坪直接起步上行，无需在平台下设出入口，故不要求抬高平台或降低地坪。",
+      "底层楼梯起步处的完成地面。此图通过改变底层梯段走向组织入口空间；仍需检查起步位置、入口通行路线和上方障碍物。",
   },
   {
     objectName: "出入口",
     name: "出入口（门洞 / 雨篷）",
     order: 3,
-    thickness: "净高 ≥2000mm",
+    thickness: "净高按通行部位核查",
     material: "门 / 雨篷",
     description:
-      "位于直跑梯段一侧的入口。因底层不设中间平台，入口空间不受平台梁遮挡；需注意入口处雨篷底面的标高位置，保证净空高度在2m以上。",
+      "改变底层梯段走向后组织的入口空间。配图在指定测量位置标有≥2200mm，属于该图的示意；需从实际通行面量至上方最低障碍物，并另核查门洞、通道和梯段各自的净高条件。",
   },
   {
     objectName: "直跑梯段",
@@ -48,7 +47,7 @@ export const bottomLandingEntranceStraightLayers: LayerInfo[] = [
     thickness: "—",
     material: "钢筋混凝土",
     description:
-      "直行单跑梯段，自底层地坪直达楼层，中间不设休息平台，全部踏步级数 N 在一跑内完成。梯段较长，适用于底层进深较大的情况，常见于南方地区住宅建筑。",
+      "配图将底层梯段按直行单跑布置，与上部双跑形式形成比较。这会增加所需进深；是否可采用仍需检查层高、踏步级数、休息平台和疏散条件，不能仅因入口处获得空间就判定方案适用。",
   },
   {
     objectName: "楼层平台",
@@ -57,7 +56,7 @@ export const bottomLandingEntranceStraightLayers: LayerInfo[] = [
     thickness: "—",
     material: "钢筋混凝土",
     description:
-      "与一层楼面相连的平台，是楼梯与楼层的衔接处。宽度不小于梯段宽度，底面净高不应小于2200mm。",
+      "衔接底层梯段与该层交通空间的平台。有效通行宽度、转向空间以及平台下方和相邻梯段的净高应分别核查。",
   },
 ];
 

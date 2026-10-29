@@ -3,7 +3,7 @@ const roofDrainageData = {
   title: "无组织排水屋顶",
   category: "屋顶",
   description:
-    "无组织排水屋面构造节点，包含防水层、保温层、结构层等关键构件。",
+    "观察屋面外挑檐口、表层及下部组合构造，追踪雨水自由离开屋面的路线；原配图未提供完整材料层序。",
   diagramImage: null,
   floatDirection: "z",
   floatDistance: 0.22,
