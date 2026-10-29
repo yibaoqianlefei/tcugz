@@ -353,8 +353,12 @@
 @media (max-width: 760px), (pointer: coarse) and (max-width: 1024px) {
   .node-viewport { flex-direction: column; }
   .node-viewport > div:not(.node-control-bar) { min-height: 0; height: auto; }
-  .node-viewport > .model-control-bar.node-control-bar { position: relative; inset: auto; left: auto; right: auto; top: auto; bottom: auto; transform: none; translate: none; z-index: 1; flex: none; display: flex; flex-wrap: wrap; justify-content: center; width: 300px; max-width: calc(100% - 16px); gap: 6px; margin: 6px auto 10px; padding: 6px 8px; border-radius: var(--ui-radius-panel); }
-  .node-viewport > .model-control-bar.node-control-bar > div:first-child { flex: 1 0 100%; justify-content: center; }
+  .node-viewport > .model-control-bar.node-control-bar { position: relative; inset: auto; left: auto; right: auto; top: auto; bottom: auto; transform: none; translate: none; z-index: 1; flex: none; display: flex; flex-wrap: wrap; justify-content: space-between; width: 300px; max-width: calc(100% - 16px); gap: 6px; margin: 6px auto 10px; padding: 6px 8px; border-radius: var(--ui-radius-panel); }
+  /* 两行同宽：爆炸行（« 滑块 »）与下面一排图标都撑满控制栏内容区，
+     于是箭头外沿正对首尾图标的外沿，滑块吃掉中间剩下的宽度。 */
+  .node-viewport > .model-control-bar.node-control-bar > div:first-child { flex: 1 0 100%; justify-content: space-between; }
+  .node-viewport > .model-control-bar.node-control-bar > div:first-child > .model-explode-controls { flex: 1 1 auto; min-width: 0; }
+  .node-viewport .model-explode-slider { width: auto; flex: 1 1 auto; min-width: 0; }
   .node-viewport > .model-control-bar.node-control-bar > div { gap: 6px; }
   .node-viewport > .model-control-bar.node-control-bar > .model-control-divider { display: none; }
   .node-viewport > .model-control-bar.node-control-bar > div:nth-child(2) > div:first-child { display: none; }
@@ -383,6 +387,8 @@
   .node-viewport > .model-control-bar.node-control-bar > div,
   .node-viewport > .model-control-bar.node-control-bar > div:first-child { flex: none; }
   .node-explode-slider { width: 64px; height: 40px; flex: none; }
+  /* 横屏是单行横向滚动条，滑块回到固定 64px，不参与拉伸。 */
+  .node-viewport .model-explode-slider { width: 64px; flex: none; }
 }
 
 /* 手机触控目标与字号下限：文字链补足 44px 热区，装饰性小字保持原样。
