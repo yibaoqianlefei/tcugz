@@ -1,11 +1,12 @@
 {
-    "sourceCommit":  "a6209de3dc38a5c5fbefed25cf69f553c4d9d2b0",
-    "sourceBranch":  "ui-improvements",
-    "publishedAt":  "2026-10-29T06:17:07.234Z",
-    "base":  "/tcugz/",
-    "nodeCount":  96,
-    "lessonCount":  54,
-    "illustratedLessonCount":  38,
-    "figureCount":  66,
-    "onlineBrowserVerified":  true
+  "sourceCommit": "0f8330fc49486f0a5d63cc028438e3057f47ff09",
+  "sourceBranch": "ui-improvements",
+  "publishedAt": "2026-11-06T13:53:17.653Z",
+  "base": "/tcugz/",
+  "nodeCount": 105,
+  "availableNodeCount": 102,
+  "lessonCount": 54,
+  "illustratedLessonCount": 38,
+  "figureCount": 73,
+  "localBrowserVerified": true
 }
