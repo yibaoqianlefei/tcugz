@@ -12,7 +12,7 @@ for(const unit of wallUnits)for(const model of unit.models){
  assert.equal(target.to,'/lesson/'+context.lessonPath+'?unit='+unit.id);
 }
 assert.equal(Object.keys(graph.lessons).filter(key=>key.startsWith('wall/')).length,8);
-assert.equal(Object.values(graph.units).filter(unit=>unit.lesson.startsWith('wall/')).length,13);
+assert.equal(Object.values(graph.units).filter(unit=>unit.lesson.startsWith('wall/')).length,17);
 assert.equal(graph.lessons['wall/wall-partition'].units[0].models.length,0,'partition retains correct diagram-only teaching');
 for(const [id,record] of Object.entries(evidence)){
  const svg=await readFile('public'+record.path,'utf8');
@@ -34,4 +34,4 @@ assert.equal(Number(vertical.x)+Number(vertical.width),298);assert(Number(vertic
 const partition=await readFile('public/images/learning/partition.svg','utf8');
 for(const m of partition.matchAll(/<rect\b[^>]*data-role="cavity-filling-section"[^>]*>/g))assert(m[0].includes('stroke="none"'),'fill must not close the C stud opening');
 assert(!((await readFile('src/data/textbook/walls/partitions.md','utf8')).includes('图中的顶部留缝')),'deleted geometry is not described in prose');
-console.log('Wall acceptance: 8 lessons, 13 units, all 21 primary contexts, 3 evidence records and diagram geometry checks passed.');
+console.log(`Wall acceptance: 8 lessons, ${Object.values(graph.units).filter(unit=>unit.lesson.startsWith('wall/')).length} units, all ${Object.values(graph.nodes).filter(record=>record.primary?.lessonKey.startsWith('wall/')).length} primary contexts, 3 evidence records and diagram geometry checks passed.`);

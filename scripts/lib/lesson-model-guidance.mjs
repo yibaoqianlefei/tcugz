@@ -1,7 +1,7 @@
 /**
- * Model-only reading guidance, curated from the existing 85 audited bindings.
+ * Model reading guidance paired with the curated lesson-media catalog.
  * Keys and figure order follow lesson-media-catalog.mjs. These descriptions
- * refer to the actual models, without relying on removed drawing labels.
+ * retain actual selectable model names and distinguish them from source-drawing labels.
  * Geometry supports observation of construction relationships, not proof of
  * structural, thermal, acoustic, waterproofing or fire performance.
  */
@@ -113,7 +113,7 @@ export const lessonModelGuidance = {
     intro: '将排水分区与模型中的沟、口和管段对应，再回到图纸核对坡向与控制点标高。',
     figures: [
       { nodeId: 'organized-drainage-01', caption: '在有组织排水模型中辨认屋面、沟体、出口与下接管段。任务图还需补齐分水线、控制点标高、排水能力及溢流分析，局部模型不能代表全部屋面分区。', focus: ['沟体与出口怎样相接', '从局部出口到完整排水方案还缺哪些信息'] },
-      { nodeId: 'straight-rainwater-outlet-65-01', caption: '转动65型直管式水落口，观察口部与下接管的连接及周边接口。选型与尺寸应按汇水、雨量、系统和接口条件确定，型号不能作为通用答案。', focus: ['屋面低点需要怎样接入落口', '落口周边哪些位置需要处理防水收接'] },
+      { nodeId: 'straight-rainwater-outlet-65-01', caption: '转动直管式水落口，观察口部与下接管及周边接口。模型卡片“65型铸铁进水罩”沿用既有别名，原图实标定型铸铁水落口；6／100／6是原图实例，不能把别名解释为DN65或排水能力。', focus: ['屋面低点需要怎样接入落口', '模型别名与原图标注怎样区分'] },
     ],
   },
   'practice/envelope-detail': {
@@ -326,7 +326,10 @@ export const lessonModelGuidance = {
     intro: '把屋面大面、泛水、落口与穿管接口共同检查，借模型辨认局部层次和转折。',
     figures: [
       { nodeId: 'organized-drainage-01', caption: '观察有组织排水模型中的屋面、沟体、出口及下接管段，建立集中排出的空间关系。实际分区、雨量、落口能力和堵塞后的溢流仍需另外校核。', focus: ['屋面与沟体、出口怎样相接', '判断全部低点能否排出还需要什么整体资料'] },
-      { nodeId: 'coating-parapet-flashing-01', caption: '从屋面转向女儿墙，观察涂膜防水的上翻、收头及保护。模型用于定位局部构造，实际材料、尺寸与做法须按项目条件和所选系统复核。', focus: ['防水怎样从水平面转到墙面', '收头与保护位于哪些交接位置'] },
+      { nodeId: 'straight-rainwater-outlet-65-01', caption: '点选铸铁水落口与“65型铸铁进水罩”，观察口部、口杯与下接管。65型仅为既有模型别名，出处未核定；对照图纸原标定型铸铁水落口及6／100／6，区分模型命名与原图实例尺寸。', focus: ['模型口部和下接管怎样连接', '6／100／6与65型别名为何不能互换'] },
+      { nodeId: 'straight-rainwater-outlet-cast-iron-01', caption: '点选镀锌钢丝球、铸铁水落口与防水卷材，比较拦污构件、通水口和周边收边。图纸杯口内侧斜带的材料尚未核定，不能据此增加模型防水层或选型参数。', focus: ['拦污构件与防水接口分别位于哪里', '图纸的未知斜带还缺哪些材料依据'] },
+      { nodeId: 'free-fall-ring-beam-eaves-01', caption: '点选圈梁带挑檐板、空心屋面板与细石混凝土防水层，区分结构挑檐与上部覆盖。对照图纸的滴水和60局部水平投影；细边带材料未定，模型不验证配筋、承载或现行完整设防。', focus: ['挑出作用由哪个结构构件承担', '上部防水与隔离薄层怎样区别于结构'] },
+      { nodeId: 'coating-parapet-flashing-01', caption: '从屋面沿涂膜转向墙槽收头，点选附加卷材、压条与水泥钉，辨认局部增强和固定。结合图纸区分附加卷材终止处与墙板端油膏；原图≥250和60不作为模型通用高度或已核定施工测点。', focus: ['连续涂膜与局部附加卷材怎样分工', '槽内收头与板端嵌缝分别位于哪里'] },
       { nodeId: 'vent-pipe-roof-01', caption: '转动出屋面透气管，辨认管道、管根泛水与上部帽部的组合。管道固定、位移及收头密封还需与防水接口配合检查。', focus: ['管根泛水怎样围住管道', '管道位移会作用到哪一处接口'] },
     ],
   },
@@ -355,6 +358,7 @@ export const lessonModelGuidance = {
     figures: [
       { nodeId: 'high-low-roof-joint-01', caption: '沿高侧墙面、低屋面上翻与附加防水转折观察连接，联系正文检查适应两侧运动所需的余量。该模型展示屋面局部接口，不能代替地下或地面盖缝系统。', focus: ['防水连接在哪些位置转折', '两侧开合时哪些连接需要适应运动'] },
       { nodeId: 'high-low-roof-joint-02', caption: '与前一个模型比较盖缝、防水转折与活动空间，记录可观察的构造差别。实际选用仍须匹配缝宽、预计位移和防水材料，维护判断还需现场证据。', focus: ['保护盖缝与防水层分别位于哪里', '现场维护应核查哪些松动或开裂部位'] },
+      { nodeId: 'coating-high-low-roof-flashing-01', caption: '点选防水卷材及U形跨缝段、镀锌薄钢板盖缝和收头压条，追踪槽内收头至低屋面的连续路线。图题为涂膜屋面语境，原标及当前构件名仍按卷材辨认；钢板上部固定与槽内收头分开，分解动画不验证位移能力。', focus: ['U形跨缝与屋面转角怎样连接', '钢板固定和卷材收头是否在同一位置'] },
     ],
   },
 };

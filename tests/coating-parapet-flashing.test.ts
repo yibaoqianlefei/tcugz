@@ -82,5 +82,22 @@ const slab = objects.findIndex((object: Object3D) => object.name === '屋面结�
 assert(halfway[slab].equals(expanded[slab]), 'short slab motion holds while the remaining components finish separating');
 assert(objects.every((object: Object3D) => [...object.position, ...object.scale, ...object.quaternion].every(Number.isFinite)));
 mixer.stopAllAction(); mixer.uncacheRoot(root);
-assert.equal(readFileSync(publicUrlToFsPath(node.diagram.path)).subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
-console.log('PASS coating parapet flashing: 10 real mesh/card bindings, invisible nail child hitbox, four-second timeline and short-clip hold');
+const drawings = JSON.parse(readFileSync(new URL('../src/data/sourceDrawingEvidence.json', import.meta.url), 'utf8'));
+const drawing = drawings[node.id];
+assert(drawing, 'the published drawing has source evidence');
+assert.equal(drawing.nodeId, node.id);
+assert.equal(publicUrlToFsPath(node.diagram.path), publicUrlToFsPath(drawing.path), 'the node opens its published textbook vector');
+assert.equal(drawing.source.figure, '图6-40');
+assert.equal(drawing.revision, 'roof-batch1-r4-clean-lines-2026-11-01');
+assert.equal(drawing.publication.status, 'published-teaching-reference');
+assert.equal(drawing.publication.formalReplacement, true);
+for (const path of [drawing.path, drawing.panel.path]) {
+  assert(path.endsWith('.svg'));
+  const svg = readFileSync(publicUrlToFsPath(path), 'utf8');
+  assert(/^<svg\b[\s\S]*<\/svg>\s*$/.test(svg), 'the full published diagram is a complete SVG');
+  assert(!/<image\b|<script\b|<foreignObject\b/.test(svg), 'the diagram is native vector content');
+  const embedded = svg.match(/<metadata>([\s\S]*?)<\/metadata>/);
+  assert(embedded, 'both layouts embed their actual source record');
+  assert.deepEqual(JSON.parse(embedded[1].replaceAll('&quot;', '"').replaceAll('&gt;', '>').replaceAll('&lt;', '<').replaceAll('&amp;', '&')), drawing);
+}
+console.log('PASS coating parapet flashing: 10 real mesh/card bindings, invisible nail child hitbox, four-second timeline, short-clip hold and published 图6-40 SVG evidence');

@@ -48,8 +48,8 @@ for (const [id, primary] of [
     'millimetre scale and authored rotations resolve to comparable metre-scale geometry');
   assert(isInteractionAllowed(true, 0, 1), 'static components remain pickable after reset');
   const drawing = readFileSync(publicUrlToFsPath(node.diagram.path));
-  assert.equal(drawing.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+  assert(/<svg\b/.test(drawing.toString('utf8')) && drawing.toString('utf8').includes(primary), 'the matching vector section drawing is available');
   drawings.add(createHash('sha256').update(drawing).digest('hex'));
-  console.log(`PASS ${node.title}: three real component bindings, material-split wall mapping, authored unit/rotation transforms, static interaction and PNG diagram`);
+  console.log(`PASS ${node.title}: three real component bindings, material-split wall mapping, authored unit/rotation transforms, static interaction and SVG diagram`);
 }
 assert.equal(drawings.size, 3, 'each lintel has its own section drawing');

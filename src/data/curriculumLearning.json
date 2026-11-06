@@ -677,7 +677,7 @@
           "question": "为什么同一张连续防水线到女儿墙、管根和出口时，需要不同构造配合？",
           "principle": "连续阻水不是在图上画不断的线，而是让材料转换、几何转折、相对位移与收头固定能够协同。导排、附加防护和检修共同维持防水系统，局部密封不能替代完整路径。",
           "observe": [
-            "在涂膜女儿墙泛水中依次定位涂膜防水层、附加卷材与压条，画出大面转向立面的连续路线。",
+            "在涂膜女儿墙泛水中沿连续涂膜追到墙槽，辨认外侧局部附加卷材的终止处，以及压条和钉的固定位置。",
             "转到透气管出屋面模型，找到管根缝和伞形罩，说明它与女儿墙收头的几何条件和位移任务有何不同。"
           ],
           "conclusion": "同一原理要在不同接口上具体落实；检查的是水路、阻水线和可维护连接，而不只是材料数量。",
@@ -1326,7 +1326,7 @@
             "比较两种直管式水落口的卷材、嵌缝和入口构件，将其中一个局部节点放回自己的分区图并补检修和受阻情景。"
           ],
           "conclusion": "局部出口做法与总体水路共同确定可实施性，出口的数量和口径不能仅由模型外形或屋面面积平均分配。",
-          "boundary": "模型未提供设计雨量、全部汇水面积与排水能力计算，不从65型等型号名称直接推定流量或服务面积。",
+          "boundary": "模型未提供设计雨量、全部汇水面积与排水能力计算。“65型”是既有模型别名，命名出处未核定，不等于DN65，也不替代原图6／100／6；钢丝球图未标管径，不能从别名或外形推定流量与服务面积。",
           "assessment": {
             "question": "怎样自查屋面图中是否藏有无出口低点？",
             "criteria": [
@@ -2163,7 +2163,9 @@
       "title": "墙体在建筑中的作用",
       "path": "basics/wall/wall-role.html",
       "prerequisiteIds": [],
-      "diagrams": [],
+      "diagrams": [
+        "frame-structure-layout-01"
+      ],
       "relatedPrinciples": [],
       "applications": [
         "practice/envelope-detail"
@@ -2184,7 +2186,9 @@
           "applications": [
             "practice/envelope-detail"
           ],
-          "diagramIds": [],
+          "diagramIds": [
+            "frame-structure-layout-01"
+          ],
           "id": "wall.roles",
           "lesson": "wall/wall-role",
           "anchor": "从结构体系判断墙的身份",
@@ -2229,7 +2233,9 @@
       "title": "墙体的类型",
       "path": "basics/wall/wall-types.html",
       "prerequisiteIds": [],
-      "diagrams": [],
+      "diagrams": [
+        "hollow-block-forms-01"
+      ],
       "relatedPrinciples": [],
       "applications": [
         "practice/envelope-detail"
@@ -2249,7 +2255,9 @@
           "applications": [
             "practice/envelope-detail"
           ],
-          "diagramIds": [],
+          "diagramIds": [
+            "hollow-block-forms-01"
+          ],
           "id": "wall.materials",
           "lesson": "wall/wall-types",
           "anchor": "按材料与构造方式分类",
@@ -2286,6 +2294,55 @@
             ]
           },
           "sectionId": "section-2"
+        },
+        {
+          "prerequisiteIds": [
+            "wall.materials"
+          ],
+          "conceptIds": [
+            "layers",
+            "systems",
+            "drawing"
+          ],
+          "relatedPrinciples": [],
+          "applications": [
+            "practice/envelope-detail"
+          ],
+          "diagramIds": [],
+          "id": "wall.forms",
+          "lesson": "wall/wall-types",
+          "anchor": "实体墙、空体墙与组合墙",
+          "title": "从墙身截面比较三种形式",
+          "question": "实体墙、空体墙与组合墙分别怎样表达连续墙身、空隙和材料层次？",
+          "principle": "图示三种构造形式分别以连续实体、内部空隙和不同材料层组合表达墙身差异；形式与材料品种、受力身份需要分别判断。",
+          "observe": [
+            "依次点选实体墙、空体墙与组合墙，与图2-3的（a）（b）（c）对应。",
+            "对照实体截面、内部空隙及组合层界面，记录原图未注明的材料、尺寸和连接条件。"
+          ],
+          "conclusion": "构造形式提供组成关系，不能直接推定承重身份或热工、隔声等性能。",
+          "boundary": "原图未注明墙厚、材料等级和层间连接，局部空隙也不说明其沿整墙的连续范围。",
+          "models": [
+            {
+              "nodeId": "wall-construction-forms-01",
+              "objects": [
+                "实体墙",
+                "空体墙",
+                "组合墙"
+              ],
+              "difference": "并列比较连续墙身、内部空隙与材料层组合。",
+              "role": "core",
+              "primary": true,
+              "title": "墙体构造形式"
+            }
+          ],
+          "assessment": {
+            "question": "组合墙中画有不同图案，能否直接确定哪层承重、哪层保温？",
+            "criteria": [
+              "图案区别表达材料层组合，但原图没有给出具体材料与功能。",
+              "承重、保温及层间连接仍需完整设计与材料资料。"
+            ]
+          },
+          "sectionId": "section-3"
         }
       ],
       "intro": "先描述块材孔型，再描述墙体组合与结构角色；每一个分类词都应回答不同的问题。",
@@ -2297,7 +2354,13 @@
       "path": "basics/wall/wall-masonry.html",
       "prerequisiteIds": [],
       "diagrams": [
-        "masonry-bond"
+        "masonry-bond",
+        "wall-bearing-transverse-01",
+        "wall-bearing-longitudinal-01",
+        "wall-bearing-two-way-01",
+        "wall-bearing-semi-frame-01",
+        "construction-column-01",
+        "block-wall-core-column-01"
       ],
       "relatedPrinciples": [],
       "applications": [
@@ -2320,7 +2383,11 @@
             "practice/envelope-detail"
           ],
           "diagramIds": [
-            "masonry-bond"
+            "masonry-bond",
+            "wall-bearing-transverse-01",
+            "wall-bearing-longitudinal-01",
+            "wall-bearing-two-way-01",
+            "wall-bearing-semi-frame-01"
           ],
           "id": "wall.bearing",
           "lesson": "wall/wall-masonry",
@@ -2396,6 +2463,150 @@
         },
         {
           "prerequisiteIds": [
+            "wall.materials"
+          ],
+          "conceptIds": [
+            "layers",
+            "connections",
+            "drawing"
+          ],
+          "relatedPrinciples": [],
+          "applications": [
+            "practice/envelope-detail"
+          ],
+          "diagramIds": [],
+          "id": "wall.bond-names",
+          "lesson": "wall/wall-masonry",
+          "anchor": "组砌方式、墙厚与模数",
+          "title": "把砖的方向与灰缝名称对应起来",
+          "question": "怎样在同一面砖墙中区分顺砖、丁砖、横缝和竖缝？",
+          "principle": "顺砖与丁砖按墙面可见的长面或端面区分；横缝与竖缝按砖之间灰缝的延伸方向区分。",
+          "observe": [
+            "对照图2-17依次点选顺砖与丁砖，比较砖的长、宽方向及墙面可见面。",
+            "点选砂浆，沿横缝与竖缝观察上下皮砖的排列和竖缝错开位置。"
+          ],
+          "conclusion": "砖的排列方向、灰缝名称与砖材品种属于不同描述，读图时应分别识别。",
+          "boundary": "原图未给砖规格、墙厚、灰缝宽度或砂浆强度；分解只帮助观察图示组砌，不验证完整搭接和承载性能。",
+          "models": [
+            {
+              "nodeId": "brick-wall-bond-names-01",
+              "objects": [
+                "顺砖",
+                "丁砖",
+                "砂浆"
+              ],
+              "difference": "将顺砖、丁砖和砂浆灰缝与原图名称对应。",
+              "role": "core",
+              "primary": true,
+              "title": "砖墙组砌名称"
+            }
+          ],
+          "assessment": {
+            "question": "长面朝外的砖与水平灰缝分别叫什么？能否由这张图确定砂浆强度？",
+            "criteria": [
+              "长面朝外是顺砖，水平灰缝是横缝。",
+              "图中未标注砂浆强度，不能由灰缝外观推定。"
+            ]
+          },
+          "sectionId": "section-3"
+        },
+        {
+          "prerequisiteIds": [
+            "wall.bond-names"
+          ],
+          "conceptIds": [
+            "layers",
+            "drawing"
+          ],
+          "relatedPrinciples": [],
+          "applications": [
+            "practice/envelope-detail"
+          ],
+          "diagramIds": [],
+          "id": "wall.hollow-block",
+          "lesson": "wall/wall-masonry",
+          "anchor": "空心砌块墙的孔洞与错缝",
+          "title": "从顶部孔洞读到墙面排列",
+          "question": "空心砌块墙的顶部孔洞与上下皮错缝分别提供什么信息？",
+          "principle": "顶部孔洞反映块材内部形态，墙面灰缝反映砌块排列；材料内部孔洞与墙体组砌关系需分别识读。",
+          "observe": [
+            "整体点选空心砌块墙，从顶部开口辨认孔洞及其周边块壁。",
+            "沿墙面比较相邻上下皮的竖缝位置，再与空心砖墙由侧砌围合的空腔比较。"
+          ],
+          "conclusion": "块材孔洞与墙体排列属于两个尺度；孔洞外形不能直接证明灌芯、配筋或承重身份。",
+          "boundary": "源模型按整墙合为一组；原图未标注尺寸、材料等级、配筋与灌芯信息，不用于验证完整工程性能。",
+          "models": [
+            {
+              "nodeId": "hollow-block-wall-01",
+              "objects": [
+                "空心砌块墙"
+              ],
+              "difference": "整体观察块材孔洞、块壁和上下皮错缝。",
+              "role": "core",
+              "primary": true,
+              "title": "空心砌块墙"
+            }
+          ],
+          "assessment": {
+            "question": "看到顶部孔洞，能否认定墙内已经灌芯或配置钢筋？",
+            "criteria": [
+              "孔洞只提供块材内部几何信息。",
+              "灌芯、配筋与承重条件仍需设计和实际施工资料。"
+            ]
+          },
+          "sectionId": "section-4"
+        },
+        {
+          "prerequisiteIds": [
+            "wall.bond-names"
+          ],
+          "conceptIds": [
+            "layers",
+            "connections",
+            "drawing"
+          ],
+          "relatedPrinciples": [],
+          "applications": [
+            "practice/envelope-detail"
+          ],
+          "diagramIds": [],
+          "id": "wall.hollow-brick",
+          "lesson": "wall/wall-masonry",
+          "anchor": "空心砖墙的空腔与拉结",
+          "title": "区分组砌空腔与块材孔洞",
+          "question": "图示空心砖墙的空腔怎样形成，转角与横向砖怎样相接？",
+          "principle": "图示普通砖通过侧砌围合形成空腔，横向拉结砖与转角平砌砖提供局部连接；组砌空腔与单块材料内的孔洞应分别识别。",
+          "observe": [
+            "点选侧砌普通砖，沿顶部开口追踪空腔与两侧砖的边界。",
+            "分别点选横向拉结砖和转角平砌砖，比较跨腔与两向墙交接处的排列。"
+          ],
+          "conclusion": "先确定空腔形成方式，再识别局部连接；空心外形不能单独证明材料品种、承重身份或完整性能。",
+          "boundary": "原图没有尺寸、配筋或性能数据；模型为静态组砌示意，不验证整墙拉结、承载及热工性能。",
+          "models": [
+            {
+              "nodeId": "hollow-brick-wall-01",
+              "objects": [
+                "侧砌普通砖",
+                "横向拉结砖",
+                "转角平砌砖"
+              ],
+              "difference": "观察侧砌形成的空腔与跨腔、转角处的砖。",
+              "role": "core",
+              "primary": true,
+              "title": "空心砖墙"
+            }
+          ],
+          "assessment": {
+            "question": "图示墙体的空腔是否就是单块砖内部的孔洞？如何辨认两者？",
+            "criteria": [
+              "沿顶部开口辨认侧砌砖围合的空腔。",
+              "指出块材内部孔洞与墙体组砌空腔属于不同尺度，不能互相替代。"
+            ]
+          },
+          "sectionId": "section-5"
+        },
+        {
+          "prerequisiteIds": [
             "wall.bearing"
           ],
           "conceptIds": [
@@ -2406,7 +2617,10 @@
           "applications": [
             "practice/envelope-detail"
           ],
-          "diagramIds": [],
+          "diagramIds": [
+            "construction-column-01",
+            "block-wall-core-column-01"
+          ],
           "id": "wall.integrity",
           "lesson": "wall/wall-masonry",
           "anchor": "圈梁、构造柱与芯柱",
@@ -2414,7 +2628,7 @@
           "question": "构造柱与芯柱在哪里形成联系，为什么都不能代替承重墙？",
           "principle": "圈梁沿水平方向联系墙段，构造柱在墙交接或边界形成竖向约束；芯柱利用砌块孔道形成竖向增强。它们通过连续连接改善整体工作，任务与框架承重骨架不同。",
           "observe": [
-            "在构造柱模型中依次点选墙体、马牙槎、钢筋、圈梁，解释相邻构件怎样形成联系。",
+            "先读构造柱立面与1—1横剖面，区分柱纵筋截面、箍筋和两向拉结筋，再在模型中点选墙体、马牙槎、钢筋和圈梁，解释相邻构件的联系。",
             "进入芯柱模型，观察增强构件从墙外预留截面转到砌块孔道内部后的施工条件变化。"
           ],
           "conclusion": "用“位置—连接—施工顺序”比较两者，再说明为什么不能先拆墙、后以加柱补救。",
@@ -2454,7 +2668,7 @@
               "增强构件不能替代承重墙的完整作用。"
             ]
           },
-          "sectionId": "section-4"
+          "sectionId": "section-6"
         }
       ],
       "intro": "先看整栋布置中的支承，再缩小到砌体交接。四种承重方案与两种竖向增强构造围绕同一条传力路线比较。",
@@ -2523,7 +2737,11 @@
       "title": "墙体的设计要求",
       "path": "basics/wall/wall-design-requirements.html",
       "prerequisiteIds": [],
-      "diagrams": [],
+      "diagrams": [
+        "foam-insulation-01",
+        "rockwool-insulation-01",
+        "passive-solar-wall-01"
+      ],
       "relatedPrinciples": [],
       "applications": [
         "practice/envelope-detail"
@@ -2546,7 +2764,10 @@
           "applications": [
             "practice/envelope-detail"
           ],
-          "diagramIds": [],
+          "diagramIds": [
+            "foam-insulation-01",
+            "rockwool-insulation-01"
+          ],
           "id": "wall.thermal",
           "lesson": "wall/wall-design-requirements",
           "anchor": "保温、隔热、气密与防结露",
@@ -2554,8 +2775,8 @@
           "question": "把保温板贴满墙面，是否就得到完整的外墙性能？",
           "principle": "保温层减小实体传热，连接把附加层作用交给基层，外侧保护应适应水和变形。洞口、梁柱和穿透处仍要保持相应边界连续，气密与防结露需要另外判断。",
           "observe": [
-            "点选保温板与基层墙体，再找胶粘、锚固和保护层的相邻位置。",
-            "对比岩棉做法，记录固定、找平及保护层的差异；再在纸上把这套层次接到窗洞四周。"
+            "对照泡沫塑料板外保温剖面，点选模型中的保温板与基层墙体，再找胶粘、锚固和保护层的相邻位置。",
+            "展开岩棉图纸与模型比较，记录固定、找平和防水层位置的差异；再在纸上把层次接到窗洞四周。"
           ],
           "conclusion": "能解释层的分工，比只背从外到内的名称更重要；材料名称不能替代完整系统性能评价。",
           "boundary": "局部墙身模型不含完整洞口热桥，也不提供热工、声学或耐火试验结果。",
@@ -2607,7 +2828,9 @@
           "applications": [
             "practice/envelope-detail"
           ],
-          "diagramIds": [],
+          "diagramIds": [
+            "passive-solar-wall-01"
+          ],
           "id": "wall.solar",
           "lesson": "wall/wall-design-requirements",
           "anchor": "有条件的被动太阳能墙",
@@ -2656,7 +2879,13 @@
       "path": "basics/wall/wall-details.html",
       "prerequisiteIds": [],
       "diagrams": [
-        "wall-paths"
+        "wall-paths",
+        "apron-flashing-01",
+        "stone-apron-01",
+        "rc-lintel-flush-01",
+        "rc-lintel-window-surround-01",
+        "rc-lintel-window-hood-01",
+        "window-wall-gap-sealing-01"
       ],
       "relatedPrinciples": [],
       "applications": [
@@ -2730,7 +2959,10 @@
           "applications": [
             "practice/envelope-detail"
           ],
-          "diagramIds": [],
+          "diagramIds": [
+            "apron-flashing-01",
+            "stone-apron-01"
+          ],
           "id": "wall.surface-water",
           "lesson": "wall/wall-details",
           "anchor": "勒脚、散水与明沟",
@@ -2789,7 +3021,11 @@
           "applications": [
             "practice/envelope-detail"
           ],
-          "diagramIds": [],
+          "diagramIds": [
+            "rc-lintel-flush-01",
+            "rc-lintel-window-surround-01",
+            "rc-lintel-window-hood-01"
+          ],
           "id": "wall.opening-support",
           "lesson": "wall/wall-details",
           "anchor": "门窗洞口：传力、密封与排水",
@@ -2797,7 +3033,7 @@
           "question": "平墙、带窗套和带窗楣的外形差异，能否直接证明支承充分？",
           "principle": "过梁承担洞口上方相应作用，窗套和窗楣改变洞口周边的外形与界面。结构支承、表面排水和窗框密封需要分别说明，再在同一详图中协调。",
           "observe": [
-            "点选过梁主体、包覆层和上部墙体，辨认沿墙厚方向的局部截面。",
+            "对照三种过梁横剖面，点选模型中的过梁主体、包覆层和上部墙体，辨认沿墙厚方向的局部截面。",
             "比较窗套与窗楣的凸出位置，再列出确认跨度、两端支座及配筋仍需要的图纸。"
           ],
           "conclusion": "模型能说明局部几何，不能由窗套或窗楣外观推断过梁的承载能力，也不能把窗框当成过梁支座。",
@@ -2862,7 +3098,9 @@
           "applications": [
             "practice/envelope-detail"
           ],
-          "diagramIds": [],
+          "diagramIds": [
+            "window-wall-gap-sealing-01"
+          ],
           "id": "wall.window-joint",
           "lesson": "wall/wall-details",
           "anchor": "安装缝的四项任务",
@@ -2870,7 +3108,7 @@
           "question": "窗墙缝填满后，还缺哪些构造信息才能说明接口完整？",
           "principle": "固定传递门窗作用，填缝处理间隙，密封控制水与空气通路，排水把已进入界面的水引向室外。几项任务可相互配合，但不能互相替代。",
           "observe": [
-            "点选窗框、外墙、袋装矿棉和弹性密封胶，找出不同材料的位置。",
+            "先在窗墙缝横剖面区分填充与密封的位置，再点选模型中的窗框、外墙、袋装矿棉和弹性密封胶作对应。",
             "在草图中补出本模型没有独立表示的固定点和下口排水去向，再核对墙身保温的接续。"
           ],
           "conclusion": "用“作用—路径—接口”说明填塞与胶封的分工，而非把所有材料统称为防水层。",
@@ -2909,7 +3147,11 @@
       "title": "墙面装修",
       "path": "basics/wall/wall-finishes.html",
       "prerequisiteIds": [],
-      "diagrams": [],
+      "diagrams": [
+        "plaster-plinth-01",
+        "faced-plinth-01",
+        "stone-plinth-01"
+      ],
       "relatedPrinciples": [],
       "applications": [
         "practice/envelope-detail"
@@ -2931,7 +3173,11 @@
           "applications": [
             "practice/envelope-detail"
           ],
-          "diagramIds": [],
+          "diagramIds": [
+            "plaster-plinth-01",
+            "faced-plinth-01",
+            "stone-plinth-01"
+          ],
           "id": "wall.finishes",
           "lesson": "wall/wall-finishes",
           "anchor": "用勒脚比较饰面与墙身防潮",
@@ -3738,6 +3984,82 @@
       "units": [
         {
           "prerequisiteIds": [
+            "floor.system"
+          ],
+          "conceptIds": [
+            "systems",
+            "drawing",
+            "connections"
+          ],
+          "relatedPrinciples": [],
+          "applications": [
+            "practice/envelope-detail"
+          ],
+          "diagramIds": [],
+          "id": "floor.balcony-types",
+          "lesson": "floor/floor-balcony",
+          "anchor": "阳台类型：外墙基准与凹凸关系",
+          "title": "用同一外墙基准比较三种阳台",
+          "question": "挑阳台、半凸半凹阳台与凹阳台相对外墙的位置怎样不同？",
+          "principle": "沿阳台两侧的相邻外墙确定比较基准，再按阳台空间突出、部分突出或退入的关系识别类型。",
+          "observe": [
+            "在挑阳台模型点选主体墙与楼板，辨认板面向外突出的范围。",
+            "比较半凸半凹与凹阳台，沿相同外墙基准观察板面、栏板与内侧窗的位置。"
+          ],
+          "conclusion": "阳台凹凸是空间分类，实际支承和根部连接还需独立判断。",
+          "boundary": "三图与静态模型未给结构配筋、锚固、防护高度或排水细节，不用于判定承载及完整构造性能。",
+          "models": [
+            {
+              "nodeId": "balcony-type-projecting-01",
+              "objects": [
+                "主体墙",
+                "楼板",
+                "栏板",
+                "窗"
+              ],
+              "difference": "观察突出外墙的阳台空间。",
+              "role": "core",
+              "primary": true,
+              "title": "阳台类型（挑阳台）"
+            },
+            {
+              "nodeId": "balcony-type-semi-recessed-01",
+              "objects": [
+                "主体墙",
+                "楼板",
+                "栏板",
+                "窗"
+              ],
+              "difference": "比较部分突出、部分退入的空间。",
+              "role": "comparison",
+              "primary": true,
+              "title": "阳台类型（半凸半凹阳台）"
+            },
+            {
+              "nodeId": "balcony-type-recessed-01",
+              "objects": [
+                "主体墙",
+                "楼板",
+                "栏板",
+                "窗"
+              ],
+              "difference": "比较退入外墙基准以内的空间。",
+              "role": "comparison",
+              "primary": true,
+              "title": "阳台类型（凹阳台）"
+            }
+          ],
+          "assessment": {
+            "question": "阳台突出外墙，是否就能确定它采用悬挑板且栏板锚固可靠？",
+            "criteria": [
+              "区分空间凹凸与实际受力体系",
+              "指出支承、配筋和栏板连接还需专门图纸"
+            ]
+          },
+          "sectionId": "section-1"
+        },
+        {
+          "prerequisiteIds": [
             "floor.ribbed"
           ],
           "conceptIds": [
@@ -3782,7 +4104,7 @@
               "找实际支座和根部连接"
             ]
           },
-          "sectionId": "section-1"
+          "sectionId": "section-2"
         },
         {
           "prerequisiteIds": [
@@ -3860,7 +4182,7 @@
               "兼顾防水防腐"
             ]
           },
-          "sectionId": "section-3"
+          "sectionId": "section-4"
         },
         {
           "prerequisiteIds": [
@@ -3924,7 +4246,7 @@
               "路径必须从收集连续到可靠出口"
             ]
           },
-          "sectionId": "section-4"
+          "sectionId": "section-5"
         }
       ],
       "kind": "reading"
@@ -4980,7 +5302,11 @@
       "title": "屋顶概述",
       "path": "basics/roof/roof-overview.html",
       "prerequisiteIds": [],
-      "diagrams": [],
+      "diagrams": [
+        "roof-drainage-01",
+        "organized-drainage-01",
+        "eaves-gutter-01"
+      ],
       "relatedPrinciples": [
         "principles/waterproof",
         "principles/thermal",
@@ -5063,7 +5389,11 @@
           "applications": [
             "practice/roof-drainage"
           ],
-          "diagramIds": [],
+          "diagramIds": [
+            "roof-drainage-01",
+            "organized-drainage-01",
+            "eaves-gutter-01"
+          ],
           "id": "roof.drainage",
           "lesson": "roof/roof-overview",
           "anchor": "坡度、材料与水路",
@@ -5132,7 +5462,16 @@
         "roof.systems",
         "roof.drainage"
       ],
-      "diagrams": [],
+      "diagrams": [
+        "straight-rainwater-outlet-65-01",
+        "straight-rainwater-outlet-cast-iron-01",
+        "free-fall-ring-beam-eaves-01",
+        "free-fall-waterproof-eaves-01",
+        "coating-parapet-flashing-01",
+        "roof-access-hatch-01",
+        "water-storage-eaves-drainage-01",
+        "water-storage-parapet-drainage-01"
+      ],
       "relatedPrinciples": [
         "principles/waterproof",
         "principles/thermal",
@@ -5217,7 +5556,10 @@
           "applications": [
             "practice/roof-drainage"
           ],
-          "diagramIds": [],
+          "diagramIds": [
+            "straight-rainwater-outlet-65-01",
+            "straight-rainwater-outlet-cast-iron-01"
+          ],
           "id": "roof.outlets",
           "lesson": "roof/roof-flat",
           "anchor": "水落口：导水与防水收边",
@@ -5225,11 +5567,11 @@
           "question": "落口既要让水进入管内，为什么周边还要嵌缝并连接防水层？",
           "principle": "排水开口解决来水排出，防水收边解决水不从管身周围进入构造层；两者需同时连续。",
           "observe": [
-            "点选定型铸铁水落口与65型进水罩，追踪进水开口、穿板管身及板洞周边。",
-            "对比另一种铸铁水落口和钢丝球，分别辨认防水卷材、油膏嵌缝与拦阻杂物构件。"
+            "点选模型中的铸铁水落口与“65型铸铁进水罩”，对照图纸原标“定型铸铁水落口”，追踪上部构件、口杯与下接管的通水腔；辨认6／100／6分别标示两侧壁厚与中间净空。",
+            "对比钢丝球式铸铁水落口，沿卷材转折、局部油膏与口杯追踪板洞接口；图中杯口内侧斜带单独保留，其材料身份尚未核定。"
           ],
           "conclusion": "罩体可拆换不等于周边防水可中断；管口通畅和穿板接口完整应分别检查。",
-          "boundary": "65型、配比和尺寸仅为所配图纸记录，不决定项目排水能力；管径、落口数量和应急排水需另行设计核算。",
+          "boundary": "“65型”是既有模型别名，命名出处未核定，不等于DN65，也不改写原图100mm净空；6／100／6和1∶2.5仅为原图实例。钢丝球图未标管径、壁厚，未知斜带不另命名为防水层；产品选型、排水能力和现代完整设防均需另核。",
           "models": [
             {
               "nodeId": "straight-rainwater-outlet-65-01",
@@ -5239,7 +5581,7 @@
                 "防水卷材",
                 "油膏嵌缝"
               ],
-              "difference": "辨认定型进水罩与直管式落口。",
+              "difference": "对照原标定型铸铁水落口，辨认通水腔与6／100／6。",
               "role": "core",
               "primary": true,
               "title": "直管式水落口（65 型水落口）"
@@ -5251,7 +5593,7 @@
                 "镀锌钢丝球",
                 "防水卷材"
               ],
-              "difference": "比较不同拦阻杂物构件及周边收边。",
+              "difference": "比较钢丝球、口杯与卷材收边，保留未定材料的斜带。",
               "role": "comparison",
               "primary": true,
               "title": "直管式水落口（铸铁水落口）"
@@ -5268,6 +5610,57 @@
         },
         {
           "prerequisiteIds": [
+            "roof.outlets"
+          ],
+          "conceptIds": [
+            "water",
+            "connections",
+            "maintenance",
+            "drawing"
+          ],
+          "relatedPrinciples": [
+            "principles/waterproof"
+          ],
+          "applications": [
+            "practice/roof-drainage"
+          ],
+          "diagramIds": [],
+          "id": "roof.cast-iron-outlet",
+          "lesson": "roof/roof-flat",
+          "anchor": "铸铁水落口：本体与L形格栅",
+          "title": "从格栅入口追到转折出口",
+          "question": "铸铁水落口本体与L形格栅怎样配合，图中还缺少哪些安装接口？",
+          "principle": "格栅与水落口本体分别承担入口拦挡和通水导流，装配观察要沿栅条间隙、口腔及转折出口连续追踪。",
+          "observe": [
+            "在组装状态下对照图6-22辨认格栅入口、口腔与向下转折的出口。",
+            "展开模型，分别点选铸铁水落口与L形铸铁格栅，对照右侧正视、侧视及尺寸线，观察装配边缘与清理通道。"
+          ],
+          "conclusion": "构件装配图可以说明本体与格栅的位置关系，安装时还需补充周边基层、防水收边和下接管道资料。",
+          "boundary": "215、160、45、10等尺寸只属于原图实例；模型未包含屋面、墙体、防水层或下接管道，不用于推定排水能力与完整安装做法。",
+          "models": [
+            {
+              "nodeId": "cast-iron-rainwater-outlet-01",
+              "objects": [
+                "铸铁水落口",
+                "L形铸铁格栅"
+              ],
+              "difference": "对照立体图与格栅详图，观察两件装配及转折通水路径。",
+              "role": "core",
+              "primary": true,
+              "title": "铸铁水落口"
+            }
+          ],
+          "assessment": {
+            "question": "格栅和本体装配完整，是否足以证明屋面落口不会渗漏且排水能力足够？",
+            "criteria": [
+              "指出图中没有周边防水收边及下接管道",
+              "说明排水能力还需汇水、开口与管路等设计资料"
+            ]
+          },
+          "sectionId": "section-8"
+        },
+        {
+          "prerequisiteIds": [
             "roof.drainage"
           ],
           "conceptIds": [
@@ -5280,7 +5673,10 @@
             "principles/waterproof"
           ],
           "applications": [],
-          "diagramIds": [],
+          "diagramIds": [
+            "free-fall-ring-beam-eaves-01",
+            "free-fall-waterproof-eaves-01"
+          ],
           "id": "roof.eaves",
           "lesson": "roof/roof-flat",
           "anchor": "檐口：承托与自由落水",
@@ -5288,11 +5684,11 @@
           "question": "两种自由落水檐口的挑出部分，是否由同一种构件承担？",
           "principle": "水离开檐口的路径与挑出构件的受力路径应分别辨认；传统刚性层示例不能推广为任意屋面的悬挑设计。",
           "observe": [
-            "在圈梁带挑檐板示例中点选整体构件、空心屋面板和防水层，辨认挑檐根部与上部覆盖。",
-            "比较防水层直接悬挑示例，观察悬挑层、双向钢筋网及端部下折，不把图示局部尺寸当作全层厚度。"
+            "在圈梁带挑檐板示例中点选整体构件、空心屋面板和防水层；对照图纸分别追踪上部防水、隔离薄层、结构挑檐与墙身，并找到上部唇口下侧的滴水。",
+            "比较防水层直接悬挑示例，观察悬挑层、双向钢筋网及端部下折；圈梁带挑檐板图的60只记录檐端局部水平投影，不能当作全层厚度或整体挑出长度。"
           ],
           "conclusion": "相似的自由落水外形，可能对应不同承托与构造层关系，不能互抄截面与配筋。",
-          "boundary": "两图属于给定传统刚性构造示例；钢筋、悬挑尺度及防水设防需按当前项目体系重新确定，模型不验算安全。",
+          "boundary": "两图属于给定传统刚性构造示例，不代表已满足现行完整设防。圈梁带挑檐板图的60投影至檐端细边带外缘，细边带材料身份未核定，不称为已核定的混凝土结构面；图示钢筋不补作结构配筋。工程承载、尺度与防水系统需另核。",
           "models": [
             {
               "nodeId": "free-fall-ring-beam-eaves-01",
@@ -5326,7 +5722,7 @@
               "说明结构承托、防水及变形需成套判断"
             ]
           },
-          "sectionId": "section-8"
+          "sectionId": "section-9"
         },
         {
           "prerequisiteIds": [
@@ -5343,7 +5739,9 @@
           "applications": [
             "practice/envelope-detail"
           ],
-          "diagramIds": [],
+          "diagramIds": [
+            "coating-parapet-flashing-01"
+          ],
           "id": "roof.flashing",
           "lesson": "roof/roof-flat",
           "anchor": "女儿墙泛水：大面与立面连续",
@@ -5351,11 +5749,11 @@
           "question": "防水层铺到墙根就结束，墙面上的水会怎样绕过它？",
           "principle": "防水需要在墙根转角、立面上翻和端部收头处连续衔接，附加层与压条各有位置和任务。",
           "observe": [
-            "沿涂膜防水层从屋面追到女儿墙内侧，区分涂膜与附加卷材。",
-            "点选压条和水泥钉，观察上端收头；再查墙根嵌缝与结构板端，而不是只看墙面颜色。"
+            "沿连续涂膜从屋面追到墙槽收头，区分涂膜与外侧局部附加卷材，并找到附加卷材在屋面上的终止位置。",
+            "点选压条和水泥钉，观察槽内固定；再对照图纸辨认墙与板端的局部油膏嵌缝，避免把它读成满屋面材料层。"
           ],
           "conclusion": "墙根转折与顶部收头共同构成泛水，单有一片上翻面并不能说明接口完整。",
-          "boundary": "图示高度和材料名称只解释所配示例，不提供通用泛水高度、涂膜厚度或固定间距。结构相对变形需另查变形缝。",
+          "boundary": "≥250与60分别保留原图相邻竖向尺寸段，精确材料起算界面尚未核定，不作为通用高度或施工测点；涂膜厚度、附加卷材规格及固定间距未给定。局部旧图不代表现代完整设防，结构相对变形需另查变形缝。",
           "models": [
             {
               "nodeId": "coating-parapet-flashing-01",
@@ -5379,7 +5777,7 @@
               "把墙根与上端视为同一连续路径"
             ]
           },
-          "sectionId": "section-9"
+          "sectionId": "section-10"
         },
         {
           "prerequisiteIds": [
@@ -5430,7 +5828,7 @@
               "说明应沿管根连续修复而非堵塞通气口"
             ]
           },
-          "sectionId": "section-11"
+          "sectionId": "section-12"
         },
         {
           "prerequisiteIds": [
@@ -5446,7 +5844,9 @@
             "principles/waterproof"
           ],
           "applications": [],
-          "diagramIds": [],
+          "diagramIds": [
+            "roof-access-hatch-01"
+          ],
           "id": "roof.access",
           "lesson": "roof/roof-flat",
           "anchor": "检修口：覆盖、防水与可维护",
@@ -5458,7 +5858,7 @@
             "在展开状态下分别点选两道SBS卷材与附加卷材，追踪屋面、井壁根部和盖缝件附近的层次。"
           ],
           "conclusion": "检修口是可开启的围护接口，盖板、泛水和日常可达维护共同工作。",
-          "boundary": "图示250mm、材料与层数只代表该图，不证明项目防水设防、净口、防坠、无障碍或盖板承载已满足。",
+          "boundary": "原图只明确防水层、附加卷材、压顶圈与人孔盖；模型的两片主防水、局部附加片、保温及盖缝件属于扩展实例，不能与原图逐层等同。原图250mm保留竖向投影身份，不作为统一井壁净高；本图模不证明项目设防、净口、防坠或盖板承载已满足。",
           "models": [
             {
               "nodeId": "roof-access-hatch-01",
@@ -5483,7 +5883,7 @@
               "提出应保留检查清理接口与周边排水的条件"
             ]
           },
-          "sectionId": "section-12"
+          "sectionId": "section-13"
         },
         {
           "prerequisiteIds": [
@@ -5503,7 +5903,10 @@
           "applications": [
             "practice/roof-drainage"
           ],
-          "diagramIds": [],
+          "diagramIds": [
+            "water-storage-eaves-drainage-01",
+            "water-storage-parapet-drainage-01"
+          ],
           "id": "roof.storage",
           "lesson": "roof/roof-flat",
           "anchor": "蓄水屋面：水位、荷载与可控排水",
@@ -5552,7 +5955,7 @@
               "指出水位控制、溢流、泄水、卫生冻结与维护需配套"
             ]
           },
-          "sectionId": "section-16"
+          "sectionId": "section-17"
         }
       ],
       "kind": "reading"
@@ -5565,7 +5968,14 @@
         "roof.systems",
         "roof.layers"
       ],
-      "diagrams": [],
+      "diagrams": [
+        "roof-truss-timber-01",
+        "roof-truss-reinforced-concrete-01",
+        "roof-truss-steel-timber-01",
+        "steel-batten-tile-roof-01",
+        "mortar-bed-tile-roof-01",
+        "wood-batten-tile-roof-01"
+      ],
       "relatedPrinciples": [
         "principles/waterproof",
         "principles/thermal"
@@ -5588,7 +5998,11 @@
           ],
           "relatedPrinciples": [],
           "applications": [],
-          "diagramIds": [],
+          "diagramIds": [
+            "roof-truss-timber-01",
+            "roof-truss-reinforced-concrete-01",
+            "roof-truss-steel-timber-01"
+          ],
           "id": "roof.trusses",
           "lesson": "roof/roof-slope",
           "anchor": "坡面组织与承重体系",
@@ -5658,7 +6072,11 @@
             "principles/thermal"
           ],
           "applications": [],
-          "diagramIds": [],
+          "diagramIds": [
+            "steel-batten-tile-roof-01",
+            "mortar-bed-tile-roof-01",
+            "wood-batten-tile-roof-01"
+          ],
           "id": "roof.tiles",
           "lesson": "roof/roof-slope",
           "anchor": "瓦屋面的基层、搭接与固定",
@@ -6006,7 +6424,9 @@
         "joints.clearance",
         "roof.flashing"
       ],
-      "diagrams": [],
+      "diagrams": [
+        "coating-high-low-roof-flashing-01"
+      ],
       "relatedPrinciples": [
         "principles/waterproof",
         "principles/fire",
@@ -6019,6 +6439,53 @@
       "prerequisite": "已确定设缝目的、断开范围与预计运动的检查方法。",
       "intro": "以高低屋面为核心比较跨缝材料、收头和外盖，再把同一检查方法迁移到墙面、地面、地下和管线。覆盖完整与保持活动需要同时成立。",
       "units": [
+        {
+          "prerequisiteIds": [
+            "joints.identity"
+          ],
+          "conceptIds": [
+            "movement",
+            "connections",
+            "drawing"
+          ],
+          "relatedPrinciples": [],
+          "applications": [],
+          "diagramIds": [],
+          "id": "joints.forms",
+          "lesson": "deformation-joint/roof-deformation-construction",
+          "anchor": "平缝、错缝与企口缝",
+          "title": "沿缝线比较三种几何形式",
+          "question": "平缝、错缝和企口缝的缝线与两侧轮廓有什么不同？",
+          "principle": "三种形式分别展示平直、错台和凹凸企口的边缘关系；读图时沿缝线追踪转折，并辨认两侧构件。",
+          "observe": [
+            "依次点选平缝、错缝和企口缝，与图 2-38 的（a）（b）（c）对应。",
+            "旋转模型观察缝口，再回到原图描出三种形式的缝线和两侧轮廓。"
+          ],
+          "conclusion": "缝口几何形式与设缝目的需要分别识别，不能将三种形状直接对应为伸缩缝、沉降缝和抗震缝。",
+          "boundary": "原图未标注尺寸、材料及运动范围；模型没有分解动画，不用于推定位移能力或防水、防火性能。",
+          "models": [
+            {
+              "nodeId": "deformation-joint-forms-01",
+              "objects": [
+                "平缝",
+                "错缝",
+                "企口缝"
+              ],
+              "difference": "并列比较三种缝口形式与原图的对应关系。",
+              "role": "core",
+              "primary": true,
+              "title": "变形缝的形式"
+            }
+          ],
+          "assessment": {
+            "question": "企口缝的凹凸轮廓能否直接证明其允许位移和防水能力？",
+            "criteria": [
+              "指出图示只提供缝口几何形式",
+              "说明尺寸、材料、连接和预计运动仍需另查"
+            ]
+          },
+          "sectionId": "section-2"
+        },
         {
           "prerequisiteIds": [
             "joints.identity",
@@ -6037,7 +6504,9 @@
           "applications": [
             "practice/envelope-detail"
           ],
-          "diagramIds": [],
+          "diagramIds": [
+            "coating-high-low-roof-flashing-01"
+          ],
           "id": "joints.high-low",
           "lesson": "deformation-joint/roof-deformation-construction",
           "anchor": "等高屋面与高低屋面",
@@ -6046,10 +6515,10 @@
           "principle": "两侧独立运动的同时，屋面与高墙交界仍需保持阻水覆盖；跨缝材料和外盖不可把活动重新锁死。",
           "observe": [
             "在变形缝一中沿低屋面防水、跨缝附加卷材追到高墙槽口，辨认两侧分开的基层。",
-            "比较变形缝二的镀锌薄钢板、盖板与填缝，再观察涂膜高低泛水中的U形跨缝段，记录图中可见及不能确认的活动条件。"
+            "比较变形缝二的镀锌薄钢板、盖板与填缝；再在涂膜屋面语境的高低泛水图中，沿原标防水卷材追踪槽内收头、U形跨缝、矮墙顶及屋面转角，区分上部墙面固定的钢板盖缝。"
           ],
           "conclusion": "挡雨覆盖、端部固定和允许运动是一套任务；分解动画只展示层次，不证明实际位移能力。",
-          "boundary": "三个示例不提供通用缝宽、盖板配筋、材料厚度或防火性能；高低泛水的涂膜/卷材名称应以实际卡片及原图分别辨认。",
+          "boundary": "高低泛水图题为涂膜屋面语境，原引线实标防水卷材，不能用图题覆盖材料名称；≥250仅为原图投影，材料起算界面未定。三例均不提供通用缝宽、材料厚度、位移能力或防火性能，局部旧图不代表现代完整设防。",
           "models": [
             {
               "nodeId": "high-low-roof-joint-01",
@@ -6100,7 +6569,7 @@
               "说明阻水覆盖应在预计开合错动中持续而非只在静止时严密"
             ]
           },
-          "sectionId": "section-4"
+          "sectionId": "section-5"
         },
         {
           "prerequisiteIds": [
@@ -6141,7 +6610,7 @@
               "说明需采用适用的完整接缝与封堵系统并保留维护条件"
             ]
           },
-          "sectionId": "section-5"
+          "sectionId": "section-6"
         }
       ],
       "kind": "reading"
@@ -6640,7 +7109,7 @@
       "question": "为什么同一张连续防水线到女儿墙、管根和出口时，需要不同构造配合？",
       "principle": "连续阻水不是在图上画不断的线，而是让材料转换、几何转折、相对位移与收头固定能够协同。导排、附加防护和检修共同维持防水系统，局部密封不能替代完整路径。",
       "observe": [
-        "在涂膜女儿墙泛水中依次定位涂膜防水层、附加卷材与压条，画出大面转向立面的连续路线。",
+        "在涂膜女儿墙泛水中沿连续涂膜追到墙槽，辨认外侧局部附加卷材的终止处，以及压条和钉的固定位置。",
         "转到透气管出屋面模型，找到管根缝和伞形罩，说明它与女儿墙收头的几何条件和位移任务有何不同。"
       ],
       "conclusion": "同一原理要在不同接口上具体落实；检查的是水路、阻水线和可维护连接，而不只是材料数量。",
@@ -7109,7 +7578,7 @@
         "比较两种直管式水落口的卷材、嵌缝和入口构件，将其中一个局部节点放回自己的分区图并补检修和受阻情景。"
       ],
       "conclusion": "局部出口做法与总体水路共同确定可实施性，出口的数量和口径不能仅由模型外形或屋面面积平均分配。",
-      "boundary": "模型未提供设计雨量、全部汇水面积与排水能力计算，不从65型等型号名称直接推定流量或服务面积。",
+      "boundary": "模型未提供设计雨量、全部汇水面积与排水能力计算。“65型”是既有模型别名，命名出处未核定，不等于DN65，也不替代原图6／100／6；钢丝球图未标管径，不能从别名或外形推定流量与服务面积。",
       "assessment": {
         "question": "怎样自查屋面图中是否藏有无出口低点？",
         "criteria": [
@@ -7737,7 +8206,9 @@
       "applications": [
         "practice/envelope-detail"
       ],
-      "diagramIds": [],
+      "diagramIds": [
+        "frame-structure-layout-01"
+      ],
       "id": "wall.roles",
       "lesson": "wall/wall-role",
       "anchor": "从结构体系判断墙的身份",
@@ -7784,7 +8255,9 @@
       "applications": [
         "practice/envelope-detail"
       ],
-      "diagramIds": [],
+      "diagramIds": [
+        "hollow-block-forms-01"
+      ],
       "id": "wall.materials",
       "lesson": "wall/wall-types",
       "anchor": "按材料与构造方式分类",
@@ -7822,6 +8295,55 @@
       },
       "sectionId": "section-2"
     },
+    "wall.forms": {
+      "prerequisiteIds": [
+        "wall.materials"
+      ],
+      "conceptIds": [
+        "layers",
+        "systems",
+        "drawing"
+      ],
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ],
+      "diagramIds": [],
+      "id": "wall.forms",
+      "lesson": "wall/wall-types",
+      "anchor": "实体墙、空体墙与组合墙",
+      "title": "从墙身截面比较三种形式",
+      "question": "实体墙、空体墙与组合墙分别怎样表达连续墙身、空隙和材料层次？",
+      "principle": "图示三种构造形式分别以连续实体、内部空隙和不同材料层组合表达墙身差异；形式与材料品种、受力身份需要分别判断。",
+      "observe": [
+        "依次点选实体墙、空体墙与组合墙，与图2-3的（a）（b）（c）对应。",
+        "对照实体截面、内部空隙及组合层界面，记录原图未注明的材料、尺寸和连接条件。"
+      ],
+      "conclusion": "构造形式提供组成关系，不能直接推定承重身份或热工、隔声等性能。",
+      "boundary": "原图未注明墙厚、材料等级和层间连接，局部空隙也不说明其沿整墙的连续范围。",
+      "models": [
+        {
+          "nodeId": "wall-construction-forms-01",
+          "objects": [
+            "实体墙",
+            "空体墙",
+            "组合墙"
+          ],
+          "difference": "并列比较连续墙身、内部空隙与材料层组合。",
+          "role": "core",
+          "primary": true,
+          "title": "墙体构造形式"
+        }
+      ],
+      "assessment": {
+        "question": "组合墙中画有不同图案，能否直接确定哪层承重、哪层保温？",
+        "criteria": [
+          "图案区别表达材料层组合，但原图没有给出具体材料与功能。",
+          "承重、保温及层间连接仍需完整设计与材料资料。"
+        ]
+      },
+      "sectionId": "section-3"
+    },
     "wall.bearing": {
       "prerequisiteIds": [
         "wall.materials"
@@ -7835,7 +8357,11 @@
         "practice/envelope-detail"
       ],
       "diagramIds": [
-        "masonry-bond"
+        "masonry-bond",
+        "wall-bearing-transverse-01",
+        "wall-bearing-longitudinal-01",
+        "wall-bearing-two-way-01",
+        "wall-bearing-semi-frame-01"
       ],
       "id": "wall.bearing",
       "lesson": "wall/wall-masonry",
@@ -7909,6 +8435,150 @@
       },
       "sectionId": "section-1"
     },
+    "wall.bond-names": {
+      "prerequisiteIds": [
+        "wall.materials"
+      ],
+      "conceptIds": [
+        "layers",
+        "connections",
+        "drawing"
+      ],
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ],
+      "diagramIds": [],
+      "id": "wall.bond-names",
+      "lesson": "wall/wall-masonry",
+      "anchor": "组砌方式、墙厚与模数",
+      "title": "把砖的方向与灰缝名称对应起来",
+      "question": "怎样在同一面砖墙中区分顺砖、丁砖、横缝和竖缝？",
+      "principle": "顺砖与丁砖按墙面可见的长面或端面区分；横缝与竖缝按砖之间灰缝的延伸方向区分。",
+      "observe": [
+        "对照图2-17依次点选顺砖与丁砖，比较砖的长、宽方向及墙面可见面。",
+        "点选砂浆，沿横缝与竖缝观察上下皮砖的排列和竖缝错开位置。"
+      ],
+      "conclusion": "砖的排列方向、灰缝名称与砖材品种属于不同描述，读图时应分别识别。",
+      "boundary": "原图未给砖规格、墙厚、灰缝宽度或砂浆强度；分解只帮助观察图示组砌，不验证完整搭接和承载性能。",
+      "models": [
+        {
+          "nodeId": "brick-wall-bond-names-01",
+          "objects": [
+            "顺砖",
+            "丁砖",
+            "砂浆"
+          ],
+          "difference": "将顺砖、丁砖和砂浆灰缝与原图名称对应。",
+          "role": "core",
+          "primary": true,
+          "title": "砖墙组砌名称"
+        }
+      ],
+      "assessment": {
+        "question": "长面朝外的砖与水平灰缝分别叫什么？能否由这张图确定砂浆强度？",
+        "criteria": [
+          "长面朝外是顺砖，水平灰缝是横缝。",
+          "图中未标注砂浆强度，不能由灰缝外观推定。"
+        ]
+      },
+      "sectionId": "section-3"
+    },
+    "wall.hollow-block": {
+      "prerequisiteIds": [
+        "wall.bond-names"
+      ],
+      "conceptIds": [
+        "layers",
+        "drawing"
+      ],
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ],
+      "diagramIds": [],
+      "id": "wall.hollow-block",
+      "lesson": "wall/wall-masonry",
+      "anchor": "空心砌块墙的孔洞与错缝",
+      "title": "从顶部孔洞读到墙面排列",
+      "question": "空心砌块墙的顶部孔洞与上下皮错缝分别提供什么信息？",
+      "principle": "顶部孔洞反映块材内部形态，墙面灰缝反映砌块排列；材料内部孔洞与墙体组砌关系需分别识读。",
+      "observe": [
+        "整体点选空心砌块墙，从顶部开口辨认孔洞及其周边块壁。",
+        "沿墙面比较相邻上下皮的竖缝位置，再与空心砖墙由侧砌围合的空腔比较。"
+      ],
+      "conclusion": "块材孔洞与墙体排列属于两个尺度；孔洞外形不能直接证明灌芯、配筋或承重身份。",
+      "boundary": "源模型按整墙合为一组；原图未标注尺寸、材料等级、配筋与灌芯信息，不用于验证完整工程性能。",
+      "models": [
+        {
+          "nodeId": "hollow-block-wall-01",
+          "objects": [
+            "空心砌块墙"
+          ],
+          "difference": "整体观察块材孔洞、块壁和上下皮错缝。",
+          "role": "core",
+          "primary": true,
+          "title": "空心砌块墙"
+        }
+      ],
+      "assessment": {
+        "question": "看到顶部孔洞，能否认定墙内已经灌芯或配置钢筋？",
+        "criteria": [
+          "孔洞只提供块材内部几何信息。",
+          "灌芯、配筋与承重条件仍需设计和实际施工资料。"
+        ]
+      },
+      "sectionId": "section-4"
+    },
+    "wall.hollow-brick": {
+      "prerequisiteIds": [
+        "wall.bond-names"
+      ],
+      "conceptIds": [
+        "layers",
+        "connections",
+        "drawing"
+      ],
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ],
+      "diagramIds": [],
+      "id": "wall.hollow-brick",
+      "lesson": "wall/wall-masonry",
+      "anchor": "空心砖墙的空腔与拉结",
+      "title": "区分组砌空腔与块材孔洞",
+      "question": "图示空心砖墙的空腔怎样形成，转角与横向砖怎样相接？",
+      "principle": "图示普通砖通过侧砌围合形成空腔，横向拉结砖与转角平砌砖提供局部连接；组砌空腔与单块材料内的孔洞应分别识别。",
+      "observe": [
+        "点选侧砌普通砖，沿顶部开口追踪空腔与两侧砖的边界。",
+        "分别点选横向拉结砖和转角平砌砖，比较跨腔与两向墙交接处的排列。"
+      ],
+      "conclusion": "先确定空腔形成方式，再识别局部连接；空心外形不能单独证明材料品种、承重身份或完整性能。",
+      "boundary": "原图没有尺寸、配筋或性能数据；模型为静态组砌示意，不验证整墙拉结、承载及热工性能。",
+      "models": [
+        {
+          "nodeId": "hollow-brick-wall-01",
+          "objects": [
+            "侧砌普通砖",
+            "横向拉结砖",
+            "转角平砌砖"
+          ],
+          "difference": "观察侧砌形成的空腔与跨腔、转角处的砖。",
+          "role": "core",
+          "primary": true,
+          "title": "空心砖墙"
+        }
+      ],
+      "assessment": {
+        "question": "图示墙体的空腔是否就是单块砖内部的孔洞？如何辨认两者？",
+        "criteria": [
+          "沿顶部开口辨认侧砌砖围合的空腔。",
+          "指出块材内部孔洞与墙体组砌空腔属于不同尺度，不能互相替代。"
+        ]
+      },
+      "sectionId": "section-5"
+    },
     "wall.integrity": {
       "prerequisiteIds": [
         "wall.bearing"
@@ -7921,7 +8591,10 @@
       "applications": [
         "practice/envelope-detail"
       ],
-      "diagramIds": [],
+      "diagramIds": [
+        "construction-column-01",
+        "block-wall-core-column-01"
+      ],
       "id": "wall.integrity",
       "lesson": "wall/wall-masonry",
       "anchor": "圈梁、构造柱与芯柱",
@@ -7929,7 +8602,7 @@
       "question": "构造柱与芯柱在哪里形成联系，为什么都不能代替承重墙？",
       "principle": "圈梁沿水平方向联系墙段，构造柱在墙交接或边界形成竖向约束；芯柱利用砌块孔道形成竖向增强。它们通过连续连接改善整体工作，任务与框架承重骨架不同。",
       "observe": [
-        "在构造柱模型中依次点选墙体、马牙槎、钢筋、圈梁，解释相邻构件怎样形成联系。",
+        "先读构造柱立面与1—1横剖面，区分柱纵筋截面、箍筋和两向拉结筋，再在模型中点选墙体、马牙槎、钢筋和圈梁，解释相邻构件的联系。",
         "进入芯柱模型，观察增强构件从墙外预留截面转到砌块孔道内部后的施工条件变化。"
       ],
       "conclusion": "用“位置—连接—施工顺序”比较两者，再说明为什么不能先拆墙、后以加柱补救。",
@@ -7969,7 +8642,7 @@
           "增强构件不能替代承重墙的完整作用。"
         ]
       },
-      "sectionId": "section-4"
+      "sectionId": "section-6"
     },
     "wall.partition": {
       "prerequisiteIds": [
@@ -8023,7 +8696,10 @@
       "applications": [
         "practice/envelope-detail"
       ],
-      "diagramIds": [],
+      "diagramIds": [
+        "foam-insulation-01",
+        "rockwool-insulation-01"
+      ],
       "id": "wall.thermal",
       "lesson": "wall/wall-design-requirements",
       "anchor": "保温、隔热、气密与防结露",
@@ -8031,8 +8707,8 @@
       "question": "把保温板贴满墙面，是否就得到完整的外墙性能？",
       "principle": "保温层减小实体传热，连接把附加层作用交给基层，外侧保护应适应水和变形。洞口、梁柱和穿透处仍要保持相应边界连续，气密与防结露需要另外判断。",
       "observe": [
-        "点选保温板与基层墙体，再找胶粘、锚固和保护层的相邻位置。",
-        "对比岩棉做法，记录固定、找平及保护层的差异；再在纸上把这套层次接到窗洞四周。"
+        "对照泡沫塑料板外保温剖面，点选模型中的保温板与基层墙体，再找胶粘、锚固和保护层的相邻位置。",
+        "展开岩棉图纸与模型比较，记录固定、找平和防水层位置的差异；再在纸上把层次接到窗洞四周。"
       ],
       "conclusion": "能解释层的分工，比只背从外到内的名称更重要；材料名称不能替代完整系统性能评价。",
       "boundary": "局部墙身模型不含完整洞口热桥，也不提供热工、声学或耐火试验结果。",
@@ -8084,7 +8760,9 @@
       "applications": [
         "practice/envelope-detail"
       ],
-      "diagramIds": [],
+      "diagramIds": [
+        "passive-solar-wall-01"
+      ],
       "id": "wall.solar",
       "lesson": "wall/wall-design-requirements",
       "anchor": "有条件的被动太阳能墙",
@@ -8187,7 +8865,10 @@
       "applications": [
         "practice/envelope-detail"
       ],
-      "diagramIds": [],
+      "diagramIds": [
+        "apron-flashing-01",
+        "stone-apron-01"
+      ],
       "id": "wall.surface-water",
       "lesson": "wall/wall-details",
       "anchor": "勒脚、散水与明沟",
@@ -8246,7 +8927,11 @@
       "applications": [
         "practice/envelope-detail"
       ],
-      "diagramIds": [],
+      "diagramIds": [
+        "rc-lintel-flush-01",
+        "rc-lintel-window-surround-01",
+        "rc-lintel-window-hood-01"
+      ],
       "id": "wall.opening-support",
       "lesson": "wall/wall-details",
       "anchor": "门窗洞口：传力、密封与排水",
@@ -8254,7 +8939,7 @@
       "question": "平墙、带窗套和带窗楣的外形差异，能否直接证明支承充分？",
       "principle": "过梁承担洞口上方相应作用，窗套和窗楣改变洞口周边的外形与界面。结构支承、表面排水和窗框密封需要分别说明，再在同一详图中协调。",
       "observe": [
-        "点选过梁主体、包覆层和上部墙体，辨认沿墙厚方向的局部截面。",
+        "对照三种过梁横剖面，点选模型中的过梁主体、包覆层和上部墙体，辨认沿墙厚方向的局部截面。",
         "比较窗套与窗楣的凸出位置，再列出确认跨度、两端支座及配筋仍需要的图纸。"
       ],
       "conclusion": "模型能说明局部几何，不能由窗套或窗楣外观推断过梁的承载能力，也不能把窗框当成过梁支座。",
@@ -8319,7 +9004,9 @@
       "applications": [
         "practice/envelope-detail"
       ],
-      "diagramIds": [],
+      "diagramIds": [
+        "window-wall-gap-sealing-01"
+      ],
       "id": "wall.window-joint",
       "lesson": "wall/wall-details",
       "anchor": "安装缝的四项任务",
@@ -8327,7 +9014,7 @@
       "question": "窗墙缝填满后，还缺哪些构造信息才能说明接口完整？",
       "principle": "固定传递门窗作用，填缝处理间隙，密封控制水与空气通路，排水把已进入界面的水引向室外。几项任务可相互配合，但不能互相替代。",
       "observe": [
-        "点选窗框、外墙、袋装矿棉和弹性密封胶，找出不同材料的位置。",
+        "先在窗墙缝横剖面区分填充与密封的位置，再点选模型中的窗框、外墙、袋装矿棉和弹性密封胶作对应。",
         "在草图中补出本模型没有独立表示的固定点和下口排水去向，再核对墙身保温的接续。"
       ],
       "conclusion": "用“作用—路径—接口”说明填塞与胶封的分工，而非把所有材料统称为防水层。",
@@ -8370,7 +9057,11 @@
       "applications": [
         "practice/envelope-detail"
       ],
-      "diagramIds": [],
+      "diagramIds": [
+        "plaster-plinth-01",
+        "faced-plinth-01",
+        "stone-plinth-01"
+      ],
       "id": "wall.finishes",
       "lesson": "wall/wall-finishes",
       "anchor": "用勒脚比较饰面与墙身防潮",
@@ -9022,6 +9713,82 @@
       },
       "sectionId": "section-4"
     },
+    "floor.balcony-types": {
+      "prerequisiteIds": [
+        "floor.system"
+      ],
+      "conceptIds": [
+        "systems",
+        "drawing",
+        "connections"
+      ],
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ],
+      "diagramIds": [],
+      "id": "floor.balcony-types",
+      "lesson": "floor/floor-balcony",
+      "anchor": "阳台类型：外墙基准与凹凸关系",
+      "title": "用同一外墙基准比较三种阳台",
+      "question": "挑阳台、半凸半凹阳台与凹阳台相对外墙的位置怎样不同？",
+      "principle": "沿阳台两侧的相邻外墙确定比较基准，再按阳台空间突出、部分突出或退入的关系识别类型。",
+      "observe": [
+        "在挑阳台模型点选主体墙与楼板，辨认板面向外突出的范围。",
+        "比较半凸半凹与凹阳台，沿相同外墙基准观察板面、栏板与内侧窗的位置。"
+      ],
+      "conclusion": "阳台凹凸是空间分类，实际支承和根部连接还需独立判断。",
+      "boundary": "三图与静态模型未给结构配筋、锚固、防护高度或排水细节，不用于判定承载及完整构造性能。",
+      "models": [
+        {
+          "nodeId": "balcony-type-projecting-01",
+          "objects": [
+            "主体墙",
+            "楼板",
+            "栏板",
+            "窗"
+          ],
+          "difference": "观察突出外墙的阳台空间。",
+          "role": "core",
+          "primary": true,
+          "title": "阳台类型（挑阳台）"
+        },
+        {
+          "nodeId": "balcony-type-semi-recessed-01",
+          "objects": [
+            "主体墙",
+            "楼板",
+            "栏板",
+            "窗"
+          ],
+          "difference": "比较部分突出、部分退入的空间。",
+          "role": "comparison",
+          "primary": true,
+          "title": "阳台类型（半凸半凹阳台）"
+        },
+        {
+          "nodeId": "balcony-type-recessed-01",
+          "objects": [
+            "主体墙",
+            "楼板",
+            "栏板",
+            "窗"
+          ],
+          "difference": "比较退入外墙基准以内的空间。",
+          "role": "comparison",
+          "primary": true,
+          "title": "阳台类型（凹阳台）"
+        }
+      ],
+      "assessment": {
+        "question": "阳台突出外墙，是否就能确定它采用悬挑板且栏板锚固可靠？",
+        "criteria": [
+          "区分空间凹凸与实际受力体系",
+          "指出支承、配筋和栏板连接还需专门图纸"
+        ]
+      },
+      "sectionId": "section-1"
+    },
     "floor.cantilever": {
       "prerequisiteIds": [
         "floor.ribbed"
@@ -9068,7 +9835,7 @@
           "找实际支座和根部连接"
         ]
       },
-      "sectionId": "section-1"
+      "sectionId": "section-2"
     },
     "floor.railing": {
       "prerequisiteIds": [
@@ -9146,7 +9913,7 @@
           "兼顾防水防腐"
         ]
       },
-      "sectionId": "section-3"
+      "sectionId": "section-4"
     },
     "floor.canopy": {
       "prerequisiteIds": [
@@ -9210,7 +9977,7 @@
           "路径必须从收集连续到可靠出口"
         ]
       },
-      "sectionId": "section-4"
+      "sectionId": "section-5"
     },
     "floor.finishes": {
       "prerequisiteIds": [
@@ -10176,7 +10943,11 @@
       "applications": [
         "practice/roof-drainage"
       ],
-      "diagramIds": [],
+      "diagramIds": [
+        "roof-drainage-01",
+        "organized-drainage-01",
+        "eaves-gutter-01"
+      ],
       "id": "roof.drainage",
       "lesson": "roof/roof-overview",
       "anchor": "坡度、材料与水路",
@@ -10304,7 +11075,10 @@
       "applications": [
         "practice/roof-drainage"
       ],
-      "diagramIds": [],
+      "diagramIds": [
+        "straight-rainwater-outlet-65-01",
+        "straight-rainwater-outlet-cast-iron-01"
+      ],
       "id": "roof.outlets",
       "lesson": "roof/roof-flat",
       "anchor": "水落口：导水与防水收边",
@@ -10312,11 +11086,11 @@
       "question": "落口既要让水进入管内，为什么周边还要嵌缝并连接防水层？",
       "principle": "排水开口解决来水排出，防水收边解决水不从管身周围进入构造层；两者需同时连续。",
       "observe": [
-        "点选定型铸铁水落口与65型进水罩，追踪进水开口、穿板管身及板洞周边。",
-        "对比另一种铸铁水落口和钢丝球，分别辨认防水卷材、油膏嵌缝与拦阻杂物构件。"
+        "点选模型中的铸铁水落口与“65型铸铁进水罩”，对照图纸原标“定型铸铁水落口”，追踪上部构件、口杯与下接管的通水腔；辨认6／100／6分别标示两侧壁厚与中间净空。",
+        "对比钢丝球式铸铁水落口，沿卷材转折、局部油膏与口杯追踪板洞接口；图中杯口内侧斜带单独保留，其材料身份尚未核定。"
       ],
       "conclusion": "罩体可拆换不等于周边防水可中断；管口通畅和穿板接口完整应分别检查。",
-      "boundary": "65型、配比和尺寸仅为所配图纸记录，不决定项目排水能力；管径、落口数量和应急排水需另行设计核算。",
+      "boundary": "“65型”是既有模型别名，命名出处未核定，不等于DN65，也不改写原图100mm净空；6／100／6和1∶2.5仅为原图实例。钢丝球图未标管径、壁厚，未知斜带不另命名为防水层；产品选型、排水能力和现代完整设防均需另核。",
       "models": [
         {
           "nodeId": "straight-rainwater-outlet-65-01",
@@ -10326,7 +11100,7 @@
             "防水卷材",
             "油膏嵌缝"
           ],
-          "difference": "辨认定型进水罩与直管式落口。",
+          "difference": "对照原标定型铸铁水落口，辨认通水腔与6／100／6。",
           "role": "core",
           "primary": true,
           "title": "直管式水落口（65 型水落口）"
@@ -10338,7 +11112,7 @@
             "镀锌钢丝球",
             "防水卷材"
           ],
-          "difference": "比较不同拦阻杂物构件及周边收边。",
+          "difference": "比较钢丝球、口杯与卷材收边，保留未定材料的斜带。",
           "role": "comparison",
           "primary": true,
           "title": "直管式水落口（铸铁水落口）"
@@ -10352,6 +11126,57 @@
         ]
       },
       "sectionId": "section-7"
+    },
+    "roof.cast-iron-outlet": {
+      "prerequisiteIds": [
+        "roof.outlets"
+      ],
+      "conceptIds": [
+        "water",
+        "connections",
+        "maintenance",
+        "drawing"
+      ],
+      "relatedPrinciples": [
+        "principles/waterproof"
+      ],
+      "applications": [
+        "practice/roof-drainage"
+      ],
+      "diagramIds": [],
+      "id": "roof.cast-iron-outlet",
+      "lesson": "roof/roof-flat",
+      "anchor": "铸铁水落口：本体与L形格栅",
+      "title": "从格栅入口追到转折出口",
+      "question": "铸铁水落口本体与L形格栅怎样配合，图中还缺少哪些安装接口？",
+      "principle": "格栅与水落口本体分别承担入口拦挡和通水导流，装配观察要沿栅条间隙、口腔及转折出口连续追踪。",
+      "observe": [
+        "在组装状态下对照图6-22辨认格栅入口、口腔与向下转折的出口。",
+        "展开模型，分别点选铸铁水落口与L形铸铁格栅，对照右侧正视、侧视及尺寸线，观察装配边缘与清理通道。"
+      ],
+      "conclusion": "构件装配图可以说明本体与格栅的位置关系，安装时还需补充周边基层、防水收边和下接管道资料。",
+      "boundary": "215、160、45、10等尺寸只属于原图实例；模型未包含屋面、墙体、防水层或下接管道，不用于推定排水能力与完整安装做法。",
+      "models": [
+        {
+          "nodeId": "cast-iron-rainwater-outlet-01",
+          "objects": [
+            "铸铁水落口",
+            "L形铸铁格栅"
+          ],
+          "difference": "对照立体图与格栅详图，观察两件装配及转折通水路径。",
+          "role": "core",
+          "primary": true,
+          "title": "铸铁水落口"
+        }
+      ],
+      "assessment": {
+        "question": "格栅和本体装配完整，是否足以证明屋面落口不会渗漏且排水能力足够？",
+        "criteria": [
+          "指出图中没有周边防水收边及下接管道",
+          "说明排水能力还需汇水、开口与管路等设计资料"
+        ]
+      },
+      "sectionId": "section-8"
     },
     "roof.eaves": {
       "prerequisiteIds": [
@@ -10367,7 +11192,10 @@
         "principles/waterproof"
       ],
       "applications": [],
-      "diagramIds": [],
+      "diagramIds": [
+        "free-fall-ring-beam-eaves-01",
+        "free-fall-waterproof-eaves-01"
+      ],
       "id": "roof.eaves",
       "lesson": "roof/roof-flat",
       "anchor": "檐口：承托与自由落水",
@@ -10375,11 +11203,11 @@
       "question": "两种自由落水檐口的挑出部分，是否由同一种构件承担？",
       "principle": "水离开檐口的路径与挑出构件的受力路径应分别辨认；传统刚性层示例不能推广为任意屋面的悬挑设计。",
       "observe": [
-        "在圈梁带挑檐板示例中点选整体构件、空心屋面板和防水层，辨认挑檐根部与上部覆盖。",
-        "比较防水层直接悬挑示例，观察悬挑层、双向钢筋网及端部下折，不把图示局部尺寸当作全层厚度。"
+        "在圈梁带挑檐板示例中点选整体构件、空心屋面板和防水层；对照图纸分别追踪上部防水、隔离薄层、结构挑檐与墙身，并找到上部唇口下侧的滴水。",
+        "比较防水层直接悬挑示例，观察悬挑层、双向钢筋网及端部下折；圈梁带挑檐板图的60只记录檐端局部水平投影，不能当作全层厚度或整体挑出长度。"
       ],
       "conclusion": "相似的自由落水外形，可能对应不同承托与构造层关系，不能互抄截面与配筋。",
-      "boundary": "两图属于给定传统刚性构造示例；钢筋、悬挑尺度及防水设防需按当前项目体系重新确定，模型不验算安全。",
+      "boundary": "两图属于给定传统刚性构造示例，不代表已满足现行完整设防。圈梁带挑檐板图的60投影至檐端细边带外缘，细边带材料身份未核定，不称为已核定的混凝土结构面；图示钢筋不补作结构配筋。工程承载、尺度与防水系统需另核。",
       "models": [
         {
           "nodeId": "free-fall-ring-beam-eaves-01",
@@ -10413,7 +11241,7 @@
           "说明结构承托、防水及变形需成套判断"
         ]
       },
-      "sectionId": "section-8"
+      "sectionId": "section-9"
     },
     "roof.flashing": {
       "prerequisiteIds": [
@@ -10430,7 +11258,9 @@
       "applications": [
         "practice/envelope-detail"
       ],
-      "diagramIds": [],
+      "diagramIds": [
+        "coating-parapet-flashing-01"
+      ],
       "id": "roof.flashing",
       "lesson": "roof/roof-flat",
       "anchor": "女儿墙泛水：大面与立面连续",
@@ -10438,11 +11268,11 @@
       "question": "防水层铺到墙根就结束，墙面上的水会怎样绕过它？",
       "principle": "防水需要在墙根转角、立面上翻和端部收头处连续衔接，附加层与压条各有位置和任务。",
       "observe": [
-        "沿涂膜防水层从屋面追到女儿墙内侧，区分涂膜与附加卷材。",
-        "点选压条和水泥钉，观察上端收头；再查墙根嵌缝与结构板端，而不是只看墙面颜色。"
+        "沿连续涂膜从屋面追到墙槽收头，区分涂膜与外侧局部附加卷材，并找到附加卷材在屋面上的终止位置。",
+        "点选压条和水泥钉，观察槽内固定；再对照图纸辨认墙与板端的局部油膏嵌缝，避免把它读成满屋面材料层。"
       ],
       "conclusion": "墙根转折与顶部收头共同构成泛水，单有一片上翻面并不能说明接口完整。",
-      "boundary": "图示高度和材料名称只解释所配示例，不提供通用泛水高度、涂膜厚度或固定间距。结构相对变形需另查变形缝。",
+      "boundary": "≥250与60分别保留原图相邻竖向尺寸段，精确材料起算界面尚未核定，不作为通用高度或施工测点；涂膜厚度、附加卷材规格及固定间距未给定。局部旧图不代表现代完整设防，结构相对变形需另查变形缝。",
       "models": [
         {
           "nodeId": "coating-parapet-flashing-01",
@@ -10466,7 +11296,7 @@
           "把墙根与上端视为同一连续路径"
         ]
       },
-      "sectionId": "section-9"
+      "sectionId": "section-10"
     },
     "roof.pipe": {
       "prerequisiteIds": [
@@ -10517,7 +11347,7 @@
           "说明应沿管根连续修复而非堵塞通气口"
         ]
       },
-      "sectionId": "section-11"
+      "sectionId": "section-12"
     },
     "roof.access": {
       "prerequisiteIds": [
@@ -10533,7 +11363,9 @@
         "principles/waterproof"
       ],
       "applications": [],
-      "diagramIds": [],
+      "diagramIds": [
+        "roof-access-hatch-01"
+      ],
       "id": "roof.access",
       "lesson": "roof/roof-flat",
       "anchor": "检修口：覆盖、防水与可维护",
@@ -10545,7 +11377,7 @@
         "在展开状态下分别点选两道SBS卷材与附加卷材，追踪屋面、井壁根部和盖缝件附近的层次。"
       ],
       "conclusion": "检修口是可开启的围护接口，盖板、泛水和日常可达维护共同工作。",
-      "boundary": "图示250mm、材料与层数只代表该图，不证明项目防水设防、净口、防坠、无障碍或盖板承载已满足。",
+      "boundary": "原图只明确防水层、附加卷材、压顶圈与人孔盖；模型的两片主防水、局部附加片、保温及盖缝件属于扩展实例，不能与原图逐层等同。原图250mm保留竖向投影身份，不作为统一井壁净高；本图模不证明项目设防、净口、防坠或盖板承载已满足。",
       "models": [
         {
           "nodeId": "roof-access-hatch-01",
@@ -10570,7 +11402,7 @@
           "提出应保留检查清理接口与周边排水的条件"
         ]
       },
-      "sectionId": "section-12"
+      "sectionId": "section-13"
     },
     "roof.storage": {
       "prerequisiteIds": [
@@ -10590,7 +11422,10 @@
       "applications": [
         "practice/roof-drainage"
       ],
-      "diagramIds": [],
+      "diagramIds": [
+        "water-storage-eaves-drainage-01",
+        "water-storage-parapet-drainage-01"
+      ],
       "id": "roof.storage",
       "lesson": "roof/roof-flat",
       "anchor": "蓄水屋面：水位、荷载与可控排水",
@@ -10639,7 +11474,7 @@
           "指出水位控制、溢流、泄水、卫生冻结与维护需配套"
         ]
       },
-      "sectionId": "section-16"
+      "sectionId": "section-17"
     },
     "roof.trusses": {
       "prerequisiteIds": [
@@ -10652,7 +11487,11 @@
       ],
       "relatedPrinciples": [],
       "applications": [],
-      "diagramIds": [],
+      "diagramIds": [
+        "roof-truss-timber-01",
+        "roof-truss-reinforced-concrete-01",
+        "roof-truss-steel-timber-01"
+      ],
       "id": "roof.trusses",
       "lesson": "roof/roof-slope",
       "anchor": "坡面组织与承重体系",
@@ -10722,7 +11561,11 @@
         "principles/thermal"
       ],
       "applications": [],
-      "diagramIds": [],
+      "diagramIds": [
+        "steel-batten-tile-roof-01",
+        "mortar-bed-tile-roof-01",
+        "wood-batten-tile-roof-01"
+      ],
       "id": "roof.tiles",
       "lesson": "roof/roof-slope",
       "anchor": "瓦屋面的基层、搭接与固定",
@@ -11025,6 +11868,53 @@
       },
       "sectionId": "section-4"
     },
+    "joints.forms": {
+      "prerequisiteIds": [
+        "joints.identity"
+      ],
+      "conceptIds": [
+        "movement",
+        "connections",
+        "drawing"
+      ],
+      "relatedPrinciples": [],
+      "applications": [],
+      "diagramIds": [],
+      "id": "joints.forms",
+      "lesson": "deformation-joint/roof-deformation-construction",
+      "anchor": "平缝、错缝与企口缝",
+      "title": "沿缝线比较三种几何形式",
+      "question": "平缝、错缝和企口缝的缝线与两侧轮廓有什么不同？",
+      "principle": "三种形式分别展示平直、错台和凹凸企口的边缘关系；读图时沿缝线追踪转折，并辨认两侧构件。",
+      "observe": [
+        "依次点选平缝、错缝和企口缝，与图 2-38 的（a）（b）（c）对应。",
+        "旋转模型观察缝口，再回到原图描出三种形式的缝线和两侧轮廓。"
+      ],
+      "conclusion": "缝口几何形式与设缝目的需要分别识别，不能将三种形状直接对应为伸缩缝、沉降缝和抗震缝。",
+      "boundary": "原图未标注尺寸、材料及运动范围；模型没有分解动画，不用于推定位移能力或防水、防火性能。",
+      "models": [
+        {
+          "nodeId": "deformation-joint-forms-01",
+          "objects": [
+            "平缝",
+            "错缝",
+            "企口缝"
+          ],
+          "difference": "并列比较三种缝口形式与原图的对应关系。",
+          "role": "core",
+          "primary": true,
+          "title": "变形缝的形式"
+        }
+      ],
+      "assessment": {
+        "question": "企口缝的凹凸轮廓能否直接证明其允许位移和防水能力？",
+        "criteria": [
+          "指出图示只提供缝口几何形式",
+          "说明尺寸、材料、连接和预计运动仍需另查"
+        ]
+      },
+      "sectionId": "section-2"
+    },
     "joints.high-low": {
       "prerequisiteIds": [
         "joints.identity",
@@ -11043,7 +11933,9 @@
       "applications": [
         "practice/envelope-detail"
       ],
-      "diagramIds": [],
+      "diagramIds": [
+        "coating-high-low-roof-flashing-01"
+      ],
       "id": "joints.high-low",
       "lesson": "deformation-joint/roof-deformation-construction",
       "anchor": "等高屋面与高低屋面",
@@ -11052,10 +11944,10 @@
       "principle": "两侧独立运动的同时，屋面与高墙交界仍需保持阻水覆盖；跨缝材料和外盖不可把活动重新锁死。",
       "observe": [
         "在变形缝一中沿低屋面防水、跨缝附加卷材追到高墙槽口，辨认两侧分开的基层。",
-        "比较变形缝二的镀锌薄钢板、盖板与填缝，再观察涂膜高低泛水中的U形跨缝段，记录图中可见及不能确认的活动条件。"
+        "比较变形缝二的镀锌薄钢板、盖板与填缝；再在涂膜屋面语境的高低泛水图中，沿原标防水卷材追踪槽内收头、U形跨缝、矮墙顶及屋面转角，区分上部墙面固定的钢板盖缝。"
       ],
       "conclusion": "挡雨覆盖、端部固定和允许运动是一套任务；分解动画只展示层次，不证明实际位移能力。",
-      "boundary": "三个示例不提供通用缝宽、盖板配筋、材料厚度或防火性能；高低泛水的涂膜/卷材名称应以实际卡片及原图分别辨认。",
+      "boundary": "高低泛水图题为涂膜屋面语境，原引线实标防水卷材，不能用图题覆盖材料名称；≥250仅为原图投影，材料起算界面未定。三例均不提供通用缝宽、材料厚度、位移能力或防火性能，局部旧图不代表现代完整设防。",
       "models": [
         {
           "nodeId": "high-low-roof-joint-01",
@@ -11106,7 +11998,7 @@
           "说明阻水覆盖应在预计开合错动中持续而非只在静止时严密"
         ]
       },
-      "sectionId": "section-4"
+      "sectionId": "section-5"
     },
     "joints.boundaries": {
       "prerequisiteIds": [
@@ -11147,7 +12039,7 @@
           "说明需采用适用的完整接缝与封堵系统并保留维护条件"
         ]
       },
-      "sectionId": "section-5"
+      "sectionId": "section-6"
     }
   },
   "nodes": {
@@ -11917,7 +12809,7 @@
           "水泥钉",
           "防水油膏嵌缝"
         ],
-        "boundary": "图示高度和材料名称只解释所配示例，不提供通用泛水高度、涂膜厚度或固定间距。结构相对变形需另查变形缝。",
+        "boundary": "≥250与60分别保留原图相邻竖向尺寸段，精确材料起算界面尚未核定，不作为通用高度或施工测点；涂膜厚度、附加卷材规格及固定间距未给定。局部旧图不代表现代完整设防，结构相对变形需另查变形缝。",
         "primary": true,
         "relatedPrinciples": [
           "principles/waterproof",
@@ -12210,7 +13102,7 @@
             "檐沟分水",
             "排水口"
           ],
-          "boundary": "模型未提供设计雨量、全部汇水面积与排水能力计算，不从65型等型号名称直接推定流量或服务面积。",
+          "boundary": "模型未提供设计雨量、全部汇水面积与排水能力计算。“65型”是既有模型别名，命名出处未核定，不等于DN65，也不替代原图6／100／6；钢丝球图未标管径，不能从别名或外形推定流量与服务面积。",
           "primary": false,
           "relatedPrinciples": [
             "principles/waterproof",
@@ -12263,7 +13155,7 @@
             "油膏嵌缝",
             "65型铸铁进水罩"
           ],
-          "boundary": "模型未提供设计雨量、全部汇水面积与排水能力计算，不从65型等型号名称直接推定流量或服务面积。",
+          "boundary": "模型未提供设计雨量、全部汇水面积与排水能力计算。“65型”是既有模型别名，命名出处未核定，不等于DN65，也不替代原图6／100／6；钢丝球图未标管径，不能从别名或外形推定流量与服务面积。",
           "primary": false,
           "relatedPrinciples": [
             "principles/waterproof",
@@ -12282,14 +13174,14 @@
         "knowledgeId": "roof.outlets",
         "question": "落口既要让水进入管内，为什么周边还要嵌缝并连接防水层？",
         "principle": "排水开口解决来水排出，防水收边解决水不从管身周围进入构造层；两者需同时连续。",
-        "task": "辨认定型进水罩与直管式落口。",
+        "task": "对照原标定型铸铁水落口，辨认通水腔与6／100／6。",
         "objects": [
           "铸铁水落口",
           "65型铸铁进水罩",
           "防水卷材",
           "油膏嵌缝"
         ],
-        "boundary": "65型、配比和尺寸仅为所配图纸记录，不决定项目排水能力；管径、落口数量和应急排水需另行设计核算。",
+        "boundary": "“65型”是既有模型别名，命名出处未核定，不等于DN65，也不改写原图100mm净空；6／100／6和1∶2.5仅为原图实例。钢丝球图未标管径、壁厚，未知斜带不另命名为防水层；产品选型、排水能力和现代完整设防均需另核。",
         "primary": true,
         "relatedPrinciples": [
           "principles/waterproof",
@@ -12319,7 +13211,7 @@
             "油膏嵌缝",
             "镀锌钢丝球"
           ],
-          "boundary": "模型未提供设计雨量、全部汇水面积与排水能力计算，不从65型等型号名称直接推定流量或服务面积。",
+          "boundary": "模型未提供设计雨量、全部汇水面积与排水能力计算。“65型”是既有模型别名，命名出处未核定，不等于DN65，也不替代原图6／100／6；钢丝球图未标管径，不能从别名或外形推定流量与服务面积。",
           "primary": false,
           "relatedPrinciples": [
             "principles/waterproof",
@@ -12338,13 +13230,13 @@
         "knowledgeId": "roof.outlets",
         "question": "落口既要让水进入管内，为什么周边还要嵌缝并连接防水层？",
         "principle": "排水开口解决来水排出，防水收边解决水不从管身周围进入构造层；两者需同时连续。",
-        "task": "比较不同拦阻杂物构件及周边收边。",
+        "task": "比较钢丝球、口杯与卷材收边，保留未定材料的斜带。",
         "objects": [
           "铸铁水落口",
           "镀锌钢丝球",
           "防水卷材"
         ],
-        "boundary": "65型、配比和尺寸仅为所配图纸记录，不决定项目排水能力；管径、落口数量和应急排水需另行设计核算。",
+        "boundary": "“65型”是既有模型别名，命名出处未核定，不等于DN65，也不改写原图100mm净空；6／100／6和1∶2.5仅为原图实例。钢丝球图未标管径、壁厚，未知斜带不另命名为防水层；产品选型、排水能力和现代完整设防均需另核。",
         "primary": true,
         "relatedPrinciples": [
           "principles/waterproof",
@@ -12524,6 +13416,30 @@
         ]
       }
     },
+    "wall-construction-forms-01": {
+      "related": [],
+      "primary": {
+        "lessonKey": "wall/wall-types",
+        "lessonTitle": "墙体的类型",
+        "lessonPath": "basics/wall/wall-types.html",
+        "figureId": "model-wall-forms",
+        "knowledgeId": "wall.forms",
+        "question": "实体墙、空体墙与组合墙分别怎样表达连续墙身、空隙和材料层次？",
+        "principle": "图示三种构造形式分别以连续实体、内部空隙和不同材料层组合表达墙身差异；形式与材料品种、受力身份需要分别判断。",
+        "task": "并列比较连续墙身、内部空隙与材料层组合。",
+        "objects": [
+          "实体墙",
+          "空体墙",
+          "组合墙"
+        ],
+        "boundary": "原图未注明墙厚、材料等级和层间连接，局部空隙也不说明其沿整墙的连续范围。",
+        "primary": true,
+        "relatedPrinciples": [],
+        "applications": [
+          "practice/envelope-detail"
+        ]
+      }
+    },
     "wall-bearing-longitudinal-01": {
       "related": [],
       "primary": {
@@ -12589,6 +13505,76 @@
           "墙体"
         ],
         "boundary": "这些是单层布置示意，墙段和楼板多为合并网格；不展示结构计算、完整连接或抗震验算。",
+        "primary": true,
+        "relatedPrinciples": [],
+        "applications": [
+          "practice/envelope-detail"
+        ]
+      }
+    },
+    "brick-wall-bond-names-01": {
+      "related": [],
+      "primary": {
+        "lessonKey": "wall/wall-masonry",
+        "lessonTitle": "砌体结构",
+        "lessonPath": "basics/wall/wall-masonry.html",
+        "figureId": "model-wall-bond-names",
+        "knowledgeId": "wall.bond-names",
+        "question": "怎样在同一面砖墙中区分顺砖、丁砖、横缝和竖缝？",
+        "principle": "顺砖与丁砖按墙面可见的长面或端面区分；横缝与竖缝按砖之间灰缝的延伸方向区分。",
+        "task": "将顺砖、丁砖和砂浆灰缝与原图名称对应。",
+        "objects": [
+          "顺砖",
+          "丁砖",
+          "砂浆"
+        ],
+        "boundary": "原图未给砖规格、墙厚、灰缝宽度或砂浆强度；分解只帮助观察图示组砌，不验证完整搭接和承载性能。",
+        "primary": true,
+        "relatedPrinciples": [],
+        "applications": [
+          "practice/envelope-detail"
+        ]
+      }
+    },
+    "hollow-block-wall-01": {
+      "related": [],
+      "primary": {
+        "lessonKey": "wall/wall-masonry",
+        "lessonTitle": "砌体结构",
+        "lessonPath": "basics/wall/wall-masonry.html",
+        "figureId": "model-wall-hollow-block",
+        "knowledgeId": "wall.hollow-block",
+        "question": "空心砌块墙的顶部孔洞与上下皮错缝分别提供什么信息？",
+        "principle": "顶部孔洞反映块材内部形态，墙面灰缝反映砌块排列；材料内部孔洞与墙体组砌关系需分别识读。",
+        "task": "整体观察块材孔洞、块壁和上下皮错缝。",
+        "objects": [
+          "空心砌块墙"
+        ],
+        "boundary": "源模型按整墙合为一组；原图未标注尺寸、材料等级、配筋与灌芯信息，不用于验证完整工程性能。",
+        "primary": true,
+        "relatedPrinciples": [],
+        "applications": [
+          "practice/envelope-detail"
+        ]
+      }
+    },
+    "hollow-brick-wall-01": {
+      "related": [],
+      "primary": {
+        "lessonKey": "wall/wall-masonry",
+        "lessonTitle": "砌体结构",
+        "lessonPath": "basics/wall/wall-masonry.html",
+        "figureId": "model-wall-hollow-brick",
+        "knowledgeId": "wall.hollow-brick",
+        "question": "图示空心砖墙的空腔怎样形成，转角与横向砖怎样相接？",
+        "principle": "图示普通砖通过侧砌围合形成空腔，横向拉结砖与转角平砌砖提供局部连接；组砌空腔与单块材料内的孔洞应分别识别。",
+        "task": "观察侧砌形成的空腔与跨腔、转角处的砖。",
+        "objects": [
+          "侧砌普通砖",
+          "横向拉结砖",
+          "转角平砌砖"
+        ],
+        "boundary": "原图没有尺寸、配筋或性能数据；模型为静态组砌示意，不验证整墙拉结、承载及热工性能。",
         "primary": true,
         "relatedPrinciples": [],
         "applications": [
@@ -13028,6 +14014,90 @@
         ],
         "applications": [
           "practice/floor-layout"
+        ]
+      }
+    },
+    "balcony-type-projecting-01": {
+      "related": [],
+      "primary": {
+        "lessonKey": "floor/floor-balcony",
+        "lessonTitle": "阳台及雨棚",
+        "lessonPath": "basics/floor/floor-balcony.html",
+        "figureId": "model-floor-balcony-types",
+        "knowledgeId": "floor.balcony-types",
+        "question": "挑阳台、半凸半凹阳台与凹阳台相对外墙的位置怎样不同？",
+        "principle": "沿阳台两侧的相邻外墙确定比较基准，再按阳台空间突出、部分突出或退入的关系识别类型。",
+        "task": "观察突出外墙的阳台空间。",
+        "objects": [
+          "主体墙",
+          "楼板",
+          "栏板",
+          "窗"
+        ],
+        "boundary": "三图与静态模型未给结构配筋、锚固、防护高度或排水细节，不用于判定承载及完整构造性能。",
+        "primary": true,
+        "relatedPrinciples": [
+          "principles/waterproof",
+          "principles/thermal"
+        ],
+        "applications": [
+          "practice/envelope-detail"
+        ]
+      }
+    },
+    "balcony-type-semi-recessed-01": {
+      "related": [],
+      "primary": {
+        "lessonKey": "floor/floor-balcony",
+        "lessonTitle": "阳台及雨棚",
+        "lessonPath": "basics/floor/floor-balcony.html",
+        "figureId": "model-floor-balcony-types",
+        "knowledgeId": "floor.balcony-types",
+        "question": "挑阳台、半凸半凹阳台与凹阳台相对外墙的位置怎样不同？",
+        "principle": "沿阳台两侧的相邻外墙确定比较基准，再按阳台空间突出、部分突出或退入的关系识别类型。",
+        "task": "比较部分突出、部分退入的空间。",
+        "objects": [
+          "主体墙",
+          "楼板",
+          "栏板",
+          "窗"
+        ],
+        "boundary": "三图与静态模型未给结构配筋、锚固、防护高度或排水细节，不用于判定承载及完整构造性能。",
+        "primary": true,
+        "relatedPrinciples": [
+          "principles/waterproof",
+          "principles/thermal"
+        ],
+        "applications": [
+          "practice/envelope-detail"
+        ]
+      }
+    },
+    "balcony-type-recessed-01": {
+      "related": [],
+      "primary": {
+        "lessonKey": "floor/floor-balcony",
+        "lessonTitle": "阳台及雨棚",
+        "lessonPath": "basics/floor/floor-balcony.html",
+        "figureId": "model-floor-balcony-types",
+        "knowledgeId": "floor.balcony-types",
+        "question": "挑阳台、半凸半凹阳台与凹阳台相对外墙的位置怎样不同？",
+        "principle": "沿阳台两侧的相邻外墙确定比较基准，再按阳台空间突出、部分突出或退入的关系识别类型。",
+        "task": "比较退入外墙基准以内的空间。",
+        "objects": [
+          "主体墙",
+          "楼板",
+          "栏板",
+          "窗"
+        ],
+        "boundary": "三图与静态模型未给结构配筋、锚固、防护高度或排水细节，不用于判定承载及完整构造性能。",
+        "primary": true,
+        "relatedPrinciples": [
+          "principles/waterproof",
+          "principles/thermal"
+        ],
+        "applications": [
+          "practice/envelope-detail"
         ]
       }
     },
@@ -13860,6 +14930,35 @@
         ]
       }
     },
+    "cast-iron-rainwater-outlet-01": {
+      "related": [],
+      "primary": {
+        "lessonKey": "roof/roof-flat",
+        "lessonTitle": "平屋面构造",
+        "lessonPath": "basics/roof/roof-flat.html",
+        "figureId": "model-roof-cast-iron-outlet",
+        "knowledgeId": "roof.cast-iron-outlet",
+        "question": "铸铁水落口本体与L形格栅怎样配合，图中还缺少哪些安装接口？",
+        "principle": "格栅与水落口本体分别承担入口拦挡和通水导流，装配观察要沿栅条间隙、口腔及转折出口连续追踪。",
+        "task": "对照立体图与格栅详图，观察两件装配及转折通水路径。",
+        "objects": [
+          "铸铁水落口",
+          "L形铸铁格栅"
+        ],
+        "boundary": "215、160、45、10等尺寸只属于原图实例；模型未包含屋面、墙体、防水层或下接管道，不用于推定排水能力与完整安装做法。",
+        "primary": true,
+        "relatedPrinciples": [
+          "principles/waterproof",
+          "principles/thermal",
+          "principles/moisture",
+          "principles/insulation"
+        ],
+        "applications": [
+          "practice/roof-drainage",
+          "practice/envelope-detail"
+        ]
+      }
+    },
     "free-fall-ring-beam-eaves-01": {
       "related": [],
       "primary": {
@@ -13876,7 +14975,7 @@
           "空心屋面板",
           "细石混凝土防水层"
         ],
-        "boundary": "两图属于给定传统刚性构造示例；钢筋、悬挑尺度及防水设防需按当前项目体系重新确定，模型不验算安全。",
+        "boundary": "两图属于给定传统刚性构造示例，不代表已满足现行完整设防。圈梁带挑檐板图的60投影至檐端细边带外缘，细边带材料身份未核定，不称为已核定的混凝土结构面；图示钢筋不补作结构配筋。工程承载、尺度与防水系统需另核。",
         "primary": true,
         "relatedPrinciples": [
           "principles/waterproof",
@@ -13906,7 +15005,7 @@
           "防水层双向钢筋网",
           "墙顶圈梁"
         ],
-        "boundary": "两图属于给定传统刚性构造示例；钢筋、悬挑尺度及防水设防需按当前项目体系重新确定，模型不验算安全。",
+        "boundary": "两图属于给定传统刚性构造示例，不代表已满足现行完整设防。圈梁带挑檐板图的60投影至檐端细边带外缘，细边带材料身份未核定，不称为已核定的混凝土结构面；图示钢筋不补作结构配筋。工程承载、尺度与防水系统需另核。",
         "primary": true,
         "relatedPrinciples": [
           "principles/waterproof",
@@ -13939,7 +15038,7 @@
           "附加防水卷材",
           "第二道SBS防水卷材"
         ],
-        "boundary": "图示250mm、材料与层数只代表该图，不证明项目防水设防、净口、防坠、无障碍或盖板承载已满足。",
+        "boundary": "原图只明确防水层、附加卷材、压顶圈与人孔盖；模型的两片主防水、局部附加片、保温及盖缝件属于扩展实例，不能与原图逐层等同。原图250mm保留竖向投影身份，不作为统一井壁净高；本图模不证明项目设防、净口、防坠或盖板承载已满足。",
         "primary": true,
         "relatedPrinciples": [
           "principles/waterproof",
@@ -14271,6 +15370,34 @@
         "applications": []
       }
     },
+    "deformation-joint-forms-01": {
+      "related": [],
+      "primary": {
+        "lessonKey": "deformation-joint/roof-deformation-construction",
+        "lessonTitle": "变形缝的构造",
+        "lessonPath": "basics/deformation-joint/roof-deformation-construction.html",
+        "figureId": "model-joints-forms",
+        "knowledgeId": "joints.forms",
+        "question": "平缝、错缝和企口缝的缝线与两侧轮廓有什么不同？",
+        "principle": "三种形式分别展示平直、错台和凹凸企口的边缘关系；读图时沿缝线追踪转折，并辨认两侧构件。",
+        "task": "并列比较三种缝口形式与原图的对应关系。",
+        "objects": [
+          "平缝",
+          "错缝",
+          "企口缝"
+        ],
+        "boundary": "原图未标注尺寸、材料及运动范围；模型没有分解动画，不用于推定位移能力或防水、防火性能。",
+        "primary": true,
+        "relatedPrinciples": [
+          "principles/waterproof",
+          "principles/fire",
+          "principles/acoustic"
+        ],
+        "applications": [
+          "practice/envelope-detail"
+        ]
+      }
+    },
     "high-low-roof-joint-01": {
       "related": [],
       "primary": {
@@ -14289,7 +15416,7 @@
           "附加卷材",
           "墙槽柔性封口"
         ],
-        "boundary": "三个示例不提供通用缝宽、盖板配筋、材料厚度或防火性能；高低泛水的涂膜/卷材名称应以实际卡片及原图分别辨认。",
+        "boundary": "高低泛水图题为涂膜屋面语境，原引线实标防水卷材，不能用图题覆盖材料名称；≥250仅为原图投影，材料起算界面未定。三例均不提供通用缝宽、材料厚度、位移能力或防火性能，局部旧图不代表现代完整设防。",
         "primary": true,
         "relatedPrinciples": [
           "principles/waterproof",
@@ -14319,7 +15446,7 @@
           "钢筋混凝土盖板",
           "沥青麻丝"
         ],
-        "boundary": "三个示例不提供通用缝宽、盖板配筋、材料厚度或防火性能；高低泛水的涂膜/卷材名称应以实际卡片及原图分别辨认。",
+        "boundary": "高低泛水图题为涂膜屋面语境，原引线实标防水卷材，不能用图题覆盖材料名称；≥250仅为原图投影，材料起算界面未定。三例均不提供通用缝宽、材料厚度、位移能力或防火性能，局部旧图不代表现代完整设防。",
         "primary": true,
         "relatedPrinciples": [
           "principles/waterproof",
@@ -14348,7 +15475,7 @@
           "收头压条",
           "水泥钉-压条固定"
         ],
-        "boundary": "三个示例不提供通用缝宽、盖板配筋、材料厚度或防火性能；高低泛水的涂膜/卷材名称应以实际卡片及原图分别辨认。",
+        "boundary": "高低泛水图题为涂膜屋面语境，原引线实标防水卷材，不能用图题覆盖材料名称；≥250仅为原图投影，材料起算界面未定。三例均不提供通用缝宽、材料厚度、位移能力或防火性能，局部旧图不代表现代完整设防。",
         "primary": true,
         "relatedPrinciples": [
           "principles/waterproof",

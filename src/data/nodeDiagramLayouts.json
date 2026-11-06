@@ -1,0 +1,154 @@
+[
+  {
+    "path": "/images/learning/foam-insulation-01.svg",
+    "panel": "/images/learning/node-panels/foam-insulation-01.svg"
+  },
+  {
+    "path": "/images/learning/rockwool-insulation-01.svg",
+    "panel": "/images/learning/node-panels/rockwool-insulation-01.svg"
+  },
+  {
+    "path": "/images/learning/rc-lintel-flush-01.svg",
+    "panel": "/images/learning/node-panels/rc-lintel-flush-01.svg"
+  },
+  {
+    "path": "/images/learning/rc-lintel-window-surround-01.svg",
+    "panel": "/images/learning/node-panels/rc-lintel-window-surround-01.svg"
+  },
+  {
+    "path": "/images/learning/rc-lintel-window-hood-01.svg",
+    "panel": "/images/learning/node-panels/rc-lintel-window-hood-01.svg"
+  },
+  {
+    "path": "/images/learning/window-wall-gap-sealing-01.svg",
+    "panel": "/images/learning/node-panels/window-wall-gap-sealing-01.svg"
+  },
+  {
+    "path": "/images/learning/construction-column-01.svg",
+    "panel": "/images/learning/node-panels/construction-column-01.svg"
+  },
+  {
+    "path": "/images/learning/frame-structure-layout-01.svg",
+    "panel": "/images/learning/node-panels/frame-structure-layout-01.svg"
+  },
+  {
+    "path": "/images/learning/wall-bearing-semi-frame-01.svg",
+    "panel": "/images/learning/node-panels/wall-bearing-semi-frame-01.svg"
+  },
+  {
+    "path": "/images/learning/wall-bearing-transverse-01.svg",
+    "panel": "/images/learning/node-panels/wall-bearing-transverse-01.svg"
+  },
+  {
+    "path": "/images/learning/wall-bearing-two-way-01.svg",
+    "panel": "/images/learning/node-panels/wall-bearing-two-way-01.svg"
+  },
+  {
+    "path": "/images/learning/wall-bearing-longitudinal-01.svg",
+    "panel": "/images/learning/node-panels/wall-bearing-longitudinal-01.svg"
+  },
+  {
+    "path": "/images/learning/passive-solar-wall-01.svg",
+    "panel": "/images/learning/node-panels/passive-solar-wall-01.svg"
+  },
+  {
+    "path": "/images/learning/block-wall-core-column-01.svg",
+    "panel": "/images/learning/node-panels/block-wall-core-column-01.svg"
+  },
+  {
+    "path": "/images/learning/hollow-block-forms-01.svg",
+    "panel": "/images/learning/node-panels/hollow-block-forms-01.svg"
+  },
+  {
+    "path": "/images/learning/apron-flashing-01.svg",
+    "panel": "/images/learning/node-panels/apron-flashing-01.svg"
+  },
+  {
+    "path": "/images/learning/stone-apron-01.svg",
+    "panel": "/images/learning/node-panels/stone-apron-01.svg"
+  },
+  {
+    "path": "/images/learning/faced-plinth-01.svg",
+    "panel": "/images/learning/node-panels/faced-plinth-01.svg"
+  },
+  {
+    "path": "/images/learning/stone-plinth-01.svg",
+    "panel": "/images/learning/node-panels/stone-plinth-01.svg"
+  },
+  {
+    "path": "/images/learning/plaster-plinth-01.svg",
+    "panel": "/images/learning/node-panels/plaster-plinth-01.svg"
+  },
+  {
+    "path": "/images/learning/roof-truss-timber-01.svg",
+    "panel": "/images/learning/node-panels/roof-truss-timber-01.svg"
+  },
+  {
+    "path": "/images/learning/roof-truss-reinforced-concrete-01.svg",
+    "panel": "/images/learning/node-panels/roof-truss-reinforced-concrete-01.svg"
+  },
+  {
+    "path": "/images/learning/roof-truss-steel-timber-01.svg",
+    "panel": "/images/learning/node-panels/roof-truss-steel-timber-01.svg"
+  },
+  {
+    "path": "/images/learning/free-fall-waterproof-eaves-01.svg",
+    "panel": "/images/learning/node-panels/free-fall-waterproof-eaves-01.svg"
+  },
+  {
+    "path": "/images/learning/coating-parapet-flashing-01.svg",
+    "panel": "/images/learning/node-panels/coating-parapet-flashing-01.svg"
+  },
+  {
+    "path": "/images/learning/coating-high-low-roof-flashing-01.svg",
+    "panel": "/images/learning/node-panels/coating-high-low-roof-flashing-01.svg"
+  },
+  {
+    "path": "/images/learning/straight-rainwater-outlet-65-01.svg",
+    "panel": "/images/learning/node-panels/straight-rainwater-outlet-65-01.svg"
+  },
+  {
+    "path": "/images/learning/straight-rainwater-outlet-cast-iron-01.svg",
+    "panel": "/images/learning/node-panels/straight-rainwater-outlet-cast-iron-01.svg"
+  },
+  {
+    "path": "/images/learning/free-fall-ring-beam-eaves-01.svg",
+    "panel": "/images/learning/node-panels/free-fall-ring-beam-eaves-01.svg"
+  },
+  {
+    "path": "/images/learning/water-storage-parapet-drainage-01.svg",
+    "panel": "/images/learning/node-panels/water-storage-parapet-drainage-01.svg"
+  },
+  {
+    "path": "/images/learning/water-storage-eaves-drainage-01.svg",
+    "panel": "/images/learning/node-panels/water-storage-eaves-drainage-01.svg"
+  },
+  {
+    "path": "/images/learning/steel-batten-tile-roof-01.svg",
+    "panel": "/images/learning/node-panels/steel-batten-tile-roof-01.svg"
+  },
+  {
+    "path": "/images/learning/mortar-bed-tile-roof-01.svg",
+    "panel": "/images/learning/node-panels/mortar-bed-tile-roof-01.svg"
+  },
+  {
+    "path": "/images/learning/wood-batten-tile-roof-01.svg",
+    "panel": "/images/learning/node-panels/wood-batten-tile-roof-01.svg"
+  },
+  {
+    "path": "/images/learning/roof-drainage-01.svg",
+    "panel": "/images/learning/node-panels/roof-drainage-01.svg"
+  },
+  {
+    "path": "/images/learning/organized-drainage-01.svg",
+    "panel": "/images/learning/node-panels/organized-drainage-01.svg"
+  },
+  {
+    "path": "/images/learning/eaves-gutter-01.svg",
+    "panel": "/images/learning/node-panels/eaves-gutter-01.svg"
+  },
+  {
+    "path": "/images/learning/roof-access-hatch-01.svg",
+    "panel": "/images/learning/node-panels/roof-access-hatch-01.svg"
+  }
+]

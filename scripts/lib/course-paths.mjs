@@ -21,6 +21,7 @@ export function formalizeCourse(html, siteBase = '/') {
     .replaceAll('href="/#/', `href="${siteBase}#/`)
     .replaceAll('src="/brand/', `src="${siteBase}brand/`)
     .replaceAll('src="/images/', `src="${siteBase}images/`)
+    .replaceAll('srcset="/images/', `srcset="${siteBase}images/`)
     .replaceAll('href="/images/', `href="${siteBase}images/`)
     .replaceAll('src="/styles/', `src="${siteBase}styles/`)
     .replaceAll('href="/styles/', `href="${siteBase}styles/`)

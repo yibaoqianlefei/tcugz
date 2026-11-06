@@ -32,6 +32,7 @@ for (const part of components) {
   }
 }
 assert(isInteractionAllowed(true, 0, 1), 'static model remains pickable after reset');
-assert.equal(readFileSync(publicUrlToFsPath(node.diagram.path)).subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
-console.log(`PASS ${node.title}: real geometry, embedded assets, single component/card binding, static picking and PNG diagram`);
+const drawing=readFileSync(publicUrlToFsPath(node.diagram.path),'utf8');
+assert(drawing.includes('data-geometry-id="truss-elevation"')&&!/<image\b|<script\b/.test(drawing));
+console.log(`PASS ${node.title}: real geometry, embedded assets, single component/card binding, static picking and source-based SVG diagram`);
 }

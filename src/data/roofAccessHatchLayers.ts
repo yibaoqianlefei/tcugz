@@ -25,7 +25,7 @@ export const roofAccessHatchLayers: NodeLayerInfo[] = [
   {
     objectName: '检修口混凝土井壁', name: '检修口混凝土井壁', order: 5,
     thickness: '按设计确定', material: '混凝土',
-    description: '围合检修口并高出周边屋面，为防水上翻和压顶提供支承。所配剖面图在井壁顶部与屋面之间标注了 250 mm 的竖向尺寸。',
+    description: '围合检修口并高出周边屋面，为防水上翻和压顶提供支承。原图250 mm为屋面水平线至压顶下沿附近的竖向投影，具体材料测界未标清，不能直接解释为井壁净高或通用最小值。',
   },
   {
     objectName: '井壁外侧及顶面找平砂浆', name: '井壁外侧及顶面找平砂浆', order: 6,
@@ -33,14 +33,14 @@ export const roofAccessHatchLayers: NodeLayerInfo[] = [
     description: '覆盖井壁外侧与顶部，作为卷材上翻处的基层。重点观察水平面转至竖向面以及井壁顶部的连续关系。',
   },
   {
-    objectName: '第一道SBS防水卷材', name: '第一道 SBS 防水卷材', order: 7,
+    objectName: '第一道SBS防水卷材', name: '第一道 SBS 防水卷材', order: 8,
     thickness: '模型和剖面图未标注', material: 'SBS 改性沥青防水卷材（按模型命名）',
-    description: '模型中的第一道防水层从屋面延续至检修口井壁。对照剖面图观察卷材在井壁根部的转折和上翻路径。',
+    description: '模型扩展实例中的第一片主防水，局部屋面样点位于附加片之上、第二主片之下。原图只标防水层与附加卷材，不能将本模型两片主防水逐层等同于原图或由SBS名称补定原图品种。',
   },
   {
-    objectName: '附加防水卷材', name: '附加防水卷材', order: 8,
+    objectName: '附加防水卷材', name: '附加防水卷材', order: 7,
     thickness: '模型和剖面图未标注', material: '防水卷材',
-    description: '局部覆盖检修口周边与井壁转角，用于展示节点防水加强做法。剖面图中的“附加卷材”引线指向井壁根部的转折位置。',
+    description: '局部覆盖检修口周边与井壁转角；模型已核样点中位于两片主防水下方。原图“附加卷材”标注用于识读局部加强范围，原图可见端头与模型覆盖边界不用于反推实际搭接尺寸。列表按局部空间关系整理，不代表施工先后。',
   },
   {
     objectName: '第二道SBS防水卷材', name: '第二道 SBS 防水卷材', order: 9,

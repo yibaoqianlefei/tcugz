@@ -13,6 +13,13 @@
  *   - nodesIndex.ts        → 兼容导出层（不再独立维护数据）
  */
 
+import { deformationJointFormsLayers, getDeformationJointFormsLayer } from "./deformationJointFormsLayers";
+import { castIronRainwaterOutletLayers, getCastIronRainwaterOutletLayer } from "./castIronRainwaterOutletLayers";
+import { brickWallBondNamesLayers, getBrickWallBondNamesLayer } from "./brickWallBondNamesLayers";
+import { hollowBrickWallLayers, getHollowBrickWallLayer } from "./hollowBrickWallLayers";
+import { hollowBlockWallLayers, getHollowBlockWallLayer } from "./hollowBlockWallLayers";
+import { wallConstructionFormsLayers, getWallConstructionFormsLayer } from "./wallConstructionFormsLayers";
+import { balconyTypeLayerConfig } from "./balconyTypeLayers";
 import { roofDrainageLayers, getLayerInfo as getRoofDrainageLayer } from "./roofDrainageLayers";
 import { organizedDrainageLayers, getLayerInfo as getOrganizedDrainageLayer } from "./organizedDrainageLayers";
 import { flatRoofLayers, getLayerInfo as getFlatRoofLayer } from "./flatRoofLayers";
@@ -271,7 +278,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     title: "屋架形式（木屋架）",
     description: "对照图示跨度6–12 m的木屋架形式，观察弦杆、腹杆与支座的组合，支持整体点选、旋转观察与图纸对照。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/roof-truss-timber-diagram.png"),
+    thumbnail: assetPath("images/learning/roof-truss-timber-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/roof-trusses/timber.glb"),
@@ -279,7 +286,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       noAnimation: true,
     },
     diagram: {
-      path: assetPath("images/roof/roof-truss-timber-diagram.png"),
+      path: assetPath("images/learning/roof-truss-timber-01.svg"),
       subtitle: "屋架形式 · 木屋架",
     },
     layerConfig: roofTrussLayerConfig(timberTrussLayers),
@@ -290,7 +297,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     title: "屋架形式（钢筋混凝土屋架）",
     description: "对照图示跨度15–24 m的屋架形式，观察上弦、下弦、腹杆和两端支座，支持整体点选、旋转观察与图纸对照。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/roof-truss-reinforced-concrete-diagram.png"),
+    thumbnail: assetPath("images/learning/roof-truss-reinforced-concrete-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/roof-trusses/reinforced-concrete.glb"),
@@ -298,7 +305,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       noAnimation: true,
     },
     diagram: {
-      path: assetPath("images/roof/roof-truss-reinforced-concrete-diagram.png"),
+      path: assetPath("images/learning/roof-truss-reinforced-concrete-01.svg"),
       subtitle: "屋架形式 · 钢筋混凝土屋架",
     },
     layerConfig: roofTrussLayerConfig(reinforcedConcreteTrussLayers),
@@ -309,7 +316,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     title: "屋架形式（钢木屋架）",
     description: "对照图示跨度12–18 m的钢木屋架形式，观察不同材质杆件的组合，支持整体点选、旋转观察与图纸对照。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/roof-truss-steel-timber-diagram.png"),
+    thumbnail: assetPath("images/learning/roof-truss-steel-timber-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/roof-trusses/steel-timber.glb"),
@@ -317,7 +324,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       noAnimation: true,
     },
     diagram: {
-      path: assetPath("images/roof/roof-truss-steel-timber-diagram.png"),
+      path: assetPath("images/learning/roof-truss-steel-timber-01.svg"),
       subtitle: "屋架形式 · 钢木屋架",
     },
     layerConfig: roofTrussLayerConfig(steelTimberTrussLayers),
@@ -328,15 +335,15 @@ export const nodeDefinitions: NodeDefinition[] = [
     title: "涂膜防水屋面的女儿墙泛水",
     description: "观察涂膜防水层、附加卷材在女儿墙根部的转折，以及压条、水泥钉和油膏嵌缝的连接，支持分解动画、构件点选与剖面对照。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/coating-parapet-flashing-diagram.png"),
+    thumbnail: assetPath("images/learning/coating-parapet-flashing-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/coating-parapet-flashing/coating-parapet-flashing.glb"),
       scale: 2.5,
     },
     diagram: {
-      path: assetPath("images/roof/coating-parapet-flashing-diagram.png"),
-      subtitle: "涂膜防水屋面 · 女儿墙泛水",
+      path: assetPath("images/learning/coating-parapet-flashing-01.svg"),
+      subtitle: "女儿墙泛水局部剖面 · 原图实例",
     },
     layerConfig: {
       layers: coatingParapetFlashingLayers,
@@ -347,9 +354,9 @@ export const nodeDefinitions: NodeDefinition[] = [
   {
     id: "coating-high-low-roof-flashing-01",
     title: "涂膜防水屋面高低屋面的泛水",
-    description: "高低屋面交界处的泛水做法（图 6-41）：防水卷材沿低屋面铺至混凝土矮墙后上翻，在交界处形成 U 形跨缝段，泛水高度 ≥250；U 形段外侧由镀锌薄钢板盖缝罩住，钢板另一端勾入高侧墙体凹槽并用嵌缝油膏封堵；卷材上端由压条与水泥钉收头在水泥砂浆抹灰面上。支持构件点选、分解动画与图纸对照。",
+    description: "对照图6-41，沿原标防水卷材追踪槽内收头、U形跨缝、矮墙转折与低屋面接续，区分上部墙面钉固的钢板盖缝和槽内压条收头。≥250保留原图投影，材料起算面未核定；图题的涂膜屋面语境不替代原标卷材。支持构件点选、分解动画与图纸对照。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/coating-high-low-roof-flashing-diagram.png"),
+    thumbnail: assetPath("images/learning/coating-high-low-roof-flashing-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/coating-high-low-roof-flashing/coating-high-low-roof-flashing.glb"),
@@ -359,8 +366,8 @@ export const nodeDefinitions: NodeDefinition[] = [
       initialView: [-0.539, 0.342, 0.770],
     },
     diagram: {
-      path: assetPath("images/roof/coating-high-low-roof-flashing-diagram.png"),
-      subtitle: "图6-41 · 涂膜防水屋面高低屋面的泛水（单位：mm）",
+      path: assetPath("images/learning/coating-high-low-roof-flashing-01.svg"),
+      subtitle: "图6-41 · 高低屋面跨缝泛水局部剖面 · 原图实例",
     },
     layerConfig: {
       layers: coatingHighLowRoofFlashingLayers,
@@ -369,19 +376,38 @@ export const nodeDefinitions: NodeDefinition[] = [
     textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
   },
   {
+    id: "cast-iron-rainwater-outlet-01",
+    title: "铸铁水落口",
+    description: "对照图6-22，观察铸铁水落口本体、L形格栅与转折出口的装配关系，支持分解动画、构件点选和原图对照。",
+    category: "屋顶",
+    thumbnail: assetPath("images/roof/cast-iron-rainwater-outlet-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/roof/cast-iron-rainwater-outlet/cast-iron-rainwater-outlet.glb"),
+      scale: 2.5,
+      initialView: [1, 0.6, 1.2],
+    },
+    diagram: {
+      path: assetPath("images/roof/cast-iron-rainwater-outlet-diagram.png"),
+      subtitle: "图 6-22 · 铸铁水落口（单位：mm）",
+    },
+    layerConfig: { layers: castIronRainwaterOutletLayers, getLayerInfo: getCastIronRainwaterOutletLayer },
+    textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
+  },
+  {
     id: "straight-rainwater-outlet-65-01",
     title: "直管式水落口（65 型水落口）",
-    description: "观察 65 型铸铁进水罩、定型铸铁水落口与屋面防水、砂浆填嵌及油膏嵌缝的连接，支持分解动画、构件选择和剖面对照。",
+    description: "对照原标定型铸铁水落口，观察上部进水构件、口杯及下接管与周边防水、砂浆和油膏的关系。65型沿用模型条目名，不解释为DN65；6／100／6和1∶2.5为原图实例。支持分解动画、构件选择和图纸对照。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/straight-rainwater-outlet-65-diagram.png"),
+    thumbnail: assetPath("images/learning/straight-rainwater-outlet-65-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/straight-rainwater-outlet/type-65.glb"),
       scale: 2.5,
     },
     diagram: {
-      path: assetPath("images/roof/straight-rainwater-outlet-65-diagram.png"),
-      subtitle: "直管式水落口 · 65 型水落口",
+      path: assetPath("images/learning/straight-rainwater-outlet-65-01.svg"),
+      subtitle: "直管式水落口局部剖面 · 6／100／6为原图实例",
     },
     layerConfig: {
       layers: straightRainwaterOutlet65Layers,
@@ -394,7 +420,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     title: "直管式水落口（铸铁水落口）",
     description: "观察镀锌钢丝球、铸铁水落口与屋面防水卷材、砂浆填嵌及油膏嵌缝的连接，支持分解动画、构件选择和剖面对照。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/straight-rainwater-outlet-cast-iron-diagram.png"),
+    thumbnail: assetPath("images/learning/straight-rainwater-outlet-cast-iron-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/straight-rainwater-outlet/cast-iron.glb"),
@@ -402,8 +428,8 @@ export const nodeDefinitions: NodeDefinition[] = [
       outlineExcluded: ["镀锌钢丝球"],
     },
     diagram: {
-      path: assetPath("images/roof/straight-rainwater-outlet-cast-iron-diagram.png"),
-      subtitle: "直管式水落口 · 铸铁水落口",
+      path: assetPath("images/learning/straight-rainwater-outlet-cast-iron-01.svg"),
+      subtitle: "铸铁水落口与钢丝球局部剖面 · 原图实例",
     },
     layerConfig: {
       layers: straightRainwaterOutletCastIronLayers,
@@ -414,17 +440,17 @@ export const nodeDefinitions: NodeDefinition[] = [
   {
     id: "free-fall-ring-beam-eaves-01",
     title: "自由落水檐口（圈梁带挑檐板）",
-    description: "观察圈梁与挑檐板、屋面层次及双向钢筋网的连接，支持分解动画、构件选择和剖面对照。",
+    description: "区分圈梁带挑檐板、空心板和上部防水层，结合模型观察传力与檐端排水。60保留原图檐端局部投影，细边带材料身份未核定；图中线与截点不提供配筋设计参数。支持分解动画、构件选择和图纸对照。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/free-fall-ring-beam-eaves-01-diagram.png"),
+    thumbnail: assetPath("images/learning/free-fall-ring-beam-eaves-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/free-fall-eaves/free-fall-ring-beam-eaves-01-v2.glb"),
       scale: 2.5,
     },
     diagram: {
-      path: assetPath("images/roof/free-fall-ring-beam-eaves-01-diagram.png"),
-      subtitle: "自由落水檐口 · 圈梁带挑檐板",
+      path: assetPath("images/learning/free-fall-ring-beam-eaves-01.svg"),
+      subtitle: "圈梁带挑檐板檐口剖面 · 传统构造实例",
     },
     layerConfig: {
       layers: freeFallRingBeamEavesLayers,
@@ -437,14 +463,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     title: "自由落水檐口（防水层直接悬挑）",
     description: "观察防水悬挑层、双向钢筋网、墙顶圈梁及空心屋面板的连接，支持分解动画、构件选择和剖面对照。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/free-fall-waterproof-eaves-01-diagram.png"),
+    thumbnail: assetPath("images/learning/free-fall-waterproof-eaves-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/free-fall-eaves/free-fall-waterproof-eaves-01.glb"),
       scale: 2.5,
     },
     diagram: {
-      path: assetPath("images/roof/free-fall-waterproof-eaves-01-diagram.png"),
+      path: assetPath("images/learning/free-fall-waterproof-eaves-01.svg"),
       subtitle: "自由落水檐口 · 防水层直接悬挑",
     },
     layerConfig: {
@@ -458,14 +484,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     title: "蓄水屋面（女儿墙外排水）",
     description: "观察蓄水屋面高位溢水孔、低位泄水孔与墙外雨水斗的连接，对照女儿墙防水泛水、墙顶压顶和板端嵌缝。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/water-storage-parapet-drainage-diagram.png"),
+    thumbnail: assetPath("images/learning/water-storage-parapet-drainage-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/water-storage-parapet-drainage/water-storage-parapet-drainage.glb"),
       scale: 2.5,
     },
     diagram: {
-      path: assetPath("images/roof/water-storage-parapet-drainage-diagram.png"),
+      path: assetPath("images/learning/water-storage-parapet-drainage-01.svg"),
       subtitle: "蓄水屋面 · 女儿墙外排水",
     },
     layerConfig: {
@@ -480,14 +506,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     title: "蓄水屋面（檐沟式排水）",
     description: "蓄水屋面的檐沟式排水构造：观察蓄水层、高位溢水孔、低位泄水孔及檐沟、水落管的连接，并对照防水泛水和板端嵌缝做法。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/water-storage-eaves-drainage-diagram.png"),
+    thumbnail: assetPath("images/learning/water-storage-eaves-drainage-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/water-storage-eaves-drainage/water-storage-eaves-drainage.glb"),
       scale: 2.5,
     },
     diagram: {
-      path: assetPath("images/roof/water-storage-eaves-drainage-diagram.png"),
+      path: assetPath("images/learning/water-storage-eaves-drainage-01.svg"),
       subtitle: "蓄水屋面 · 檐沟式排水",
     },
     layerConfig: {
@@ -549,14 +575,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "钢挂瓦条块瓦屋面：块瓦→挂瓦条→顺水条→防水卷材→水泥砂浆找平层→细石混凝土找平层→钢筋混凝土屋面板。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/steel-batten-tile-roof-01.png"),
+    thumbnail: assetPath("images/learning/steel-batten-tile-roof-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/steel-batten-tile-roof/steel-batten-tile-roof.glb"),
       scale: 2.5,
     },
     diagram: {
-      path: assetPath("images/roof/steel-batten-tile-roof-01.png"),
+      path: assetPath("images/learning/steel-batten-tile-roof-01.svg"),
     },
     layerConfig: {
       layers: steelBattenTileRoofLayers as NodeLayerInfo[],
@@ -570,14 +596,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "砂浆卧瓦块瓦屋面：块瓦→水泥砂浆卧瓦层→防水卷材→水泥砂浆找平层→钢筋混凝土屋面板。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/mortar-bed-tile-roof-01.png"),
+    thumbnail: assetPath("images/learning/mortar-bed-tile-roof-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/mortar-bed-tile-roof/mortar-bed-tile-roof.glb"),
       scale: 2.5,
     },
     diagram: {
-      path: assetPath("images/roof/mortar-bed-tile-roof-01.png"),
+      path: assetPath("images/learning/mortar-bed-tile-roof-01.svg"),
     },
     layerConfig: {
       layers: mortarBedTileRoofLayers as NodeLayerInfo[],
@@ -591,14 +617,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "图示木挂瓦条块瓦屋面：块瓦→木挂瓦条→木顺水条→细石混凝土层→防水卷材（或防水涂膜）→水泥砂浆找平层→钢筋混凝土屋面板；尺寸与材料按该示例条件识读。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/wood-batten-tile-roof-01.png"),
+    thumbnail: assetPath("images/learning/wood-batten-tile-roof-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/wood-batten-tile-roof/wood-batten-tile-roof.glb"),
       scale: 2.5,
     },
     diagram: {
-      path: assetPath("images/roof/wood-batten-tile-roof-01.png"),
+      path: assetPath("images/learning/wood-batten-tile-roof-01.svg"),
     },
     layerConfig: {
       layers: woodBattenTileRoofLayers as NodeLayerInfo[],
@@ -612,14 +638,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "观察屋面外挑檐口、表层及下部组合构造，追踪雨水自由离开屋面的路线；原配图未提供完整材料层序。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/roof-drainage-diagram.png"),
+    thumbnail: assetPath("images/learning/roof-drainage-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/roof-drainage/roof-drainage.glb"),
       scale: 2.5,
     },
     diagram: {
-      path: assetPath("images/roof/roof-drainage-diagram.png"),
+      path: assetPath("images/learning/roof-drainage-01.svg"),
     },
     layerConfig: {
       layers: roofDrainageLayers as NodeLayerInfo[],
@@ -634,14 +660,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "有组织排水屋面构造节点，包含天沟、雨水斗、落水管等构件。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/organized-drainage-diagram.png"),
+    thumbnail: assetPath("images/learning/organized-drainage-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/organized-drainage/organized-drainage.glb"),
       scale: 2.5,
     },
     diagram: {
-      path: assetPath("images/roof/organized-drainage-diagram.png"),
+      path: assetPath("images/learning/organized-drainage-01.svg"),
     },
     layerConfig: {
       layers: organizedDrainageLayers as NodeLayerInfo[],
@@ -656,14 +682,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "辨认屋面顶、檐沟、檐沟分水、排水口、墙体与圈梁六类构件，分别追踪汇水路线和支承关系；具体尺寸及性能需结合设计核查。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/eaves-gutter-diagram.png"),
+    thumbnail: assetPath("images/learning/eaves-gutter-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/eaves-gutter/eaves-gutter.glb"),
       scale: 2,
     },
     diagram: {
-      path: assetPath("images/roof/eaves-gutter-diagram.png"),
+      path: assetPath("images/learning/eaves-gutter-01.svg"),
     },
     layerConfig: {
       layers: eavesGutterLayers as NodeLayerInfo[],
@@ -677,14 +703,14 @@ export const nodeDefinitions: NodeDefinition[] = [
     description:
       "观察人孔盖、检修口井壁、压顶、双层防水卷材与屋面各层的连接；可播放分解动画并对照剖面图。",
     category: "屋顶",
-    thumbnail: assetPath("images/roof/roof-access-hatch-diagram.png"),
+    thumbnail: assetPath("images/learning/roof-access-hatch-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/roof/roof-access-hatch/roof-access-hatch.glb"),
       scale: 2.5,
     },
     diagram: {
-      path: assetPath("images/roof/roof-access-hatch-diagram.png"),
+      path: assetPath("images/learning/roof-access-hatch-01.svg"),
       subtitle: "图 6-26 屋面检修口 · 提供的剖面图",
     },
     layerConfig: {
@@ -855,7 +881,65 @@ export const nodeDefinitions: NodeDefinition[] = [
     textbookLinks: [{ moduleId: "roof", chapterId: "roof-flat" }],
   },
 
+  /* ── Deformation joints ──────────────────────────────────── */
+  {
+    id: "deformation-joint-forms-01",
+    title: "变形缝的形式",
+    description: "对照平缝、错缝和企口缝三种形式，观察缝线转折与两侧构件轮廓，支持整体点选、旋转观察和原图对照。",
+    category: "变形缝",
+    thumbnail: assetPath("images/deformation-joint/deformation-joint-forms-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/deformation-joint/deformation-joint-forms.glb"),
+      scale: 2.5,
+      noAnimation: true,
+      initialView: [0.3, 1, 1.4],
+    },
+    diagram: {
+      path: assetPath("images/deformation-joint/deformation-joint-forms-diagram.png"),
+      subtitle: "图 2-38 ·（a）平缝；（b）错缝；（c）企口缝",
+    },
+    layerConfig: { layers: deformationJointFormsLayers, getLayerInfo: getDeformationJointFormsLayer },
+    textbookLinks: [{ moduleId: "deformation-joint", chapterId: "roof-deformation-construction" }],
+  },
+
   /* ── Floor nodes ─────────────────────────────────────────── */
+  {
+    id: "balcony-type-projecting-01",
+    title: "阳台类型（挑阳台）",
+    description: "对照挑阳台平面图，观察阳台空间突出相邻外墙的关系，支持主体墙、楼板、栏板与窗的点选、旋转和图纸对照。",
+    category: "楼地层",
+    thumbnail: assetPath("images/floor/balcony-types/projecting-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/floor/balcony-types/projecting.glb"), scale: 2.5, noAnimation: true, initialView: [0.8, 1.1, 1.8] },
+    diagram: { path: assetPath("images/floor/balcony-types/projecting-diagram.png"), subtitle: "阳台类型 · 挑阳台（平面示意）" },
+    layerConfig: balconyTypeLayerConfig('挑阳台'),
+    textbookLinks: [{ moduleId: "floor", chapterId: "floor-balcony" }],
+  },
+  {
+    id: "balcony-type-semi-recessed-01",
+    title: "阳台类型（半凸半凹阳台）",
+    description: "对照半凸半凹阳台平面图，观察阳台空间相对外墙部分突出、部分退入的关系，支持构件点选、旋转和图纸对照。",
+    category: "楼地层",
+    thumbnail: assetPath("images/floor/balcony-types/semi-recessed-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/floor/balcony-types/semi-recessed.glb"), scale: 2.5, noAnimation: true, initialView: [0.8, 1.1, 1.8] },
+    diagram: { path: assetPath("images/floor/balcony-types/semi-recessed-diagram.png"), subtitle: "阳台类型 · 半凸半凹阳台（平面示意）" },
+    layerConfig: balconyTypeLayerConfig('半凸半凹阳台'),
+    textbookLinks: [{ moduleId: "floor", chapterId: "floor-balcony" }],
+  },
+  {
+    id: "balcony-type-recessed-01",
+    title: "阳台类型（凹阳台）",
+    description: "对照凹阳台平面图，观察阳台空间退入相邻外墙以内的关系，支持主体墙、楼板、栏板与窗的点选、旋转和图纸对照。",
+    category: "楼地层",
+    thumbnail: assetPath("images/floor/balcony-types/recessed-diagram.png"),
+    status: "available",
+    model: { path: assetPath("models/floor/balcony-types/recessed.glb"), scale: 2.5, noAnimation: true, initialView: [0.8, 1.1, 1.8] },
+    diagram: { path: assetPath("images/floor/balcony-types/recessed-diagram.png"), subtitle: "阳台类型 · 凹阳台（平面示意）" },
+    layerConfig: balconyTypeLayerConfig('凹阳台'),
+    textbookLinks: [{ moduleId: "floor", chapterId: "floor-balcony" }],
+  },
   {
     id: "profiled-steel-composite-slab-01",
     title: "压型钢板组合楼板",
@@ -1073,14 +1157,84 @@ export const nodeDefinitions: NodeDefinition[] = [
 
   /* ── Wall nodes ─────────────────────────────────────────── */
   {
+    id: "wall-construction-forms-01",
+    title: "墙体构造形式",
+    description: "对照图2-3比较实体墙、空体墙与组合墙，观察连续墙身、内部空隙与材料层间界面，支持构件点选、旋转和原图对照。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/wall-construction-forms-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/wall/wall-construction-forms/wall-construction-forms.glb"),
+      scale: 2.5,
+      noAnimation: true,
+      initialView: [0.5, 0.7, 1.5],
+    },
+    diagram: { path: assetPath("images/wall/wall-construction-forms-diagram.png"), subtitle: "图 2-3 ·（a）实体墙；（b）空体墙；（c）组合墙" },
+    layerConfig: { layers: wallConstructionFormsLayers, getLayerInfo: getWallConstructionFormsLayer },
+    textbookLinks: [{ moduleId: "wall", chapterId: "wall-types" }],
+  },
+  {
+    id: "hollow-block-wall-01",
+    title: "空心砌块墙",
+    description: "对照图2-5，观察砌块内部孔洞、块壁及上下皮错缝排列，支持整组点选、旋转与原图对照。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/hollow-block-wall-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/wall/hollow-block-wall/hollow-block-wall.glb"),
+      scale: 2.5,
+      noAnimation: true,
+      groups: { "空心砌块墙001": "空心砌块墙", "空心砌块墙001_0": "空心砌块墙", "空心砌块墙001_1": "空心砌块墙" },
+      initialView: [1, 0.9, 1.5],
+    },
+    diagram: { path: assetPath("images/wall/hollow-block-wall-diagram.png"), subtitle: "图 2-5 · 空心砌块墙" },
+    layerConfig: { layers: hollowBlockWallLayers, getLayerInfo: getHollowBlockWallLayer },
+    textbookLinks: [{ moduleId: "wall", chapterId: "wall-masonry" }],
+  },
+  {
+    id: "hollow-brick-wall-01",
+    title: "空心砖墙",
+    description: "对照图2-4，观察侧砌普通砖围合的空腔、横向拉结砖与转角平砌砖，支持构件点选、旋转和原图对照。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/hollow-brick-wall-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/wall/hollow-brick-wall/hollow-brick-wall.glb"),
+      scale: 2.5,
+      noAnimation: true,
+      nonInteractive: ["连续砂浆（无交互）"],
+      initialView: [-1, 0.9, 1],
+    },
+    diagram: { path: assetPath("images/wall/hollow-brick-wall-diagram.png"), subtitle: "图 2-4 · 空心砖墙" },
+    layerConfig: { layers: hollowBrickWallLayers, getLayerInfo: getHollowBrickWallLayer },
+    textbookLinks: [{ moduleId: "wall", chapterId: "wall-masonry" }],
+  },
+  {
+    id: "brick-wall-bond-names-01",
+    title: "砖墙组砌名称",
+    description: "对照图2-17辨认顺砖、丁砖、横缝与竖缝，观察砖的排列方向及砂浆灰缝，支持分解动画、知识构件点选和原图对照。",
+    category: "墙体",
+    thumbnail: assetPath("images/wall/brick-wall-bond-names-diagram.png"),
+    status: "available",
+    model: {
+      path: assetPath("models/wall/brick-wall-bond-names/brick-wall-bond-names.glb"),
+      scale: 2.5,
+      nonInteractive: ["无知识卡片"],
+      initialView: [0.5, 0.3, 1.5],
+    },
+    diagram: { path: assetPath("images/wall/brick-wall-bond-names-diagram.png"), subtitle: "图 2-17 · 砖墙组砌名称" },
+    layerConfig: { layers: brickWallBondNamesLayers, getLayerInfo: getBrickWallBondNamesLayer },
+    textbookLinks: [{ moduleId: "wall", chapterId: "wall-masonry" }],
+  },
+  {
     id: "frame-structure-layout-01",
     title: "框架结构布置",
     description: "对照图 2-7 的框架柱、框架梁与柱网，观察两向梁柱骨架的空间布置。支持旋转、构件点选、独立展示与平面图对照；源模型仅包含梁柱，为静态布置示意。",
     category: "墙体",
-    thumbnail: assetPath("images/wall/frame-structure-layout-diagram.png"),
+    thumbnail: assetPath("images/learning/frame-structure-layout-01.svg"),
     status: "available",
     model: { path: assetPath("models/wall/frame-structure-layout/frame-structure-layout.glb"), scale: 1, noAnimation: true, initialView: [1, 0.9, 1.3] },
-    diagram: { path: assetPath("images/wall/frame-structure-layout-diagram.png"), subtitle: "图 2-7 · 框架结构布置示意图" },
+    diagram: { path: assetPath("images/learning/frame-structure-layout-01.svg"), subtitle: "梁柱骨架与柱网 · 平面示意" },
     layerConfig: { layers: frameStructureLayoutLayers, getLayerInfo: getFrameStructureLayoutLayer },
     textbookLinks: [{ moduleId: "wall", chapterId: "wall-role" }],
   },
@@ -1089,10 +1243,10 @@ export const nodeDefinitions: NodeDefinition[] = [
     title: "墙体承重结构布置方案（半框架承重）",
     description: "对照外纵墙、山墙与内部梁柱的布置，观察楼板与墙、梁、柱的连接位置。支持旋转、构件点选、独立展示与平面图对照；源模型为静态布置示意。",
     category: "墙体",
-    thumbnail: assetPath("images/wall/bearing-layout-semi-frame-diagram.png"),
+    thumbnail: assetPath("images/learning/wall-bearing-semi-frame-01.svg"),
     status: "available",
     model: { path: assetPath("models/wall/bearing-layout/semi-frame.glb"), scale: 1, noAnimation: true, initialView: [1, 0.9, 1.3] },
-    diagram: { path: assetPath("images/wall/bearing-layout-semi-frame-diagram.png"), subtitle: "墙体承重结构布置方案 · 半框架承重（平面示意）" },
+    diagram: { path: assetPath("images/learning/wall-bearing-semi-frame-01.svg"), subtitle: "半框架承重 · 平面布置与内部柱列" },
     layerConfig: wallBearingLayoutConfig(semiFrameBearingLayers),
     textbookLinks: [{ moduleId: "wall", chapterId: "wall-masonry" }],
   },
@@ -1101,10 +1255,10 @@ export const nodeDefinitions: NodeDefinition[] = [
     title: "墙体承重结构布置方案（横墙承重）",
     description: "对照横墙、通道附近梁与楼板的布置，观察板端与横墙的支承位置。支持旋转、构件点选、独立展示与平面图对照；源模型为静态布置示意。",
     category: "墙体",
-    thumbnail: assetPath("images/wall/bearing-layout-transverse-diagram.png"),
+    thumbnail: assetPath("images/learning/wall-bearing-transverse-01.svg"),
     status: "available",
     model: { path: assetPath("models/wall/bearing-layout/transverse.glb"), scale: 1, noAnimation: true, initialView: [1, 0.9, 1.3] },
-    diagram: { path: assetPath("images/wall/bearing-layout-transverse-diagram.png"), subtitle: "墙体承重结构布置方案 · 横墙承重（平面示意）" },
+    diagram: { path: assetPath("images/learning/wall-bearing-transverse-01.svg"), subtitle: "横墙承重 · 平面布置与板端支承" },
     layerConfig: wallBearingLayoutConfig(transverseWallBearingLayers),
     textbookLinks: [{ moduleId: "wall", chapterId: "wall-masonry" }],
   },
@@ -1113,10 +1267,10 @@ export const nodeDefinitions: NodeDefinition[] = [
     title: "墙体承重结构布置方案（纵横墙承重）",
     description: "对照纵横墙、局部梁与不同房间楼板排列，观察分区支承的布置关系。支持旋转、构件点选、独立展示与平面图对照；源模型为静态布置示意。",
     category: "墙体",
-    thumbnail: assetPath("images/wall/bearing-layout-two-way-diagram.png"),
+    thumbnail: assetPath("images/learning/wall-bearing-two-way-01.svg"),
     status: "available",
     model: { path: assetPath("models/wall/bearing-layout/two-way.glb"), scale: 1, noAnimation: true, initialView: [1, 0.9, 1.3] },
-    diagram: { path: assetPath("images/wall/bearing-layout-two-way-diagram.png"), subtitle: "墙体承重结构布置方案 · 纵横墙承重（平面示意）" },
+    diagram: { path: assetPath("images/learning/wall-bearing-two-way-01.svg"), subtitle: "纵横墙承重 · 分区平面布置" },
     layerConfig: wallBearingLayoutConfig(twoWayWallBearingLayers),
     textbookLinks: [{ moduleId: "wall", chapterId: "wall-masonry" }],
   },
@@ -1125,10 +1279,10 @@ export const nodeDefinitions: NodeDefinition[] = [
     title: "墙体承重结构布置方案（纵墙承重）",
     description: "对照外纵墙、内纵墙、横墙与楼板的布置，观察楼板与纵向墙体的支承位置。支持旋转、构件点选、独立展示与平面图对照；源模型为静态布置示意。",
     category: "墙体",
-    thumbnail: assetPath("images/wall/bearing-layout-longitudinal-diagram.png"),
+    thumbnail: assetPath("images/learning/wall-bearing-longitudinal-01.svg"),
     status: "available",
     model: { path: assetPath("models/wall/bearing-layout/longitudinal.glb"), scale: 1, noAnimation: true, initialView: [1, 0.9, 1.3] },
-    diagram: { path: assetPath("images/wall/bearing-layout-longitudinal-diagram.png"), subtitle: "墙体承重结构布置方案 · 纵墙承重（平面示意）" },
+    diagram: { path: assetPath("images/learning/wall-bearing-longitudinal-01.svg"), subtitle: "纵墙承重 · 平面布置与板端支承" },
     layerConfig: wallBearingLayoutConfig(longitudinalWallBearingLayers),
     textbookLinks: [{ moduleId: "wall", chapterId: "wall-masonry" }],
   },
@@ -1140,7 +1294,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     thumbnail: assetPath("images/wall/rc-lintel-flush-diagram.png"),
     status: "available",
     model: { path: assetPath("models/wall/rc-lintels/flush.glb"), scale: 2.5, noAnimation: true },
-    diagram: { path: assetPath("images/wall/rc-lintel-flush-diagram.png"), subtitle: "钢筋混凝土过梁 · 平墙过梁" },
+    diagram: { path: assetPath("images/learning/rc-lintel-flush-01.svg"), subtitle: "局部横剖面 · 平墙过梁" },
     layerConfig: rcLintelLayerConfig(flushLintelLayers),
     textbookLinks: [{ moduleId: "wall", chapterId: "wall-details" }],
   },
@@ -1152,7 +1306,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     thumbnail: assetPath("images/wall/rc-lintel-window-surround-diagram.png"),
     status: "available",
     model: { path: assetPath("models/wall/rc-lintels/window-surround.glb"), scale: 2.5, noAnimation: true },
-    diagram: { path: assetPath("images/wall/rc-lintel-window-surround-diagram.png"), subtitle: "钢筋混凝土过梁 · 带窗套过梁" },
+    diagram: { path: assetPath("images/learning/rc-lintel-window-surround-01.svg"), subtitle: "局部横剖面 · 带窗套过梁" },
     layerConfig: rcLintelLayerConfig(windowSurroundLintelLayers),
     textbookLinks: [{ moduleId: "wall", chapterId: "wall-details" }],
   },
@@ -1164,7 +1318,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     thumbnail: assetPath("images/wall/rc-lintel-window-hood-diagram.png"),
     status: "available",
     model: { path: assetPath("models/wall/rc-lintels/window-hood.glb"), scale: 2.5, noAnimation: true },
-    diagram: { path: assetPath("images/wall/rc-lintel-window-hood-diagram.png"), subtitle: "钢筋混凝土过梁 · 带窗楣过梁" },
+    diagram: { path: assetPath("images/learning/rc-lintel-window-hood-01.svg"), subtitle: "局部横剖面 · 带窗楣过梁" },
     layerConfig: rcLintelLayerConfig(windowHoodLintelLayers),
     textbookLinks: [{ moduleId: "wall", chapterId: "wall-details" }],
   },
@@ -1179,10 +1333,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       path: assetPath("models/wall/window-wall-gap-sealing/window-wall-gap-sealing.glb"),
       scale: 2.5,
     },
-    diagram: {
-      path: assetPath("images/wall/window-wall-gap-sealing-diagram.png"),
-      subtitle: "窗墙安装缝 · 图示缝宽7 mm",
-    },
+    diagram: { path: assetPath("images/learning/window-wall-gap-sealing-01.svg"), subtitle: "窗墙安装缝 · 图示实例缝宽约7 mm" },
     layerConfig: {
       layers: windowWallGapSealingLayers,
       getLayerInfo: getWindowWallGapSealingLayer,
@@ -1194,7 +1345,7 @@ export const nodeDefinitions: NodeDefinition[] = [
     title: "被动式太阳房墙体构造",
     description: "对照玻璃、空气间层、薄钢板、矿棉保温层与墙体的层次，观察上下孔口及室内抹灰的连接，支持分解动画、构件点选与剖面对照。",
     category: "墙体",
-    thumbnail: assetPath("images/wall/passive-solar-wall-diagram.png"),
+    thumbnail: assetPath("images/learning/passive-solar-wall-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/wall/passive-solar-wall/passive-solar-wall.glb"),
@@ -1202,10 +1353,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       // 首屏右偏 45°：外围护墙占比 67% → 38%，可辨构件由 5 个增到 7 个。
       initialView: [0.700, 0.142, 0.700],
     },
-    diagram: {
-      path: assetPath("images/wall/passive-solar-wall-diagram.png"),
-      subtitle: "被动式太阳房 · 墙体构造",
-    },
+    diagram: { path: assetPath("images/learning/passive-solar-wall-01.svg"), subtitle: "太阳能墙局部剖面 · 图示实例（mm）" },
     layerConfig: {
       layers: passiveSolarWallLayers,
       getLayerInfo: getPassiveSolarWallLayer,
@@ -1225,9 +1373,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       scale: 4,
       groups: COLUMN_GROUPS,
     },
-    diagram: {
-      path: assetPath("images/wall/construction-column-diagram.png"),
-    },
+    diagram: { path: assetPath("images/learning/construction-column-01.svg"), subtitle: "构造柱立面与1—1横剖面 · 图示实例" },
     layerConfig: {
       layers: constructionColumnLayers as NodeLayerInfo[],
       getLayerInfo: getConstructionColumnLayer as (objectName: string) => NodeLayerInfo | undefined,
@@ -1239,18 +1385,16 @@ export const nodeDefinitions: NodeDefinition[] = [
     id: "block-wall-core-column-01",
     title: "砌块墙墙芯柱构造",
     description:
-      "砌块墙墙芯柱构造：砌块墙体→2Φ12通长筋→灌C15细石混凝土，在空心砌块孔洞内形成钢筋混凝土芯柱。",
+      "对照转角与T形交接，观察砌块孔道、纵筋和灌孔混凝土的连续关系。2Φ12和C15保留为原图与模型的实例标注，实际材料、配筋及连接须另按适用设计核定。",
     category: "墙体",
-    thumbnail: assetPath("images/wall/block-wall-core-column-01.png"),
+    thumbnail: assetPath("images/learning/block-wall-core-column-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/wall/block-wall-core-column/block-wall-core-column.glb"),
       scale: 3.5,
       noAnimation: true,
     },
-    diagram: {
-      path: assetPath("images/wall/block-wall-core-column-01.png"),
-    },
+    diagram: { path: assetPath("images/learning/block-wall-core-column-01.svg"), subtitle: "转角与T形交接 · 芯柱轴测示意（原图实例）" },
     layerConfig: {
       layers: blockWallCoreColumnLayers as NodeLayerInfo[],
       getLayerInfo: getBlockWallCoreColumnLayer as (objectName: string) => NodeLayerInfo | undefined,
@@ -1261,18 +1405,16 @@ export const nodeDefinitions: NodeDefinition[] = [
     id: "hollow-block-forms-01",
     title: "空心砌块的常见形式",
     description:
-      "混凝土空心砌块的四种常见孔型：多排扁孔、单排双孔、单排圆孔、单排组合孔。孔型、孔洞率与排布方式直接影响砌块的强度、自重及保温隔热性能。",
+      "对照四种空心砌块的孔洞与壁肋，比较单排方孔、异形方孔、圆孔及多排扁孔。孔型属于几何特征，不能单独判断产品性能、组砌条件或整墙的承重身份。",
     category: "墙体",
-    thumbnail: assetPath("images/wall/hollow-block-forms-diagram.png"),
+    thumbnail: assetPath("images/learning/hollow-block-forms-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/wall/hollow-block-forms/hollow-block-forms.glb"),
       scale: 2,
       noAnimation: true,
     },
-    diagram: {
-      path: assetPath("images/wall/hollow-block-forms-diagram.png"),
-    },
+    diagram: { path: assetPath("images/learning/hollow-block-forms-01.svg"), subtitle: "四种砌块孔型 · 平面示意" },
     layerConfig: {
       layers: hollowBlockFormsLayers as NodeLayerInfo[],
       getLayerInfo: getHollowBlockFormsLayer as (objectName: string) => NodeLayerInfo | undefined,
@@ -1283,17 +1425,15 @@ export const nodeDefinitions: NodeDefinition[] = [
     id: "apron-flashing-01",
     title: "细石混凝土散水构造",
     description:
-      "外墙根部散水构造节点，九层构造：细石混凝土面层→饰面层→防水层→钢筋混凝土墙体→聚乙烯泡沫缝→密封膏嵌缝→保温层→卵石灌浆垫层→素土夯实。",
+      "对照墙脚剖面，区分墙身防护、散水面层与垫层、墙边密封及柔性填缝，沿向外坡面追到室外地坪。各构件共同处理排水与相对变形，图示数值仅对应原图实例。",
     category: "墙体",
-    thumbnail: assetPath("images/wall/apron-flashing-diagram.png"),
+    thumbnail: assetPath("images/learning/apron-flashing-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/wall/apron-flashing/apron-flashing.glb"),
       scale: 2,
     },
-    diagram: {
-      path: assetPath("images/wall/apron-flashing-diagram.png"),
-    },
+    diagram: { path: assetPath("images/learning/apron-flashing-01.svg"), subtitle: "细石混凝土散水剖面 · 图示实例（mm）" },
     layerConfig: {
       layers: apronFlashingLayers as NodeLayerInfo[],
       getLayerInfo: getApronFlashingLayer as (objectName: string) => NodeLayerInfo | undefined,
@@ -1304,18 +1444,16 @@ export const nodeDefinitions: NodeDefinition[] = [
     id: "stone-apron-01",
     title: "块石散水构造",
     description:
-      "外墙根部块石铺砌散水节点，九层构造：饰面层→防水层→钢筋混凝土墙体→聚乙烯泡沫缝→密封膏嵌缝→保温层→块石面层(120mm)→粗砂垫层(30mm)→素土夯实。",
+      "比较块石面层、粗砂垫层和外缘下折，再核对墙边密封、柔性填缝及室外地坪高差。与细石混凝土方案保持同一排水和变形问题，厚度、坡度等按原图实例识读。",
     category: "墙体",
-    thumbnail: assetPath("images/wall/stone-apron-diagram.png"),
+    thumbnail: assetPath("images/learning/stone-apron-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/wall/stone-apron/stone-apron.glb"),
       scale: 2,
       groups: STONE_GROUPS,
     },
-    diagram: {
-      path: assetPath("images/wall/stone-apron-diagram.png"),
-    },
+    diagram: { path: assetPath("images/learning/stone-apron-01.svg"), subtitle: "块石散水剖面 · 图示实例（mm）" },
     layerConfig: {
       layers: stoneApronLayers as NodeLayerInfo[],
       getLayerInfo: getStoneApronLayer as (objectName: string) => NodeLayerInfo | undefined,
@@ -1336,9 +1474,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       // 首屏改从背面 165° 看：基层墙体占比 76% → 47%，保温板与饰面层不再被墙挡死。
       initialView: [0.256, 0.142, -0.956],
     },
-    diagram: {
-      path: assetPath("images/wall/foam-insulation-diagram.png"),
-    },
+    diagram: { path: assetPath("images/learning/foam-insulation-01.svg"), subtitle: "墙身局部剖面 · 层次与锚固" },
     layerConfig: {
       layers: foamInsulationLayers as NodeLayerInfo[],
       getLayerInfo: getFoamInsulationLayer as (objectName: string) => NodeLayerInfo | undefined,
@@ -1359,9 +1495,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       // 首屏改从背面 165° 看：基层墙体占比 73% → 46%，岩棉板与砂浆找平层同时可见。
       initialView: [0.256, 0.142, -0.956],
     },
-    diagram: {
-      path: assetPath("images/wall/rockwool-insulation-diagram.png"),
-    },
+    diagram: { path: assetPath("images/learning/rockwool-insulation-01.svg"), subtitle: "墙身局部剖面 · 图示实例（mm）" },
     layerConfig: {
       layers: rockwoolInsulationLayers as NodeLayerInfo[],
       getLayerInfo: getRockwoolInsulationLayer as (objectName: string) => NodeLayerInfo | undefined,
@@ -1372,9 +1506,9 @@ export const nodeDefinitions: NodeDefinition[] = [
     id: "faced-plinth-01",
     title: "贴面勒脚构造做法",
     description:
-      "外墙根部贴面勒脚节点，五层构造：回填土→垫层→防潮层→贴面层→墙体。贴面勒脚比抹灰勒脚更耐久美观。",
+      "从室内外地面定位贴面勒脚，区分外侧面材与结合基层、墙身水平防潮层。表面保护与阻断墙内毛细水分工不同，本例不代表通用干挂系统。",
     category: "墙体",
-    thumbnail: assetPath("images/wall/faced-plinth-diagram.png"),
+    thumbnail: assetPath("images/learning/faced-plinth-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/wall/faced-plinth/faced-plinth.glb"),
@@ -1382,9 +1516,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       noAnimation: true,
       nonInteractive: ["其余"],
     },
-    diagram: {
-      path: assetPath("images/wall/faced-plinth-diagram.png"),
-    },
+    diagram: { path: assetPath("images/learning/faced-plinth-01.svg"), subtitle: "贴面勒脚局部剖面 · 防潮与地面关系" },
     layerConfig: {
       layers: facedPlinthLayers as NodeLayerInfo[],
       getLayerInfo: getFacedPlinthLayer as (objectName: string) => NodeLayerInfo | undefined,
@@ -1395,9 +1527,9 @@ export const nodeDefinitions: NodeDefinition[] = [
     id: "stone-plinth-01",
     title: "石砌勒脚构造做法",
     description:
-      "外墙根部石砌勒脚节点，四层构造：回填土→垫层→石砌层→墙体。石砌勒脚采用天然石材，耐久抗冻、质感厚重。",
+      "沿石砌分块、错缝与上部墙体观察承托关系，再比较室内外地面的高低。原图和模型未单列防潮层，不能据此认定实际墙脚无需防潮。",
     category: "墙体",
-    thumbnail: assetPath("images/wall/stone-plinth-diagram.png"),
+    thumbnail: assetPath("images/learning/stone-plinth-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/wall/stone-plinth/stone-plinth.glb"),
@@ -1405,9 +1537,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       noAnimation: true,
       nonInteractive: ["其余"],
     },
-    diagram: {
-      path: assetPath("images/wall/stone-plinth-diagram.png"),
-    },
+    diagram: { path: assetPath("images/learning/stone-plinth-01.svg"), subtitle: "石砌勒脚局部剖面 · 错缝与承托" },
     layerConfig: {
       layers: stonePlinthLayers as NodeLayerInfo[],
       getLayerInfo: getStonePlinthLayer as (objectName: string) => NodeLayerInfo | undefined,
@@ -1418,9 +1548,9 @@ export const nodeDefinitions: NodeDefinition[] = [
     id: "plaster-plinth-01",
     title: "抹灰勒脚构造做法",
     description:
-      "外墙根部抹灰勒脚节点，五层构造：素土夯实→垫层→防潮层→抹灰层→墙体。勒脚保护墙体根部免受雨水溅湿和机械碰撞。",
+      "观察外侧抹灰的加厚和收头，再区分墙内水平防潮层与相邻地面。抹灰保护可见表面，墙身防潮控制内部水分路径，两项任务需要分别核对。",
     category: "墙体",
-    thumbnail: assetPath("images/wall/plaster-plinth-diagram.png"),
+    thumbnail: assetPath("images/learning/plaster-plinth-01.svg"),
     status: "available",
     model: {
       path: assetPath("models/wall/plaster-plinth/plaster-plinth.glb"),
@@ -1428,9 +1558,7 @@ export const nodeDefinitions: NodeDefinition[] = [
       noAnimation: true,
       nonInteractive: ["其余"],
     },
-    diagram: {
-      path: assetPath("images/wall/plaster-plinth-diagram.png"),
-    },
+    diagram: { path: assetPath("images/learning/plaster-plinth-01.svg"), subtitle: "抹灰勒脚局部剖面 · 防潮与收头" },
     layerConfig: {
       layers: plasterPlinthLayers as NodeLayerInfo[],
       getLayerInfo: getPlasterPlinthLayer as (objectName: string) => NodeLayerInfo | undefined,

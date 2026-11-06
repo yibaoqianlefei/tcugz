@@ -11,7 +11,7 @@ const corpus=JSON.parse(await readFile('public/data/companion-knowledge.json','u
 const baseline=JSON.parse(await readFile('tests/fixtures/curriculum-model-baseline-2026-10-29.json','utf8'));
 const old=JSON.parse(await readFile('src/data/legacyLessonFigures.json','utf8'));
 const available=nodeDefinitions.filter(n=>n.status==='available');
-assert.equal(articles.length,54);assert.equal(available.length,93);
+assert.equal(articles.length,54);assert(available.length>=93,'retain the original available nodes while allowing additions');
 assert.deepEqual(Object.keys(graph.lessons).sort(),articles.map(a=>a.group+'/'+a.id).sort());
 assert.deepEqual(Object.keys(graph.nodes).sort(),available.map(n=>n.id).sort());
 let core=0,contexts=0;
@@ -51,4 +51,4 @@ const active=new Set(),visited=new Set();function visit(id){assert(!active.has(i
 for(const [path,figures]of Object.entries(old))for(const id of Object.keys(figures))assert(resolveLearningUnit(path,null,id),'legacy figure retains a semantic target: '+path+'/'+id);
 for(const [path,hash]of Object.entries(baseline.files))assert.equal(createHash('sha256').update(await readFile('public/'+path.replace(/^\//,''))).digest('hex'),hash,'original model geometry unchanged: '+path);
 const sample={path:articles[0].path,scrollTop:320,viewportWidth:392,directoryOpen:false,unitId:Object.keys(graph.units)[0],openDetails:[1,3]};assert.deepEqual(validLessonVisit(sample,sample.path),sample);assert.equal(validLessonVisit({...sample,scrollTop:-1},sample.path),undefined);
-console.log(`Full-book acceptance: 54 lessons, ${Object.keys(graph.units).length} units, 93 primary nodes, ${contexts} contexts, ${core} lazy canvases, ${Object.keys(baseline.files).length} unchanged model files.`);
+console.log(`Full-book acceptance: 54 lessons, ${Object.keys(graph.units).length} units, ${available.length} primary nodes, ${contexts} contexts, ${core} lazy canvases, ${Object.keys(baseline.files).length} unchanged model files.`);

@@ -72,5 +72,6 @@ try {
 } finally {
   unregister(); mixer.stopAllAction(); mixer.uncacheRoot(root);
 }
-assert.equal(readFileSync(publicUrlToFsPath(node.diagram.path)).subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
-console.log('PASS passive solar wall: nine component bindings, embedded assets, eight moving parts, fixed wall, four-second scrub/reverse/reset and PNG diagram');
+const diagram=readFileSync(publicUrlToFsPath(node.diagram.path),'utf8');
+assert(diagram.includes('data-geometry-id="solar-section"')&&!/<image\b/.test(diagram));
+console.log('PASS passive solar wall: nine component bindings, embedded assets, eight moving parts, fixed wall, four-second scrub/reverse/reset and vector diagram');

@@ -16,7 +16,7 @@ export const straightRainwaterOutletCastIronLayers: NodeLayerInfo[] = [
   {
     objectName: '防水卷材', name: '防水卷材', order: 3,
     thickness: '图中未标注', material: '防水卷材（模型未标明品种）',
-    description: '从水平屋面延伸至水落口周边的防水构造。对照剖面查看卷材在凹口边缘的转折及其与铸铁管口的接合位置。',
+    description: '从屋面沿口杯边缘独立转折。图中杯口内侧另有两条闭合斜带，按可见轮廓保留，其材料及与卷材的具体关系未定，不能将它们命名为新增防水层。',
   },
   {
     objectName: '屋面面层', name: '屋面面层', order: 4,
@@ -26,17 +26,17 @@ export const straightRainwaterOutletCastIronLayers: NodeLayerInfo[] = [
   {
     objectName: '油膏嵌缝', name: '油膏嵌缝', order: 5,
     thickness: '缝宽与填嵌深度未标注', material: '密封油膏（图示）',
-    description: '剖面图标注的油膏嵌缝位于水落口周边交接处。分解后查看环形密封位置及其与屋面面层、防水卷材的关系。',
+    description: '原图油膏仅在落口周边局部嵌缝，与卷材转折、金属口杯分别表达。分解模型对照周边交接，不将局部密封或未定材料的斜带合并为完整防水层。',
   },
   {
     objectName: '铸铁水落口', name: '铸铁水落口', order: 6,
     thickness: '管径与壁厚未标注', material: '铸铁（模型对象名）',
-    description: '承接屋面来水，并通过穿过结构板的竖向管口向下排水。结合剖面观察上部进水开口、周边防水收边和下部直管之间的连接。',
+    description: '结合原图观察两侧翻边、斜向口杯与下部短直管，保持通水腔留空。图纸未标管径、壁厚或制造连接，不能从模型长度、线宽或邻图6／100／6推定本口规格。',
   },
   {
     objectName: '镀锌钢丝球', name: '镀锌钢丝球', order: 7,
     thickness: '钢丝直径与网格间距未标注', material: '镀锌钢丝（图示）',
-    description: '设置在水落口上方的球形钢丝网罩，图中标注为“镀锌钢丝球”。转动模型查看通透网格和下部收束形态；分解后可观察罩体与水落口开口的相对位置。',
+    description: '原图历史拦污构件，标注为“镀锌钢丝球”。对照其通透网格和进入喉部后分散终止的开放丝尾，再观察模型与落口的位置关系；本图不验证现行产品形式、排水能力或维护条件。',
   },
 ];
 

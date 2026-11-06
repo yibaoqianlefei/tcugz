@@ -12,6 +12,7 @@ const categories = [
   { id: 'wall', title: '墙体', description: '沿墙身、墙脚与洞口，读懂材料之间的连接。' },
   { id: 'stairs', title: '楼梯', description: '对照梯段、平台、台阶与坡道的构造关系。' },
   { id: 'foundation', title: '基础', description: '从基础的不同形式，认识建筑与地面的连接。' },
+  { id: 'deformation-joint', title: '变形缝', description: '比较缝口形式，观察两侧构件的边界与转折。' },
 ].map(category => ({ ...category, nodes: libraryNodes.filter(node => node.category === category.title) }));
 
 function NodeCard({ node, returnTo }: { node: typeof libraryNodes[number]; returnTo: string }) {

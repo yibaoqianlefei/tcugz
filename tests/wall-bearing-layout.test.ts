@@ -50,9 +50,9 @@ for (const member of members) {
   assert.equal(primitives, member.primitives);
   const size = bounds.getSize(new Vector3());
   assert(size.x > 10 && size.x < 20 && size.y > 2.9 && size.y < 3.3 && size.z > 6 && size.z < 10, 'authored transforms preserve the full building layout, including the transverse model unit conversion');
-  const png = readFileSync(publicUrlToFsPath(node.diagram.path));
-  assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
-  assert(png.readUInt32BE(16) > 200 && png.readUInt32BE(20) > 100);
+  const diagram = readFileSync(publicUrlToFsPath(node.diagram.path),'utf8');
+  const geometryId={ 'semi-frame':'plan-semi', transverse:'plan-transverse', 'two-way':'plan-two-way', longitudinal:'plan-longitudinal' }[member.key];
+  assert(diagram.includes(`data-geometry-id="${geometryId}"`)&&!/<image\b/.test(diagram),'Each scheme has its matching vector plan');
   console.log(`${id}: ${member.parts.length} selectable groups, ${primitives} primitives, bounds ${size.toArray().map(n => n.toFixed(2)).join(' × ')}`);
 }
 assert.equal(drawings.size, 4, 'each scheme has its matching drawing');

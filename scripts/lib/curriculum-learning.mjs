@@ -17,6 +17,10 @@ const extraWallUnits = [
     assessment: { question: '说明图中板缝为什么要对应支承，并列出判断隔声及防火仍缺少的两类证据。', criteria: ['在横剖面定位板边与龙骨的关系。', '说明面板层数、接缝及周边连接属于系统条件。', '提出完整系统性能依据和实际穿透封堵设计，不能由示意图推定等级。'] }, conceptIds: ['layers', 'connections', 'sound', 'fire'] },
 ];
 const wallAssessments = {
+  'wall.forms': ['组合墙中画有不同图案，能否直接确定哪层承重、哪层保温？', ['图案区别表达材料层组合，但原图没有给出具体材料与功能。', '承重、保温及层间连接仍需完整设计与材料资料。']],
+  'wall.hollow-block': ['看到顶部孔洞，能否认定墙内已经灌芯或配置钢筋？', ['孔洞只提供块材内部几何信息。', '灌芯、配筋与承重条件仍需设计和实际施工资料。']],
+  'wall.hollow-brick': ['图示墙体的空腔是否就是单块砖内部的孔洞？如何辨认两者？', ['沿顶部开口辨认侧砌砖围合的空腔。', '指出块材内部孔洞与墙体组砌空腔属于不同尺度，不能互相替代。']],
+  'wall.bond-names': ['长面朝外的砖与水平灰缝分别叫什么？能否由这张图确定砂浆强度？', ['长面朝外是顺砖，水平灰缝是横缝。', '图中未标注砂浆强度，不能由灰缝外观推定。']],
   'wall.roles': ['框架外墙受风后，为什么仍需连接主体？画出你能确认与需要补查的传递环节。', ['梁柱构成承重骨架，位置不决定墙的承重身份。', '墙承受自重及面外作用，需要连接和支承。', '模型未含填充墙和连接，不以梁柱外观证明连接可靠。']],
   'wall.materials': ['两种孔型不同的砌块，能否仅凭孔数判断墙的承重和保温性能？', ['区分块材孔型、整墙组合和结构角色。', '需结合产品性能、组砌与结构设计。', '灌芯时还需核对孔道连续与施工条件。']],
   'wall.bearing': ['把横墙方案改成半框架时，画出支承路线和可改变的空间边界。', ['分别画板—墙与板—梁—柱或墙的路径。', '说明内部柱列替换部分墙段后的空间变化。', '完整路线还需接到基础，模型不能替代验算。']],
@@ -29,16 +33,29 @@ const wallAssessments = {
   'wall.window-joint': ['安装缝已经填满矿棉并封胶，为什么仍需查固定点和排水？', ['填充、密封、固定、排水各有任务。', '自重、风和启闭作用需要可靠传递到基层。', '下口水要有室外出口，不能把矿棉当密封胶。']],
   'wall.finishes': ['把抹灰勒脚改为石材后，列出保留和需要重新核对的构造任务。', ['保留防潮和表面排水任务。', '按面材自重与变形重查连接和基层。', '局部石砌模型未表示的防潮层不等于可以取消。']],
 };
-const wallConcepts = { roles: ['loads', 'systems'], materials: ['layers'], bearing: ['loads', 'systems'], integrity: ['loads', 'connections'], thermal: ['heat', 'connections'], solar: ['solar', 'heat'], damp: ['moisture'], 'surface-water': ['water', 'movement'], 'opening-support': ['loads', 'water'], 'window-joint': ['connections', 'water'], finishes: ['layers', 'maintenance'] };
-const wallPrerequisites = { roles: ['wall.overview'], materials: ['wall.roles'], bearing: ['wall.materials'], integrity: ['wall.bearing'], thermal: ['wall.partition'], solar: ['wall.thermal'], damp: ['wall.integrity'], 'surface-water': ['wall.damp'], 'opening-support': ['wall.roles'], 'window-joint': ['wall.opening-support'], finishes: ['wall.surface-water', 'wall.window-joint'] };
-export const lessons = Object.fromEntries(Object.entries(wallLessons).map(([key, plan]) => [key, { ...plan, units: key === 'wall/index' ? ['wall.overview'] : key === 'wall/wall-partition' ? ['wall.partition'] : plan.units, prerequisiteIds: [], relatedPrinciples: [], applications: ['practice/envelope-detail'] }]));
+const wallConcepts = { forms: ['layers', 'systems', 'drawing'], 'hollow-block': ['layers', 'drawing'], 'hollow-brick': ['layers', 'connections', 'drawing'], 'bond-names': ['layers', 'connections', 'drawing'], roles: ['loads', 'systems'], materials: ['layers'], bearing: ['loads', 'systems'], integrity: ['loads', 'connections'], thermal: ['heat', 'connections'], solar: ['solar', 'heat'], damp: ['moisture'], 'surface-water': ['water', 'movement'], 'opening-support': ['loads', 'water'], 'window-joint': ['connections', 'water'], finishes: ['layers', 'maintenance'] };
+const wallPrerequisites = { forms: ['wall.materials'], 'hollow-block': ['wall.bond-names'], 'hollow-brick': ['wall.bond-names'], 'bond-names': ['wall.materials'], roles: ['wall.overview'], materials: ['wall.roles'], bearing: ['wall.materials'], integrity: ['wall.bearing'], thermal: ['wall.partition'], solar: ['wall.thermal'], damp: ['wall.integrity'], 'surface-water': ['wall.damp'], 'opening-support': ['wall.roles'], 'window-joint': ['wall.opening-support'], finishes: ['wall.surface-water', 'wall.window-joint'] };
+const wallDiagrams={
+ 'wall.roles':['frame-structure-layout-01'],
+ 'wall.materials':['hollow-block-forms-01'],
+ 'wall.bearing':['masonry-bond','wall-bearing-transverse-01','wall-bearing-longitudinal-01','wall-bearing-two-way-01','wall-bearing-semi-frame-01'],
+ 'wall.damp':['wall-paths'],
+ 'wall.integrity':['construction-column-01','block-wall-core-column-01'],
+ 'wall.thermal':['foam-insulation-01','rockwool-insulation-01'],
+ 'wall.solar':['passive-solar-wall-01'],
+ 'wall.surface-water':['apron-flashing-01','stone-apron-01'],
+ 'wall.opening-support':['rc-lintel-flush-01','rc-lintel-window-surround-01','rc-lintel-window-hood-01'],
+ 'wall.window-joint':['window-wall-gap-sealing-01'],
+ 'wall.finishes':['plaster-plinth-01','faced-plinth-01','stone-plinth-01'],
+};
+export const lessons = Object.fromEntries(Object.entries(wallLessons).map(([key, plan]) => [key, { ...plan, diagrams:[...new Set([...plan.diagrams,...plan.units.flatMap(id=>wallDiagrams[id]??[])])], units: key === 'wall/index' ? ['wall.overview'] : key === 'wall/wall-partition' ? ['wall.partition'] : plan.units, prerequisiteIds: [], relatedPrinciples: [], applications: ['practice/envelope-detail'] }]));
 export const units = [...extraWallUnits, ...wallUnits.map(unit => {
   const suffix = unit.id.slice(5);
   const assessment = wallAssessments[unit.id];
   return { ...unit, models: unit.models.map((model, index) => ({ ...model, role: index === 0 ? 'core' : 'comparison', primary: true })),
     assessment: { question: assessment[0], criteria: assessment[1] }, prerequisiteIds: wallPrerequisites[suffix] ?? [],
     conceptIds: wallConcepts[suffix] ?? [], relatedPrinciples: /damp|surface-water/.test(suffix) ? ['principles/moisture', 'principles/waterproof'] : suffix === 'thermal' ? ['principles/thermal'] : [],
-    applications: ['practice/envelope-detail'], diagramIds: unit.id === 'wall.damp' ? ['wall-paths'] : unit.id === 'wall.bearing' ? ['masonry-bond'] : [] };
+    applications: ['practice/envelope-detail'], diagramIds: wallDiagrams[unit.id] ?? [] };
 })].map(unit => ({ prerequisiteIds: [], relatedPrinciples: [], applications: [], ...unit }));
 
 for (const filename of ['learning-batch-structure.mjs', 'learning-batch-envelope.mjs', 'learning-batch-crosscutting.mjs']) {
@@ -52,6 +69,27 @@ for (const filename of ['learning-batch-structure.mjs', 'learning-batch-envelope
   } catch (error) {
     if (error.code !== 'ERR_MODULE_NOT_FOUND' || !error.message.includes(filename)) throw error;
   }
+}
+
+// Adopted roof drawings follow their primary teaching position; secondary
+// observations remain in the existing expandable comparison, without new canvases.
+const approvedRoofDiagrams={
+    'roof.tiles':['steel-batten-tile-roof-01','mortar-bed-tile-roof-01','wood-batten-tile-roof-01'],
+    'roof.drainage':['roof-drainage-01','organized-drainage-01','eaves-gutter-01'],
+    'roof.access':['roof-access-hatch-01'],
+  'roof.trusses':['roof-truss-timber-01','roof-truss-reinforced-concrete-01','roof-truss-steel-timber-01'],
+  'roof.eaves':['free-fall-ring-beam-eaves-01','free-fall-waterproof-eaves-01'],
+  'roof.outlets':['straight-rainwater-outlet-65-01','straight-rainwater-outlet-cast-iron-01'],
+  'roof.flashing':['coating-parapet-flashing-01'],
+  'roof.storage':['water-storage-eaves-drainage-01','water-storage-parapet-drainage-01'],
+  'joints.high-low':['coating-high-low-roof-flashing-01'],
+};
+for(const unit of units){
+  const drawings=approvedRoofDiagrams[unit.id];
+  if(!drawings)continue;
+  unit.diagramIds=[...new Set([...(unit.diagramIds??[]),...drawings])];
+  const plan=lessons[unit.lesson];
+  plan.diagrams=[...new Set([...(plan.diagrams??[]),...drawings])];
 }
 
 // Cross-chapter prerequisites connect the book without turning review links

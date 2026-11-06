@@ -20,6 +20,7 @@ const chapterUrl = (id, topic) => `${base}/basics/${id}/${topic}.html`;
 const mediaCatalog = JSON.parse(await readFile('src/data/lessonMedia.json', 'utf8'));
 const selection = chapterSelection();
 const evidence = JSON.parse(await readFile('src/data/diagramEvidence.json', 'utf8'));
+const sourceDrawings = JSON.parse(await readFile('src/data/sourceDrawingEvidence.json', 'utf8'));
 const graph = JSON.parse(await readFile('src/data/curriculumLearning.json', 'utf8'));
 const legacyFigures = JSON.parse(await readFile('src/data/legacyLessonFigures.json', 'utf8'));
 const enhancement = html => `<!-- textbook-enhancement:start -->${html}<!-- textbook-enhancement:end -->`;
@@ -35,17 +36,26 @@ function courseLink(key, label) {
   if (!target) throw new Error('Missing course relation: ' + key);
   return '<a href="/lesson/'+target.path+'">'+esc(label ?? target.title)+' ↗</a>';
 }
+function sourceDrawingMarkup(record) {
+  if (record.status !== 'source-based' || !record.path?.startsWith('/images/learning/')) throw new Error('Invalid source teaching drawing: '+record.id);
+  return '<figure class="teaching-diagram source-teaching-diagram" data-diagram-id="'+esc(record.id)+'" data-node-id="'+esc(record.nodeId)+'">'
+    + '<a class="wall-learning-diagram" href="'+esc(record.path)+'" target="_blank" rel="noopener noreferrer" title="查看构造图大图"><picture>'+(record.panel?'<source media="(max-width: 680px)" srcset="'+esc(record.panel.path)+'" width="'+record.panel.width+'" height="'+Math.ceil(record.panel.height)+'">':'')+'<img src="'+esc(record.path)+'" alt="'+esc(record.title)+'" width="'+record.width+'" height="'+Math.ceil(record.height)+'" loading="lazy" decoding="async"></picture><span class="wall-diagram-action">查看构造图大图 ↗</span></a>'
+    + '<figcaption class="diagram-evidence"><strong>'+esc(record.title)+'</strong>'+(record.teaching?.summary?'<p>'+esc(record.teaching.summary)+'</p>':'')+'<details><summary>规范依据</summary><ul>'+record.references.map(ref=>'<li><a href="'+esc(ref.url)+'" target="_blank" rel="noopener noreferrer">'+esc(ref.standard)+'</a> · '+esc(ref.clause)+'</li>').join('')+'</ul></details></figcaption></figure>';
+}
 function unitMarkup(unit, lesson) {
   const figure = lesson.figures.find(item => item.knowledgeId === unit.id);
+  const drawings=(unit.diagramIds??[]).map(id=>sourceDrawings[id]).filter(Boolean);
+  for (const record of drawings) if (!unit.models.some(model=>model.nodeId===record.nodeId)) throw new Error('Drawing/model mismatch: '+unit.id+' / '+record.id);
+  const drawingFor=nodeId=>drawings.filter(record=>record.nodeId===nodeId).map(sourceDrawingMarkup).join('');
   const related = unit.models.filter(model => model.nodeId !== figure?.nodeId);
-  const comparisons = related.length ? '<details class="wall-model-comparison"><summary>关联观察与比较 · '+related.length+' 个节点</summary><ul>'+related.map(model => '<li><a href="/#/node/'+model.nodeId+'?'+new URLSearchParams({lesson:lesson.path,unit:unit.id})+'">'+esc(model.title)+' ↗</a><p>'+esc(model.difference)+'</p></li>').join('')+'</ul></details>' : '';
+  const comparisons = related.length ? '<details class="wall-model-comparison"><summary>关联观察与比较 · '+related.length+' 个节点</summary><ul>'+related.map(model => '<li><a href="/#/node/'+model.nodeId+'?'+new URLSearchParams({lesson:lesson.path,unit:unit.id})+'">'+esc(model.title)+' ↗</a><p>'+esc(model.difference)+'</p>'+drawingFor(model.nodeId)+'</li>').join('')+'</ul></details>' : '';
   const prerequisite = [...new Set([...(lesson.learning.prerequisiteIds ?? []), ...unit.prerequisiteIds])].filter(id => graph.units[id]);
   const links = [...new Set([...(lesson.learning.relatedPrinciples ?? []), ...unit.relatedPrinciples, ...(lesson.learning.applications ?? []), ...unit.applications])].filter(key => key !== lesson.key);
   const aliases = Object.entries(legacyFigures[lesson.path] ?? {}).filter(([,old]) => { const target = lesson.learning.units.find(item => old.knowledgeId ? item.id === old.knowledgeId : item.models.some(model => model.nodeId === old.nodeId)) ?? lesson.learning.units[0]; return target?.id === unit.id; }).map(([id]) => '<span id="'+id+'" class="learning-legacy-anchor" aria-hidden="true"></span>').join('');
   return enhancement('<section class="knowledge-unit" id="unit-'+esc(unit.id)+'" data-knowledge-unit="'+esc(unit.id)+'">'+aliases
     + '<div class="wall-model-question"><span>'+ (lesson.learning.kind === 'practice' ? '本次任务' : '学习问题') +'</span><h3>'+esc(unit.title)+'</h3><p>'+esc(unit.question)+'</p></div>'
     + '<p class="knowledge-principle">'+esc(unit.principle)+'</p><div class="knowledge-observe"><strong>'+ (lesson.learning.kind === 'practice' ? '完成步骤与证据' : '观察与推演') +'</strong><ol>'+unit.observe.map(task=>'<li>'+esc(task)+'</li>').join('')+'</ol></div>'
-    + (figure ? figureMarkup(figure,lesson) : '')
+    + (figure ? drawingFor(figure.nodeId)+figureMarkup(figure,lesson) : '')
     + '<div class="wall-model-explanation"><strong>把关系讲清楚</strong><p>'+esc(unit.conclusion)+'</p>'+comparisons
     + '<details><summary>表达范围与条件</summary><p>'+esc(unit.boundary)+'</p></details>'
     + '<details class="knowledge-assessment"><summary>'+ (lesson.learning.kind === 'practice' ? '提交前自评' : '解释与应用 · 先作答再核对') +'</summary><p>'+esc(unit.assessment.question)+'</p><strong>判定要点</strong><ul>'+unit.assessment.criteria.map(item=>'<li>'+esc(item)+'</li>').join('')+'</ul></details>'

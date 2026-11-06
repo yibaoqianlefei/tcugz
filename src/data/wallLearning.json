@@ -72,7 +72,9 @@
       "edition": "knowledge-2026-10-29",
       "learning": {
         "prerequisiteIds": [],
-        "diagrams": [],
+        "diagrams": [
+          "frame-structure-layout-01"
+        ],
         "relatedPrinciples": [],
         "applications": [
           "practice/envelope-detail"
@@ -93,7 +95,9 @@
             "applications": [
               "practice/envelope-detail"
             ],
-            "diagramIds": [],
+            "diagramIds": [
+              "frame-structure-layout-01"
+            ],
             "id": "wall.roles",
             "lesson": "wall/wall-role",
             "anchor": "从结构体系判断墙的身份",
@@ -133,7 +137,7 @@
         "intro": "先用梁柱骨架找承重路径，再把围护和分隔的作用放回同一空间，避免凭内外位置判断受力。",
         "kind": "reading"
       },
-      "readingMinutes": 3,
+      "readingMinutes": 4,
       "figures": [
         {
           "id": "model-wall-roles",
@@ -149,7 +153,7 @@
             "框架模型没有填充墙。把填充墙作为另一条自重和面外作用路径补画到草图中。"
           ],
           "imageAlt": "先找到楼板的支承，再给墙定身份的构造示意",
-          "image": "/images/wall/frame-structure-layout-diagram.png",
+          "image": "/images/learning/frame-structure-layout-01.svg",
           "hasModel": true,
           "sectionId": "section-2",
           "sectionTitle": "从结构体系判断墙的身份",
@@ -165,7 +169,9 @@
       "edition": "knowledge-2026-10-29",
       "learning": {
         "prerequisiteIds": [],
-        "diagrams": [],
+        "diagrams": [
+          "hollow-block-forms-01"
+        ],
         "relatedPrinciples": [],
         "applications": [
           "practice/envelope-detail"
@@ -185,7 +191,9 @@
             "applications": [
               "practice/envelope-detail"
             ],
-            "diagramIds": [],
+            "diagramIds": [
+              "hollow-block-forms-01"
+            ],
             "id": "wall.materials",
             "lesson": "wall/wall-types",
             "anchor": "按材料与构造方式分类",
@@ -222,12 +230,61 @@
               ]
             },
             "sectionId": "section-2"
+          },
+          {
+            "prerequisiteIds": [
+              "wall.materials"
+            ],
+            "conceptIds": [
+              "layers",
+              "systems",
+              "drawing"
+            ],
+            "relatedPrinciples": [],
+            "applications": [
+              "practice/envelope-detail"
+            ],
+            "diagramIds": [],
+            "id": "wall.forms",
+            "lesson": "wall/wall-types",
+            "anchor": "实体墙、空体墙与组合墙",
+            "title": "从墙身截面比较三种形式",
+            "question": "实体墙、空体墙与组合墙分别怎样表达连续墙身、空隙和材料层次？",
+            "principle": "图示三种构造形式分别以连续实体、内部空隙和不同材料层组合表达墙身差异；形式与材料品种、受力身份需要分别判断。",
+            "observe": [
+              "依次点选实体墙、空体墙与组合墙，与图2-3的（a）（b）（c）对应。",
+              "对照实体截面、内部空隙及组合层界面，记录原图未注明的材料、尺寸和连接条件。"
+            ],
+            "conclusion": "构造形式提供组成关系，不能直接推定承重身份或热工、隔声等性能。",
+            "boundary": "原图未注明墙厚、材料等级和层间连接，局部空隙也不说明其沿整墙的连续范围。",
+            "models": [
+              {
+                "nodeId": "wall-construction-forms-01",
+                "objects": [
+                  "实体墙",
+                  "空体墙",
+                  "组合墙"
+                ],
+                "difference": "并列比较连续墙身、内部空隙与材料层组合。",
+                "role": "core",
+                "primary": true,
+                "title": "墙体构造形式"
+              }
+            ],
+            "assessment": {
+              "question": "组合墙中画有不同图案，能否直接确定哪层承重、哪层保温？",
+              "criteria": [
+                "图案区别表达材料层组合，但原图没有给出具体材料与功能。",
+                "承重、保温及层间连接仍需完整设计与材料资料。"
+              ]
+            },
+            "sectionId": "section-3"
           }
         ],
         "intro": "先描述块材孔型，再描述墙体组合与结构角色；每一个分类词都应回答不同的问题。",
         "kind": "reading"
       },
-      "readingMinutes": 4,
+      "readingMinutes": 5,
       "figures": [
         {
           "id": "model-wall-materials",
@@ -243,11 +300,31 @@
             "设想上下两皮叠砌，指出需要灌芯时孔道连续为什么比表面孔数更重要。"
           ],
           "imageAlt": "砌块有孔，不等于整墙有空气间层的构造示意",
-          "image": "/images/wall/hollow-block-forms-diagram.png",
+          "image": "/images/learning/hollow-block-forms-01.svg",
           "hasModel": true,
           "sectionId": "section-2",
           "sectionTitle": "按材料与构造方式分类",
           "layerCount": 4
+        },
+        {
+          "id": "model-wall-forms",
+          "number": "02",
+          "nodeId": "wall-construction-forms-01",
+          "nodeTitle": "墙体构造形式",
+          "knowledgeId": "wall.forms",
+          "anchor": "实体墙、空体墙与组合墙",
+          "title": "从墙身截面比较三种形式",
+          "caption": "图示三种构造形式分别以连续实体、内部空隙和不同材料层组合表达墙身差异；形式与材料品种、受力身份需要分别判断。原图未注明墙厚、材料等级和层间连接，局部空隙也不说明其沿整墙的连续范围。",
+          "focus": [
+            "依次点选实体墙、空体墙与组合墙，与图2-3的（a）（b）（c）对应。",
+            "对照实体截面、内部空隙及组合层界面，记录原图未注明的材料、尺寸和连接条件。"
+          ],
+          "imageAlt": "从墙身截面比较三种形式的构造示意",
+          "image": "/images/wall/wall-construction-forms-diagram.png",
+          "hasModel": true,
+          "sectionId": "section-3",
+          "sectionTitle": "实体墙、空体墙与组合墙",
+          "layerCount": 3
         }
       ]
     },
@@ -260,7 +337,13 @@
       "learning": {
         "prerequisiteIds": [],
         "diagrams": [
-          "masonry-bond"
+          "masonry-bond",
+          "wall-bearing-transverse-01",
+          "wall-bearing-longitudinal-01",
+          "wall-bearing-two-way-01",
+          "wall-bearing-semi-frame-01",
+          "construction-column-01",
+          "block-wall-core-column-01"
         ],
         "relatedPrinciples": [],
         "applications": [
@@ -283,7 +366,11 @@
               "practice/envelope-detail"
             ],
             "diagramIds": [
-              "masonry-bond"
+              "masonry-bond",
+              "wall-bearing-transverse-01",
+              "wall-bearing-longitudinal-01",
+              "wall-bearing-two-way-01",
+              "wall-bearing-semi-frame-01"
             ],
             "id": "wall.bearing",
             "lesson": "wall/wall-masonry",
@@ -359,6 +446,150 @@
           },
           {
             "prerequisiteIds": [
+              "wall.materials"
+            ],
+            "conceptIds": [
+              "layers",
+              "connections",
+              "drawing"
+            ],
+            "relatedPrinciples": [],
+            "applications": [
+              "practice/envelope-detail"
+            ],
+            "diagramIds": [],
+            "id": "wall.bond-names",
+            "lesson": "wall/wall-masonry",
+            "anchor": "组砌方式、墙厚与模数",
+            "title": "把砖的方向与灰缝名称对应起来",
+            "question": "怎样在同一面砖墙中区分顺砖、丁砖、横缝和竖缝？",
+            "principle": "顺砖与丁砖按墙面可见的长面或端面区分；横缝与竖缝按砖之间灰缝的延伸方向区分。",
+            "observe": [
+              "对照图2-17依次点选顺砖与丁砖，比较砖的长、宽方向及墙面可见面。",
+              "点选砂浆，沿横缝与竖缝观察上下皮砖的排列和竖缝错开位置。"
+            ],
+            "conclusion": "砖的排列方向、灰缝名称与砖材品种属于不同描述，读图时应分别识别。",
+            "boundary": "原图未给砖规格、墙厚、灰缝宽度或砂浆强度；分解只帮助观察图示组砌，不验证完整搭接和承载性能。",
+            "models": [
+              {
+                "nodeId": "brick-wall-bond-names-01",
+                "objects": [
+                  "顺砖",
+                  "丁砖",
+                  "砂浆"
+                ],
+                "difference": "将顺砖、丁砖和砂浆灰缝与原图名称对应。",
+                "role": "core",
+                "primary": true,
+                "title": "砖墙组砌名称"
+              }
+            ],
+            "assessment": {
+              "question": "长面朝外的砖与水平灰缝分别叫什么？能否由这张图确定砂浆强度？",
+              "criteria": [
+                "长面朝外是顺砖，水平灰缝是横缝。",
+                "图中未标注砂浆强度，不能由灰缝外观推定。"
+              ]
+            },
+            "sectionId": "section-3"
+          },
+          {
+            "prerequisiteIds": [
+              "wall.bond-names"
+            ],
+            "conceptIds": [
+              "layers",
+              "drawing"
+            ],
+            "relatedPrinciples": [],
+            "applications": [
+              "practice/envelope-detail"
+            ],
+            "diagramIds": [],
+            "id": "wall.hollow-block",
+            "lesson": "wall/wall-masonry",
+            "anchor": "空心砌块墙的孔洞与错缝",
+            "title": "从顶部孔洞读到墙面排列",
+            "question": "空心砌块墙的顶部孔洞与上下皮错缝分别提供什么信息？",
+            "principle": "顶部孔洞反映块材内部形态，墙面灰缝反映砌块排列；材料内部孔洞与墙体组砌关系需分别识读。",
+            "observe": [
+              "整体点选空心砌块墙，从顶部开口辨认孔洞及其周边块壁。",
+              "沿墙面比较相邻上下皮的竖缝位置，再与空心砖墙由侧砌围合的空腔比较。"
+            ],
+            "conclusion": "块材孔洞与墙体排列属于两个尺度；孔洞外形不能直接证明灌芯、配筋或承重身份。",
+            "boundary": "源模型按整墙合为一组；原图未标注尺寸、材料等级、配筋与灌芯信息，不用于验证完整工程性能。",
+            "models": [
+              {
+                "nodeId": "hollow-block-wall-01",
+                "objects": [
+                  "空心砌块墙"
+                ],
+                "difference": "整体观察块材孔洞、块壁和上下皮错缝。",
+                "role": "core",
+                "primary": true,
+                "title": "空心砌块墙"
+              }
+            ],
+            "assessment": {
+              "question": "看到顶部孔洞，能否认定墙内已经灌芯或配置钢筋？",
+              "criteria": [
+                "孔洞只提供块材内部几何信息。",
+                "灌芯、配筋与承重条件仍需设计和实际施工资料。"
+              ]
+            },
+            "sectionId": "section-4"
+          },
+          {
+            "prerequisiteIds": [
+              "wall.bond-names"
+            ],
+            "conceptIds": [
+              "layers",
+              "connections",
+              "drawing"
+            ],
+            "relatedPrinciples": [],
+            "applications": [
+              "practice/envelope-detail"
+            ],
+            "diagramIds": [],
+            "id": "wall.hollow-brick",
+            "lesson": "wall/wall-masonry",
+            "anchor": "空心砖墙的空腔与拉结",
+            "title": "区分组砌空腔与块材孔洞",
+            "question": "图示空心砖墙的空腔怎样形成，转角与横向砖怎样相接？",
+            "principle": "图示普通砖通过侧砌围合形成空腔，横向拉结砖与转角平砌砖提供局部连接；组砌空腔与单块材料内的孔洞应分别识别。",
+            "observe": [
+              "点选侧砌普通砖，沿顶部开口追踪空腔与两侧砖的边界。",
+              "分别点选横向拉结砖和转角平砌砖，比较跨腔与两向墙交接处的排列。"
+            ],
+            "conclusion": "先确定空腔形成方式，再识别局部连接；空心外形不能单独证明材料品种、承重身份或完整性能。",
+            "boundary": "原图没有尺寸、配筋或性能数据；模型为静态组砌示意，不验证整墙拉结、承载及热工性能。",
+            "models": [
+              {
+                "nodeId": "hollow-brick-wall-01",
+                "objects": [
+                  "侧砌普通砖",
+                  "横向拉结砖",
+                  "转角平砌砖"
+                ],
+                "difference": "观察侧砌形成的空腔与跨腔、转角处的砖。",
+                "role": "core",
+                "primary": true,
+                "title": "空心砖墙"
+              }
+            ],
+            "assessment": {
+              "question": "图示墙体的空腔是否就是单块砖内部的孔洞？如何辨认两者？",
+              "criteria": [
+                "沿顶部开口辨认侧砌砖围合的空腔。",
+                "指出块材内部孔洞与墙体组砌空腔属于不同尺度，不能互相替代。"
+              ]
+            },
+            "sectionId": "section-5"
+          },
+          {
+            "prerequisiteIds": [
               "wall.bearing"
             ],
             "conceptIds": [
@@ -369,7 +600,10 @@
             "applications": [
               "practice/envelope-detail"
             ],
-            "diagramIds": [],
+            "diagramIds": [
+              "construction-column-01",
+              "block-wall-core-column-01"
+            ],
             "id": "wall.integrity",
             "lesson": "wall/wall-masonry",
             "anchor": "圈梁、构造柱与芯柱",
@@ -377,7 +611,7 @@
             "question": "构造柱与芯柱在哪里形成联系，为什么都不能代替承重墙？",
             "principle": "圈梁沿水平方向联系墙段，构造柱在墙交接或边界形成竖向约束；芯柱利用砌块孔道形成竖向增强。它们通过连续连接改善整体工作，任务与框架承重骨架不同。",
             "observe": [
-              "在构造柱模型中依次点选墙体、马牙槎、钢筋、圈梁，解释相邻构件怎样形成联系。",
+              "先读构造柱立面与1—1横剖面，区分柱纵筋截面、箍筋和两向拉结筋，再在模型中点选墙体、马牙槎、钢筋和圈梁，解释相邻构件的联系。",
               "进入芯柱模型，观察增强构件从墙外预留截面转到砌块孔道内部后的施工条件变化。"
             ],
             "conclusion": "用“位置—连接—施工顺序”比较两者，再说明为什么不能先拆墙、后以加柱补救。",
@@ -417,13 +651,13 @@
                 "增强构件不能替代承重墙的完整作用。"
               ]
             },
-            "sectionId": "section-4"
+            "sectionId": "section-6"
           }
         ],
         "intro": "先看整栋布置中的支承，再缩小到砌体交接。四种承重方案与两种竖向增强构造围绕同一条传力路线比较。",
         "kind": "reading"
       },
-      "readingMinutes": 8,
+      "readingMinutes": 11,
       "figures": [
         {
           "id": "model-wall-bearing",
@@ -439,15 +673,75 @@
             "比较其余三种方案，分别画出“板—墙”或“板—梁—柱/墙”的路线，并注明图外还需接到基础。"
           ],
           "imageAlt": "同一问题：楼板把作用交给哪些支承的构造示意",
-          "image": "/images/wall/bearing-layout-transverse-diagram.png",
+          "image": "/images/learning/wall-bearing-transverse-01.svg",
           "hasModel": true,
           "sectionId": "section-1",
           "sectionTitle": "承重墙布置与传力",
           "layerCount": 3
         },
         {
-          "id": "model-wall-integrity",
+          "id": "model-wall-bond-names",
           "number": "02",
+          "nodeId": "brick-wall-bond-names-01",
+          "nodeTitle": "砖墙组砌名称",
+          "knowledgeId": "wall.bond-names",
+          "anchor": "组砌方式、墙厚与模数",
+          "title": "把砖的方向与灰缝名称对应起来",
+          "caption": "顺砖与丁砖按墙面可见的长面或端面区分；横缝与竖缝按砖之间灰缝的延伸方向区分。原图未给砖规格、墙厚、灰缝宽度或砂浆强度；分解只帮助观察图示组砌，不验证完整搭接和承载性能。",
+          "focus": [
+            "对照图2-17依次点选顺砖与丁砖，比较砖的长、宽方向及墙面可见面。",
+            "点选砂浆，沿横缝与竖缝观察上下皮砖的排列和竖缝错开位置。"
+          ],
+          "imageAlt": "把砖的方向与灰缝名称对应起来的构造示意",
+          "image": "/images/wall/brick-wall-bond-names-diagram.png",
+          "hasModel": true,
+          "sectionId": "section-3",
+          "sectionTitle": "组砌方式、墙厚与模数",
+          "layerCount": 3
+        },
+        {
+          "id": "model-wall-hollow-block",
+          "number": "03",
+          "nodeId": "hollow-block-wall-01",
+          "nodeTitle": "空心砌块墙",
+          "knowledgeId": "wall.hollow-block",
+          "anchor": "空心砌块墙的孔洞与错缝",
+          "title": "从顶部孔洞读到墙面排列",
+          "caption": "顶部孔洞反映块材内部形态，墙面灰缝反映砌块排列；材料内部孔洞与墙体组砌关系需分别识读。源模型按整墙合为一组；原图未标注尺寸、材料等级、配筋与灌芯信息，不用于验证完整工程性能。",
+          "focus": [
+            "整体点选空心砌块墙，从顶部开口辨认孔洞及其周边块壁。",
+            "沿墙面比较相邻上下皮的竖缝位置，再与空心砖墙由侧砌围合的空腔比较。"
+          ],
+          "imageAlt": "从顶部孔洞读到墙面排列的构造示意",
+          "image": "/images/wall/hollow-block-wall-diagram.png",
+          "hasModel": true,
+          "sectionId": "section-4",
+          "sectionTitle": "空心砌块墙的孔洞与错缝",
+          "layerCount": 1
+        },
+        {
+          "id": "model-wall-hollow-brick",
+          "number": "04",
+          "nodeId": "hollow-brick-wall-01",
+          "nodeTitle": "空心砖墙",
+          "knowledgeId": "wall.hollow-brick",
+          "anchor": "空心砖墙的空腔与拉结",
+          "title": "区分组砌空腔与块材孔洞",
+          "caption": "图示普通砖通过侧砌围合形成空腔，横向拉结砖与转角平砌砖提供局部连接；组砌空腔与单块材料内的孔洞应分别识别。原图没有尺寸、配筋或性能数据；模型为静态组砌示意，不验证整墙拉结、承载及热工性能。",
+          "focus": [
+            "点选侧砌普通砖，沿顶部开口追踪空腔与两侧砖的边界。",
+            "分别点选横向拉结砖和转角平砌砖，比较跨腔与两向墙交接处的排列。"
+          ],
+          "imageAlt": "区分组砌空腔与块材孔洞的构造示意",
+          "image": "/images/wall/hollow-brick-wall-diagram.png",
+          "hasModel": true,
+          "sectionId": "section-5",
+          "sectionTitle": "空心砖墙的空腔与拉结",
+          "layerCount": 3
+        },
+        {
+          "id": "model-wall-integrity",
+          "number": "05",
           "nodeId": "construction-column-01",
           "nodeTitle": "构造柱",
           "knowledgeId": "wall.integrity",
@@ -455,13 +749,13 @@
           "title": "把墙的水平联系与竖向联系接起来",
           "caption": "圈梁沿水平方向联系墙段，构造柱在墙交接或边界形成竖向约束；芯柱利用砌块孔道形成竖向增强。它们通过连续连接改善整体工作，任务与框架承重骨架不同。构造柱模型与所配局部原图的墙体布置不同；图示钢筋与混凝土标号是本例记录，不是全站通用配筋。",
           "focus": [
-            "在构造柱模型中依次点选墙体、马牙槎、钢筋、圈梁，解释相邻构件怎样形成联系。",
+            "先读构造柱立面与1—1横剖面，区分柱纵筋截面、箍筋和两向拉结筋，再在模型中点选墙体、马牙槎、钢筋和圈梁，解释相邻构件的联系。",
             "进入芯柱模型，观察增强构件从墙外预留截面转到砌块孔道内部后的施工条件变化。"
           ],
           "imageAlt": "把墙的水平联系与竖向联系接起来的构造示意",
-          "image": "/images/wall/construction-column-diagram.png",
+          "image": "/images/learning/construction-column-01.svg",
           "hasModel": true,
-          "sectionId": "section-4",
+          "sectionId": "section-6",
           "sectionTitle": "圈梁、构造柱与芯柱",
           "layerCount": 7
         }
@@ -539,7 +833,11 @@
       "edition": "knowledge-2026-10-29",
       "learning": {
         "prerequisiteIds": [],
-        "diagrams": [],
+        "diagrams": [
+          "foam-insulation-01",
+          "rockwool-insulation-01",
+          "passive-solar-wall-01"
+        ],
         "relatedPrinciples": [],
         "applications": [
           "practice/envelope-detail"
@@ -562,7 +860,10 @@
             "applications": [
               "practice/envelope-detail"
             ],
-            "diagramIds": [],
+            "diagramIds": [
+              "foam-insulation-01",
+              "rockwool-insulation-01"
+            ],
             "id": "wall.thermal",
             "lesson": "wall/wall-design-requirements",
             "anchor": "保温、隔热、气密与防结露",
@@ -570,8 +871,8 @@
             "question": "把保温板贴满墙面，是否就得到完整的外墙性能？",
             "principle": "保温层减小实体传热，连接把附加层作用交给基层，外侧保护应适应水和变形。洞口、梁柱和穿透处仍要保持相应边界连续，气密与防结露需要另外判断。",
             "observe": [
-              "点选保温板与基层墙体，再找胶粘、锚固和保护层的相邻位置。",
-              "对比岩棉做法，记录固定、找平及保护层的差异；再在纸上把这套层次接到窗洞四周。"
+              "对照泡沫塑料板外保温剖面，点选模型中的保温板与基层墙体，再找胶粘、锚固和保护层的相邻位置。",
+              "展开岩棉图纸与模型比较，记录固定、找平和防水层位置的差异；再在纸上把层次接到窗洞四周。"
             ],
             "conclusion": "能解释层的分工，比只背从外到内的名称更重要；材料名称不能替代完整系统性能评价。",
             "boundary": "局部墙身模型不含完整洞口热桥，也不提供热工、声学或耐火试验结果。",
@@ -623,7 +924,9 @@
             "applications": [
               "practice/envelope-detail"
             ],
-            "diagramIds": [],
+            "diagramIds": [
+              "passive-solar-wall-01"
+            ],
             "id": "wall.solar",
             "lesson": "wall/wall-design-requirements",
             "anchor": "有条件的被动太阳能墙",
@@ -678,11 +981,11 @@
           "title": "保温、固定和外侧保护各做什么",
           "caption": "保温层减小实体传热，连接把附加层作用交给基层，外侧保护应适应水和变形。洞口、梁柱和穿透处仍要保持相应边界连续，气密与防结露需要另外判断。局部墙身模型不含完整洞口热桥，也不提供热工、声学或耐火试验结果。",
           "focus": [
-            "点选保温板与基层墙体，再找胶粘、锚固和保护层的相邻位置。",
-            "对比岩棉做法，记录固定、找平及保护层的差异；再在纸上把这套层次接到窗洞四周。"
+            "对照泡沫塑料板外保温剖面，点选模型中的保温板与基层墙体，再找胶粘、锚固和保护层的相邻位置。",
+            "展开岩棉图纸与模型比较，记录固定、找平和防水层位置的差异；再在纸上把层次接到窗洞四周。"
           ],
           "imageAlt": "保温、固定和外侧保护各做什么的构造示意",
-          "image": "/images/wall/foam-insulation-diagram.png",
+          "image": "/images/learning/foam-insulation-01.svg",
           "hasModel": true,
           "sectionId": "section-3",
           "sectionTitle": "保温、隔热、气密与防结露",
@@ -702,7 +1005,7 @@
             "找到上下孔口，分别说明有日照与无日照时还需哪些温度、控制及防倒流信息。"
           ],
           "imageAlt": "太阳得热与通风要说明运行条件的构造示意",
-          "image": "/images/wall/passive-solar-wall-diagram.png",
+          "image": "/images/learning/passive-solar-wall-01.svg",
           "hasModel": true,
           "sectionId": "section-4",
           "sectionTitle": "有条件的被动太阳能墙",
@@ -719,7 +1022,13 @@
       "learning": {
         "prerequisiteIds": [],
         "diagrams": [
-          "wall-paths"
+          "wall-paths",
+          "apron-flashing-01",
+          "stone-apron-01",
+          "rc-lintel-flush-01",
+          "rc-lintel-window-surround-01",
+          "rc-lintel-window-hood-01",
+          "window-wall-gap-sealing-01"
         ],
         "relatedPrinciples": [],
         "applications": [
@@ -793,7 +1102,10 @@
             "applications": [
               "practice/envelope-detail"
             ],
-            "diagramIds": [],
+            "diagramIds": [
+              "apron-flashing-01",
+              "stone-apron-01"
+            ],
             "id": "wall.surface-water",
             "lesson": "wall/wall-details",
             "anchor": "勒脚、散水与明沟",
@@ -852,7 +1164,11 @@
             "applications": [
               "practice/envelope-detail"
             ],
-            "diagramIds": [],
+            "diagramIds": [
+              "rc-lintel-flush-01",
+              "rc-lintel-window-surround-01",
+              "rc-lintel-window-hood-01"
+            ],
             "id": "wall.opening-support",
             "lesson": "wall/wall-details",
             "anchor": "门窗洞口：传力、密封与排水",
@@ -860,7 +1176,7 @@
             "question": "平墙、带窗套和带窗楣的外形差异，能否直接证明支承充分？",
             "principle": "过梁承担洞口上方相应作用，窗套和窗楣改变洞口周边的外形与界面。结构支承、表面排水和窗框密封需要分别说明，再在同一详图中协调。",
             "observe": [
-              "点选过梁主体、包覆层和上部墙体，辨认沿墙厚方向的局部截面。",
+              "对照三种过梁横剖面，点选模型中的过梁主体、包覆层和上部墙体，辨认沿墙厚方向的局部截面。",
               "比较窗套与窗楣的凸出位置，再列出确认跨度、两端支座及配筋仍需要的图纸。"
             ],
             "conclusion": "模型能说明局部几何，不能由窗套或窗楣外观推断过梁的承载能力，也不能把窗框当成过梁支座。",
@@ -925,7 +1241,9 @@
             "applications": [
               "practice/envelope-detail"
             ],
-            "diagramIds": [],
+            "diagramIds": [
+              "window-wall-gap-sealing-01"
+            ],
             "id": "wall.window-joint",
             "lesson": "wall/wall-details",
             "anchor": "安装缝的四项任务",
@@ -933,7 +1251,7 @@
             "question": "窗墙缝填满后，还缺哪些构造信息才能说明接口完整？",
             "principle": "固定传递门窗作用，填缝处理间隙，密封控制水与空气通路，排水把已进入界面的水引向室外。几项任务可相互配合，但不能互相替代。",
             "observe": [
-              "点选窗框、外墙、袋装矿棉和弹性密封胶，找出不同材料的位置。",
+              "先在窗墙缝横剖面区分填充与密封的位置，再点选模型中的窗框、外墙、袋装矿棉和弹性密封胶作对应。",
               "在草图中补出本模型没有独立表示的固定点和下口排水去向，再核对墙身保温的接续。"
             ],
             "conclusion": "用“作用—路径—接口”说明填塞与胶封的分工，而非把所有材料统称为防水层。",
@@ -1003,7 +1321,7 @@
             "比较块石散水与细石混凝土散水，说明面层和垫层改变后仍应保留哪些水路与变形任务。"
           ],
           "imageAlt": "排走地表水，也要允许墙边变形的构造示意",
-          "image": "/images/wall/apron-flashing-diagram.png",
+          "image": "/images/learning/apron-flashing-01.svg",
           "hasModel": true,
           "sectionId": "section-2",
           "sectionTitle": "勒脚、散水与明沟",
@@ -1019,11 +1337,11 @@
           "title": "过梁承托与洞口外形分别比较",
           "caption": "过梁承担洞口上方相应作用，窗套和窗楣改变洞口周边的外形与界面。结构支承、表面排水和窗框密封需要分别说明，再在同一详图中协调。三种模型均未完整表达跨洞方向的两端支座及配筋。",
           "focus": [
-            "点选过梁主体、包覆层和上部墙体，辨认沿墙厚方向的局部截面。",
+            "对照三种过梁横剖面，点选模型中的过梁主体、包覆层和上部墙体，辨认沿墙厚方向的局部截面。",
             "比较窗套与窗楣的凸出位置，再列出确认跨度、两端支座及配筋仍需要的图纸。"
           ],
           "imageAlt": "过梁承托与洞口外形分别比较的构造示意",
-          "image": "/images/wall/rc-lintel-flush-diagram.png",
+          "image": "/images/learning/rc-lintel-flush-01.svg",
           "hasModel": true,
           "sectionId": "section-3",
           "sectionTitle": "门窗洞口：传力、密封与排水",
@@ -1039,11 +1357,11 @@
           "title": "填缝与密封，不能代替可靠固定",
           "caption": "固定传递门窗作用，填缝处理间隙，密封控制水与空气通路，排水把已进入界面的水引向室外。几项任务可相互配合，但不能互相替代。这是传统安装缝局部示例，木条不应被当成适用于任意现代门窗系统的固定方案。",
           "focus": [
-            "点选窗框、外墙、袋装矿棉和弹性密封胶，找出不同材料的位置。",
+            "先在窗墙缝横剖面区分填充与密封的位置，再点选模型中的窗框、外墙、袋装矿棉和弹性密封胶作对应。",
             "在草图中补出本模型没有独立表示的固定点和下口排水去向，再核对墙身保温的接续。"
           ],
           "imageAlt": "填缝与密封，不能代替可靠固定的构造示意",
-          "image": "/images/wall/window-wall-gap-sealing-diagram.png",
+          "image": "/images/learning/window-wall-gap-sealing-01.svg",
           "hasModel": true,
           "sectionId": "section-4",
           "sectionTitle": "安装缝的四项任务",
@@ -1059,7 +1377,11 @@
       "edition": "knowledge-2026-10-29",
       "learning": {
         "prerequisiteIds": [],
-        "diagrams": [],
+        "diagrams": [
+          "plaster-plinth-01",
+          "faced-plinth-01",
+          "stone-plinth-01"
+        ],
         "relatedPrinciples": [],
         "applications": [
           "practice/envelope-detail"
@@ -1081,7 +1403,11 @@
             "applications": [
               "practice/envelope-detail"
             ],
-            "diagramIds": [],
+            "diagramIds": [
+              "plaster-plinth-01",
+              "faced-plinth-01",
+              "stone-plinth-01"
+            ],
             "id": "wall.finishes",
             "lesson": "wall/wall-finishes",
             "anchor": "用勒脚比较饰面与墙身防潮",
@@ -1161,7 +1487,7 @@
             "说明各模型明确表示了什么连接，哪些重型面材锚固或干挂构造不能从这些模型推出。"
           ],
           "imageAlt": "同一个墙脚，面层改变后哪些任务保留的构造示意",
-          "image": "/images/wall/plaster-plinth-diagram.png",
+          "image": "/images/learning/plaster-plinth-01.svg",
           "hasModel": true,
           "sectionId": "section-6",
           "sectionTitle": "用勒脚比较饰面与墙身防潮",
@@ -1345,6 +1671,27 @@
         "practice/envelope-detail"
       ]
     },
+    "wall-construction-forms-01": {
+      "lessonKey": "wall/wall-types",
+      "lessonTitle": "墙体的类型",
+      "lessonPath": "basics/wall/wall-types.html",
+      "figureId": "model-wall-forms",
+      "knowledgeId": "wall.forms",
+      "question": "实体墙、空体墙与组合墙分别怎样表达连续墙身、空隙和材料层次？",
+      "principle": "图示三种构造形式分别以连续实体、内部空隙和不同材料层组合表达墙身差异；形式与材料品种、受力身份需要分别判断。",
+      "task": "并列比较连续墙身、内部空隙与材料层组合。",
+      "objects": [
+        "实体墙",
+        "空体墙",
+        "组合墙"
+      ],
+      "boundary": "原图未注明墙厚、材料等级和层间连接，局部空隙也不说明其沿整墙的连续范围。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
     "wall-bearing-longitudinal-01": {
       "lessonKey": "wall/wall-masonry",
       "lessonTitle": "砌体结构",
@@ -1402,6 +1749,67 @@
         "墙体"
       ],
       "boundary": "这些是单层布置示意，墙段和楼板多为合并网格；不展示结构计算、完整连接或抗震验算。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "brick-wall-bond-names-01": {
+      "lessonKey": "wall/wall-masonry",
+      "lessonTitle": "砌体结构",
+      "lessonPath": "basics/wall/wall-masonry.html",
+      "figureId": "model-wall-bond-names",
+      "knowledgeId": "wall.bond-names",
+      "question": "怎样在同一面砖墙中区分顺砖、丁砖、横缝和竖缝？",
+      "principle": "顺砖与丁砖按墙面可见的长面或端面区分；横缝与竖缝按砖之间灰缝的延伸方向区分。",
+      "task": "将顺砖、丁砖和砂浆灰缝与原图名称对应。",
+      "objects": [
+        "顺砖",
+        "丁砖",
+        "砂浆"
+      ],
+      "boundary": "原图未给砖规格、墙厚、灰缝宽度或砂浆强度；分解只帮助观察图示组砌，不验证完整搭接和承载性能。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "hollow-block-wall-01": {
+      "lessonKey": "wall/wall-masonry",
+      "lessonTitle": "砌体结构",
+      "lessonPath": "basics/wall/wall-masonry.html",
+      "figureId": "model-wall-hollow-block",
+      "knowledgeId": "wall.hollow-block",
+      "question": "空心砌块墙的顶部孔洞与上下皮错缝分别提供什么信息？",
+      "principle": "顶部孔洞反映块材内部形态，墙面灰缝反映砌块排列；材料内部孔洞与墙体组砌关系需分别识读。",
+      "task": "整体观察块材孔洞、块壁和上下皮错缝。",
+      "objects": [
+        "空心砌块墙"
+      ],
+      "boundary": "源模型按整墙合为一组；原图未标注尺寸、材料等级、配筋与灌芯信息，不用于验证完整工程性能。",
+      "primary": true,
+      "relatedPrinciples": [],
+      "applications": [
+        "practice/envelope-detail"
+      ]
+    },
+    "hollow-brick-wall-01": {
+      "lessonKey": "wall/wall-masonry",
+      "lessonTitle": "砌体结构",
+      "lessonPath": "basics/wall/wall-masonry.html",
+      "figureId": "model-wall-hollow-brick",
+      "knowledgeId": "wall.hollow-brick",
+      "question": "图示空心砖墙的空腔怎样形成，转角与横向砖怎样相接？",
+      "principle": "图示普通砖通过侧砌围合形成空腔，横向拉结砖与转角平砌砖提供局部连接；组砌空腔与单块材料内的孔洞应分别识别。",
+      "task": "观察侧砌形成的空腔与跨腔、转角处的砖。",
+      "objects": [
+        "侧砌普通砖",
+        "横向拉结砖",
+        "转角平砌砖"
+      ],
+      "boundary": "原图没有尺寸、配筋或性能数据；模型为静态组砌示意，不验证整墙拉结、承载及热工性能。",
       "primary": true,
       "relatedPrinciples": [],
       "applications": [

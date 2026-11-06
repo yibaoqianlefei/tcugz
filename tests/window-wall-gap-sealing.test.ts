@@ -72,5 +72,6 @@ try {
 } finally {
   unregister(); mixer.stopAllAction(); mixer.uncacheRoot(root);
 }
-assert.equal(readFileSync(publicUrlToFsPath(node.diagram.path)).subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
-console.log('PASS window-wall gap sealing: six component bindings, embedded assets, five moving parts, fixed window frame, four-second scrub/reverse/reset and PNG diagram');
+const section=readFileSync(publicUrlToFsPath(node.diagram.path),'utf8');
+assert(/<svg\b/.test(section)&&section.includes('袋装矿棉')&&section.includes('弹性密封胶'));
+console.log('PASS window-wall gap sealing: six component bindings, embedded assets, five moving parts, fixed window frame, four-second scrub/reverse/reset and SVG diagram');

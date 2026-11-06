@@ -34,6 +34,6 @@ for (const part of gltf.nodes) {
 }
 const size = bounds.getSize(new Vector3());
 assert(size.x > 36 && size.x < 37 && size.y > 3.5 && size.y < 3.7 && size.z > 18 && size.z < 19, 'preserve source building proportions');
-const png = readFileSync(publicUrlToFsPath(node.diagram.path));
-assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+const diagram = readFileSync(publicUrlToFsPath(node.diagram.path),'utf8');
+assert(diagram.includes('data-geometry-id="plan-frame"')&&!/<image\b/.test(diagram),'Matching source-derived vector plan');
 console.log('PASS frame structure layout: two geometry groups, static controls, original transforms, picking bindings and matching figure 2-7.');

@@ -229,6 +229,8 @@
   overflow: hidden;
 }
 .node-diagram { grid-column: 1; grid-row: 1; }
+.node-diagram-sheet { scrollbar-gutter: stable; overscroll-behavior: contain; background: white; }
+.node-diagram-sheet:focus-visible { outline: 2px solid var(--ui-blue); outline-offset: -2px; }
 .node-viewport { grid-column: 2; grid-row: 1; overflow: hidden; }
 .node-knowledge { grid-column: 3; grid-row: 1; }
 .node-layout-presets { display: flex; }

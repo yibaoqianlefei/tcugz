@@ -3646,6 +3646,356 @@
       ],
       "meshes": 6,
       "triangles": 1608
+    },
+    "deformation-joint-forms-01": {
+      "id": "deformation-joint-forms-01",
+      "title": "变形缝的形式",
+      "category": "变形缝",
+      "source": "/models/deformation-joint/deformation-joint-forms.glb",
+      "variant": null,
+      "initialView": [
+        0.3,
+        1,
+        1.4
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/deformation-joint-forms-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "501786656ffc7591f8480f76e3f862642a87c94c95b952da97f5874f520d8515",
+      "bytes": 16340,
+      "foreground": {
+        "left": 66,
+        "top": 129,
+        "right": 893,
+        "bottom": 410,
+        "pixels": 121240
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.17177950029416048,
+        0.5725983343138683,
+        0.8016376680394156
+      ],
+      "meshes": 6,
+      "triangles": 192
+    },
+    "cast-iron-rainwater-outlet-01": {
+      "id": "cast-iron-rainwater-outlet-01",
+      "title": "铸铁水落口",
+      "category": "屋顶",
+      "source": "/models/roof/cast-iron-rainwater-outlet/cast-iron-rainwater-outlet.glb",
+      "variant": null,
+      "initialView": [
+        1,
+        0.6,
+        1.2
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/cast-iron-rainwater-outlet-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "42e226879b35723fddcc2df429bcdcc75b32d36259a98489b933a93b8163e875",
+      "bytes": 16506,
+      "foreground": {
+        "left": 174,
+        "top": 37,
+        "right": 785,
+        "bottom": 502,
+        "pixels": 189466
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 2,
+          "triangles": 2164
+        },
+        {
+          "time": 4,
+          "meshes": 2,
+          "triangles": 2164
+        }
+      ],
+      "direction": [
+        0.5838158294569837,
+        0.41030250858617445,
+        0.7005789953483805
+      ],
+      "meshes": 2,
+      "triangles": 2164
+    },
+    "brick-wall-bond-names-01": {
+      "id": "brick-wall-bond-names-01",
+      "title": "砖墙组砌名称",
+      "category": "墙体",
+      "source": "/models/wall/brick-wall-bond-names/brick-wall-bond-names.glb",
+      "variant": null,
+      "initialView": [
+        0.5,
+        0.3,
+        1.5
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/brick-wall-bond-names-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "85f950b97d3ecbef164d4fd26fd0225d1770c6ec6593dee4fc7d6fa8f4ebbeca",
+      "bytes": 53490,
+      "foreground": {
+        "left": 66,
+        "top": 53,
+        "right": 893,
+        "bottom": 486,
+        "pixels": 276085
+      },
+      "poseTime": 0.001,
+      "poseCandidates": [
+        {
+          "time": 0.001,
+          "meshes": 4,
+          "triangles": 4092
+        },
+        {
+          "time": 4,
+          "meshes": 4,
+          "triangles": 4092
+        }
+      ],
+      "direction": [
+        0.2907725788423944,
+        0.39308151054639434,
+        0.8723177365271831
+      ],
+      "meshes": 4,
+      "triangles": 4092
+    },
+    "hollow-block-wall-01": {
+      "id": "hollow-block-wall-01",
+      "title": "空心砌块墙",
+      "category": "墙体",
+      "source": "/models/wall/hollow-block-wall/hollow-block-wall.glb",
+      "variant": null,
+      "initialView": [
+        1,
+        0.9,
+        1.5
+      ],
+      "groups": {
+        "空心砌块墙001": "空心砌块墙",
+        "空心砌块墙001_0": "空心砌块墙",
+        "空心砌块墙001_1": "空心砌块墙"
+      },
+      "outlineExcluded": [],
+      "path": "images/node-renders/hollow-block-wall-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "cecff50aceea3293f59c210ea66760fb09ed6971c3d5a1365753b840a019fb6f",
+      "bytes": 19096,
+      "foreground": {
+        "left": 281,
+        "top": 37,
+        "right": 678,
+        "bottom": 502,
+        "pixels": 136574
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.49629166698546523,
+        0.44666250028691873,
+        0.7444375004781978
+      ],
+      "meshes": 2,
+      "triangles": 1460
+    },
+    "hollow-brick-wall-01": {
+      "id": "hollow-brick-wall-01",
+      "title": "空心砖墙",
+      "category": "墙体",
+      "source": "/models/wall/hollow-brick-wall/hollow-brick-wall.glb",
+      "variant": null,
+      "initialView": [
+        -1,
+        0.9,
+        1
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/hollow-brick-wall-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "75df9fd90ea4937c04e02b96d287d0ac1eb1ca26ac0020d82a542f86062c7a55",
+      "bytes": 41172,
+      "foreground": {
+        "left": 192,
+        "top": 37,
+        "right": 767,
+        "bottom": 502,
+        "pixels": 196716
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        -0.5965499862718936,
+        0.5368949876447042,
+        0.5965499862718936
+      ],
+      "meshes": 4,
+      "triangles": 4476
+    },
+    "wall-construction-forms-01": {
+      "id": "wall-construction-forms-01",
+      "title": "墙体构造形式",
+      "category": "墙体",
+      "source": "/models/wall/wall-construction-forms/wall-construction-forms.glb",
+      "variant": null,
+      "initialView": [
+        0.5,
+        0.7,
+        1.5
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/wall-construction-forms-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "f59313531fcde11986991ea9395f15e19b285898fdde960ff79c4878545a0193",
+      "bytes": 21002,
+      "foreground": {
+        "left": 66,
+        "top": 45,
+        "right": 893,
+        "bottom": 494,
+        "pixels": 175812
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.28736410495961123,
+        0.4173951506757301,
+        0.8620923148788336
+      ],
+      "meshes": 4,
+      "triangles": 86
+    },
+    "balcony-type-projecting-01": {
+      "id": "balcony-type-projecting-01",
+      "title": "阳台类型（挑阳台）",
+      "category": "楼地层",
+      "source": "/models/floor/balcony-types/projecting.glb",
+      "variant": null,
+      "initialView": [
+        0.8,
+        1.1,
+        1.8
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/balcony-type-projecting-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "aaf49b17e1561071557ab68fe0a772374337970302ac90b44a3fea0e0c32b9bb",
+      "bytes": 20112,
+      "foreground": {
+        "left": 219,
+        "top": 37,
+        "right": 739,
+        "bottom": 502,
+        "pixels": 161329
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.354593765742349,
+        0.48756642789572996,
+        0.7978359729202853
+      ],
+      "meshes": 5,
+      "triangles": 264
+    },
+    "balcony-type-semi-recessed-01": {
+      "id": "balcony-type-semi-recessed-01",
+      "title": "阳台类型（半凸半凹阳台）",
+      "category": "楼地层",
+      "source": "/models/floor/balcony-types/semi-recessed.glb",
+      "variant": null,
+      "initialView": [
+        0.8,
+        1.1,
+        1.8
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/balcony-type-semi-recessed-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "065b8188926c2476972ca1c2b7030f1730de7664df804dedb34f6c9783a643b7",
+      "bytes": 21036,
+      "foreground": {
+        "left": 204,
+        "top": 37,
+        "right": 755,
+        "bottom": 502,
+        "pixels": 172355
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.354593765742349,
+        0.48756642789572996,
+        0.7978359729202853
+      ],
+      "meshes": 5,
+      "triangles": 280
+    },
+    "balcony-type-recessed-01": {
+      "id": "balcony-type-recessed-01",
+      "title": "阳台类型（凹阳台）",
+      "category": "楼地层",
+      "source": "/models/floor/balcony-types/recessed.glb",
+      "variant": null,
+      "initialView": [
+        0.8,
+        1.1,
+        1.8
+      ],
+      "groups": {},
+      "outlineExcluded": [],
+      "path": "images/node-renders/balcony-type-recessed-01.webp",
+      "width": 960,
+      "height": 540,
+      "renderer": "glb-studio-v2",
+      "sourceSha256": "d0ed668fab8108d472218197717b0727a6a290c7edc23d68ca14da1de4585d63",
+      "bytes": 19984,
+      "foreground": {
+        "left": 200,
+        "top": 37,
+        "right": 759,
+        "bottom": 502,
+        "pixels": 171864
+      },
+      "poseTime": 0,
+      "poseCandidates": [],
+      "direction": [
+        0.354593765742349,
+        0.48756642789572996,
+        0.7978359729202853
+      ],
+      "meshes": 5,
+      "triangles": 248
     }
   }
 }

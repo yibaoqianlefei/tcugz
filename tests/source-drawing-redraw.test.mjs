@@ -1,0 +1,33 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+const root='audit-output/source-drawing-redraw-2026-10-29';
+const records=JSON.parse(await readFile(root+'/evidence.json','utf8'));
+const checks=JSON.parse(await readFile(root+'/browser-geometry-checks.json','utf8'));
+assert.equal(records.length,7);
+assert.equal(new Set(records.map(r=>r.id)).size,7);
+for(const r of records){
+ const original=await readFile('public'+r.original.path);
+ assert.equal(createHash('sha256').update(original).digest('hex'),r.original.sha256,'The actual source drawing is preserved');
+ const svg=await readFile(`${root}/drawings/${r.id}.svg`,'utf8');
+ const metadata=JSON.parse(svg.match(/<metadata>([\s\S]*?)<\/metadata>/)[1].replaceAll('&quot;','"').replaceAll('&gt;','>').replaceAll('&lt;','<').replaceAll('&amp;','&'));
+ assert.deepEqual(metadata,r,'A drawing carries its own source, parameter identity and review status');
+ assert(!/<image\b|data:image|<foreignObject|<script/.test(svg),'A technical redraw must contain authored vector geometry, not a hidden source bitmap');
+ assert(svg.includes("'SimSun'"),'Chinese annotation uses a Song typeface');
+ assert(r.references.length>=3 && r.references.every(s=>s.url.startsWith('https://')));
+ assert.equal(r.replacesOriginal,false,'Drafts are not silently published as accepted construction details');
+ assert.equal(r.learningContexts.filter(context=>context.primary).length,1,'Every redraw has one real primary teaching context');
+ const check=checks.find(item=>item.id===r.id);assert(check);assert.deepEqual(check.clipped,[]);assert.equal(check.rasterImages,0);
+ assert.equal(check.geometryDigest,r.geometryDigest,'Browser evidence must describe the current geometry');
+ assert.equal(check.revision,r.revision,'Browser evidence must describe the current revision');
+}
+const wool=await readFile(`${root}/drawings/rockwool-insulation-01.svg`,'utf8');
+assert(wool.includes('位于找平层外侧、岩棉板内侧'),'The waterproof coating stays on the correct side of the insulation');
+assert(wool.includes('通过粘结与锚固连接基层'),'The teaching labels preserve the adhesive and anchoring relationship');
+assert(records.find(record=>record.id==='rockwool-insulation-01').references.some(ref=>ref.review.includes('不能据此取消粘结')),'The full source limitation remains in evidence instead of the visible drawing');
+const core=await readFile('src/data/blockWallCoreColumnLayers.ts','utf8');
+assert(core.includes('objectName: "灌C15细石混凝土"'),'The selectable mesh identity is preserved');
+assert(core.includes('Cb20')&&!core.includes('HRB400级钢筋'),'Unverified legacy strength and steel-grade claims are corrected');
+assert(core.includes('C25')&&core.includes('5.5.11'),'The grout-material minimum must not hide the applicable seismic requirement');
+const lesson=await readFile('src/data/textbook/walls/wall-masonry.md','utf8');assert(lesson.includes('3.3.2')&&lesson.includes('Cb20'));
+console.log('Source redraw: 7 original hashes, vector-only files, evidence identity, browser text bounds and legacy parameter correction passed.');

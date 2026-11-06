@@ -1,4 +1,5 @@
 import CenteredDiagramImage from "./CenteredDiagramImage";
+import sourceDrawings from "../../data/nodeDiagramLayouts.json";
 
 /**
  * NodeDiagramPanel — responsive diagram panel, the primary cognitive view.
@@ -6,16 +7,17 @@ import CenteredDiagramImage from "./CenteredDiagramImage";
  * belongs in ConstructionKnowledgePanel (right panel).
  */
 export default function NodeDiagramPanel({ diagramImage, subtitle }: { diagramImage?: string; subtitle?: string }) {
-
+  const drawing = sourceDrawings.find(record => diagramImage?.endsWith(record.path));
+  const panelImage = drawing && diagramImage?.replace(drawing.path, drawing.panel);
   return (
     <div className="node-diagram flex flex-col min-w-0 min-h-0 bg-canvas border-r border-hairline overflow-hidden">
       {/* Header */}
       <div className="flex-shrink-0 px-4 py-3 border-b border-hairline">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-sm font-medium text-ink">构造剖面图</h3>
+            <h3 className="text-sm font-medium text-ink">构造图纸</h3>
             <p className="text-xs text-muted mt-0.5 leading-snug">
-              {subtitle ?? "由上至下：保护层 → 结构层"}
+              {subtitle ?? "结合模型辨认构件位置与连接关系"}
             </p>
           </div>
           <span className="text-xs text-muted bg-surface-soft px-2 py-0.5 rounded-full whitespace-nowrap ml-2">
@@ -24,10 +26,10 @@ export default function NodeDiagramPanel({ diagramImage, subtitle }: { diagramIm
         </div>
       </div>
 
-      {/* Keep the complete diagram centered within the space between header and footer. */}
-      <div className="flex flex-1 min-h-0 items-center justify-center overflow-hidden p-4 md:p-5">
+      {/* Portrait plates use the available width; short windows scroll instead of shrinking labels. */}
+      <div key={diagramImage} className={panelImage ? "node-diagram-sheet flex-1 min-h-0 overflow-auto p-2 md:p-3" : "flex flex-1 min-h-0 items-center justify-center overflow-hidden p-4 md:p-5"} tabIndex={panelImage ? 0 : undefined} aria-label={panelImage ? "构造图纸阅读区，可上下滚动" : undefined}>
         {diagramImage ? (
-          <CenteredDiagramImage src={diagramImage} alt="构造剖面图，点击查看原图" openOriginal />
+          <CenteredDiagramImage src={diagramImage} displaySrc={panelImage} fitWidth={!!panelImage} alt="构造图纸，点击查看完整图纸" openOriginal />
         ) : (
           <div className="flex flex-col items-center gap-4 text-center max-w-[280px]">
             <div className="w-20 h-20 rounded-2xl bg-surface-card flex items-center justify-center">
@@ -54,7 +56,7 @@ export default function NodeDiagramPanel({ diagramImage, subtitle }: { diagramIm
       {/* Footer */}
       <div className="flex-shrink-0 px-4 py-2 border-t border-hairline bg-surface-soft/50">
         <p className="text-xs text-muted text-center">
-          点击 3D 构件或右侧面板查看构造详情
+          {panelImage ? "滚动查看完整图纸 · 点击图纸查看大图" : "点击 3D 构件或右侧面板查看构造详情"}
         </p>
       </div>
     </div>

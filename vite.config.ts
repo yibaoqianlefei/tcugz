@@ -3,11 +3,15 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { resolve } from 'node:path'
 import { execFile } from 'node:child_process'
+import { readFile, readdir, writeFile } from 'node:fs/promises'
 import { promisify } from 'node:util'
+import { formalizeCourse } from './scripts/lib/course-paths.mjs'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   const siteBase = env.VITE_BASE_URL ?? '/';
+  let outputBase = siteBase;
+  let outputDirectory = '';
 
   return {
     // 部署基础路径：由环境变量 VITE_BASE_URL 驱动，默认 "/"（域名根目录）。
@@ -16,13 +20,39 @@ export default defineConfig(({ mode }) => {
     plugins: [
       {
         name: 'local-course-paths',
-        // A Pages build writes its deployment prefix into public lesson files.
-        // Regenerate those copies for this server before accepting requests.
+        // Keep local lesson copies aligned with the development server base.
         async configureServer() {
           await promisify(execFile)(process.execPath, ['scripts/promote-homepage.mjs'], {
             cwd: process.cwd(),
             env: { ...process.env, VITE_BASE_URL: siteBase },
           });
+        },
+      },
+      {
+        name: 'built-course-paths',
+        apply: 'build',
+        configResolved(config) {
+          if (!config.base.startsWith('/') || config.base.startsWith('//') || !config.base.endsWith('/')) {
+            throw new Error('Course pages require an absolute site base beginning and ending with /, such as / or /textbook/.');
+          }
+          outputBase = config.base;
+          outputDirectory = resolve(config.root, config.build.outDir);
+        },
+        async closeBundle() {
+          async function stage(directory: string) {
+            for (const entry of await readdir(directory, { withFileTypes: true })) {
+              const path = resolve(directory, entry.name);
+              if (entry.isDirectory()) await stage(path);
+              else if (entry.isFile() && entry.name.endsWith('.html')) {
+                const source = await readFile(path, 'utf8');
+                const staged = formalizeCourse(source, outputBase);
+                if (staged !== source) await writeFile(path, staged, 'utf8');
+              }
+            }
+          }
+          // Public HTML is copied before this hook. Only deployment output changes.
+          await stage(resolve(outputDirectory, 'lesson'));
+          await stage(resolve(outputDirectory, 'curriculum'));
         },
       },
       react(), tailwindcss(),
